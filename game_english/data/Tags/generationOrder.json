@@ -1,0 +1,48 @@
+{
+	"values": [
+		"rectangles",
+		"circles",
+		"mid_rooms",
+		"big_rooms",
+		"corridors",
+		
+		"sand_patches",
+		"labyrinth_mazes",
+		"dungeon_tunnels",
+		"sky_borders",
+		
+		"polishing",
+		"spikes",
+		
+		"mimiga_houses",
+		"headman_clouds",
+		"space_cells",
+		
+		"chests",
+		"life_capsules",
+		"refill_stations",
+		
+		"water",
+		
+		"player",
+		"allies",
+		
+		"boss",
+		"npc_spawning",
+		
+		"chains",
+		"ceilings",
+		"platforms",
+		"walls",
+		"alternate_tiles",
+		"decorations",
+		
+		"exit_door",
+		"save_point",
+		"miracle_matter",
+		"hell_objects",
+		"tutorial_sign",
+		"stars",
+		"map_edits"
+	]
+}

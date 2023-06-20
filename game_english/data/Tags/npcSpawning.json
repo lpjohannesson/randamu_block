@@ -1,0 +1,551 @@
+{
+	"bats": {
+			"ID": 26,
+			"minDepth": 1,
+			"maxDepth": 4,
+			"minCount": 17,
+			"maxCount": 20,
+			"scaling": 3,
+			"modifiers": {
+				"6": 1.25, "B": 3,
+				"8": 1.5, "A": 0.3,
+				"K": 1.5, "C": 0.4
+			},
+			"surface": false, "air": true
+	},
+	"bats_second_camp": {
+			"parent": "bats",
+			"secondCampaign": true,
+			"minDepth": 1,
+			"maxDepth": 4
+	},
+	"shadow_misery": {
+			"ID": 247,
+			"minCount": 8,
+			"maxCount": 10,
+			"spawnNormally": false,
+			"secondCampaign": true,
+			"surface": false, "air": true
+	},
+	"shadow_wild_misery": {
+			"ID": 283,
+			"parent": "shadow_misery"
+	},
+	"freezing_wind": {
+			"ID": 213,
+			"minCount": 1,
+			"maxCount": 1,
+			"secondCampaign": true,
+			"affectedByCountModifier": false,
+			"tileset": "D"
+	},
+	"falling_blocks": {
+			"ID": 294,
+			"minCount": 1,
+			"maxCount": 1,
+			"affectedByCountModifier": false,
+			"gimmick": "5"
+	},
+	"falling_blocks_second_camp": {
+			"parent": "falling_blocks",
+			"secondCampaign": true
+	},
+	"fuss_cores": {
+			"ID": 187,
+			"minDepth": 6,
+			"maxDepth": 8,
+			"minCount": 8,
+			"maxCount": 10,
+			"secondCampaign": true,
+			"modifiers": {
+				"8": 1.33, "A": 3,
+				"K": 1.33, "C": 2
+			},
+			"surface": false, "air": true
+	},
+	"laser_gaudis": {
+			"ID": 155,
+			"minDepth": 9,
+			"minCount": 8,
+			"maxCount": 10,
+			"scaling": 0.5,
+			"modifiers": {
+				"8": 1.33, "A": 3,
+				"K": 1.33, "C": 2
+			},
+			"surface": false, "air": true
+	},
+	"laser_gaudis_second_camp": {
+			"parent": "laser_gaudis",
+			"secondCampaign": true,
+			"minDepth": 1,
+			"maxDepth": 4
+	},
+	"beetles": {
+			"ID": 6,
+			"minDepth": 1,
+			"maxDepth": 5,
+			"minCount": 17,
+			"maxCount": 22,
+			"scaling": 3,
+			"modifiers": {
+				"8": 1.25, "A": 0.33,
+				"K": 1.25, "C": 0.5
+			},
+			"surface": false, "wall": true
+	},
+	"critters": {
+			"ID": 147,
+			"minDepth": 1,
+			"maxDepth": 5,
+			"minCount": 12,
+			"maxCount": 20,
+			"scaling": 2,
+			"modifiers": {
+				"6": 1.25, "A": 0.33,
+				"8": 0, "K": 0,
+				"C": 0.33
+			},
+			"surface": true
+	},
+	"critters_second_camp": {
+			"parent": "critters",
+			"secondCampaign": true,
+			"minDepth": 1,
+			"maxDepth": 4
+	},
+	"shadow_toroko": {
+			"ID": 140,
+			"secondCampaign": true,
+			"spawnNormally": false,
+			"minCount": 8,
+			"maxCount": 14,
+			"surface": true
+	},
+	"puchis": {
+			"ID": 110,
+			"minDepth": 7,
+			"secondCampaign": true,
+			"minCount": 15,
+			"maxCount": 24,
+			"modifiers": {
+				"6": 2,
+				"8": 0, "K": 0
+			},
+			"surface": true
+	},
+	"frogs": {
+			"ID": 104,
+			"minDepth": 4,
+			"maxDepth": 7,
+			"secondCampaign": true,
+			"minCount": 12,
+			"maxCount": 20,
+			"modifiers": {
+				"6": 2,
+				"8": 0, "K": 0
+			},
+			"surface": true
+	},
+	"marsh_critters": {
+			"ID": 241,
+			"minCount": 24,
+			"maxCount": 40,
+			"distance": 6,
+			"tileset": "G"
+	},
+	"marsh_critters_second_camp": {
+			"parent": "marsh_critters",
+			"secondCampaign": true
+	},
+	"firethrowers": {
+			"ID": 97,
+			"minCount": 36,
+			"maxCount": 60,
+			"tileset": "H",
+			"trapBlock": true
+	},
+	"firethrowers_second_camp": {
+			"parent": "firethrowers",
+			"minCount": 144,
+			"maxCount": 240,
+			"secondCampaign": true
+	},
+	"gravityStuff": {
+			"ID": 99,
+			"minCount": 45,
+			"maxCount": 80,
+			"tileset": "F",
+			"trapBlock": true,
+			"secondCampaign": true
+	},
+	"pots": {
+			"ID": 78,
+			"minCount": 18,
+			"maxCount": 40,
+			"scaling": 8,
+			"modifiers": {
+				"8": 0.5, "K": 0.5,
+				"C": 0.33
+			},
+			"surface": true
+	},
+	"grass": {
+			"ID": 30,
+			"minCount": 200,
+			"maxCount": 300,
+			"gimmick": "1",
+			"canOverlap": false,
+			"surface": true
+	},
+	"grass_town_second_camp":{
+			"parent": "grass",
+			"gimmick": "-1",
+			"secondCampaign": true,
+			"tileset": "6"
+	},
+	"grass_second_camp": {
+			"parent": "grass",
+			"secondCampaign": true
+	},
+	"grass_critters": {
+			"ID": 28,
+			"gimmick": "1",
+			"minCount": 50,
+			"maxCount": 75,
+			"npcToSearch": 30
+	},
+	"grass_crit_second_camp": {
+			"parent": "grass_critters",
+			"secondCampaign": true
+	},
+	"grass_critters_second_camp": {
+			"parent": "grass_critters",
+			"gimmick": "-1",
+			"secondCampaign": true,
+			"tileset": "6"
+	},
+	"archers": {
+			"ID": 311,
+			"minDepth": 3,
+			"minCount": 16,
+			"maxCount": 24,
+			"scaling": 1,
+			"modifiers": {
+				"7": 2, "6": 0.5, "8": 0.33, "K": 0.33,
+				"A": 0.33, "C": 1.25
+			},
+			"surface": true
+	},
+	"armor_gaudis": {
+			"ID": 173,
+			"secondCampaign": true,
+			"minDepth": 2,
+			"maxDepth": 6,
+			"minCount": 10,
+			"maxCount": 16,
+			"modifiers": {
+				"3": 2, "8": 0, "K": 0
+			},
+			"surface": true
+	},
+	"power_critters": {
+			"ID": 24,
+			"minDepth": 2,
+			"maxDepth": 8,
+			"minCount": 6,
+			"maxCount": 10,
+			"scaling": 2,
+			"modifiers": {
+				"6": 1.25,
+				"8": 0, "K": 0,
+				"C": 0.33
+			},
+			"surface": true
+	},
+	"dragons": {
+			"ID": 200,
+			"minDepth": 3,
+			"maxDepth": 6,
+			"secondCampaign": true,
+			"randomFacing": true,
+			"minCount": 6,
+			"maxCount": 10,
+			"modifiers": {
+				"9": 1.25,
+				"8": 0.25, "K": 0.25,
+				"C": 0.5
+			},
+			"surface": true
+	},
+	"skullheads": {
+			"ID": 49,
+			"minDepth": 4,
+			"maxDepth": 8,
+			"minCount": 10,
+			"maxCount": 14,
+			"scaling": 2,
+			"modifiers": {
+				"A": 0.33,
+				"8": 0, "K": 0,
+				"C": 0.25
+			},
+			"surface": true
+	},
+	"crows": {
+			"ID": 57,
+			"minDepth": 4,
+			"maxDepth": 8,
+			"minCount": 8,
+			"maxCount": 12,
+			"scaling": 2,
+			"modifiers": {
+				"A": 0.33,
+				"8": 1.5, "K": 1.5,
+				"C": 2
+			},
+			"surface": false, "air": true
+	},
+	"turrets": {
+			"ID": 238,
+			"minDepth": 7,
+			"minCount": 9,
+			"maxCount": 11,
+			"scaling": 1,
+			"modifiers": {
+				"8": 1.25, "A": 3, 
+				"K": 1.25, "C": 2.5
+			},
+			"faceAwayFromWall": true,
+			"surface": false, "wall": true
+	},
+	"turrets_second_camp": {
+			"parent": "turrets",
+			"minDepth": 1,
+			"maxDepth": 2,
+			"secondCampaign": true
+	},
+	"presses": {
+			"ID": 246,
+			"minCount": 15,
+			"maxCount": 18,
+			"scaling": 3,
+			"modifiers": {
+				"8": 0.33, "7": 3, "A": 2,
+				"K": 0.33, "C": 3
+			},
+			"surface": false, "ceiling": true
+	},
+	"presses_second_camp": {
+			"parent": "presses",
+			"secondCampaign": true
+	},
+	"core_bases": {
+			"ID": 176,
+			"minDepth": 8,
+			"minCount": 5,
+			"maxCount": 7,
+			"scaling": 1,
+			"modifiers": {
+				"8": 0, "A": 3, 
+				"K": 0, "C": 2
+			},
+			"surface": true, "ceiling": false,
+			"direction": 0
+	},
+	"core_bases_ceiling": {
+			"ID": 176,
+			"minDepth": 8,
+			"minCount": 5,
+			"maxCount": 7,
+			"scaling": 1,
+			"modifiers": {
+				"8": 0, "A": 3, 
+				"K": 0, "C": 2
+			},
+			"ceiling": true, "surface": false,
+			"direction": 2
+	},
+	"core_bases_second_camp": {
+			"parent": "core_bases",
+			"secondCampaign": true,
+			"minDepth": 1,
+			"maxDepth": 3
+	},
+	"core_bases_second_camp_ceiling": {
+			"parent": "core_bases_ceiling",
+			"secondCampaign": true,
+			"minDepth": 1,
+			"maxDepth": 3
+	},
+	"mannans": {
+			"ID": 35,
+			"minDepth": 5,
+			"minCount": 7,
+			"maxCount": 12,
+			"scaling": 2,
+			"modifiers": {
+				"6": 1.25,
+				"A": 2
+			},
+			"verticalOffset": -8192,
+			"faceAwayFromWall": true,
+			"surface": true
+	},
+	"mannans_second_camp": {
+			"parent": "mannans",
+			"minDepth": 1,
+			"maxDepth": 1,
+			"secondCampaign": true
+	},
+	"sheeps": {
+			"ID": 69,
+			"tileset": "O",
+			"minCount": 60,
+			"maxCount": 100,
+			"distance": 2,
+			"surface": true
+	},
+	"tnt": {
+			"ID": 322,
+			"tileset": "M",
+			"minCount": 68,
+			"maxCount": 88,
+			"distance": 3,
+			"sideOffset": 4096,
+			"surface": false, "wall": true
+	},
+	"tnt_buried": {
+			"parent": "tnt",
+			"minCount": 136,
+			"maxCount": 176,
+			"wall": false, "ground": true
+	},
+	"tnt_second_camp": {
+			"parent": "tnt",
+			"minCount": 95,
+			"maxCount": 123,
+			"secondCampaign": true
+	},
+	"tnt_buried_second_camp": {
+			"parent": "tnt_buried",
+			"secondCampaign": true
+	},
+	"castle_bomb": {
+			"ID": 206,
+			"minCount": 4,
+			"maxCount": 6,
+			"surface": false, "air": true,
+			"tileset": "N"
+	},
+	"castle_bomb_second_camp": {
+			"parent": "castle_bomb",
+			"secondCampaign": true
+	},
+	"castle_rollers": {
+			"ID": 330,
+			"minCount": 16,
+			"maxCount": 24,
+			"surface": true,
+			"tileset": "N"
+	},
+	"castle_rollers_second_camp": {
+			"parent": "castle_rollers",
+			"secondCampaign": true
+	},
+	"robo_ravils": {
+			"ID": 115,
+			"randomFacing": true,
+			"minCount": 6,
+			"maxCount": 10,
+			"secondCampaign": true,
+			"tileset": "9"
+	},
+	"robo_ravils_almond": {
+			"parent": "robo_ravils",
+			"tileset": "A"
+	},
+	"red_plants": {
+			"ID": 230,
+			"verticalOffset": -8192,
+			"minCount": 6,
+			"maxCount": 10,
+			"direction": 1,
+			"secondCampaign": true,
+			"tileset": "B"
+	},
+	"red_plants_sheeps": {
+			"parent": "red_plants",
+			"tileset": "O"
+	},
+	"lab_bubbles": {
+			"ID": 71,
+			"surface": false, "air": true,
+			"minCount": 12,
+			"maxCount": 20,
+			"secondCampaign": true,
+			"tileset": "E"
+	},
+	"puppies": {
+			"ID": 126,
+			"minCount": 30,
+			"maxCount": 45,
+			"randomFacing": true,
+			"gimmick": "6"
+	},
+	"puppies_sand_second_camp": {
+			"parent": "puppies",
+			"gimmick": "-1",
+			"secondCampaign": true,
+			"tileset": "2"
+	},
+	"puppies_second_camp": {
+			"parent": "puppies",
+			"secondCampaign": true
+	},
+	"campfires": {
+			"ID": 70,
+			"minCount": 100,
+			"maxCount": 125,
+			"tileset": "4",
+			"secondCampaign": true
+	},
+	"rockets": {
+			"ID": 231,
+			"minCount": 15,
+			"maxCount": 25,
+			"modifiers": {
+				"F": 2
+			},
+			"randomFacing": true,
+			"tileset": "F"
+	},
+	"rockets_second_camp": {
+			"parent": "rockets",
+			"secondCampaign": true
+	},
+	"rockets_lab": {
+			"parent": "rockets",
+			"tileset": "E"
+	},
+	"rockets_eggs": {
+			"parent": "rockets",
+			"tileset": "9"
+	},
+	"rockets_tech": {
+			"parent": "rockets",
+			"tileset": "A"
+	},
+	"rockets_second_camp_lab": {
+			"parent": "rockets_second_camp",
+			"tileset": "E"
+	},
+	"rockets_second_camp_eggs": {
+			"parent": "rockets_second_camp",
+			"tileset": "9"
+	},
+	"rockets_second_camp_tech": {
+			"parent": "rockets_second_camp",
+			"tileset": "A"
+	}
+}
