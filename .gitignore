@@ -84,3 +84,13 @@
 
 # Exclude CSE2E configuration file
 /game_english/ConfigCSE2E.dat
+
+/external/curl
+/external/freetype/docs
+/external/glad
+/external/glfw
+/external/SDL2/test/shapes
+/external/zlib
+game_english/libcurl.dll
+game_english/libzlib1.dll
+.travis.yml
