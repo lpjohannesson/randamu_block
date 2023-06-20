@@ -1,0 +1,193 @@
+#0000
+<END
+
+#0001
+<PRI<MSGEmpty.<NOD<END
+
+#0014
+<PRI<MSG<GIT1001
+Refill the pot instead of healing?<NOD<YNJ0017<IT-0001<IT+0015<GIT1015<CIV0001:0001<CLR
+Refilled Life Pot.<NOD<GIT0000<END
+
+#0015
+<PRI<MSGAn uncharged refill station.<NOD<END
+
+#0016
+<PRI<MSG
+Do you want to save?<NOD The death
+will be still permament;<NOD
+this is only for
+breaks and multisessions.<YNJ0000<FL+0431<SVP<CLRGame saved.<NOD<END
+
+#0017
+<PRI<FLJ0201:0018
+<LI+1000<SOU0020<AE+<MSG
+Health and ammo refilled.<NOD<CIV0001:0001<END
+#0018
+<PRI
+<LI+1000<SOU0020<AE+<MSG
+Health and missiles refilled.<NOD<END
+
+#0019
+<KEY<MSG
+Do you want to rest?<YNJ0000<FAO0004<CMU0000<WAI0020<CLR.....<NOD<CLO
+<WAI0050
+<LI+1000<SOU0020<MYD0002<MSG
+Health restored.<NOD<CLO<RMU<FAI0004<END
+
+#0030
+<PRI<FLJ0202:0032<FLJ0201:0031<FL+0201<GIT0005<AM+0005:0010
+<CMU0010Got the =Missile Launcher=!<WAI0160<NOD<RMU<CLRThe Missile Launcher is a powerful
+weapon, but its ammo is limited.<NOD
+You can replenish your stockpile
+with items dropped by enemies.<NOD<END
+#0031
+<PRI<AM+0005:0005<MSG
+<GIT0006Max missiles increased by <NUM0000!<NOD<END
+#0032
+<PRI<AM+0010:0005<MSG
+<GIT0011Max missiles increased by <NUM0000!<NOD<END
+
+// <SCR will save the players current gMC.score to highscore.dat
+// If gMC.score is lower than the score in highscore.dat, it will not save.
+
+#0040
+<SCR
+<KEY<CMU0000<WAI0040<PRI<WAI0040<CMU0003
+<MSG
+You have died.<NOD<CLRWant to retry?<YNJ0049<CLO
+<FAO0001<WAI0050<FLJ0431:0048<ST0<INI<END
+
+#0041
+<SCR
+<KEY<CMU0000<HMC<WAI0040<PRI<WAI0040<CMU0003
+<MSG
+You have drowned.<NOD<CLRWant to retry?<YNJ0049<CLO
+<FAO0001<WAI0050<FLJ0431:0048<ST0<ESC<END
+
+#0042
+<SCR
+<KEY<CMU0000<WAI0040<PRI<WAI0040<CMU0003
+<MSG<HMC
+You were never seen again...<NOD<CLRWant to retry?<YNJ0049<CLO
+<FAO0001<WAI0050<FLJ0431:0048<ST0<INI<END
+
+#0048
+<SMC<LDP<END
+
+#0049
+<CLO<FAO0004<WAI0050<RAN
+
+#0069
+<PRI<MSG<TUR<FAC0013WARNING! WARNING!
+Your current run appears to
+use outdated RNG engine.<NOD<CLRThe generation might look
+slightly different because
+of that.<NOD<END
+
+#0071
+<PRI<MSG<TUR<FAC0001You can place and destroy
+blocks with Polar Star and
+Nemesis.<NOD<CLR<FAC0003Collect 10 stars to open
+the door to next stage.<NOD<END
+
+#0072
+<PRI<MSG<TUR<FAC0002Each level has chests
+and life upgrades to pick
+up.<NOD<CLRThere is always 2 chests
+and 2-4 life capsules on each
+stage.<NOD<CLR<FAC0004Other interactable
+objects exist such as full
+heals and save points.<NOD<END
+
+#0073
+<PRI<MSG<TUR<FAC0005Many objects are affected
+by gravity, including traps.<NOD<CLRBreak and place
+blocks to dodge and negate presses
+and spikes.<NOD<CLR<FAC0006Water tends to spill
+out when there is a place
+to flow, be careful!<NOD<END
+
+#0074
+<PRI<MSG<TUR<FAC0007Every 4 stages you 
+will encounter a level boss,
+which blocks the door.<NOD<CLRDefeat it to
+progress.<NOD<CLR<FAC0008After each boss
+level you can encounter
+terminals to craft new items.<NOD<END
+
+#0075
+<PRI<MSG<TUR<FAC0009Certain locations
+have various kinds of
+harmful liquid.<NOD<CLRLava deals damage
+like enemies, while acidic water
+slowly chips you away.<NOD<CLRThis can be countered 
+by using certain items.<NOD<END
+
+#0076
+<PRI<MSG<TUR<FAC0010Sometimes, you will have
+less inventory space than
+desired.<NOD<CLRYou can press Ability key
+on items in inventory
+to get rid of them.<NOD<CLRPressing Ability 
+on weapons in inventory
+will put them as items.<NOD<CLRPressing Z will put them
+back and pressing Dash will
+switch them around.<NOD<END
+
+#0077
+<PRI<MSG<TUR<FAC0011Quote is not alone on
+this adventure.<NOD<CLRYou can select other
+characters in Configuration.<NOD<END
+
+#0078
+<PRI<MSG<TUR<FAC0012As dungeon progresses,
+only strongest enemies will
+remain.<NOD<CLROn depth 10, you
+will meet something way stronger
+than level bosses.<NOD<END
+
+#0080
+<PRI<MSG<CMU0051<TUR<DRK<FAC0001You can place and destroy
+blocks with Polar Star and
+Nemesis.<NOD<CLR<FAC0003Collect 10 stars to open
+the door to next stage.<NOD<CLR<FAC0002Each level has chests
+and life upgrades to pick
+up.<NOD<CLRThere is always 2 chests
+and 2-4 life capsules on each
+stage.<NOD<CLR<FAC0004Other interactable
+objects exist such as full
+heals and save points.<NOD<CLR<FAC0005Many objects are affected
+by gravity, including traps.<NOD<CLRBreak and place
+blocks to dodge and negate presses
+and spikes.<NOD<CLR<FAC0006Water tends to spill
+out when there is a place
+to flow, be careful!<NOD<CLR<FAC0007Every 4 stages you 
+will encounter a level boss,
+which blocks the door.<NOD<CLRDefeat it to
+progress.<NOD<CLR<FAC0008After each boss
+level you can encounter
+terminals to craft new items.<NOD<CLR<FAC0009Certain locations
+have various kinds of
+harmful liquid.<NOD<CLRLava deals damage
+like enemies, while acidic water
+slowly chips you away.<NOD<CLRThis can be countered 
+by using certain items.<NOD<CLR<FAC0010Sometimes, you will have
+less inventory space than
+desired.<NOD<CLRYou can press Ability key
+on items in inventory
+to get rid of them.<NOD<CLRPressing Ability 
+on weapons in inventory
+will put them as items.<NOD<CLRPressing Z will put them
+back and pressing Dash will
+switch them around.<NOD<CLR<FAC0011Quote is not alone on
+this adventure.<NOD<CLRYou can select other
+characters in Configuration.<NOD<CLR<FAC0012As dungeon progresses,
+only strongest enemies will
+remain.<NOD<CLROn depth 10, you
+will meet something way stronger
+than level bosses.<NOD<RMU<END
+
+
+XX: head.tsc   4000 - 4099
+4000:Almond����

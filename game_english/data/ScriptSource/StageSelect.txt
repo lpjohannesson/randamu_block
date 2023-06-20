@@ -1,0 +1,246 @@
+#0900
+<MSG<TUR               - Quote -
+Standard character. Stars with default
+tools and Fireball.<WAI9999<END
+#0901
+<MSG<TUR            - Curly Brace -
+Has higher toughness and health but less
+speed. Starts with Machine Gun.<WAI9999<END
+#0902
+<MSG<TUR                - King -
+Can use a multitude of melee weapons,
+including his Blade. Jumps very high.<WAI9999<END
+#0903
+<MSG<TUR               - Toroko -
+Has incredible jump height and mobility
+tricks, but low health. She gets Bubbler.<WAI9999<END
+#0904
+<MSG<TUR                - Sue -
+Starts with shotgun, ice skates and desire
+to find treasures.<WAI9999<END
+#0905
+<MSG<TUR               - Misery -
+Can ascend infinitely high and destroy
+stuff with Invidia, but has no Polar Star.<WAI9999<END
+#0906
+<MSG<TUR            - Modern Quote -
+Gets 10 HP, Booster and Spur from start.
+Ideal for speed playthroughs.<WAI9999<END
+#0907
+<MSG<TUR               - Hunter -
+Wields powerful piercing rifle and can
+get food from kills, but need to eat.<WAI9999<END
+#0908
+<MSG<TUR                - Sara -
+Holding Ability allows her to move and jump
+very quickly with even dodging damage.<WAI9999<END
+#0909
+<MSG<TUR                - Lily -
+Can build and destroy without limits, can
+control missile launcher. Also has Snake.<WAI9999<END
+#0910
+<MSG<TUR               - Excerpt -
+Evil spirit with ton of allies and double
+jump. Gets more XP but takes more damage.<WAI9999<END
+#0911
+<MSG<TUR               - Bracket -
+Can use hook to grapple to objects, can
+fall quickly with Ability key.<WAI9999<END
+#0912
+<MSG<TUR                - Puppy -
+Moves at incredible speed but only has
+Polar Star and Nemesis at start.<WAI9999<END
+#0913
+<MSG<TUR               - Magician -
+Has smaller hitbox, extra strong Fireball,
+dash and floaty jump, but less i-frames.<WAI9999<END
+#0914
+<MSG<TUR               - Duckman -
+Always surrounded by his ducks that
+protect him and shoot ducklings.<WAI9999<END
+#0915
+<MSG<TUR                - Quate -
+Empowered by community memes, randomizes
+every aspect of gameplay.<WAI9999<END
+#0916
+<MSG<TUR                - Mahin -
+The god of exploring yourself, has every
+tool to destroy, but gets less score.<WAI9999<END
+#0917
+<MSG<TUR                 - Ame -
+Cat agility allows her to lunge forward
+with pressing dash button.<WAI9999<END
+#0918
+<MSG<TUR               - ProcGen -
+The robot that moves on wheel, spreads
+sparks and can fly by holding Jump.<WAI9999<END
+#0919
+<MSG<TUR           - Serenity Horton -
+The adventurer and weapon specialist, she
+can upgrade her weapons to level 4.<WAI9999<END
+#0950
+<MSG<TURNo additional info.<WAI9999<END
+#0951
+<MSG<TURHer immunity time is increased by 1 second,
+and life capsules give 4 HP instead of 3.
+She also gets 9 HP at start.<WAI9999<END
+#0952
+<MSG<TURUse Dash key while holding
+Blade to dash-slash.<WAI9999<END
+#0953
+<MSG<TURCan also survive fatal hit once per
+stage. She has 3 HP and gets 2 HP from
+life capsules.<WAI9999<END
+#0954
+<MSG<TURSue has very low HP but can run through
+spikes with enough horizontal velocity.<WAI9999<END
+#0955
+<MSG<TURShe also has 12 HP at start.<WAI9999<END
+#0956
+<MSG<TURPress Dash key to dash.<WAI9999<END
+#0957
+<MSG<TURHunger depletes 1 HP per 7.5 seconds
+until you die. Food drops from any
+shootable object.<WAI9999<END
+#0958
+<MSG<TURIgnoring damage has 8 seconds
+cooldown. Gliding also grants double jump
+and increased jump height.<WAI9999<END
+#0959
+<MSG<TURHold Ability key to control
+Rocket Launcher with arrows. She also
+gets 2 HP from pickups.<WAI9999<END
+#0960
+<MSG<TURThe XP is multiplied by 2x,
+damage is multiplied by 1.5x.<WAI9999<END
+#0961
+<MSG<TURHookshot has many properties of
+Energy Whip, including damage.<WAI9999<END
+#0962
+<MSG<TURPuppy NPCs are friendly to Puppy PC.<WAI9999<END
+#0963
+<MSG<TURPress Dash key to dash. This dash
+removes projectiles. Fireballs have
+higher speed and explode into flames.<WAI9999<END
+#0964
+<MSG<TURTaking damage takes from one to three
+ducks away depending on damage. Getting
+hit with 0 ducks results in death.<WAI9999<END
+#0965
+<MSG<TURThings that are randomized: projectile
+damage, physics, animation speed, taking
+damage, XP drops and i-frames.<WAI9999<END
+#0966
+<MSG<TURHis moveset includes dashing, boosting,
+double jumping, hooking, destroying rows of
+blocks, gliding and many more.<WAI9999<END
+#0967
+<MSG<TURHer fragility and inexperience
+leaves her with 33% less HP.<WAI9999<END
+#0968
+<MSG<TURProcGen's wheel makes it hard to turn
+around, unless using flight. Flight also
+shoots sparks and scales with level.<WAI9999<END
+#0969
+<MSG<TURLevel 4 weapons have stronger effects
+or more projectiles from each shot.<WAI9999<END
+#1000
+<KEY<MSG<TURNo items to create.<WAI9999<END
+#1001
+<KEY<MSG<TUR<GIT1008- Super Booster -
+Booster 2.0 + Energy Canister<WAI9999<END
+#1002
+<KEY<MSG<TUR<GIT1009- Diving Suit -
+Air Tank + Fishy Tube<WAI9999<END
+#1003
+<KEY<MSG<TUR<GIT1010- Shield of Resilience -
+Steel Plating + Clay Figure Medal<WAI9999<END
+#1004
+<KEY<MSG<TUR<GIT1011- Augmented Man -
+Little Man + Nano Quiver<WAI9999<END
+#1005
+<KEY<MSG<TUR<GIT1012- Cape of Shadows -
+Pair of Wings + Silver Locket<WAI9999<END
+#1006
+<KEY<MSG<TUR<GIT1013- Sacred Aegis -
+Copper Bulwark + Ballos Burger<WAI9999<END
+#1007
+<KEY<MSG<TUR<GIT1014- Energy Crystal -
+Turbocharge + Creativity Cartridge<WAI9999<END
+#1008
+<KEY<MSG<TUR<GIT1016- Terra Boots -
+Speed Shoes + Nice Shoes<WAI9999<END
+#1009
+<KEY<MSG<TUR<GIT1017- Badge of Love -
+Curly's Underwear + Iron Bond<WAI9999<END
+#1010
+<KEY<MSG<TUR<GIT1018- Universal Catalyst -
+Destruction Energizer + Creation Energizer<WAI9999<END
+#1011
+<KEY<MSG<TUR<GIT1024- Amphibian Medal -
+Alien Medal + Battery Pack<WAI9999<END
+#1012
+<KEY<MSG<TUR<GIT1025- High-Octane Pack -
+Propane Tank + Overclock<WAI9999<END
+#1013
+<KEY<MSG<TUR<GIT1026- Discordian Visor -
+Cool Sunglasses + Chaos Key<WAI9999<END
+#1014
+<KEY<MSG<TUR<GIT1060- Winter Clock -
+Timeline Ring + Frostbite Stopwatch<WAI9999<END
+#1015
+<KEY<MSG<TUR<GIT1066- Flaming Booster -
+Propane Tank + Silver Locket<WAI9999<END
+#1016
+<KEY<MSG<TUR<GIT1067- Shield of Time -
+Copper Bulwark + Timeline Ring<WAI9999<END
+#1017
+<KEY<MSG<TUR<GIT1068- Little Man's Underwear -
+Little Man + Curly's Underwear<WAI9999<END
+#1018
+<KEY<MSG<TUR<GIT1069- Nuclear Stomper -
+Ballos Burger + Heavy Weight<WAI9999<END
+#1019
+<KEY<MSG<TUR<GIT1070- Omniquick Sneakers -
+Speed Shoes + Momentum Throttler<WAI9999<END
+#1020
+<KEY<MSG<TUR<GIT1071- Freeze Star -
+Creation Energizer + Frostbite Stopwatch<WAI9999<END
+#1021
+<KEY<MSG<TUR<GIT1073- Military Armament -
+Nanites Absorber + Nano Quiver<WAI9999<END
+#1036
+<KEY<MSG<TUR<GIT0020- Hellsweep -
+The Miracle Upgrade to Floodtide<WAI9999<END
+#1037
+<KEY<MSG<TUR<GIT0021- Gatling Gun -
+The Miracle Upgrade to Machine Gun<WAI9999<END
+#2000
+<MSG<TURThe default difficulty, the way
+the game was meant to play.<WAI9999<END
+#2001
+<MSG<TURSlightly more challenge than usual: more
+monsters with higher HP, more spikes, less
+refills and equip limit.<WAI9999<END
+#2002
+<MSG<TURIncluding changes from Hardened, this
+difficulty overhauls mob AI to make them
+harder to beat and avoid.<WAI9999<END
+#2003
+<MSG<TURIncluding changes from Hardened and
+Reinforced, Resonant brings challenging
+gimmicks and tweaks to gameplay.<WAI9999<END
+#2050
+<MSG<TURNo score increase. Can equip unlimited
+amount of items.<WAI9999<END
+#2051
+<MSG<TURScore increase: +25%. Can't equip more
+than 10 items. Life capsules have a chance
+to spawn with less value.<WAI9999<END
+#2052
+<MSG<TURScore increase: +75%. Can't equip more
+than 7 items.<WAI9999<END
+#2053
+<MSG<TURScore increase: +150%. Can't equip more
+than 4 items. Water is more dangerous
+and there is less experience.<WAI9999<END
