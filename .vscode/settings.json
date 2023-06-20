@@ -1,0 +1,15 @@
+{
+    "cmake.buildToolArgs": [
+    ],
+    "cmake.configureSettings": {
+        "ENABLE_MIM_DISABLE_EQUIP_40_GRAPHICS": "ON",
+        "EXTRA_SOUND_FORMATS": "ON",
+        "FORCE_LOCAL_LIBS": "ON",
+        "DIRECTX": "OFF",
+        "PKG_CONFIG_STATIC_LIBS": "ON",
+        "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
+        "CMAKE_TOOLCHAIN_FILE": "C:\\Users\\Administrator\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
+    },
+    "cmake.generator": "MinGW Makefiles",
+    "C_Cpp.errorSquiggles": "enabled"
+}
