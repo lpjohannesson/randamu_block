@@ -1,32 +1,86 @@
-# Prerequisites
-*.d
+# Exclude obj directory (object files for Makefile build)
+/obj
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Exclude the (recommended) CMake build directory
+/build
 
-# Precompiled Headers
-*.gch
-*.pch
+/.vscode/c_cpp_properties.json
+/.vscode/cmake-kits.json
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+/CSE2-enhanced-lite.zip
 
-# Fortran module files
-*.mod
-*.smod
+# Exclude executables
+/game_english/CSE2_debug.exe
+/game_english/Randamu_debug.exe
+/game_english/DoConfig_debug.exe
+/game_english/CSE2.exe
+/game_english/Randamu.exe
+/game_english/DoConfig.exe
+/game_english/CSE2_debug
+/game_english/DoConfig_debug
+/game_english/CSE2
+/game_english/DoConfig
+/game_english/CSE2_debug.rpx
+/game_english/CSE2.rpx
+/game_english/resources/bossrush
+/game_english/beta
+/game_english/random_gen
+/game_english/random_gen_jp
+/game_english/score
+/game_english/rankings.json
+/game_english/last_seed.txt
+/game_english/output.txt
+/game_english/debug.txt
+/game_english/error.log
+/game_english/game.log
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+# Exclude save data
+/game_english/Config.dat
+/game_english/Profile.json
+/game_english/config.json
+/game_english/290.rec
+/game_english/window.rect
+/game_english/highscore.dat
 
-# Executables
-*.exe
-*.out
-*.app
+# Exclude configuration files
+/game_english/fps
+/game_english/mute
+/game_english/save
+/game_english/s_reverse
+
+###################
+# Accurate branch #
+###################
+
+# Exclude devilution-comparer assembly output
+/devilution/orig.asm
+/devilution/compare.asm
+
+# Exclude MSVC IntelliSense database
+/vs2003/CSE2.ncb
+
+# Exclude MSVC Solution User Options file
+/vs2003/CSE2.suo
+
+# Exclude MSVC build folders
+/vs2003/Debug
+/vs2003/Release
+/vs2003/Debug (Japanese)
+/vs2003/Release (Japanese)
+
+###################
+# Portable branch #
+###################
+
+# Exclude Wii U build directory
+/buildwiiu
+
+# Exclude converted resource files
+/src/Resource
+
+###################
+# Enhanced branch #
+###################
+
+# Exclude CSE2E configuration file
+/game_english/ConfigCSE2E.dat
