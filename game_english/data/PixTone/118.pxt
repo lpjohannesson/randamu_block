@@ -1,0 +1,92 @@
+use  :1
+size :18635
+main_model   :4
+main_freq    :1429.82
+main_top     :21
+main_offset  :92
+pitch_model  :2
+pitch_freq   :0.00
+pitch_top    :0
+pitch_offset :220
+volume_model :0
+volume_freq  :1.85
+volume_top   :52
+volume_offset:97
+initialY:23
+ax      :9
+ay      :33
+bx      :122
+by      :38
+cx      :166
+cy      :32
+
+use  :1
+size :30147
+main_model   :5
+main_freq    :672.44
+main_top     :46
+main_offset  :100
+pitch_model  :3
+pitch_freq   :23.27
+pitch_top    :21
+pitch_offset :212
+volume_model :3
+volume_freq  :0.00
+volume_top   :0
+volume_offset:173
+initialY:6
+ax      :55
+ay      :23
+bx      :98
+by      :63
+cx      :190
+cy      :8
+
+use  :0
+size :2762
+main_model   :0
+main_freq    :1840.37
+main_top     :63
+main_offset  :65
+pitch_model  :6
+pitch_freq   :0.26
+pitch_top    :34
+pitch_offset :210
+volume_model :4
+volume_freq  :0.00
+volume_top   :0
+volume_offset:10
+initialY:12
+ax      :36
+ay      :12
+bx      :76
+by      :56
+cx      :171
+cy      :23
+
+use  :1
+size :1888
+main_model   :6
+main_freq    :673.35
+main_top     :45
+main_offset  :247
+pitch_model  :4
+pitch_freq   :0.00
+pitch_top    :0
+pitch_offset :36
+volume_model :6
+volume_freq  :0.00
+volume_top   :0
+volume_offset:252
+initialY:12
+ax      :59
+ay      :37
+bx      :137
+by      :7
+cx      :253
+cy      :32
+
+{0,18635,4,1429.82,21,92,2,0.00,0,220,0,1.85,52,97,23,9,33,122,38,166,32},
+{1,30147,5,672.44,46,100,3,23.27,21,212,3,0.00,0,173,6,55,23,98,63,190,8},
+{0,2762,0,1840.37,63,65,6,0.26,34,210,4,0.00,0,10,12,36,12,76,56,171,23},
+{0,1888,6,673.35,45,247,4,0.00,0,36,6,0.00,0,252,12,59,37,137,7,253,32},
