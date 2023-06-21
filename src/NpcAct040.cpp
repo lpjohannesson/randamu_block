@@ -1709,7 +1709,7 @@ void CrowTeleport(NPCHAR *crow){
 	{
 		tries--;
 		x = gMC.x + Random(-75_pix, 75_pix);
-		y = gMC.y + Random(-80_pix, -80_pix);
+		y = gMC.y + Random(-80_pix, 80_pix);
 		if (tries <= 0)
 			break;
 	} while (GetAttribute(x / 0x2000, y / 0x2000) == 65);
