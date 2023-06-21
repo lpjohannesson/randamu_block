@@ -17,7 +17,7 @@
 #include "Triangle.h"
 
 // Toroko (frenzied)
-void ActNpc140(NPCHAR *npc)
+void ActNpcShadowToroko(NPCHAR *npc)
 {
 	int i;
 
@@ -775,7 +775,7 @@ void ActNpc146(NPCHAR *npc)
 }
 
 // Critter (purple)
-void ActNpc147(NPCHAR *npc)
+void ActNpcMainCritter(NPCHAR *npc)
 {
 	int xm, ym;
 	unsigned char deg;
@@ -1663,7 +1663,7 @@ void ActNpc154(NPCHAR *npc)
 }
 
 // Gaudi (flying)
-void ActNpc155(NPCHAR *npc)
+void ActNpcLaserGaudi(NPCHAR *npc)
 {
 	npc->knockEffect = 0.66F;
 	unsigned char deg;
@@ -1785,7 +1785,7 @@ void ActNpc155(NPCHAR *npc)
 }
 
 // Gaudi projectile
-void ActNpc156(NPCHAR *npc)
+void ActNpcLaserProjectile(NPCHAR *npc)
 {
 	if (npc->flag & 0xFF)
 	{

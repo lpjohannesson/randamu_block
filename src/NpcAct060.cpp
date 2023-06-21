@@ -1295,7 +1295,7 @@ void ActNpc068(NPCHAR *npc)
 }
 
 // Pignon
-void ActNpc069(NPCHAR *npc)
+void ActNpcSheep(NPCHAR *npc)
 {
 	Rect rcLeft[6] = {
 		{48, 0, 64, 16},
@@ -1455,7 +1455,7 @@ void ActNpc069(NPCHAR *npc)
 }
 
 // Sparkle
-void ActNpc070(NPCHAR *npc)
+void ActNpcCampfire(NPCHAR *npc)
 {
 	Rect rect[4] = {
 		{96, 48, 112, 64},
@@ -1765,7 +1765,7 @@ void ActNpc077(NPCHAR *npc)
 }
 
 // Pot
-void ActNpc078(NPCHAR *npc)
+void ActNpcPot(NPCHAR *npc)
 {
 	Rect rc[2] = {
 		{160, 48, 176, 64},

@@ -13,7 +13,7 @@
 #include "Triangle.h"
 
 // Dragon Zombie
-void ActNpc200(NPCHAR *npc)
+void ActNpcDragon(NPCHAR *npc)
 {
 	unsigned char deg;
 	int xm, ym;
@@ -155,7 +155,7 @@ void ActNpc201(NPCHAR *npc)
 }
 
 // Dragon Zombie projectile
-void ActNpc202(NPCHAR *npc)
+void ActNpcFlameProjectile(NPCHAR *npc)
 {
 	if (npc->flag & 0xFF)
 	{
@@ -438,7 +438,7 @@ void ActNpc205(NPCHAR *npc)
 }
 
 // Counter Bomb
-void ActNpc206(NPCHAR *npc)
+void ActNpcCastleBomb(NPCHAR *npc)
 {
 	switch (npc->act_no)
 	{
@@ -755,7 +755,7 @@ void ActNpc208(NPCHAR *npc)
 }
 
 // Basu projectile (destroyed Egg Corridor)
-void ActNpc209(NPCHAR *npc)
+void ActNpcSemiHomingProjectile(NPCHAR *npc)
 {
 	if (npc->flag & 0xFF)
 	{
@@ -1055,7 +1055,7 @@ void ActNpc212(NPCHAR *npc)
 }
 
 // Night Spirit
-void ActNpc213(NPCHAR *npc)
+void ActNpcWindController(NPCHAR *npc)
 {
 	Rect rect[10] = {
 		{0, 0, 0, 0},
@@ -1223,7 +1223,7 @@ void ActNpc213(NPCHAR *npc)
 }
 
 // Night Spirit projectile
-void ActNpc214(NPCHAR *npc)
+void ActNpcFreezeWind(NPCHAR *npc)
 {
 	Rect rect[3] = {
 		{0, 240, 32, 256},

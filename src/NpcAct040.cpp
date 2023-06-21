@@ -914,7 +914,7 @@ void ActNpc048(NPCHAR *npc)
 }
 
 // Skullhead
-void ActNpc049(NPCHAR *npc)
+void ActNpcSkeleton(NPCHAR *npc)
 {
 	unsigned char deg;
 	int xm, ym;
@@ -1726,7 +1726,7 @@ void CrowTeleport(NPCHAR *crow){
 }
 
 // Crow
-void ActNpc057(NPCHAR *npc)
+void ActNpcBird(NPCHAR *npc)
 {
 	unsigned char deg;
 	int maxSpeed, xvelocity, yvelocity, bounceSpeed;

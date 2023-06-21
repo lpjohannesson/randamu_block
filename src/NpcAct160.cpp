@@ -847,7 +847,7 @@ void ActNpc169(NPCHAR *npc)
 }
 
 // Balrog missile
-void ActNpc170(NPCHAR *npc)
+void ActNpcMissile(NPCHAR *npc)
 {
 	npc->knockEffect = 0.75F;
 	Rect rcLeft[2] = {
@@ -1075,7 +1075,7 @@ void ActNpc172(NPCHAR *npc)
 }
 
 // Gaudi (armoured)
-void ActNpc173(NPCHAR *npc)
+void ActNpcNinjaGaudi(NPCHAR *npc)
 {
 	unsigned char deg;
 	int xm, ym;
@@ -1386,7 +1386,7 @@ void ActNpc175(NPCHAR *npc)
 }
 
 // BuyoBuyo Base
-void ActNpc176(NPCHAR *npc)
+void ActNpcFireyBuyo(NPCHAR *npc)
 {
 	npc->knockEffect = 0.2F;
 	Rect rcLeft[3] = {

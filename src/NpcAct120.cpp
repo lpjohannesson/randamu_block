@@ -442,7 +442,7 @@ void ActNpc125(NPCHAR *npc)
 }
 
 // Puppy (running)
-void ActNpc126(NPCHAR *npc)
+void ActNpcPuppy(NPCHAR *npc)
 {
 	Rect rcLeft[8] = {
 		{48, 240, 64, 256},

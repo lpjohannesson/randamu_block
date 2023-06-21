@@ -37,7 +37,7 @@ NPCHAR* GetClosest(int x, int y){
 }
 
 // Curly AI
-void ActNpc180(NPCHAR *npc)
+void ActNpcLittleMan(NPCHAR *npc)
 {
 	int xx, yy;
 
@@ -800,7 +800,7 @@ void ActNpc186(NPCHAR *npc)
 }
 
 // Fuzz Core
-void ActNpc187(NPCHAR *npc)
+void ActNpcSteelCore(NPCHAR *npc)
 {
 	int i;
 
@@ -884,7 +884,7 @@ void ActNpc187(NPCHAR *npc)
 }
 
 // Fuzz
-void ActNpc188(NPCHAR *npc)
+void ActNpcSteelFuzz(NPCHAR *npc)
 {
 	unsigned char deg;
 

@@ -13,7 +13,7 @@
 #include "Stage.h"
 
 // Computer
-void ActNpc020(NPCHAR *npc)
+void ActNpcTerminal(NPCHAR *npc)
 {
 	Rect rcLeft = {288, 16, 320, 40};
 
@@ -57,7 +57,7 @@ void ActNpc020(NPCHAR *npc)
 }
 
 // Chest (open)
-void ActNpc021(NPCHAR *npc)
+void ActNpcOpenChest(NPCHAR *npc)
 {
 	if (npc->act_no == 0)
 	{
@@ -93,7 +93,7 @@ void ActNpc021(NPCHAR *npc)
 }
 
 // Teleporter
-void ActNpc022(NPCHAR *npc)
+void ActNpcTeleporter(NPCHAR *npc)
 {
 	Rect rect[2] = {
 		{240, 16, 264, 48},
@@ -143,7 +143,7 @@ void ActNpc023(NPCHAR *npc)
 }
 
 // Power Critter
-void ActNpc024(NPCHAR *npc)
+void ActNpcPowerCritter(NPCHAR *npc)
 {
 	Rect rcLeft[6] = {
 		{0, 0, 24, 24},
@@ -487,7 +487,7 @@ void ActNpc025(NPCHAR *npc)
 }
 
 // Bat (Grasstown, flying)
-void ActNpc026(NPCHAR *npc)
+void ActNpcBatEnemy(NPCHAR *npc)
 {
 	unsigned char deg;
 
@@ -667,7 +667,7 @@ void ActNpc027(NPCHAR *npc)
 }
 
 // Flying Critter (Grasstown)
-void ActNpc028(NPCHAR *npc)
+void ActNpcGrassCritter(NPCHAR *npc)
 {
 	Rect rcLeft[6] = {
 		{0, 48, 16, 64},
@@ -895,7 +895,7 @@ void ActNpc029(NPCHAR *npc)
 }
 
 // Gunsmith
-void ActNpc030(NPCHAR *npc)
+void ActNpcGrassObject(NPCHAR *npc)
 {
 	Rect rc[7] = {
 		{64, 208, 80, 224},
@@ -1064,7 +1064,7 @@ void ActNpc031(NPCHAR *npc)
 }
 
 // Life capsule
-void ActNpc032(NPCHAR *npc)
+void ActNpcLifeCapsule(NPCHAR *npc)
 {
 	Rect rect[2] = {
 		{32, 96, 48, 112},
@@ -1161,7 +1161,7 @@ void ActNpc034(NPCHAR *npc)
 }
 
 // Mannan
-void ActNpc035(NPCHAR *npc)
+void ActNpcMannan(NPCHAR *npc)
 {
 	switch (npc->act_no)
 	{
@@ -1447,7 +1447,7 @@ void ActNpc036(NPCHAR *npc)
 }
 
 // Signpost
-void ActNpc037(NPCHAR *npc)
+void ActNpcTutorialSign(NPCHAR *npc)
 {
 	Rect rect[3] = {
 		{192, 64, 208, 80},

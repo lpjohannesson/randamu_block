@@ -14,7 +14,7 @@
 #include "Triangle.h"
 
 // Null
-void ActNpc000(NPCHAR *npc)
+void ActNpcNull(NPCHAR *npc)
 {
 	Rect rect = {0x00, 0x00, 0x10, 0x10};
 
@@ -30,7 +30,7 @@ void ActNpc000(NPCHAR *npc)
 }
 
 // Experience
-void ActNpc001(NPCHAR *npc)
+void ActNpcXP(NPCHAR *npc)
 {
 	// In wind
 	if (gBack.type == 5 || gBack.type == 6)
@@ -342,7 +342,7 @@ void ActNpc003(NPCHAR *npc)
 }
 
 // Smoke
-void ActNpc004(NPCHAR *npc)
+void ActNpcSmoke(NPCHAR *npc)
 {
 	Rect rcLeft[8] = {
 		{16, 0, 17, 1},
@@ -528,7 +528,7 @@ void ActNpc005(NPCHAR *npc)
 }
 
 // Beetle (Goes left and right, Egg Corridor)
-void ActNpc006(NPCHAR *npc)
+void ActNpcBeetle(NPCHAR *npc)
 {
 	Rect rcLeft[5] = {
 		{0, 80, 16, 96},
@@ -1491,7 +1491,7 @@ void ActNpc014(NPCHAR *npc)
 }
 
 // Chest (closed)
-void ActNpc015(NPCHAR *npc)
+void ActNpcClosedChest(NPCHAR *npc)
 {
 	Rect rcLeft[3] = {
 		{240, 0, 256, 16},
@@ -1550,7 +1550,7 @@ void ActNpc015(NPCHAR *npc)
 }
 
 // Save point
-void ActNpc016(NPCHAR *npc)
+void ActNpcSavePoint(NPCHAR *npc)
 {
 	Rect rect[8] = {
 		{96, 16, 112, 32},
@@ -1620,7 +1620,7 @@ void ActNpc016(NPCHAR *npc)
 }
 
 // Health refill
-void ActNpc017(NPCHAR *npc)
+void ActNpcRefillStation(NPCHAR *npc)
 {
 	Rect rect[2] = {
 		{288, 0, 304, 16},
@@ -1712,7 +1712,7 @@ void ActNpc017(NPCHAR *npc)
 }
 
 // Door
-void ActNpc018(NPCHAR *npc)
+void ActNpcDoor(NPCHAR *npc)
 {
 	int i;
 

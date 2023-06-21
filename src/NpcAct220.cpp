@@ -540,7 +540,7 @@ void ActNpc229(NPCHAR *npc)
 }
 
 // Red Flowers (blooming)
-void ActNpc230(NPCHAR *npc)
+void ActNpcEnergyFlower(NPCHAR *npc)
 {
 	Rect rc[2] = {
 		{48, 96, 96, 128},
@@ -579,7 +579,7 @@ void ActNpc230(NPCHAR *npc)
 }
 
 // Rocket
-void ActNpc231(NPCHAR *npc)
+void ActNpcRocket(NPCHAR *npc)
 {
 	int i;
 
@@ -1189,7 +1189,7 @@ void ActNpc237(NPCHAR *npc)
 }
 
 // Press (sideways)
-void ActNpc238(NPCHAR *npc)
+void ActNpcTurret(NPCHAR *npc)
 {
 	int i;
 

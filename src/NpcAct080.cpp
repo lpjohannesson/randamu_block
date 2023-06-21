@@ -717,7 +717,7 @@ void ActNpc085(NPCHAR *npc)
 }
 
 // Missile
-void ActNpc086(NPCHAR *npc)
+void ActNpcStar(NPCHAR *npc)
 {
 	Rect rect1[2] = {
 		{0, 80, 16, 96},
@@ -789,7 +789,7 @@ void ActNpc086(NPCHAR *npc)
 }
 
 // Heart
-void ActNpc087(NPCHAR *npc)
+void ActNpcHeart(NPCHAR *npc)
 {
 	Rect rect1[2] = {
 		{34, 66, 47, 79},
@@ -1437,7 +1437,7 @@ void ActNpc093(NPCHAR *npc)
 }
 
 // Kulala
-void ActNpc094(NPCHAR *npc)
+void ActNpcKulala(NPCHAR *npc)
 {
 	Rect rect[5] = {
 		{272, 0, 320, 24},
@@ -1612,7 +1612,7 @@ void ActNpc094(NPCHAR *npc)
 }
 
 // Jelly
-void ActNpc095(NPCHAR *npc)
+void ActNpcJelly(NPCHAR *npc)
 {
 	Rect rcLeft[4] = {
 		{208, 64, 224, 80},
@@ -1808,7 +1808,7 @@ void ActNpc096(NPCHAR *npc)
 }
 
 // Fan (up)
-void ActNpc097(NPCHAR *npc)
+void ActNpcFirethrower(NPCHAR *npc)
 {
 	Rect rc[3] = {
 		{272, 136, 288, 152},
@@ -1915,7 +1915,7 @@ void ActNpc098(NPCHAR *npc)
 }
 
 // Fan (down)
-void ActNpc099(NPCHAR *npc)
+void ActNpcGraviController(NPCHAR *npc)
 {
 	Rect rc[3] = {
 		{272, 168, 288, 184},

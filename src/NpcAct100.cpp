@@ -16,7 +16,7 @@
 #include "Triangle.h"
 
 // Grate
-void ActNpc100(NPCHAR *npc)
+void ActNpcPlatform(NPCHAR *npc)
 {
 	npc->rect = {144, 48, 160, 60};
 
@@ -80,7 +80,7 @@ void ActNpc102(NPCHAR *npc)
 }
 
 // Mannan projectile
-void ActNpc103(NPCHAR *npc)
+void ActNpcMannanProjectile(NPCHAR *npc)
 {
 	Rect rcLeft[3] = {
 		{192, 96, 208, 120},
@@ -141,7 +141,7 @@ void ActNpc103(NPCHAR *npc)
 }
 
 // Frog
-void ActNpc104(NPCHAR *npc)
+void ActNpcTPFrog(NPCHAR *npc)
 {
 	bool bJump;
 
@@ -644,7 +644,7 @@ void ActNpc109(NPCHAR *npc)
 }
 
 // Puchi
-void ActNpc110(NPCHAR *npc)
+void ActNpcLaserFrog(NPCHAR *npc)
 {
 	bool bJump;
 	int shots = 2;
@@ -1201,7 +1201,7 @@ void ActNpc114(NPCHAR *npc)
 }
 
 // Ravil
-void ActNpc115(NPCHAR *npc)
+void ActNpcMechaRavil(NPCHAR *npc)
 {
 	int i, deg, xm, ym;
 

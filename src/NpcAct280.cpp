@@ -206,7 +206,7 @@ void ActNpc282(NPCHAR *npc)
 }
 
 // Misery (transformed)
-void ActNpc283(NPCHAR *npc)
+void ActNpcWildMiseryEnemy(NPCHAR *npc)
 {
 	int x, y, direct;
 
@@ -1429,7 +1429,7 @@ void ActNpc293(NPCHAR *npc)
 }
 
 // Quake + falling block generator
-void ActNpc294(NPCHAR *npc)
+void ActNpcFallingBlockController(NPCHAR *npc)
 {
 	int x, y, dir;
 

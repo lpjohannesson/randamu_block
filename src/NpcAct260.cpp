@@ -183,7 +183,7 @@ void ActNpc262(NPCHAR *npc)
 }
 
 // Doctor (boss)
-void ActNpc263(NPCHAR *npc)
+void ActNpcDoctorP1(NPCHAR *npc)
 {
 	int deg;
 	int xm, ym;
@@ -586,7 +586,7 @@ void ActNpc266(NPCHAR *npc)
 }
 
 // Muscle Doctor
-void ActNpc267(NPCHAR *npc)
+void ActNpcDoctorP2(NPCHAR *npc)
 {
 	npc->knockEffect = 0.13F;
 	Rect rcLeft[10] = {
@@ -1211,7 +1211,7 @@ void ActNpc267(NPCHAR *npc)
 }
 
 // Igor (enemy)
-void ActNpc268(NPCHAR *npc)
+void ActNpcIgorBoss(NPCHAR *npc)
 {
 	unsigned char deg;
 	int xm, ym;
@@ -1445,7 +1445,7 @@ void ActNpc268(NPCHAR *npc)
 }
 
 // Red Bat (bouncing)
-void ActNpc269(NPCHAR *npc)
+void ActNpcRedBat(NPCHAR *npc)
 {
 	Rect rcLeft[3] = {
 		{232, 0, 248, 16},
@@ -2327,7 +2327,7 @@ void ActNpc278(NPCHAR *npc)
 }
 
 // Falling block (large)
-void ActNpc279(NPCHAR *npc)
+void ActNpcFallingBlock(NPCHAR *npc)
 {
 	Rect rc[2] = {
 		{0, 32, 32, 64},

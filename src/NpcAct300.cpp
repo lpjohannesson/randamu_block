@@ -780,7 +780,7 @@ void ActNpc310(NPCHAR *npc)
 }
 
 // Bute archer
-void ActNpc311(NPCHAR *npc)
+void ActNpcArcher(NPCHAR *npc)
 {
 	Rect rcLeft[7] = {
 		{0+144, 32+32, 24+144, 56+32},
@@ -963,7 +963,7 @@ void ActNpc311(NPCHAR *npc)
 }
 
 // Bute arrow projectile
-void ActNpc312(NPCHAR *npc)
+void ActNpcArcherArrow(NPCHAR *npc)
 {
 	Rect rcLeft[5] = {
 		{0, 160, 16, 176},

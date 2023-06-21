@@ -15,7 +15,7 @@
 #include "Stage.h"
 
 // Curly (carried, shooting)
-void ActNpc320(NPCHAR *npc)
+void ActNpcCurlyAlly(NPCHAR *npc)
 {
 	Rect rcLeft[3] = {
 		{16+128, 96, 32+128, 112},
@@ -196,7 +196,7 @@ void ActNpc321(NPCHAR *npc)
 }
 
 // Deleet
-void ActNpc322(NPCHAR *npc)
+void ActNpcTNT(NPCHAR *npc)
 {
 	Rect rc[3] = {
 		{272, 216, 296, 240},
@@ -710,7 +710,7 @@ void ActNpc329(NPCHAR *npc)
 }
 
 // Rolling
-void ActNpc330(NPCHAR *npc)
+void ActNpcCastleRoller(NPCHAR *npc)
 {
 	Rect rc[3] = {
 		{144, 136, 160, 152},

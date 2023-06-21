@@ -123,7 +123,7 @@ void ActNpc240(NPCHAR *npc)
 }
 
 // Critter (Last Cave)
-void ActNpc241(NPCHAR *npc)
+void ActNpcDuplicateCritter(NPCHAR *npc)
 {
 	Rect rcLeft[3] = {
 		{0, 0, 16, 16},
@@ -433,7 +433,7 @@ void ActNpc245(NPCHAR *npc)
 }
 
 // Press (proximity)
-void ActNpc246(NPCHAR *npc)
+void ActNpcMainPress(NPCHAR *npc)
 {
 	Rect rcLeft[3] = {
 		{144, 112, 160, 136},
@@ -549,7 +549,7 @@ void ActNpc246(NPCHAR *npc)
 }
 
 // Misery (boss)
-void ActNpc247(NPCHAR *npc)
+void ActNpcMiseryEnemy(NPCHAR *npc)
 {
 	unsigned char deg;
 	int xm, ym, tries;
@@ -1084,7 +1084,7 @@ void ActNpc252(NPCHAR *npc)
 }
 
 // EXP capsule
-void ActNpc253(NPCHAR *npc)
+void ActNpcMiracleMatter(NPCHAR *npc)
 {
 	switch (npc->act_no)
 	{
