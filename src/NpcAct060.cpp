@@ -1332,7 +1332,7 @@ void ActNpcSheep(NPCHAR *npc)
 				break;
 			}
 
-			if (Random(0, 100) == 1)
+			if (Random(0, 100) == 1 && npc->flag & 8)
 			{
 				if (npc->direct == 0){
 					npc->direct = 2;
