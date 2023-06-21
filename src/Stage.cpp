@@ -1200,20 +1200,44 @@ bool LoadMapAssets(){
 	gMap.length = stageHeight;
 	WriteGameLog("Map width: ", gMap.width);
 	WriteGameLog("Map height: ", gMap.length);
-	for (int i = 0; i < gMap.width * gMap.length; i++){
-		char neededTile;
-		switch (i % 4){
-			case 0:
-				neededTile = 32; break;
-			case 1:
-				neededTile = 33; break;
-			case 2:
-				neededTile = 48; break;
-			case 3:
-				neededTile = 49; break;
+	for (int x = 0; x < gMap.width; x++){
+		for (int y = 0; y < gMap.length; y++){
+			char neededTile;
+			switch (x % 2){
+				case 0:
+					switch (y % 2){
+						case 0:
+							neededTile = 32; break;
+						case 1:
+							neededTile = 48; break;
+					}
+					break;
+				case 1:
+					switch (y % 2){
+						case 0:
+							neededTile = 33; break;
+						case 1:
+							neededTile = 49; break;
+					}
+					break;
+			}
+			gMap.data[x + y * gMap.width] = neededTile;
 		}
-		gMap.data[i] = neededTile;
 	}
+	// for (int i = 0; i < gMap.width * gMap.length; i++){
+	// 	char neededTile;
+	// 	switch (i % 4){
+	// 		case 0:
+	// 			neededTile = 32; break;
+	// 		case 1:
+	// 			neededTile = 33; break;
+	// 		case 2:
+	// 			neededTile = 48; break;
+	// 		case 3:
+	// 			neededTile = 49; break;
+	// 	}
+	// 	gMap.data[i] = neededTile;
+	// }
 
 	path = path_dir + '/' + gTMT[13].map + ".tsc";
 	if (!LoadTextScript_Stage(path.c_str()))
