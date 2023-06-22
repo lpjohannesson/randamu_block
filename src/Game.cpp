@@ -872,13 +872,14 @@ static int ModeAction(void)
 			PutMyAir((WINDOW_WIDTH / 2) - 40, (WINDOW_HEIGHT / 2) - 16);
 			PutActiveArmsList();
 		}
-		PutMyScore(0);
-		PutCooldownList(gCooldowns);
 
 		if (g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING)
 		{
 			PutIllust();
 			PutStripper();
+		} else {
+			PutMyScore(0);
+			PutCooldownList(gCooldowns);
 		}
 
 		PutTextScript();
