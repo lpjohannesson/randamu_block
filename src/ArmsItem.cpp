@@ -380,7 +380,7 @@ void SwitchWeapon(void){
 		++arms_num;
 
 	gKeyTrg = gKey = 0;
-	g_GameFlags |= 3;
+	g_GameFlags |= GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING;
 
 	PlaySoundObject(5, SOUND_MODE_PLAY);
 

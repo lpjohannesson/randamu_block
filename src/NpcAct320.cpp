@@ -171,7 +171,7 @@ void ActNpc321(NPCHAR *npc)
 
 	npc->ani_no = npc->pNpc->ani_no;
 
-	if (g_GameFlags & 2 && CountBulletNum(43) < 2 && gKeyTrg & gKeyShot)
+	if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED && CountBulletNum(43) < 2 && gKeyTrg & gKeyShot)
 	{
 		SetBullet(43, npc->pNpc->x, npc->pNpc->y, direct);
 		SetCaret(npc->pNpc->x, npc->pNpc->y, 3, 0);

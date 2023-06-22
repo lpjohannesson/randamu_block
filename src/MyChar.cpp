@@ -769,7 +769,7 @@ void ActMyChar_Normal(bool bKey)
 		// Move in direction held
 		if (bKey)
 		{
-			if (gKeyTrg == gKeyDown && gKey == gKeyDown && !(gMC.cond & 1) && !(g_GameFlags & 4))
+			if (gKeyTrg == gKeyDown && gKey == gKeyDown && !(gMC.cond & 1) && !(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE))
 			{
 				gMC.cond |= 1;
 				gMC.ques = true;
@@ -1828,7 +1828,7 @@ int teleportY;
 
 void ActMyChar(bool bKey)
 {
-	if (!(gMC.x > -48_pix && gMC.x < (gMap.width+4)*0x2000 && gMC.y < (gMap.length+1)*0x2000) && gMC.outerWallInit && (g_GameFlags & 2))
+	if (!(gMC.x > -48_pix && gMC.x < (gMap.width+4)*0x2000 && gMC.y < (gMap.length+1)*0x2000) && gMC.outerWallInit && (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED))
 	{
 		StartTextScript(42);
 	}
@@ -1931,7 +1931,7 @@ void ActMyChar(bool bKey)
 		}
 	}
 
-	if (gKeyTrg & gMouseClick && gMC.chaosAnim == 0 && CheckForCooldown(gCooldowns, CHAOS_KEY_ID) == -1 && (g_GameFlags & 2) && GetNPCFlag(703)){
+	if (gKeyTrg & gMouseClick && gMC.chaosAnim == 0 && CheckForCooldown(gCooldowns, CHAOS_KEY_ID) == -1 && (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED) && GetNPCFlag(703)){
 		int fx, fy, x, y;
 		GetFramePosition(&fx, &fy);
 		x = fx + ScreenToSubpixelCoord(gMouseX);
@@ -1954,7 +1954,7 @@ void ActMyChar(bool bKey)
 	switch (gMC.unit)
 	{
 		case 0:
-			if (!(g_GameFlags & 4) && bKey)
+			if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE) && bKey)
 				AirProcess();
 
 			ActMyChar_Normal(bKey);

@@ -142,10 +142,10 @@ void DamageMyChar(int damage)
 		return;
 
 #ifdef FIX_BUGS
-	if (!(g_GameFlags & 2))
+	if (!(g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED))
 #else
 	// I'm preeeetty sure this is a typo. The Linux port optimised it out.
-	if (!(g_GameFlags | 2))
+	if (!(g_GameFlags | GAME_FLAG_IS_CONTROL_ENABLED))
 #endif
 		return;
 
@@ -743,7 +743,7 @@ void PutTimeCounter(int x, int y, int* timerVar)
 		{128, 104, 160, 112},
 	};
 		// Draw clock and increase time
-		if (g_GameFlags & 2)
+		if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 		{
 			if (*timerVar < 100 * 60 * (gb60fps ? 60 : 50))	// 100 minutes
 				++*timerVar;

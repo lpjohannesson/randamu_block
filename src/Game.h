@@ -10,6 +10,7 @@
 enum GameFlagsValues
 {
 	// To be continued
+	GAME_FLAG_iS_GAME_GOING = 1,
 
 	/**
 	 * While this bit is NOT set, the game will :
@@ -26,7 +27,9 @@ enum GameFlagsValues
 	 * - Create a bullet if some other conditions are fullfilled while iterating over the stars in ActStar (If you have any idea of how that actually works, you may
 	 * want to replace this line with a better explanation)
 	 */
-	GAME_FLAG_IS_CONTROL_ENABLED = 2
+	GAME_FLAG_IS_CONTROL_ENABLED = 2,
+	GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE = 4,
+	GAME_FLAG_ARE_CREDITS_ROLLING = 8
 
 	// To be continued
 };

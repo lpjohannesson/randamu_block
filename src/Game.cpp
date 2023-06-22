@@ -302,7 +302,7 @@ static void PutBlackBars(int fx, int fy)
 	Rect rect;
 
 	// Don't draw if credits are running
-	if (g_GameFlags & 8)
+	if (g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING)
 		return;
 
 	int stage_left;
@@ -381,7 +381,7 @@ static int ModeOpening(void)
 	grcGame.bottom = WINDOW_HEIGHT;
 #endif
 
-	g_GameFlags = 3;
+	g_GameFlags = GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING;
 
 	CutNoise();
 
@@ -614,7 +614,7 @@ static int ModeAction(void)
 	grcGame.right = WINDOW_WIDTH;
 	grcGame.bottom = WINDOW_HEIGHT;
 #endif
-	g_GameFlags = 3;
+	g_GameFlags = GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING;
 	InitMyChar();
 	InitNpChar();
 	InitBullet();
@@ -698,9 +698,9 @@ static int ModeAction(void)
 		// 	PlaySoundObject(27, SOUND_MODE_PLAY);
 		// }
 
-		if (swPlay % 2 && g_GameFlags & 1)	// The "swPlay % 2" part is always true
+		if (swPlay % 2 && g_GameFlags & GAME_FLAG_iS_GAME_GOING)	// The "swPlay % 2" part is always true
 		{
-			if (g_GameFlags & 2)
+			if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 				ActMyChar(true);
 			else
 				ActMyChar(false);
@@ -732,7 +732,7 @@ static int ModeAction(void)
 			HitMyCharNpChar();
 			HitMyCharBoss();
 			HitBossMap();
-			if (g_GameFlags & 2)
+			if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 				ShootBullet();
 			if (stopTime){
 			ActBullet();
@@ -745,13 +745,13 @@ static int ModeAction(void)
 #endif
 			ActFlash(frame_x, frame_y);
 
-			if (g_GameFlags & 2)
+			if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 				AnimationMyChar(true);
 			else
 				AnimationMyChar(false);
 		}
 
-		if (g_GameFlags & 8)
+		if (g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING)
 		{
 			ActionCredit();
 			ActionIllust();
@@ -783,7 +783,7 @@ static int ModeAction(void)
 		PutFade();
 		PutMappingName();
 
-		if (!(g_GameFlags & 4))
+		if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE))
 		{
 			// Open inventory
 			if (gKeyTrg & gKeyItem)
@@ -832,7 +832,7 @@ static int ModeAction(void)
 			}
 		}
 
-		if (g_GameFlags & 2)
+		if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 		{
 			if (gKeyTrg & gKeyArms)
 				RotationArms();
@@ -865,7 +865,7 @@ static int ModeAction(void)
 		if (ChallengeEnabled("timer"))
 			PutTimeCounter(16, WINDOW_HEIGHT - 12);
 
-		if (g_GameFlags & 2)
+		if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 		{
 			PutMyLife(true);
 			PutArmsEnergy(true);
@@ -875,7 +875,7 @@ static int ModeAction(void)
 		PutMyScore(0);
 		PutCooldownList(gCooldowns);
 
-		if (g_GameFlags & 8)
+		if (g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING)
 		{
 			PutIllust();
 			PutStripper();
@@ -913,7 +913,7 @@ static int ModeRankings(void)
 	grcGame.right = WINDOW_WIDTH;
 	grcGame.bottom = WINDOW_HEIGHT;
 #endif
-	g_GameFlags = 3;
+	g_GameFlags = GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING;
 
 	while (1)
 	{

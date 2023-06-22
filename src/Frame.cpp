@@ -15,7 +15,7 @@ void MoveFrame3(void)
 	GetMapData(0, &map_w, &map_l);
 
 #if WINDOW_WIDTH != 320 || WINDOW_HEIGHT != 240
-	if (g_GameFlags & 8)
+	if (g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING)
 	{
 		// Use the original camera boundaries during the credits
 		const int x_delta = -((WINDOW_WIDTH - 320) / 2) * 0x200;
@@ -126,7 +126,7 @@ void SetFramePosition(int fx, int fy)
 
 	// Keep in bounds
 #if WINDOW_WIDTH != 320 || WINDOW_HEIGHT != 240
-	if (g_GameFlags & 8)
+	if (g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING)
 	{
 		// Use the original camera boundaries during the credits
 		const int x_delta = -((WINDOW_WIDTH - 320) / 2) * 0x200;
@@ -200,7 +200,7 @@ void SetFrameMyChar(void)
 
 	// Keep in bounds
 #if WINDOW_WIDTH != 320 || WINDOW_HEIGHT != 240
-	if (g_GameFlags & 8)
+	if (g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING)
 	{
 		// Use the original camera boundaries during the credits
 		const int x_delta = -((WINDOW_WIDTH - 320) / 2) * 0x200;

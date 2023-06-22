@@ -1022,11 +1022,11 @@ void HitMyCharNpChar(void)
 		}
 
 		// Run event on contact
-		if (!(g_GameFlags & 4) && hit != 0 && gNPC[i].bits & NPC_EVENT_WHEN_TOUCHED)
+		if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE) && hit != 0 && gNPC[i].bits & NPC_EVENT_WHEN_TOUCHED)
 			StartTextScript(gNPC[i].code_event);
 
 		// NPC damage
-		if (g_GameFlags & 2 && !(gNPC[i].bits & NPC_INTERACTABLE))
+		if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED && !(gNPC[i].bits & NPC_INTERACTABLE))
 		{
 			if (gNPC[i].bits & NPC_REAR_AND_TOP_DONT_HURT)
 			{
@@ -1052,7 +1052,7 @@ void HitMyCharNpChar(void)
 				}
 				if (gMC.life <= 0 && gMC.deathReason == 0) DetermineHitReason(gNPC[i].code_char);
 			}
-			else if (hit != 0 && gNPC[i].damage && !(g_GameFlags & 4))
+			else if (hit != 0 && gNPC[i].damage && !(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE))
 			{
 				if (gMC.saraDash > 0){
 					if (hitTimer == 0){
@@ -1079,7 +1079,7 @@ void HitMyCharNpChar(void)
 		}
 
 		// Interaction
-		if (!(g_GameFlags & 4) && hit != 0 && (gMC.cond & 1 || ((ChallengeEnabled("debug") || gMC.flag & 0x100) && gKeyTrg & gKeyDown)) && gNPC[i].bits & NPC_INTERACTABLE)
+		if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE) && hit != 0 && (gMC.cond & 1 || ((ChallengeEnabled("debug") || gMC.flag & 0x100) && gKeyTrg & gKeyDown)) && gNPC[i].bits & NPC_INTERACTABLE)
 		{
 			lastInteractedEntityID = i;
 			if (gNPC[i].code_char == 231){
@@ -1256,7 +1256,7 @@ void HitMyCharBoss(void)
 			}
 		}
 
-		if (!(g_GameFlags & 4) && hit != 0 && gBoss[b].bits & NPC_EVENT_WHEN_TOUCHED)
+		if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE) && hit != 0 && gBoss[b].bits & NPC_EVENT_WHEN_TOUCHED)
 		{
 			StartTextScript(gBoss[b].code_event);
 			gMC.ques = false;
@@ -1287,7 +1287,7 @@ void HitMyCharBoss(void)
 				if (gMC.life <= 0 && gMC.deathReason == 0) DetermineHitReason(-1);
 			}
 		}
-		else if (hit != 0 && gBoss[b].damage != 0 && !(g_GameFlags & 4))
+		else if (hit != 0 && gBoss[b].damage != 0 && !(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE))
 		{
 			if (gMC.saraDash > 0)
 			{
@@ -1311,7 +1311,7 @@ void HitMyCharBoss(void)
 				DetermineHitReason(-1);
 		}
 
-		if (!(g_GameFlags & 4) && hit != 0 && gMC.cond & 1 && gBoss[b].bits & NPC_INTERACTABLE)
+		if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE) && hit != 0 && gMC.cond & 1 && gBoss[b].bits & NPC_INTERACTABLE)
 		{
 			StartTextScript(gBoss[b].code_event);
 			gMC.xm = 0;

@@ -70,7 +70,7 @@ bool InitTextScript2(void)
 
 	// Clear flags
 	gTS.mode = 0;
-	g_GameFlags &= ~4;
+	g_GameFlags &= ~GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE;
 
 	// Create line surfaces
 	for (i = 0; i < 4; ++i)
@@ -242,7 +242,7 @@ bool StartTextScript(int no)
 
 	// Reset state
 	gTS.mode = 1;
-	g_GameFlags |= 5;
+	g_GameFlags |= (GAME_FLAG_iS_GAME_GOING | GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE);
 	gTS.line = 0;
 	gTS.p_write = 0;
 	gTS.wait = 4;
@@ -303,7 +303,7 @@ bool JumpTextScript(int no)
 
 	// Set state
 	gTS.mode = 1;
-	g_GameFlags |= 4;
+	g_GameFlags |= GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE;
 	gTS.line = 0;
 	gTS.p_write = 0;
 	gTS.wait = 4;
@@ -355,8 +355,8 @@ void StopTextScript(void)
 {
 	// End TSC and reset flags
 	gTS.mode = 0;
-	g_GameFlags &= ~4;
-	g_GameFlags |= 3;
+	g_GameFlags &= ~GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE;
+	g_GameFlags |= GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING;
 	gTS.flags = 0;
 }
 
@@ -366,7 +366,7 @@ void CheckNewLine(void)
 	if (gTS.ypos_line[gTS.line % 4] == 48)
 	{
 		gTS.mode = 3;
-		g_GameFlags |= 4;
+		g_GameFlags |= GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE;
 		CortBox2(&gRect_line, 0, (SurfaceID)(SURFACE_ID_TEXT_LINE1 + (gTS.line % 4)));
 		memset(text[gTS.line % 4], 0, sizeof(text[0]));
 	}
@@ -646,7 +646,7 @@ int TextScriptProc(void)
 			// Type out (faster if ok or cancel are held)
 			++gTS.wait;
 
-			if (!(g_GameFlags & 2) && gKey & (gKeyOk | gKeyCancel))
+			if (!(g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED) && gKey & (gKeyOk | gKeyCancel))
 				gTS.wait += 4;
 
 			if (gTS.wait < 4)
@@ -665,7 +665,7 @@ int TextScriptProc(void)
 					{
 						gTS.mode = 0;
 						gMC.cond &= ~1;
-						g_GameFlags |= 3;
+						g_GameFlags |= GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING;
 						gTS.face = 0;
 						gTS.flags &= ~8;
 						bExit = true;
@@ -908,8 +908,8 @@ int TextScriptProc(void)
 					}
 					else if (IS_COMMAND('K','E','Y'))
 					{
-						g_GameFlags &= ~2;
-						g_GameFlags |= 1;
+						g_GameFlags &= ~GAME_FLAG_IS_CONTROL_ENABLED;
+						g_GameFlags |= GAME_FLAG_iS_GAME_GOING;
 						gMC.up = false;
 						gTS.p_read += 4;
 					}
@@ -920,12 +920,12 @@ int TextScriptProc(void)
 					}
 					else if (IS_COMMAND('P','R','I'))
 					{
-						g_GameFlags &= ~3;
+						g_GameFlags &= ~(GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING);
 						gTS.p_read += 4;
 					}
 					else if (IS_COMMAND('F','R','E'))
 					{
-						g_GameFlags |= 3;
+						g_GameFlags |= GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING;
 						gTS.p_read += 4;
 					}
 					else if (IS_COMMAND('N','O','D'))
@@ -1297,7 +1297,7 @@ int TextScriptProc(void)
 						}
 
 						JumpTextScript(z);
-						g_GameFlags &= ~3;
+						g_GameFlags &= ~(GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING);
 					}
 					else if (IS_COMMAND('D','N','P'))
 					{
@@ -1478,7 +1478,7 @@ int TextScriptProc(void)
 					}
 					else if (IS_COMMAND('C','R','E'))
 					{
-						g_GameFlags |= 8;
+						g_GameFlags |= GAME_FLAG_ARE_CREDITS_ROLLING;
 						StartCreditScript();
 						gTS.p_read += 4;
 					}
@@ -1832,9 +1832,9 @@ int TextScriptProc(void)
 	}
 
 	if (gTS.mode == 0)
-		g_GameFlags &= ~4;
+		g_GameFlags &= ~GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE;
 	else
-		g_GameFlags |= 4;
+		g_GameFlags |= GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE;
 
 	return enum_ESCRETURN_continue;
 }
