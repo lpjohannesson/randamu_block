@@ -568,7 +568,7 @@ Bubbler, increasing their
 firerate, velocity and
 spread.<NOD Buffs Fireball
 by making it spawn
-flames and explode on enemy hits.<CLR
+flames and explode on enemy hits.<NOD<CLR
 Do you want to equip it?<YNJ0000<E2+0019<FL+0873<MSG
 Equipped High-Octane Tank.<NOD<WAI0003<FRE<EVE5025
 #6026
