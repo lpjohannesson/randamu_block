@@ -645,7 +645,7 @@ static int ModeAction(void)
 		// Get pressed keys
 		GetTrg();
 
-		if (gKey & KEY_PAUSE)
+		if (gKey & KEY_PAUSE && !(g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING))
 		{
 			BackupSurface(SURFACE_ID_SCREEN_GRAB, &grcGame);
 			switch (Call_Pause())
@@ -662,7 +662,7 @@ static int ModeAction(void)
 		}
 
 		// Escape menu
-		if (gKey & KEY_ESCAPE)
+		if (gKey & KEY_ESCAPE && !(g_GameFlags & GAME_FLAG_ARE_CREDITS_ROLLING))
 		{
 			switch (Call_Escape())
 			{

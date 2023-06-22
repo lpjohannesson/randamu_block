@@ -506,6 +506,7 @@ int Scene_DownIsland(int mode)
 
 		if (gKey & KEY_PAUSE)
 		{
+			BackupSurface(SURFACE_ID_SCREEN_GRAB, &grcFull);
 			switch (Call_Pause())
 			{
 				case enum_ESCRETURN_exit:
