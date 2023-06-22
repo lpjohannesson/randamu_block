@@ -405,7 +405,7 @@ int MiniMapExLoop(void)
 		}
 
 		PutBitmap4(&grcGame, 0, 0, &grcGame, SURFACE_ID_SCREEN_GRAB);
-		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_BLACK_OVERLAY);
 
 		rcView.left = (WINDOW_WIDTH / 2) - (((42 * f) / 8) / 2)*6;
 		rcView.right = (WINDOW_WIDTH / 2) + (((42 * f) / 8) / 2)*6;
@@ -524,13 +524,13 @@ int MiniMapExLoop(void)
 		}
 
 		PutBitmap4(&grcGame, 0, 0, &grcGame, SURFACE_ID_SCREEN_GRAB);
-		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_BLACK_OVERLAY);
 		// CortBox(&rcView, 0);
 
 		WriteMiniMap(map_x, map_y);
 
 		PutBitmap3(&grcGame, 0, 0, &rcMiniMap, SURFACE_ID_MAP);
-		PutBitmap3(&grcGame, 0, 0, &rcMapCaret, SURFACE_ID_MY_CHAR_8);
+		PutBitmap3(&grcGame, 0, 0, &rcMapCaret, SURFACE_ID_IMPROVED_MAP_FRAME);
 
 		// if (++my_wait / 16 % 2){
 		// 	int my_char_map_x = WINDOW_WIDTH/2 + (1 - (map_x - my_x))*2;

@@ -508,7 +508,7 @@ void PutTextScript(void)
 	}
 
 	if (gTS.flags & 8){
-		PutBitmap3(&grcFull, 0, 0, &grcFull, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&grcFull, 0, 0, &grcFull, SURFACE_ID_BLACK_OVERLAY);
 	}
 
 	// Draw textbox

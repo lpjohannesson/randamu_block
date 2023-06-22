@@ -175,7 +175,7 @@ int MiniMapLoop(void)
 		rcView.top = (WINDOW_HEIGHT / 7.35) - (((gMap.length * f) / 8) / 4);
 		rcView.bottom = (WINDOW_HEIGHT / 7.35) + (((gMap.length * f)/4));
 
-		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_BLACK_OVERLAY);
 
 		PutFramePerSecound();
 		if (!Flip_SystemTask())
@@ -235,7 +235,7 @@ int MiniMapLoop(void)
 		}
 
 		PutBitmap4(&grcGame, 0, 0, &grcGame, SURFACE_ID_SCREEN_GRAB);
-		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_BLACK_OVERLAY);
 
 		if (line < gMap.length)
 		{
@@ -301,7 +301,7 @@ int MiniMapLoop(void)
 		rcView.top = (WINDOW_HEIGHT / 7) - (((gMap.length * f) / 8) / 4);
 		rcView.bottom = (WINDOW_HEIGHT / 7) + (((gMap.length * f) / 8) / 4);
 
-		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&grcGame, 0, 0, &grcGame, SURFACE_ID_BLACK_OVERLAY);
 
 		PutFramePerSecound();
 		if (!Flip_SystemTask())

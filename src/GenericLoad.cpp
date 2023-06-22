@@ -232,19 +232,19 @@ bool LoadGenericData(void)
 		bError = true;
 	if (!MakeSurface_File("MyChar", SURFACE_ID_MY_CHAR_2))
 		bError = true;
-	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_CHAR_3))
+	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_ACCESSORIES))
 		bError = true;
-	if (!MakeSurface_File("MyChar", SURFACE_ID_MY_CHAR_4))
+	if (!MakeSurface_File("MyChar", SURFACE_ID_DASH_VISUAL))
 		bError = true;
-	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_CHAR_5))
+	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_ACCESSORIES_DROWNED))
 		bError = true;
-	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_CHAR_6))
+	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_ACCESSORIES_DASH))
 		bError = true;
-	if (!MakeSurface_File("bkWater2", SURFACE_ID_MY_CHAR_7))
+	if (!MakeSurface_File("bkWater2", SURFACE_ID_WATER_FOREGROUND))
 		bError = true;
-	if (!MakeSurface_File("mapFrame", SURFACE_ID_MY_CHAR_8))
+	if (!MakeSurface_File("mapFrame", SURFACE_ID_IMPROVED_MAP_FRAME))
 		bError = true;
-	if (!MakeSurface_File("fgOverlay", SURFACE_ID_MY_CHAR_9))
+	if (!MakeSurface_File("fgOverlay", SURFACE_ID_BLACK_OVERLAY))
 		bError = true;
 	if (!MakeSurface_File("Stage/PrtFall", SURFACE_ID_CLOUDS))
 		bError = true;

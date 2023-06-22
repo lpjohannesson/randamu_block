@@ -701,7 +701,7 @@ int RankingLoop(void)
 		// Get currently displayed image
 		PutBack(0, 0);
 		ActBack();
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 		PutMyLifeRank();
 		PutArmsEnergyRank();
 		PutActiveArmRank();

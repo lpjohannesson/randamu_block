@@ -427,7 +427,7 @@ void SwitchWeapon(void){
 			gSelectedArms = 0;
 
 		PutBitmap4(&rcView, 0, 0, &rcView, SURFACE_ID_SCREEN_GRAB);
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 		PutCampObject();
 
 		PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(((gSelectedArms % 6) * 40) + (WINDOW_WIDTH / 2) - 117 - 15), PixelToScreenCoord((WINDOW_HEIGHT / 2) - 96 + (gSelectedArms / 6) * 30), &rcHand, SURFACE_ID_TEXT_BOX);
@@ -945,7 +945,7 @@ int CampLoop(void)
 
 		// Get currently displayed image
 		PutBitmap4(&rcView, 0, 0, &rcView, SURFACE_ID_SCREEN_GRAB);
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 		PutMyLife(false);
 		PutArmsEnergy(false);
 		PutActiveArm();

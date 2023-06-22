@@ -584,11 +584,11 @@ void PutStage_Darkness(int fx, int fy)
 			int dist = Distance(gMC.x / 0x1000, gMC.y / 0x1000, i, j);
 			if (gMC.tileset == TYPE_DARKCAVE && (gMC.gimmick == GIMMICK_DARKNESS || ChallengeEnabled("darkness") || gMC.depth > genContext.doctorStage)) dist *= 1.5;
 			if (dist > 13)
-				PutBitmap3(&grcGame, PixelToScreenCoord((i*8)) - SubpixelToScreenCoord(fx), PixelToScreenCoord((j*8)) - SubpixelToScreenCoord(fy), &rect, SURFACE_ID_MY_CHAR_9);
+				PutBitmap3(&grcGame, PixelToScreenCoord((i*8)) - SubpixelToScreenCoord(fx), PixelToScreenCoord((j*8)) - SubpixelToScreenCoord(fy), &rect, SURFACE_ID_BLACK_OVERLAY);
 			if (dist > 21)
-				PutBitmap3(&grcGame, PixelToScreenCoord((i*8)) - SubpixelToScreenCoord(fx), PixelToScreenCoord((j*8)) - SubpixelToScreenCoord(fy), &rect, SURFACE_ID_MY_CHAR_9);
+				PutBitmap3(&grcGame, PixelToScreenCoord((i*8)) - SubpixelToScreenCoord(fx), PixelToScreenCoord((j*8)) - SubpixelToScreenCoord(fy), &rect, SURFACE_ID_BLACK_OVERLAY);
 			if (dist > 27)
-				PutBitmap3(&grcGame, PixelToScreenCoord((i*8)) - SubpixelToScreenCoord(fx), PixelToScreenCoord((j*8)) - SubpixelToScreenCoord(fy), &rect, SURFACE_ID_MY_CHAR_9);
+				PutBitmap3(&grcGame, PixelToScreenCoord((i*8)) - SubpixelToScreenCoord(fx), PixelToScreenCoord((j*8)) - SubpixelToScreenCoord(fy), &rect, SURFACE_ID_BLACK_OVERLAY);
 		}
 	}
 }

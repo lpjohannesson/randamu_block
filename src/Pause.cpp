@@ -464,7 +464,7 @@ static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
 
 		// Draw screen
 		PutBitmap4(&rcView, 0, 0, &rcView, SURFACE_ID_SCREEN_GRAB);
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 
 		const size_t visible_options = MIN(MAX_OPTIONS, options_menu->total_options);
 
@@ -1032,8 +1032,8 @@ static int Callback_PickDifficulty(OptionsMenu *parent_menu, size_t this_option)
 
 		PutBack(0, 0);
 		ActBack();
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 		int y = WINDOW_HEIGHT / 3 - 60;
 		PutText(WINDOW_WIDTH / 2 - 45, y, GetCSE2Message("difficulty_select"), RGB(0xFF, 0xFF, 0xFF));
 
@@ -1143,7 +1143,7 @@ static int Callback_Resources(OptionsMenu *parent_menu, size_t this_option, Call
 
 		PutBack(0, 0);
 		ActBack();
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 
 		bool bChange = false;
 
@@ -1274,7 +1274,7 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 
 		PutBack(0, 0);
 		ActBack();
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 		int y = WINDOW_HEIGHT / 3 - 60;
 		PutText(WINDOW_WIDTH / 2 - 45, y, GetCSE2Message("character_select"), RGB(0xFF, 0xFF, 0xFF));
 
@@ -2964,7 +2964,7 @@ static int Callback_ModPage(OptionsMenu *parent_menu, size_t this_option, Callba
 		// Get pressed keys
 		GetTrg();
 		PutBitmap4(&rcView, 0, 0, &rcView, SURFACE_ID_SCREEN_GRAB);
-		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_MY_CHAR_9);
+		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 		PutText((WINDOW_WIDTH / 2) - ((strlen(title.c_str()) * 5) / 2), 25, title.c_str(), RGB(0xFF, 0xFF, 0xFF));
 		if (wait < 100){
 			wait++;
@@ -3238,7 +3238,7 @@ static int Callback_Quit(OptionsMenu *parent_menu, size_t this_option, CallbackA
 	while (Backend_GetTicks() < wait + 1000)
 	{
 		PutBitmap4(&grcGame, 0, 0, &grcGame, SURFACE_ID_SCREEN_GRAB);
-		PutBitmap4(&grcGame, 0, 0, &grcGame, SURFACE_ID_MY_CHAR_9);
+		PutBitmap4(&grcGame, 0, 0, &grcGame, SURFACE_ID_BLACK_OVERLAY);
 		ProcFade();
 		PutFade();
 		PutFramePerSecound();

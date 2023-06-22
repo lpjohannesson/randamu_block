@@ -189,7 +189,7 @@ void PutBack(int fx, int fy)
 			break;
 	}
 	if (IsItDark())
-	PutBitmap3(&grcGame, SubpixelToScreenCoord(0), PixelToScreenCoord(0), &grcGame, SURFACE_ID_MY_CHAR_9);
+	PutBitmap3(&grcGame, SubpixelToScreenCoord(0), PixelToScreenCoord(0), &grcGame, SURFACE_ID_BLACK_OVERLAY);
 }
 
 void PutFront(int fx, int fy)
@@ -217,9 +217,9 @@ void PutFront(int fx, int fy)
 		{
 			xpos = SubpixelToScreenCoord(x * 32_pix) - SubpixelToScreenCoord(fx);
 			if (y == 0)
-				PutBitmap3(&grcGame, xpos, ypos, &rcWater[0], SURFACE_ID_MY_CHAR_7);
+				PutBitmap3(&grcGame, xpos, ypos, &rcWater[0], SURFACE_ID_WATER_FOREGROUND);
 			else
-				PutBitmap3(&grcGame, xpos, ypos, &rcWater[1], SURFACE_ID_MY_CHAR_7);
+				PutBitmap3(&grcGame, xpos, ypos, &rcWater[1], SURFACE_ID_WATER_FOREGROUND);
 		}
 	}
 }

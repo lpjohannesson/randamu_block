@@ -301,7 +301,7 @@ void PutMyChar(int fx, int fy)
 	Rect rect = gMC.direct == 0 ? rcLeft : rcRight;
 	rect.top += 32 * gMIMCurrentNum;
 	rect.bottom += 32 * gMIMCurrentNum;
-	PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &rect, color, SURFACE_ID_MY_CHAR_4);
+	PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &rect, color, SURFACE_ID_DASH_VISUAL);
 
 	for (int i = 0; i < ARRAY_SIZE(accOrder); i++)
 	{
@@ -310,7 +310,7 @@ void PutMyChar(int fx, int fy)
 			Rect accRect = gMC.direct == 0 ? rcLeft : rcRight;
 			accRect.top += 32 * accRectNum[i];
 			accRect.bottom += 32 * accRectNum[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, color, SURFACE_ID_MY_CHAR_5);
+			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, color, SURFACE_ID_MY_ACCESSORIES_DROWNED);
 		}
 	}
 	for (int i = 0; i < ARRAY_SIZE(accOrderFlag); i++)
@@ -320,7 +320,7 @@ void PutMyChar(int fx, int fy)
 			Rect accRect = gMC.direct == 0 ? rcLeft : rcRight;
 			accRect.top += 32 * accRectNumFlag[i];
 			accRect.bottom += 32 * accRectNumFlag[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, color, SURFACE_ID_MY_CHAR_5);
+			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, color, SURFACE_ID_MY_ACCESSORIES_DROWNED);
 		}
 	}
 	}
@@ -404,7 +404,7 @@ void PutMyChar(int fx, int fy)
 	for (int i = 0; i < gMC.visualDashDuration/4; i++){
 		PutBitmap3_Flip(&grcGame, 
 		SubpixelToScreenCoord(gMC.x - gMC.view.front - gMC.xm*(1+i*3))
-		 - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top - gMC.ym*(1+i*3)) - SubpixelToScreenCoord(fy), &rect, (SurfaceID)((int)SURFACE_ID_MY_CHAR_4), 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
+		 - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top - gMC.ym*(1+i*3)) - SubpixelToScreenCoord(fy), &rect, (SurfaceID)((int)SURFACE_ID_DASH_VISUAL), 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
 	for (int i = 0; i < ARRAY_SIZE(accOrder); i++)
 	{
 		if (gMC.equip & accOrder[i])
@@ -413,7 +413,7 @@ void PutMyChar(int fx, int fy)
 			Rect accRect = gMC.rect;
 			accRect.top += 32 * accRectNum[i];
 			accRect.bottom += 32 * accRectNum[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_CHAR_6, 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
+			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_ACCESSORIES_DASH, 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
 		}
 	}
 	for (int i = 0; i < ARRAY_SIZE(accOrderFlag); i++)
@@ -424,7 +424,7 @@ void PutMyChar(int fx, int fy)
 			Rect accRect = gMC.rect;
 			accRect.top += 32 * accRectNumFlag[i];
 			accRect.bottom += 32 * accRectNumFlag[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_CHAR_6, 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
+			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_ACCESSORIES_DASH, 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
 		}
 	}
 	}
@@ -450,7 +450,7 @@ void PutMyChar(int fx, int fy)
 			Rect accRect = gMC.rect;
 			accRect.top += 32 * accRectNum[i];
 			accRect.bottom += 32 * accRectNum[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_CHAR_3);
+			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_ACCESSORIES);
 		}
 	}
 	for (int i = 0; i < ARRAY_SIZE(accOrderFlag); i++)
@@ -460,7 +460,7 @@ void PutMyChar(int fx, int fy)
 			Rect accRect = gMC.rect;
 			accRect.top += 32 * accRectNumFlag[i];
 			accRect.bottom += 32 * accRectNumFlag[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_CHAR_3);
+			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_ACCESSORIES);
 		}
 	}
 

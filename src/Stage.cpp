@@ -3620,7 +3620,7 @@ void PutMappingName(void){
 	else
 		sprintf(music_name, "%s", TilesetName().c_str());
 
-	PutBitmap3(&grcGame, PixelToScreenCoord(0), PixelToScreenCoord(WINDOW_HEIGHT - 21), &rc_background, SURFACE_ID_MY_CHAR_9);
+	PutBitmap3(&grcGame, PixelToScreenCoord(0), PixelToScreenCoord(WINDOW_HEIGHT - 21), &rc_background, SURFACE_ID_BLACK_OVERLAY);
 
 	PutText(24, WINDOW_HEIGHT - 20, music_name, RGB(0xff,0xff,0xfe));
 	PutBitmap3(&grcGame, PixelToScreenCoord(4), PixelToScreenCoord(WINDOW_HEIGHT - 20), &rc_note, SURFACE_ID_TEXT_BOX);
