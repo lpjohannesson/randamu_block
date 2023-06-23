@@ -632,7 +632,7 @@ void HitNpCharBullet(void)
 
 		if (gMC.depth > 1 && gMC.depth % genContext.bossRate == 0){
 				if(IntersectCheck(genContext.bossRect, gNPC[n].x / 16_pix, gNPC[n].y / 16_pix)){
-					if (!GetNPCFlag(555) && !IntersectCheck(genContext.bossRect, gMC.x / 16_pix, gMC.y / 16_pix)){
+					if (gBL.flag == false && !GetNPCFlag(555) && !IntersectCheck(genContext.bossRect, gMC.x / 16_pix, gMC.y / 16_pix)){
 						if (gNPC[n].bits & NPC_SHOOTABLE)
 							SetCaret(gNPC[n].x + gNPC[n].hit.back / 2, gNPC[n].y + gNPC[n].rect.bottom / 2, 2, 2);
 						continue;
