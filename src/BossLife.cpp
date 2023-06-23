@@ -4,8 +4,10 @@
 #include "Boss.h"
 #include "Draw.h"
 #include "Game.h"
+#include "Map.h"
 #include "Stage.h"
 #include "NpChar.h"
+#include "ResourceCode.h"
 
 BOSSLIFE gBL;
 
@@ -31,6 +33,15 @@ bool StartBossLife(int code_event)
 		ChangeMusic(MUS_ENEMY_HALL);
 	else
 		ChangeMusic(MUS_EYES_OF_FLAME);
+
+	if (gStageNo == gGeneratedStage){
+		int w = genContext.bossRect.right - genContext.bossRect.left;
+		int h = genContext.bossRect.bottom - genContext.bossRect.top;
+		PaintRectangle(41, genContext.bossRect.left - 1, genContext.bossRect.top - 1, 
+				w + 2, h + 2);
+		ReplaceRectangle(41, 68, genContext.bossRect.left, genContext.bossRect.top, w, h);
+	}
+
 	return true;
 }
 
