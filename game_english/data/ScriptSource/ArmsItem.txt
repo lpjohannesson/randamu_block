@@ -580,7 +580,9 @@ seconds cooldown.<NOD Allows
 to teleport-dash with Dash
 key.<NOD This dash goes through
 walls and can damage enemies
-at end.<NOD<CLR
+at end.<NOD<CLRThis dash is replaced
+with regular during 
+boss fights.<NOD<CLR
 Do you want to equip it?<YNJ0000<FL+0703<FL+0874<MSG
 Equipped Discordian Visor.<NOD<WAI0003<FRE<EVE5026
 #6027

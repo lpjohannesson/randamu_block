@@ -9,6 +9,7 @@
 #include "CommonDefines.h"
 
 #include "ArmsItem.h"
+#include "BossLife.h"
 #include "Bullet.h"
 #include "Caret.h"
 #include "Cooldown.h"
@@ -1284,7 +1285,7 @@ void ActMyChar_Normal(bool bKey)
 		}
 	}
 	if (gMC.dashDuration > 0 && gMC.dashDuration < DashDuration()){
-		if (!GetNPCFlag(874))
+		if (!GetNPCFlag(874) || gBL.flag)
 		{
 			gMC.dashDuration++;
 			gMC.visualDashDuration++;
@@ -1937,10 +1938,12 @@ void ActMyChar(bool bKey)
 		x = fx + ScreenToSubpixelCoord(gMouseX);
 		y = fy + ScreenToSubpixelCoord(gMouseY);
 		int tile = GetAttribute(round(x * 1.0f / 0x2000), round(y * 1.0f / 0x2000));
-		if (tile != 65 && tile != 66 && InsideMap(round(x * 1.0f / 0x2000), round(y * 1.0f / 0x2000))){
-			gMC.chaosAnim = 60;
-			teleportX = x;
-			teleportY = y;
+		if (!gBL.flag || IntersectCheck(genContext.bossRect, x / 16_pix, y / 16_pix)){
+			if (tile != 65 && tile != 66 && InsideMap(round(x * 1.0f / 0x2000), round(y * 1.0f / 0x2000))){
+				gMC.chaosAnim = 60;
+				teleportX = x;
+				teleportY = y;
+			}
 		}
 	}
 
