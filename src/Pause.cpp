@@ -2634,7 +2634,8 @@ static int Callback_Configuration(OptionsMenu *parent_menu, size_t this_option, 
 
 	const int return_value = EnterOptionsMenu(&options_menu, 0);
 
-	PlaySoundObject(5, SOUND_MODE_PLAY);
+	if (return_value == CALLBACK_CONTINUE)
+		PlaySoundObject(5, SOUND_MODE_PLAY);
 
 	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal);
 
@@ -2688,7 +2689,8 @@ static int Callback_Configuration2(OptionsMenu *parent_menu, size_t this_option,
 
 	const int return_value = EnterOptionsMenuWithAlternates(&options_menu, 0);
 
-	PlaySoundObject(5, SOUND_MODE_PLAY);
+	if (return_value == CALLBACK_CONTINUE)
+		PlaySoundObject(5, SOUND_MODE_PLAY);
 
 	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal);
 	ReloadConfig();
