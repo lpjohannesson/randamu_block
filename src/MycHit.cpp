@@ -1030,7 +1030,7 @@ void HitMyCharNpChar(void)
 			{
 				if (gMC.saraDash > 0){
 					if (hitTimer == 0){
-						SetBullet(46, gMC.x, gMC.y, 0);
+						DealDamage(gNPC[i], 1);
 						hitTimer = 1;
 					}
 				}
@@ -1054,7 +1054,7 @@ void HitMyCharNpChar(void)
 			{
 				if (gMC.saraDash > 0){
 					if (hitTimer == 0){
-						SetBullet(46, gMC.x, gMC.y, 0);
+						DealDamage(gNPC[i], 1);
 						hitTimer = 1;
 					}
 				}
