@@ -3,6 +3,7 @@
 
 #include "CommonDefines.h"
 #include "Draw.h"
+#include "Game.h"
 #include <map>
 
 #define NPC_MAX 0x2000
@@ -144,7 +145,7 @@ void DeleteNpCharEvent(int code);
 void DeleteNpCharCode(int code, bool bSmoke);
 void GetNpCharPosition(int *x, int *y, int i);
 int GetNpCharHere(int x, int y);
-NPCHAR* FindNpCharHere(int x, int y, int precision = 0x2000);
+NPCHAR* FindNpCharHere(int x, int y, int xl = 4_pix, int yl = 4_pix);
 bool IsNpCharCode(int code);
 bool GetNpCharAlive(int code_event);
 int CountAliveNpChar(void);

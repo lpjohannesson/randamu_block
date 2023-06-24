@@ -17,6 +17,7 @@
 #include "Map.h"
 #include "MyChar.h"
 #include "MycHit.h"
+#include "NpcHit.h"
 #include "NpcTbl.h"
 #include "ResourceCode.h"
 #include "Stage.h"
@@ -951,12 +952,12 @@ int GetNpCharHere(int x, int y)
 	return -1;
 }
 
-NPCHAR* FindNpCharHere(int x, int y, int precision)
+NPCHAR* FindNpCharHere(int x, int y, int xl, int yl)
 {
 	int i;
 
 	for (i = 0; i < NPC_MAX; ++i)
-		if ((gNPC[i].cond & 0x80) && (gNPC[i].x / precision  == x) && gNPC[i].y / precision == y)
+		if ((gNPC[i].cond & 0x80) && IntersectDamageCheck(gNPC[i], x, y, xl, yl))
 			return &gNPC[i];
 
 	return NULL;

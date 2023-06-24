@@ -1355,39 +1355,29 @@ void ActMyChar_Normal(bool bKey)
 					distance -= 0x200;
 			}
 			if (abs(distance) > 0x2000 * 1){
-			if (gMC.direct == 0)
+			for (int l = gMC.x; 
+					gMC.direct == 0 ? (l > gMC.x + distance) : (l < gMC.x + distance); 
+					gMC.direct == 0 ? l -= 4_pix : l += 4_pix)
 			{
-				for (int l = gMC.x; l > gMC.x + distance; l -= 0x200 * 4)
-				{
-					for (int i = 0; i < 2; i++){
-						SetCaret(l, gMC.y, 11, 1);
-					}
-
-					NPCHAR* npc = FindNpCharHere(l / 0x200, gMC.y / 0x200, 0x200);
-					
-					if (npc != NULL && IntersectDamageCheck(*npc, l, gMC.y))
-						DealDamage(*npc, 2);
+				for (int i = 0; i < 2; i++){
+					SetCaret(l, gMC.y, 11, 1);
 				}
 			}
-			else
-			{
-				for (int l = gMC.x; l < gMC.x + distance; l += 0x200 * 4)
-				{
-					for (int i = 0; i < 2; i++){
-						SetCaret(l, gMC.y, 11, 1);
-					}
-
-					NPCHAR* npc = FindNpCharHere(l / 0x200, gMC.y / 0x200, 0x200);
-					
-					if (npc != NULL && IntersectDamageCheck(*npc, l, gMC.y))
-						DealDamage(*npc, 2);
-				}
+			for (int l = gMC.x; 
+					gMC.direct == 0 ? (l > gMC.x + distance) : (l < gMC.x + distance); 
+					gMC.direct == 0 ? l -= 2_pix : l += 2_pix){
+				NPCHAR* npc = FindNpCharHere(l, gMC.y);
+				
+				if (npc != NULL)
+					DealDamage(*npc, 1);
 			}
+
 			MoveMyChar(gMC.x + distance, gMC.y);
 			gMC.xm /= 2;
 			gMC.shock += 35;
-			for (int i = 0; i < 30; i++)
-				SetBullet(46, gMC.x, gMC.y, 0);
+			NPCHAR* npc = FindNpCharHere(gMC.x, gMC.y);
+			if (npc != NULL)
+				DealDamage(*npc, 24);
 			gMC.dashDuration = 0;
 			if (GetNPCFlag(866)){
 				gMC.pogo = true;
