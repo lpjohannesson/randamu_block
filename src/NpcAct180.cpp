@@ -328,8 +328,13 @@ void ActNpcLittleMan(NPCHAR *npc)
 		}
 	}
 
-	if (npc->act_no % 10 == 0)
-		SetBullet(46, npc->x, npc->y, 0);
+	if (npc->act_no % 25 == 0){
+		NPCHAR* target = FindNpCharHere(npc->x, npc->y);
+		if (target != NULL){
+			if (target->code_char != 69 && target->code_char != 156)
+				DealDamage(*target, 3);
+		}
+	}
 
 	if (npc->xm > 0x300)
 		npc->xm = 0x300;
