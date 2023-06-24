@@ -690,8 +690,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		}
 	}
 
-	bool isSword = bul == NULL;
-	if (isSword == false)
+	bool isSword = bul != NULL;
+	if (isSword == true)
 		isSword = (bul->code_bullet == 58 || bul->code_bullet == 60 || bul->code_bullet == 59
 			|| bul->code_bullet == 80 || bul->code_bullet == 81 || bul->code_bullet == 82 || bul->code_bullet == 85);
 
@@ -719,9 +719,11 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		if (npc.shock < 14)
 		{
 			if (!isEthereal){
-				SetCaret((bul->x + npc.x) / 2, (bul->y + npc.y) / 2, 11, 0);
-				SetCaret((bul->x + npc.x) / 2, (bul->y + npc.y) / 2, 11, 0);
-				SetCaret((bul->x + npc.x) / 2, (bul->y + npc.y) / 2, 11, 0);
+				int hurtX = bul != NULL ? ((bul->x + npc.x) / 2) : (npc.x + (npc.rect.right - npc.rect.left) / 2);
+				int hurtY = bul != NULL ? ((bul->y + npc.y) / 2) : (npc.y + (npc.rect.bottom - npc.rect.top) / 2);
+				SetCaret(hurtX, hurtY, 11, 0);
+				SetCaret(hurtX, hurtY, 11, 0);
+				SetCaret(hurtX, hurtY, 11, 0);
 			}
 			PlaySoundObject(npc.hit_voice, SOUND_MODE_PLAY);
 			npc.shock = 16;
@@ -832,7 +834,10 @@ void HitNpCharBullet(void)
 				// Damage NPC
 				if (gNPC[n].bits & NPC_SHOOTABLE)
 				{
-					DealDamage(gNPC[n], gBul[b].damage, &gBul[b]);
+					bool success = DealDamage(gNPC[n], gBul[b].damage, &gBul[b]);
+
+					if (!success)
+						continue;
 
 					if (gBul[b].iframes > 0)
 						static_iframes[n][gBul[b].code_bullet] = gBul[b].iframes;

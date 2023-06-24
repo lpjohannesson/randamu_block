@@ -986,8 +986,7 @@ void HitMyCharNpChar(void)
 						SetBullet(16, gMC.x,  gMC.y, 0);
 						SetBullet(16, gMC.x,  gMC.y, 0);
 					} else {
-						for (int i = 0; i < 30; i++)
-							SetBullet(46, gMC.x, gMC.y, 0);
+						DealDamage(gNPC[i], 30);
 						gMC.xm /= -4;
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
@@ -998,14 +997,11 @@ void HitMyCharNpChar(void)
 						}
 					}
 				} else {
-					SetBullet(46, gMC.x, gMC.y, 0);
-					SetBullet(46, gMC.x, gMC.y, 0);
-					SetBullet(46, gMC.x, gMC.y, 0);
-					SetBullet(46, gMC.x, gMC.y, 0);
+					int dashDamage = 4;
 					if (gMC.ameDashState){
-						for (int i = 0; i < 3; i++)
-							SetBullet(46, gMC.x, gMC.y, 0);
+						dashDamage += 3;
 					}
+					DealDamage(gNPC[i], dashDamage);
 				}
 			}
 		}
