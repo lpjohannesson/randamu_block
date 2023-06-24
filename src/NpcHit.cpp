@@ -618,6 +618,11 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	if (!(npc.bits & NPC_SHOOTABLE))
 		return false;
 
+	if (npc.code_char == 100){
+		if (bul == NULL || !IsBreakingBullet(*bul))
+			return false;
+	}
+
 	bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), npc.code_char) != etherealEntities.end();
 	if (isEthereal) dmg = 0;
 
@@ -649,6 +654,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	}
 
 	if (bul != NULL){
+
 		if (std::find(waterBullets.begin(), waterBullets.end(), bul->code_bullet) != waterBullets.end()){
 			npc.waterEffect = Random(0, 7);
 		}
@@ -813,8 +819,7 @@ void HitNpCharBullet(void)
 			if (gNPC[n].code_char == 126 && gBul[b].code_bullet == 46)
 				continue;
 
-			if (gNPC[n].code_char == 100 && !(gBul[b].code_bullet == 64 || gBul[b].code_bullet == 65 || gBul[b].code_bullet == 34 || gBul[b].code_bullet == 35 ||
-	 ((GetNPCFlag(4400) || GetNPCFlag(7999)) && (gBul[b].code_bullet == 37 || gBul[b].code_bullet == 38 || gBul[b].code_bullet == 39))))
+			if (gNPC[n].code_char == 100 && !IsBreakingBullet(gBul[b]))
 	 			continue;
 
 			// Check if bullet touches npc

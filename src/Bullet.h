@@ -71,5 +71,6 @@ void SetBullet(int no, int x, int y, int dir);
 BULLET* SetBullet(int no, int x, int y);
 void ActBullet(void);
 bool IsActiveSomeBullet(void);
+bool IsBreakingBullet(BULLET &bul);
 
 #endif // __BULLET_H__

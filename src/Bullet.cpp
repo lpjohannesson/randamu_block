@@ -367,6 +367,11 @@ BULLET* SetBullet(int no, int x, int y)
 	return &gBul[i];
 }
 
+bool IsBreakingBullet(BULLET &bul){
+	return (bul.code_bullet == 64 || bul.code_bullet == 65 || bul.code_bullet == 34 || bul.code_bullet == 35 ||
+	 ((GetNPCFlag(4400) || GetNPCFlag(7999)) && (bul.code_bullet == 37 || bul.code_bullet == 38 || bul.code_bullet == 39)));
+}
+
 void ActBullet_Frontia1(BULLET *bul)
 {
 	if (++bul->count1 > bul->life_count)
