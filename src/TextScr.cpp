@@ -719,8 +719,10 @@ int TextScriptProc(void)
 						int code = gArmsData[gSelectedArms].code;
 						int ammo = gArmsData[gSelectedArms].max_num;
 						int lvl  = gArmsData[gSelectedArms].level;
+						int xp   = gArmsData[gSelectedArms].exp;
+						int mina = gArmsData[gSelectedArms].num;
 						SubArmsData(code);
-						AddItemData(code + 100, ammo, lvl);
+						AddItemData(code + 100, ammo, lvl, xp, mina);
 						gTS.p_read += 4;
 					}
 					else if (IS_COMMAND('E','Q','+'))

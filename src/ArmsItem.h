@@ -43,6 +43,12 @@ struct ITEM
 
 	// Level of weapon item
 	int level;
+
+	// Current ammo of weapon item
+	int ammo;
+
+	// Current XP of weapon item
+	int xp;
 };
 
 void to_json(json& j, const ITEM& i);
@@ -83,7 +89,7 @@ void ClearItemData(void);
 
 /// Add code to the weapons, setting max_num as the max ammo, or find code and add max_num to its ammo. Fails if no space is available and the weapon isn't
 /// already present
-bool AddArmsData(long code, long max_num);
+bool AddArmsData(long code, long max_num, long exp = 0, long num = 0, long level = 1);
 
 // Check if there is space in inventory
 bool CheckItemSpace();
@@ -96,7 +102,7 @@ bool TradeArms(long code1, long code2, long max_num);
 
 
 /// Add code to the items. Fails if no space is left
-bool AddItemData(long code, int quantity = 0, int level = 1);
+bool AddItemData(long code, int quantity = 0, int level = 1, int xp = 0, int ammo = 0);
 
 /// Remove code from the items. Fails if code is not found
 bool SubItemData(long code);

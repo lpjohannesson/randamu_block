@@ -40,7 +40,7 @@ bool gCampActive;
 int gArmsEnergyX = 16;
 
 void to_json(json& j, const ITEM& i){
-	j = json{ {"code", i.code}, {"quantity", i.quantity}, {"wepLevel", i.level} };
+	j = json{ {"code", i.code}, {"quantity", i.quantity}, {"wepLevel", i.level}, {"wepXP", i.xp}, {"wepCurAmmo", i.ammo} };
 }
 
 void from_json(const json& j, ITEM& i) {
@@ -55,6 +55,16 @@ void from_json(const json& j, ITEM& i) {
     	j.at("wepLevel").get_to(i.level);
 	else
 		i.level = 1;
+
+	if (j.contains("wepXP"))
+    	j.at("wepXP").get_to(i.xp);
+	else
+		i.xp = 0;
+
+	if (j.contains("wepCurAmmo"))
+    	j.at("wepCurAmmo").get_to(i.ammo);
+	else
+		i.ammo = i.quantity;
 }
 
 void ClearArmsData(void)
@@ -131,7 +141,7 @@ std::vector<int> miracleWeaponryList = {
 	4
 };
 
-bool AddArmsData(long code, long max_num)
+bool AddArmsData(long code, long max_num, long exp, long num, long level)
 {
 	if (ChallengeEnabled("no_placing") && code == 2)
 		return false;
@@ -152,7 +162,7 @@ bool AddArmsData(long code, long max_num)
 	}
 
 	if (i == 12){
-		return AddItemData(code + 100, max_num, 1);	// No space left
+		return AddItemData(code + 100, max_num, level, exp, num);	// No space left
 	}
 
 	if (gArmsData[i].code == 0)
@@ -168,7 +178,9 @@ bool AddArmsData(long code, long max_num)
 		max_num *= 1.5;
 	}
 	gArmsData[i].max_num += max_num;
-	gArmsData[i].num += max_num;
+	gArmsData[i].num += num == 0 ? max_num : num;
+	gArmsData[i].exp = exp;
+	gArmsData[i].level = level;
 
 	for (auto weapon: miracleWeaponryList){
 		auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
@@ -259,7 +271,7 @@ bool FullInventory(){
 	return i == ITEM_MAX;
 }
 
-bool AddItemData(long code, int quantity, int level)
+bool AddItemData(long code, int quantity, int level, int xp, int ammo)
 {
 	// Search for code
 	int i = 0;
@@ -280,6 +292,8 @@ bool AddItemData(long code, int quantity, int level)
 	gItemData[i].code = code;
 	gItemData[i].quantity = quantity;
 	gItemData[i].level = level;
+	gItemData[i].xp = xp;
+	gItemData[i].ammo = ammo;
 
 	for (auto miracle : miracleList){
 		auto it = std::distance(miracleList.begin(), std::find(miracleList.begin(), miracleList.end(), miracle));
@@ -436,51 +450,55 @@ void SwitchWeapon(void){
 			PlaySoundObject(18, SOUND_MODE_PLAY);
 			int replacementCode = gItemData[gSelectedItem].code - 100;
 			int currentCode = gArmsData[gSelectedArms].code;
-			int ammoNeeded;
+			int ammoNeeded = gItemData[gSelectedItem].ammo;
+			int xpNeeded = gItemData[gSelectedItem].xp;
 			int ammoExisting = gItemData[gSelectedItem].quantity;
 			int levelExisting = gItemData[gSelectedItem].level;
-			switch (replacementCode){
-				case 2: case 12: //polar star and nemesis
-					ammoNeeded = 100;
-					if (gMC.equip & EQUIP_MORE_AMMO){
-						ammoNeeded *= 1.5;
-					}
-					if (GetNPCFlag(4350)){
-						ammoNeeded = 0;
-					}
-					break;
-				case 5: //rocket launcher
-					ammoNeeded = 40;
-					if (GetNPCFlag(4350)){
-						ammoNeeded += (gMC.depth - 1) * 4;
-					}
-					break;
-				case 16: //rifle
-					ammoNeeded = 105 + (gMC.depth - 1) * 4;
-					break;
-				case 18: //mining laser
-					ammoNeeded = 150;
-					break;
-				case 11: //electric shotgun
-					ammoNeeded = 30;
-					break;
-				case 14: //water gun
-					ammoNeeded = 6;
-					break;
-				case 4: case 7: //machine guns
-					ammoNeeded = 100;
-					break;
-				default:
-					ammoNeeded = 0;
-					break;
-			}
+			// switch (replacementCode){
+			// 	case 2: case 12: //polar star and nemesis
+			// 		ammoNeeded = 100;
+			// 		if (gMC.equip & EQUIP_MORE_AMMO){
+			// 			ammoNeeded *= 1.5;
+			// 		}
+			// 		if (GetNPCFlag(4350)){
+			// 			ammoNeeded = 0;
+			// 		}
+			// 		break;
+			// 	case 5: //rocket launcher
+			// 		ammoNeeded = 40;
+			// 		if (GetNPCFlag(4350)){
+			// 			ammoNeeded += (gMC.depth - 1) * 4;
+			// 		}
+			// 		break;
+			// 	case 16: //rifle
+			// 		ammoNeeded = 105 + (gMC.depth - 1) * 4;
+			// 		break;
+			// 	case 18: //mining laser
+			// 		ammoNeeded = 150;
+			// 		break;
+			// 	case 11: //electric shotgun
+			// 		ammoNeeded = 30;
+			// 		break;
+			// 	case 14: //water gun
+			// 		ammoNeeded = 6;
+			// 		break;
+			// 	case 4: case 7: //machine guns
+			// 		ammoNeeded = 100;
+			// 		break;
+			// 	default:
+			// 		ammoNeeded = 0;
+			// 		break;
+			// }
 			gItemData[gSelectedItem].code = currentCode + 100;
 			gItemData[gSelectedItem].quantity = gArmsData[gSelectedArms].num;
 			gItemData[gSelectedItem].level = gArmsData[gSelectedArms].level;
+			gItemData[gSelectedItem].ammo = gArmsData[gSelectedArms].num;
+			gItemData[gSelectedItem].xp = gArmsData[gSelectedArms].exp;
 			gArmsData[gSelectedArms].code = replacementCode;
 			gArmsData[gSelectedArms].max_num = ammoNeeded;
 			gArmsData[gSelectedArms].num = ammoExisting;
 			gArmsData[gSelectedArms].level = levelExisting;
+			gArmsData[gSelectedArms].exp = xpNeeded;
 			StopTextScript();
 			return;
 		}
@@ -627,7 +645,8 @@ void MoveCampCursor(void)
 					SwitchWeapon();
 				}
 				else {
-					AddArmsData(gItemData[gSelectedItem].code - 100, gItemData[gSelectedItem].quantity);
+					AddArmsData(gItemData[gSelectedItem].code - 100, gItemData[gSelectedItem].quantity, 
+						gItemData[gSelectedItem].xp, gItemData[gSelectedItem].ammo, gItemData[gSelectedItem].level);
 					SubItemData(gItemData[gSelectedItem].code);
 					PlaySoundObject(5, SOUND_MODE_PLAY);
 					StopTextScript();
