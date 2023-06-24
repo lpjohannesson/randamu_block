@@ -986,7 +986,8 @@ void HitMyCharNpChar(void)
 						SetBullet(16, gMC.x,  gMC.y, 0);
 						SetBullet(16, gMC.x,  gMC.y, 0);
 					} else {
-						DealDamage(gNPC[i], 30);
+						if (IntersectDamageCheck(gNPC[i], gMC.x, gMC.y))
+							DealDamage(gNPC[i], 30);
 						gMC.xm /= -4;
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
@@ -1001,7 +1002,8 @@ void HitMyCharNpChar(void)
 					if (gMC.ameDashState){
 						dashDamage += 3;
 					}
-					DealDamage(gNPC[i], dashDamage);
+					if (IntersectDamageCheck(gNPC[i], gMC.x, gMC.y))
+						DealDamage(gNPC[i], dashDamage);
 				}
 			}
 		}

@@ -613,6 +613,15 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 	}
 }
 
+bool IntersectDamageCheck(NPCHAR &npc, int x, int y, int xl, int yl)
+{
+	return (npc.bits & NPC_SHOOTABLE
+				&& npc.x - npc.hit.back < x + xl
+				&& npc.x + npc.hit.back > x - xl
+				&& npc.y - npc.hit.top < y + yl
+				&& npc.y + npc.hit.bottom > y - yl);
+}
+
 bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 {
 	if (!(npc.bits & NPC_SHOOTABLE))
