@@ -613,6 +613,145 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 	}
 }
 
+bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
+{
+	bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), npc.code_char) != etherealEntities.end();
+	if (isEthereal) dmg = 0;
+
+	if (gMC.equip & EQUIP_NIKUMARU_COUNTER && Random(1, 3) == 1 && npc.damage > 0){
+		if (npc.code_char == 263 || npc.code_char == 267){
+			npc.freeze += dmg*5;
+		} else
+			npc.freeze += dmg*15;
+		if (npc.freeze > 80){
+			npc.freeze = 80;
+		}
+		return false;
+	}
+
+	if (CheckForCooldown(gCooldowns, NANITES_TIME_ID) != -1){
+		dmg *= 1.66;
+	}
+
+	if (GetNPCFlag(874)){ //discordian visor
+		dmg = round(dmg * 1.25f);
+	}
+
+	if (gMC.equip & EQUIP_SUNGLASSES){ //cool sunglasses
+		dmg *= 2;
+	}
+
+	if (GetNPCFlag(4242)){ //quate
+		dmg *= float(Random(50, 175)) / 100.0f;
+	}
+
+	if (bul != NULL){
+		if (std::find(waterBullets.begin(), waterBullets.end(), bul->code_bullet) != waterBullets.end()){
+			npc.waterEffect = Random(0, 7);
+		}
+
+		if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end() &&
+				(GetNPCFlag(711) || bul->code_bullet == 14)){
+			npc.knockx = bul->xm * bul->knockX * npc.knockEffect;
+			npc.knocky = bul->ym * bul->knockY * npc.knockEffect;
+		}
+
+		if (bul->code_bullet > 6 && bul->code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(873)){
+			SetBullet(16, bul->x, bul->y, 0);
+		}
+	}
+
+	if (ChallengeEnabled("oneDamage") && dmg > 0) //one damage option
+		dmg = 1;
+
+	npc.life -= dmg;
+
+	if (Random(0, 2) == 0 && dmg != 0 && gMC.equip & EQUIP_NANO_QUIVER && 
+		(bul == NULL || (bul->code_bullet != 47 && bul->code_bullet != 45)))
+	{
+		int x, y;
+		do
+		{
+			x = Random(0, gMap.width*0x2000);
+			y = Random(0, gMap.length*0x2000);
+		} while (!(Distance(npc.x, npc.y, x, y) < 90_pix  && 
+					Distance(npc.x, npc.y, x, y) > 8_pix));
+		BULLET *quiverProj = SetBullet(47, x, y);
+		if (quiverProj != NULL){
+			quiverProj->tgt_x = npc.x;
+			quiverProj->tgt_y = npc.y;
+		}
+	}
+
+	for (int b1 = 0; b1 < BULLET_MAX; b1++){
+		if (gBul[b1].code_bullet == 57 && gBul[b1].npc == NULL && !isEthereal){ //whimsical star targetting
+			gBul[b1].npc = &npc;
+			break;
+		}
+	}
+
+	bool isSword = bul == NULL;
+	if (isSword == false)
+		isSword = (bul->code_bullet == 58 || bul->code_bullet == 60 || bul->code_bullet == 59
+			|| bul->code_bullet == 80 || bul->code_bullet == 81 || bul->code_bullet == 82 || bul->code_bullet == 85);
+
+	if (npc.life < 1 || ChallengeEnabled("debug"))
+	{
+		npc.life = 0;
+
+		if (npc.bits & NPC_SHOW_DAMAGE && !ChallengeEnabled("debug"))
+			npc.damage_view -= dmg;
+
+		if ((gMC.cond & 0x80) && npc.bits & NPC_EVENT_WHEN_KILLED)
+			StartTextScript(npc.code_event);
+		else
+			npc.cond |= 8;
+
+		if (isSword){
+			if (Random(0, 1))
+				SetBullet(79, npc.x, npc.y, 0);
+			else
+				SetBullet(79, npc.x, npc.y, 2);
+		}
+	}
+	else
+	{
+		if (npc.shock < 14)
+		{
+			if (!isEthereal){
+				SetCaret((bul->x + npc.x) / 2, (bul->y + npc.y) / 2, 11, 0);
+				SetCaret((bul->x + npc.x) / 2, (bul->y + npc.y) / 2, 11, 0);
+				SetCaret((bul->x + npc.x) / 2, (bul->y + npc.y) / 2, 11, 0);
+			}
+			PlaySoundObject(npc.hit_voice, SOUND_MODE_PLAY);
+			npc.shock = 16;
+			if (isSword)
+			{
+				if (Random(0, 1))
+					SetBullet(79, npc.x, npc.y, 0);
+				else
+					SetBullet(79, npc.x, npc.y, 2);
+				if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end()){
+					if (bul->direct == 0)
+						npc.knockx = -Random(0x300, 0x5F0);
+					else
+						npc.knockx = Random(0x300, 0x5F0);
+					if (gMC.y < npc.y)
+						npc.knocky = Random(0x300, 0x5F0) * 0.66;
+					if (gMC.y > npc.y)
+						npc.knocky = -Random(0x300, 0x5F0) * 0.66;
+				}
+			}
+		}
+
+		if (npc.bits & NPC_SHOW_DAMAGE)
+			npc.damage_view -= dmg;
+		starTarget = &npc;
+	}
+	
+	return true;
+}
+
 void HitNpCharBullet(void)
 {
 	int n, b;
@@ -630,6 +769,8 @@ void HitNpCharBullet(void)
 			continue;
 		}
 
+		bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[n].code_char) != etherealEntities.end();
+
 		if (gMC.depth > 1 && gMC.depth % genContext.bossRate == 0){
 				if(IntersectCheck(genContext.bossRect, gNPC[n].x / 16_pix, gNPC[n].y / 16_pix)){
 					if (gBL.flag == false && !GetNPCFlag(555) && !IntersectCheck(genContext.bossRect, gMC.x / 16_pix, gMC.y / 16_pix)){
@@ -644,7 +785,6 @@ void HitNpCharBullet(void)
 		{
 			bool isSword = gBul[b].code_bullet == 58 || gBul[b].code_bullet == 60 || gBul[b].code_bullet == 59
 				|| gBul[b].code_bullet == 80 || gBul[b].code_bullet == 81 || gBul[b].code_bullet == 82 || gBul[b].code_bullet == 85;
-			bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[n].code_char) != etherealEntities.end();
 
 			if (!(gBul[b].cond & 0x80))
 				continue;
@@ -692,127 +832,10 @@ void HitNpCharBullet(void)
 				// Damage NPC
 				if (gNPC[n].bits & NPC_SHOOTABLE)
 				{
-					int dmg = gBul[b].damage;
-					if (isEthereal) dmg = 0;
-					if (gMC.equip & EQUIP_NIKUMARU_COUNTER && Random(1, 3) == 1 && gNPC[n].damage > 0){
-						if (gNPC[n].code_char == 263 || gNPC[n].code_char == 267){
-							gNPC[n].freeze += gBul[b].damage*5;
-						} else
-							gNPC[n].freeze += gBul[b].damage*15;
-						if (gNPC[n].freeze > 80){
-							gNPC[n].freeze = 80;
-						}
-						continue;
-					}
-					if (CheckForCooldown(gCooldowns, NANITES_TIME_ID) != -1){
-						dmg *= 1.66;
-					}
-					if (GetNPCFlag(874)){
-						dmg = round(dmg * 1.25f);
-					}
-					if (gMC.equip & EQUIP_SUNGLASSES){
-						dmg *= 2;
-					}
-					if (GetNPCFlag(4242)){
-						dmg *= float(Random(50, 175)) / 100.0f;
-					}
-					if (std::find(waterBullets.begin(), waterBullets.end(), gBul[b].code_bullet) != waterBullets.end()){
-						gNPC[n].waterEffect = Random(0, 7);
-					}
-					if (ChallengeEnabled("oneDamage") && dmg > 0)
-						dmg = 1;
-					gNPC[n].life -= dmg;
-					if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), gNPC[n].code_char) == knockImmuneEnemies.end() &&
-						 (GetNPCFlag(711) || gBul[b].code_bullet == 14)){
-						gNPC[n].knockx = gBul[b].xm * gBul[b].knockX * gNPC[n].knockEffect;
-						gNPC[n].knocky = gBul[b].ym * gBul[b].knockY * gNPC[n].knockEffect;
-					}
-					if (gBul[b].code_bullet > 6 && gBul[b].code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(873)){
-						SetBullet(16, gBul[b].x, gBul[b].y, 0);
-					}
+					DealDamage(gNPC[n], gBul[b].damage, &gBul[b]);
 
-					if (Random(0, 2) == 0 && dmg != 0 && gMC.equip & EQUIP_NANO_QUIVER && (gBul[b].code_bullet != 47 && gBul[b].code_bullet != 45))
-					{
-						int x, y;
-						do
-						{
-							x = Random(0, gMap.width*0x2000);
-							y = Random(0, gMap.length*0x2000);
-						} while (!(Distance(gNPC[n].x, gNPC[n].y, x, y) < 90_pix  && 
-									Distance(gNPC[n].x, gNPC[n].y, x, y) > 8_pix));
-						BULLET *bul = SetBullet(47, x, y);
-						if (bul != NULL){
-						bul->tgt_x = gNPC[n].x;
-						bul->tgt_y = gNPC[n].y;
-						}
-					}
-
-					if (/* GetNPCFlag(851) */true){
-						for (int b1 = 0; b1 < BULLET_MAX; b1++){
-							if (gBul[b1].code_bullet == 57 && gBul[b1].npc == NULL && !isEthereal){
-								gBul[b1].npc = &gNPC[n];
-								break;
-							}
-						}
-					}
-
-					if (gNPC[n].life < 1 || ChallengeEnabled("debug"))
-					{
-						gNPC[n].life = 0;
-
-						if (gNPC[n].bits & NPC_SHOW_DAMAGE && !ChallengeEnabled("debug"))
-							gNPC[n].damage_view -= dmg;
-
-						if ((gMC.cond & 0x80) && gNPC[n].bits & NPC_EVENT_WHEN_KILLED)
-							StartTextScript(gNPC[n].code_event);
-						else
-							gNPC[n].cond |= 8;
-
-						if (isSword){
-							if (Random(0, 1))
-								SetBullet(79, gNPC[n].x, gNPC[n].y, 0);
-							else
-								SetBullet(79, gNPC[n].x, gNPC[n].y, 2);
-						}
-					}
-					else
-					{
-						if (gBul[b].iframes > 0)
-							static_iframes[n][gBul[b].code_bullet] = gBul[b].iframes;
-						if (gNPC[n].shock < 14)
-						{
-							if (!isEthereal){
-							SetCaret((gBul[b].x + gNPC[n].x) / 2, (gBul[b].y + gNPC[n].y) / 2, 11, 0);
-							SetCaret((gBul[b].x + gNPC[n].x) / 2, (gBul[b].y + gNPC[n].y) / 2, 11, 0);
-							SetCaret((gBul[b].x + gNPC[n].x) / 2, (gBul[b].y + gNPC[n].y) / 2, 11, 0);
-							}
-							PlaySoundObject(gNPC[n].hit_voice, SOUND_MODE_PLAY);
-							gNPC[n].shock = 16;
-							if (isSword)
-							{
-								// gNPC[n].shock = 16 + gBul[b].life_count;
-								// gNPC[n].sword_iframes = gBul[b].life_count;
-								if (Random(0, 1))
-									SetBullet(79, gNPC[n].x, gNPC[n].y, 0);
-								else
-									SetBullet(79, gNPC[n].x, gNPC[n].y, 2);
-								if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), gNPC[n].code_char) == knockImmuneEnemies.end()){
-									if (gBul[b].direct == 0)
-										gNPC[n].knockx = -Random(0x300, 0x5F0);
-									else
-										gNPC[n].knockx = Random(0x300, 0x5F0);
-									if (gMC.y < gNPC[n].y)
-										gNPC[n].knocky = Random(0x300, 0x5F0) * 0.66;
-									if (gMC.y > gNPC[n].y)
-										gNPC[n].knocky = -Random(0x300, 0x5F0) * 0.66;
-								}
-							}
-						}
-
-						if (gNPC[n].bits & NPC_SHOW_DAMAGE)
-							gNPC[n].damage_view -= dmg;
-						starTarget = &gNPC[n];
-					}
+					if (gBul[b].iframes > 0)
+						static_iframes[n][gBul[b].code_bullet] = gBul[b].iframes;
 				}
 				else if (gBul[b].code_bullet == 13
 					|| gBul[b].code_bullet == 14

@@ -4,6 +4,7 @@
 
 #include "CommonDefines.h"
 
+#include "Bullet.h"
 #include "NpChar.h"
 
 void JadgeHitNpCharBlock(NPCHAR *npc, int x, int y);
@@ -18,6 +19,7 @@ void JudgeHitNpCharTriangleH(NPCHAR *npc, int x, int y);
 void JudgeHitNpCharWater(NPCHAR *npc, int x, int y);
 void HitNpCharMap(void);
 void LoseNpChar(NPCHAR *npc, bool bVanish);
+bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul = NULL);
 void HitNpCharBullet(void);
 
 #endif // __NPCHIT_H__
