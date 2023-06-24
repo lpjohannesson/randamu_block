@@ -951,6 +951,17 @@ int GetNpCharHere(int x, int y)
 	return -1;
 }
 
+NPCHAR* FindNpCharHere(int x, int y, int precision)
+{
+	int i;
+
+	for (i = 0; i < NPC_MAX; ++i)
+		if ((gNPC[i].cond & 0x80) && (gNPC[i].x / precision  == x) && gNPC[i].y / precision == y)
+			return &gNPC[i];
+
+	return NULL;
+}
+
 bool GetNpCharAlive(int code_event)
 {
 	int i;

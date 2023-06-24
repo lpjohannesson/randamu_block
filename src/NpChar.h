@@ -144,6 +144,7 @@ void DeleteNpCharEvent(int code);
 void DeleteNpCharCode(int code, bool bSmoke);
 void GetNpCharPosition(int *x, int *y, int i);
 int GetNpCharHere(int x, int y);
+NPCHAR* FindNpCharHere(int x, int y, int precision = 0x2000);
 bool IsNpCharCode(int code);
 bool GetNpCharAlive(int code_event);
 int CountAliveNpChar(void);

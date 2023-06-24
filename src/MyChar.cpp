@@ -24,6 +24,7 @@
 #include "Map.h"
 #include "MycParam.h"
 #include "NpChar.h"
+#include "NpcHit.h"
 #include "NpcTbl.h"
 #include "Organya.h"
 #include "Sound.h"
@@ -1360,8 +1361,12 @@ void ActMyChar_Normal(bool bKey)
 				{
 					for (int i = 0; i < 2; i++){
 						SetCaret(l, gMC.y, 11, 1);
-						SetBullet(46, l, gMC.y, 0);
 					}
+
+					NPCHAR* npc = FindNpCharHere(l / 0x200, gMC.y / 0x200, 0x200);
+					
+					if (npc != NULL && IntersectDamageCheck(*npc, l, gMC.y))
+						DealDamage(*npc, 2);
 				}
 			}
 			else
@@ -1370,8 +1375,12 @@ void ActMyChar_Normal(bool bKey)
 				{
 					for (int i = 0; i < 2; i++){
 						SetCaret(l, gMC.y, 11, 1);
-						SetBullet(46, l, gMC.y, 0);
 					}
+
+					NPCHAR* npc = FindNpCharHere(l / 0x200, gMC.y / 0x200, 0x200);
+					
+					if (npc != NULL && IntersectDamageCheck(*npc, l, gMC.y))
+						DealDamage(*npc, 2);
 				}
 			}
 			MoveMyChar(gMC.x + distance, gMC.y);
