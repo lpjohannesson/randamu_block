@@ -7,6 +7,7 @@
 #include "Flags.h"
 #include "Frame.h"
 #include "MyChar.h"
+#include "NpcHit.h"
 #include "TextScr.h"
 #include "Game.h"
 #include "Triangle.h"
@@ -287,7 +288,11 @@ void ActCaret07(CARET *crt)
 	crt->opacity -= 0.08f;
 
 	if (GetNPCFlag(862) && ++crt->act_wait % 2 == 0)
-		SetBullet(46, crt->x, crt->y, 0);
+	{
+		NPCHAR* npc = FindNpCharHere(crt->x, crt->y);
+		if (npc != NULL)
+			DealDamage(*npc, 1);
+	}
 
 	switch (crt->direct)
 	{
