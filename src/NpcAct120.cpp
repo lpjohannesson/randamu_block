@@ -12,6 +12,7 @@
 #include "Map.h"
 #include "MyChar.h"
 #include "NpChar.h"
+#include "NpcHit.h"
 #include "Stage.h"
 #include "Sound.h"
 #include "Triangle.h"
@@ -581,9 +582,12 @@ void ActNpcPuppy(NPCHAR *npc)
 		npc->damage = 0;
 	}
 
-	if (npc->act_no >= 10)
-		for (int i = 0; i < 2; i++)
-			SetBullet(46, npc->x, npc->y, 0);
+	if (npc->act_no >= 10){
+		NPCHAR* target = FindNpCharHere(npc->x, npc->y);
+		if (target != NULL){
+			DealDamage(*target, 2);
+		}
+	}
 
 	// if (gKeyTrg & gKeyDown)
 	// 	npc->bits |= NPC_INTERACTABLE;
