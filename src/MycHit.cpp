@@ -1223,22 +1223,20 @@ void HitMyCharBoss(void)
 						SetBullet(16, gMC.x,  gMC.y, 0);
 						SetBullet(16, gMC.x,  gMC.y, 0);
 					} else {
-						for (int i = 0; i < 30; i++)
-							SetBullet(46, gMC.x, gMC.y, 0);
+						if (IntersectDamageCheck(gBoss[b], gMC.x, gMC.y))
+							DealDamage(gBoss[b], 30);
 						gMC.xm /= -4;
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
 						gMC.shock += 40;
 					}
 				} else {
-					SetBullet(46, gMC.x, gMC.y, 0);
-					SetBullet(46, gMC.x, gMC.y, 0);
-					SetBullet(46, gMC.x, gMC.y, 0);
-					SetBullet(46, gMC.x, gMC.y, 0);
+					int dashDamage = 4;
 					if (gMC.ameDashState){
-						for (int i = 0; i < 3; i++)
-							SetBullet(46, gMC.x, gMC.y, 0);
+						dashDamage += 3;
 					}
+					if (IntersectDamageCheck(gBoss[b], gMC.x, gMC.y))
+						DealDamage(gBoss[b], dashDamage);
 				}
 			}
 		}
@@ -1266,7 +1264,7 @@ void HitMyCharBoss(void)
 			{
 				if (hitTimer == 0)
 				{
-					SetBullet(46, gMC.x, gMC.y, 0);
+					DealDamage(gBoss[b], 1);
 					hitTimer = 1;
 				}
 			}
@@ -1291,7 +1289,7 @@ void HitMyCharBoss(void)
 			{
 				if (hitTimer == 0)
 				{
-					SetBullet(46, gMC.x, gMC.y, 0);
+					DealDamage(gBoss[b], 1);
 					hitTimer = 1;
 				}
 			}
