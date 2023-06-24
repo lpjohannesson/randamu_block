@@ -615,6 +615,9 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 
 bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 {
+	if (!(npc.bits & NPC_SHOOTABLE))
+		return false;
+
 	bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), npc.code_char) != etherealEntities.end();
 	if (isEthereal) dmg = 0;
 
