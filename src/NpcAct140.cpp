@@ -10,6 +10,7 @@
 #include "Map.h"
 #include "MyChar.h"
 #include "NpChar.h"
+#include "NpcHit.h"
 #include <vector>
 #include "Sound.h"
 #include "Stage.h"
@@ -757,9 +758,13 @@ void ActNpc146(NPCHAR *npc)
 			{
 				SetDestroyNpChar(npc->x, npc->y, 0x1000, 8);
 				if (npc->direct == 2){
-					for (int i = 0; i < 20; i++){
-						SetBullet(46, npc->x, npc->y, 0);
-						SetBullet(46, npc->x, npc->y + 0x1000, 0);
+					NPCHAR* target = FindNpCharHere(npc->x, npc->y);
+					if (target != NULL){
+						DealDamage(*target, 10);
+					}
+					target = FindNpCharHere(npc->x, npc->y + 0x1000);
+					if (target != NULL){
+						DealDamage(*target, 10);
 					}
 				}
 				npc->cond = 0;
