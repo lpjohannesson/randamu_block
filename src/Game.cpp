@@ -673,14 +673,14 @@ static int ModeAction(void)
 					return 3;
 			}
 		}
-		char buffer1[200];
+		char buffer1[210];
 		int v1, v2, v3, v4;
 		GetCompileVersion(&v1, &v2, &v3, &v4);
 		if (gbExtendedInfo)
 		{
-			sprintf(buffer1, "%s v%d.%d.%d.%d -- Seed: %u -- X: %.4g, Y: %.4g -- HP: %d/%d - %d/%d", gWindowTitle.c_str(), v1, v2, v3, v4, gMC.seed, gMC.x / 8192.0F, gMC.y / 8192.0F, gMC.life, gMC.max_life, gKey, gKeyTrg);
+			sprintf(buffer1, "%s v%d.%d.%d.%d%s -- Seed: %u -- X: %.4g, Y: %.4g -- HP: %d/%d - %d/%d", gWindowTitle.c_str(), v1, v2, v3, v4, IsBeta() ? " (beta)" : "", gMC.seed, gMC.x / 8192.0F, gMC.y / 8192.0F, gMC.life, gMC.max_life, gKey, gKeyTrg);
 		} else {
-			sprintf(buffer1, "%s v%d.%d.%d.%d", gWindowTitle.c_str(), v1, v2, v3, v4);
+			sprintf(buffer1, "%s v%d.%d.%d.%d%s", gWindowTitle.c_str(), v1, v2, v3, v4, IsBeta() ? " (beta)" : "");
 		}
 		RenderBackend_ChangeWindowTitle(buffer1);
 

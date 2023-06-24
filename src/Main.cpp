@@ -190,10 +190,10 @@ void ReloadConfig(){
 // TODO - Inaccurate stack frame
 int main(int argc, char *argv[])
 {
-	char buffer1[75];
+	char buffer1[80];
 	int v1, v2, v3, v4;
 	GetCompileVersion(&v1, &v2, &v3, &v4);
-		sprintf(buffer1, "Doukutsu Randamu v%d.%d.%d.%d", v1, v2, v3, v4);
+		sprintf(buffer1, "Doukutsu Randamu v%d.%d.%d.%d%s", v1, v2, v3, v4, IsBeta() ? " (beta)" : "");
 	msvc_srand(time(0));
 	WriteGameLog("------------------------------------");
 	WriteGameLog(buffer1, " is starting.");

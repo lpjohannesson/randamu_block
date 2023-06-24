@@ -2934,6 +2934,18 @@ static int Callback_Resume(OptionsMenu *parent_menu, size_t this_option, Callbac
 	return enum_ESCRETURN_continue;
 }
 
+static int Callback_IssueTracker(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+{
+	(void)parent_menu;
+
+	if (action != ACTION_OK)
+		return CALLBACK_CONTINUE;
+
+	PlaySoundObject(18, SOUND_MODE_PLAY);
+	Backend_OpenURL("https://github.com/DoukutsuRandamu/IssueTracker/issues");
+	return CALLBACK_CONTINUE;
+}
+
 static int Callback_ModPage(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
 {
 	std::string requestURL = "https://itch.io/api/1/ZNrFKYrCZpVWlPEe8p08KSrjTEIyi8kV2xecFHui/game/1403989/uploads";
@@ -3338,7 +3350,7 @@ int Call_Title(void)
 		{{GetCSE2Message("title_options"), GetCSE2Message("title_config")}, {Callback_Options2, Callback_Configuration2}, NULL, "", 0, false},
 		{{GetCSE2Message("title_rankings"), ""}, {Callback_Rankings2, NULL}, NULL, "", 0, gRankings.size() == 0},
 		{{GetCSE2Message("title_resources"), ""}, {Callback_Resources, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_updates"), ""}, {Callback_ModPage, NULL}, NULL, "", 0, false},
+		{{IsBeta() ? GetCSE2Message("title_issues") : GetCSE2Message("title_updates"), ""}, {IsBeta() ? Callback_IssueTracker : Callback_ModPage, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("title_exit"), ""}, {Callback_Quit2, NULL}, NULL, "", 0, false}
 	};
 

@@ -10,6 +10,7 @@
 void GetCompileDate(int *year, int *month, int *day);
 bool GetCompileVersion(int *v1, int *v2, int *v3, int *v4);
 std::string GetVersionName();
+bool IsBeta();
 void DeleteSave(void);
 bool WriteLog(const char *string, int value1, int value2, int value3);
 bool IsKeyFile(const char *name);
