@@ -931,7 +931,7 @@ void HitMyCharNpChar(void)
 				AddLifeMyChar(1);
 			}
 			if (gNPC[i].shock == 0 && gMC.xm != 0)
-				SetBullet(46, gMC.x, gMC.y, 0);
+				DealDamage(gNPC[i], 1);
 		}
 
 		if (hit != 0 && gNPC[i].code_char == 86)
