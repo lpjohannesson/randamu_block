@@ -400,7 +400,8 @@ void DestroyBlock(int x, int y)
 				y1++;
 			}
 			ChangeMapS(x, y1, tile);
-			if (gMC.x > x * 0x2000 && gMC.y > y * 0x2000 && gMC.y < (y1 + 1)*0x2000 && gMC.x < (x+1)*0x2000){
+			if ((gMC.x > x * 0x2000 && gMC.y > y * 0x2000 && gMC.y < (y1 + 1)*0x2000 && gMC.x < (x+1)*0x2000) ||
+				(gMC.x > (x-1) * 0x2000 && gMC.y > y * 0x2000 && gMC.y < (y1 + 1)*0x2000 && gMC.x < x*0x2000)){
 				DamageMyChar(5);
 				if (gMC.life <= 0) gMC.deathReason = DeathReason::FALLING_BLOCK;
 			}
