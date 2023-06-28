@@ -2498,8 +2498,7 @@ void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments
 			x1 = x + w / 2;
 			y1 = y + h - 2;
 			int bossID;
-			auto bosses = std::get<std::vector<int>>(genArguments["bosses_list"]);
-			bossID = bosses[Random(0, bosses.size()-1, RandomCategories::SEEDED_NPCS)];
+			bossID = bossNPCsList[Random(0, bossNPCsList.size()-1, RandomCategories::SEEDED_NPCS)];
 			if (!GetNPCFlag(555))
 				SetNpChar(bossID, x1 * 0x2000, y1 * 0x2000 + (bossID == 44 ? 0x200 * 8 : 0), 0, 0, gMC.direct, NULL, 0x100, 7000,
 						NPC_SOLID_SOFT | NPC_SHOOTABLE | NPC_SHOW_DAMAGE, 555);

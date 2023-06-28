@@ -41,6 +41,7 @@ std::vector<std::string> gimmickNames;
 std::map<std::string, std::string> messageBank;
 std::vector<std::string> stageSymbols;
 std::vector<std::string> stageGenerationOrder;
+std::vector<std::int32_t> bossNPCsList;
 std::map<std::string, GenerationArguments> stageGenerationMetadata;
 
 CONFIG_BINDING bindings[BINDING_TOTAL];
@@ -168,6 +169,7 @@ void ReloadConfig(){
 
 	difficultyNames = ParseTag<std::string>("Tags/difficultyNames.json");
 	gimmickNames = ParseTag<std::string>("Tags/gimmickNames.json");
+	bossNPCsList = ParseTag<int>("Tags/bossNPCs.json");
 	stageGenerationOrder = ParseTag<std::string>("Tags/generationOrder.json");
 	json stageMetadataProto = ReadJSON("Tags/generationMetadata.json");
 	for (auto &[name, data]: stageMetadataProto.items()){

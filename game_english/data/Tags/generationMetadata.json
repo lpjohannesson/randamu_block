@@ -429,9 +429,7 @@
 	"boss": {
 		"room_size": [28, 10],
 		"room_size_hardmode": [24, 8],
-		"spawn_distance": 15,
-		
-		"bosses_list": [36, 44, 268, 276, 284, 317]
+		"spawn_distance": 15
 	},
 	"npc_spawning": {
 		"blacklist_tileset": "P"
