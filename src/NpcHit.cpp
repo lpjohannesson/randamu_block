@@ -792,13 +792,13 @@ void HitNpCharBullet(void)
 		bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[n].code_char) != etherealEntities.end();
 
 		if (gMC.depth > 1 && gMC.depth % genContext.bossRate == 0){
-				if(IntersectCheck(genContext.bossRect, gNPC[n].x / 16_pix, gNPC[n].y / 16_pix)){
-					if (gBL.flag == false && !GetNPCFlag(555) && !IntersectCheck(genContext.bossRect, gMC.x / 16_pix, gMC.y / 16_pix)){
-						if (gNPC[n].bits & NPC_SHOOTABLE)
-							SetCaret(gNPC[n].x + gNPC[n].hit.back / 2, gNPC[n].y + gNPC[n].rect.bottom / 2, 2, 2);
-						continue;
+				if (std::find(bossNPCsList.begin(), bossNPCsList.end(), gNPC[n].code_char) != bossNPCsList.end())
+					if(IntersectCheck(genContext.bossRect, gNPC[n].x / 16_pix, gNPC[n].y / 16_pix)){
+						if (gBL.flag == false && !GetNPCFlag(555) && !IntersectCheck(genContext.bossRect, gMC.x / 16_pix, gMC.y / 16_pix)){
+							SetCaret(gNPC[n].x - gNPC[n].rect.left / 2, gNPC[n].y + gNPC[n].rect.bottom / 2, 2, 2);
+							continue;
+						}
 					}
-				}
 		}
 
 		for (b = 0; b < BULLET_MAX; ++b)
