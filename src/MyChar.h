@@ -9,6 +9,7 @@
 #include <functional>
 #include <map>
 #include <vector>
+#include <utility>
 
 // TODO - When I add bitmask constants for gMC.flags...
 // 0x100 is a 'player is underwater' flag
@@ -173,6 +174,7 @@ void SetNoise(int no, int freq);
 void CutNoise(void);
 void ResetNoise(void);
 void SleepNoise(void);
+std::pair<int, int> MyCharCoords();
 
 int DashCooldown();
 

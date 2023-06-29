@@ -40,6 +40,7 @@ NPCHAR* GetClosest(int x, int y){
 void ActNpcLittleMan(NPCHAR *npc)
 {
 	int xx, yy;
+	auto coords = MyCharCoords();
 
 	Rect rcLeft[11] = {
 		{0, 96, 16, 112},
@@ -69,7 +70,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 		{144, 112, 160, 128},
 	};
 
-	if (npc->y < gMC.y - (10 * 0x10 * 0x200))
+	if (npc->y < coords.second - (10 * 0x10 * 0x200))
 	{
 		if (npc->y < 16 * 0x10 * 0x200)
 		{
@@ -115,8 +116,8 @@ void ActNpcLittleMan(NPCHAR *npc)
 			npc->act_no = 20;
 			//Fallthrough
 		case 20:
-			npc->x = gMC.x;
-			npc->y = gMC.y;
+			npc->x = coords.first;
+			npc->y = coords.second;
 			npc->act_no = 100;
 			npc->ani_no = 0;
 			SetNpChar(183, 0, 0, 0, 0, 0, npc, 0x100);
@@ -221,10 +222,10 @@ void ActNpcLittleMan(NPCHAR *npc)
 		gCurlyShoot_y = 0;
 	}
 
-	if (Distance(npc->x, npc->y, gMC.x, gMC.y) > 10 * 0x2000){
-		npc->x = gMC.x;
-		npc->y = gMC.y;
-		SetNpChar(4, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100);
+	if (Distance(npc->x, npc->y, coords.first, coords.second) > 10 * 0x2000){
+		npc->x = coords.first;
+		npc->y = coords.second;
+		SetNpChar(4, coords.first, coords.second, 0, 0, 0, NULL, 0x100);
 	}
 
 	if (gCurlyShoot_wait != 0)
@@ -311,7 +312,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 
 	if (npc->act_no >= 100 && npc->act_no < 500)
 	{
-		if (npc->x < gMC.x - (50 * 0x200) || npc->x > gMC.x + (50 * 0x200))
+		if (npc->x < coords.first - (50 * 0x200) || npc->x > coords.first + (50 * 0x200))
 		{
 #ifdef FIX_BUGS
 			if (npc->flag & 5)
@@ -999,13 +1000,15 @@ void ActNpcSteelFuzz(NPCHAR *npc)
 // Unused homing flame object (possibly related to the Core?)
 void ActNpc189(NPCHAR *npc)
 {
+	auto coords = MyCharCoords();
+
 	switch (npc->act_no)
 	{
 		case 0:
 			npc->act_no = 1;
 			npc->xm = -0x40;
-			npc->x = gMC.x;
-			npc->y = gMC.y + 0x2000*1;
+			npc->x = coords.first;
+			npc->y = coords.second + 0x2000*1;
 			// Fallthrough
 		case 1:
 			npc->y += npc->ym;
@@ -1016,12 +1019,12 @@ void ActNpc189(NPCHAR *npc)
 			break;
 
 		case 10:
-			if (gMC.x < npc->x)
+			if (coords.first < npc->x)
 				npc->xm -= Random(10, 20);
 			else
 				npc->xm += Random(10, 20);
 
-			if (gMC.y < npc->y)
+			if (coords.second < npc->y)
 				npc->ym -= Random(10, 20);
 			else
 				npc->ym += Random(10, 20);
@@ -1047,7 +1050,7 @@ void ActNpc189(NPCHAR *npc)
 			break;
 	}
 
-	if (gMC.x < npc->x)
+	if (coords.first < npc->x)
 		npc->direct = 0;
 	else
 		npc->direct = 2;

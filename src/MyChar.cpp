@@ -277,6 +277,24 @@ void AnimationMyChar(bool bKey)
 		gMC.rect = rcRight[gMC.ani_no];
 }
 
+std::pair<int, int> MyCharCoords(){
+	std::pair<int, int> coords {gMC.x, gMC.y};
+
+	if (gMC.cond & 2){
+		for (auto& npc: gNPC){
+			if (npc.cond & 0x80){
+				if ((npc.code_char == 355 && (npc.direct == 0 || npc.direct == 2)) || npc.code_char == 150){
+					coords.first = npc.x;
+					coords.second = npc.y;
+					break;
+				}
+			}
+		}
+	}
+
+	return coords;
+}
+
 void ShowMyChar(bool bShow)
 {
 	if (bShow)

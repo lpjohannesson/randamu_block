@@ -17,6 +17,8 @@
 // Curly (carried, shooting)
 void ActNpcCurlyAlly(NPCHAR *npc)
 {
+	auto coords = MyCharCoords();
+
 	Rect rcLeft[3] = {
 		{16+128, 96, 32+128, 112},
 		{48+128, 96, 64+128, 112},
@@ -32,8 +34,8 @@ void ActNpcCurlyAlly(NPCHAR *npc)
 	if (npc->act_no == 0)
 	{
 		npc->act_no = 1;
-		npc->x = gMC.x;
-		npc->y = gMC.y;
+		npc->x = coords.first;
+		npc->y = coords.second;
 		SetNpChar(321, 0, 0, 0, 0, 0, npc, 0x100);
 	}
 
@@ -41,8 +43,8 @@ void ActNpcCurlyAlly(NPCHAR *npc)
 	{
 		if (gMC.up)
 		{
-			npc->tgt_x = gMC.x;
-			npc->tgt_y = gMC.y - (10 * 0x200);
+			npc->tgt_x = coords.first;
+			npc->tgt_y = coords.second - (10 * 0x200);
 			npc->ani_no = 1;
 		}
 		else
@@ -51,13 +53,13 @@ void ActNpcCurlyAlly(NPCHAR *npc)
 
 			if (gMC.direct == 0)
 			{
-				npc->tgt_x = gMC.x + (7 * 0x200);
-				npc->tgt_y = gMC.y - (3 * 0x200);
+				npc->tgt_x = coords.first + (7 * 0x200);
+				npc->tgt_y = coords.second - (3 * 0x200);
 			}
 			else
 			{
-				npc->tgt_x = gMC.x - (7 * 0x200);
-				npc->tgt_y = gMC.y - (3 * 0x200);
+				npc->tgt_x = coords.first - (7 * 0x200);
+				npc->tgt_y = coords.second - (3 * 0x200);
 			}
 		}
 	}
@@ -65,14 +67,14 @@ void ActNpcCurlyAlly(NPCHAR *npc)
 	{
 		if (gMC.up)
 		{
-			npc->tgt_x = gMC.x;
-			npc->tgt_y = gMC.y + (8 * 0x200);
+			npc->tgt_x = coords.first;
+			npc->tgt_y = coords.second + (8 * 0x200);
 			npc->ani_no = 2;
 		}
 		else if (gMC.down)
 		{
-			npc->tgt_x = gMC.x;
-			npc->tgt_y = gMC.y - (8 * 0x200);
+			npc->tgt_x = coords.first;
+			npc->tgt_y = coords.second - (8 * 0x200);
 			npc->ani_no = 1;
 		}
 		else
@@ -81,13 +83,13 @@ void ActNpcCurlyAlly(NPCHAR *npc)
 
 			if (gMC.direct == 0)
 			{
-				npc->tgt_x = gMC.x + (7 * 0x200);
-				npc->tgt_y = gMC.y - (3 * 0x200);
+				npc->tgt_x = coords.first + (7 * 0x200);
+				npc->tgt_y = coords.second - (3 * 0x200);
 			}
 			else
 			{
-				npc->tgt_x = gMC.x - (7 * 0x200);
-				npc->tgt_y = gMC.y - (3 * 0x200);
+				npc->tgt_x = coords.first - (7 * 0x200);
+				npc->tgt_y = coords.second - (3 * 0x200);
 			}
 		}
 	}
