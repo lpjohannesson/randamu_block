@@ -10,6 +10,7 @@ struct BULLET
 {
 	int flag;
 	int code_bullet;
+	bool first_frame;
 	int bbits;
 	int cond;
 	int x;

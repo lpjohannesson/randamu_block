@@ -297,6 +297,7 @@ void SetBullet(int no, int x, int y, int dir)
 
 	memset(&gBul[i], 0, sizeof(BULLET));
 	gBul[i].code_bullet = no;
+	gBul[i].first_frame = true;
 	gBul[i].cond = 0x80;
 	gBul[i].direct = dir;
 	gBul[i].damage = gBulTbl[no].damage;
@@ -339,6 +340,7 @@ BULLET* SetBullet(int no, int x, int y)
 
 	memset(&gBul[i], 0, sizeof(BULLET));
 	gBul[i].code_bullet = no;
+	gBul[i].first_frame = true;
 	gBul[i].cond = 0x80;
 	gBul[i].damage = gBulTbl[no].damage;
 	gBul[i].life = gBulTbl[no].life;
@@ -4897,7 +4899,8 @@ void ActBullet(void)
 				continue;
 			}
 
-			if (!TimeStopActive(gBul[i].code_bullet + 700)){
+			if (gBul[i].first_frame || !TimeStopActive(gBul[i].code_bullet + 700)){
+				gBul[i].first_frame = false;
 				switch (gBul[i].code_bullet)
 				{
 					// Snake
