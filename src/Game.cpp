@@ -597,7 +597,7 @@ static int ModeTitle(void)
 
 bool TimeStopActive(int npc_id){
 	int timeCoefficient = 1;
-	bool stopTime;
+	bool stopTime = false;
 
 	if (npc_id != 0 && timeStopCoefficients.contains(npc_id)){
 		timeCoefficient = timeStopCoefficients[npc_id];
@@ -606,14 +606,14 @@ bool TimeStopActive(int npc_id){
 	}
 
 	if (CheckForCooldown(gCooldowns, TIME_STOP_ID) > 0){
-		stopTime = gCounter % timeCoefficient == 0;
+		stopTime = gCounter % timeCoefficient != 0;
 	}
 
-	if (ChallengeEnabled("superHotMode") && timeCoefficient != 1){
-		stopTime = gKey == 0;
+	if (ChallengeEnabled("superHotMode")){
+		stopTime = gKey != 0;
 	}
 
-	return !stopTime;
+	return stopTime;
 }
 
 static int ModeAction(void)
