@@ -547,7 +547,9 @@ void DestroyBlock(int x, int y)
 	}
 	for (int t = 0; t < gMap.width * gMap.length; t++)
 	{
-		if (GetTile(XCoord(t), YCoord(t) - 1) == 30 && GetTile(XCoord(t), YCoord(t)) == 13)
+		if ((GetTile(XCoord(t), YCoord(t) - 1) == 30 && GetTile(XCoord(t), YCoord(t)) == 13) ||
+			(GetTile(XCoord(t), YCoord(t) - 1) == 13 && GetTile(XCoord(t), YCoord(t)) == 13) ||
+			(!IsEmpty(XCoord(t), YCoord(t) - 1) && GetTile(XCoord(t), YCoord(t)) == 13))
 		{
 			EditMapS(t, 30);
 		}
