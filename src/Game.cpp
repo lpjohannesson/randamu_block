@@ -609,7 +609,7 @@ bool TimeStopActive(int npc_id){
 		stopTime = gCounter % timeCoefficient != 0;
 	}
 
-	if (ChallengeEnabled("superHotMode")){
+	if (ChallengeEnabled("superHotMode") && timeCoefficient != 1){
 		stopTime = gKey != 0;
 	}
 
