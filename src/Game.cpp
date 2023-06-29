@@ -595,6 +595,27 @@ static int ModeTitle(void)
 	return 3;
 }
 
+bool TimeStopActive(int npc_id){
+	int timeCoefficient = 1;
+	bool stopTime;
+
+	if (npc_id != 0 && timeStopCoefficients.contains(npc_id)){
+		timeCoefficient = timeStopCoefficients[npc_id];
+	} else {
+		timeCoefficient = 25;
+	}
+
+	if (CheckForCooldown(gCooldowns, TIME_STOP_ID) > 0){
+		stopTime = gCounter % timeCoefficient == 0;
+	}
+
+	if (ChallengeEnabled("superHotMode") && timeCoefficient != 1){
+		stopTime = gKey == 0;
+	}
+
+	return stopTime;
+}
+
 static int ModeAction(void)
 {
 	int frame_x;
@@ -704,18 +725,6 @@ static int ModeAction(void)
 				ActMyChar(true);
 			else
 				ActMyChar(false);
-			
-			int meme = 1;
-			if (CheckForCooldown(gCooldowns, TIME_STOP_ID) > 0)
-				meme = 25;
-			
-			bool stopTime = gCounter % meme == 0;
-
-			if (ChallengeEnabled("superHotMode")){
-				stopTime = gKey == 0;
-			}
-
-			if (stopTime){
 
 			ActStar();
 			ActNpChar();
@@ -724,7 +733,6 @@ static int ModeAction(void)
 			HitBulletMap();
 			HitNpCharBullet();
 			HitBossBullet();
-			}
 			ActValueView();
 			ActBack();
 			ResetMyCharFlag();
@@ -734,9 +742,7 @@ static int ModeAction(void)
 			HitBossMap();
 			if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 				ShootBullet();
-			if (stopTime){
 			ActBullet();
-			}
 			ActCaret();
 			MoveFrame3();
 #ifdef FIX_BUGS

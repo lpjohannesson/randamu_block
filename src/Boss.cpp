@@ -329,16 +329,18 @@ void ActBossChar(void)
 
 	code_char = gBoss[0].code_char;
 
-	gpBossFuncTbl[code_char]();
+	if (TimeStopActive(code_char + 1000)){
+		gpBossFuncTbl[code_char]();
 
-	for (bos = 0; bos < BOSS_MAX; ++bos)
-		if (gBoss[bos].shock)
-			--gBoss[bos].shock;
+		for (bos = 0; bos < BOSS_MAX; ++bos)
+			if (gBoss[bos].shock)
+				--gBoss[bos].shock;
 
-	for (auto& npc: boss_static_iframes){
-		for (auto& iframes: npc.second){
-			if (iframes.second > 0){
-				iframes.second--;
+		for (auto& npc: boss_static_iframes){
+			for (auto& iframes: npc.second){
+				if (iframes.second > 0){
+					iframes.second--;
+				}
 			}
 		}
 	}

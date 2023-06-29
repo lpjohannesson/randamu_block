@@ -66,6 +66,8 @@ void ActStar(void)
 	int i;
 	static int a;
 
+	if (TimeStopActive()) return;
+
 	if (!GetNPCFlag(4280) && !GetNPCFlag(7999)) return;
 
 	++a;

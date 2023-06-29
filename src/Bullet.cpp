@@ -4897,310 +4897,312 @@ void ActBullet(void)
 				continue;
 			}
 
-			switch (gBul[i].code_bullet)
-			{
-				// Snake
-				case 1:
-					ActBullet_Frontia1(&gBul[i]);
-					break;
-				case 2:
-					ActBullet_Frontia2(&gBul[i], 2);
-					break;
-				case 3:
-					ActBullet_Frontia2(&gBul[i], 3);
-					break;
-				case 70:
-					ActBullet_Frontia2(&gBul[i], 4);
-					break;
+			if (TimeStopActive(gBul[i].code_bullet + 700)){
+				switch (gBul[i].code_bullet)
+				{
+					// Snake
+					case 1:
+						ActBullet_Frontia1(&gBul[i]);
+						break;
+					case 2:
+						ActBullet_Frontia2(&gBul[i], 2);
+						break;
+					case 3:
+						ActBullet_Frontia2(&gBul[i], 3);
+						break;
+					case 70:
+						ActBullet_Frontia2(&gBul[i], 4);
+						break;
 
-				// Polar Star
-				case 4:
-					ActBullet_PoleStar(&gBul[i], 1);
-					break;
-				case 5:
-					ActBullet_PoleStar(&gBul[i], 2);
-					break;
-				case 6:
-					ActBullet_PoleStar(&gBul[i], 3);
-					break;
+					// Polar Star
+					case 4:
+						ActBullet_PoleStar(&gBul[i], 1);
+						break;
+					case 5:
+						ActBullet_PoleStar(&gBul[i], 2);
+						break;
+					case 6:
+						ActBullet_PoleStar(&gBul[i], 3);
+						break;
 
-				// Fireball
-				case 7:
-					ActBullet_FireBall(&gBul[i], 1);
-					break;
-				case 8:
-					ActBullet_FireBall(&gBul[i], 2);
-					break;
-				case 9:
-					ActBullet_FireBall(&gBul[i], 3);
-					break;
-				case 68:
-					ActBullet_FireBall(&gBul[i], 4);
-					break;
+					// Fireball
+					case 7:
+						ActBullet_FireBall(&gBul[i], 1);
+						break;
+					case 8:
+						ActBullet_FireBall(&gBul[i], 2);
+						break;
+					case 9:
+						ActBullet_FireBall(&gBul[i], 3);
+						break;
+					case 68:
+						ActBullet_FireBall(&gBul[i], 4);
+						break;
 
-				// Machine Gun
-				case 10:
-					ActBullet_MachineGun(&gBul[i], 1);
-					break;
-				case 11:
-					ActBullet_MachineGun(&gBul[i], 2);
-					break;
-				case 12:
-					ActBullet_MachineGun(&gBul[i], 3);
-					break;
-				case 69:
-					ActBullet_MachineGun(&gBul[i], 4);
-					break;
+					// Machine Gun
+					case 10:
+						ActBullet_MachineGun(&gBul[i], 1);
+						break;
+					case 11:
+						ActBullet_MachineGun(&gBul[i], 2);
+						break;
+					case 12:
+						ActBullet_MachineGun(&gBul[i], 3);
+						break;
+					case 69:
+						ActBullet_MachineGun(&gBul[i], 4);
+						break;
 
-				// Missile Launcher
-				case 13:
-					ActBullet_Missile(&gBul[i], 1);
-					break;
-				case 14:
-					ActBullet_Missile(&gBul[i], 2);
-					break;
-				case 15:
-					ActBullet_Missile(&gBul[i], 3);
-					break;
+					// Missile Launcher
+					case 13:
+						ActBullet_Missile(&gBul[i], 1);
+						break;
+					case 14:
+						ActBullet_Missile(&gBul[i], 2);
+						break;
+					case 15:
+						ActBullet_Missile(&gBul[i], 3);
+						break;
 
-				// Missile Launcher explosion
-				case 16:
-					ActBullet_Bom(&gBul[i], 1);
-					break;
-				case 17:
-					ActBullet_Bom(&gBul[i], 2);
-					break;
-				case 18:
-					ActBullet_Bom(&gBul[i], 3);
-					break;
+					// Missile Launcher explosion
+					case 16:
+						ActBullet_Bom(&gBul[i], 1);
+						break;
+					case 17:
+						ActBullet_Bom(&gBul[i], 2);
+						break;
+					case 18:
+						ActBullet_Bom(&gBul[i], 3);
+						break;
 
-				// Bubbler
-				case 19:
-					ActBullet_Bubblin1(&gBul[i]);
-					break;
-				case 20:
-					ActBullet_Bubblin2(&gBul[i]);
-					break;
-				case 21:
-					ActBullet_Bubblin3(&gBul[i]);
-					break;
-				case 71:
-					ActBullet_Bubblin4(&gBul[i]);
-					break;
+					// Bubbler
+					case 19:
+						ActBullet_Bubblin1(&gBul[i]);
+						break;
+					case 20:
+						ActBullet_Bubblin2(&gBul[i]);
+						break;
+					case 21:
+						ActBullet_Bubblin3(&gBul[i]);
+						break;
+					case 71:
+						ActBullet_Bubblin4(&gBul[i]);
+						break;
 
-				// Bubbler level 3 spines
-				case 22:
-					ActBullet_Spine(&gBul[i]);
-					break;
+					// Bubbler level 3 spines
+					case 22:
+						ActBullet_Spine(&gBul[i]);
+						break;
 
-				// Blade slashes
-				case 23:
-					ActBullet_Edge(&gBul[i]);
-					break;
+					// Blade slashes
+					case 23:
+						ActBullet_Edge(&gBul[i]);
+						break;
 
-				// Falling spike that deals 127 damage
-				case 24:
-					ActBullet_Drop(&gBul[i]);
-					break;
+					// Falling spike that deals 127 damage
+					case 24:
+						ActBullet_Drop(&gBul[i]);
+						break;
 
-				// Blade
-				case 25:
-					ActBullet_Sword3(&gBul[i], 1);
-					break;
-				case 26:
-					ActBullet_Sword2(&gBul[i]);
-					break;
-				case 27:
-					ActBullet_Sword3(&gBul[i], 2);
-					break;
-				case 72:
-					ActBullet_Sword3(&gBul[i], 3);
-					break;
+					// Blade
+					case 25:
+						ActBullet_Sword3(&gBul[i], 1);
+						break;
+					case 26:
+						ActBullet_Sword2(&gBul[i]);
+						break;
+					case 27:
+						ActBullet_Sword3(&gBul[i], 2);
+						break;
+					case 72:
+						ActBullet_Sword3(&gBul[i], 3);
+						break;
 
-				// Super Missile Launcher
-				case 28:
-					ActBullet_Rifle(&gBul[i], 1);
-					break;
-				case 29:
-					ActBullet_Rifle(&gBul[i], 2);
-					break;
-				case 30:
-					ActBullet_Rifle(&gBul[i], 3);
-					break;
+					// Super Missile Launcher
+					case 28:
+						ActBullet_Rifle(&gBul[i], 1);
+						break;
+					case 29:
+						ActBullet_Rifle(&gBul[i], 2);
+						break;
+					case 30:
+						ActBullet_Rifle(&gBul[i], 3);
+						break;
 
-				// Super Missile Launcher explosion
-				case 31:
-					ActBullet_SuperBom(&gBul[i], 1);
-					break;
-				case 32:
-					ActBullet_SuperBom(&gBul[i], 2);
-					break;
-				case 33:
-					ActBullet_SuperBom(&gBul[i], 3);
-					break;
+					// Super Missile Launcher explosion
+					case 31:
+						ActBullet_SuperBom(&gBul[i], 1);
+						break;
+					case 32:
+						ActBullet_SuperBom(&gBul[i], 2);
+						break;
+					case 33:
+						ActBullet_SuperBom(&gBul[i], 3);
+						break;
 
-				// Nemesis
-				case 34:	// Identical to case 43
-					ActBullet_Nemesis(&gBul[i], 1);
-					break;
-				case 35:
-					ActBullet_Nemesis(&gBul[i], 2);
-					break;
-				case 36:
-					ActBullet_Duck(&gBul[i]);
-					break;
+					// Nemesis
+					case 34:	// Identical to case 43
+						ActBullet_Nemesis(&gBul[i], 1);
+						break;
+					case 35:
+						ActBullet_Nemesis(&gBul[i], 2);
+						break;
+					case 36:
+						ActBullet_Duck(&gBul[i]);
+						break;
 
-				// Spur
-				case 37:
-					ActBullet_Spur(&gBul[i], 1);
-					break;
-				case 38:
-					ActBullet_Spur(&gBul[i], 2);
-					break;
-				case 39:
-					ActBullet_Spur(&gBul[i], 3);
-					break;
-				case 76:
-					ActBullet_Spur2(&gBul[i], 3);
-					break;
+					// Spur
+					case 37:
+						ActBullet_Spur(&gBul[i], 1);
+						break;
+					case 38:
+						ActBullet_Spur(&gBul[i], 2);
+						break;
+					case 39:
+						ActBullet_Spur(&gBul[i], 3);
+						break;
+					case 76:
+						ActBullet_Spur2(&gBul[i], 3);
+						break;
 
-				// Spur trail
-				case 40:
-					ActBullet_SpurTail(&gBul[i], 1);
-					break;
-				case 41:
-					ActBullet_SpurTail(&gBul[i], 2);
-					break;
-				case 42:
-					ActBullet_SpurTail(&gBul[i], 3);
-					break;
+					// Spur trail
+					case 40:
+						ActBullet_SpurTail(&gBul[i], 1);
+						break;
+					case 41:
+						ActBullet_SpurTail(&gBul[i], 2);
+						break;
+					case 42:
+						ActBullet_SpurTail(&gBul[i], 3);
+						break;
 
-				// Curly's Nemesis
-				case 43:	// Identical to case 34
-					ActBullet_Nemesis(&gBul[i], 1);
-					break;
+					// Curly's Nemesis
+					case 43:	// Identical to case 34
+						ActBullet_Nemesis(&gBul[i], 1);
+						break;
 
-				// Screen-nuke that kills all enemies
-				case 44:
-					ActBullet_EnemyClear(&gBul[i]);
-					break;
+					// Screen-nuke that kills all enemies
+					case 44:
+						ActBullet_EnemyClear(&gBul[i]);
+						break;
 
-				// Whimsical Star
-				case 45:
-					ActBullet_Star(&gBul[i]);
-					break;
+					// Whimsical Star
+					case 45:
+						ActBullet_Star(&gBul[i]);
+						break;
 
-				// Little Man
-				case 46:
-				case 77:
-					ActBullet_LittleMan(&gBul[i]);
-					break;
+					// Little Man
+					case 46:
+					case 77:
+						ActBullet_LittleMan(&gBul[i]);
+						break;
 
-				case 47:
-					ActBullet_Homing(&gBul[i]);
-					break;
+					case 47:
+						ActBullet_Homing(&gBul[i]);
+						break;
 
-				case 49:
-					ActBullet_Hook(&gBul[i], 1);
-					break;
-				case 50:
-					ActBullet_Hook(&gBul[i], 2);
-					break;
-				case 51:
-					ActBullet_Hook(&gBul[i], 3);
-					break;
-				case 73:
-					ActBullet_Hook(&gBul[i], 4);
-					break;
+					case 49:
+						ActBullet_Hook(&gBul[i], 1);
+						break;
+					case 50:
+						ActBullet_Hook(&gBul[i], 2);
+						break;
+					case 51:
+						ActBullet_Hook(&gBul[i], 3);
+						break;
+					case 73:
+						ActBullet_Hook(&gBul[i], 4);
+						break;
 
-				case 52: case 55:
-					ActBullet_BoomerangSword1(&gBul[i]);
-					break;
+					case 52: case 55:
+						ActBullet_BoomerangSword1(&gBul[i]);
+						break;
 
-				case 53:
-					ActBullet_BoomerangSword2(&gBul[i]);
-					break;
+					case 53:
+						ActBullet_BoomerangSword2(&gBul[i]);
+						break;
 
-				case 54:
-					ActBullet_BoomerangSword3(&gBul[i]);
-					break;
+					case 54:
+						ActBullet_BoomerangSword3(&gBul[i]);
+						break;
 
-				case 75:
-					ActBullet_BoomerangSword4(&gBul[i]);
-					break;
+					case 75:
+						ActBullet_BoomerangSword4(&gBul[i]);
+						break;
 
-				case 56:
-					ActBullet_Flame(&gBul[i]);
-					break;
+					case 56:
+						ActBullet_Flame(&gBul[i]);
+						break;
 
-				case 57:
-					ActBullet_HomingSword(&gBul[i]);
-					break;
+					case 57:
+						ActBullet_HomingSword(&gBul[i]);
+						break;
 
-				case 58:
-					ActBullet_SwordSwing(&gBul[i], 1);
-					break;
-				case 59:
-					ActBullet_SwordSwing(&gBul[i], 2);
-					break;
-				case 60:
-					ActBullet_SwordSwing(&gBul[i], 3);
-					break;
-				case 74:
-					ActBullet_SwordSwing(&gBul[i], 4);
-					break;
-				
-				case 61:
-					ActBullet_Droplet(&gBul[i]);
-					break;
+					case 58:
+						ActBullet_SwordSwing(&gBul[i], 1);
+						break;
+					case 59:
+						ActBullet_SwordSwing(&gBul[i], 2);
+						break;
+					case 60:
+						ActBullet_SwordSwing(&gBul[i], 3);
+						break;
+					case 74:
+						ActBullet_SwordSwing(&gBul[i], 4);
+						break;
+					
+					case 61:
+						ActBullet_Droplet(&gBul[i]);
+						break;
 
-				case 62:
-					ActBullet_Whirlpool(&gBul[i]);
-					break;
-				
-				case 64:
-					ActBullet_MiningLaser(&gBul[i], 1);
-					break;
-				case 65:
-					ActBullet_MiningLaser(&gBul[i], 2);
-					break;
-				case 66:
-					ActBullet_MiningLaser(&gBul[i], 3);
-					break;
-				case 67:
-					ActBullet_Spark(&gBul[i]);
-					break;
+					case 62:
+						ActBullet_Whirlpool(&gBul[i]);
+						break;
+					
+					case 64:
+						ActBullet_MiningLaser(&gBul[i], 1);
+						break;
+					case 65:
+						ActBullet_MiningLaser(&gBul[i], 2);
+						break;
+					case 66:
+						ActBullet_MiningLaser(&gBul[i], 3);
+						break;
+					case 67:
+						ActBullet_Spark(&gBul[i]);
+						break;
 
-				case 78:
-					ActBullet_RedBurst(&gBul[i]);
-					break;
+					case 78:
+						ActBullet_RedBurst(&gBul[i]);
+						break;
 
-				case 79:
-					ActBullet_Edge2(&gBul[i]);
-					break;
+					case 79:
+						ActBullet_Edge2(&gBul[i]);
+						break;
 
-				case 80:
-					ActBullet_SwordSwing2(&gBul[i], 1);
-					break;
-				case 81:
-					ActBullet_SwordSwing2(&gBul[i], 2);
-					break;
-				case 82:
-					ActBullet_SwordSwing2(&gBul[i], 3);
-					break;
-				case 83:
-					ActBullet_FireMine(&gBul[i]);
-					break;
-				case 84:
-					ActBullet_Flamings(&gBul[i]);
-					break;
-				case 85:
-					ActBullet_SwordSwing2(&gBul[i], 4);
-					break;
+					case 80:
+						ActBullet_SwordSwing2(&gBul[i], 1);
+						break;
+					case 81:
+						ActBullet_SwordSwing2(&gBul[i], 2);
+						break;
+					case 82:
+						ActBullet_SwordSwing2(&gBul[i], 3);
+						break;
+					case 83:
+						ActBullet_FireMine(&gBul[i]);
+						break;
+					case 84:
+						ActBullet_Flamings(&gBul[i]);
+						break;
+					case 85:
+						ActBullet_SwordSwing2(&gBul[i], 4);
+						break;
 
-				case 86:
-					ActBullet_Nanites(&gBul[i]);
-					break;
+					case 86:
+						ActBullet_Nanites(&gBul[i]);
+						break;
+				}
 			}
 		}
 	}

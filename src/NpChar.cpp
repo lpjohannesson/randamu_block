@@ -628,31 +628,34 @@ void ActNpChar(void)
 		if (gNPC[i].cond & 0x80)
 		{
 			code_char = gNPC[i].code_char;
-			if (gNPC[i].freeze > 0){
-				for (int l = 0; l < 3 + MAX((gNPC[i].freeze-100)/30, 0); l++){
-					SetCaret(gNPC[i].x + Random(-gNPC[i].view.front, gNPC[i].view.back),
-					 gNPC[i].y + Random(-gNPC[i].view.top, gNPC[i].view.bottom), 13, 0);
+			if (!TimeStopActive(code_char))
+			{
+				if (gNPC[i].freeze > 0){
+					for (int l = 0; l < 3 + MAX((gNPC[i].freeze-100)/30, 0); l++){
+						SetCaret(gNPC[i].x + Random(-gNPC[i].view.front, gNPC[i].view.back),
+						gNPC[i].y + Random(-gNPC[i].view.top, gNPC[i].view.bottom), 13, 0);
+					}
 				}
-			}
-			if (gNPC[i].freeze > 0 && Random(0, 3 + MAX((gNPC[i].freeze-100)/10, 0)) > 1){
-				
-			}
-			else {
-				gpNpcFuncTbl[code_char](&gNPC[i]);
-				if (gNPC[i].knockx != 0){
-					gNPC[i].x += gNPC[i].knockx;
-					gNPC[i].knockx *= 0.9;
+				if (gNPC[i].freeze > 0 && Random(0, 3 + MAX((gNPC[i].freeze-100)/10, 0)) > 1){
+					
 				}
-				if (gNPC[i].knocky != 0){
-					gNPC[i].y += gNPC[i].knocky;
-					gNPC[i].knocky *= 0.9;
+				else {
+					gpNpcFuncTbl[code_char](&gNPC[i]);
+					if (gNPC[i].knockx != 0){
+						gNPC[i].x += gNPC[i].knockx;
+						gNPC[i].knockx *= 0.9;
+					}
+					if (gNPC[i].knocky != 0){
+						gNPC[i].y += gNPC[i].knocky;
+						gNPC[i].knocky *= 0.9;
+					}
 				}
-			}
-			gNPC[i].freeze--;
-			if (gNPC[i].freeze <= 0) gNPC[i].freeze = 0;
+				gNPC[i].freeze--;
+				if (gNPC[i].freeze <= 0) gNPC[i].freeze = 0;
 
-			if (gNPC[i].shock){
-				--gNPC[i].shock;
+				if (gNPC[i].shock){
+					--gNPC[i].shock;
+				}
 			}
 		}
 	}

@@ -43,6 +43,7 @@ std::vector<std::string> stageSymbols;
 std::vector<std::string> stageGenerationOrder;
 std::vector<std::int32_t> bossNPCsList;
 std::map<std::string, GenerationArguments> stageGenerationMetadata;
+std::map<int, int> timeStopCoefficients;
 
 CONFIG_BINDING bindings[BINDING_TOTAL];
 
@@ -184,6 +185,10 @@ void ReloadConfig(){
 	for (const auto &[key, _] : stageNames)
 	{
 		stageSymbols.push_back(key);
+	}
+	auto tempTSC = ParseMapTag<std::string, int>("Tags/timeStopCoefficients.json");
+	for (const auto &[key, value]: tempTSC){
+		timeStopCoefficients[std::stoi(key)] = value;
 	}
 	messageBank = ParseMapTag("Tags/messages.json");
 	WriteGameLog("Config and tags reloaded in ", since<std::chrono::microseconds>(timing).count(), " us.");
