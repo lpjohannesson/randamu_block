@@ -58,6 +58,7 @@ struct NPCHAR
 {
 	unsigned char cond;
 	int flag;
+	bool firstFrame;
 	int x;
 	int y;
 	int xm;

@@ -134,6 +134,7 @@ bool LoadEvent(const char *path_event)
 		gNPC[n].bits = eve.bits;
 		gNPC[n].bits |= gNpcTable[gNPC[n].code_char].bits;
 		gNPC[n].exp = gNpcTable[gNPC[n].code_char].exp;
+		gNPC[n].firstFrame = true;
 		SetUniqueParameter(&gNPC[n]);
 
 		if (gNPC[n].code_event == 0 && gNPC[n].code_char == 15){
@@ -187,6 +188,7 @@ void SetNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHAR *npc
 	// Set NPC parameters
 	memset(&gNPC[n], 0, sizeof(NPCHAR));
 	gNPC[n].cond |= 0x80;
+	gNPC[n].firstFrame = true;
 	gNPC[n].direct = dir;
 	gNPC[n].code_char = code_char;
 	gNPC[n].x = x;
@@ -211,6 +213,7 @@ NPCHAR* CreateNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHA
 	// Set NPC parameters
 	memset(&gNPC[n], 0, sizeof(NPCHAR));
 	gNPC[n].cond |= 0x80;
+	gNPC[n].firstFrame = true;
 	gNPC[n].direct = dir;
 	gNPC[n].code_char = code_char;
 	gNPC[n].x = x;
@@ -236,6 +239,7 @@ void SetNpChar_EventFlag(int code_char, int x, int y, int xm, int ym, int dir, N
 	// Set NPC parameters
 	memset(&gNPC[n], 0, sizeof(NPCHAR));
 	gNPC[n].cond |= 0x80;
+	gNPC[n].firstFrame = true;
 	gNPC[n].direct = dir;
 	gNPC[n].code_char = code_char;
 	gNPC[n].x = x;
@@ -262,6 +266,7 @@ void SetNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHAR *npc
 	// Set NPC parameters
 	memset(&gNPC[n], 0, sizeof(NPCHAR));
 	gNPC[n].cond |= 0x80;
+	gNPC[n].firstFrame = true;
 	gNPC[n].direct = dir;
 	gNPC[n].code_char = code_char;
 	gNPC[n].x = x;
@@ -288,6 +293,7 @@ void SetNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHAR *npc
 	// Set NPC parameters
 	memset(&gNPC[n], 0, sizeof(NPCHAR));
 	gNPC[n].cond |= 0x80;
+	gNPC[n].firstFrame = true;
 	gNPC[n].direct = dir;
 	gNPC[n].code_char = code_char;
 	gNPC[n].x = x;
@@ -377,6 +383,7 @@ void SetExpObjects(int x, int y, int exp)
 		}
 
 		gNPC[n].cond |= 0x80;
+		gNPC[n].firstFrame = true;
 		gNPC[n].direct = 0;
 		gNPC[n].code_char = 1;
 		gNPC[n].x = x;
@@ -433,6 +440,7 @@ bool SetBulletObject(int x, int y, int val)
 
 		memset(&gNPC[n], 0, sizeof(NPCHAR));
 		gNPC[n].cond |= 0x80;
+		gNPC[n].firstFrame = true;
 		gNPC[n].direct = 0;
 		gNPC[n].code_event = bullet_no;
 		gNPC[n].code_char = 86;
@@ -457,6 +465,7 @@ bool SetLifeObject(int x, int y, int val)
 
 	memset(&gNPC[n], 0, sizeof(NPCHAR));
 	gNPC[n].cond |= 0x80;
+	gNPC[n].firstFrame = true;
 	gNPC[n].direct = 0;
 	gNPC[n].code_char = 87;
 	gNPC[n].x = x;
@@ -628,8 +637,9 @@ void ActNpChar(void)
 		if (gNPC[i].cond & 0x80)
 		{
 			code_char = gNPC[i].code_char;
-			if (!TimeStopActive(code_char))
+			if (gNPC[i].firstFrame || !TimeStopActive(code_char))
 			{
+				gNPC[i].firstFrame = false;
 				if (gNPC[i].freeze > 0){
 					for (int l = 0; l < 3 + MAX((gNPC[i].freeze-100)/30, 0); l++){
 						SetCaret(gNPC[i].x + Random(-gNPC[i].view.front, gNPC[i].view.back),
@@ -678,6 +688,7 @@ void ChangeNpCharByEvent(int code_event, int code_char, int dir)
 		{
 			gNPC[n].bits &= ~(NPC_SOLID_SOFT | NPC_IGNORE_TILE_44 | NPC_INVULNERABLE | NPC_IGNORE_SOLIDITY | NPC_BOUNCY | NPC_SHOOTABLE | NPC_SOLID_HARD | NPC_REAR_AND_TOP_DONT_HURT | NPC_SHOW_DAMAGE);	// Clear these flags
 			gNPC[n].code_char = code_char;
+			gNPC[n].firstFrame = true;
 			gNPC[n].bits |= gNpcTable[gNPC[n].code_char].bits;
 			gNPC[n].exp = gNpcTable[gNPC[n].code_char].exp;
 			SetUniqueParameter(&gNPC[n]);
@@ -723,6 +734,7 @@ void ChangeCheckableNpCharByEvent(int code_event, int code_char, int dir)
 			gNPC[n].bits &= ~(NPC_SOLID_SOFT | NPC_IGNORE_TILE_44 | NPC_INVULNERABLE | NPC_IGNORE_SOLIDITY | NPC_BOUNCY | NPC_SHOOTABLE | NPC_SOLID_HARD | NPC_REAR_AND_TOP_DONT_HURT | NPC_SHOW_DAMAGE);	// Clear these flags
 			gNPC[n].bits |= NPC_INTERACTABLE;
 			gNPC[n].code_char = code_char;
+			gNPC[n].firstFrame = true;
 			gNPC[n].bits |= gNpcTable[gNPC[n].code_char].bits;
 			gNPC[n].exp = gNpcTable[gNPC[n].code_char].exp;
 			SetUniqueParameter(&gNPC[n]);
