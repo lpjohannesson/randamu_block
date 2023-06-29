@@ -329,7 +329,7 @@ void ActBossChar(void)
 
 	code_char = gBoss[0].code_char;
 
-	if (TimeStopActive(code_char + 1000)){
+	if (!TimeStopActive(code_char + 1000)){
 		gpBossFuncTbl[code_char]();
 
 		for (bos = 0; bos < BOSS_MAX; ++bos)

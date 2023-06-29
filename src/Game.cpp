@@ -613,7 +613,7 @@ bool TimeStopActive(int npc_id){
 		stopTime = gKey == 0;
 	}
 
-	return stopTime;
+	return !stopTime;
 }
 
 static int ModeAction(void)

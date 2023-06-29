@@ -4897,7 +4897,7 @@ void ActBullet(void)
 				continue;
 			}
 
-			if (TimeStopActive(gBul[i].code_bullet + 700)){
+			if (!TimeStopActive(gBul[i].code_bullet + 700)){
 				switch (gBul[i].code_bullet)
 				{
 					// Snake
