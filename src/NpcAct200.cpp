@@ -1042,16 +1042,6 @@ void ActNpc212(NPCHAR *npc)
 	}
 
 	npc->rect = rcRight[npc->ani_no];
-
-	// Use different sprite if player is wearing the Mimiga Mask
-	if (gMC.equip & EQUIP_MIMIGA_MASK)
-	{
-		if (npc->ani_no > 1)
-		{
-			npc->rect.top += 40;
-			npc->rect.bottom += 40;
-		}
-	}
 }
 
 // Night Spirit

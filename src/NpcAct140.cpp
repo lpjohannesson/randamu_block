@@ -1362,14 +1362,6 @@ void ActNpc150(NPCHAR *npc)
 		if (npc->act_wait / 2 % 2)
 			++npc->rect.left;
 	}
-
-	// Use a different sprite if the player is wearing the Mimiga Mask
-	// In theory this should be disabled by ENABLE_MIM_DISABLE_EQUIP_40_GRAPHICS, but the original mod doesn't do that (probably a bug tbh) so we don't do it either in order to make it so its behaviour is reproduced exactly with ENABLE_MIM_DISABLE_EQUIP_40_GRAPHICS
-	if (gMC.equip & EQUIP_MIMIGA_MASK)
-	{
-		npc->rect.top += 32;
-		npc->rect.bottom += 32;
-	}
 }
 
 // Respawner object
