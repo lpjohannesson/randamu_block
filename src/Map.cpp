@@ -8,6 +8,7 @@
 #include <string>
 
 #include "ArmsItem.h"
+#include "BossLife.h"
 #include "Caret.h"
 #include "Draw.h"
 #include "File.h"
@@ -376,7 +377,8 @@ bool ChangeMapParts(int x, int y, unsigned char no)
 void DestroyBlock(int x, int y)
 {
 	if (!InsideMap(x, y)) return;
-		PlaySoundObject(12, SOUND_MODE_PLAY);
+	if (gBL.flag == true) return;
+	PlaySoundObject(12, SOUND_MODE_PLAY);
 
 		for (int i = 0; i < 4; ++i)
 			SetNpChar(4, x * 0x200 * 0x10, y * 0x200 * 0x10, Random(-0x200, 0x200), Random(-0x200, 0x200), 0, NULL, 0x100);
