@@ -2580,6 +2580,12 @@ void CreatePlatforms(GenerationContext& genContext, GenerationArguments& genArgu
 			rooms *= std::get<float>(genArguments["reduction_amount"]);
 		}
 	}
+
+	auto platformPlace = [](int x, int y, int xd, int xdd = 0){
+		if (IsEmpty(x + xd, y) && GetAttribute(x + y * gMap.width) != 65)
+			SetNpChar(100, (x+xdd) * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0x10);
+	};
+
 	for (int l = 0; l < rooms; l++)
 	{
 		int x, y, xd;
@@ -2597,16 +2603,13 @@ void CreatePlatforms(GenerationContext& genContext, GenerationArguments& genArgu
 		{
 			xd = -1;
 		}
-		if (IsEmpty(x + xd, y))
-			SetNpChar(100, x * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0x10);
+		platformPlace(x, y, xd);
 		while (!HasWall(x + xd, y))
 		{
 			x += xd;
-			if (IsEmpty(x + xd, y))
-				SetNpChar(100, x * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0x10);
+			platformPlace(x, y, xd);
 		}
-		if (IsEmpty(x + xd, y))
-			SetNpChar(100, (x + xd) * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0x10);
+		platformPlace(x, y, xd, xd);
 	}
 }
 
