@@ -65,6 +65,7 @@
 	"controls_pause": "Pause",
 	"controls_ability": "Ability",
 	"controls_dash": "Dash",
+	"controls_turbo_text": "Turbo Text",
 	
 	"keybinding_prompt": "Press a key to bind to this action:",
 	"gamepad_bind_prompt": "Press a button to bind to this action:",

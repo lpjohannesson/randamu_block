@@ -38,7 +38,9 @@ enum KeyBind
 	//Dashing key
 	KEY_DASH = 0x00040000,
 	//Mouse key
-	KEY_MOUSE = 0x00080000
+	KEY_MOUSE = 0x00080000,
+	//Super-fast text key
+	KEY_TURBO_TEXT = 0x00200000
 };
 
 extern bool gKeyboardState[BACKEND_KEYBOARD_TOTAL];
@@ -55,6 +57,7 @@ extern long gKeyItem;
 extern long gKeyMap;
 extern long gKeyAbility;
 extern long gKeyDash;
+extern long gKeyTurboText;
 
 extern long gKeyOk;
 extern long gKeyCancel;

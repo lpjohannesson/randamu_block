@@ -628,8 +628,19 @@ void PutTextScript(void)
 	}
 }
 
+int TextScriptProc(void){
+	int result, count = 1;
+	if (gKey & gKeyTurboText)
+		count = 2;
+	for (int i = 0; i < count; i++){
+		result = ActualTextScriptProc();
+	}
+
+	return result;
+}
+
 // Parse TSC
-int TextScriptProc(void)
+int ActualTextScriptProc(void)
 {
 	int i;
 	char c[3];

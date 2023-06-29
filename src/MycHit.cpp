@@ -1077,7 +1077,8 @@ void HitMyCharNpChar(void)
 		}
 
 		// Interaction
-		if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE) && hit != 0 && (gMC.cond & 1 || ((ChallengeEnabled("debug") || gMC.flag & 0x100) && gKeyTrg & gKeyDown)) && gNPC[i].bits & NPC_INTERACTABLE)
+		if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE) && hit != 0 && (gMC.cond & 1 || ((ChallengeEnabled("debug") || gMC.flag & 0x100) && 
+			((gKeyTrg & gKeyDown) || (gKeyTrg & gKeyTurboText)))) && gNPC[i].bits & NPC_INTERACTABLE)
 		{
 			lastInteractedEntityID = i;
 			if (gNPC[i].code_char == 231){

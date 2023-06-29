@@ -130,6 +130,7 @@ void DefaultConfigData(CONFIG *conf)
 	conf->bindings[BINDING_PAUSE].controller = 6;
 	conf->bindings[BINDING_ABILITY].controller = 11;
 	conf->bindings[BINDING_DASH].controller = 12;
+	conf->bindings[BINDING_TURBO_TEXT].controller = 13;
 
 	// Set default key bindings
 	conf->bindings[BINDING_UP].keyboard = BACKEND_KEYBOARD_UP;
@@ -147,6 +148,7 @@ void DefaultConfigData(CONFIG *conf)
 	conf->bindings[BINDING_PAUSE].keyboard = BACKEND_KEYBOARD_ESCAPE;
 	conf->bindings[BINDING_ABILITY].keyboard = BACKEND_KEYBOARD_C;
 	conf->bindings[BINDING_DASH].keyboard = BACKEND_KEYBOARD_LEFT_SHIFT;
+	conf->bindings[BINDING_TURBO_TEXT].keyboard = BACKEND_KEYBOARD_B;
 
 	conf->b60fps = true;
 	conf->bSmoothScrolling = true;

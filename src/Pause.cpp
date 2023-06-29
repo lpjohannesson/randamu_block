@@ -359,7 +359,8 @@ static Control controls[] = {
 	{"Map",             BINDING_MAP,     1 << 0},
 	{"Pause",           BINDING_PAUSE,   1 << 0},
 	{"Ability",         BINDING_ABILITY, 1 << 0},
-	{"Dash",            BINDING_DASH,    1 << 0}
+	{"Dash",            BINDING_DASH,    1 << 0},
+	{"Turbo Text",      BINDING_TURBO_TEXT, 1 << 1}
 };
 
 static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
@@ -929,7 +930,8 @@ const std::vector<std::string> controlNames = {
 	"controls_map",
 	"controls_pause",
 	"controls_ability",
-	"controls_dash"
+	"controls_dash",
+	"controls_turbo_text"
 };
 
 static void ReloadControlNames(){

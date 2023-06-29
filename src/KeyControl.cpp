@@ -26,6 +26,7 @@ long gKeyRight = KEY_RIGHT;
 long gKeyDown = KEY_DOWN;
 long gKeyAbility = KEY_ABILITY;
 long gKeyDash = KEY_DASH;
+long gKeyTurboText = KEY_TURBO_TEXT;
 
 bool gMouseHold;
 long gMouseClick = KEY_MOUSE;

@@ -445,6 +445,8 @@ bool SystemTask(void)
 				gKey |= KEY_ABILITY;
 			if (i == bindings[BINDING_DASH].keyboard)
 				gKey |= KEY_DASH;
+			if (i == bindings[BINDING_TURBO_TEXT].keyboard)
+				gKey |= KEY_TURBO_TEXT;
 
 			for (int l = BACKEND_KEYBOARD_1; l < BACKEND_KEYBOARD_9 + 1; l++){
 				if (i == l){
@@ -497,6 +499,8 @@ bool SystemTask(void)
 				gKey &= ~KEY_ABILITY;
 			if (i == bindings[BINDING_DASH].keyboard)
 				gKey &= ~KEY_DASH;
+			if (i == bindings[BINDING_TURBO_TEXT].keyboard)
+				gKey &= ~KEY_TURBO_TEXT;
 
 			for (int l = BACKEND_KEYBOARD_1; l < BACKEND_KEYBOARD_9 + 1; l++){
 				if (i == l){
@@ -567,6 +571,8 @@ void JoystickProc(void)
 				gKey |= KEY_ABILITY;
 			if (i == bindings[BINDING_DASH].controller)
 				gKey |= KEY_DASH;
+			if (i == bindings[BINDING_TURBO_TEXT].controller)
+				gKey |= KEY_TURBO_TEXT;
 		}
 		else if (!gJoystickState.bButton[i] && old_status.bButton[i])
 		{
@@ -600,6 +606,8 @@ void JoystickProc(void)
 				gKey &= ~KEY_ABILITY;
 			if (i == bindings[BINDING_DASH].controller)
 				gKey &= ~KEY_DASH;
+			if (i == bindings[BINDING_TURBO_TEXT].controller)
+				gKey &= ~KEY_TURBO_TEXT;
 		}
 	}
 

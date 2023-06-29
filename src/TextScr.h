@@ -75,6 +75,7 @@ std::string GetTextScriptPath(void);
 bool StartTextScript(int no);
 void StopTextScript(void);
 void PutTextScript(void);
+int ActualTextScriptProc(void);
 int TextScriptProc(void);
 void RestoreTextScript(void);
 
