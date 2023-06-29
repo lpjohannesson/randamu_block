@@ -6,7 +6,7 @@
 #include "Game.h"
 #include <map>
 
-#define NPC_MAX 0x2000
+#define NPC_MAX 0x1000
 
 enum NPCCond
 {
