@@ -669,8 +669,6 @@ void ActNpc284(NPCHAR *npc)
 				npc->ani_wait = 0;
 			}
 			if (npc->shock){
-				if (gBL.flag == false)
-					StartBossLife(npc->code_event);
 				npc->act_no = 20;
 			}
 			break;

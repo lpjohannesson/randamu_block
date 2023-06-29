@@ -1270,8 +1270,6 @@ void ActNpcIgorBoss(NPCHAR *npc)
 			break;
 
 		case 10:
-			if (gBL.flag == false)
-				StartBossLife(npc->code_event);
 			if (gMC.difficulty > DIFFICULTY_HARDENED){
 				npc->bits &= ~NPC_INVULNERABLE;
 				npc->bits |= NPC_SHOOTABLE;
@@ -1987,8 +1985,6 @@ void ActNpc276(NPCHAR *npc)
 					npc->act_no = 20;
 				else
 					npc->act_no = 10;
-				if (gBL.flag == false)
-					StartBossLife(npc->code_event);
 			}
 
 			break;

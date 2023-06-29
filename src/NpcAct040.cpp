@@ -494,8 +494,6 @@ void ActNpc044(NPCHAR *npc)
 			}
 			break;
 		case 11:
-			if (gBL.flag == false)
-				StartBossLife(npc->code_event);
 			npc->ani_no = 0;
 
 			if (Random(0, 1))

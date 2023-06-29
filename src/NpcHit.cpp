@@ -579,10 +579,13 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 		case 283: //posmisery
 			AddScore(550);  break;
 		case 140: //toroko
-			AddScore(600);  break;
-		case 268: case 276: case 317: case 36: case 284: case 44: //bosses
-			SetNpChar(18, npc->x, npc->y - 8 + 0x200, 0, 0, 0, NULL, 0x100, 99, 0x2000);
-			AddScore(7500);  StartBossLife2(); break;
+			AddScore(600);  break;	
+	}
+
+	if (std::find(bossNPCsList.begin(), bossNPCsList.end(), npc->code_char) != bossNPCsList.end())
+	{
+		SetNpChar(18, npc->x, npc->y - 8 + 0x200, 0, 0, 0, NULL, 0x100, 99, 0x2000);
+		AddScore(7500);  StartBossLife2();
 	}
 
 	// Set flag
@@ -745,6 +748,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			}
 			PlaySoundObject(npc.hit_voice, SOUND_MODE_PLAY);
 			npc.shock = 16;
+			if (gBL.flag == false && std::find(bossNPCsList.begin(), bossNPCsList.end(), npc.code_char) != bossNPCsList.end())
+				StartBossLife(npc.code_event);
 			if (isSword)
 			{
 				if (Random(0, 1))

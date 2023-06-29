@@ -1243,8 +1243,6 @@ void ActNpc036(NPCHAR *npc)
 		case 0:
 			if (npc->shock){
 				npc->act_no = 1;
-				if (gBL.flag == false)
-					StartBossLife(npc->code_event);
 			}
 			break;
 			// Fallthrough

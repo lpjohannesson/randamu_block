@@ -1809,8 +1809,6 @@ void ActNpc317(NPCHAR *npc)
 			break;
 
 		case 3:
-			if (gBL.flag == false)
-				StartBossLife(npc->code_event);
 			if (npc->x > gMC.x)
 				npc->direct = 0;
 			else
