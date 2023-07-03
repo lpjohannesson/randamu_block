@@ -37,6 +37,25 @@ int gSuperYpos;
 
 const char* const gPassPixEve = "PXE";
 
+NPCHAR* GetClosest(int x, int y, int maxDistance){
+    float shortestdist = 0.0;
+    int npc = -1;
+    for (int i = 0; i < NPC_MAX; i++){
+        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE))) continue;
+        float distx = gNPC[i].x - x;
+        float disty = gNPC[i].y - y;
+		float dist = (distx*distx + disty*disty);
+        if (npc < 0 || (dist < maxDistance && dist < shortestdist)){
+            npc = i;
+            shortestdist = dist;
+        }
+    }
+    if (npc == -1){
+		return NULL;
+	}
+    else return &gNPC[npc];
+}
+
 static void SetUniqueParameter(NPCHAR *npc)
 {
 	int code = npc->code_char;

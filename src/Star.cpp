@@ -43,24 +43,6 @@ void InitStar(void)
 	star[2].ym = 0x100;
 }
 
-NPCHAR* GetClose(int x, int y){
-    float shortestdist = 0.0;
-    int npc = -1;
-    for (int i = 0; i < NPC_MAX; i++){
-        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE))) continue;
-        float distx = gNPC[i].x - x;
-        float disty = gNPC[i].y - y;
-        if (npc < 0 || (distx*distx + disty*disty) < shortestdist){
-            npc = i;
-            shortestdist = (distx*distx + disty*disty);
-        }
-    }
-    if (npc == -1){
-		return NULL;
-	}
-    else return &gNPC[npc];
-}
-
 void ActStar(void)
 {
 	int i;
@@ -113,7 +95,7 @@ void ActStar(void)
 		star[i].x += star[i].xm;
 		star[i].y += star[i].ym;
 		if (starTarget == NULL){
-			NPCHAR* character = GetClose(star[i].x, star[i].y);
+			NPCHAR* character = GetClosest(star[i].x, star[i].y);
 			if (character != NULL && Distance(character->x, character->y, star[i].x, star[i].y) < 0x2000 * 6.0f){
 				starTarget = character;
 			}

@@ -122,6 +122,7 @@ extern const char* const gPassPixEve;
 
 void InitNpChar(void);
 bool LoadEvent(const char *path_event);
+NPCHAR* GetClosest(int x, int y, int maxDistance = 2000_pix);
 void SetNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHAR *npc, int start_index);
 NPCHAR* CreateNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHAR *npc, int start_index);
 void SetNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHAR *npc, int start_index, int event, int flags);
