@@ -696,6 +696,9 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		if (bul->code_bullet > 6 && bul->code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(873)){
 			SetBullet(16, bul->x, bul->y, 0);
 		}
+
+		if (bul->code_bullet == 87 && Random(0, 3) == 0)
+			SpawnQuiverProjectile(npc);
 	}
 
 	if (ChallengeEnabled("oneDamage") && dmg > 0) //one damage option
@@ -868,6 +871,11 @@ void HitNpCharBullet(void)
 
 					if (!success)
 						continue;
+
+					if (gBul[b].code_bullet == 88){
+						PlaySoundObject(54);
+						SetDestroyNpChar(gNPC[n].x, gNPC[n].y, gNPC[n].hit.back, 16);
+					}
 
 					if (gBul[b].iframes > 0)
 						static_iframes[n][gBul[b].code_bullet] = gBul[b].iframes;

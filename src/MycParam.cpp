@@ -47,6 +47,7 @@ ARMS_LEVEL gArmsLevelTable[] =
 	{{30, 50, 20, 40}},
 	{{55, 70, 30, 90}}, //hellswing
 	{{30, 60, 90, 120}}, //gatling gun
+	{{100, 100, 100, 100}} //frontie-buster
 };
 
 void AddScore(int x){

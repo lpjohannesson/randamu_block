@@ -284,6 +284,10 @@ BULLET_TABLE gBulTbl[] = {
 	{11, 100, 16, 52, 14, 18, 5, 3, {12, 12, 12, 12}, 1, 1},
 	// visuals for Nanites Absorber
 	{-1, 2, 100, 12, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+	// Frontie-buster lv1
+	{2, 1, 100, 32, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+	// Frontie-buster lv1 homing missile
+	{7, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1}
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -1387,6 +1391,77 @@ void ActBullet_FireMine(BULLET *bul)
 			bul->rect = rect_left1[(bul->ani_no+1)/2];
 		else
 			bul->rect = rect_right1[(bul->ani_no+1)/2];
+}
+
+void ActBullet_FrontieBust1(BULLET *bul, int level)
+{
+	int baseSpeed = 0x1000;
+	int inaccuracy = 0x200;
+
+	if (++bul->count1 > bul->life_count)
+	{
+		bul->cond = 0;
+		SetCaret(bul->x, bul->y, 3, 0);
+		return;
+	}
+
+	if (bul->act_no == 0)
+	{
+		bul->act_no = 1;
+
+		switch (bul->direct)
+		{
+			case 0:
+				bul->xm = -baseSpeed;
+				bul->ym = Random(-inaccuracy, inaccuracy);
+				break;
+			case 1:
+				bul->ym = -baseSpeed;
+				bul->xm = Random(-inaccuracy, inaccuracy);
+				break;
+			case 2:
+				bul->xm = baseSpeed;
+				bul->ym = Random(-inaccuracy, inaccuracy);
+				break;
+			case 3:
+				bul->ym = baseSpeed;
+				bul->xm = Random(-inaccuracy, inaccuracy);
+				break;
+		}
+	}
+	else
+	{
+		bul->x += bul->xm;
+		bul->y += bul->ym;
+
+		if (bul->flag & 0xD)
+			PlaySoundObject(34, SOUND_MODE_PLAY);
+	}
+
+	Rect rect_left1[4] = {
+		{128, 176, 144, 192},
+		{144, 176, 160, 192},
+		{160, 176, 176, 192},
+		{176, 176, 192, 192},
+	};
+
+	Rect rect_right1[4] = {
+		{128, 192, 144, 208},
+		{144, 192, 160, 208},
+		{160, 192, 176, 208},
+		{176, 192, 192, 208},
+	};
+
+	++bul->ani_no;
+	if (bul->ani_no > 3)
+		bul->ani_no = 0;
+
+	if (bul->direct == 0)
+		bul->rect = rect_left1[bul->ani_no];
+	else
+		bul->rect = rect_right1[bul->ani_no];
+
+	SetNpChar(129, bul->x, bul->y, 0, -0x200, std::max(0, bul->ani_no-1) + 3, NULL, 0x100);
 }
 
 void ActBullet_MachineGun(BULLET *bul, int level)
@@ -4545,6 +4620,54 @@ void ActBullet_HomingSword(BULLET *bul)
 	SetCaret(bul->x, bul->y, 13, 0);
 }
 
+void ActBullet_HomingFrontieBust(BULLET *bul)
+{
+	if (++bul->count1 > bul->life_count)
+	{
+		bul->cond = 0;
+		SetCaret(bul->x, bul->y, 3, 0);
+		return;
+	}
+
+	bul->npc = GetClosest(bul->x, bul->y, 60_pix);
+
+	if (bul->act_no == 0){
+		bul->act_no = 1;
+
+		// Set speed
+		switch (bul->direct)
+		{
+		case 0:
+			bul->xm = -0x1000;
+			break;
+		case 1:
+			bul->ym = -0x1000;
+			break;
+		case 2:
+			bul->xm = 0x1000;
+			break;
+		case 3:
+			bul->ym = 0x1000;
+			break;
+		}
+	} else {
+		if (bul->npc != NULL){
+			unsigned char deg = GetArktan(bul->x - bul->npc->x, bul->y - bul->npc->y);
+			bul->ym = GetSin(deg) * 6;
+			bul->xm = GetCos(deg) * 6;
+		}
+	}
+
+	bul->x += bul->xm;
+	bul->y += bul->ym;
+
+	SetCaret(bul->x, bul->y, 3, 0);
+	SetCaret(bul->x, bul->y, 2, 2);
+	for (int i = 0; i < 3; i++)
+		SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
+						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
+}
+
 void ActBullet_Flame(BULLET *bul)
 {
 	Rect rc_h_lv1[3] = {
@@ -5204,6 +5327,14 @@ void ActBullet(void)
 
 					case 86:
 						ActBullet_Nanites(&gBul[i]);
+						break;
+
+					case 87:
+						ActBullet_FrontieBust1(&gBul[i], 1);
+						break;
+
+					case 88:
+						ActBullet_HomingFrontieBust(&gBul[i]);
 						break;
 				}
 			}
