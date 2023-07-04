@@ -625,6 +625,22 @@ bool IntersectDamageCheck(NPCHAR &npc, int x, int y, int xl, int yl)
 				&& npc.y + npc.hit.bottom > y - yl);
 }
 
+void SpawnQuiverProjectile(NPCHAR &npc)
+{
+	int x, y;
+		do
+		{
+			x = Random(0, gMap.width*0x2000);
+			y = Random(0, gMap.length*0x2000);
+		} while (!(Distance(npc.x, npc.y, x, y) < 90_pix  && 
+					Distance(npc.x, npc.y, x, y) > 8_pix));
+		BULLET *quiverProj = SetBullet(47, x, y);
+		if (quiverProj != NULL){
+			quiverProj->tgt_x = npc.x;
+			quiverProj->tgt_y = npc.y;
+		}
+}
+
 bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 {
 	if (!(npc.bits & NPC_SHOOTABLE))
@@ -690,18 +706,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	if (Random(0, 2) == 0 && dmg != 0 && gMC.equip & EQUIP_NANO_QUIVER && 
 		(bul == NULL || (bul->code_bullet != 47 && bul->code_bullet != 45)))
 	{
-		int x, y;
-		do
-		{
-			x = Random(0, gMap.width*0x2000);
-			y = Random(0, gMap.length*0x2000);
-		} while (!(Distance(npc.x, npc.y, x, y) < 90_pix  && 
-					Distance(npc.x, npc.y, x, y) > 8_pix));
-		BULLET *quiverProj = SetBullet(47, x, y);
-		if (quiverProj != NULL){
-			quiverProj->tgt_x = npc.x;
-			quiverProj->tgt_y = npc.y;
-		}
+		SpawnQuiverProjectile(npc);
 	}
 
 	for (int b1 = 0; b1 < BULLET_MAX; b1++){
