@@ -111,8 +111,26 @@ void PutBullet(int fx, int fy)
 					y = gBul[i].y - gBul[i].view.back;
 					break;
 			}
-
+			if (gBul[i].code_bullet == 89)
+			{
+				Rect neededRect[3][3] = {
+						{{128, 160, 144, 176}, {144, 160, 160, 176}, {160, 160, 176, 176}},
+						{{176, 144, 192, 160}, {192, 144, 208, 160}, {208, 144, 224, 160}},
+						{{176, 160, 192, 176}, {192, 160, 208, 176}, {208, 160, 224, 176}}
+				};
+				for (int m = 3; m != 0; m--){
+					int direction;
+					switch (gBul[i].direct){
+						case 0: case 1: direction = -1; break;
+						case 2: case 3: direction = +1; break;
+					}
+					Rect necessaryRect = neededRect[m-1][gBul[i].ani_no];
+					PutBitmap3(&grcGame, SubpixelToScreenCoord(x - gBul[i].xm * m) - SubpixelToScreenCoord(fx), 
+					SubpixelToScreenCoord(y - gBul[i].ym * m) - SubpixelToScreenCoord(fy), &necessaryRect, SURFACE_ID_BULLET);
+				}
+			}
 			PutBitmap3Ex(&grcGame, SubpixelToScreenCoord(x) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(y) - SubpixelToScreenCoord(fy), &gBul[i].rect, SURFACE_ID_BULLET, gBul[i].angle, gBul[i].centerX, gBul[i].centerY, gBul[i].opacity);
+			
 			if (gBul[i].code_bullet >= 49 && gBul[i].code_bullet <= 51 || gBul[i].code_bullet == 73)
 			{
 				long long xDist = gMC.x - gBul[i].x;
@@ -287,7 +305,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Frontie-buster lv1
 	{2, 1, 100, 32, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
 	// Frontie-buster lv1 homing missile
-	{7, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1}
+	{7, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1},
+	// Frontie-buster lv2
+	{1, 3, 120, 32, 4, 4, 2, 2, {8, 8, 8, 8}, 0.5, 0.5}
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -1462,6 +1482,97 @@ void ActBullet_FrontieBust1(BULLET *bul, int level)
 		bul->rect = rect_right1[bul->ani_no];
 
 	SetNpChar(129, bul->x, bul->y, 0, -0x200, std::max(0, bul->ani_no-1) + 3, NULL, 0x100);
+}
+
+void ActBullet_FrontieBust2(BULLET *bul)
+{
+	Rect rect[3] = {
+		{192, 16, 208, 32},
+		{208, 16, 224, 32},
+		{224, 16, 240, 32}
+	};
+
+	if (++bul->count1 > bul->life_count)
+	{
+		bul->cond = 0;
+		SetCaret(bul->x, bul->y, 3, 0);
+		return;
+	}
+	bul->iframes = 30;
+
+	if (bul->act_no == 0)
+	{
+		bul->ani_no = 0;
+		bul->act_no = 1;
+
+		switch (bul->direct)
+		{
+			case 0:
+				bul->xm = -0x380;
+				break;
+			case 1:
+				bul->ym = -0x380;
+				break;
+			case 2:
+				bul->xm = 0x380;
+				break;
+			case 3:
+				bul->ym = 0x380;
+				break;
+		}
+	}
+	else
+	{
+		switch (bul->direct)
+		{
+			case 0:
+				bul->xm += -0x60;
+				if (bul->xm < -0x1400){
+					bul->xm = -0x1400;
+					SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
+						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
+				}
+				break;
+			case 1:
+				bul->ym += -0x60;
+				if (bul->ym < -0x1400){
+					bul->ym = -0x1400;
+					SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
+						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
+				}
+				break;
+			case 2:
+				bul->xm += 0x60;
+				if (bul->xm > 0x1400){
+					bul->xm = 0x1400;
+					SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
+						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
+				}
+				break;
+			case 3:
+				bul->ym += 0x60;
+				if (bul->ym > 0x1400){
+					bul->ym = 0x1400;
+					SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
+						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
+				}
+				break;
+		}
+
+		bul->x += bul->xm;
+		bul->y += bul->ym;
+	}
+
+	if (++bul->ani_wait > 0)
+	{
+		bul->ani_wait = 0;
+		++bul->ani_no;
+	}
+
+	if (bul->ani_no > 2)
+		bul->ani_no = 0;
+
+	bul->rect = rect[bul->ani_no];
 }
 
 void ActBullet_MachineGun(BULLET *bul, int level)
@@ -5335,6 +5446,10 @@ void ActBullet(void)
 
 					case 88:
 						ActBullet_HomingFrontieBust(&gBul[i]);
+						break;
+
+					case 89:
+						ActBullet_FrontieBust2(&gBul[i]);
 						break;
 				}
 			}

@@ -652,6 +652,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	}
 
 	bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), npc.code_char) != etherealEntities.end();
+	bool isBoss = std::find(bossNPCsList.begin(), bossNPCsList.end(), npc.code_char) != bossNPCsList.end();
 	if (isEthereal) dmg = 0;
 
 	if (gMC.equip & EQUIP_NIKUMARU_COUNTER && Random(1, 3) == 1 && npc.damage > 0){
@@ -663,6 +664,15 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			npc.freeze = 80;
 		}
 		return false;
+	}
+
+	if (bul != NULL && bul->code_bullet == 89){
+		float speed;
+		switch (bul->direct){
+			case 0: case 2: speed = std::abs(bul->xm); break;
+			case 1: case 3: speed = std::abs(bul->ym); break;
+		}
+		dmg += std::round(speed / 512.0f * 3.5f);
 	}
 
 	if (CheckForCooldown(gCooldowns, NANITES_TIME_ID) != -1){
@@ -699,6 +709,13 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 
 		if (bul->code_bullet == 87 && Random(0, 3) == 0)
 			SpawnQuiverProjectile(npc);
+
+		if (bul->code_bullet == 89){
+			SetCaret(npc.x, npc.y, 12, 0);
+			if (Random(0, 4) == 0 && !isEthereal)
+				for (int i = 0; i < 5; i++)
+					SpawnQuiverProjectile(npc);
+		}
 	}
 
 	if (ChallengeEnabled("oneDamage") && dmg > 0) //one damage option

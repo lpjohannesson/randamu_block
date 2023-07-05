@@ -1538,6 +1538,18 @@ void ShootBullet_FrontieBuster(int level)
 	int shootingSound = 32;
 	static bool lol;
 
+	if (gKeyTrg & gKeyAbility){
+		++gArmsData[gSelectedArms].level;
+		if (gArmsData[gSelectedArms].level > 3){
+			gArmsData[gSelectedArms].level = 1;
+			CutNPCFlag(6906);
+			SetNPCFlag(6901);
+		} else {
+			CutNPCFlag(6900 + gArmsData[gSelectedArms].level - 1);
+			SetNPCFlag(6900 + gArmsData[gSelectedArms].level);
+		}
+	}
+
 	switch (level)
 	{
 		case 1:
@@ -1547,7 +1559,7 @@ void ShootBullet_FrontieBuster(int level)
 			break;
 
 		case 2:
-			bul_no = 11;
+			bul_no = 89;
 			break;
 
 		case 3:
@@ -1570,9 +1582,19 @@ void ShootBullet_FrontieBuster(int level)
 		lol = false;
 	}
 
+	int cooldown;
+	switch (level){
+		case 1:
+			cooldown = 9;
+			break;
+		case 2:
+			cooldown = 40;
+			break;
+	}
+
 	if (gKey & gKeyShot)
 	{
-		if (++frontieRensha < (gMC.equip & EQUIP_OVERCHARGE ? 2 : 10)){
+		if (++frontieRensha < cooldown){
 			if (lol == false)
 				PlaySoundObject(37, SOUND_MODE_PLAY);
 			return;
@@ -1594,17 +1616,21 @@ void ShootBullet_FrontieBuster(int level)
 			return;
 		}
 
-		if (Random(0, 4) == 0){
-			shootingSound = 22;
-			shootingCaret = 2;
-		} else if (Random(0, 3) == 0){
-			shootingSound = 49;
+		if (level == 1){
+			if (Random(0, 4) == 0){
+				shootingSound = 22;
+				shootingCaret = 2;
+			} else if (Random(0, 3) == 0){
+				shootingSound = 49;
+				shootingCaret = 12;
+			}
+			if (bul_no == 88){
+				shootingSound = 117;
+			}
+		} else if (level == 2){
+			shootingSound = 35;
 			shootingCaret = 12;
 		}
-		if (bul_no == 88){
-			shootingSound = 117;
-		}
-			
 
 		int i = 1;
 		if (Random(0, 2) == 0 && gMC.equip & EQUIP_OVERCHARGE){
