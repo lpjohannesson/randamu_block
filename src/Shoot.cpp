@@ -1584,7 +1584,7 @@ void ShootBullet_FrontieBuster(int level)
 
 		case 3:
 			bul_no = 90;
-			if (Random(0, 24) == 0)
+			if (Random(0, 30) == 0)
 				bul_no = 89;
 			break;
 
@@ -1725,7 +1725,7 @@ void ShootBullet_FrontieBuster(int level)
 	} else
 	{
 		++wait;
-		if (wait > cooldown / 3)
+		if (wait > cooldown / 2)
 		{
 			wait = 0;
 			ChargeArmsEnergy(1);
