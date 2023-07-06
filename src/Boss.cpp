@@ -31,6 +31,7 @@
 NPCHAR gBoss[BOSS_MAX];
 
 std::map<int, std::map<int, int>> boss_static_iframes;
+std::map<int, std::map<int, int>> boss_local_iframes;
 
 void InitBossChar(int code)
 {
@@ -38,12 +39,18 @@ void InitBossChar(int code)
 	gBoss[0].cond = 0x80;
 	gBoss[0].code_char = code;
 
-	for (int i = 0; i < BOSS_MAX; i++)
+	for (int i = 0; i < BOSS_MAX; i++){
 		boss_static_iframes[i] = {};
+		boss_local_iframes[i] = {};
+	}
 	
 	for (auto storage : boss_static_iframes){
 		for (int i = 0; i < 79; i++)
 			storage.second[i] = 0;
+	}
+
+	for (auto storage : boss_local_iframes){
+		storage.second.clear();
 	}
 }
 
@@ -114,6 +121,11 @@ void HitBossBullet(void)
 
 			if (gBul[bul].iframes > 0 && boss_static_iframes[bos][gBul[bul].code_bullet] != 0)
 				continue;
+
+			if (gBul[bul].local_iframes > 0 && boss_local_iframes[bos].contains(bul)){
+				if (local_iframes[bos][bul] != 0)
+					continue;
+			}
 
 			if (gBoss[bos].shock > 0 && ((gBul[bul].code_bullet > 27 && gBul[bul].code_bullet < 31) ||
 				 (gBul[bul].code_bullet == 57) || (gBul[bul].code_bullet == 69) || (GetNPCFlag(873) && gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && CountBulletNum(16)) || (gBul[bul].code_bullet == 4 && gBul[bul].life > 0)))
@@ -250,6 +262,8 @@ void HitBossBullet(void)
 					{
 						if (gBul[bul].iframes > 0)
 							boss_static_iframes[bos][gBul[bul].code_bullet] = gBul[bul].iframes;
+						if (gBul[bul].local_iframes > 0)
+							boss_static_iframes[bos][bul] = gBul[bul].local_iframes;
 						if (gBoss[bos].shock < 14)
 						{
 							SetCaret(gBul[bul].x, gBul[bul].y, 11, 0);
@@ -337,6 +351,13 @@ void ActBossChar(void)
 				--gBoss[bos].shock;
 
 		for (auto& npc: boss_static_iframes){
+			for (auto& iframes: npc.second){
+				if (iframes.second > 0){
+					iframes.second--;
+				}
+			}
+		}
+		for (auto& npc: boss_local_iframes){
 			for (auto& iframes: npc.second){
 				if (iframes.second > 0){
 					iframes.second--;

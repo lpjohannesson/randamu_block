@@ -27,6 +27,7 @@
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 
 std::map<int, std::map<int, int>> static_iframes;
+std::map<int, std::map<int, int>> local_iframes;
 
 NPCHAR gNPC[NPC_MAX];
 int gCurlyShoot_wait;
@@ -95,12 +96,18 @@ void InitNpChar(void)
 {
 	memset(gNPC, 0, sizeof(gNPC));
 
-	for (int i = 0; i < NPC_MAX; i++)
+	for (int i = 0; i < NPC_MAX; i++){
 		static_iframes[i] = {};
+		local_iframes[i] = {};
+	}
 	
 	for (auto storage : static_iframes){
 		for (int i = 0; i < 79; i++)
 			storage.second[i] = 0;
+	}
+
+	for (auto storage : local_iframes){
+		storage.second.clear();
 	}
 }
 
@@ -692,6 +699,13 @@ void ActNpChar(void)
 		}
 	}
 	for (auto& npc: static_iframes){
+		for (auto& iframes: npc.second){
+			if (iframes.second > 0){
+				iframes.second--;
+			}
+		}
+	}
+	for (auto& npc: local_iframes){
 		for (auto& iframes: npc.second){
 			if (iframes.second > 0){
 				iframes.second--;

@@ -42,6 +42,7 @@ struct BULLET
 	float centerX;
 	float centerY;
 	int iframes;
+	int local_iframes;
 	float opacity;
 };
 

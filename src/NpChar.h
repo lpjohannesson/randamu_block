@@ -100,6 +100,7 @@ struct NPCHAR
 };
 
 extern std::map<int, std::map<int, int>> static_iframes;
+extern std::map<int, std::map<int, int>> local_iframes;
 
 struct EVENT
 {

@@ -844,6 +844,10 @@ void HitNpCharBullet(void)
 
 			if (gBul[b].iframes > 0 && static_iframes[n][gBul[b].code_bullet] != 0)
 				continue;
+			if (gBul[b].local_iframes > 0 && local_iframes[n].contains(b)){
+				if (local_iframes[n][b] != 0)
+					continue;
+			}
 
 			if (gNPC[n].shock > 0 && ((gBul[b].code_bullet > 27 && gBul[b].code_bullet < 31) ||
 				 (gBul[b].code_bullet == 57) || (gBul[b].code_bullet == 69) || (GetNPCFlag(873) && gBul[b].code_bullet > 6 && gBul[b].code_bullet < 10 && CountBulletNum(16))))
@@ -896,6 +900,9 @@ void HitNpCharBullet(void)
 
 					if (gBul[b].iframes > 0)
 						static_iframes[n][gBul[b].code_bullet] = gBul[b].iframes;
+
+					if (gBul[b].local_iframes > 0)
+						local_iframes[n][b] = gBul[b].local_iframes;
 				}
 				else if (gBul[b].code_bullet == 13
 					|| gBul[b].code_bullet == 14

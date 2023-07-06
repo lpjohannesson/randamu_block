@@ -8,6 +8,7 @@
 extern NPCHAR gBoss[BOSS_MAX];
 
 extern std::map<int, std::map<int, int>> boss_static_iframes;
+extern std::map<int, std::map<int, int>> boss_local_iframes;
 
 typedef void (*BOSSFUNCTION)(void);
 extern BOSSFUNCTION gpBossFuncTbl[10];
