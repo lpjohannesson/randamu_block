@@ -1530,6 +1530,38 @@ void ShootBullet_MiningLaser(int level)
 
 unsigned char frontieRensha;
 
+void FrontieBust3_OverheatFlamingShoot()
+{
+	int targetX = gMC.direct == 0 ? gMC.x - 12_pix : gMC.x + 12_pix;
+	int targetY = gMC.y + 3_pix;
+	if (gMC.up || gMC.down){
+		targetX = gMC.direct == 0 ? gMC.x - 3_pix : gMC.x + 3_pix;
+		targetY = gMC.down ? gMC.y + 8_pix : gMC.y - 8_pix;
+	}
+	BULLET *bully = SetBullet(84, targetX, targetY);
+	if (bully != NULL)
+	{
+		PlaySoundObject(33, SOUND_MODE_PLAY);
+		bully->direct = gMC.direct;
+		if (gMC.direct == 0)
+			bully->xm = -Random(0, 1800);
+		else
+			bully->xm = Random(0, 1800);
+		if (gMC.up){
+			bully->ym = Random(-1300, -400);
+			bully->xm /= 3;
+		}
+		else if (gMC.down){
+			bully->ym = -Random(-1300, -400);
+			bully->xm /= 3;
+		}
+		else
+			bully->ym = Random(-700, 80);
+		bully->xm *= 0.75;
+		bully->ym *= 0.75;
+	}
+}
+
 void ShootBullet_FrontieBuster(int level)
 {
 	int bul_no;
@@ -1563,7 +1595,9 @@ void ShootBullet_FrontieBuster(int level)
 			break;
 
 		case 3:
-			bul_no = 12;
+			bul_no = 90;
+			if (Random(0, 24) == 0)
+				bul_no = 89;
 			break;
 
 		case 4:
@@ -1590,6 +1624,9 @@ void ShootBullet_FrontieBuster(int level)
 		case 2:
 			cooldown = 40;
 			break;
+		case 3:
+			cooldown = 3;
+			break;
 	}
 
 	if (gKey & gKeyShot)
@@ -1597,13 +1634,16 @@ void ShootBullet_FrontieBuster(int level)
 		if (++frontieRensha < cooldown){
 			if (lol == false)
 				PlaySoundObject(37, SOUND_MODE_PLAY);
+			if (level == 3 && Random(0, 2) == 0){
+				FrontieBust3_OverheatFlamingShoot();
+			}
 			return;
 		}
 
 		frontieRensha = 0;
 		lol = true;
 
-		if (!UseArmsEnergy(1))
+		if (!UseArmsEnergy(level == 3 ? Random(0, 2) : 1))
 		{
 			PlaySoundObject(37, SOUND_MODE_PLAY);
 
@@ -1616,7 +1656,9 @@ void ShootBullet_FrontieBuster(int level)
 			return;
 		}
 
-		if (level == 1){
+		if (level == 1 || level == 3){
+			if (level == 3)
+				shootingSound = 49;
 			if (Random(0, 4) == 0){
 				shootingSound = 22;
 				shootingCaret = 2;
@@ -1626,6 +1668,10 @@ void ShootBullet_FrontieBuster(int level)
 			}
 			if (bul_no == 88){
 				shootingSound = 117;
+			}
+			if (bul_no == 89){
+				shootingSound = 35;
+				shootingCaret = 12;
 			}
 		} else if (level == 2){
 			shootingSound = 35;
@@ -1681,10 +1727,7 @@ void ShootBullet_FrontieBuster(int level)
 			}
 		}
 
-		if (level >= 3)
-			PlaySoundObject(49, SOUND_MODE_PLAY);
-		else
-			PlaySoundObject(shootingSound, SOUND_MODE_PLAY);
+		PlaySoundObject(shootingSound, SOUND_MODE_PLAY);
 	} else
 	{
 		++wait;

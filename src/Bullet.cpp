@@ -307,7 +307,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Frontie-buster lv1 homing missile
 	{7, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1},
 	// Frontie-buster lv2
-	{1, 3, 120, 32, 4, 4, 2, 2, {8, 8, 8, 8}, 0.5, 0.5}
+	{1, 3, 120, 32, 4, 4, 2, 2, {8, 8, 8, 8}, 0.5, 0.5},
+	// Frontie-buster lv3
+	{1, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1}
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -1417,6 +1419,11 @@ void ActBullet_FrontieBust1(BULLET *bul, int level)
 {
 	int baseSpeed = 0x1000;
 	int inaccuracy = 0x200;
+	if (level == 3){
+		baseSpeed *= 0.85;
+		inaccuracy *= 3.5f;
+		bul->iframes = 3;
+	}
 
 	if (++bul->count1 > bul->life_count)
 	{
@@ -5450,6 +5457,10 @@ void ActBullet(void)
 
 					case 89:
 						ActBullet_FrontieBust2(&gBul[i]);
+						break;
+
+					case 90:
+						ActBullet_FrontieBust1(&gBul[i], 3);
 						break;
 				}
 			}
