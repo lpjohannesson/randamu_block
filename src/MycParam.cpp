@@ -670,16 +670,20 @@ void PutMyScore(int y){
 	Rect rcStairs = {113, 112, 141, 121};
 	Rect rcPoints = {81, 73, 109, 80};
 	Rect rcMiracle = {228, 2, 252, 16};
+	Rect rcTurboText[2] = {{112, 104, 120, 112}, {120, 104, 128, 112}};
 	int depthy = 0;
 	if (GetNPCFlag(4280)) depthy = 3;
 
 	PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(16), PixelToScreenCoord(0), &rcStars, SURFACE_ID_NPC_SYM);
 	PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(16), PixelToScreenCoord(48 + depthy), &rcStairs, SURFACE_ID_TEXT_BOX);
 	PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(83 + 230), PixelToScreenCoord(5 + y), &rcPoints, SURFACE_ID_TEXT_BOX);
+	if (turboTextEnabled)
+		PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(0), PixelToScreenCoord(5 + y), &rcTurboText[gCounter % 2], SURFACE_ID_TEXT_BOX);
 
 	PutNumber4(16, 7, gMC.a, true);
 	PutNumber4(31, 48 + depthy, gMC.depth, true);
 	PutNumber9(116 + 230, 5, gMC.score, true);
+
 
 	Rect rcIcon;
 	int lol = 0;

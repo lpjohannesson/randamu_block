@@ -65,6 +65,7 @@ extern const Rect gRect_line;
 
 /// Contains the latest value given through <MIM
 extern unsigned int gMIMCurrentNum;
+extern bool turboTextEnabled;
 
 bool InitTextScript2(void);
 void EndTextScript(void);

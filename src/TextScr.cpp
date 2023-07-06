@@ -628,9 +628,11 @@ void PutTextScript(void)
 	}
 }
 
+bool turboTextEnabled;
+
 int TextScriptProc(void){
 	int result, count = 1;
-	if (gKey & gKeyTurboText)
+	if (turboTextEnabled)
 		count = 2;
 	for (int i = 0; i < count; i++){
 		result = ActualTextScriptProc();
@@ -1007,6 +1009,11 @@ int ActualTextScriptProc(void)
 					else if (IS_COMMAND('W','A','I'))
 					{
 						gTS.mode = 4;
+						int modifier = 1;
+						if (turboTextEnabled &&
+							 (!(g_GameFlags & GAME_FLAG_iS_GAME_GOING) ||
+								(g_GameFlags & GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW)))
+							modifier = 2;
 						gTS.wait_next = GetTextScriptNo(gTS.p_read + 4);
 						gTS.p_read += 8;
 						bExit = true;
@@ -1299,6 +1306,7 @@ int ActualTextScriptProc(void)
 					else if (IS_COMMAND('S','L','P'))
 					{
 						bExit = true;
+						g_GameFlags |= GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 
 						switch (StageSelectLoop(&z))
 						{
@@ -1310,7 +1318,7 @@ int ActualTextScriptProc(void)
 						}
 
 						JumpTextScript(z);
-						g_GameFlags &= ~(GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING);
+						g_GameFlags &= ~(GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING | GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW);
 					}
 					else if (IS_COMMAND('D','N','P'))
 					{

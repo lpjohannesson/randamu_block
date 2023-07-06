@@ -636,6 +636,7 @@ static int ModeAction(void)
 	grcGame.bottom = WINDOW_HEIGHT;
 #endif
 	g_GameFlags = GAME_FLAG_IS_CONTROL_ENABLED | GAME_FLAG_iS_GAME_GOING;
+	g_GameFlags &= ~GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 	InitMyChar();
 	InitNpChar();
 	InitBullet();
@@ -713,6 +714,11 @@ static int ModeAction(void)
 
 		if (gKeyTrg & KEY_F3){
 			ChangeMusic(MUS_MELTDOWN2);
+		}
+
+		if (gKeyTrg & gKeyTurboText){
+			PlaySoundObject(80);
+			turboTextEnabled = !turboTextEnabled;
 		}
 
 		// if (gKey & gKeyDash){
@@ -795,6 +801,7 @@ static int ModeAction(void)
 			if (gKeyTrg & gKeyItem)
 			{
 				BackupSurface(SURFACE_ID_SCREEN_GRAB, &grcGame);
+				g_GameFlags |= GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 
 				switch (CampLoop())
 				{
@@ -806,6 +813,7 @@ static int ModeAction(void)
 				}
 
 				gMC.cond &= ~1;
+				g_GameFlags &= ~GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 			}
 		}
 
