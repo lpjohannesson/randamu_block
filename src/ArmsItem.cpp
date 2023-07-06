@@ -138,7 +138,9 @@ std::vector<int> miracleWeaponryList = {
 	//hellsweep
 	17,
 	//gatling gun
-	4
+	4,
+	//frontier buster
+	1
 };
 
 bool AddArmsData(long code, long max_num, long exp, long num, long level)
