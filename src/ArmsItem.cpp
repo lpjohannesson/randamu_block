@@ -188,8 +188,10 @@ bool AddArmsData(long code, long max_num, long exp, long num, long level)
 		auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
 		if (weapon == code && !CheckPermitStage(36+it)){
 			AddPermitStage(it+36, 636 + it);
-			PlaySoundObject(27, SOUND_MODE_PLAY);
-			PlaySoundObject(22, SOUND_MODE_PLAY);
+			if (gMC.miracle > 0){
+				PlaySoundObject(27, SOUND_MODE_PLAY);
+				PlaySoundObject(22, SOUND_MODE_PLAY);
+			}
 		}
 	}
 
@@ -206,8 +208,10 @@ bool SubArmsData(long code)
 		auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
 		if (weapon == code && CheckPermitStage(36+it)){
 			SubPermitStage(it+36);
-			PlaySoundObject(72);
-			PlaySoundObject(101);
+			if (gMC.miracle > 0){
+				PlaySoundObject(72);
+				PlaySoundObject(101);
+			}
 		}
 	}
 
@@ -301,8 +305,10 @@ bool AddItemData(long code, int quantity, int level, int xp, int ammo)
 		auto it = std::distance(miracleList.begin(), std::find(miracleList.begin(), miracleList.end(), miracle));
 		if (CheckItem(miracle.first) && CheckItem(miracle.second) && !CheckPermitStage(it+1)){
 			AddPermitStage(it+1, 600 + it + 1);
-			PlaySoundObject(27, SOUND_MODE_PLAY);
-			PlaySoundObject(22, SOUND_MODE_PLAY);
+			if (gMC.miracle > 0){
+				PlaySoundObject(27);
+				PlaySoundObject(22);
+			}
 		}
 	}
 
@@ -311,8 +317,10 @@ bool AddItemData(long code, int quantity, int level, int xp, int ammo)
 			auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
 			if (weapon == code - 100 && !CheckPermitStage(36+it)){
 				AddPermitStage(it+36, 636 + it);
-				PlaySoundObject(27, SOUND_MODE_PLAY);
-				PlaySoundObject(22, SOUND_MODE_PLAY);
+				if (gMC.miracle > 0){
+					PlaySoundObject(27);
+					PlaySoundObject(22);
+				}
 			}
 		}
 	}
@@ -345,8 +353,10 @@ bool SubItemData(long code)
 			auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
 			if (weapon == code - 100 && CheckPermitStage(36+it)){
 				SubPermitStage(it+36);
-				PlaySoundObject(72);
-				PlaySoundObject(101);
+				if (gMC.miracle > 0){
+					PlaySoundObject(72);
+					PlaySoundObject(101);
+				}
 			}
 		}
 	}
@@ -355,8 +365,10 @@ bool SubItemData(long code)
 		auto it = std::distance(miracleList.begin(), std::find(miracleList.begin(), miracleList.end(), miracle));
 		if ((!CheckItem(miracle.first) || !CheckItem(miracle.second)) && CheckPermitStage(it+1)){
 			SubPermitStage(it+1);
-			PlaySoundObject(72);
-			PlaySoundObject(101);
+			if (gMC.miracle > 0){
+				PlaySoundObject(72);
+				PlaySoundObject(101);
+			}
 		}
 	}
 
