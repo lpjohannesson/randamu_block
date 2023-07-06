@@ -89,6 +89,10 @@ Becomes stronger, when hero is injured.<WAI9999<END
 <MSG<TUR- Gatling Gun -
 An automatic super quick-fire gun.
 Automatically recharges over time.<WAI9999<END
+#1022
+<MSG<TUR- Frontier Buster -
+An automatic eccentric energy gun from past
+that can occasionally target enemies.<WAI9999<END
 
 #1100
 <FLJ6902:1101<FLJ6903:1102<FLJ6904:1103<FLJ6905:1104<FLJ6906:1105

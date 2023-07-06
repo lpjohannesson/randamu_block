@@ -635,5 +635,13 @@ However, for this power to be
 sustainable,<NOD Gatling Gun has
 to consume more ammo with levels.<NOD<CLRCraft it?<NOD<YNJ0311<CLR<MM-<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT0021<AM-0004<IT-0104<AM+0021:0600Created =Gatling Gun=!<WAI0135<NOD<CLO<PS-0037<RMU<END
 
+#0638
+<PRI<MSG<GIT0022Frontier Buster brings back
+the predecessor to Snake from
+the beta builds.<NOD But the big power
+brings big consequences:<NOD this
+gun is inaccurate and differs
+with each level.<NOD<CLRCraft it?<NOD<YNJ0311<CLR<MM-<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT0022<AM-0001<IT-0101<AM+0022:0200Created =Frontier Buster=!<WAI0135<NOD<CLO<PS-0038<RMU<END
+
 #1000
 <END
