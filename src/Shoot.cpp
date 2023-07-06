@@ -1668,7 +1668,7 @@ void ShootBullet_FrontieBuster(int level)
 			shootingSound = 35;
 			shootingCaret = 12;
 		} else if (level == 4){
-			shootingSound = 103;
+			shootingSound = 64;
 			shootingCaret = 2;
 		}
 
