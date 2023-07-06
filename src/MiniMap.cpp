@@ -32,8 +32,7 @@ std::map<int, Rect> mapPixels = {
 	{317, {242, 33, 244, 35}},
 	{36, {242, 33, 244, 35}},
 	{284, {242, 33, 244, 35}},
-	{44, {242, 33, 244, 35}},
-	{100, {242, 35, 244, 37}}
+	{44, {242, 33, 244, 35}}
 };
 
 void WriteMiniMapLine(int line)
@@ -53,7 +52,7 @@ void WriteMiniMapLine(int line)
 		{242, 33, 244, 35}, //door or boss
 		{240, 35, 242, 37}, //miracle
 		{242, 35, 244, 37}, //pc
-		{244, 35, 246, 37} //
+		{242, 35, 244, 37} //
 	};
 
 	for (x = 0; x < gMap.width; ++x)
@@ -66,8 +65,12 @@ void WriteMiniMapLine(int line)
 		if (a == 0){
 			if (gWaterY / 0x2000 < line)
 				Surface2Surface(x*2, line*2, &rcLevel[1], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX);
-			else
-				Surface2Surface(x*2, line*2, &rcLevel[0], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX);
+			else {
+				if (e == 100)
+					Surface2Surface(x*2, line*2, &rcLevel[11], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX);
+				else
+					Surface2Surface(x*2, line*2, &rcLevel[0], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX);
+			}
 		}
 		else if (a == 68 ||
 			a == 1 ||
