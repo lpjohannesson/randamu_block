@@ -309,7 +309,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Frontie-buster lv2
 	{1, 3, 120, 32, 4, 4, 2, 2, {8, 8, 8, 8}, 0.5, 0.5},
 	// Frontie-buster lv3
-	{1, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1}
+	{1, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+	// Frontie-buster lv4
+	{1, 15, 40, 32, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1}
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -4786,6 +4788,61 @@ void ActBullet_HomingFrontieBust(BULLET *bul)
 						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
 }
 
+void ActBullet_HomingFrontieBust2(BULLET *bul)
+{
+	if (bul->npc == NULL){
+		if (++bul->count1 > bul->life_count)
+		{
+			bul->cond = 0;
+			SetCaret(bul->x, bul->y, 3, 0);
+			return;
+		}
+	}
+
+	bul->npc = GetClosest(bul->x, bul->y, 55_pix);
+	bul->local_iframes = 15;
+	int inaccuracy = 0x260;
+
+	if (bul->act_no == 0){
+		bul->act_no = 1;
+
+		// Set speed
+		switch (bul->direct)
+		{
+		case 0:
+			bul->xm = -0x1000;
+			bul->ym = Random(-inaccuracy, inaccuracy);
+			break;
+		case 1:
+			bul->ym = -0x1000;
+			bul->xm = Random(-inaccuracy, inaccuracy);
+			break;
+		case 2:
+			bul->xm = 0x1000;
+			bul->ym = Random(-inaccuracy, inaccuracy);
+			break;
+		case 3:
+			bul->ym = 0x1000;
+			bul->xm = Random(-inaccuracy, inaccuracy);
+			break;
+		}
+	} else {
+		if (bul->npc != NULL){
+			unsigned char deg = GetArktan(bul->x - bul->npc->x, bul->y - bul->npc->y);
+			bul->ym = GetSin(deg) * 8;
+			bul->xm = GetCos(deg) * 8;
+			bul->bbits = 4;
+		} else {
+			bul->bbits = 32;
+		}
+	}
+
+	bul->x += bul->xm;
+	bul->y += bul->ym;
+
+	SetCaret(bul->x, bul->y, 2, 2);
+}
+
 void ActBullet_Flame(BULLET *bul)
 {
 	Rect rc_h_lv1[3] = {
@@ -5461,6 +5518,10 @@ void ActBullet(void)
 
 					case 90:
 						ActBullet_FrontieBust1(&gBul[i], 3);
+						break;
+
+					case 91:
+						ActBullet_HomingFrontieBust2(&gBul[i]);
 						break;
 				}
 			}

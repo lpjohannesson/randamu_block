@@ -1570,18 +1570,6 @@ void ShootBullet_FrontieBuster(int level)
 	int shootingSound = 32;
 	static bool lol;
 
-	if (gKeyTrg & gKeyAbility){
-		++gArmsData[gSelectedArms].level;
-		if (gArmsData[gSelectedArms].level > 3){
-			gArmsData[gSelectedArms].level = 1;
-			CutNPCFlag(6906);
-			SetNPCFlag(6901);
-		} else {
-			CutNPCFlag(6900 + gArmsData[gSelectedArms].level - 1);
-			SetNPCFlag(6900 + gArmsData[gSelectedArms].level);
-		}
-	}
-
 	switch (level)
 	{
 		case 1:
@@ -1601,7 +1589,7 @@ void ShootBullet_FrontieBuster(int level)
 			break;
 
 		case 4:
-			bul_no = 69;
+			bul_no = 91;
 			break;
 	}
 
@@ -1626,6 +1614,9 @@ void ShootBullet_FrontieBuster(int level)
 			break;
 		case 3:
 			cooldown = 3;
+			break;
+		case 4:
+			cooldown = std::max(15, 40 - CountBulletNum(bul_no)*5);
 			break;
 	}
 
@@ -1676,6 +1667,9 @@ void ShootBullet_FrontieBuster(int level)
 		} else if (level == 2){
 			shootingSound = 35;
 			shootingCaret = 12;
+		} else if (level == 4){
+			shootingSound = 103;
+			shootingCaret = 2;
 		}
 
 		int i = 1;
@@ -1731,22 +1725,10 @@ void ShootBullet_FrontieBuster(int level)
 	} else
 	{
 		++wait;
-
-		if (gMC.equip & EQUIP_TURBOCHARGE)
+		if (wait > cooldown / 3)
 		{
-			if (wait > 1)
-			{
-				wait = 0;
-				ChargeArmsEnergy(1);
-			}
-		}
-		else
-		{
-			if (wait > 3)
-			{
-				wait = 0;
-				ChargeArmsEnergy(1);
-			}
+			wait = 0;
+			ChargeArmsEnergy(1);
 		}
 	}
 }
