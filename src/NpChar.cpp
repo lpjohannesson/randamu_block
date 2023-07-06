@@ -102,8 +102,7 @@ void InitNpChar(void)
 	}
 	
 	for (auto storage : static_iframes){
-		for (int i = 0; i < 79; i++)
-			storage.second[i] = 0;
+		storage.second.clear();
 	}
 
 	for (auto storage : local_iframes){

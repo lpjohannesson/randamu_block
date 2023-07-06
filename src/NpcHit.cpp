@@ -842,8 +842,10 @@ void HitNpCharBullet(void)
 			if (!(gBul[b].cond & 0x80))
 				continue;
 
-			if (gBul[b].iframes > 0 && static_iframes[n][gBul[b].code_bullet] != 0)
-				continue;
+			if (gBul[b].iframes > 0 && static_iframes[n].contains(gBul[b].code_bullet)){
+				if (static_iframes[n][gBul[b].code_bullet] != 0)
+					continue;
+			}
 			if (gBul[b].local_iframes > 0 && local_iframes[n].contains(b)){
 				if (local_iframes[n][b] != 0)
 					continue;

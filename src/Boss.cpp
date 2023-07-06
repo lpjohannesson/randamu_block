@@ -45,8 +45,7 @@ void InitBossChar(int code)
 	}
 	
 	for (auto storage : boss_static_iframes){
-		for (int i = 0; i < 79; i++)
-			storage.second[i] = 0;
+		storage.second.clear();
 	}
 
 	for (auto storage : boss_local_iframes){
@@ -119,8 +118,10 @@ void HitBossBullet(void)
 			if (!(gBul[bul].cond & 0x80))
 				continue;
 
-			if (gBul[bul].iframes > 0 && boss_static_iframes[bos][gBul[bul].code_bullet] != 0)
-				continue;
+			if (gBul[bul].iframes > 0 && boss_static_iframes[bos].contains(gBul[bul].code_bullet)){
+				if (boss_static_iframes[bos][gBul[bul].code_bullet] != 0)
+					continue;
+			}
 
 			if (gBul[bul].local_iframes > 0 && boss_local_iframes[bos].contains(bul)){
 				if (local_iframes[bos][bul] != 0)
