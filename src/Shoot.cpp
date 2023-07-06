@@ -1673,9 +1673,6 @@ void ShootBullet_FrontieBuster(int level)
 		}
 
 		int i = 1;
-		if (Random(0, 2) == 0 && gMC.equip & EQUIP_OVERCHARGE){
-			i = 2;
-		}
 
 		if (gMC.up)
 		{
