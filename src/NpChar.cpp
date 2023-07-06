@@ -966,6 +966,17 @@ bool IsNpCharCode(int code)
 	return false;
 }
 
+int CheckForIDOfNpChar(NPCHAR* npc)
+{
+	int i;
+
+	for (i = 0; i < NPC_MAX; ++i)
+		if (&gNPC[i] == npc)
+			return i;
+
+	return -1;
+}
+
 int CountNpCharCode(int code)
 {
 	int i, l;

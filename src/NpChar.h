@@ -149,6 +149,7 @@ void GetNpCharPosition(int *x, int *y, int i);
 int GetNpCharHere(int x, int y);
 NPCHAR* FindNpCharHere(int x, int y, int xl = 4_pix, int yl = 4_pix);
 bool IsNpCharCode(int code);
+int CheckForIDOfNpChar(NPCHAR* npc);
 bool GetNpCharAlive(int code_event);
 int CountAliveNpChar(void);
 int CountNpCharCode(int code);
