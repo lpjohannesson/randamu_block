@@ -43,7 +43,7 @@ NPCHAR* GetClosest(int x, int y, int maxDistance){
     int npc = -1;
 	float actualMaxDist = maxDistance*maxDistance + maxDistance*maxDistance;
     for (int i = 0; i < NPC_MAX; i++){
-        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE && gNPC[i].code_char != 100))) continue;
+        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE && gNPC[i].code_char != 100 && std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[i].code_char) == etherealEntities.end()))) continue;
         float distx = gNPC[i].x - x;
         float disty = gNPC[i].y - y;
 		float dist = (distx*distx + disty*disty);
