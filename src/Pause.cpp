@@ -3099,7 +3099,14 @@ static int Callback_Reset2(OptionsMenu *parent_menu, size_t this_option, Callbac
 	if (action != ACTION_OK)
 		return CALLBACK_CONTINUE;
 
-	int return_value = PromptAreYouSure3();
+	int return_value;
+
+	if (IsProfile() && !ChallengeEnabled("timer")){
+		return_value = PromptAreYouSure3();
+	} else {
+		return_value = 1;
+		PlaySoundObject(18, SOUND_MODE_PLAY);
+	}
 
 	switch (return_value)
 	{
