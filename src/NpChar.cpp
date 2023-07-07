@@ -7,6 +7,7 @@
 #include <string>
 
 #include "ArmsItem.h"
+#include "Boss.h"
 #include "Bullet.h"
 #include "Caret.h"
 #include "Draw.h"
@@ -1020,6 +1021,13 @@ NPCHAR* FindNpCharHere(int x, int y, int xl, int yl)
 	for (i = 0; i < NPC_MAX; ++i)
 		if ((gNPC[i].cond & 0x80) && IntersectDamageCheck(gNPC[i], x, y, xl, yl))
 			return &gNPC[i];
+
+	for (i = 0; i < BOSS_MAX; ++i)
+		if ((gBoss[i].cond & 0x80) && IntersectDamageCheck(gBoss[i], x, y, xl, yl)){
+			if (gBoss[i].cond & 0x10)
+				i = 0;
+			return &gBoss[i];
+		}
 
 	return NULL;
 }
