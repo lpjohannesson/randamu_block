@@ -137,6 +137,18 @@ bool IsMaxExpMyChar(void)
 	return false;
 }
 
+int RegenDelayScaling(){
+	return 60;
+}
+
+int RegenerationDelay(){
+	return RegenDelayScaling()*3 + gMC.regenMaxCount*RegenDelayScaling();
+}
+
+int RegenerationCap(){
+	return std::max(6, gMC.max_life / 4);
+}
+
 void DamageMyChar(int damage)
 {
 	if (ChallengeEnabled("debug"))
@@ -231,7 +243,8 @@ void DamageMyChar(int damage)
 	}
 	gMC.cond &= ~1;
 	gMC.shock = 128;
-	gMC.regenCount = 0;
+	gMC.regenCount = RegenDelayScaling();
+	gMC.regenMaxCount = -1;
 	if (GetNPCFlag(4280) || GetNPCFlag(7999))
 		InitiateCooldown(gCooldowns, DUCK_TIMER_ID);
 	gMC.star = 0;

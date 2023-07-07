@@ -21,6 +21,8 @@ void AddScore(int x);
 void AddExpMyChar(int x);
 void ZeroExpMyChar(void);
 bool IsMaxExpMyChar(void);
+int RegenerationCap();
+int RegenerationDelay();
 void DamageMyChar(int damage);
 void ZeroArmsEnergy_All(void);
 void AddBulletMyChar(int no, int val);
