@@ -44,7 +44,7 @@ bool GetCompileVersion(int *v1, int *v2, int *v3, int *v4)
 	*v1 = 1;
 	*v2 = 42;
 	*v3 = 3;
-	*v4 = 2;
+	*v4 = 3;
 	return true;
 }
 
@@ -64,11 +64,11 @@ bool RemoveFromArray(int* array, int value, size_t array_size){
 }
 
 std::string GetVersionName(){
-	return "1.42.3, beta 3";
+	return "Bossing Issues Away";
 }
 
 bool IsBeta(){
-	return true;
+	return false;
 }
 
 void DeleteSave(void)
