@@ -1522,7 +1522,7 @@ void ActMyChar_Normal(bool bKey)
 	if (gMC.flag & 0x400){
 		int damage = 5;
 		if (gMC.max_life > 10 && !(gMC.equip & EQUIP_ALIEN_MEDAL)){
-			damage += gMC.max_life / 6;
+			damage += gMC.max_life / 9;
 		}
 		gMC.deathReason = DeathReason::SPIKE;
 		if (ChallengeEnabled("spike_kill")){
