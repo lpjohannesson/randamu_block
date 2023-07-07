@@ -197,6 +197,7 @@ int StageSelectLoop(int *p_event)
 	LoadTextScript2("StageSelect.tsc");
 	gStageSelectTitleY = (WINDOW_HEIGHT / 2) - 66;
 	StartTextScript(initialSelectionIndex + 1000);
+	g_GameFlags |= GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 
 	for (;;)
 	{
@@ -256,6 +257,7 @@ int StageSelectLoop(int *p_event)
 			StopTextScript();
 			LoadTextScript_Stage(old_script_path.c_str());
 			*p_event = 0;
+			g_GameFlags &= ~GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 			return enum_ESCRETURN_continue;
 		}
 
@@ -268,5 +270,6 @@ int StageSelectLoop(int *p_event)
 
 	LoadTextScript_Stage(old_script_path.c_str());
 	*p_event = gPermitStage.empty() ? 0 : gPermitStage[gSelectedStage].event;
+	g_GameFlags &= ~GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 	return enum_ESCRETURN_continue;
 }

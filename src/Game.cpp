@@ -801,7 +801,6 @@ static int ModeAction(void)
 			if (gKeyTrg & gKeyItem)
 			{
 				BackupSurface(SURFACE_ID_SCREEN_GRAB, &grcGame);
-				g_GameFlags |= GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 
 				switch (CampLoop())
 				{
@@ -813,7 +812,6 @@ static int ModeAction(void)
 				}
 
 				gMC.cond &= ~1;
-				g_GameFlags &= ~GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 			}
 		}
 

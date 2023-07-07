@@ -914,6 +914,7 @@ int CampLoop(void)
 	// Put the cursor on the first weapon
 	gCampActive = false;
 	gSelectedItem = 0;
+	g_GameFlags |= GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 
 	// Compute current amount of weapons
 	int arms_num = 0;
@@ -957,6 +958,7 @@ int CampLoop(void)
 		if (gKeyTrg & KEY_F2){
 			gKeyTrg = 0;
 			DeleteSave();
+			g_GameFlags &= ~GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 			return 2;
 		}
 
@@ -1025,6 +1027,7 @@ int CampLoop(void)
 	// Resume original script
 	LoadTextScript_Stage(old_script_path.c_str());
 	gArmsEnergyX = 32; // Displays weapon rotation animation in case the weapon was changed
+	g_GameFlags &= ~GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW;
 	return enum_ESCRETURN_continue;	// Go to game
 }
 
