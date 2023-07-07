@@ -2316,7 +2316,7 @@ void ShootBullet_Nemesis(int level)
 
 	if (gKeyTrg & gKeyShot)
 	{
-		if (!UseArmsEnergy(1))
+		if (!UseArmsEnergy(gBL.flag ? 0 : 1))
 		{
 			PlaySoundObject(37, SOUND_MODE_PLAY);
 		}
