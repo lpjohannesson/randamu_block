@@ -1087,7 +1087,7 @@ void HitMyCharNpChar(void)
 
 		// Interaction
 		if (!(g_GameFlags & GAME_FLAG_IS_GAMEPLAY_NOT_POSSIBLE) && hit != 0 && (gMC.cond & 1 || ((ChallengeEnabled("debug") || gMC.flag & 0x100) && 
-			((gKeyTrg & gKeyDown) || (gKeyTrg & gKeyTurboText)))) && gNPC[i].bits & NPC_INTERACTABLE)
+			((gKeyTrg & gKeyDown)))) && gNPC[i].bits & NPC_INTERACTABLE)
 		{
 			lastInteractedEntityID = i;
 			if (gNPC[i].code_char == 231){
@@ -1110,15 +1110,27 @@ void HitMyCharNpChar(void)
 			if (gNPC[i].code_char == 15 && FullInventory()){
 				StartTextScript(199);
 			} else if (gNPC[i].code_char == 15) {
-				AddScore(1000);
-				StartTextScript(gNPC[i].code_event);
+				if (gBL.flag){
+					SetCaret((gMC.x + gNPC[i].x) / 2, (gMC.y + gNPC[i].y) / 2, 2, 2);
+					PlaySoundObject(31, SOUND_MODE_PLAY);
+					gMC.cond &= ~1;
+				} else {
+					AddScore(1000);
+					StartTextScript(gNPC[i].code_event);
+				}
 			}
 			if (gNPC[i].code_char != 15 && gNPC[i].code_char != 17)
 				StartTextScript(gNPC[i].code_event);
 			if (gNPC[i].code_char == 32 || gNPC[i].code_char == 253) {
-				SetNPCFlag(gNPC[i].code_flag);
-				gNPC[i].cond = 0;
-				AddScore(1000);
+				if (gBL.flag){
+					SetCaret((gMC.x + gNPC[i].x) / 2, (gMC.y + gNPC[i].y) / 2, 2, 2);
+					PlaySoundObject(31, SOUND_MODE_PLAY);
+					gMC.cond &= ~1;
+				} else {
+					SetNPCFlag(gNPC[i].code_flag);
+					gNPC[i].cond = 0;
+					AddScore(1000);
+				}
 			}
 			
 			gMC.xm = 0;
