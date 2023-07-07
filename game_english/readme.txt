@@ -22,6 +22,7 @@ Each resource override folder should contain info.json (with name and descriptio
 - Map System is available from start, press W.
 - You can swim by pressing Z underwater.
 - Certain items require Ability key to be binded, by default it's C.
+- You can speed up TSC scripts with pressing Turbo Text button, by default it's B. 
 - Use Ability key in inventory to trash items into the void.
 - Use Polar Star to build blocks.
 - Use Nemesis to break blocks.
@@ -116,6 +117,41 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, Taiki, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.42.3 (Bossing Issues Away) (July 8th 2023):
+- Implemented turbo text button toggle: it makes TSC parse 2x faster when active (<WAI stays at normal speed if the speed would break the script), it is B by default.
+- Implemented Miracle Matter upgrade for Snake: Frontier Buster.
+- Bosses inside boss arena are now protected from damage if player is not inside arena.
+- Entering level boss fight regenerates its boss arena.
+- Reduced player's Nemesis's damage from 4/4 to 3/3, but it no longer consumes ammo during boss fights.
+- Nerfed Iron Bond: now slows down with more time the player doesn't take damage, until capping out; this slowdown is reset with taking damage.
+- Fixed incorrect bounds for crow Reinforced's teleportation (issue #2).
+- Sheeps no longer jump in the air (issue #5).
+- Fixed main tiling on random size maps setting (issue #8).
+- Fixed unnecessary <NOD before equipping High-Octane Tank (issue #16).
+- Procgen depth values no longer show during credits (issue #15).
+- Pause menu cannot be opened during credits anymore (issue #14).
+- Removed Y/N confirm sound on selecting characters from gameplay options (issue #11).
+- Chaos Key and Discordian Visor can no longer be used during level boss fights.
+- Refactored damage dealing into new function.
+- Dashes, Little Man, Discordian Visor, Super-Booster, Lightnings and Puppies now use new damage function instead of spawning special bullets.
+- Tweaked Little Man's damage: now does 3 damage every 25 frames, instead of 1 damage every 10 frames and no longer damages sheeps and laser gaudi's lasers.
+- Made the rest of weapon data be handled by weapon item mechanic (issues #1 and #10).
+- If beta toggle inside code is enabled, the update part of title screen goes to issue tracker and the window title says "(beta)".
+- Fixed Fragile gimmick's falling blocks not damaging players from the left (issue #17).
+- Disallowed any kind of breaking blocks when boss fight is on, not just Nemesis's.
+- Added additional checks for water spreading to fix incorrect visuals (issue #19).
+- Refactored timestop effect to have its effects be regulated by its own tag (issue #6).
+- Allies, Whimsical Star and platforms are no longer affected by timestop (issue #6).
+- Reduced max amount of NPCs from 8192 to 4096.
+- Removed leftover Mimiga Mask calls for sprite change (issue #12).
+- Corrected the placement of allies and player in ending cutscene (issue #12).
+- Allies now attempt to follow Quote NPCs when player is hidden (issue #12).
+- Certain projectiles no longer target ethereal entities.
+- Miracle sound cue no longer plays without miracle matter, to prevent some confusion.
+- Item pickups now render above platforms (issue #21).
+- Quick game start on title screen no longer asks player about save reset if there is no save.
+- Stars can no longer be picked up and items can no longer be picked if level boss is alive (issue #22).
+- Slightly nerfed scaling of spike damage from 16.6% of max life to 11.1% of max life.
 
 1.42.2 (June 12th 2023):
 - Fixed the crash caused by new PRNG algorithm crashing on NPC generation entries with same minimum NPCs and maximum NPCs.
