@@ -7,6 +7,7 @@
 #include "ArmsItem.h"
 #include "Back.h"
 #include "Boss.h"
+#include "BossLife.h"
 #include "Bullet.h"
 #include "Caret.h"
 #include "Game.h"
@@ -936,17 +937,25 @@ void HitMyCharNpChar(void)
 
 		if (hit != 0 && gNPC[i].code_char == 86)
 		{
-			PlaySoundObject(42, SOUND_MODE_PLAY);
-			AddBulletMyChar(gNPC[i].code_event, gNPC[i].exp);
-			SetCaret(gNPC[i].x, gNPC[i].y, 3, 0);
-			SetCaret(gNPC[i].x, gNPC[i].y, 18, 0);
-			if (gMC.a == 10){
-				StartTextScript(305);
+			if (gBL.flag == true){
+				if (static_iframes[i][0] == 0){
+					SetCaret((gMC.x + gNPC[i].x) / 2, (gMC.y + gNPC[i].y) / 2, 2, 2);
+					PlaySoundObject(31, SOUND_MODE_PLAY);
+					static_iframes[i][0] = 20;
+				}
+			} else {
+				PlaySoundObject(42, SOUND_MODE_PLAY);
+				AddBulletMyChar(gNPC[i].code_event, gNPC[i].exp);
+				SetCaret(gNPC[i].x, gNPC[i].y, 3, 0);
+				SetCaret(gNPC[i].x, gNPC[i].y, 18, 0);
+				if (gMC.a == 10){
+					StartTextScript(305);
+				}
+				if (gMC.a == 20){
+					StartTextScript(303);
+				}
+					gNPC[i].cond = 0;
 			}
-			if (gMC.a == 20){
-				StartTextScript(303);
-			}
-			gNPC[i].cond = 0;
 		}
 
 		if (hit != 0 && gNPC[i].code_char == 87)

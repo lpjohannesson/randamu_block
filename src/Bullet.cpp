@@ -4602,15 +4602,23 @@ void ActBullet_HomingSword(BULLET *bul)
 
 					if (gNPC[i].code_char == 86)
 					{
-						PlaySoundObject(42, SOUND_MODE_PLAY);
-						AddBulletMyChar(gNPC[i].code_event, gNPC[i].exp);
-						SetCaret(gNPC[i].x, gNPC[i].y, 3, 0);
-						SetCaret(gNPC[i].x, gNPC[i].y, 18, 0);
-						if (gMC.a == 20)
-						{
-							StartTextScript(303);
+						if (gBL.flag == true){
+							if (static_iframes[i][0] == 0){
+								SetCaret((bul->x + gNPC[i].x) / 2, (bul->y + gNPC[i].y) / 2, 2, 2);
+								PlaySoundObject(31, SOUND_MODE_PLAY);
+								static_iframes[i][0] = 20;
+							}
+						} else {
+							PlaySoundObject(42, SOUND_MODE_PLAY);
+							AddBulletMyChar(gNPC[i].code_event, gNPC[i].exp);
+							SetCaret(gNPC[i].x, gNPC[i].y, 3, 0);
+							SetCaret(gNPC[i].x, gNPC[i].y, 18, 0);
+							if (gMC.a == 20)
+							{
+								StartTextScript(303);
+							}
+							gNPC[i].cond = 0;
 						}
-						gNPC[i].cond = 0;
 					}
 
 					if (gNPC[i].code_char == 87)
