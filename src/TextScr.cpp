@@ -1013,8 +1013,7 @@ int ActualTextScriptProc(void)
 						if (turboTextEnabled){
 							if ((g_GameFlags & GAME_FLAG_ARE_WE_IN_DIFFERENT_WINDOW))
 								modifier = 1;
-							else if ((g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED) &&
-										(g_GameFlags & GAME_FLAG_iS_GAME_GOING))
+							else if ((g_GameFlags & GAME_FLAG_iS_GAME_GOING))
 								modifier = 2;
 						}
 						gTS.wait_next = GetTextScriptNo(gTS.p_read + 4)*modifier;
