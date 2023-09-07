@@ -862,7 +862,7 @@ void ShootBullet_Machinegun1(int level)
 	int bul_no;
 	static int wait;
 
-	if (CountArmsBullet(4) > (gMC.equip & EQUIP_OVERCHARGE ? 16 : 8))
+	if (CountArmsBullet(4) > (gMC.equip & EQUIP_OVERCHARGE ? 8 : 4))
 		return;
 
 	switch (level)
@@ -885,11 +885,11 @@ void ShootBullet_Machinegun1(int level)
 	}
 
 	if (!(gKey & gKeyShot))
-		gMC.rensha = gMC.equip & EQUIP_OVERCHARGE ? 3 : 4;
+		gMC.rensha = gMC.equip & EQUIP_OVERCHARGE ? 6 : 8;
 
 	if (gKey & gKeyShot)
 	{
-		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 3 : 4))
+		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 6 : 8))
 			return;
 
 		gMC.rensha = 0;
@@ -1007,7 +1007,7 @@ void ShootBullet_Machinegun1(int level)
 
 		if (gMC.equip & EQUIP_TURBOCHARGE)
 		{
-			if (wait > 1)
+			if (wait > 2)
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
@@ -1015,7 +1015,7 @@ void ShootBullet_Machinegun1(int level)
 		}
 		else
 		{
-			if (wait > 3)
+			if (wait > 6)
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);

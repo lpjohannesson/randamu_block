@@ -181,9 +181,9 @@ BULLET_TABLE gBulTbl[] = {
 	{3, 2, 120, 8, 4, 4, 4, 2, {8, 8, 8, 8}, 0.9, 1},
 	{4, 2, 120, 8, 4, 4, 4, 2, {8, 8, 8, 8}, 0.9, 1},
 	// Machine Gun
-	{2, 1, 22, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 0.14, 0.14},
-	{3, 1, 22, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 0.18, 0.18},
-	{4, 1, 22, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
+	{3, 3, 22, 32, 4, 2, 2, 2, {8, 8, 8, 8}, 0.14, 0.14},
+	{5, 3, 22, 32, 4, 2, 2, 2, {8, 8, 8, 8}, 0.18, 0.18},
+	{7, 3, 22, 32, 4, 2, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
 	// Missile Launcher
 	{30, 127, 50, 40, 2, 2, 2, 2, {8, 8, 8, 8}, 1, 1},
 	{1, 127, 70, 40, 10, 10, 4, 4, {8, 8, 8, 8}, 1, 1},
@@ -269,7 +269,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Fireball lv4
 	{5, 2, 120, 8, 4, 4, 4, 2, {8, 8, 8, 8}, 0.92, 0.95},
 	// Machine gun lv4
-	{6, 2, 30, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
+	{9, 6, 30, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
 	// Snake lv4
 	{5, 4, 19, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 1, 1},
 	// Bubbler lv4
@@ -1612,12 +1612,14 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 		{112, 32, 128, 48},
 	};
 
+	bul->local_iframes = 10;
+
 	if (GetNPCFlag(4200) || GetNPCFlag(7999)){
 		switch (level){
-			case 1: bul->damage = Random(2, 3); break;
-			case 2: bul->damage = Random(3, 4); break;
-			case 3: bul->damage = Random(4, 5); break;
-			case 4: bul->damage = Random(6, 7); break;
+			case 1: bul->damage = Random(3, 4); break;
+			case 2: bul->damage = Random(5, 6); break;
+			case 3: bul->damage = Random(7, 8); break;
+			case 4: bul->damage = Random(9, 10); break;
 		}
 	}
 
@@ -1633,24 +1635,24 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 		switch (level)
 		{
 			case 1:
-				move = 0x1000;
+				move = 0x2000;
 				break;
 			case 2:
-				move = 0x1000;
+				move = 0x2000;
 				break;
 			case 3:
-				move = 0x1000;
+				move = 0x2000;
 				break;
 			case 4:
-				move = 0x1200;
+				move = 0x2400;
 				break;
 		}
 		if (gMC.equip & EQUIP_OVERCHARGE){
 			move *= 1.2f;
 		}
-		secondMove = 0xAA;
+		secondMove = 0xFF;
 		if (gMC.equip & EQUIP_OVERCHARGE)
-			secondMove = 260;
+			secondMove = 390;
 		if (gArmsData[gSelectedArms].code == 21)
 			secondMove *= 4;
 
@@ -1661,18 +1663,26 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 			case 0:
 				bul->xm = -move;
 				bul->ym = Random(-secondMove, secondMove);
+				bul->enemyXL = 4_pix;
+				bul->enemyYL = 2_pix;
 				break;
 			case 1:
 				bul->ym = -move;
 				bul->xm = Random(-secondMove, secondMove);
+				bul->enemyYL = 4_pix;
+				bul->enemyXL = 2_pix;
 				break;
 			case 2:
 				bul->xm = move;
 				bul->ym = Random(-secondMove, secondMove);
+				bul->enemyXL = 4_pix;
+				bul->enemyYL = 2_pix;
 				break;
 			case 3:
 				bul->ym = move;
 				bul->xm = Random(-secondMove, secondMove);
+				bul->enemyYL = 4_pix;
+				bul->enemyXL = 2_pix;
 				break;
 		}
 	}

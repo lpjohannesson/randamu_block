@@ -644,36 +644,28 @@ void ActNpc127(NPCHAR *npc)
 // Machine gun trail (Level 3)
 void ActNpc128(NPCHAR *npc)
 {
-	Rect rcLeft[5] = {
+	Rect rcLeft[3] = {
 		{0, 0, 0, 0},
-		{176, 16, 184, 32},
-		{184, 16, 192, 32},
-		{192, 16, 200, 32},
-		{200, 16, 208, 32},
+		{176, 16, 192, 32},
+		{192, 16, 208, 32},
 	};
 
-	Rect rcRight[5] = {
+	Rect rcRight[3] = {
 		{0, 0, 0, 0},
-		{232, 16, 240, 32},
-		{224, 16, 232, 32},
-		{216, 16, 224, 32},
-		{208, 16, 216, 32},
+		{224, 16, 240, 32},
+		{208, 16, 224, 32},
 	};
 
-	Rect rcUp[5] = {
+	Rect rcUp[3] = {
 		{0, 0, 0, 0},
-		{176, 32, 192, 40},
-		{176, 40, 192, 48},
-		{192, 32, 208, 40},
-		{192, 40, 208, 48},
+		{176, 32, 192, 48},
+		{192, 32, 192, 48},
 	};
 
-	Rect rcDown[5] = {
+	Rect rcDown[3] = {
 		{0, 0, 0, 0},
-		{208, 32, 224, 40},
-		{208, 40, 224, 48},
-		{224, 32, 232, 40},
-		{224, 40, 232, 48},
+		{208, 32, 224, 48},
+		{224, 32, 240, 48},
 	};
 
 	if (npc->act_no == 0)
@@ -682,17 +674,17 @@ void ActNpc128(NPCHAR *npc)
 
 		if (npc->direct == 0 || npc->direct == 2)
 		{
-			npc->view.front = 4 * 0x200;
+			npc->view.front = 8 * 0x200;
 			npc->view.top = 8 * 0x200;
 		}
 		else
 		{
-			npc->view.front = 8 * 0x200;
-			npc->view.top = 4 * 0x200;
+			npc->view.front = 16 * 0x200;
+			npc->view.top = 8 * 0x200;
 		}
 	}
 
-	if (++npc->ani_no > 4)
+	if (++npc->ani_no > 2)
 	{
 		npc->cond = 0;
 	#ifdef FIX_BUGS
