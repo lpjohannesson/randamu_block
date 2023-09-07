@@ -905,7 +905,7 @@ unsigned long GenerateSeed(){
 	}
 	else
 	{
-		seed = Random(0, std::numeric_limits<unsigned int>::max()-1);
+		seed = Random(0, std::numeric_limits<unsigned int>::max()-2);
 		playerHighScore = 0;
 		LoadScore(0);
 		if (aprilFools)
