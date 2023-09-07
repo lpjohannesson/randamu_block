@@ -696,6 +696,17 @@ void ActNpChar(void)
 					--gNPC[i].shock;
 				}
 			}
+		} else {
+			if (static_iframes.contains(i)){
+				for (auto& iframes: static_iframes[i]){
+					iframes.second = 0;
+				}
+			}
+			if (local_iframes.contains(i)){
+				for (auto& iframes: local_iframes[i]){
+					iframes.second = 0;
+				}
+			}
 		}
 	}
 	for (auto& npc: static_iframes){
