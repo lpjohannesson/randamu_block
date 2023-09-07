@@ -169,9 +169,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Null
 	{0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0}, 1, 1},
 	// Snake
-	{3, 1, 20, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 1, 1},
-	{5, 1, 21, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 1, 1},
-	{7, 1, 26, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 1, 1},
+	{4, 1, 9, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 1, 1},
+	{5, 2, 12, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 1, 1},
+	{5, 3, 15, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 1, 1},
 	// Polar Star
 	{6, 2, 11, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.6, 0.6},
 	{2, 1, 4, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 1, 1},
@@ -271,7 +271,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Machine gun lv4
 	{6, 2, 30, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
 	// Snake lv4
-	{10, 1, 38, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 1, 1},
+	{5, 4, 19, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 1, 1},
 	// Bubbler lv4
 	{1, 100, 20, 8, 4, 4, 4, 4, {4, 4, 4, 4}, 0.25, 0.25},
 	// Blade lv4
@@ -419,16 +419,16 @@ void ActBullet_Frontia1(BULLET *bul)
 		switch (bul->direct)
 		{
 			case 0:
-				bul->xm = -0x600;
+				bul->xm = -0xF00;
 				break;
 			case 1:
-				bul->ym = -0x600;
+				bul->ym = -0xF00;
 				break;
 			case 2:
-				bul->xm = 0x600;
+				bul->xm = 0xF00;
 				break;
 			case 3:
-				bul->ym = 0x600;
+				bul->ym = 0xF00;
 				break;
 		}
 	}
@@ -715,6 +715,8 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 {
 	static unsigned int inc;
 
+	bul->local_iframes = 15;
+
 	if (++bul->count1 > bul->life_count)
 	{
 		bul->cond = 0;
@@ -730,16 +732,16 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 		switch (bul->direct)
 		{
 			case 0:
-				bul->xm = -0x200;
+				bul->xm = -0x500;
 				break;
 			case 1:
-				bul->ym = -0x200;
+				bul->ym = -0x500;
 				break;
 			case 2:
-				bul->xm = 0x200;
+				bul->xm = 0x500;
 				break;
 			case 3:
-				bul->ym = 0x200;
+				bul->ym = 0x500;
 				break;
 		}
 
@@ -750,18 +752,18 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 			case 0:
 			case 2:
 				if (inc % 2)
-					bul->ym = 0x400;
+					bul->ym = 0x600;
 				else
-					bul->ym = -0x400;
+					bul->ym = -0x600;
 
 				break;
 
 			case 1:
 			case 3:
 				if (inc % 2)
-					bul->xm = 0x400;
+					bul->xm = 0x600;
 				else
-					bul->xm = -0x400;
+					bul->xm = -0x600;
 
 				break;
 		}
@@ -771,16 +773,16 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 		switch (bul->direct)
 		{
 			case 0:
-				bul->xm -= 0x80;
+				bul->xm -= 0x140;
 				break;
 			case 1:
-				bul->ym -= 0x80;
+				bul->ym -= 0x140;
 				break;
 			case 2:
-				bul->xm += 0x80;
+				bul->xm += 0x140;
 				break;
 			case 3:
-				bul->ym += 0x80;
+				bul->ym += 0x140;
 				break;
 		}
 
@@ -791,9 +793,9 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 				if (bul->count1 % 5 == 2)
 				{
 					if (bul->ym < 0)
-						bul->ym = 0x400;
+						bul->ym = 0x600;
 					else
-						bul->ym = -0x400;
+						bul->ym = -0x600;
 				}
 
 				break;
@@ -803,9 +805,9 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 				if (bul->count1 % 5 == 2)
 				{
 					if (bul->xm < 0)
-						bul->xm = 0x400;
+						bul->xm = 0x600;
 					else
-						bul->xm = -0x400;
+						bul->xm = -0x600;
 				}
 
 				break;
