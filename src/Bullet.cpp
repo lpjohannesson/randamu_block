@@ -175,7 +175,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Polar Star
 	{6, 2, 11, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.6, 0.6},
 	{2, 1, 4, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 1, 1},
-	{5, 1, 15, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.4, 0.4},
+	{4, 1, 15, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.4, 0.4},
 	// Fireball
 	{2, 2, 100, 8, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
 	{3, 2, 100, 8, 4, 4, 4, 2, {8, 8, 8, 8}, 0.9, 1},
@@ -971,7 +971,7 @@ void ActBullet_Rifle(BULLET *bul, int level)
 
 void ActBullet_PoleStar(BULLET *bul, int level)
 {
-	if (++bul->count1 > bul->life_count)
+	if (++bul->count1 > bul->life_count && level != 3)
 	{
 		bul->cond = 0;
 		if (level == 3)
@@ -990,16 +990,16 @@ void ActBullet_PoleStar(BULLET *bul, int level)
 			switch (bul->direct)
 			{
 			case 0:
-				bul->xm = -0xE80;
+				bul->xm = -0xE00;
 				break;
 			case 1:
-				bul->ym = -0xE80;
+				bul->ym = -0xE00;
 				break;
 			case 2:
-				bul->xm = 0xE80;
+				bul->xm = 0xE00;
 				break;
 			case 3:
-				bul->ym = 0xE80;
+				bul->ym = 0xE00;
 				break;
 			}
 		}
@@ -4301,7 +4301,7 @@ void ActBullet_Spur(BULLET *bul, int level)
 		}
 	}
 
-	bul->iframes = 3;
+	bul->iframes = 2;
 
 	SetBullet(39 + level, bul->x, bul->y, bul->direct);
 }
@@ -4444,7 +4444,7 @@ void ActBullet_SpurTail(BULLET *bul, int level)
 		{256, 32, 264, 40},
 	};
 
-	bul->iframes = 2;
+	bul->iframes = 1;
 
 	if (!GetNPCFlag(4400) && !GetNPCFlag(7999)){
 	switch (level)
