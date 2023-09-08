@@ -1951,6 +1951,9 @@ void ShootBullet_Bubblin1(void)
 {
 	static int wait;
 
+	if (CountArmsBullet(7) > 2)
+		return;
+
 	if (gKeyTrg & gKeyShot)
 	{
 		if (!UseArmsEnergy(1))

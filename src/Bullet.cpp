@@ -193,7 +193,7 @@ BULLET_TABLE gBulTbl[] = {
 	{1, 100, 100, 20, 16, 16, 0, 0, {0, 0, 0, 0}, 0, 0},
 	{1, 100, 100, 20, 16, 16, 0, 0, {0, 0, 0, 0}, 0, 0},
 	// Bubbler
-	{4, 1, 23, 8, 2, 2, 2, 2, {4, 4, 4, 4}, 2, 2},
+	{0, 1, 30, 8, 8, 8, 2, 2, {4, 4, 4, 4}, 2, 2},
 	{3, 1, 18, 8, 2, 2, 2, 2, {4, 4, 4, 4}, 0.3, 0.3},
 	{1, 1, 22, 8, 4, 4, 4, 4, {4, 4, 4, 4}, 0.25, 0.25},
 	// Bubbler level 3 thorns
@@ -2017,47 +2017,79 @@ void ActBullet_Bubblin1(BULLET *bul)
 	switch (bul->act_no)
 	{
 		case 0:
+			bul->npc = NULL;
 			bul->act_no = 1;
 
 			switch (bul->direct)
 			{
 				case 0:
-					bul->xm = -0x600;
+					bul->xm = -0x500;
 					break;
 				case 2:
-					bul->xm = 0x600;
+					bul->xm = 0x500;
 					break;
 				case 1:
-					bul->ym = -0x600;
+					bul->ym = -0x500;
 					break;
 				case 3:
-					bul->ym = 0x600;
+					bul->ym = 0x500;
 					break;
 			}
 
 			break;
 	}
+	
+	if (bul->act_no == 1){
+		switch (bul->direct)
+		{
+			case 0:
+				bul->xm += 0x2A;
+				if (bul->xm >= 0) {
+					bul->xm = 0;
+					bul->act_no = 2;
+				}
+				break;
+			case 2:
+				bul->xm -= 0x2A;
+				if (bul->xm <= 0) {
+					bul->xm = 0;
+					bul->act_no = 2;
+				}
+				break;
+			case 1:
+				bul->ym += 0x2A;
+				if (bul->ym >= 0) {
+					bul->ym = 0;
+					bul->act_no = 2;
+				}
+				break;
+			case 3:
+				bul->ym -= 0x2A;
+				if (bul->ym <= 0) {
+					bul->ym = 0;
+					bul->act_no = 2;
+				}
+				break;
+		}
+	} else if (bul->act_no == 2) {
+		if (bul->npc == NULL || !(bul->npc->cond & 0x80)){
+			bul->npc = GetClosest(bul->x, bul->y, 48_pix);
+		} else {
+			SetCaret(bul->x, bul->y, 1, 0);
+			bul->tgt_x = bul->npc->x;
+			bul->tgt_y = bul->npc->y;
 
-	switch (bul->direct)
-	{
-		case 0:
-			bul->xm += 0x2A;
-			break;
-		case 2:
-			bul->xm -= 0x2A;
-			break;
-		case 1:
-			bul->ym += 0x2A;
-			break;
-		case 3:
-			bul->ym -= 0x2A;
-			break;
+			int deg = GetArktan(bul->x - bul->tgt_x, bul->y - bul->tgt_y);
+			deg += Random(-32, 32);
+			bul->ym = 4 * GetSin(deg);
+			bul->xm = 4 * GetCos(deg);
+		}
 	}
 
 	bul->x += bul->xm;
 	bul->y += bul->ym;
 
-	if (++bul->act_wait > 40)
+	if (++bul->act_wait > 250)
 	{
 		bul->cond = 0;
 		SetCaret(bul->x, bul->y, 15, 0);

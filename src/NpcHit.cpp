@@ -697,6 +697,29 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			npc.waterEffect = Random(0, 7);
 		}
 
+		if (bul->code_bullet == 19){
+			npc.waterEffect += Random(60, 100);
+			PlaySoundObject(21, SOUND_MODE_PLAY);
+			int lol = Random(10, 30);
+			for (int i = 0; i < lol; i++)
+			{
+				int x, y;
+				do
+				{
+					x = Random(0, gMap.width*0x2000);
+					y = Random(0, gMap.length*0x2000);
+				} while (!(Distance(npc.x, npc.y, x, y) < 32_pix  && 
+							Distance(npc.x, npc.y, x, y) > 4_pix));
+				BULLET *bully = SetBullet(61, x, y);
+				if (bully != NULL)
+				{
+					bully->direct = 0;
+					bully->xm = Random(-1000, 1000);
+					bully->ym = Random(-800, 400);
+				}
+			}
+		}
+
 		if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end() &&
 				(GetNPCFlag(711) || bul->code_bullet == 14)){
 			npc.knockx = bul->xm * bul->knockX * npc.knockEffect;
