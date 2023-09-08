@@ -2844,12 +2844,7 @@ void ActBullet_BoomerangSword4(BULLET *bul)
 		bul->count1 = 0;
 	}
 
-	if (bul->act_no == 1){
-		bul->damage = 10;
-	}
-	else {
-		bul->damage = 5;
-	}
+	bul->damage = 8;
 
 	if (bul->count1 == 3)
 		bul->bbits &= ~4;
@@ -2898,11 +2893,13 @@ void ActBullet_BoomerangSword4(BULLET *bul)
 			bul->ym = GetSin(deg) * 10;
 			bul->xm = GetCos(deg) * 10;
 		}
-		if (bul->count1 % 2 == 0){
-			SetBullet(23, bul->x, bul->y, 0);
+		if (bul->count1 % 4 == 0){
+			if ((bul->count1 / 2) % 2 == 0)
+				SetBullet(23, bul->x, bul->y, 0);
+			else
+				SetBullet(23, bul->x, bul->y, 2);
 		}
-		else
-			SetBullet(23, bul->x, bul->y, 2);
+			
 		bul->x += bul->xm;
 		bul->y += bul->ym;
 		if (Distance(bul->x, bul->y, gMC.x, gMC.y) > 12 * 0x2000){

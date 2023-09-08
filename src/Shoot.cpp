@@ -2188,7 +2188,7 @@ void ShootBullet_Sword(int level)
 void ShootBullet_BoomerangSword(int level)
 {
 	int bul_no;
-	if (level == 4 && CountBulletNum(75) > 2)
+	if (level == 4 && CountBulletNum(75) > 0)
 		return;
 
 	if (level == 1){
