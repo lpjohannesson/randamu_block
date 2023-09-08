@@ -694,7 +694,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	if (bul != NULL){
 
 		if (std::find(waterBullets.begin(), waterBullets.end(), bul->code_bullet) != waterBullets.end()){
-			npc.waterEffect = std::max(npc.waterEffect + Random(5, 10), 90);
+			npc.waterEffect = std::min(npc.waterEffect + Random(5, 10), 90);
 		}
 
 		if (bul->code_bullet == 19){
