@@ -67,9 +67,6 @@ bool DoCooldownCountdown(int id){
 
         case DASH_TIMER_ID:
             return gMC.dashDuration <= 0;
-
-        case FLOODTIDE_ATTACK_ID:
-            return false;
     }
 }
 
@@ -217,8 +214,6 @@ int CooldownDuration(int id){
             return 3600;
         case GRAVITY_FLIP_ID:
             return 90;
-        case FLOODTIDE_ATTACK_ID:
-            return 5;
     }
     return 0;
 }
