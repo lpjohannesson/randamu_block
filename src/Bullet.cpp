@@ -194,7 +194,7 @@ BULLET_TABLE gBulTbl[] = {
 	{1, 100, 100, 20, 16, 16, 0, 0, {0, 0, 0, 0}, 0, 0},
 	// Bubbler
 	{0, 1, 30, 8, 8, 8, 2, 2, {4, 4, 4, 4}, 2, 2},
-	{3, 1, 18, 8, 2, 2, 2, 2, {4, 4, 4, 4}, 0.3, 0.3},
+	{2, 1, 15, 8, 2, 2, 2, 2, {4, 4, 4, 4}, 0.3, 0.3},
 	{1, 1, 22, 8, 4, 4, 4, 4, {4, 4, 4, 4}, 0.25, 0.25},
 	// Bubbler level 3 thorns
 	{3, 1, 32, 32, 2, 2, 2, 2, {4, 4, 4, 4}, 0.33, 0.33},
@@ -2142,35 +2142,35 @@ void ActBullet_Bubblin2(BULLET *bul)
 			switch (bul->direct)
 			{
 				case 0:
-					bul->xm = -0x600;
-					bul->ym = Random(-0x200, 0x200);
+					bul->xm = -0x900;
+					bul->ym = Random(-0x180, 0x180);
 					if (gMC.equip & EQUIP_OVERCHARGE){
-						bul->xm = -0x750;
-						bul->ym = Random(-0x350, 0x350);
+						bul->xm = -0xAF8;
+						bul->ym = Random(-0x27C, 0x27C);
 					}
 					break;
 				case 2:
-					bul->xm = 0x600;
-					bul->ym = Random(-0x200, 0x200);
+					bul->xm = 0x900;
+					bul->ym = Random(-0x180, 0x180);
 					if (gMC.equip & EQUIP_OVERCHARGE){
-						bul->xm = 0x750;
-						bul->ym = Random(-0x350, 0x350);
+						bul->xm = 0xAF8;
+						bul->ym = Random(-0x27C, 0x27C);
 					}
 					break;
 				case 1:
-					bul->ym = -0x600;
-					bul->xm = Random(-0x200, 0x200);
+					bul->ym = -0x900;
+					bul->xm = Random(-0x180, 0x180);
 					if (gMC.equip & EQUIP_OVERCHARGE){
-						bul->ym = -0x750;
-						bul->xm = Random(-0x350, 0x350);
+						bul->ym = -0xAF8;
+						bul->xm = Random(-0x27C, 0x27C);
 					}
 					break;
 				case 3:
-					bul->ym = 0x600;
-					bul->xm = Random(-0x200, 0x200);
+					bul->ym = 0x900;
+					bul->xm = Random(-0x180, 0x180);
 					if (gMC.equip & EQUIP_OVERCHARGE){
-						bul->ym = 0x750;
-						bul->xm = Random(-0x350, 0x350);
+						bul->ym = 0xAF8;
+						bul->xm = Random(-0x27C, 0x27C);
 					}
 					break;
 			}
@@ -2197,7 +2197,7 @@ void ActBullet_Bubblin2(BULLET *bul)
 	bul->x += bul->xm;
 	bul->y += bul->ym;
 
-	if (++bul->act_wait > 60)
+	if (++bul->act_wait > 50)
 	{
 		bul->cond = 0;
 		SetCaret(bul->x, bul->y, 15, 0);

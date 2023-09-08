@@ -2031,11 +2031,11 @@ void ShootBullet_Bubblin2(int level)
 		level = 71;
 
 	if (!(gKey & gKeyShot))
-		gMC.rensha = (gMC.equip & EQUIP_OVERCHARGE ? 2 : 3);
+		gMC.rensha = (gMC.equip & EQUIP_OVERCHARGE ? 3 : 4);
 
 	if (gKey & gKeyShot)
 	{
-		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 2 : 3))
+		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 3 : 4))
 			return;
 
 		gMC.rensha = 0;
