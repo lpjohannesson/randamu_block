@@ -22,6 +22,7 @@ const int DASH_TIMER_ID = 6;
 const int NANITES_TIME_ID = 7;
 const int NANITES_CD_ID = 8;
 const int GRAVITY_FLIP_ID = 9;
+const int FLOODTIDE_ATTACK_ID = 10;
 
 void InitiateCooldown(std::vector<Cooldown>& list, int id);
 void InitiateCooldown(std::vector<Cooldown>& list, int id, int duration);

@@ -251,13 +251,13 @@ BULLET_TABLE gBulTbl[] = {
 	// Homing sword
 	{4, 100, 0, 52, 10, 10, 8, 8, {12, 12, 12, 12}, 0.1, 0.1},
 	// Swing sword
-	{5, 100, 32, 52, 8, 10, 4, 2, {8, 8, 8, 8}, 1, 1},
-	{7, 100, 27, 52, 10, 12, 4, 2, {10, 10, 10, 10}, 1, 1},
-	{10, 100, 24, 52, 12, 15, 4, 2, {12, 12, 12, 12}, 1, 1},
+	{6, 100, 24, 52, 12, 10, 4, 2, {8, 8, 8, 8}, 1, 1},
+	{9, 100, 19, 52, 13, 12, 4, 2, {10, 10, 10, 10}, 1, 1},
+	{12, 100, 17, 52, 14, 13, 4, 2, {12, 12, 12, 12}, 1, 1},
 	// Swing sword droplet
 	{-1, 1, 35, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
 	// Whirlpool
-	{0, 100, 100, 8, 8, 8, 5, 5, {5, 5, 5, 5}, 0.25, 0.25},
+	{3, 100, 200, 8, 8, 8, 5, 5, {5, 5, 5, 5}, 0.25, 0.25},
 	// Lol
 	{0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0}, 1, 1},
 	// Mining laser
@@ -279,7 +279,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Hook lv4
 	{1, 100, 6, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
 	// Floodtide lv4
-	{11, 100, 22, 52, 12, 15, 4, 2, {12, 12, 12, 12}, 1, 1},
+	{15, 100, 14, 52, 12, 15, 4, 2, {12, 12, 12, 12}, 1, 1},
 	// Boomerang lv4
 	{6, 100, 30, 44, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75},
 	// Spur lv4
@@ -3368,14 +3368,14 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 
 	if (bul->act_no == 0){
 		if (bul->direct == 2){
-			bul->angle = -180;
+			bul->angle = -120;
 			bul->centerX = 0;
 			bul->centerY = 1;
 		}
 		else{
 			bul->centerX = 1;
 			bul->centerY = 1;
-			bul->angle = 180;
+			bul->angle = 120;
 		}
 		if (gMC.flag & 0x100){
 			bul->life_count /= 2;
@@ -3383,7 +3383,7 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 		}
 		bul->act_no = 1;
 	} else {
-		int spinValue = 7 + level;
+		int spinValue = 8 + level*2;
 		int swingValue = 13;
 		if (bul->count2 == 1){
 			spinValue *= 2;
@@ -3394,8 +3394,8 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 		else
 			bul->angle -= spinValue;
 
-		int whirlLimit = 3;
-		if (level == 4) whirlLimit = 5;
+		int whirlLimit = 1;
+		if (level == 4) whirlLimit = 2;
 
 		if (level >= 3 && bul->count1 == swingValue && CountBulletNum(62) < whirlLimit){
 			int lol = 1;
@@ -3429,79 +3429,57 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 			}
 		}
 
-		if ((level == 2 || level == 4) && bul->count1 > swingValue && (bul->count1 - swingValue) % 2 == 0){
-			int lol = Random(4, 6);
-			if (level == 4) lol+=3;
-			if (bul->count2 == 1) lol+=2;
-			for (int i = 0; i < lol; i++)
-			{
-				BULLET *bully = SetBullet(61, bul->x, bul->y);
-				if (bully != NULL)
+		if ((level == 2 || level == 4) && bul->count1 == swingValue){
+			if (CheckForCooldown(gCooldowns, FLOODTIDE_ATTACK_ID) == -1){
+				int lol = Random(30, 40);
+				if (level == 4) lol+=20;
+				if (bul->count2 == 1) lol+=24;
+				InitiateCooldown(gCooldowns, FLOODTIDE_ATTACK_ID);
+				for (int i = 0; i < lol; i++)
 				{
-					PlaySoundObject(21, SOUND_MODE_PLAY);
-					bully->direct = 0;
-					if (bul->direct == 0)
-						bully->xm = -Random(0, 1800);
-					else
-						bully->xm = Random(0, 1800);
-					if (gMC.up){
-						bully->ym = Random(-1300, -400);
-						bully->xm /= 5;
-					}
-					else if (gMC.down){
-						bully->ym = -Random(-1300, -400);
-						bully->xm /= 5;
-					}
-					else
-						bully->ym = Random(-700, 80);
-					if (bul->count2 == 1){
-						bully->xm *= 1.4;
-						bully->ym *= 1.4;
+					BULLET *bully = SetBullet(61, bul->x, bul->y);
+					if (bully != NULL)
+					{
+						PlaySoundObject(21, SOUND_MODE_PLAY);
+						bully->direct = 0;
+						if (bul->direct == 0)
+							bully->xm = -Random(0, 2200);
+						else
+							bully->xm = Random(0, 2200);
+						if (gMC.up){
+							bully->ym = Random(-1600, -700);
+							bully->xm /= 5;
+						}
+						else if (gMC.down){
+							bully->ym = -Random(-1600, -700);
+							bully->xm /= 5;
+						}
+						else
+							bully->ym = Random(-900, 120);
+						if (bul->count2 == 1){
+							bully->xm *= 1.4;
+							bully->ym *= 1.4;
+						}
 					}
 				}
+			} else {
+				IncrementCooldown(gCooldowns, FLOODTIDE_ATTACK_ID, -1);
+				std::remove_if(gCooldowns.begin(), gCooldowns.end(), [](Cooldown c){
+					return c.id == FLOODTIDE_ATTACK_ID && c.duration <= 0;
+				});
 			}
 		}
 
 		if (bul->life != 100 && (level == 1 || level == 4)){
 			bul->life = 100;
-			int lol = Random(10, 15);
-			if (level == 4) lol *= 1.5;
-			if (bul->count1 == 1) lol *= 1.5;
-			for (int i = 0; i < lol; i++)
-			{
-				BULLET *bully = SetBullet(61, bul->x, bul->y);
-				if (bully != NULL)
-				{
-					PlaySoundObject(21, SOUND_MODE_PLAY);
-					bully->direct = 0;
-					if (bul->direct == 0)
-						bully->xm = -Random(0, 1600);
-					else
-						bully->xm = Random(0, 1600);
-					if (gMC.up){
-						bully->ym = Random(-1200, -700);
-						bully->xm /= 5;
-					}
-					else if (gMC.down){
-						bully->ym = -Random(-1200, -700);
-						bully->xm /= 5;
-					}
-					else
-						bully->ym = Random(-400, 80);
-					if (bul->count2 == 1){
-						bully->xm *= 1.4;
-						bully->ym *= 1.4;
-					}
-				}
-			}
 		}
 	}
 
 	bul->x = gMC.x + gMC.xm;
 	if (gMC.direct == 0){
-		bul->x -= 0x200 * 4 + 0x200 * 3 * (float(bul->count1) / float(bul->life_count));
+		bul->x -= 0x200 * 12 * (float(bul->count1) / float(bul->life_count));
 	} else {
-		bul->x += 0x200 * 10 + 0x200 * 3 * (float(bul->count1) / float(bul->life_count));
+		bul->x += 0x200 * 12 * (float(bul->count1) / float(bul->life_count));
 	}
 	bul->y = gMC.y + gMC.ym - 0x200 * 7 + 0x200 * 5 * (float(bul->count1) / float(bul->life_count));
 
@@ -5162,7 +5140,8 @@ void ActBullet_Star(BULLET *bul)
 void ActBullet_Whirlpool(BULLET *bul)
 {
 	bul->rect = {288, 128, 298, 138};
-	bul->life_count = 200;
+	bul->life_count = 500;
+	bul->iframes = 10;
 	if (GetNPCFlag(705)){
 			if (GetNPCFlag(872)) bul->life_count *= 1.33;
 			else bul->life_count *= 1.25;
@@ -5177,19 +5156,21 @@ void ActBullet_Whirlpool(BULLET *bul)
 	if (bul->flag & 0xF){
 		int deg = GetArktan(bul->x - (bul->x + Random(-0x200 * 4, 0x200 * 4)), 
 			bul->y - (bul->y + Random(-0x200 * 4, 0x200 * 4)));
-		deg += (unsigned char)Random(-6, 6);
-		bul->ym = GetSin(deg) * 7;
-		bul->xm = GetCos(deg) * 7;
+		deg += (unsigned char)Random(-18, 18);
+		bul->ym = GetSin(deg) * 6;
+		bul->xm = GetCos(deg) * 6;
 		if (bul->count2 == 1){
-			bul->xm += GetCos(deg) * 3;
-			bul->ym += GetSin(deg) * 3;
+			bul->xm += GetCos(deg) * 2;
+			bul->ym += GetSin(deg) * 2;
 		}
 	}
 
-	if (++bul->act_wait > 3 - (bul->count2 == 1 ? 1 : 0) || bul->life != 100){
+	if (++bul->act_wait > 6 - (bul->count2 == 1 ? 2 : 0) || bul->life != 100){
 		bul->act_wait = 0;
-		bul->life = 100;
 		int lol = Random(2, 4);
+		if (bul->life != 100)
+			lol = Random(0, 3);
+		bul->life = 100;
 		for (int i = 0; i < lol; i++)
 		{
 			BULLET *bully = SetBullet(61, bul->x, bul->y);
@@ -5217,7 +5198,7 @@ void ActBullet_Whirlpool(BULLET *bul)
 
 	if (++bul->count1 > bul->life_count){
 		bul->cond = 0;
-		int lol = Random(20, 40);
+		int lol = Random(40, 80);
 		for (int i = 0; i < lol; i++)
 		{
 			BULLET *bully = SetBullet(61, bul->x, bul->y);

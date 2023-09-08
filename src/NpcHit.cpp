@@ -738,6 +738,9 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 				for (int i = 0; i < 5; i++)
 					SpawnQuiverProjectile(npc);
 		}
+
+		if (bul->code_bullet == 60 || bul->code_bullet == 74)
+			SpawnQuiverProjectile(npc);
 	}
 
 	if (ChallengeEnabled("oneDamage") && dmg > 0) //one damage option
@@ -760,7 +763,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 
 	bool isSword = bul != NULL;
 	if (isSword == true)
-		isSword = (bul->code_bullet == 58 || bul->code_bullet == 60 || bul->code_bullet == 59
+		isSword = (bul->code_bullet == 58 || bul->code_bullet == 60 || bul->code_bullet == 59 || bul->code_bullet == 74
 			|| bul->code_bullet == 80 || bul->code_bullet == 81 || bul->code_bullet == 82 || bul->code_bullet == 85);
 
 	if (npc.life < 1 || ChallengeEnabled("debug"))
@@ -780,6 +783,32 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 				SetBullet(79, npc.x, npc.y, 0);
 			else
 				SetBullet(79, npc.x, npc.y, 2);
+			if (bul->code_bullet == 58 || bul->code_bullet == 74){
+				PlaySoundObject(65, SOUND_MODE_PLAY);
+				int lol = Random(20, 30);
+				if (bul->count1 == 1) lol *= 1.5;
+				for (int i = 0; i < lol; i++)
+				{
+					int x, y;
+					do
+					{
+						x = Random(0, gMap.width*0x2000);
+						y = Random(0, gMap.length*0x2000);
+					} while (!(Distance(npc.x, npc.y, x, y) < 48_pix  && 
+								Distance(npc.x, npc.y, x, y) > 4_pix));
+					BULLET *bully = SetBullet(61, x, y);
+					if (bully != NULL)
+					{
+						bully->direct = 0;
+						bully->xm = Random(-1000, 1000);
+						bully->ym = Random(-600, 600);
+						if (bul->count2 == 1){
+							bully->xm *= 1.4;
+							bully->ym *= 1.4;
+						}
+					}
+				}
+			}
 		}
 	}
 	else
