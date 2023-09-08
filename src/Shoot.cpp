@@ -2192,7 +2192,7 @@ void ShootBullet_BoomerangSword(int level)
 		return;
 
 	if (level == 1){
-		if (CountBulletNum(52) > 10)
+		if (CountBulletNum(52) > 2)
 			return;
 	} else {
 		if (CountBulletNum(51 + level) > 0)

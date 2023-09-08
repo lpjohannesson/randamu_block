@@ -242,7 +242,7 @@ BULLET_TABLE gBulTbl[] = {
 	{13, 100, 20, 105, 8, 8, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
 	{15, 100, 26, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
 	// Boomerang blade
-	{15, 100, 40, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 1
+	{4, 100, 50, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 1
 	{6, 100, 20, 44, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 2
 	{6, 100, 33, 36, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 3
 	{15, 100, 19, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 3 splits
@@ -2478,7 +2478,7 @@ void ActBullet_Spine(BULLET *bul)
 
 void ActBullet_BoomerangSword1(BULLET *bul)
 {
-	bul->iframes = 20;
+	bul->local_iframes = 20;
 
 	if (++bul->count1 > bul->life_count && bul->act_no == 1)
 	{
@@ -2502,12 +2502,6 @@ void ActBullet_BoomerangSword1(BULLET *bul)
 		else
 			bul->damage = 4;
 	}
-	else {
-		if (bul->code_bullet == 56)
-			bul->damage = 3;
-		else
-			bul->damage = 2;
-	}
 
 	if (bul->count1 == 3)
 		bul->bbits &= ~4;
@@ -2522,32 +2516,32 @@ void ActBullet_BoomerangSword1(BULLET *bul)
 		switch (bul->direct)
 		{
 			case 0:
-				bul->xm = -0x600;
+				bul->xm = -0x700;
 				break;
 			case 1:
-				bul->ym = -0x600;
+				bul->ym = -0x700;
 				break;
 			case 2:
-				bul->xm = 0x600;
+				bul->xm = 0x700;
 				break;
 			case 3:
-				bul->ym = 0x600;
+				bul->ym = 0x700;
 				break;
 			case 4:
-				bul->xm = -0x600;
-				bul->ym = -0x600;
+				bul->xm = -0x700;
+				bul->ym = -0x700;
 				break;
 			case 5:
-				bul->ym = -0x600;
-				bul->xm = 0x600;
+				bul->ym = -0x700;
+				bul->xm = 0x700;
 				break;
 			case 6:
-				bul->xm = 0x600;
-				bul->ym = 0x600;
+				bul->xm = 0x700;
+				bul->ym = 0x700;
 				break;
 			case 7:
-				bul->ym = 0x600;
-				bul->xm = -0x600;
+				bul->ym = 0x700;
+				bul->xm = -0x700;
 				break;
 		}
 	}
@@ -2560,11 +2554,11 @@ void ActBullet_BoomerangSword1(BULLET *bul)
 				return;
 			}
 			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
-			bul->ym = GetSin(deg) * 2.5;
-			bul->xm = GetCos(deg) * 2.5;
+			bul->ym = GetSin(deg) * 2.9;
+			bul->xm = GetCos(deg) * 2.9;
 			if (bul->code_bullet == 55){
-				bul->ym = GetSin(deg) * 6;
-				bul->xm = GetCos(deg) * 6;
+				bul->ym = GetSin(deg) * 6.96;
+				bul->xm = GetCos(deg) * 6.96;
 			}
 		}
 			bul->x += bul->xm;
