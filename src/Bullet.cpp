@@ -243,7 +243,7 @@ BULLET_TABLE gBulTbl[] = {
 	{15, 100, 26, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
 	// Boomerang blade
 	{4, 100, 50, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 1
-	{6, 100, 20, 44, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 2
+	{8, 100, 13, 44, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 2
 	{6, 100, 33, 36, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 3
 	{15, 100, 19, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 3 splits
 	// Lvl2 boomerang blade flame
@@ -2615,12 +2615,7 @@ void ActBullet_BoomerangSword2(BULLET *bul)
 		bul->count1 = 0;
 	}
 
-	if (bul->act_no == 1){
-		bul->damage = 15;
-	}
-	else {
-		bul->damage = 8;
-	}
+	bul->damage = 7 + 8 * std::min(1.0f, float(bul->count1)/float(bul->life_count));
 
 	if (bul->count1 == 3)
 		bul->bbits &= ~4;
@@ -2636,16 +2631,16 @@ void ActBullet_BoomerangSword2(BULLET *bul)
 		switch (bul->direct)
 		{
 			case 0:
-				bul->xm = -0x920;
+				bul->xm = -0x1240;
 				break;
 			case 1:
-				bul->ym = -0x920;
+				bul->ym = -0x1240;
 				break;
 			case 2:
-				bul->xm = 0x920;
+				bul->xm = 0x1240;
 				break;
 			case 3:
-				bul->ym = 0x920;
+				bul->ym = 0x1240;
 				break;
 		}
 	}
@@ -2657,9 +2652,17 @@ void ActBullet_BoomerangSword2(BULLET *bul)
 				bul->cond = 0;
 				return;
 			}
+			if (bul->count2 == 1 && bul->count1 % 3 == 0){
+				BULLET* bully = SetBullet(56, bul->x, bul->y);
+				if (bully != NULL){
+					bully->direct = 0;
+					bully->xm = Random(-1700, 1700);
+					bully->ym = Random(-1000, 200);
+				}
+			}
 			if (bul->count2 == 0 && bul->life == 100 && !(bul->flag & 0xF)){
 				bul->count2 = 1;
-				int lol = Random(10, 14);
+				int lol = Random(5, 7);
 				for (int i = 0; i < lol; i++){
 					BULLET* bully = SetBullet(56, bul->x, bul->y);
 					if (bully != NULL){
@@ -2669,9 +2672,10 @@ void ActBullet_BoomerangSword2(BULLET *bul)
 					}
 				}
 			}
+			
 			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
-			bul->ym = GetSin(deg) * 6;
-			bul->xm = GetCos(deg) * 6;
+			bul->ym = GetSin(deg) * 12;
+			bul->xm = GetCos(deg) * 12;
 		}
 		bul->x += bul->xm;
 		bul->y += bul->ym;
