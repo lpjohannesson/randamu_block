@@ -244,7 +244,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Boomerang blade
 	{4, 100, 50, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 1
 	{8, 100, 13, 44, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 2
-	{6, 100, 33, 36, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 3
+	{7, 100, 30, 36, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 3
 	{15, 100, 19, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 3 splits
 	// Lvl2 boomerang blade flame
 	{3, 1, 40, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
@@ -2714,7 +2714,7 @@ void ActBullet_BoomerangSword3(BULLET *bul)
 {
 	static unsigned int inc;
 
-	bul->iframes = 20;
+	bul->local_iframes = 20;
 
 	++bul->count1;
 	if (bul->count1 > bul->life_count && bul->act_no < 2)
@@ -2728,12 +2728,7 @@ void ActBullet_BoomerangSword3(BULLET *bul)
 		bul->count1 = 0;
 	}
 
-	if (bul->act_no == 1){
-		bul->damage = 7;
-	}
-	else {
-		bul->damage = 4;
-	}
+	bul->damage = 7;
 
 	if (bul->count1 == 3)
 		bul->bbits &= ~4;
@@ -2762,16 +2757,16 @@ void ActBullet_BoomerangSword3(BULLET *bul)
 		switch (bul->direct)
 		{
 			case 0:
-				bul->xm = -0x800;
+				bul->xm = -0x999;
 				break;
 			case 1:
-				bul->ym = -0x800;
+				bul->ym = -0x999;
 				break;
 			case 2:
-				bul->xm = 0x800;
+				bul->xm = 0x999;
 				break;
 			case 3:
-				bul->ym = 0x800;
+				bul->ym = 0x999;
 				break;
 		}
 	}
