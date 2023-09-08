@@ -42,11 +42,12 @@ const char* const gPassPixEve = "PXE";
 NPCHAR* GetClosest(int x, int y, int maxDistance){
     float shortestdist = 0.0;
     int npc = -1;
+	maxDistance /= 1_pix;
 	float actualMaxDist = maxDistance*maxDistance + maxDistance*maxDistance;
     for (int i = 0; i < NPC_MAX; i++){
         if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE && gNPC[i].code_char != 100 && std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[i].code_char) == etherealEntities.end()))) continue;
-        float distx = gNPC[i].x - x;
-        float disty = gNPC[i].y - y;
+        float distx = (gNPC[i].x - x) / 1_pix;
+        float disty = (gNPC[i].y - y) / 1_pix;
 		float dist = (distx*distx + disty*disty);
 		if (dist < actualMaxDist){
 			if (npc < 0 || (dist < shortestdist)){
