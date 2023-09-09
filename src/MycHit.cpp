@@ -1048,14 +1048,16 @@ void HitMyCharNpChar(void)
 				else if ((gMC.dashDuration > 0)){
 				}
 				else {
+					int damage = gNPC[i].damage;
+					if (gNPC[i].targetingEffect > 0) damage *= 1.5;
 				if (hit & 4 && gNPC[i].xm < 0)
-					DamageMyChar(gNPC[i].damage);
+					DamageMyChar(damage);
 				if (hit & 1 && gNPC[i].xm > 0)
-					DamageMyChar(gNPC[i].damage);
+					DamageMyChar(damage);
 				if (hit & 8 && gNPC[i].ym < 0)
-					DamageMyChar(gNPC[i].damage);
+					DamageMyChar(damage);
 				if (hit & 2 && gNPC[i].ym > 0)
-					DamageMyChar(gNPC[i].damage);
+					DamageMyChar(damage);
 				}
 				if (gMC.life <= 0 && gMC.deathReason == 0) DetermineHitReason(gNPC[i].code_char);
 			}
@@ -1075,7 +1077,9 @@ void HitMyCharNpChar(void)
 					if (ChallengeEnabled("spike_kill") && (gNPC[i].code_char == 246 || gNPC[i].code_char == 114) && gNPC[i].damage == 13){
 						Die();
 					} else {
-						DamageMyChar(gNPC[i].damage);
+						int damage = gNPC[i].damage;
+						if (gNPC[i].targetingEffect > 0) damage *= 1.5;
+						DamageMyChar(damage);
 					}
 					if (gNPC[i].code_char == 38) gMC.shock *= 0.88;
 					if (gNPC[i].code_char == 70) gMC.shock *= 0.75;

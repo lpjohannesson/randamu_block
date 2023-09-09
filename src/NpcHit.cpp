@@ -683,6 +683,22 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		dmg = round(dmg * 1.25f);
 	}
 
+	if (npc.targetingEffect > 0){
+		dmg *= 3;
+		npc.targetingEffect = 0;
+		if (dmg > 0){
+			PlaySoundObject(12);
+			SetCaret(npc.x-0x2500, npc.y, 2, 2);
+			SetCaret(npc.x-0x1800, npc.y-0x1800, 2, 2);
+			SetCaret(npc.x+0x2500, npc.y, 2, 2);
+			SetCaret(npc.x+0x1800, npc.y-0x1800, 2, 2);
+			SetCaret(npc.x, npc.y+0x2500, 2, 2);
+			SetCaret(npc.x+0x1800, npc.y+0x1800, 2, 2);
+			SetCaret(npc.x, npc.y-0x2500, 2, 2);
+			SetCaret(npc.x-0x1800, npc.y+0x1800, 2, 2);
+		}
+	}
+
 	if (gMC.equip & EQUIP_SUNGLASSES){ //cool sunglasses
 		dmg *= 2;
 	}
@@ -723,6 +739,10 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 				(GetNPCFlag(711) || bul->code_bullet == 14)){
 			npc.knockx = bul->xm * bul->knockX * npc.knockEffect;
 			npc.knocky = bul->ym * bul->knockY * npc.knockEffect;
+		}
+
+		if (bul->code_bullet == 4){
+			npc.targetingEffect = 1;
 		}
 
 		if (bul->code_bullet > 6 && bul->code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(873)){

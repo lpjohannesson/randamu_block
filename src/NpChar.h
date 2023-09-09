@@ -97,6 +97,7 @@ struct NPCHAR
 	float knockEffect;
 	int waterEffect;
 	float opacity;
+	int targetingEffect;
 };
 
 extern std::map<int, std::map<int, int>> static_iframes;

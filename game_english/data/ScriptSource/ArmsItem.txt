@@ -49,8 +49,8 @@ An exhilirating sort of missile.
 Its acceleration is unmatched.<WAI9999<END
 #1011
 <MSG<TUR- Electrum Shotgun -
-Shoots the bursts of bullets with
-inaccuracy.<WAI9999<END
+Shoots bullets to target enemies to take
+more damage and be zapped on next attack.<WAI9999<END
 #1012
 <MSG<TUR- Nemesis -
 Lightning of the Goddess.

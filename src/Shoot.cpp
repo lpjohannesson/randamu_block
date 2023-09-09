@@ -16,6 +16,7 @@
 #include "Map.h"
 #include "MyChar.h"
 #include "MycParam.h"
+#include "NpcHit.h"
 #include "NpChar.h"
 #include "ResourceCode.h"
 #include "Sound.h"
@@ -439,108 +440,121 @@ void ShootBullet_Shotgun(int level)
 
 	if (gKeyTrg & gKeyShot)
 	{
-		if (!UseArmsEnergy(1))
-		{
-			PlaySoundObject(37, SOUND_MODE_PLAY);
-		}
-		else
-		{
-			if (gMC.up)
-			{
-				if (gMC.direct == 0)
-				{
-					tgt_x = gMC.x;
-					tgt_y = gMC.y - 0x200 * 10;
-					direct = 1;
-					SetCaret(gMC.x - (1 * 0x200), gMC.y - (8 * 0x200), 3, 0);
-				}
-				else
-				{
-					tgt_x = gMC.x;
-					tgt_y = gMC.y - 0x200 * 10;
-					direct = 1;
-					SetCaret(gMC.x + (1 * 0x200), gMC.y - (8 * 0x200), 3, 0);
-				}
+		bool targeted = false;
+		for (auto& entity: gNPC){
+			if (entity.targetingEffect > 0){
+				targeted = true;
+				int damage = (level+1)*4;
+				entity.targetingEffect = 0;
+				DealDamage(entity, damage);
+				NPCHAR* lightning = CreateNpChar(146, entity.x, entity.y, 0, 0, 2, NULL, 0x100);
+				lightning->count1 = 1;
 			}
-			else if (gMC.down)
+		}
+		if (!targeted){
+			if (!UseArmsEnergy(1))
 			{
-				if (gMC.direct == 0)
-				{
-					tgt_x = gMC.x;
-					tgt_y = gMC.y + 0x200 * 10;
-					direct = 3;
-					SetCaret(gMC.x - (1 * 0x200), gMC.y + (8 * 0x200), 3, 0);
-				}
-				else
-				{
-					tgt_x = gMC.x;
-					tgt_y = gMC.y + 0x200 * 10;
-					direct = 3;
-					SetCaret(gMC.x + (1 * 0x200), gMC.y + (8 * 0x200), 3, 0);
-				}
+				PlaySoundObject(37, SOUND_MODE_PLAY);
 			}
 			else
 			{
-				if (gMC.direct == 0)
+				if (gMC.up)
 				{
-					tgt_x = gMC.x - 0x200 * 16;
-					tgt_y = gMC.y + 0x200 * 3;
-					direct = 0;
-					SetCaret(gMC.x - (12 * 0x200), gMC.y + (3 * 0x200), 3, 0);
+					if (gMC.direct == 0)
+					{
+						tgt_x = gMC.x;
+						tgt_y = gMC.y - 0x200 * 10;
+						direct = 1;
+						SetCaret(gMC.x - (1 * 0x200), gMC.y - (8 * 0x200), 3, 0);
+					}
+					else
+					{
+						tgt_x = gMC.x;
+						tgt_y = gMC.y - 0x200 * 10;
+						direct = 1;
+						SetCaret(gMC.x + (1 * 0x200), gMC.y - (8 * 0x200), 3, 0);
+					}
+				}
+				else if (gMC.down)
+				{
+					if (gMC.direct == 0)
+					{
+						tgt_x = gMC.x;
+						tgt_y = gMC.y + 0x200 * 10;
+						direct = 3;
+						SetCaret(gMC.x - (1 * 0x200), gMC.y + (8 * 0x200), 3, 0);
+					}
+					else
+					{
+						tgt_x = gMC.x;
+						tgt_y = gMC.y + 0x200 * 10;
+						direct = 3;
+						SetCaret(gMC.x + (1 * 0x200), gMC.y + (8 * 0x200), 3, 0);
+					}
 				}
 				else
 				{
-					tgt_x = gMC.x + 0x200 * 16;
-					tgt_y = gMC.y + 0x200 * 3;
-					direct = 2;
-					SetCaret(gMC.x + (12 * 0x200), gMC.y + (3 * 0x200), 3, 0);
+					if (gMC.direct == 0)
+					{
+						tgt_x = gMC.x - 0x200 * 16;
+						tgt_y = gMC.y + 0x200 * 3;
+						direct = 0;
+						SetCaret(gMC.x - (12 * 0x200), gMC.y + (3 * 0x200), 3, 0);
+					}
+					else
+					{
+						tgt_x = gMC.x + 0x200 * 16;
+						tgt_y = gMC.y + 0x200 * 3;
+						direct = 2;
+						SetCaret(gMC.x + (12 * 0x200), gMC.y + (3 * 0x200), 3, 0);
+					}
 				}
-			}
 
-			int shots, spread;
-			switch (level)
-			{
-				case 1:
-					shots = Random(6, 14);
-					spread = 15;
-					break;
-				case 2:
-					shots = Random(8, 20);
-					spread = 20;
-					break;
-				case 3:
-					shots = Random(13, 26);
-					spread = 26;
-					break;
-				case 4:
-					shots = Random(20, 42);
-					spread = 18;
-					break;
-			}
-			for (int i = 0; i < shots; i++)
-			{
-				deg = GetArktan(gMC.x - tgt_x, gMC.y - tgt_y);
-				deg += (unsigned char)Random(-spread, spread);
-				BULLET *bully = SetBullet(bul_no, gMC.x, gMC.y);
-				if (bully != NULL)
+				int shots, spread;
+				switch (level)
 				{
-					bully->ym = GetSin(deg) * (6+level*2);
-					bully->xm = GetCos(deg) * (6+level*2);
-					bully->direct = direct;
-					bully->life_count = 12 + level*7;
-					bully->life = 1;
-					bully->damage = 2;
+					case 1:
+						shots = Random(6, 14);
+						spread = 25;
+						break;
+					case 2:
+						shots = Random(8, 20);
+						spread = 30;
+						break;
+					case 3:
+						shots = Random(13, 26);
+						spread = 40;
+						break;
+					case 4:
+						shots = Random(20, 42);
+						spread = 50;
+						break;
 				}
+				for (int i = 0; i < shots; i++)
+				{
+					deg = GetArktan(gMC.x - tgt_x, gMC.y - tgt_y);
+					deg += (unsigned char)Random(-spread, spread);
+					BULLET *bully = SetBullet(bul_no, gMC.x, gMC.y);
+					if (bully != NULL)
+					{
+						bully->ym = GetSin(deg) * (6+level*2);
+						bully->xm = GetCos(deg) * (6+level*2);
+						bully->direct = direct;
+						bully->life_count = 16 + level*9;
+						bully->life = 1;
+						bully->damage = 0;
+					}
+				}
+				
+				PlaySoundObject(49, SOUND_MODE_PLAY);
 			}
-			
-			PlaySoundObject(49, SOUND_MODE_PLAY);
 		}
 	}
 	else
 	{
 		++wait;
 
-		if (wait > 60)
+		if (wait > 50)
 		{
 			wait = 0;
 			ChargeArmsEnergy(1);

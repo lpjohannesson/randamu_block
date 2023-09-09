@@ -757,7 +757,7 @@ void ActNpc146(NPCHAR *npc)
 			if (npc->ani_no > 4)
 			{
 				SetDestroyNpChar(npc->x, npc->y, 0x1000, 8);
-				if (npc->direct == 2){
+				if (npc->direct == 2 && npc->count1 == 0){
 					NPCHAR* target = FindNpCharHere(npc->x, npc->y);
 					if (target != NULL){
 						DealDamage(*target, 10);

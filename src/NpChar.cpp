@@ -524,6 +524,11 @@ void VanishNpChar(NPCHAR *npc)
 	SetUniqueParameter(npc);
 }
 
+Rect targeting_visual_rect[2] = {
+		{80, 120, 104, 144},
+		{104, 120, 128, 144},
+};
+
 void PutNpChar(int fx, int fy)
 {
 	int n;
@@ -564,6 +569,20 @@ void PutNpChar(int fx, int fy)
 				&gNPC[n].rect,
 				(SurfaceID)gNPC[n].surf,
 				gNPC[n].opacity);
+			if (gNPC[n].targetingEffect > 0){
+				int timing = 0;
+				if (gNPC[n].targetingEffect / 2 % 2)
+					timing = 0;
+				else
+					timing = 1;
+				PutBitmap3(
+					&grcGame,
+					SubpixelToScreenCoord(gNPC[n].x - 12_pix) - SubpixelToScreenCoord(fx) + PixelToScreenCoord(a),
+					SubpixelToScreenCoord(gNPC[n].y - 12_pix) - SubpixelToScreenCoord(fy),
+					&targeting_visual_rect[timing],
+					(SurfaceID)SURFACE_ID_CARET,
+					gNPC[n].opacity);
+			}
 			if (ChallengeEnabled("hitboxes"))
 			{
 				int mod = 1;
@@ -692,6 +711,10 @@ void ActNpChar(void)
 				}
 				gNPC[i].freeze--;
 				if (gNPC[i].freeze <= 0) gNPC[i].freeze = 0;
+
+				if (gNPC[i].targetingEffect > 0){
+					gNPC[i].targetingEffect++;
+				}
 
 				if (gNPC[i].shock){
 					--gNPC[i].shock;
