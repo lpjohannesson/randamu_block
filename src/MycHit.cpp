@@ -1302,10 +1302,12 @@ void HitMyCharBoss(void)
 			}
 			else
 			{
+				int damage = gBoss[b].damage;
+				if (gBoss[gBoss[b].cond & 0x10 ? 0 : b].targetingEffect > 0) damage *= 1.5;
 				if (hit & 4 && gBoss[b].xm < 0)
-					DamageMyChar(gBoss[b].damage);
+					DamageMyChar(damage);
 				if (hit & 1 && gBoss[b].xm > 0)
-					DamageMyChar(gBoss[b].damage);
+					DamageMyChar(damage);
 				if (gMC.life <= 0 && gMC.deathReason == 0) DetermineHitReason(-1);
 			}
 		}
@@ -1327,7 +1329,9 @@ void HitMyCharBoss(void)
 			}
 			else
 			{
-				DamageMyChar(gBoss[b].damage);
+				int damage = gBoss[b].damage;
+				if (gBoss[gBoss[b].cond & 0x10 ? 0 : b].targetingEffect > 0) damage *= 1.5;
+				DamageMyChar(damage);
 			}
 			if (gMC.life <= 0 && gMC.deathReason == 0)
 				DetermineHitReason(-1);

@@ -5,6 +5,7 @@
 #include "CommonDefines.h"
 
 #include "ArmsItem.h"
+#include "Boss.h"
 #include "BossLife.h"
 #include "Bullet.h"
 #include "Caret.h"
@@ -444,10 +445,25 @@ void ShootBullet_Shotgun(int level)
 		for (auto& entity: gNPC){
 			if (entity.targetingEffect > 0){
 				targeted = true;
-				int damage = (level+1)*4;
+				int damage = (level+1)*5;
 				entity.targetingEffect = 0;
 				DealDamage(entity, damage);
 				NPCHAR* lightning = CreateNpChar(146, entity.x, entity.y, 0, 0, 2, NULL, 0x100);
+				lightning->count1 = 1;
+			}
+		}
+		int bos_;
+		for (int bos = 0; bos < BOSS_MAX; ++bos){
+			if (gBoss[bos].cond & 0x10)
+				bos_ = 0;
+			else
+				bos_ = bos;
+			if (gBoss[bos_].targetingEffect > 0){
+				targeted = true;
+				int damage = (level+1)*5;
+				gBoss[bos_].targetingEffect = 0;
+				DealDamage(gBoss[bos_], damage);
+				NPCHAR* lightning = CreateNpChar(146, gBoss[bos_].x, gBoss[bos_].y, 0, 0, 2, NULL, 0x100);
 				lightning->count1 = 1;
 			}
 		}
@@ -554,7 +570,7 @@ void ShootBullet_Shotgun(int level)
 	{
 		++wait;
 
-		if (wait > 50)
+		if (wait > 100)
 		{
 			wait = 0;
 			ChargeArmsEnergy(1);

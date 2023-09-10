@@ -929,6 +929,9 @@ void HitNpCharBullet(void)
 			if (gBul[b].damage == -1)
 				continue;
 
+			if (gBul[b].code_bullet == 4 && gNPC[n].targetingEffect > 0)
+				continue;
+
 			if (gBul[b].code_bullet == 77 && gNPC[n].code_char == 48)
 				continue;
 

@@ -53,6 +53,11 @@ void InitBossChar(int code)
 	}
 }
 
+Rect targeting_visual_rect[2] = {
+		{80, 120, 104, 144},
+		{104, 120, 128, 144},
+};
+
 void PutBossChar(int fx, int fy)
 {
 	signed char a = 0;
@@ -90,6 +95,19 @@ void PutBossChar(int fx, int fy)
 				SubpixelToScreenCoord(gBoss[b].y - gBoss[b].view.top) - SubpixelToScreenCoord(fy),
 				&gBoss[b].rect,
 				SURFACE_ID_LEVEL_SPRITESET_2);
+			if (gBoss[b].targetingEffect > 0){
+				int timing = 0;
+				if (gBoss[b].targetingEffect / 2 % 2)
+					timing = 0;
+				else
+					timing = 1;
+				PutBitmap3(
+					&grcGame,
+					SubpixelToScreenCoord(gBoss[b].x - 12_pix) - SubpixelToScreenCoord(fx) + PixelToScreenCoord(a),
+					SubpixelToScreenCoord(gBoss[b].y - 12_pix) - SubpixelToScreenCoord(fy),
+					&targeting_visual_rect[timing],
+					(SurfaceID)SURFACE_ID_CARET);
+			}
 		}
 	}
 }
@@ -133,6 +151,9 @@ void HitBossBullet(void)
 				continue;
 
 			if (gBul[bul].damage == -1)
+				continue;
+
+			if (gBul[bul].code_bullet == 4 && gBoss[gBoss[bos].cond & 0x10 ? 0 : bos].targetingEffect > 0)
 				continue;
 
 			if (gBoss[bos].code_char == 1 && gBoss[0].life > Omega_HealthValue() * 0.75f && gBul[bul].code_bullet != 77)
@@ -199,6 +220,25 @@ void HitBossBullet(void)
 					}
 					if (GetNPCFlag(4242)){
 						dmg *= float(Random(50, 175)) / 100.0f;
+					}
+					if (gBoss[bos_].targetingEffect > 0){
+						dmg *= 3;
+						gBoss[bos_].targetingEffect = 0;
+						if (dmg > 0){
+							PlaySoundObject(12);
+							SetCaret(gBoss[bos_].x-0x2500, gBoss[bos_].y, 2, 2);
+							SetCaret(gBoss[bos_].x-0x1800, gBoss[bos_].y-0x1800, 2, 2);
+							SetCaret(gBoss[bos_].x+0x2500, gBoss[bos_].y, 2, 2);
+							SetCaret(gBoss[bos_].x+0x1800, gBoss[bos_].y-0x1800, 2, 2);
+							SetCaret(gBoss[bos_].x, gBoss[bos_].y+0x2500, 2, 2);
+							SetCaret(gBoss[bos_].x+0x1800, gBoss[bos_].y+0x1800, 2, 2);
+							SetCaret(gBoss[bos_].x, gBoss[bos_].y-0x2500, 2, 2);
+							SetCaret(gBoss[bos_].x-0x1800, gBoss[bos_].y+0x1800, 2, 2);
+						}
+					}
+
+					if (gBul[bul].code_bullet == 4){
+						gBoss[bos_].targetingEffect = 1;
 					}
 
 					gBoss[bos_].life -= dmg;
