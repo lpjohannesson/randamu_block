@@ -509,6 +509,9 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 	// Create drop
 	if (npc->exp != 0)
 	{
+		if (Random(0, 2) == 0 && GetNPCFlag(3333)){
+			SetLifeObject(npc->x, npc->y, 1);
+		}
 		int roll = Random(1, 5);
 		if (gMC.difficulty > DIFFICULTY_REINFORCED){
 			roll = Random(1, 7);
@@ -1004,9 +1007,6 @@ void HitNpCharBullet(void)
 
 		if (gNPC[n].cond & 8){
 			LoseNpChar(&gNPC[n], true);
-			if (Random(0, 2) == 0 && gNPC[n].exp > 0 && GetNPCFlag(3333)){
-				SetLifeObject(gNPC[n].x, gNPC[n].y, 1);
-			}
 		}
 	}
 }
