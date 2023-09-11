@@ -1735,7 +1735,7 @@ void ActBullet_Missile(BULLET *bul, int level)
 	}
 
 	bul->life = 100;
-	if (++bul->count1 % 6 == 0){
+	if (++bul->count1 % 3 == 0){
 		bul->damage = 1;
 	} else {
 		bul->damage = 0;

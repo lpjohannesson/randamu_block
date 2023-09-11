@@ -30,7 +30,7 @@ ARMS_LEVEL gArmsLevelTable[] =
 	{{1000, 1000, 1000, 1000}}, //polestar
 	{{16, 30, 20, 20}}, //fireball
 	{{30, 30, 30, 30}}, //machine gun
-	{{100000, 100000, 100000, 1000}}, //launcher
+	{{20, 100000, 100000, 1000}}, //launcher
 	{{10, 20, 30, 1000}}, //missiles
 	{{25, 40, 40, 40}}, //bubbler
 	{{30, 60, 25, 0}}, //whip
@@ -71,7 +71,7 @@ void AddExpMyChar(int x)
 
 	gArmsData[gSelectedArms].exp += x;
 
-	bool zeroXPArm = arms_code == 13 || arms_code == 2 || arms_code == 12 || arms_code == 5;
+	bool zeroXPArm = arms_code == 13 || arms_code == 2 || arms_code == 12;
 
 	int max_lv = 2;
 	if (GetNPCFlag(2048) || GetNPCFlag(7999)) max_lv = 3;
@@ -90,9 +90,14 @@ void AddExpMyChar(int x)
 	{
 		while (gArmsData[gSelectedArms].exp >= gArmsLevelTable[arms_code].exp[lv] && lv < max_lv && !isMiningLaser)
 		{
-			++gArmsData[gSelectedArms].level;
 			gArmsData[gSelectedArms].exp -= gArmsLevelTable[arms_code].exp[lv];
-			lv++;
+			if (arms_code == 5){
+				gArmsData[gSelectedArms].num = std::min(gArmsData[gSelectedArms].num+1, gArmsData[gSelectedArms].max_num);
+				PlaySoundObject(42);
+			} else {
+				++gArmsData[gSelectedArms].level;
+				lv++;
+			}
 
 			if (!zeroXPArm)
 			{

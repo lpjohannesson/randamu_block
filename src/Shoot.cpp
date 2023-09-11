@@ -1814,7 +1814,6 @@ void ShootBullet_Missile(int level, bool bSuper)
 	}
 	else
 	{
-		ZeroExpMyChar();
 		bul_no = 14;
 
 		switch (level)
