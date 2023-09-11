@@ -53,7 +53,7 @@ void InitBossChar(int code)
 	}
 }
 
-Rect targeting_visual_rect[2] = {
+Rect targeting_visual_brect[2] = {
 		{80, 120, 104, 144},
 		{104, 120, 128, 144},
 };
