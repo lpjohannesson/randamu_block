@@ -80,7 +80,7 @@ int Random(int min, int max, RandomCategories::RandomCategories category)
 				return pcg32_boundedrand_r(&seed_npcs, range) + min;
 	
 		default:
-			return msvc_rand(range+1) + min;
+			return msvc_rand(range) + min;
 	}
 }
 
