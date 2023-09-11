@@ -105,7 +105,7 @@ void PutBossChar(int fx, int fy)
 					&grcGame,
 					SubpixelToScreenCoord(gBoss[b].x - 12_pix) - SubpixelToScreenCoord(fx) + PixelToScreenCoord(a),
 					SubpixelToScreenCoord(gBoss[b].y - 12_pix) - SubpixelToScreenCoord(fy),
-					&targeting_visual_rect[timing],
+					&targeting_visual_brect[timing],
 					(SurfaceID)SURFACE_ID_CARET);
 			}
 		}
