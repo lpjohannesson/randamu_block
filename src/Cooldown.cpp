@@ -216,7 +216,7 @@ int CooldownDuration(int id){
         case NANITES_CD_ID:
             return 3600;
         case GRAVITY_FLIP_ID:
-            return 90;
+            return 60;
         case FLOODTIDE_ATTACK_ID:
             return 5;
     }
