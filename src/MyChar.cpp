@@ -709,14 +709,15 @@ void ActMyChar_Normal(bool bKey)
 		gravity1 *= 0.66;
 		gravity2 *= 0.66;
 	}
-	if (gKey & gKeyDown && gArmsData[gSelectedArms].code == 18){
-		max_dash /= 2;
-		dash1 /= 2;
-		dash2 /= 2;
-		jump /= 2;
-		resist /= 3;
-		gravity2 /= 2;
-		gravity1 /= 2;
+	bool miningLaserCharge = gKey & gKeyDown && gArmsData[gSelectedArms].code == 18 && gArmsData[gSelectedArms].exp > 0;
+	if (miningLaserCharge){
+		max_dash /= 1.5;
+		dash1 /= 1.5;
+		dash2 /= 1.5;
+		jump /= 1.5;
+		resist /= 1.5;
+		gravity2 /= 1.5;
+		gravity1 /= 1.5;
 	}
 	double mod = 1;
 	ModifyWithChallengeValueReal(&mod, "movement_speed");
@@ -1343,14 +1344,14 @@ void ActMyChar_Normal(bool bKey)
 				if (gMC.dashLock == 0)
 				{
 					gMC.xm -= max_move * DashSpeed();
-					if (gKey & gKeyDown && gArmsData[gSelectedArms].code == 18){
+					if (miningLaserCharge){
 						gMC.xm /= 2;
 					}
 				}
 				else if (gMC.dashLock == 2)
 				{
 					gMC.xm += max_move * DashSpeed();
-					if (gKey & gKeyDown && gArmsData[gSelectedArms].code == 18){
+					if (miningLaserCharge){
 						gMC.xm /= 2;
 					}
 				}
@@ -1364,9 +1365,6 @@ void ActMyChar_Normal(bool bKey)
 			}
 		} else {
 			int distance = 0x2000 * 6;
-			if (gKey & gKeyDown && gArmsData[gSelectedArms].code == 18){
-				distance /= 2;
-			}
 			if (gMC.direct == 0) distance *= -1;
 			while (GetAttribute(round((gMC.x + distance) / (0x2000 * 1.0f)), round((gMC.y) / (0x2000 * 1.0f))) == 65 ||
 			GetAttribute(round((gMC.x + distance) / (0x2000 * 1.0f)), round((gMC.y) / (0x2000 * 1.0f))) == 66){
@@ -1430,7 +1428,7 @@ void ActMyChar_Normal(bool bKey)
 			gMC.xm = max_move*1.8;
 		if (gMC.xm < -max_move*1.8)
 			gMC.xm = -max_move*1.8;
-		if (gKey & gKeyDown && gArmsData[gSelectedArms].code == 18){
+		if (miningLaserCharge){
 			gMC.xm /= 2;
 		}
 	}
@@ -1440,7 +1438,7 @@ void ActMyChar_Normal(bool bKey)
 				gMC.xm = max_move*DashSpeed();
 			if (gMC.xm < -max_move*DashSpeed())
 				gMC.xm = -max_move*DashSpeed();
-			if (gKey & gKeyDown && gArmsData[gSelectedArms].code == 18){
+			if (miningLaserCharge){
 				gMC.xm /= 2;
 			}
 		}

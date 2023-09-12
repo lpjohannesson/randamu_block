@@ -1363,7 +1363,7 @@ void ShootBullet_MiningLaser(int level)
 		char caret = Random(0, 1);
 		SetCaret(gMC.x, gMC.y + 3_pix, caret ? 11 : 1, caret ? 0 : 1);
 		PlaySoundObject(59, SOUND_MODE_PLAY);
-		if (++wait > 5){
+		if (++wait > 3){
 			wait = 0;
 			gArmsData[gSelectedArms].exp--;
 			if (gArmsData[gSelectedArms].num < gArmsData[gSelectedArms].max_num)

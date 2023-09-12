@@ -3331,7 +3331,7 @@ void ActBullet_MiningLaser(BULLET *bul, int level)
 		{232, 96, 248, 112},
 	};
 
-	bul->iframes = 8;
+	bul->iframes = 5;
 
 	switch (level)
 	{
