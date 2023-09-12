@@ -800,8 +800,9 @@ Equipped Steel Plating.<NOD<WAI0003<FRE<EVE5052
 <FLJ0737:7053<ELJ
 <KEY<MSGSo cool.<NOD Makes <NAM
 deal 2x more damage with
-projectiles, but they recieve 75%
-more damage,<NOD also makes
+projectiles,<NOD but makes <NAM
+have 50% shorter invulnerability
+frames,<NOD also makes
 any dashing item stronger.<NOD<CLR
 Do you want to equip it?<YNJ0000<E2+0024<FL+0737<MSG
 Equipped Cool Sunglasses.<NOD<WAI0003<FRE<EVE5053

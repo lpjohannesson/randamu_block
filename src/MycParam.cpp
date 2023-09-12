@@ -186,11 +186,6 @@ void DamageMyChar(int damage)
 		damage *= 0.66;
 	}
 
-	if (gMC.equip & EQUIP_SUNGLASSES){
-		oldDamage = damage;
-		damage *= 1.75;
-	}
-
 	if (gMC.saraDash > 0 && damage != 0 && CheckForCooldown(gCooldowns, SARA_DAMAGE_ID) == -1){
 		damage = 0;
 		InitiateCooldown(gCooldowns, SARA_DAMAGE_ID);
@@ -272,6 +267,9 @@ void DamageMyChar(int damage)
 	}
 	if (gMC.difficulty > DIFFICULTY_REINFORCED && gMC.flag & 0x100){
 		gMC.air -= finalDamage * 25;
+	}
+	if (gMC.equip & EQUIP_SUNGLASSES){
+		gMC.shock /= 2;
 	}
 	if ((GetNPCFlag(882) || GetNPCFlag(883)) && CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1
 						&& CheckForCooldown(gCooldowns, NANITES_TIME_ID) == -1){
