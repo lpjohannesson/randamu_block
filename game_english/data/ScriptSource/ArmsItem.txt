@@ -465,8 +465,8 @@ Equipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 #6012
 <FLJ0866:7012<ELJ
 <KEY<MSGMakes <NAM jump higher and
-faster.<NOD Allows dashing with
-Dash key.<NOD Grants
+faster.<NOD Allows quick dashing
+with Dash key.<NOD Grants
 double jumps which are recharged
 when using dash.<NOD<CLR
 Do you want to equip it?<YNJ0000<FL+0866<MSG

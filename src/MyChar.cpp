@@ -53,6 +53,7 @@ int DashDuration(){
 float DashSpeed(){
 	if (gMC.ameDashState) return 2.75;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 2.75f;
+	if (GetNPCFlag(866)) return 1.8;
 	if ((GetNPCFlag(4100) || GetNPCFlag(7999)) && gArmsData[gSelectedArms].code == 9) return 3;
 	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) && gMC.equip & EQUIP_SPEED_SHOES && gMC.equip & EQUIP_SUNGLASSES) return 2.25;
 	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) && gMC.equip & EQUIP_SUNGLASSES) return 2.6;
@@ -1250,7 +1251,7 @@ void ActMyChar_Normal(bool bKey)
 	if (bKey && gKey & gKeyAbility && gMC.equip & EQUIP_WINGS && gMC.ym  * (gMC.flip ? -1 : 1) > max_move / 2.8){
 		gMC.ym = max_move / 2.8 * (gMC.flip ? -1 : 1);
 	}
-	if (gMC.ym > max_move / 6 && CheckForCooldown(gCooldowns, DASH_TIMER_ID) < DashCooldown() / 2 && (GetNPCFlag(866))){
+	if (gMC.ym > max_move / 6 && CheckForCooldown(gCooldowns, DASH_TIMER_ID) >= DashCooldown() / 2 && (GetNPCFlag(866))){
 		gMC.ym = max_move / 6;
 	}
 	if (gMC.ym > max_move && !(gMC.equip & EQUIP_HEAVY_WEIGHT && gKey & gKeyAbility)){
