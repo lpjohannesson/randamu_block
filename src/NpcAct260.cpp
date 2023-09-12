@@ -305,6 +305,7 @@ void ActNpcDoctorP1(NPCHAR *npc)
 					}
 				}
 			}
+			npc->ym += 0x50;
 
 			if (npc->act_wait == waitTimeMod * 3 + 5)
 				npc->ani_no = 0;
