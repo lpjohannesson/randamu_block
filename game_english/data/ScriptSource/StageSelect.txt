@@ -216,7 +216,7 @@ The Miracle Upgrade to Floodtide<WAI9999<END
 <KEY<MSG<TUR<GIT0021- Gatling Gun -
 The Miracle Upgrade to Machine Gun<WAI9999<END
 #1038
-<KEY<MSG<TUR<GIT0021- Frontier Buster -
+<KEY<MSG<TUR<GIT0022- Frontier Buster -
 The Miracle Upgrade to Snake<WAI9999<END
 #2000
 <MSG<TURThe default difficulty, the way
