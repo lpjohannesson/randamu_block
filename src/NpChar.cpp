@@ -721,15 +721,11 @@ void ActNpChar(void)
 				}
 			}
 		} else {
-			if (static_iframes.contains(i)){
-				for (auto& iframes: static_iframes[i]){
-					iframes.second = 0;
-				}
+			if (static_iframes.contains(i) && static_iframes[i].size() > 0){
+				static_iframes[i].clear();
 			}
-			if (local_iframes.contains(i)){
-				for (auto& iframes: local_iframes[i]){
-					iframes.second = 0;
-				}
+			if (local_iframes.contains(i) && static_iframes[i].size() > 0){
+				static_iframes[i].clear();
 			}
 		}
 	}
