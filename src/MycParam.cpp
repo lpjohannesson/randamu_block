@@ -98,6 +98,8 @@ void AddExpMyChar(int x)
 				++gArmsData[gSelectedArms].level;
 				lv++;
 			}
+			if (lv == max_lv)
+				gArmsData[gSelectedArms].exp = std::min(gArmsData[gSelectedArms].exp, gArmsLevelTable[arms_code].exp[lv]);
 
 			if (!zeroXPArm)
 			{
