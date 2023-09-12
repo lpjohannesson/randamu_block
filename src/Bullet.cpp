@@ -207,9 +207,9 @@ BULLET_TABLE gBulTbl[] = {
 	{10, 3, 1, 32, 10, 10, 4, 2, {12, 12, 12, 12}, 0.1, 0.1},
 	{3, 100, 37, 36, 8, 8, 4, 4, {12, 12, 12, 12}, 1.66, 1.66},
 	// Rifle
-	{10, 2, 27, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
-	{14, 3, 36, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
-	{22, 4, 52, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
+	{4, 2, 24, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
+	{7, 3, 30, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
+	{10, 4, 46, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
 	// Super Missile Launcher explosion
 	{2, 100, 100, 20, 12, 12, 0, 0, {0, 0, 0, 0}, 1, 1},
 	{2, 100, 100, 20, 20, 20, 0, 0, {0, 0, 0, 0}, 1, 1},
@@ -853,6 +853,8 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 
 void ActBullet_Rifle(BULLET *bul, int level)
 {
+	bul->local_iframes = 10;
+
 	if (++bul->count1 > bul->life_count)
 	{
 		bul->cond = 0;
@@ -888,33 +890,33 @@ void ActBullet_Rifle(BULLET *bul, int level)
 				switch (bul->direct)
 				{
 					case 0:
-						bul->enemyYL = 0x400;
+						bul->enemyYL = 0x600;
 						break;
 					case 1:
-						bul->enemyXL = 0x400;
+						bul->enemyXL = 0x600;
 						break;
 					case 2:
-						bul->enemyYL = 0x400;
+						bul->enemyYL = 0x600;
 						break;
 					case 3:
-						bul->enemyXL = 0x400;
+						bul->enemyXL = 0x600;
 						break;
 				}
 				break;
-			case 2:
+			case 2: case 3:
 				switch (bul->direct)
 				{
 					case 0:
-						bul->enemyYL = 0x800;
+						bul->enemyYL = 0x900;
 						break;
 					case 1:
-						bul->enemyXL = 0x800;
+						bul->enemyXL = 0x900;
 						break;
 					case 2:
-						bul->enemyYL = 0x800;
+						bul->enemyYL = 0x900;
 						break;
 					case 3:
-						bul->enemyXL = 0x800;
+						bul->enemyXL = 0x900;
 						break;
 				}
 				break;
@@ -923,6 +925,7 @@ void ActBullet_Rifle(BULLET *bul, int level)
 	else
 	{
 		// Move
+		bul->life = 100;
 		bul->x += bul->xm;
 		bul->y += bul->ym;
 	}
@@ -5345,7 +5348,7 @@ void ActBullet(void)
 						ActBullet_Sword3(&gBul[i], 3);
 						break;
 
-					// Super Missile Launcher
+					// Rifle
 					case 28:
 						ActBullet_Rifle(&gBul[i], 1);
 						break;
@@ -5575,9 +5578,6 @@ bool IsActiveSomeBullet(void)
 				case 25:
 				case 26:
 				case 27:
-				case 28:
-				case 29:
-				case 30:
 				case 31:
 				case 32:
 				case 33:

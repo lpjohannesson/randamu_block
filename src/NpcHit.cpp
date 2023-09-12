@@ -509,7 +509,7 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 	// Create drop
 	if (npc->exp != 0)
 	{
-		if (Random(0, 2) == 0 && GetNPCFlag(3333)){
+		if (Random(0, 1) == 0 && GetNPCFlag(3333)){
 			SetLifeObject(npc->x, npc->y, 1);
 		}
 		int roll = Random(1, 5);
@@ -925,7 +925,7 @@ void HitNpCharBullet(void)
 					continue;
 			}
 
-			if (gNPC[n].shock > 0 && ((gBul[b].code_bullet > 27 && gBul[b].code_bullet < 31) ||
+			if (gNPC[n].shock > 0 && (
 				 (gBul[b].code_bullet == 57) || (gBul[b].code_bullet == 69) || (GetNPCFlag(873) && gBul[b].code_bullet > 6 && gBul[b].code_bullet < 10 && CountBulletNum(16))))
 				continue;
 
@@ -985,10 +985,7 @@ void HitNpCharBullet(void)
 				}
 				else if (gBul[b].code_bullet == 13
 					|| gBul[b].code_bullet == 14
-					|| gBul[b].code_bullet == 15
-					|| gBul[b].code_bullet == 28
-					|| gBul[b].code_bullet == 29
-					|| gBul[b].code_bullet == 30)
+					|| gBul[b].code_bullet == 15)
 				{
 					// Strange empty case that's needed for accurate assembly
 				}

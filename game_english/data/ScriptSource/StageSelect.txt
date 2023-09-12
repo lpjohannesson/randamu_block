@@ -29,7 +29,7 @@ Ideal for speed playthroughs.<WAI9999<END
 #0907
 <MSG<TUR               - Hunter -
 Wields powerful piercing rifle and can
-get food from kills, but need to eat.<WAI9999<END
+get food from kills, but needs to eat.<WAI9999<END
 #0908
 <MSG<TUR                - Sara -
 Holding Ability allows her to move and jump
