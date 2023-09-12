@@ -582,6 +582,7 @@ void ShootBullet_Shotgun(int level)
 void ShootBullet_WaterStar(int level)
 {
 	int bul_no;
+	static int wait;
 	ZeroExpMyChar();
 
 	switch (level)
@@ -631,6 +632,16 @@ void ShootBullet_WaterStar(int level)
 			}
 			SetNpChar(299, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100);
 			PlaySoundObject(32, SOUND_MODE_PLAY);
+		}
+	}
+	else if (gMC.flag & 0x100)
+	{
+		++wait;
+
+		if (wait > 160)
+		{
+			wait = 0;
+			ChargeArmsEnergy(1);
 		}
 	}
 }
