@@ -1400,11 +1400,11 @@ void ActMyChar_Normal(bool bKey)
 			if (npc != NULL)
 				DealDamage(*npc, 24);
 			gMC.dashDuration = 0;
-			if (GetNPCFlag(866)){
-				gMC.pogo = true;
-			}
 			} else {
 				gMC.dashDuration = 0;
+			}
+			if (GetNPCFlag(866)){
+				gMC.pogo = true;
 			}
 		}
 	}
