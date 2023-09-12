@@ -498,7 +498,8 @@ Life restored.<FRE<WAI9999<END
 movement speed and momentum
 on the ground.<NOD Push the jump
 button again in midair to
-fly even higher.<NOD<CLR
+fly even higher.<NOD Also removes
+low friction in icy stages.<NOD<CLR<CLR
 Do you want to equip it?<YNJ0000<EQ+2048<FL+0869<MSG
 Equipped Terra Boots.<NOD<WAI0003<FRE<EVE5016
 #6017
@@ -828,7 +829,9 @@ Equipped Nano Quiver.<NOD<WAI0003<FRE<EVE5055
 <KEY<MSGHolding Ability key
 allows you to slide at insane
 speed.<NOD Jumping at peak
-of speed is a lot stronger.<NOD<CLR
+of speed is a lot stronger.<NOD
+Also removes low friction in icy
+stages.<NOD<CLR
 Do you want to equip it?<YNJ0000<E2+0030<FL+0708<MSG
 Equipped Nice Skates.<NOD<WAI0003<FRE<EVE5056
 

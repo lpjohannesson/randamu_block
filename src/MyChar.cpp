@@ -692,8 +692,10 @@ void ActMyChar_Normal(bool bKey)
 		dash1 *= 1.2;
 	}
 	if (gMC.tileset == TYPE_ICE){
-		resist /= 2;
-		dash1 *= 0.9;
+		if (!(gMC.equip & EQUIP_SKATES) && !GetNPCFlag(869)){
+			resist /= 2;
+			dash1 *= 0.9;
+		}
 		if (gMC.flag & 0x100){
 			max_dash *= 0.75;
 			dash1 *= 0.75;
