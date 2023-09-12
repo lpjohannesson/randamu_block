@@ -196,6 +196,7 @@ bool LoadProfile(const char *name)
 	} else {
 		gPermitStage = profileJson[PROFILE_SELSTAGE].get<std::vector<PERMIT_STAGE>>();
 		auto gC = profileJson[PROFILE_COOLDOWNS].get<std::vector<Cooldown>>();
+		gCooldowns.clear();
 		for (auto& cd: gC){
 			InitiateCooldown(gCooldowns, cd.id, cd.duration);
 		}
