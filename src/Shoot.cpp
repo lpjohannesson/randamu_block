@@ -1209,7 +1209,8 @@ void ShootBullet_RobotGun(int level)
 {
 	int bul_no = 67;
 	static int wait;
-	if (gKey & gKeyJump && gMC.boost_sw == 1){
+	const int snakeProbability = 22, additionalSparkProbability = 2, spikeProbability = 3;
+	if (gKey & gKeyJump && gMC.boost_sw == 1 && !(gMC.flag & 0x100)){
 		if (!UseArmsEnergy(1))
 		{
 			PlaySoundObject(37, SOUND_MODE_PLAY);
@@ -1229,13 +1230,13 @@ void ShootBullet_RobotGun(int level)
 		if (gArmsData[gSelectedArms].num % 2 == 0)
 		{
 			SetBullet(67, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
-			if (level > 1 && Random(0, 25) == 0)
+			if (level > 1 && Random(0, snakeProbability) == 0)
 				SetBullet(3, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
-			if (level > 1 && Random(0, 2) == 0)
+			if (level > 1 && Random(0, additionalSparkProbability) == 0)
 				SetBullet(67, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
 			if (level > 2)
 				SetBullet(67, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
-			if (level > 2 && Random(0, 4) == 0)
+			if (level > 2 && Random(0, spikeProbability) == 0)
 				SetBullet(22, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
 			PlaySoundObject(113, SOUND_MODE_PLAY);
 		}
@@ -1269,25 +1270,25 @@ void ShootBullet_RobotGun(int level)
 			if (gMC.direct == 0)
 			{
 				SetBullet(bul_no, gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
-				if (level > 1 && Random(0, 25) == 0)
+				if (level > 1 && Random(0, snakeProbability) == 0)
 					SetBullet(3, gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
-				if (level > 1 && Random(0, 2) == 0)
+				if (level > 1 && Random(0, additionalSparkProbability) == 0)
 					SetBullet(bul_no, gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				if (level > 2)
 					SetBullet(bul_no, gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
-				if (level > 2 && Random(0, 4) == 0)
+				if (level > 2 && Random(0, spikeProbability) == 0)
 					SetBullet(22, gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 			}
 			else
 			{
 				SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
-				if (level > 1 && Random(0, 25) == 0)
+				if (level > 1 && Random(0, snakeProbability) == 0)
 					SetBullet(3, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
-				if (level > 1 && Random(0, 2) == 0)
+				if (level > 1 && Random(0, additionalSparkProbability) == 0)
 					SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				if (level > 2)
 					SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
-				if (level > 2 && Random(0, 4) == 0)
+				if (level > 2 && Random(0, spikeProbability) == 0)
 					SetBullet(22, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 			}
 		}
@@ -1296,25 +1297,25 @@ void ShootBullet_RobotGun(int level)
 			if (gMC.direct == 0)
 			{
 				SetBullet(bul_no, gMC.x - (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
-				if (level > 1 && Random(0, 25) == 0)
+				if (level > 1 && Random(0, snakeProbability) == 0)
 					SetBullet(3, gMC.x - (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
-				if (level > 1 && Random(0, 2) == 0)
+				if (level > 1 && Random(0, additionalSparkProbability) == 0)
 					SetBullet(bul_no, gMC.x - (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
 				if (level > 2)
 					SetBullet(bul_no, gMC.x - (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
-				if (level > 2 && Random(0, 4) == 0)
+				if (level > 2 && Random(0, spikeProbability) == 0)
 					SetBullet(22, gMC.x - (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
 			}
 			else
 			{
 				SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
-				if (level > 1 && Random(0, 25) == 0)
+				if (level > 1 && Random(0, snakeProbability) == 0)
 					SetBullet(3, gMC.x + (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
-				if (level > 1 && Random(0, 2) == 0)
+				if (level > 1 && Random(0, additionalSparkProbability) == 0)
 					SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
 				if (level > 2)
 					SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
-				if (level > 2 && Random(0, 4) == 0)
+				if (level > 2 && Random(0, spikeProbability) == 0)
 					SetBullet(22, gMC.x + (3 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
 			}
 		}
@@ -1323,25 +1324,25 @@ void ShootBullet_RobotGun(int level)
 			if (gMC.direct == 0)
 			{
 				SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y + (3 * 0x200), 0);
-				if (level > 1 && Random(0, 25) == 0)
+				if (level > 1 && Random(0, snakeProbability) == 0)
 					SetBullet(3, gMC.x - (6 * 0x200), gMC.y + (3 * 0x200), 0);
-				if (level > 1 && Random(0, 2) == 0)
+				if (level > 1 && Random(0, additionalSparkProbability) == 0)
 					SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y + (3 * 0x200), 0);
 				if (level > 2)
 					SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y + (3 * 0x200), 0);
-				if (level > 2 && Random(0, 4) == 0)
+				if (level > 2 && Random(0, spikeProbability) == 0)
 					SetBullet(22, gMC.x - (6 * 0x200), gMC.y + (3 * 0x200), 0);
 			}
 			else
 			{
 				SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y + (3 * 0x200), 2);
-				if (level > 1 && Random(0, 25) == 0)
+				if (level > 1 && Random(0, snakeProbability) == 0)
 					SetBullet(3, gMC.x + (6 * 0x200), gMC.y + (3 * 0x200), 2);
-				if (level > 1 && Random(0, 2) == 0)
+				if (level > 1 && Random(0, additionalSparkProbability) == 0)
 					SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y + (3 * 0x200), 2);
 				if (level > 2)
 					SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y + (3 * 0x200), 2);
-				if (level > 2 && Random(0, 4) == 0)
+				if (level > 2 && Random(0, spikeProbability) == 0)
 					SetBullet(22, gMC.x + (6 * 0x200), gMC.y + (3 * 0x200), 2);
 			}
 		}
