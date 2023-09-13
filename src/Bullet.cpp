@@ -3355,8 +3355,6 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 	{
 		bul->cond = 0;
 		return;
-	} else {
-		bul->iframes = bul->life_count;
 	}
 
 	if (bul->act_no == 0){
@@ -3374,9 +3372,10 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 			bul->life_count /= 2;
 			bul->count2 = 1;
 		}
+		bul->iframes = bul->life_count;
 		bul->act_no = 1;
 	} else {
-		int spinValue = 8 + level*2;
+		int spinValue = 6 + level*2;
 		int swingValue = 13;
 		if (bul->count2 == 1){
 			spinValue *= 2;
@@ -3426,7 +3425,7 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 			if (CheckForCooldown(gCooldowns, FLOODTIDE_ATTACK_ID) == -1){
 				int lol = Random(30, 40);
 				if (level == 4) lol+=20;
-				if (bul->count2 == 1) lol+=24;
+				if (bul->count2 == 1) lol+=8;
 				InitiateCooldown(gCooldowns, FLOODTIDE_ATTACK_ID);
 				for (int i = 0; i < lol; i++)
 				{
@@ -3472,7 +3471,7 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 	if (gMC.direct == 0){
 		bul->x -= 0x200 * 12 * (float(bul->count1) / float(bul->life_count));
 	} else {
-		bul->x += 0x200 * 12 * (float(bul->count1) / float(bul->life_count));
+		bul->x += 3_pix + 0x200 * 12 * (float(bul->count1) / float(bul->life_count));
 	}
 	bul->y = gMC.y + gMC.ym - 0x200 * 7 + 0x200 * 5 * (float(bul->count1) / float(bul->life_count));
 
