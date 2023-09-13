@@ -644,7 +644,7 @@ void ActMyChar_Normal(bool bKey)
 	if (GetNPCFlag(1024)){
 		jump *= 1.1;
 		dash1 *= 1.6;
-		dash2 *= 0.33;
+		dash2 *= 0.75;
 		resist *= 0.5;
 		gravity1 *= 2;
 		gravity2 *= 0.8;
@@ -938,7 +938,7 @@ void ActMyChar_Normal(bool bKey)
 			int maximal_dash = max_dash;
 			int dashy = dash2;
 			if (gKey & gKeyJump && GetNPCFlag(1024) && gArmsData[gSelectedArms].code == 19 && gArmsData[gSelectedArms].num > 0){
-				dash2 *= 8;
+				dash2 *= 4;
 			}
 			if (bKey && gKey & gKeyAbility && gMC.equip & EQUIP_WINGS && gMC.ym > 0x080){
 				maximal_dash *= 1.75;
