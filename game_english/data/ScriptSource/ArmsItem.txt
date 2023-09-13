@@ -84,7 +84,7 @@ by holding jump. Charges only on ground.<WAI9999<END
 #1020
 <MSG<TUR- Hellsweep -
 The brimstone antipode of Floodtide.
-Becomes stronger, when hero is injured.<WAI9999<END
+Becomes stronger, when hero is at 33% HP.<WAI9999<END
 #1021
 <MSG<TUR- Gatling Gun -
 An automatic super quick-fire gun.

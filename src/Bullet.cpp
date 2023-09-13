@@ -291,15 +291,15 @@ BULLET_TABLE gBulTbl[] = {
 	// decorative slash
 	{0, 100, 0, 36, 8, 8, 8, 8, {12, 12, 12, 12}, 0, 0},
 	// helltide sword
-	{5, 100, 26, 52, 10, 12, 5, 3, {8, 8, 8, 8}, 1, 1},
-	{7, 100, 20, 52, 12, 14, 5, 3, {10, 10, 10, 10}, 1, 1},
-	{10, 100, 18, 52, 14, 17, 5, 3, {12, 12, 12, 12}, 1, 1},
+	{12, 100, 48, 52, 14, 12, 5, 3, {8, 8, 8, 8}, 1, 1},
+	{19, 100, 38, 52, 16, 14, 5, 3, {10, 10, 10, 10}, 1, 1},
+	{25, 100, 34, 52, 17, 17, 5, 3, {12, 12, 12, 12}, 1, 1},
 	// hellsweep mine
 	{-1, 2, 100, 8, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
 	// lvl3 hellsweep flamings
-	{-1, 100, 100, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
+	{-1, 100, 200, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
 	// lvl4 Hellsweep
-	{11, 100, 16, 52, 14, 18, 5, 3, {12, 12, 12, 12}, 1, 1},
+	{32, 100, 28, 52, 18, 18, 5, 3, {12, 12, 12, 12}, 1, 1},
 	// visuals for Nanites Absorber
 	{-1, 2, 100, 12, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
 	// Frontie-buster lv1
@@ -3503,29 +3503,28 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 	{
 		bul->cond = 0;
 		return;
-	} else {
-		bul->iframes = bul->life_count;
 	}
 
 	if (bul->act_no == 0){
 		if (bul->direct == 2){
-			bul->angle = -180;
+			bul->angle = -120;
 			bul->centerX = 0;
 			bul->centerY = 1;
 		}
 		else{
 			bul->centerX = 1;
 			bul->centerY = 1;
-			bul->angle = 180;
+			bul->angle = 120;
 		}
-		if (gMC.life <= gMC.max_life / 2){
+		if (gMC.life <= gMC.max_life / 3){
 			bul->life_count /= 2;
 			bul->count2 = 1;
 		}
+		bul->iframes = bul->life_count;
 		bul->act_no = 1;
 	} else {
-		int spinValue = 9 + level;
-		int swingValue = 14;
+		int spinValue = 3 + level*1;
+		int swingValue = 26;
 		if (bul->count2 == 1){
 			spinValue *= 2;
 			swingValue /= 2;
@@ -3538,40 +3537,8 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 		int whirlLimit = 3;
 		if (level == 4) whirlLimit = 5;
 
-		// if (level >= 3 && bul->count1 == swingValue && CountBulletNum(62) < whirlLimit){
-		// 	int lol = 1;
-		// 	for (int i = 0; i < lol; i++)
-		// 	{
-		// 		BULLET *bully = SetBullet(62, bul->x, bul->y);
-		// 		if (bully != NULL)
-		// 		{
-		// 			PlaySoundObject(102, SOUND_MODE_PLAY);
-		// 			bully->direct = 0;
-		// 			if (bul->direct == 0)
-		// 				bully->xm = -0x200 * 5;
-		// 			else
-		// 				bully->xm = 0x200 * 5;
-		// 			if (gMC.up){
-		// 				bully->ym = -0x200 * 5;
-		// 				bully->xm = 0;
-		// 			}
-		// 			else if (gMC.down){
-		// 				bully->ym = 0x200 * 5;
-		// 				bully->xm = 0;
-		// 			} else 
-		// 				bully->ym = 0;
-
-		// 			if (bul->count2 == 1){
-		// 				bully->xm *= 1.4;
-		// 				bully->ym *= 1.4;
-		// 				bully->count2 = 1;
-		// 			}
-		// 		}
-		// 	}
-		// }
-
 		if ((level == 3) && bul->count1 == swingValue){
-			int lol = Random(10, 25);
+			int lol = Random(5, 20);
 			for (int i = 0; i < lol; i++)
 			{
 				BULLET *bully = SetBullet(84, bul->x, bul->y);
@@ -3602,12 +3569,12 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 		}
 
 		if ((level == 2 || level == 4) && bul->count1 == swingValue){
-			int lol = 1;
-			if (level == 4) lol+=1;
+			int lol = 2;
+			if (level == 4) lol+=2;
 			for (int i = 0; i < lol; i++)
 			{
 				int flameX = bul->x + Random(-0x2000, 0x2000), flameY = bul->y;
-				while (IsEmpty(flameX / 0x2000, flameY / 0x2000) && bul->y - flameY < 0x2000 * 4.5){
+				while (IsEmpty(flameX / 0x2000, flameY / 0x2000) && bul->y - flameY < 0x2000 * 4){
 					flameY -= 0x2000;
 				}
 				flameY += 0x2000;
@@ -3657,9 +3624,9 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 
 	bul->x = gMC.x + gMC.xm;
 	if (gMC.direct == 0){
-		bul->x -= 0x200 * 4 + 0x200 * 3 * (float(bul->count1) / float(bul->life_count));
+		bul->x -= 0x200 * 12 * (float(bul->count1) / float(bul->life_count));
 	} else {
-		bul->x += 0x200 * 10 + 0x200 * 3 * (float(bul->count1) / float(bul->life_count));
+		bul->x += 3_pix + 0x200 * 12 * (float(bul->count1) / float(bul->life_count));
 	}
 	bul->y = gMC.y + gMC.ym - 0x200 * 7 + 0x200 * 5 * (float(bul->count1) / float(bul->life_count));
 
@@ -5097,7 +5064,7 @@ void ActBullet_Flamings(BULLET *bul)
 	bul->x += bul->xm;
 	bul->y += bul->ym;
 
-	bul->opacity *= 0.98;
+	bul->opacity *= 0.995;
 
 
 	if (++bul->count1 > bul->life_count)
