@@ -901,7 +901,7 @@ void HitNpCharBullet(void)
 		if (gMC.depth > 1 && gMC.depth % genContext.bossRate == 0){
 				if (std::find(bossNPCsList.begin(), bossNPCsList.end(), gNPC[n].code_char) != bossNPCsList.end())
 					if(IntersectCheck(necessaryRect, gNPC[n].x / 16_pix, gNPC[n].y / 16_pix)){
-						if (gBL.flag == false && !GetNPCFlag(555) && !IntersectCheck(necessaryRect, gMC.x / 16_pix, gMC.y / 16_pix)){
+						if ((gBL.flag == false && !GetNPCFlag(555) && !IntersectCheck(necessaryRect, gMC.x / 16_pix, gMC.y / 16_pix)) || gMusicNo == 52){
 							SetCaret(gNPC[n].x - gNPC[n].rect.left / 2, gNPC[n].y + gNPC[n].rect.bottom / 2, 2, 2);
 							continue;
 						}
