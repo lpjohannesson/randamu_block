@@ -238,9 +238,9 @@ BULLET_TABLE gBulTbl[] = {
 	{2, 1, 30, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 0, 0},
 	{2, 1, 30, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 0, 0},
 	// Hook
-	{10, 100, 15, 105, 6, 6, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
-	{13, 100, 20, 105, 8, 8, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
-	{15, 100, 26, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
+	{5, 100, 25, 105, 6, 6, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
+	{7, 100, 30, 105, 8, 8, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
+	{9, 100, 35, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
 	// Boomerang blade
 	{4, 100, 50, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 1
 	{8, 100, 13, 44, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 2
@@ -277,7 +277,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Blade lv4
 	{3, 100, 35, 36, 6, 6, 4, 4, {12, 12, 12, 12}, 1, 1},
 	// Hook lv4
-	{1, 100, 6, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
+	{1, 100, 12, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
 	// Floodtide lv4
 	{15, 100, 14, 52, 12, 15, 4, 2, {12, 12, 12, 12}, 1, 1},
 	// Boomerang lv4
@@ -571,7 +571,7 @@ void ActBullet_Homing(BULLET *bul)
 
 void ActBullet_Hook(BULLET *bul, int level)
 {
-	bul->iframes = 25;
+	bul->iframes = 10;
 
 	if (GetNPCFlag(4450) || GetNPCFlag(7999))
 	{
@@ -601,9 +601,9 @@ void ActBullet_Hook(BULLET *bul, int level)
 		int deg = GetArktan(bul->x - bul->tgt_x, bul->y - bul->tgt_y);
 		if (!GetNPCFlag(4450))
 			deg += Random(-1, 1);
-		int speed = 11;
+		int speed = 7;
 		if (level == 3){
-			speed = 8.75;
+			speed = 5.75;
 			bul->life_count *= 2;
 		}
 		if (level == 4){
@@ -648,12 +648,12 @@ void ActBullet_Hook(BULLET *bul, int level)
 				chainWrap = false;
 				return;
 			}
-			int speed = 22;
+			int speed = 16;
 			if (level == 3){
-				speed = 17;
+				speed = 11;
 			}
 			if (level == 4){
-				speed = 30;
+				speed = 24;
 			}
 			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
 			deg += Random(-2, 2);
