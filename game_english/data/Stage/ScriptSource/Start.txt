@@ -29,7 +29,7 @@ the next stage.<NOD<END
 #0095
 <AM+0009:0000<AM+0008:0000<AM+0015:0000<END
 #0096
-<FLJ4201:0000<AM+0004:0100<FL+4201<END
+<FLJ4201:0000<AM+0003:0100<FL+4201<END
 #0097
 <END
 #0098
@@ -517,8 +517,8 @@ is at half health.<NOD<CLRCraft it?<NOD<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<W
 power of Machine Gun for exchange
 of more bullets.<NOD
 However, for this power to be
-sustainable,<NOD Gatling Gun has
-to consume more ammo with levels.<NOD<CLRCraft it?<NOD<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT0021<AM-0004<IT-0104<AM+0021:0600<MM-Created =Gatling Gun=!<WAI0135<NOD<CLO<PS-0037<RMU<END
+sustainable,<NOD Gatling Gun needs
+a lot of ammo.<NOD<CLRCraft it?<NOD<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT0021<AM-0004<IT-0104<AM+0021:0300<MM-Created =Gatling Gun=!<WAI0135<NOD<CLO<PS-0037<RMU<END
 #0638
 <PRI<MSG<GIT0022Frontier Buster brings back
 the predecessor to Snake from

@@ -1071,16 +1071,16 @@ void ShootBullet_Machinegun2(int level)
 	static int wait;
 
 	if (!(gKey & gKeyShot))
-		gMC.rensha = gMC.equip & EQUIP_OVERCHARGE ? 1 : 2;
+		gMC.rensha = gMC.equip & EQUIP_OVERCHARGE ? 2 : 4;
 
 	if (gKey & gKeyShot)
 	{
-		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 1 : 2))
+		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 2 : 4))
 			return;
 
 		gMC.rensha = 0;
 
-		if (!UseArmsEnergy(level))
+		if (!UseArmsEnergy(1))
 		{
 			PlaySoundObject(37, SOUND_MODE_PLAY);
 
@@ -1093,9 +1093,9 @@ void ShootBullet_Machinegun2(int level)
 			return;
 		}
 
-		int i = 1;
+		int i = Random(1, level*2);
 		if (Random(0, 2) == 0 && gMC.equip & EQUIP_OVERCHARGE){
-			i = 2;
+			i *= 2;
 		}
 
 		if (gMC.up)
@@ -1194,7 +1194,7 @@ void ShootBullet_Machinegun2(int level)
 		}
 		else
 		{
-			if (wait > 1)
+			if (wait > 2)
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
