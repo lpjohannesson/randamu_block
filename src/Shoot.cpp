@@ -972,11 +972,13 @@ void ShootBullet_Machinegun1(int level)
 
 			if (gMC.direct == 0)
 			{
+				for (int l = 0; l < i; l++)
 				SetBullet(bul_no, gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				SetCaret(gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), 3, 0);
 			}
 			else
 			{
+				for (int l = 0; l < i; l++)
 				SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				SetCaret(gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), 3, 0);
 			}
@@ -1117,11 +1119,13 @@ void ShootBullet_Machinegun2(int level)
 
 			if (gMC.direct == 0)
 			{
+				for (int l = 0; l < i; l++)
 				SetBullet(bul_no, gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				SetCaret(gMC.x - (3 * 0x200), gMC.y - (8 * 0x200), 3, 0);
 			}
 			else
 			{
+				for (int l = 0; l < i; l++)
 				SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				SetCaret(gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), 3, 0);
 			}
