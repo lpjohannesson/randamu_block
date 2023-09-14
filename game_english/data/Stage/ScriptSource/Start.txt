@@ -507,11 +507,12 @@ semi-frequently from
 nanites shield.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1073<IT+0073<IT-0071<IT-0055<FL-0712<E2-0029<FL-0882<MM-Created =Military Armament=!<WAI0135<NOD<CLO<PS-0021<RMU<END
 #0636
 <PRI<MSG<GIT0020Hellsweep is fire-related
-sword, like Floodtide.<NOD
-It is faster and larger,<NOD is able
-to summon various fireballs<NOD
+sword, just like Floodtide.<NOD
+It is slow and heavy, but hits very
+hard,<NOD is able to summon
+various fireballs<NOD
 and gets stronger, when player
-is at half health.<NOD<CLRCraft it?<NOD<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT0020<AM-0017<IT-0117<AM+0020:0000<MM-Created =Hellsweep=!<WAI0135<NOD<CLO<PS-0036<RMU<END
+is at 33% health.<NOD<CLRCraft it?<NOD<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT0020<AM-0017<IT-0117<AM+0020:0000<MM-Created =Hellsweep=!<WAI0135<NOD<CLO<PS-0036<RMU<END
 #0637
 <PRI<MSG<GIT0021Gatling Gun exchanges the normal
 power of Machine Gun for exchange
