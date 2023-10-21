@@ -1159,7 +1159,7 @@ void ActMyChar_Normal(bool bKey)
 		if (gKey & gKeyUp && gMC.chargeActive) {
 			gravity2 *= 0.66;
 			if (gMC.equip & EQUIP_WINGS){
-				gravity2 *= 0.4;
+				gravity2 *= 0.75;
 			}
 		}
 		gMC.ym += gravity2;
