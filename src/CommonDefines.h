@@ -44,68 +44,68 @@ struct Rect
 
 namespace Flags {
 	//items
-	const int CHAOS_KEY                = 703;
-	const int NICE_SKATES              = 708;
-	const int GRAVITY_NECKLACE         = 710;
+	inline constexpr int CHAOS_KEY                = 703;
+	inline constexpr int NICE_SKATES              = 708;
+	inline constexpr int GRAVITY_NECKLACE         = 710;
 
-	const int LEAD_WEIGHT              = 711;
-	const int NANO_QUIVER              = 712;
-	const int OVERCLOCK                = 720;
+	inline constexpr int LEAD_WEIGHT              = 711;
+	inline constexpr int NANO_QUIVER              = 712;
+	inline constexpr int OVERCLOCK                = 720;
 
-	const int COPPER_BULWARK           = 724;
-	const int SILVER_LOCKET            = 725;
+	inline constexpr int COPPER_BULWARK           = 724;
+	inline constexpr int SILVER_LOCKET            = 725;
 
-	const int COOL_SUNGLASSES          = 737;
-	const int MOMENTUM_THROTTLER       = 738;
-	const int STEEL_PLATING            = 739;
-	const int LITTLE_MAN               = 740;
+	inline constexpr int COOL_SUNGLASSES          = 737;
+	inline constexpr int MOMENTUM_THROTTLER       = 738;
+	inline constexpr int STEEL_PLATING            = 739;
+	inline constexpr int LITTLE_MAN               = 740;
 
-	const int CREATION_ENERGIZER       = 741;
-	const int DESTRUCTION_ENERGIZER    = 742;
-	const int BOOSTER_2_0              = 743;
-	const int PROPANE_TANK             = 744;
-	const int CLAY_FIGURE_MEDAL        = 745;
-	const int IRON_BOND                = 746;
-	const int FROSTBITE_STOPWATCH      = 747;
-	const int BALLOS_BURGER            = 748;
-	const int ALIEN_MEDAL              = 749;
-	const int HEAVY_WEIGHT             = 750;
+	inline constexpr int CREATION_ENERGIZER       = 741;
+	inline constexpr int DESTRUCTION_ENERGIZER    = 742;
+	inline constexpr int BOOSTER_2_0              = 743;
+	inline constexpr int PROPANE_TANK             = 744;
+	inline constexpr int CLAY_FIGURE_MEDAL        = 745;
+	inline constexpr int IRON_BOND                = 746;
+	inline constexpr int FROSTBITE_STOPWATCH      = 747;
+	inline constexpr int BALLOS_BURGER            = 748;
+	inline constexpr int ALIEN_MEDAL              = 749;
+	inline constexpr int HEAVY_WEIGHT             = 750;
 
-	const int CURLY_UNDERWEAR          = 751;
-	const int ENERGY_CANISTER          = 752;
-	const int AUXILIARY_BOOSTER        = 753;
-	const int WATER_THURSTERS          = 754;
-	const int PAIR_OF_WINGS            = 755;
-	const int SPEED_SHOES              = 756;
-	const int WALL_HOOK                = 757;
-	const int FISHY_TUBE               = 760;
+	inline constexpr int CURLY_UNDERWEAR          = 751;
+	inline constexpr int ENERGY_CANISTER          = 752;
+	inline constexpr int AUXILIARY_BOOSTER        = 753;
+	inline constexpr int WATER_THURSTERS          = 754;
+	inline constexpr int PAIR_OF_WINGS            = 755;
+	inline constexpr int SPEED_SHOES              = 756;
+	inline constexpr int WALL_HOOK                = 757;
+	inline constexpr int FISHY_TUBE               = 760;
 
-	const int WHIMSICAL_STAR           = 851;
-	const int TIMELINE_RING            = 860;
+	inline constexpr int WHIMSICAL_STAR           = 851;
+	inline constexpr int TIMELINE_RING            = 860;
 
-	const int SUPER_BOOSTER            = 862;
-	const int DIVING_SUIT              = 863;
-	const int SHIELD_OF_RESILIENCE     = 864;
-	const int AUGMENTED_MAN            = 865;
-	const int CAPE_OF_SHADOWS          = 866;
-	const int SACRED_AEGIS             = 867;
-	const int FLAMING_BOOSTER          = 868;
-	const int TERRA_BOOTS              = 869;
-	const int BADGE_OF_LOVE            = 870;
+	inline constexpr int SUPER_BOOSTER            = 862;
+	inline constexpr int DIVING_SUIT              = 863;
+	inline constexpr int SHIELD_OF_RESILIENCE     = 864;
+	inline constexpr int AUGMENTED_MAN            = 865;
+	inline constexpr int CAPE_OF_SHADOWS          = 866;
+	inline constexpr int SACRED_AEGIS             = 867;
+	inline constexpr int FLAMING_BOOSTER          = 868;
+	inline constexpr int TERRA_BOOTS              = 869;
+	inline constexpr int BADGE_OF_LOVE            = 870;
 
-	const int UNIVERSAL_CATALYST       = 871;
-	const int AMPHIBIAN_MEDAL          = 872;
-	const int HIGH_OCTANE_TANK         = 873;
-	const int DISCORDIAN_VISOR         = 874;
-	const int WINTER_CLOCK             = 875;
-	const int SHIELD_OF_TIME           = 876;
-	const int LITTLE_MAN_UNDERWEAR     = 877;
-	const int NUCLEAR_STOMPER          = 878;
-	const int OMNIQUICK_SNEAKERS       = 879;
-	const int FREEZE_STAR              = 880;
-	
-	const int NANITES_ABSORBER         = 882;
-	const int MILITARY_ARMAMENT        = 883;
+	inline constexpr int UNIVERSAL_CATALYST       = 871;
+	inline constexpr int AMPHIBIAN_MEDAL          = 872;
+	inline constexpr int HIGH_OCTANE_TANK         = 873;
+	inline constexpr int DISCORDIAN_VISOR         = 874;
+	inline constexpr int WINTER_CLOCK             = 875;
+	inline constexpr int SHIELD_OF_TIME           = 876;
+	inline constexpr int LITTLE_MAN_UNDERWEAR     = 877;
+	inline constexpr int NUCLEAR_STOMPER          = 878;
+	inline constexpr int OMNIQUICK_SNEAKERS       = 879;
+	inline constexpr int FREEZE_STAR              = 880;
+
+	inline constexpr int NANITES_ABSORBER         = 882;
+	inline constexpr int MILITARY_ARMAMENT        = 883;
 };
 
 #endif // __COMMONDEFINES_H__
