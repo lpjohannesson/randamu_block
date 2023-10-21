@@ -509,7 +509,7 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 	// Create drop
 	if (npc->exp != 0)
 	{
-		if (Random(0, 1) == 0 && GetNPCFlag(3333)){
+		if (Random(0, 1) == 0 && GetNPCFlag(Flags::HUNTER_CHARACTER)){
 			SetLifeObject(npc->x, npc->y, 1);
 		}
 		int roll = Random(1, 5);
@@ -706,7 +706,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		dmg *= 2;
 	}
 
-	if (GetNPCFlag(4242)){ //quate
+	if (GetNPCFlag(Flags::QUATE_CHARACTER)){ //quate
 		dmg *= float(Random(50, 175)) / 100.0f;
 	}
 
@@ -901,7 +901,7 @@ void HitNpCharBullet(void)
 		if (gMC.depth > 1 && gMC.depth % genContext.bossRate == 0){
 				if (std::find(bossNPCsList.begin(), bossNPCsList.end(), gNPC[n].code_char) != bossNPCsList.end())
 					if(IntersectCheck(necessaryRect, gNPC[n].x / 16_pix, gNPC[n].y / 16_pix)){
-						if ((gBL.flag == false && !GetNPCFlag(555) && !IntersectCheck(necessaryRect, gMC.x / 16_pix, gMC.y / 16_pix)) || gMusicNo == 52){
+						if ((gBL.flag == false && !GetNPCFlag(Flags::LEVEL_BOSS_DEFEATED) && !IntersectCheck(necessaryRect, gMC.x / 16_pix, gMC.y / 16_pix)) || gMusicNo == 52){
 							SetCaret(gNPC[n].x - gNPC[n].rect.left / 2, gNPC[n].y + gNPC[n].rect.bottom / 2, 2, 2);
 							continue;
 						}

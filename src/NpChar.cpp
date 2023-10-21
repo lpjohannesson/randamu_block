@@ -89,7 +89,7 @@ static void SetUniqueParameter(NPCHAR *npc)
 	npc->view.bottom = gNpcTable[code].view.bottom * 0x200;
 	npc->knockEffect = 1.0f;
 	npc->opacity = 1.0f;
-	if (GetNPCFlag(4242)){
+	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
 		npc->exp *= float(Random(40, 250)) / 100.0f;
 	}
 }
@@ -586,7 +586,7 @@ void PutNpChar(int fx, int fy)
 			if (ChallengeEnabled("hitboxes"))
 			{
 				int mod = 1;
-				if (GetNPCFlag(4405) && gNPC[n].damage)
+				if (GetNPCFlag(Flags::MAXY_CHARACTER) && gNPC[n].damage)
 				{
 					mod = 3;
 				}

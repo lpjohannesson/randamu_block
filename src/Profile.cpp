@@ -123,7 +123,7 @@ bool SaveProfile(const char *name)
 		if (gNPC[i].code_char == 17){
 			n++;
 			if (gNPC[i].count1 == 1)
-				SetNPCFlag(2630 + n);
+				SetNPCFlag(Flags::REFILL_SAVE_FLAG_BEGIN + n);
 		}
 	}
 

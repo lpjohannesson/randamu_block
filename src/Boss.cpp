@@ -172,7 +172,7 @@ void HitBossBullet(void)
 				continue;
 
 			if (gBoss[bos].code_char == 100 && !(gBul[bul].code_bullet == 64 || gBul[bul].code_bullet == 65 || gBul[bul].code_bullet == 34 || gBul[bul].code_bullet == 35 ||
-	 ((GetNPCFlag(4400) || GetNPCFlag(7999)) && (gBul[bul].code_bullet == 37 || gBul[bul].code_bullet == 38 || gBul[bul].code_bullet == 39))))
+	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (gBul[bul].code_bullet == 37 || gBul[bul].code_bullet == 38 || gBul[bul].code_bullet == 39))))
 	 			continue;
 
 			// Check if bullet touches boss
@@ -218,7 +218,7 @@ void HitBossBullet(void)
 					if (gMC.equip & EQUIP_SUNGLASSES){
 						dmg *= 2;
 					}
-					if (GetNPCFlag(4242)){
+					if (GetNPCFlag(Flags::QUATE_CHARACTER)){
 						dmg *= float(Random(50, 175)) / 100.0f;
 					}
 					if (gBoss[bos_].targetingEffect > 0){

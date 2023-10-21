@@ -381,7 +381,7 @@ int JudgeHitMyCharDamage(int x, int y)
 {
 	int hit = 0;
 
-	if (abs(gMC.xm) > 1250 && (GetNPCFlag(4096) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
+	if (abs(gMC.xm) > 1250 && (GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
 
 	if (gMC.dashDuration > 0) return hit;
 
@@ -398,7 +398,7 @@ int JudgeHitMyCharDamageW(int x, int y)
 {
 	int hit = 0;
 
-	if (abs(gMC.xm) > 1250 && (GetNPCFlag(4096) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
+	if (abs(gMC.xm) > 1250 && (GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
 
 	if (gMC.dashDuration > 0) return hit;
 
@@ -652,7 +652,7 @@ int JudgeHitMyCharNPC(NPCHAR *npc)
 {
 	int hit = 0;
 	int mod = 1;
-	if (GetNPCFlag(4405) && npc->damage){
+	if (GetNPCFlag(Flags::MAXY_CHARACTER) && npc->damage){
 		mod = 3;
 	}
 
@@ -721,7 +721,7 @@ unsigned char JudgeHitMyCharNPC3(NPCHAR *npc)
 {
 	int size = 2 * 0x200;
 	int mod = 1;
-	if (GetNPCFlag(4405) && npc->damage){
+	if (GetNPCFlag(Flags::MAXY_CHARACTER) && npc->damage){
 		size = 0x200;
 		mod = 3;
 	}
@@ -751,7 +751,7 @@ int JudgeHitMyCharNPC4(NPCHAR *npc)
 	// TODO: comment this
 	int hit = 0;
 	int mod = 1;
-	if (GetNPCFlag(4405) && npc->damage){
+	if (GetNPCFlag(Flags::MAXY_CHARACTER) && npc->damage){
 		mod = 3;
 	}
 
@@ -908,7 +908,7 @@ void HitMyCharNpChar(void)
 			&& gMC.x - 0x200 * 8 < gNPC[i].x + gNPC[i].hit.back
 			&& gMC.y + 0x200 * 8 > gNPC[i].y - gNPC[i].hit.top
 			&& gMC.y - 0x200 * 8 < gNPC[i].y + gNPC[i].hit.bottom
-			&& gMC.dashDuration > 0 && gNPC[i].damage && gNPC[i].life == 1 && (GetNPCFlag(4405) || GetNPCFlag(7999))){
+			&& gMC.dashDuration > 0 && gNPC[i].damage && gNPC[i].life == 1 && (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
 				SetDestroyNpChar(gNPC[i].x, gNPC[i].y, 5 * 0x200, 10);
 				LoseNpChar(&gNPC[i], false);
 		}
@@ -973,9 +973,9 @@ void HitMyCharNpChar(void)
 		if (hit != 0 && gNPC[i].code_char == 299 && (gMC.flag & 0x100))
 		{
 			// PlaySoundObject(20, SOUND_MODE_PLAY);
-			SetNPCFlag(881);
+			SetNPCFlag(Flags::WATER_GUN_EFFECT);
 		} else if (!(gMC.flag & 0x100)){
-			CutNPCFlag(881);
+			CutNPCFlag(Flags::WATER_GUN_EFFECT);
 		}
 
 		if (hit != 0 && gNPC[i].code_char == 270){

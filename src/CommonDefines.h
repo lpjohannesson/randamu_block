@@ -43,8 +43,19 @@ struct Rect
 };
 
 namespace Flags {
+	inline constexpr int BALLOS_BOSS_DONE         = 222;
+	inline constexpr int LAST_LEVEL_CH1_DOOR      = 999;
+	inline constexpr int DOCTOR_PHASE_2_DONE      = 1111;
+	inline constexpr int CH2_BOSS_DOOR_BEGIN      = 4750;
+	inline constexpr int LAST_LEVEL_CH2_DOOR      = 6999;
+	inline constexpr int DOCTOR_PHASE_1_DONE      = 5002;
+
+	inline constexpr int CAPSULE_SAVE_FLAG_BEGIN  = 300;
+	inline constexpr int LEVEL_BOSS_DEFEATED      = 555;
+
 	//items
 	inline constexpr int CHAOS_KEY                = 703;
+	inline constexpr int BATTERY_PACK             = 705;
 	inline constexpr int NICE_SKATES              = 708;
 	inline constexpr int GRAVITY_NECKLACE         = 710;
 
@@ -83,6 +94,7 @@ namespace Flags {
 	inline constexpr int WHIMSICAL_STAR           = 851;
 	inline constexpr int TIMELINE_RING            = 860;
 
+	inline constexpr int ENERGY_CRYSTAL           = 861;
 	inline constexpr int SUPER_BOOSTER            = 862;
 	inline constexpr int DIVING_SUIT              = 863;
 	inline constexpr int SHIELD_OF_RESILIENCE     = 864;
@@ -104,8 +116,38 @@ namespace Flags {
 	inline constexpr int OMNIQUICK_SNEAKERS       = 879;
 	inline constexpr int FREEZE_STAR              = 880;
 
+	inline constexpr int WATER_GUN_EFFECT         = 881;
+
 	inline constexpr int NANITES_ABSORBER         = 882;
 	inline constexpr int MILITARY_ARMAMENT        = 883;
+
+	inline constexpr int STAR_SAVE_FLAG_BEGIN     = 950;
+
+	inline constexpr int PROCGEN_CHARACTER        = 1024;
+	inline constexpr int SERENITY_CHARACTER       = 2048;
+	inline constexpr int MODERN_QUOTE_CHARACTER   = 2222;
+	inline constexpr int REFILL_SAVE_FLAG_BEGIN   = 2630;
+	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
+	inline constexpr int HUNTER_CHARACTER         = 3333;
+	inline constexpr int SUE_CHARACTER            = 4096;
+	inline constexpr int KING_CHARACTER           = 4100;
+	inline constexpr int EXCERPT_CHARACTER        = 4150;
+	inline constexpr int CURLY_CHARACTER          = 4200;
+	inline constexpr int QUATE_CHARACTER          = 4242;
+	inline constexpr int SARA_CHARACTER           = 4250;
+	inline constexpr int DUCKMAN_CHARACTER        = 4280;
+	inline constexpr int TOROKO_CHARACTER         = 4300;
+	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
+	inline constexpr int LILY_CHARACTER           = 4350;
+	inline constexpr int MISERY_CHARACTER         = 4400;
+	inline constexpr int MAXY_CHARACTER           = 4405;
+	inline constexpr int BRACKET_CHARACTER        = 4450;
+	inline constexpr int PUPPY_CHARACTER          = 4475;
+	inline constexpr int AMY_CHARACTER            = 5120;
+	inline constexpr int MAHIN_CHARACTER          = 7999;
+
+	inline constexpr int MINING_LASER_MODE_BEGIN  = 6900;
+	
 };
 
 #endif // __COMMONDEFINES_H__

@@ -50,7 +50,7 @@ void ActStar(void)
 
 	if (TimeStopActive()) return;
 
-	if (!GetNPCFlag(4280) && !GetNPCFlag(7999)) return;
+	if (!GetNPCFlag(Flags::DUCKMAN_CHARACTER) && !GetNPCFlag(Flags::MAHIN_CHARACTER)) return;
 
 	++a;
 	a %= 3;
@@ -101,7 +101,7 @@ void ActStar(void)
 			}
 		}
 		int starCount = gMC.life-2;
-		if (GetNPCFlag(7999)) starCount = gMC.star-1;
+		if (GetNPCFlag(Flags::MAHIN_CHARACTER)) starCount = gMC.star-1;
 
 		if (starTarget != NULL){
 			if (starTarget->cond & 0x80 && Distance(starTarget->x, starTarget->y, star[i].x, star[i].y) < 0x2000 * 6.0f && i <= starCount){
@@ -115,7 +115,7 @@ void ActStar(void)
 						dir = 1;
 					SetBullet(36, star[i].x, star[i].y, dir);
 					star[i].act_no = Random(5, 25);
-					if (GetNPCFlag(7999)) star[i].act_no *= 2;
+					if (GetNPCFlag(Flags::MAHIN_CHARACTER)) star[i].act_no *= 2;
 				}
 			} else {
 				starTarget = NULL;
@@ -134,13 +134,13 @@ void PutStar(int fx, int fy)
 
 	int i;
 
-	if (!GetNPCFlag(4280) && !GetNPCFlag(7999)) return;
+	if (!GetNPCFlag(Flags::DUCKMAN_CHARACTER) && !GetNPCFlag(Flags::MAHIN_CHARACTER)) return;
 
 	if (gMC.cond & 2)
 		return;
 
 	int starCount = gMC.life-1;
-	if (GetNPCFlag(7999)) starCount = gMC.star;
+	if (GetNPCFlag(Flags::MAHIN_CHARACTER)) starCount = gMC.star;
 
 	for (i = 0; i < 3; ++i)
 		if (i < starCount)

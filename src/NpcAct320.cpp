@@ -105,7 +105,7 @@ void ActNpcCurlyAlly(NPCHAR *npc)
 	else
 		npc->rect = rcLeft[npc->ani_no];
 
-	if (GetNPCFlag(4150)){
+	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)){
 		npc->rect.top -= 32;
 		npc->rect.bottom -= 32;
 	}

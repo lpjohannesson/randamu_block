@@ -1420,7 +1420,7 @@ void ActNpc257(NPCHAR *npc)
 				if (--npc->act_wait < 0){
 					npc->act_wait = Random(2, 16);
 					NPCHAR* target = GetTarget(npc->x, npc->y);
-					if (target != NULL && !GetNPCFlag(22)){
+					if (target != NULL && !GetNPCFlag(Flags::BALLOS_BOSS_DONE)){
 						int deg = GetArktan(npc->x - target->x, npc->y - target->y);
 						int xm = GetCos(deg) * 4;
 						int ym = GetSin(deg) * 4;
@@ -1429,7 +1429,7 @@ void ActNpc257(NPCHAR *npc)
 					}
 				}
 			} else {
-			if (++npc->act_wait > 220 && !GetNPCFlag(5002)){
+			if (++npc->act_wait > 220 && !GetNPCFlag(Flags::DOCTOR_PHASE_1_DONE)){
 				npc->act_wait = 0;
 				SetNpChar(158, npc->x, npc->y, 0, 0, gMC.direct, NULL, 0x100);
 			}

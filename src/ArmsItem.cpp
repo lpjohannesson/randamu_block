@@ -393,7 +393,7 @@ bool SubItemData(long code)
 		case 19: gMC.equip &= ~EQUIP_ARMS_BARRIER; break;
 		case 45: gMC.equip &= ~EQUIP_MORE_AMMO; break;
 		case 20: gMC.equip &= ~EQUIP_TURBOCHARGE; break;
-		case 14: CutNPCFlag(868); break;
+		case 14: CutNPCFlag(Flags::ENERGY_CRYSTAL); break;
 	}
 
 	return true;
@@ -474,13 +474,13 @@ void SwitchWeapon(void){
 			// 		if (gMC.equip & EQUIP_MORE_AMMO){
 			// 			ammoNeeded *= 1.5;
 			// 		}
-			// 		if (GetNPCFlag(4350)){
+			// 		if (GetNPCFlag(Flags::LILY_CHARACTER)){
 			// 			ammoNeeded = 0;
 			// 		}
 			// 		break;
 			// 	case 5: //rocket launcher
 			// 		ammoNeeded = 40;
-			// 		if (GetNPCFlag(4350)){
+			// 		if (GetNPCFlag(Flags::LILY_CHARACTER)){
 			// 			ammoNeeded += (gMC.depth - 1) * 4;
 			// 		}
 			// 		break;
@@ -789,13 +789,13 @@ void PutCampObject(void)
 		rcArms.right = rcArms.left + 16;
 		rcArms.top = 0;
 		rcArms.bottom = rcArms.top + 16;
-		if ((GetNPCFlag(4400) || GetNPCFlag(7999)) && gArmsData[i].code == 13){
+		if ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[i].code == 13){
 			rcArms.left = (10) * 16;
 			rcArms.right = rcArms.left + 16;
 			rcArms.top = 0 * 16;
 			rcArms.bottom = rcArms.top + 16;
 		}
-		if ((GetNPCFlag(4450) || GetNPCFlag(7999)) && gArmsData[i].code == 8){
+		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[i].code == 8){
 			rcArms.left = (6) * 16;
 			rcArms.right = rcArms.left + 16;
 			rcArms.top = 0 * 16;
@@ -854,14 +854,14 @@ void PutCampObject(void)
 			rcItem.right = rcItem.left + 16;
 			rcItem.top = 0;
 			rcItem.bottom = rcItem.top + 16;
-			if ((GetNPCFlag(4400) || GetNPCFlag(7999)) && gItemData[i].code == 113)
+			if ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gItemData[i].code == 113)
 			{
 				rcItem.left = (10) * 16;
 				rcItem.right = rcItem.left + 16;
 				rcItem.top = 0 * 16;
 				rcItem.bottom = rcItem.top + 16;
 			}
-			if ((GetNPCFlag(4450) || GetNPCFlag(7999)) && gItemData[i].code == 108)
+			if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gItemData[i].code == 108)
 			{
 				rcItem.left = (6) * 16;
 				rcItem.right = rcItem.left + 16;
@@ -1063,7 +1063,7 @@ bool UseArmsEnergy(long num)
 	if (gArmsData[gSelectedArms].num == 0)
 		return false;	// No ammo left
 
-	if (Random(0, 2) == 0 && GetNPCFlag(868)) return true;
+	if (Random(0, 2) == 0 && GetNPCFlag(Flags::ENERGY_CRYSTAL)) return true;
 
 	gArmsData[gSelectedArms].num -= num;
 

@@ -51,7 +51,7 @@ ARMS_LEVEL gArmsLevelTable[] =
 };
 
 void AddScore(int x){
-	if (GetNPCFlag(7999)) x /= 10;
+	if (GetNPCFlag(Flags::MAHIN_CHARACTER)) x /= 10;
 	switch(gMC.difficulty){
 		case DIFFICULTY_HARDENED: x *= 1.25; break;
 		case DIFFICULTY_REINFORCED: x *= 1.75; break;
@@ -62,8 +62,8 @@ void AddScore(int x){
 
 void AddExpMyChar(int x)
 {
-	if (GetNPCFlag(4150)) x *= 2;
-	if (GetNPCFlag(7999)) x *= 1.5;
+	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)) x *= 2;
+	if (GetNPCFlag(Flags::MAHIN_CHARACTER)) x *= 1.5;
 
 	int lv = gArmsData[gSelectedArms].level - 1;
 	int arms_code = gArmsData[gSelectedArms].code;
@@ -74,7 +74,7 @@ void AddExpMyChar(int x)
 	bool zeroXPArm = arms_code == 13 || arms_code == 2 || arms_code == 12;
 
 	int max_lv = 2;
-	if (GetNPCFlag(2048) || GetNPCFlag(7999)) max_lv = 3;
+	if (GetNPCFlag(Flags::SERENITY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) max_lv = 3;
 	if (isMiningLaser) max_lv = lv;
 
 	if (lv == max_lv)
@@ -131,7 +131,7 @@ bool IsMaxExpMyChar(void)
 	int arms_code;
 
 	int max_lv = 3;
-	if (GetNPCFlag(2048) || GetNPCFlag(7999)) max_lv = 4;
+	if (GetNPCFlag(Flags::SERENITY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) max_lv = 4;
 
 	if (gArmsData[gSelectedArms].level == max_lv)
 	{
@@ -180,11 +180,11 @@ void DamageMyChar(int damage)
 
 	int oldDamage = damage;
 
-	if (GetNPCFlag(4150)){
+	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)){
 		damage *= 1.75;
 	}
 
-	if ((GetNPCFlag(4200) || GetNPCFlag(7999)) && gMC.life < gMC.max_life*0.5){
+	if ((GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gMC.life < gMC.max_life*0.5){
 		damage *= 0.66;
 	}
 
@@ -207,12 +207,12 @@ void DamageMyChar(int damage)
 		damage -= 1;
 		PlaySoundObject(54, SOUND_MODE_PLAY);
 	}
-	if (GetNPCFlag(4280) && damage != 0){
+	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER) && damage != 0){
 		if (damage > 9) damage = 3;
 		else if (damage > 4) damage = 2;
 		else damage = 1;
 	}
-	if (GetNPCFlag(4242)){
+	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
 		damage *= float(Random(50, 175)) / 100.0f;
 		finalDamage = damage;
 	}
@@ -233,13 +233,13 @@ void DamageMyChar(int damage)
 	}
 	else{
 		int sound = 16;
-		if (GetNPCFlag(4100) || GetNPCFlag(7999))
+		if (GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 			sound = 52;
-		if (GetNPCFlag(4200))
+		if (GetNPCFlag(Flags::CURLY_CHARACTER))
 			sound = 57;
-		if (GetNPCFlag(4300))
+		if (GetNPCFlag(Flags::TOROKO_CHARACTER))
 			sound = 50;
-		if (GetNPCFlag(1024))
+		if (GetNPCFlag(Flags::PROCGEN_CHARACTER))
 			sound = 54;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 	}
@@ -247,13 +247,13 @@ void DamageMyChar(int damage)
 	gMC.shock = 128;
 	gMC.regenCount = RegenDelayScaling();
 	gMC.regenMaxCount = -1;
-	if (GetNPCFlag(4280) || GetNPCFlag(7999))
+	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 		InitiateCooldown(gCooldowns, DUCK_TIMER_ID);
 	gMC.star = 0;
-	if (GetNPCFlag(4405)){
+	if (GetNPCFlag(Flags::MAXY_CHARACTER)){
 		gMC.shock = 70;
 	}
-	if (GetNPCFlag(4200) || GetNPCFlag(7999)){
+	if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		gMC.shock = 200;
 	}
 	if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && damage != 0){
@@ -261,7 +261,7 @@ void DamageMyChar(int damage)
 	} else if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && damage == 0){
 		gMC.shock *= 0.75;
 	}
-	if (GetNPCFlag(4242)){
+	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
 		gMC.shock *= float(Random(40, 150)) / 100.0f;
 	}
 	if (gMC.difficulty > DIFFICULTY_REINFORCED){
@@ -360,7 +360,7 @@ void DamageMyChar(int damage)
 	}
 
 	// Tell player how much damage was taken
-	if (!(gMC.life <= 0 && GetNPCFlag(Flags::BADGE_OF_LOVE)) && !GetNPCFlag(4280))
+	if (!(gMC.life <= 0 && GetNPCFlag(Flags::BADGE_OF_LOVE)) && !GetNPCFlag(Flags::DUCKMAN_CHARACTER))
 		SetValueView(&gMC.x, &gMC.y, -damage);
 
 	// Death
@@ -385,17 +385,17 @@ void Die(void){
 		for (int i = 0; i < 100; i++)
 			SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
 	}
-	else if ((GetNPCFlag(4300) || GetNPCFlag(7999)) && !GetNPCFlag(4301)){
+	else if ((GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && !GetNPCFlag(Flags::TOROKO_BLEEDING_OUT)){
 			gMC.life = 0;
-			SetNPCFlag(4301);
+			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		} else {
 		gMC.life = 0;
 		int sound = 17;
-		if (GetNPCFlag(4100) || GetNPCFlag(7999))
+		if (GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 			sound = 25;
-		if (GetNPCFlag(4200) || GetNPCFlag(4250) || GetNPCFlag(4350))
+		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER))
 			sound = 35;
-		if (GetNPCFlag(4300))
+		if (GetNPCFlag(Flags::TOROKO_CHARACTER))
 			sound = 53;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 		gMC.cond = 0;
@@ -428,7 +428,7 @@ void AddLifeMyChar(int x)
 		Die();
 		return;
 	}
-	if (GetNPCFlag(4280) && x > 0 && x < 1000) x = 1;
+	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER) && x > 0 && x < 1000) x = 1;
 
 	if (x == 1000)
 		gMC.air = 1000;
@@ -439,16 +439,16 @@ void AddLifeMyChar(int x)
 	gMC.lifeBr = gMC.life;
 	if (gMC.life <= 0)
 	{
-		if (GetNPCFlag(4300) && !GetNPCFlag(4301)){
+		if (GetNPCFlag(Flags::TOROKO_CHARACTER) && !GetNPCFlag(Flags::TOROKO_BLEEDING_OUT)){
 			gMC.life = 0;
-			SetNPCFlag(4301);
+			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		} else {
 		int sound = 17;
-		if (GetNPCFlag(4100))
+		if (GetNPCFlag(Flags::KING_CHARACTER))
 			sound = 25;
-		if (GetNPCFlag(4200) || GetNPCFlag(4250) || GetNPCFlag(4350))
+		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER))
 			sound = 35;
-		if (GetNPCFlag(4300))
+		if (GetNPCFlag(Flags::TOROKO_CHARACTER))
 			sound = 53;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 		gMC.cond = 0;
@@ -460,7 +460,7 @@ void AddLifeMyChar(int x)
 
 void AddMaxLifeMyChar(int val)
 {
-	if (GetNPCFlag(4280))
+	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER))
 		return;
 		
 	gMC.max_life += (short)val;
@@ -487,7 +487,7 @@ void PutArmsEnergy(bool flash)
 	bool isMiningLaser = gArmsData[gSelectedArms].code == 18;
 
 	int max_lv = 2;
-	if (GetNPCFlag(2048) || GetNPCFlag(7999)) max_lv = 3;
+	if (GetNPCFlag(Flags::SERENITY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) max_lv = 3;
 	if (isMiningLaser) max_lv = gArmsData[gSelectedArms].level;
 
 	// Draw max ammo
@@ -582,11 +582,11 @@ void PutActiveArmsList(void)
 		// Draw icon
 		rect.left = gArmsData[a].code * 16;
 		rect.right = rect.left + 16;
-		if ((GetNPCFlag(4400) || GetNPCFlag(7999)) && gArmsData[a].code == 13){
+		if ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[a].code == 13){
 			rect.left = 10 * 16;
 			rect.right = rect.left + 16;
 		}
-		if ((GetNPCFlag(4450) || GetNPCFlag(7999)) && gArmsData[a].code == 8){
+		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[a].code == 8){
 			rect.left = 6 * 16;
 			rect.right = rect.left + 16;
 		}
@@ -615,11 +615,11 @@ void PutActiveArm(void)
 		// Draw icon
 		rect.left = gArmsData[gSelectedArms].code * 16;
 		rect.right = rect.left + 16;
-		if ((GetNPCFlag(4400) || GetNPCFlag(7999)) && gArmsData[gSelectedArms].code == 13){
+		if ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[gSelectedArms].code == 13){
 			rect.left = 10 * 16;
 			rect.right = rect.left + 16;
 		}
-		if ((GetNPCFlag(4450) || GetNPCFlag(7999)) && gArmsData[gSelectedArms].code == 8){
+		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[gSelectedArms].code == 8){
 			rect.left = 6 * 16;
 			rect.right = rect.left + 16;
 		}
@@ -632,7 +632,7 @@ void PutMyLife(bool flash)
 		return;
 	}
 
-	if (GetNPCFlag(4280)){
+	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER)){
 		Rect rcDuck = {78, 162, 90, 172};
 		for (int i = 0; i < gMC.life-1; i++){
 			PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(25 + 13*i), PixelToScreenCoord(40), &rcDuck, SURFACE_ID_BULLET);
@@ -645,7 +645,7 @@ void PutMyLife(bool flash)
 	rcDifficulty.bottom += gMC.difficulty*8;
 	Rect rcLife = {193, 24, 193, 32};
 	Rect rcBr = {193, 32, 193, 40};
-	if (GetNPCFlag(3333)){
+	if (GetNPCFlag(Flags::HUNTER_CHARACTER)){
 		rcCase.top += 80;
 		rcCase.bottom += 80;
 		rcLife.top += 8;
@@ -690,7 +690,7 @@ void PutMyScore(int y){
 	Rect rcMiracle = {228, 2, 252, 16};
 	Rect rcTurboText[2] = {{112, 104, 120, 112}, {120, 104, 128, 112}};
 	int depthy = 0;
-	if (GetNPCFlag(4280)) depthy = 3;
+	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER)) depthy = 3;
 
 	PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(16), PixelToScreenCoord(0), &rcStars, SURFACE_ID_NPC_SYM);
 	PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(16), PixelToScreenCoord(48 + depthy), &rcStairs, SURFACE_ID_TEXT_BOX);

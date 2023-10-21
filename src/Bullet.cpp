@@ -335,7 +335,7 @@ void SetBullet(int no, int x, int y, int dir)
 	gBul[i].life = gBulTbl[no].life;
 	gBul[i].life_count = gBulTbl[no].life_count;
 	if (gBul[i].life_count != 1 && gBul[i].code_bullet != 58 && gBul[i].code_bullet != 59 && gBul[i].code_bullet != 60){
-		if (GetNPCFlag(705)){
+		if (GetNPCFlag(Flags::BATTERY_PACK)){
 			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
 			else gBul[i].life_count *= 1.25;
 		}
@@ -374,7 +374,7 @@ BULLET* SetBullet(int no, int x, int y)
 	gBul[i].life = gBulTbl[no].life;
 	gBul[i].life_count = gBulTbl[no].life_count;
 	if (gBul[i].life_count != 1 && gBul[i].code_bullet != 58 && gBul[i].code_bullet != 59 && gBul[i].code_bullet != 60){
-		if (GetNPCFlag(705)){
+		if (GetNPCFlag(Flags::BATTERY_PACK)){
 			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
 			else gBul[i].life_count *= 1.25;
 		}
@@ -399,7 +399,7 @@ BULLET* SetBullet(int no, int x, int y)
 
 bool IsBreakingBullet(BULLET &bul){
 	return (bul.code_bullet == 64 || bul.code_bullet == 65 || bul.code_bullet == 34 || bul.code_bullet == 35 ||
-	 ((GetNPCFlag(4400) || GetNPCFlag(7999)) && (bul.code_bullet == 37 || bul.code_bullet == 38 || bul.code_bullet == 39)));
+	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul.code_bullet == 37 || bul.code_bullet == 38 || bul.code_bullet == 39)));
 }
 
 void ActBullet_Frontia1(BULLET *bul)
@@ -573,7 +573,7 @@ void ActBullet_Hook(BULLET *bul, int level)
 {
 	bul->iframes = 10;
 
-	if (GetNPCFlag(4450) || GetNPCFlag(7999))
+	if (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 	{
 		bul->blockXL = 0x200 * 4;
 		bul->blockYL = 0x200 * 4;
@@ -599,7 +599,7 @@ void ActBullet_Hook(BULLET *bul, int level)
 		bul->act_no = 1;
 
 		int deg = GetArktan(bul->x - bul->tgt_x, bul->y - bul->tgt_y);
-		if (!GetNPCFlag(4450))
+		if (!GetNPCFlag(Flags::BRACKET_CHARACTER))
 			deg += Random(-1, 1);
 		int speed = 7;
 		if (level == 3){
@@ -1102,7 +1102,7 @@ void ActBullet_PoleStar(BULLET *bul, int level)
 void ActBullet_FireBall(BULLET *bul, int level)
 {
 	bool bBreak;
-	if (GetNPCFlag(4405) || GetNPCFlag(7999)){
+	if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		bul->life_count = 60;
 	}
 
@@ -1110,7 +1110,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 	{
 		bul->cond = 0;
 		SetCaret(bul->x, bul->y, 3, 0);
-		if (GetNPCFlag(4405) || GetNPCFlag(7999)){
+		if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		int lol = Random(4, 8);
 		for (int i = 0; i < lol; i++){
 			BULLET* bully = SetBullet(56, bul->x, bul->y);
@@ -1193,7 +1193,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 
 				break;
 		}
-		if (GetNPCFlag(4405) || GetNPCFlag(7999)){
+		if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 			bul->xm *= 1.7;
 			bul->ym *= 1.3;
 		}
@@ -1211,19 +1211,19 @@ void ActBullet_FireBall(BULLET *bul, int level)
 			if (level == 4){
 				SetBullet(8, bul->x, bul->y, 1);
 			}
-			if (GetNPCFlag(4405) || GetNPCFlag(7999)){
+			if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 				bul->ym *= 1.5;
 			}
 		}
 		else if (bul->flag & 1){
 			bul->xm = 0x500;
-			if (GetNPCFlag(4405) || GetNPCFlag(7999)){
+			if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 				bul->xm *= 1.5;
 			}
 		}
 		else if (bul->flag & 4){
 			bul->xm = -0x500;
-			if (GetNPCFlag(4405) || GetNPCFlag(7999)){
+			if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 				bul->xm *= 1.5;
 			}
 		}
@@ -1231,7 +1231,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 		bul->ym += 40;
 		if (bul->ym > 0x3FF)
 			bul->ym = 0x3FF;
-		if (GetNPCFlag(4405) || GetNPCFlag(7999)){
+		if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 			if (bul->ym > 0x100)
 				bul->ym /= 2;
 		}
@@ -1617,7 +1617,7 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 
 	bul->local_iframes = 10;
 
-	if (GetNPCFlag(4200) || GetNPCFlag(7999)){
+	if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		switch (level){
 			case 1: bul->damage = Random(3, 4); break;
 			case 2: bul->damage = Random(5, 6); break;
@@ -1777,7 +1777,7 @@ void ActBullet_Missile(BULLET *bul, int level)
 		gMC.direct = 2;
 		}
 
-		if ((GetNPCFlag(4350) || GetNPCFlag(7999)) && gKey & gKeyJump){
+		if ((GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gKey & gKeyJump){
 			if (gKey & gKeyUp){
 				bul->xm = 0;
 				if (bul->ym > 0){
@@ -1828,7 +1828,7 @@ void ActBullet_Missile(BULLET *bul, int level)
 		}
 		}
 
-		if ((GetNPCFlag(4350) || GetNPCFlag(7999)) && gKey & gKeyJump){
+		if ((GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gKey & gKeyJump){
 			
 		} else {
 			gMC.shock = 2;
@@ -1848,7 +1848,7 @@ void ActBullet_Missile(BULLET *bul, int level)
 		bul->y += bul->ym;
 
 		gMC.unit = 2;
-		if ((GetNPCFlag(4350) || GetNPCFlag(7999)) && gKey & gKeyJump){
+		if ((GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gKey & gKeyJump){
 			gMC.x = bul->x;
 			gMC.y = bul->y;
 		} else {
@@ -4160,7 +4160,7 @@ void ActBullet_Spur(BULLET *bul, int level)
 		return;
 	}
 
-	if (GetNPCFlag(4400) || GetNPCFlag(7999)){
+	if (GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		bul->bbits = 104;
 	}
 
@@ -4251,7 +4251,7 @@ void ActBullet_Spur(BULLET *bul, int level)
 
 	bul->damage = bul->life;
 
-	if (!GetNPCFlag(4400) && !GetNPCFlag(7999)){
+	if (!GetNPCFlag(Flags::MISERY_CHARACTER) && !GetNPCFlag(Flags::MAHIN_CHARACTER)){
 	switch (level)
 	{
 		case 1:
@@ -4299,7 +4299,7 @@ void ActBullet_Spur2(BULLET *bul, int level)
 		return;
 	}
 
-	if (GetNPCFlag(4400) || GetNPCFlag(7999)){
+	if (GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		bul->bbits = 104;
 	}
 
@@ -4430,7 +4430,7 @@ void ActBullet_SpurTail(BULLET *bul, int level)
 
 	bul->iframes = 1;
 
-	if (!GetNPCFlag(4400) && !GetNPCFlag(7999)){
+	if (!GetNPCFlag(Flags::MISERY_CHARACTER) && !GetNPCFlag(Flags::MAHIN_CHARACTER)){
 	switch (level)
 	{
 		case 1:
@@ -5104,7 +5104,7 @@ void ActBullet_Whirlpool(BULLET *bul)
 	bul->rect = {288, 128, 298, 138};
 	bul->life_count = 500;
 	bul->iframes = 10;
-	if (GetNPCFlag(705)){
+	if (GetNPCFlag(Flags::BATTERY_PACK)){
 			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) bul->life_count *= 1.33;
 			else bul->life_count *= 1.25;
 		}

@@ -42,7 +42,7 @@ int JudgeHitBulletBlock(int x, int y, BULLET *bul)
 		hit |= 0x200;
 
 	if (hit && bul->bbits & 0x60 && InsideMap(x, y) && (GetAttribute(x, y) == 0x43 || (bul->code_bullet == 64 || bul->code_bullet == 65 || bul->code_bullet == 34 || bul->code_bullet == 35 ||
-	 ((GetNPCFlag(4400) || GetNPCFlag(7999)) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39)))))
+	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39)))))
 	{
 		if (gMC.equip & EQUIP_MULTIBREAK && (bul->code_bullet == 34 || bul->code_bullet == 35) && bul->life > 1){
 			bul->life--;
@@ -57,10 +57,10 @@ int JudgeHitBulletBlock(int x, int y, BULLET *bul)
 				}
 			}
 		}
-		else if (!(((GetNPCFlag(4400) || GetNPCFlag(7999)) && (bul->code_bullet == 64 || bul->code_bullet == 65 || bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))))
+		else if (!(((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul->code_bullet == 64 || bul->code_bullet == 65 || bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))))
 			bul->cond = 0;
 
-		if (gStageNo == gGeneratedStage && gBL.flag != true && ((bul->code_bullet == 64|| bul->code_bullet == 65 || bul->code_bullet == 34 || bul->code_bullet == 35) || ((GetNPCFlag(4400) || GetNPCFlag(7999)) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))))
+		if (gStageNo == gGeneratedStage && gBL.flag != true && ((bul->code_bullet == 64|| bul->code_bullet == 65 || bul->code_bullet == 34 || bul->code_bullet == 35) || ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))))
 		{
 			DestroyBlock(x, y);
 			if (bul->code_bullet == 65){

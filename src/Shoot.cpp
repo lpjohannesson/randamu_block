@@ -655,7 +655,7 @@ void ShootBullet_FireBall(int level)
 	{
 		case 1:
 			limit = 2 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
-			if (GetNPCFlag(4405)) limit *= 1.5;
+			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
 
@@ -664,7 +664,7 @@ void ShootBullet_FireBall(int level)
 
 		case 2:
 			limit = 3 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
-			if (GetNPCFlag(4405)) limit *= 1.5;
+			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
 
@@ -673,7 +673,7 @@ void ShootBullet_FireBall(int level)
 
 		case 3:
 			limit = 5 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
-			if (GetNPCFlag(4405)) limit *= 1.5;
+			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
 
@@ -682,7 +682,7 @@ void ShootBullet_FireBall(int level)
 		
 		case 4:
 			limit = 2 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
-			if (GetNPCFlag(4405)) limit *= 1.5;
+			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
 			if (CountBulletNum(68) > limit)
 				return;
 
@@ -766,23 +766,23 @@ void ShootBullet_Hook(int level)
 	}
 
 	if (level == 4){
-		if ((GetNPCFlag(4450) && CountBulletNum(73) > 1))
+		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(73) > 1))
 			return;
-		else if (!GetNPCFlag(4450) && CountBulletNum(73) > 0)
+		else if (!GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(73) > 0)
 			return;
 	} else {
-		if ((GetNPCFlag(4450) && CountBulletNum(48 + level) > 1))
+		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(48 + level) > 1))
 			return;
-		else if (!GetNPCFlag(4450) && CountBulletNum(48 + level) > 0)
+		else if (!GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(48 + level) > 0)
 			return;
 	}
 
 	if ((!(gMouseHold) && !(gKey & gKeyShot)))
 		gMC.rensha = 0;
 
-	if ((GetNPCFlag(4450) && gKeyTrg & gKeyShot) || (!GetNPCFlag(4450) && gKey & gKeyShot))
+	if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && gKeyTrg & gKeyShot) || (!GetNPCFlag(Flags::BRACKET_CHARACTER) && gKey & gKeyShot))
 	{
-		if (!GetNPCFlag(4450))
+		if (!GetNPCFlag(Flags::BRACKET_CHARACTER))
 			if (++gMC.rensha < 7)
 				return;
 
@@ -842,9 +842,9 @@ void ShootBullet_Hook(int level)
 
 		PlaySoundObject(103, SOUND_MODE_PLAY);
 		chainWrap = true;
-	} else if ((GetNPCFlag(4450) && gKeyTrg & gMouseClick) || (!GetNPCFlag(4450) && gMouseHold))
+	} else if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && gKeyTrg & gMouseClick) || (!GetNPCFlag(Flags::BRACKET_CHARACTER) && gMouseHold))
 	{
-		if (!GetNPCFlag(4450))
+		if (!GetNPCFlag(Flags::BRACKET_CHARACTER))
 			if (++gMC.rensha < 7)
 				return;
 
@@ -955,8 +955,8 @@ void ShootBullet_Machinegun1(int level)
 
 		if (gMC.up)
 		{
-			if (level >= 3 || (GetNPCFlag(4200))){
-				if (GetNPCFlag(4200)){
+			if (level >= 3 || (GetNPCFlag(Flags::CURLY_CHARACTER))){
+				if (GetNPCFlag(Flags::CURLY_CHARACTER)){
 					switch (level){
 						case 1:
 							gMC.ym += 0x60; break;
@@ -985,11 +985,11 @@ void ShootBullet_Machinegun1(int level)
 		}
 		else if (gMC.down)
 		{
-			if (level >= 3 || (GetNPCFlag(4200)))
+			if (level >= 3 || (GetNPCFlag(Flags::CURLY_CHARACTER)))
 			{
 				float mod = 1;
 
-				if (GetNPCFlag(4200)){
+				if (GetNPCFlag(Flags::CURLY_CHARACTER)){
 					switch (level){
 						case 1:
 							mod = 0.4; break;
@@ -1102,8 +1102,8 @@ void ShootBullet_Machinegun2(int level)
 
 		if (gMC.up)
 		{
-			if (level >= 3 || (GetNPCFlag(4200))){
-				if (GetNPCFlag(4200)){
+			if (level >= 3 || (GetNPCFlag(Flags::CURLY_CHARACTER))){
+				if (GetNPCFlag(Flags::CURLY_CHARACTER)){
 					switch (level){
 						case 1:
 							gMC.ym += 0x60; break;
@@ -1132,11 +1132,11 @@ void ShootBullet_Machinegun2(int level)
 		}
 		else if (gMC.down)
 		{
-			if (level >= 3 || (GetNPCFlag(4200)))
+			if (level >= 3 || (GetNPCFlag(Flags::CURLY_CHARACTER)))
 			{
 				float mod = 1;
 
-				if (GetNPCFlag(4200)){
+				if (GetNPCFlag(Flags::CURLY_CHARACTER)){
 					switch (level){
 						case 1:
 							mod = 0.4; break;
@@ -1367,11 +1367,11 @@ void ShootBullet_MiningLaser(int level)
 		++gArmsData[gSelectedArms].level;
 		if (gArmsData[gSelectedArms].level > 6){
 			gArmsData[gSelectedArms].level = 1;
-			CutNPCFlag(6906);
-			SetNPCFlag(6901);
+			CutNPCFlag(Flags::MINING_LASER_MODE_BEGIN + 6);
+			SetNPCFlag(Flags::MINING_LASER_MODE_BEGIN + 1);
 		} else {
-			CutNPCFlag(6900 + gArmsData[gSelectedArms].level - 1);
-			SetNPCFlag(6900 + gArmsData[gSelectedArms].level);
+			CutNPCFlag(Flags::MINING_LASER_MODE_BEGIN + gArmsData[gSelectedArms].level - 1);
+			SetNPCFlag(Flags::MINING_LASER_MODE_BEGIN + gArmsData[gSelectedArms].level);
 		}
 	}
 	if (gKey & gKeyDown && gArmsData[gSelectedArms].exp > 0 

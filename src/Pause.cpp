@@ -601,7 +601,7 @@ static int EnterOptionsMenuWithAlternates(OptionsMenu *options_menu, size_t sele
 
 	int wins = std::count_if(gRankings.begin(), gRankings.end(), [](json record){
 			auto flagStorage = record["flags"].get<std::vector<int>>();
-			return std::find(flagStorage.begin(), flagStorage.end(), 1111) != flagStorage.end();
+			return std::find(flagStorage.begin(), flagStorage.end(), Flags::DOCTOR_PHASE_2_DONE) != flagStorage.end();
 	});
 
 	int return_value;

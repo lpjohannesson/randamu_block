@@ -485,15 +485,15 @@ void msvc_srand_s2(uint32_t x)
 int LifeCapsuleLimit()
 {
 	int limit = 18;
-	if (GetNPCFlag(4200) || GetNPCFlag(7999))
+	if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 	{
 		limit = 26;
 	}
-	if (GetNPCFlag(2222))
+	if (GetNPCFlag(Flags::MODERN_QUOTE_CHARACTER))
 	{
 		limit = 15;
 	}
-	if (GetNPCFlag(3333))
+	if (GetNPCFlag(Flags::HUNTER_CHARACTER))
 	{
 		limit = 30;
 	}
@@ -606,40 +606,40 @@ static int chestDrops[] = {401, 501, 601, 701, 801, 901, 1001, 1101, 1201, 1301,
 std::vector<int> BlacklistedItems()
 {
 	std::vector<int> items = {};
-	if (GetNPCFlag(7999))
+	if (GetNPCFlag(Flags::MAHIN_CHARACTER))
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(4100))
+	if (GetNPCFlag(Flags::KING_CHARACTER))
 	{
 		items = {2801, 3701, 3801, 4601, 4701};
 	}
-	if (GetNPCFlag(4300))
+	if (GetNPCFlag(Flags::TOROKO_CHARACTER))
 	{
 		items = {601, 1301, 1401, 3701};
 	}
-	if (GetNPCFlag(4400))
+	if (GetNPCFlag(Flags::MISERY_CHARACTER))
 	{
 		items = {401, 501, 601, 901, 1501, 1601, 1701, 1901, 2001, 2801, 2901, 3001, 3101, 4701, 4801, 5501, 5601, 5701};
 	}
-	if (GetNPCFlag(2222))
+	if (GetNPCFlag(Flags::MODERN_QUOTE_CHARACTER))
 	{
 		items = {801, 3701};
 	}
-	if (GetNPCFlag(4096))
+	if (GetNPCFlag(Flags::SUE_CHARACTER))
 	{
 		items = {4801};
 	}
-	if (GetNPCFlag(4350)){
+	if (GetNPCFlag(Flags::LILY_CHARACTER)){
 		items = {1501, 1901, 3101};
 	}
-	if (GetNPCFlag(4150)){
+	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)){
 		items = {1301, 1501, 1601, 3201};
 	}
-	if (GetNPCFlag(4450)){
+	if (GetNPCFlag(Flags::BRACKET_CHARACTER)){
 		items = {2101, 4601};
 	}
-	if (GetNPCFlag(4475)){
+	if (GetNPCFlag(Flags::PUPPY_CHARACTER)){
 		items = {3701, 3801, 1201};
 	}
 	if (ChallengeEnabled("no_breaking") || ChallengeEnabled("no_placing"))
@@ -699,84 +699,84 @@ void SelectCharacter(std::string character) {
 	{
 		if (character == "KingTable")
 		{
-			SetNPCFlag(4100);
+			SetNPCFlag(Flags::KING_CHARACTER);
 			gMIMCurrentNum = 2;
 			gMC.life = 5;
 			gMC.max_life = 5;
 		}
 		if (character == "CurlyBrac")
 		{
-			SetNPCFlag(4200);
+			SetNPCFlag(Flags::CURLY_CHARACTER);
 			gMIMCurrentNum = 1;
 			gMC.life = 9;
 			gMC.max_life = 9;
 		}
 		if (character == "FluffMimi")
 		{
-			SetNPCFlag(4300);
+			SetNPCFlag(Flags::TOROKO_CHARACTER);
 			gMIMCurrentNum = 3;
 			gMC.life = 3;
 			gMC.max_life = 3;
 		}
 		if (character == "Raymundo")
 		{
-			SetNPCFlag(4400);
+			SetNPCFlag(Flags::MISERY_CHARACTER);
 			gMIMCurrentNum = 4;
 			gMC.life = 12;
 			gMC.max_life = 12;
 		}
 		if (character == "Upntscale")
 		{
-			SetNPCFlag(2222);
+			SetNPCFlag(Flags::MODERN_QUOTE_CHARACTER);
 			gMIMCurrentNum = 5;
 			gMC.life = 10;
 			gMC.max_life = 10;
 		}
 		if (character == "Russia")
 		{
-			SetNPCFlag(3333);
+			SetNPCFlag(Flags::HUNTER_CHARACTER);
 			gMIMCurrentNum = 6;
 			gMC.life = 10;
 			gMC.max_life = 10;
 		}
 		if (character == "SaraACSS")
 		{
-			SetNPCFlag(4250);
+			SetNPCFlag(Flags::SARA_CHARACTER);
 			gMIMCurrentNum = 7;
 			gMC.life = 5;
 			gMC.max_life = 5;
 		}
 		if (character == "ColdWorkE")
 		{
-			SetNPCFlag(4350);
+			SetNPCFlag(Flags::LILY_CHARACTER);
 			gMIMCurrentNum = 8;
 			gMC.life = 6;
 			gMC.max_life = 6;
 		}
 		if (character == "WTFEvilQu")
 		{
-			SetNPCFlag(4150);
+			SetNPCFlag(Flags::EXCERPT_CHARACTER);
 			gMIMCurrentNum = 9;
 			gMC.life = 12;
 			gMC.max_life = 12;
 		}
 		if (character == "Jamark")
 		{
-			SetNPCFlag(4450);
+			SetNPCFlag(Flags::BRACKET_CHARACTER);
 			gMIMCurrentNum = 10;
 			gMC.life = 6;
 			gMC.max_life = 6;
 		}
 		if (character == "Dog")
 		{
-			SetNPCFlag(4475);
+			SetNPCFlag(Flags::PUPPY_CHARACTER);
 			gMIMCurrentNum = 11;
 			gMC.life = 4;
 			gMC.max_life = 4;
 		}
 		if (character == "Magician")
 		{
-			SetNPCFlag(4405);
+			SetNPCFlag(Flags::MAXY_CHARACTER);
 			gMIMCurrentNum = 12;
 			gMC.hit.front = 0x200 * 4;
 			gMC.hit.back = 0x200 * 4;
@@ -785,14 +785,14 @@ void SelectCharacter(std::string character) {
 		}
 		if (character == "LuigiGuy")
 		{
-			SetNPCFlag(4280);
+			SetNPCFlag(Flags::DUCKMAN_CHARACTER);
 			gMIMCurrentNum = 13;
 			gMC.life = 4;
 			gMC.max_life = 4;
 		}
 		if (character == "Meme")
 		{
-			SetNPCFlag(4242);
+			SetNPCFlag(Flags::QUATE_CHARACTER);
 			gMIMCurrentNum = 14;
 			int life = Random(2, 10, RandomCategories::SEEDED_PRIMARY);
 			gMC.life = life;
@@ -800,7 +800,7 @@ void SelectCharacter(std::string character) {
 		}
 		if (character == "God")
 		{
-			SetNPCFlag(7999);
+			SetNPCFlag(Flags::MAHIN_CHARACTER);
 			gMC.star = 3;
 			gMIMCurrentNum = 15;
 			int life = 15;
@@ -809,28 +809,28 @@ void SelectCharacter(std::string character) {
 		}
 		if (character == "AmeManga")
 		{
-			SetNPCFlag(5120);
+			SetNPCFlag(Flags::AMY_CHARACTER);
 			gMIMCurrentNum = 16;
 			gMC.life = 4;
 			gMC.max_life = 4;
 		}
 		if (character == "SamHogan")
 		{
-			SetNPCFlag(1024);
+			SetNPCFlag(Flags::PROCGEN_CHARACTER);
 			gMIMCurrentNum = 17;
 			gMC.life = 6;
 			gMC.max_life = 6;
 		}
 		if (character == "LunarSha")
 		{
-			SetNPCFlag(2048);
+			SetNPCFlag(Flags::SERENITY_CHARACTER);
 			gMIMCurrentNum = 18;
 			gMC.life = 6;
 			gMC.max_life = 6;
 		}
 		if (character == "Sakamoto")
 		{
-			SetNPCFlag(4096);
+			SetNPCFlag(Flags::SUE_CHARACTER);
 			gMIMCurrentNum = 19;
 			gMC.life = 3;
 			gMC.max_life = 3;
@@ -1096,7 +1096,7 @@ void ConfigureMap(){
 
 	if (genContext.newStage)
 	{
-		for (int i = 950; i < 950 + StarCount + 1; i++)
+		for (int i = Flags::STAR_SAVE_FLAG_BEGIN; i < Flags::STAR_SAVE_FLAG_BEGIN + StarCount + 1; i++)
 		{
 			CutNPCFlag(i);
 		}
@@ -1104,11 +1104,11 @@ void ConfigureMap(){
 		{
 			CutNPCFlag(i);
 		}
-		for (int i = 2630; i < 2699; i++)
+		for (int i = Flags::REFILL_SAVE_FLAG_BEGIN; i < Flags::REFILL_SAVE_FLAG_END; i++)
 		{
 			CutNPCFlag(i);
 		}
-		CutNPCFlag(555);
+		CutNPCFlag(Flags::LEVEL_BOSS_DEFEATED);
 	}
 	if (genContext.newStage)
 	{
@@ -2072,7 +2072,7 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 	if (CheckItemSpace())
 	{
 		rooms = std::get<int>(genArguments["amount"]);
-		if (GetNPCFlag(4400) || GetNPCFlag(7999))
+		if (GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 			rooms = std::get<int>(genArguments["misery_amount"]);
 		limit = ChallengeValue("chest_limit");
 		if (limit != -1 && (limit <= rooms || limit > std::get<int>(genArguments["amount"])))
@@ -2087,7 +2087,7 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 		{
 			rooms += std::get<int>(genArguments["dungeon_boost"]);
 		}
-		if (GetNPCFlag(4096))
+		if (GetNPCFlag(Flags::SUE_CHARACTER))
 		{
 			rooms += std::get<int>(genArguments["sue_boost"]);
 		}
@@ -2159,7 +2159,7 @@ void CreateLifeCapsules(GenerationContext& genContext, GenerationArguments& genA
 	{
 		rooms = limit;
 	}
-	if (ChallengeEnabled("no_health") || GetNPCFlag(4280))
+	if (ChallengeEnabled("no_health") || GetNPCFlag(Flags::DUCKMAN_CHARACTER))
 	{
 		limit = 0;
 	}
@@ -2178,13 +2178,13 @@ void CreateLifeCapsules(GenerationContext& genContext, GenerationArguments& genA
 			} while (!(HasSurface(x2, y2) && GetNpCharHere(x2, y2) == -1));
 			if (l <= (limit - 1))
 			{
-				if (!GetNPCFlag(300 + l))
+				if (!GetNPCFlag(Flags::CAPSULE_SAVE_FLAG_BEGIN + l))
 				{
-					int eventNumber = 300;
+					int eventNumber = Flags::CAPSULE_SAVE_FLAG_BEGIN;
 					if (Random(0, 3) == 0 && gMC.difficulty > DIFFICULTY_BASIC){
-						eventNumber = 302;
+						eventNumber = Flags::CAPSULE_SAVE_FLAG_BEGIN + 2;
 					}
-					SetNpChar_EventFlag(32, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, eventNumber, 300 + l);
+					SetNpChar_EventFlag(32, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, eventNumber, Flags::CAPSULE_SAVE_FLAG_BEGIN + l);
 					PaintLine(41, x2 - 2, y2 + 1, x2 + 1, y2 + 1);
 					if (genContext.newStage)
 						gMC.lifeCapsuleLimit++;
@@ -2221,7 +2221,7 @@ void CreateRefills(GenerationContext& genContext, GenerationArguments& genArgume
 		if (refillNPC != NULL){
 			refillNPC->code_event = 17;
 			refillNPC->bits = NPC_INTERACTABLE;
-			if (GetNPCFlag(2630 + l)){
+			if (GetNPCFlag(Flags::REFILL_SAVE_FLAG_BEGIN + l)){
 				refillNPC->count1 = 1;
 			}
 		}
@@ -2454,12 +2454,12 @@ void SpawnPlayer(GenerationContext& genContext, GenerationArguments& genArgument
 }
 
 void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (GetNPCFlag(Flags::CURLY_UNDERWEAR) || GetNPCFlag(4150) || GetNPCFlag(Flags::BADGE_OF_LOVE) || GetNPCFlag(7999))
+	if (GetNPCFlag(Flags::CURLY_UNDERWEAR) || GetNPCFlag(Flags::EXCERPT_CHARACTER) || GetNPCFlag(Flags::BADGE_OF_LOVE) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 		SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::CURLY_UNDERWEAR);
-	if (GetNPCFlag(Flags::LITTLE_MAN) || GetNPCFlag(4150) || GetNPCFlag(Flags::AUGMENTED_MAN) || GetNPCFlag(7999))
+	if (GetNPCFlag(Flags::LITTLE_MAN) || GetNPCFlag(Flags::EXCERPT_CHARACTER) || GetNPCFlag(Flags::AUGMENTED_MAN) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 	{
 		int amount = std::get<int>(genArguments["little_man_amount"]);
-		if (GetNPCFlag(4150) || GetNPCFlag(7999))
+		if (GetNPCFlag(Flags::EXCERPT_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 			amount = std::get<int>(genArguments["little_man_boosted_amount"]);
 		for (int i = 0; i < amount; i++)
 			SetNpChar(180, 0, 0, 0, 0, 2, NULL, 0x100);
@@ -2499,9 +2499,9 @@ void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments
 			y1 = y + h - 2;
 			int bossID;
 			bossID = bossNPCsList[Random(0, bossNPCsList.size()-1, RandomCategories::SEEDED_NPCS)];
-			if (!GetNPCFlag(555))
+			if (!GetNPCFlag(Flags::LEVEL_BOSS_DEFEATED))
 				SetNpChar(bossID, x1 * 0x2000, y1 * 0x2000 + (bossID == 44 ? 0x200 * 8 : 0), 0, 0, gMC.direct, NULL, 0x100, 7000,
-						NPC_SOLID_SOFT | NPC_SHOOTABLE | NPC_SHOW_DAMAGE, 555);
+						NPC_SOLID_SOFT | NPC_SHOOTABLE | NPC_SHOW_DAMAGE, Flags::LEVEL_BOSS_DEFEATED);
 			else
 				SetNpChar(18, x1 * 0x2000, y1 * 0x2000, 0, 0, 0, NULL, 0x100, 99, NPC_INTERACTABLE);
 		}
@@ -2752,10 +2752,10 @@ void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArgum
 		} while (!(HasSurface(doorX, doorY) && IsEmpty(doorX, doorY - 1) && GetNpCharHere(doorX, doorY) == -1));
 		if (gMC.depth == genContext.doctorStage - 1)
 		{
-			SetNPCFlag(999);
+			SetNPCFlag(Flags::LAST_LEVEL_CH1_DOOR);
 		}
 		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["final_tileset"]))){
-			SetNPCFlag(6999);
+			SetNPCFlag(Flags::LAST_LEVEL_CH2_DOOR);
 		}
 		SetNpChar(18, doorX * 0x2000, doorY * 0x2000, 0, 0, 0, NULL, 0, ChallengeEnabled("full_clear") ? 116 : 99, NPC_INTERACTABLE);
 	}
@@ -2767,9 +2767,9 @@ void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArgum
 		} while (!(HasSurface(doorX, doorY) && IsEmpty(doorX, doorY - 1) && GetNpCharHere(doorX, doorY) == -1));
 		int mapBossID = Random(0, 5);
 		for (int i = 0; i < 6; i++){
-			CutNPCFlag(4750 + i);
+			CutNPCFlag(Flags::CH2_BOSS_DOOR_BEGIN + i);
 		}
-		SetNPCFlag(4750 + mapBossID);
+		SetNPCFlag(Flags::CH2_BOSS_DOOR_BEGIN + mapBossID);
 		SetNpChar(22, doorX * 0x2000, doorY * 0x2000, 0, 0, 0, NULL, 0, ChallengeEnabled("full_clear") ? 91 : 90, NPC_INTERACTABLE);
 		SetNpChar(0, doorX * 0x2000, (doorY+1) * 0x2000, 0, 0, 0, NULL, 0, 7000, 0);
 		SetNpChar(23, doorX * 0x2000, (doorY-1) * 0x2000, 0, 0, 0, NULL, 0);
@@ -2838,8 +2838,8 @@ void CreateStars(GenerationContext& genContext, GenerationArguments& genArgument
 				y = y1;
 			}
 		} while (!((IsEmpty(x, y) && (GetNpCharHere(x, y) == -1)) || (GetTile(x, y) == 30 && gMC.hell == false)));
-		if (!GetNPCFlag(950 + l))
-			SetNpChar(86, x * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0, 950 + l, 0);
+		if (!GetNPCFlag(Flags::STAR_SAVE_FLAG_BEGIN + l))
+			SetNpChar(86, x * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0, Flags::STAR_SAVE_FLAG_BEGIN + l, 0);
 	}
 }
 
@@ -3110,7 +3110,7 @@ bool TransferStage(int no, int w, int x, int y)
 		if (genContext.newStage)
 		{
 			gMC.outerWallInit = false;
-			CutNPCFlag(4301);
+			CutNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		}
 
 		if (LoadMapAssets())
