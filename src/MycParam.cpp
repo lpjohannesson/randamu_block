@@ -174,7 +174,7 @@ void DamageMyChar(int damage)
 		return;
 	}
 
-	if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(864)) && damage <= 3 && Random(0, 15) <= 4){
+	if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && damage <= 3 && Random(0, 15) <= 4){
 		damage = 0;
 	}
 
@@ -203,7 +203,7 @@ void DamageMyChar(int damage)
 
 	int finalDamage = damage;
 
-	if (GetNPCFlag(864) && damage > 1){
+	if (GetNPCFlag(Flags::SHIELD_OF_RESILIENCE) && damage > 1){
 		damage -= 1;
 		PlaySoundObject(54, SOUND_MODE_PLAY);
 	}
@@ -256,9 +256,9 @@ void DamageMyChar(int damage)
 	if (GetNPCFlag(4200) || GetNPCFlag(7999)){
 		gMC.shock = 200;
 	}
-	if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(864)) && damage != 0){
+	if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && damage != 0){
 		gMC.shock *= 1.5;
-	} else if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(864)) && damage == 0){
+	} else if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && damage == 0){
 		gMC.shock *= 0.75;
 	}
 	if (GetNPCFlag(4242)){
@@ -273,7 +273,7 @@ void DamageMyChar(int damage)
 	if (gMC.equip & EQUIP_SUNGLASSES){
 		gMC.shock /= 2;
 	}
-	if ((GetNPCFlag(882) || GetNPCFlag(883)) && CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1
+	if ((GetNPCFlag(Flags::NANITES_ABSORBER) || GetNPCFlag(Flags::MILITARY_ARMAMENT)) && CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1
 						&& CheckForCooldown(gCooldowns, NANITES_TIME_ID) == -1){
 		InitiateCooldown(gCooldowns, NANITES_TIME_ID);
 		gMC.shock = CooldownDuration(NANITES_TIME_ID);
@@ -291,7 +291,7 @@ void DamageMyChar(int damage)
 	}
 	else
 	{
-		if (!(gMC.equip & EQUIP_PLATING || GetNPCFlag(864)))
+		if (!(gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)))
 			gMC.ym = -0x400 * (gMC.flip ? -1 : 1);
 	}
 	bool clayMedalProc = false;
@@ -304,7 +304,7 @@ void DamageMyChar(int damage)
 		}
 	}
 
-	if ((gMC.equip & EQUIP_CLAY_FIGURE || GetNPCFlag(864)) && (gMC.life - damage) <= 0 && gMC.life > 1){
+	if ((gMC.equip & EQUIP_CLAY_FIGURE || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && (gMC.life - damage) <= 0 && gMC.life > 1){
 		for (int i = 0; i < 50; i++)
 			SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
 		PlaySoundObject(102, SOUND_MODE_PLAY);
@@ -355,12 +355,12 @@ void DamageMyChar(int damage)
 	}
 	}
 
-	if (gMC.equip & EQUIP_BOOSTER_0_8 || GetNPCFlag(867) || GetNPCFlag(878)){
+	if (gMC.equip & EQUIP_BOOSTER_0_8 || GetNPCFlag(Flags::SACRED_AEGIS) || GetNPCFlag(Flags::NUCLEAR_STOMPER)){
 		SetBullet(32, gMC.x + gMC.xm, gMC.y + gMC.ym, 0);
 	}
 
 	// Tell player how much damage was taken
-	if (!(gMC.life <= 0 && GetNPCFlag(870)) && !GetNPCFlag(4280))
+	if (!(gMC.life <= 0 && GetNPCFlag(Flags::BADGE_OF_LOVE)) && !GetNPCFlag(4280))
 		SetValueView(&gMC.x, &gMC.y, -damage);
 
 	// Death
@@ -371,7 +371,7 @@ void DamageMyChar(int damage)
 }
 
 void Die(void){
-	if (GetNPCFlag(870)){
+	if (GetNPCFlag(Flags::BADGE_OF_LOVE)){
 		for (int i = 0; i < NPC_MAX; i++){
 			if (gNPC[i].cond & 0x80 && gNPC[i].code_char == 320 || gNPC[i].code_char == 321){
 				LoseNpChar(&gNPC[i], false);
@@ -379,7 +379,7 @@ void Die(void){
 		}
 		gMC.life = gMC.max_life;
 		PlaySoundObject(71, SOUND_MODE_PLAY);
-		CutNPCFlag(870);
+		CutNPCFlag(Flags::BADGE_OF_LOVE);
 		SubItemData(17);
 		EquipItem(64, false);
 		for (int i = 0; i < 100; i++)

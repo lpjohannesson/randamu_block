@@ -82,11 +82,11 @@ void ClearItemData(void)
 }
 
 std::map<short, short> equipMap = {
-	{4, 725}, {8, 862}, {9, 863}, {10, 864}, {11, 865}, {12, 866}, {13, 867}, {16, 869}, {17, 870}, {18, 871}, 
-	{22, 747}, {23, 743}, {24, 872}, {25, 873}, {26, 874}, {28, 760}, {29, 738}, {30, 757}, {31, 745}, {32, 740}, {33, 724}, 
-	{35, 751}, {36, 749}, {37, 860}, {38, 851}, {39, 746}, {40, 756}, {41, 755}, {42, 754}, {43, 753}, {44, 752}, {46, 750},
-	{47, 748}, {48, 744}, {49, 720}, {50, 742}, {51, 741}, {52, 739}, {53, 737}, {54, 710}, {55, 712}, {56, 708}, {58, 703},
-	{59, 711}, {60, 875}, {66, 871}, {67, 876}, {68, 877}, {69, 878}, {70, 879}, {71, 880}, {72, 882}, {73, 883}
+	{4, Flags::SILVER_LOCKET}, {8, Flags::SUPER_BOOSTER}, {9, Flags::DIVING_SUIT}, {10, Flags::SHIELD_OF_RESILIENCE}, {11, Flags::AUGMENTED_MAN}, {12, Flags::CAPE_OF_SHADOWS}, {13, Flags::SACRED_AEGIS}, {16, Flags::TERRA_BOOTS}, {17, Flags::BADGE_OF_LOVE}, {18, Flags::UNIVERSAL_CATALYST}, 
+	{22, Flags::FROSTBITE_STOPWATCH}, {23, Flags::BOOSTER_2_0}, {24, Flags::AMPHIBIAN_MEDAL}, {25, Flags::HIGH_OCTANE_TANK}, {26, Flags::DISCORDIAN_VISOR}, {28, Flags::FISHY_TUBE}, {29, Flags::MOMENTUM_THROTTLER}, {30, Flags::WALL_HOOK}, {31, Flags::CLAY_FIGURE_MEDAL}, {32, Flags::LITTLE_MAN}, {33, Flags::COPPER_BULWARK}, 
+	{35, Flags::CURLY_UNDERWEAR}, {36, Flags::ALIEN_MEDAL}, {37, Flags::TIMELINE_RING}, {38, Flags::WHIMSICAL_STAR}, {39, Flags::IRON_BOND}, {40, Flags::SPEED_SHOES}, {41, Flags::PAIR_OF_WINGS}, {42, Flags::WATER_THURSTERS}, {43, Flags::AUXILIARY_BOOSTER}, {44, Flags::ENERGY_CANISTER}, {46, Flags::HEAVY_WEIGHT},
+	{47, Flags::BALLOS_BURGER}, {48, Flags::PROPANE_TANK}, {49, Flags::OVERCLOCK}, {50, Flags::DESTRUCTION_ENERGIZER}, {51, Flags::CREATION_ENERGIZER}, {52, Flags::STEEL_PLATING}, {53, Flags::COOL_SUNGLASSES}, {54, Flags::GRAVITY_NECKLACE}, {55, Flags::NANO_QUIVER}, {56, Flags::NICE_SKATES}, {58, Flags::CHAOS_KEY},
+	{59, Flags::LEAD_WEIGHT}, {60, Flags::WINTER_CLOCK}, {66, Flags::FLAMING_BOOSTER}, {67, Flags::SHIELD_OF_TIME}, {68, Flags::LITTLE_MAN_UNDERWEAR}, {69, Flags::NUCLEAR_STOMPER}, {70, Flags::OMNIQUICK_SNEAKERS}, {71, Flags::FREEZE_STAR}, {72, Flags::NANITES_ABSORBER}, {73, Flags::MILITARY_ARMAMENT}
 };
 
 std::vector<std::pair<int, int>> miracleList = {

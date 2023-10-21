@@ -287,7 +287,7 @@ void ActCaret07(CARET *crt)
 	crt->rect = rcLeft[crt->ani_no];
 	crt->opacity -= 0.08f;
 
-	if (GetNPCFlag(862) && ++crt->act_wait % 2 == 0)
+	if (GetNPCFlag(Flags::SUPER_BOOSTER) && ++crt->act_wait % 2 == 0)
 	{
 		NPCHAR* npc = FindNpCharHere(crt->x, crt->y);
 		if (npc != NULL)

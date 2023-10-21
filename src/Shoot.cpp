@@ -56,17 +56,17 @@ void ShootBullet_Frontia1(int level)
 			bul_no = 70;
 			break;
 	}
-	if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)){
+	if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
 	if (!(gKey & gKeyShot))
 		gMC.rensha = 10;
 	}
 
-	if (CountArmsBullet(1) > 3 * ((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)) ? 3 : 1))
+	if (CountArmsBullet(1) > 3 * ((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)) ? 3 : 1))
 		return;
-	if (CountBulletNum(70) > 3 * ((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)) ? 3 : 1))
+	if (CountBulletNum(70) > 3 * ((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)) ? 3 : 1))
 		return;
 
-	if (((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)) && gKey & gKeyShot) || gKeyTrg & gKeyShot)
+	if (((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)) && gKey & gKeyShot) || gKeyTrg & gKeyShot)
 	{
 		if (!UseArmsEnergy(1))
 		{
@@ -85,7 +85,7 @@ void ShootBullet_Frontia1(int level)
 			{
 				if (gMC.direct == 0)
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)){
+					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
 						SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y - (10 * 0x200), GravityDirect(1));
 						SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y - (10 * 0x200), GravityDirect(1));
 					}
@@ -95,7 +95,7 @@ void ShootBullet_Frontia1(int level)
 				}
 				else
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)){
+					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
 						SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y - (10 * 0x200), GravityDirect(1));
 						SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y - (10 * 0x200), GravityDirect(1));
 					}
@@ -108,7 +108,7 @@ void ShootBullet_Frontia1(int level)
 			{
 				if (gMC.direct == 0)
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)){
+					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
 						SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y + (10 * 0x200), GravityDirect(3));
 						SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y + (10 * 0x200), GravityDirect(3));
 					}
@@ -118,7 +118,7 @@ void ShootBullet_Frontia1(int level)
 				}
 				else
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)){
+					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
 						SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y + (10 * 0x200), GravityDirect(3));
 						SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y + (10 * 0x200), GravityDirect(3));
 					}
@@ -131,7 +131,7 @@ void ShootBullet_Frontia1(int level)
 			{
 				if (gMC.direct == 0)
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)){
+					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
 						SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y - (4 * 0x200), 0);
 						SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y + (4 * 0x200), 0);
 					}
@@ -141,7 +141,7 @@ void ShootBullet_Frontia1(int level)
 				}
 				else
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(871)){
+					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
 						SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y - (4 * 0x200), 2);
 						SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y + (4 * 0x200), 2);
 					}
@@ -332,7 +332,7 @@ void ShootBullet_PoleStar(int level)
 			x = fx + ScreenToSubpixelCoord(gMouseX);
 			y = fy + ScreenToSubpixelCoord(gMouseY);
 			float dist = 5.5;
-			if (GetNPCFlag(871)) dist = 7.5;
+			if (GetNPCFlag(Flags::UNIVERSAL_CATALYST)) dist = 7.5;
 			if (Distance(gMC.x, gMC.y, x, y) > dist*0x2000)
 			{
 				ChargeArmsEnergy(3);
@@ -2315,7 +2315,7 @@ void ShootBullet_Nemesis(int level)
 	if (CountBulletNum(34) > 1)
 		return;
 
-	if (gKeyTrg & gMouseClick && GetNPCFlag(871))
+	if (gKeyTrg & gMouseClick && GetNPCFlag(Flags::UNIVERSAL_CATALYST))
 	{
 		if (gBL.flag || !UseArmsEnergy(2))
 		{
@@ -2329,7 +2329,7 @@ void ShootBullet_Nemesis(int level)
 			x = fx + ScreenToSubpixelCoord(gMouseX);
 			y = fy + ScreenToSubpixelCoord(gMouseY);
 			float dist = 5.5;
-			if (GetNPCFlag(871)) dist = 7.5;
+			if (GetNPCFlag(Flags::UNIVERSAL_CATALYST)) dist = 7.5;
 			if (Distance(gMC.x, gMC.y, x, y) > dist*0x2000 || GetTile(round(((float)x) / 0x2000), round(((float)y) / 0x2000)) != 1)
 			{
 				ChargeArmsEnergy(2);

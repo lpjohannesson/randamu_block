@@ -607,7 +607,7 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 		npc->cond = 0;
 	}
 
-	if (/* GetNPCFlag(851) */ true)
+	if (/* GetNPCFlag(Flags::WHIMSICAL_STAR) */ true)
 	{
 		for (int b1 = 0; b1 < BULLET_MAX; b1++)
 		{
@@ -682,7 +682,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		dmg *= 1.66;
 	}
 
-	if (GetNPCFlag(874)){ //discordian visor
+	if (GetNPCFlag(Flags::DISCORDIAN_VISOR)){ //discordian visor
 		dmg = round(dmg * 1.25f);
 	}
 
@@ -739,7 +739,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		}
 
 		if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end() &&
-				(GetNPCFlag(711) || bul->code_bullet == 14)){
+				(GetNPCFlag(Flags::LEAD_WEIGHT) || bul->code_bullet == 14)){
 			npc.knockx = bul->xm * bul->knockX * npc.knockEffect;
 			npc.knocky = bul->ym * bul->knockY * npc.knockEffect;
 		}
@@ -748,7 +748,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			npc.targetingEffect = 1;
 		}
 
-		if (bul->code_bullet > 6 && bul->code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(873)){
+		if (bul->code_bullet > 6 && bul->code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
 			SetBullet(16, bul->x, bul->y, 0);
 		}
 
@@ -889,7 +889,7 @@ void HitNpCharBullet(void)
 		if (gNPC[n].bits & NPC_SHOOTABLE && gNPC[n].bits & NPC_INTERACTABLE)
 			continue;
 
-		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[n].code_char) != aquaticEntities.end()) && (gMC.equip & EQUIP_FISHY || GetNPCFlag(863))){
+		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[n].code_char) != aquaticEntities.end()) && (gMC.equip & EQUIP_FISHY || GetNPCFlag(Flags::DIVING_SUIT))){
 			continue;
 		}
 
@@ -926,7 +926,7 @@ void HitNpCharBullet(void)
 			}
 
 			if (gNPC[n].shock > 0 && (
-				 (gBul[b].code_bullet == 57) || (gBul[b].code_bullet == 69) || (GetNPCFlag(873) && gBul[b].code_bullet > 6 && gBul[b].code_bullet < 10 && CountBulletNum(16))))
+				 (gBul[b].code_bullet == 57) || (gBul[b].code_bullet == 69) || (GetNPCFlag(Flags::HIGH_OCTANE_TANK) && gBul[b].code_bullet > 6 && gBul[b].code_bullet < 10 && CountBulletNum(16))))
 				continue;
 
 			if (gBul[b].damage == -1)

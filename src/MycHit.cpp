@@ -381,7 +381,7 @@ int JudgeHitMyCharDamage(int x, int y)
 {
 	int hit = 0;
 
-	if (abs(gMC.xm) > 1250 && (GetNPCFlag(4096) || GetNPCFlag(879))) return hit;
+	if (abs(gMC.xm) > 1250 && (GetNPCFlag(4096) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
 
 	if (gMC.dashDuration > 0) return hit;
 
@@ -398,7 +398,7 @@ int JudgeHitMyCharDamageW(int x, int y)
 {
 	int hit = 0;
 
-	if (abs(gMC.xm) > 1250 && (GetNPCFlag(4096) || GetNPCFlag(879))) return hit;
+	if (abs(gMC.xm) > 1250 && (GetNPCFlag(4096) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
 
 	if (gMC.dashDuration > 0) return hit;
 
@@ -900,7 +900,7 @@ void HitMyCharNpChar(void)
 			hit = JudgeHitMyCharNPC3(&gNPC[i]);
 		}
 
-		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[i].code_char) != aquaticEntities.end()) && (gMC.equip & EQUIP_FISHY || GetNPCFlag(863))){
+		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[i].code_char) != aquaticEntities.end()) && (gMC.equip & EQUIP_FISHY || GetNPCFlag(Flags::DIVING_SUIT))){
 			hit = 0;
 		}
 
@@ -989,9 +989,9 @@ void HitMyCharNpChar(void)
 
 		if (hit != 0){
 			if ((gMC.dashDuration > 0)){
-				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876))&& 
+				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME))&& 
 				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), gNPC[i].code_char) != bonkableEnemies.end()){
-					if (GetNPCFlag(867)){
+					if (GetNPCFlag(Flags::SACRED_AEGIS)){
 						SetBullet(16, gMC.x,  gMC.y, 0);
 						SetBullet(16, gMC.x,  gMC.y, 0);
 					} else {
@@ -1001,7 +1001,7 @@ void HitMyCharNpChar(void)
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
 						gMC.shock += 40;
-						if (GetNPCFlag(876)){
+						if (GetNPCFlag(Flags::SHIELD_OF_TIME)){
 							gNPC[i].freeze = 320;
 							IncrementCooldown(gCooldowns, DASH_TIMER_ID, 120);
 						}
@@ -1018,7 +1018,7 @@ void HitMyCharNpChar(void)
 		}
 
 		if (hit != 0 && gNPC[i].bits & NPC_SHOOTABLE && (gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 200) && gKey & gKeyAbility){
-			if (GetNPCFlag(878)){
+			if (GetNPCFlag(Flags::NUCLEAR_STOMPER)){
 				SetBullet(16, gMC.x,  gMC.y, 0);
 				SetBullet(16, gMC.x,  gMC.y, 0);
 				SetBullet(16, gMC.x,  gMC.y, 0);
@@ -1244,8 +1244,8 @@ void HitMyCharBoss(void)
 
 		if (hit != 0){
 			if ((gMC.dashDuration > 0)){
-				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) && gBoss[b].bits & NPC_SHOOTABLE){
-					if (GetNPCFlag(867)){
+				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gBoss[b].bits & NPC_SHOOTABLE){
+					if (GetNPCFlag(Flags::SACRED_AEGIS)){
 						SetBullet(16, gMC.x,  gMC.y, 0);
 						SetBullet(16, gMC.x,  gMC.y, 0);
 					} else {
@@ -1268,7 +1268,7 @@ void HitMyCharBoss(void)
 		}
 
 		if (hit != 0 && gBoss[b].bits & NPC_SHOOTABLE && (gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 200) && gKey & gKeyAbility){
-			if (GetNPCFlag(878)){
+			if (GetNPCFlag(Flags::NUCLEAR_STOMPER)){
 				SetBullet(16, gMC.x,  gMC.y, 0);
 				SetBullet(16, gMC.x,  gMC.y, 0);
 				SetBullet(16, gMC.x,  gMC.y, 0);

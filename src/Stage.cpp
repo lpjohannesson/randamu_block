@@ -2454,9 +2454,9 @@ void SpawnPlayer(GenerationContext& genContext, GenerationArguments& genArgument
 }
 
 void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (GetNPCFlag(751) || GetNPCFlag(4150) || GetNPCFlag(870) || GetNPCFlag(7999))
-		SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, 751);
-	if (GetNPCFlag(740) || GetNPCFlag(4150) || GetNPCFlag(865) || GetNPCFlag(7999))
+	if (GetNPCFlag(Flags::CURLY_UNDERWEAR) || GetNPCFlag(4150) || GetNPCFlag(Flags::BADGE_OF_LOVE) || GetNPCFlag(7999))
+		SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::CURLY_UNDERWEAR);
+	if (GetNPCFlag(Flags::LITTLE_MAN) || GetNPCFlag(4150) || GetNPCFlag(Flags::AUGMENTED_MAN) || GetNPCFlag(7999))
 	{
 		int amount = std::get<int>(genArguments["little_man_amount"]);
 		if (GetNPCFlag(4150) || GetNPCFlag(7999))
@@ -2465,14 +2465,14 @@ void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArgument
 			SetNpChar(180, 0, 0, 0, 0, 2, NULL, 0x100);
 	}
 
-	if (GetNPCFlag(749))
-		SetNpChar(189, gMC.x, gMC.y + 0x2000, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, 749);
-	if (GetNPCFlag(745))
-		SetNpChar(190, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, 745);
-	if (GetNPCFlag(742))
-		SetNpChar(192, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, 742);
-	if (GetNPCFlag(741))
-		SetNpChar(193, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, 741);
+	if (GetNPCFlag(Flags::ALIEN_MEDAL))
+		SetNpChar(189, gMC.x, gMC.y + 0x2000, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::ALIEN_MEDAL);
+	if (GetNPCFlag(Flags::CLAY_FIGURE_MEDAL))
+		SetNpChar(190, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::CLAY_FIGURE_MEDAL);
+	if (GetNPCFlag(Flags::DESTRUCTION_ENERGIZER))
+		SetNpChar(192, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::DESTRUCTION_ENERGIZER);
+	if (GetNPCFlag(Flags::CREATION_ENERGIZER))
+		SetNpChar(193, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::CREATION_ENERGIZER);
 }
 
 void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments){
@@ -3145,7 +3145,7 @@ bool TransferStage(int no, int w, int x, int y)
 		ResetQuake();
 		InitBossChar(gTMT[no].boss_no);
 		ResetFlash();
-		if (GetNPCFlag(851))
+		if (GetNPCFlag(Flags::WHIMSICAL_STAR))
 			SetBullet(57, gMC.x, gMC.y + 0x2500, 0);
 		gNameFlag = true;
 		gNameTimer = 0;
@@ -3226,7 +3226,7 @@ bool TransferStage(int no, int w, int x, int y)
 		ResetQuake();
 		InitBossChar(gTMT[no].boss_no);
 		ResetFlash();
-		if (GetNPCFlag(851))
+		if (GetNPCFlag(Flags::WHIMSICAL_STAR))
 			SetBullet(57, gMC.x, gMC.y + 0x2500, 0);
 		gStageNo = no;
 	}

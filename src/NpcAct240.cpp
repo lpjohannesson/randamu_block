@@ -487,7 +487,7 @@ void ActNpcMainPress(NPCHAR *npc)
 			{
 				npc->bits &= ~NPC_SOLID_HARD;
 				npc->damage = 13;
-				if (GetNPCFlag(872)) npc->damage = 9;
+				if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) npc->damage = 9;
 			}
 			else
 			{

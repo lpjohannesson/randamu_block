@@ -178,7 +178,7 @@ void ActNpc321(NPCHAR *npc)
 		SetBullet(43, npc->pNpc->x, npc->pNpc->y, direct);
 		SetCaret(npc->pNpc->x, npc->pNpc->y, 3, 0);
 		PlaySoundObject(117, SOUND_MODE_PLAY);
-		if (GetNPCFlag(877)){
+		if (GetNPCFlag(Flags::LITTLE_MAN_UNDERWEAR)){
 			for (int i = 0; i < NPC_MAX; i++){
 				if (!(gNPC[i].cond & 0x80))
 					continue;

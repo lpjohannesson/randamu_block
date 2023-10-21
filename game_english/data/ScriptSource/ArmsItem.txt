@@ -867,7 +867,7 @@ Will you equip it?<YNJ0000<EQ+0256<FL+0875<MSG
 Equipped the Winter Clock.<NOD<WAI0003<FRE<EVE5060
 
 #6066
-<FLJ0871:7066<ELJ
+<FLJ0868:7066<ELJ
 <KEY<MSGA small tank full of
 flammable gas ready to go
 in any moment.<NOD Enhances
@@ -878,7 +878,7 @@ trail while doing so.<NOD
 Grants autofire to Snake and
 splits it into two
 projectiles.<NOD<CLR
-Do you want to equip it?<YNJ0000<FL+0871<MSG
+Do you want to equip it?<YNJ0000<FL+0868<MSG
 Equipped Flaming Booster.<NOD<WAI0003<FRE<EVE5066
 
 #6067
@@ -1171,7 +1171,7 @@ Deequipped Lead Weight.<NOD<WAI0003<FRE<EVE5059
 Deequipped Winter Clock.<NOD<WAI0003<EQ-0256<FRE<EVE5060
 
 #7066
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0871<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0868<MSG
 Deequipped Flaming Booster.<NOD<WAI0003<FRE<EVE5066
 
 #7067

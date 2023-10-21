@@ -336,7 +336,7 @@ void SetBullet(int no, int x, int y, int dir)
 	gBul[i].life_count = gBulTbl[no].life_count;
 	if (gBul[i].life_count != 1 && gBul[i].code_bullet != 58 && gBul[i].code_bullet != 59 && gBul[i].code_bullet != 60){
 		if (GetNPCFlag(705)){
-			if (GetNPCFlag(872)) gBul[i].life_count *= 1.33;
+			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
 			else gBul[i].life_count *= 1.25;
 		}
 	}
@@ -375,7 +375,7 @@ BULLET* SetBullet(int no, int x, int y)
 	gBul[i].life_count = gBulTbl[no].life_count;
 	if (gBul[i].life_count != 1 && gBul[i].code_bullet != 58 && gBul[i].code_bullet != 59 && gBul[i].code_bullet != 60){
 		if (GetNPCFlag(705)){
-			if (GetNPCFlag(872)) gBul[i].life_count *= 1.33;
+			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
 			else gBul[i].life_count *= 1.25;
 		}
 	}
@@ -1200,7 +1200,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 	}
 	else
 	{
-		if (bul->count1 % 7 == 0 && (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(873) || GetNPCFlag(871))){
+		if (bul->count1 % 7 == 0 && (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::HIGH_OCTANE_TANK) || GetNPCFlag(Flags::FLAMING_BOOSTER))){
 			int xCoord, yCoord;
 			xCoord = bul->x - 0x200 * 5;
 			yCoord = bul->y - 0x200 * 5;
@@ -4900,7 +4900,7 @@ void ActBullet_Nanites(BULLET *bul)
 			lol = 3;
 			speed = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 16 : 8);
 			
-			if (GetNPCFlag(883)){
+			if (GetNPCFlag(Flags::MILITARY_ARMAMENT)){
 				short rate = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 5 : 40);
 				if (++bul->act_wait % rate == 0){
 					short amount = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 2 : 1);
@@ -4944,7 +4944,7 @@ void ActBullet_Nanites(BULLET *bul)
 	// bul->x += bul->xm;
 	// bul->y += bul->ym;
 
-	if (!GetNPCFlag(882) && !GetNPCFlag(883)){
+	if (!GetNPCFlag(Flags::NANITES_ABSORBER) && !GetNPCFlag(Flags::MILITARY_ARMAMENT)){
 		bul->cond = 0;
 		return;
 	}
@@ -5105,7 +5105,7 @@ void ActBullet_Whirlpool(BULLET *bul)
 	bul->life_count = 500;
 	bul->iframes = 10;
 	if (GetNPCFlag(705)){
-			if (GetNPCFlag(872)) bul->life_count *= 1.33;
+			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) bul->life_count *= 1.33;
 			else bul->life_count *= 1.25;
 		}
 

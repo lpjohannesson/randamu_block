@@ -207,7 +207,7 @@ int CooldownDuration(int id){
         case DUCK_TIMER_ID:
             return 500;
         case DASH_TIMER_ID:
-            if ((gMC.equip & EQUIP_DASH_AMULET || GetNPCFlag(876)) && 
+            if ((gMC.equip & EQUIP_DASH_AMULET || GetNPCFlag(Flags::SHIELD_OF_TIME)) && 
                 CheckForCooldown(gCooldowns, id) > DashCooldown())
                 return DashCooldown() + 120;
             return std::max(DashCooldown(), 1);

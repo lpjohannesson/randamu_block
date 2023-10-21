@@ -44,8 +44,8 @@ std::map<std::pair<short, short>, unsigned char> mapModifications;
 int DashDuration(){
 	if (gMC.ameDashState) return 2000000;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;
-	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) && gMC.equip & EQUIP_SUNGLASSES) return 44;
-	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) return 14;
+	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SUNGLASSES) return 44;
+	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 14;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 25;
 	return 19;
 }
@@ -53,24 +53,24 @@ int DashDuration(){
 float DashSpeed(){
 	if (gMC.ameDashState) return 2.75;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 2.75f;
-	if (GetNPCFlag(866)) return 1.8;
+	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) return 1.8;
 	if ((GetNPCFlag(4100) || GetNPCFlag(7999)) && gArmsData[gSelectedArms].code == 9) return 3;
-	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) && gMC.equip & EQUIP_SPEED_SHOES && gMC.equip & EQUIP_SUNGLASSES) return 2.25;
-	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) && gMC.equip & EQUIP_SUNGLASSES) return 2.6;
-	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) && gMC.equip & EQUIP_SPEED_SHOES) return 2.35;
-	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) return 2.25;
+	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SPEED_SHOES && gMC.equip & EQUIP_SUNGLASSES) return 2.25;
+	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SUNGLASSES) return 2.6;
+	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SPEED_SHOES) return 2.35;
+	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 2.25;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 1.85;
 	if (gMC.equip & EQUIP_SPEED_SHOES) return 1.7;
 	return 1.6;
 }
 
 int DashCooldown(){
-	if (GetNPCFlag(874)) return 88;
-	if (GetNPCFlag(866)) return 25;
+	if (GetNPCFlag(Flags::DISCORDIAN_VISOR)) return 88;
+	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) return 25;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;
 	if (GetNPCFlag(4100) || (GetNPCFlag(7999) && gArmsData[gSelectedArms].code == 9)) return 110;
-	if ((gMC.equip & (EQUIP_SUPER_DASH | EQUIP_SUNGLASSES)) || GetNPCFlag(876)) return 45;
-	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(876)) return 35;
+	if ((gMC.equip & (EQUIP_SUPER_DASH | EQUIP_SUNGLASSES)) || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 45;
+	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 35;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 50;
 	if (!(gMC.equip & EQUIP_DASH_AMULET) && GetNPCFlag(5120)) return 120;
 	return 40;
@@ -308,7 +308,7 @@ void PutMyChar(int fx, int fy)
 {
 	const int accOrder[] = {EQUIP_WATER_THURST, EQUIP_PLATING, EQUIP_SPEED_SHOES, EQUIP_SUNGLASSES, EQUIP_FISHY, EQUIP_PROPANE_TANK, EQUIP_WINGS, EQUIP_SUPER_DASH, EQUIP_GRAVITY_FLIP, EQUIP_SKATES};
 	const int accRectNum[] = {6, 5, 2, 1, 4, 7, 3, 0, 8, 9};
-	const int accOrderFlag[] = {863, 874, 866, 864, 867, 873, 871, 876};
+	const int accOrderFlag[] = {Flags::DIVING_SUIT, Flags::DISCORDIAN_VISOR, Flags::CAPE_OF_SHADOWS, Flags::SHIELD_OF_RESILIENCE, Flags::SACRED_AEGIS, Flags::HIGH_OCTANE_TANK, Flags::FLAMING_BOOSTER, Flags::SHIELD_OF_TIME};
 	const int accRectNumFlag[] = {11, 15, 12, 10, 13, 14, 16, 17};
 	if (CheckForCooldown(gCooldowns, SHEEP_CURSE_ID) != -1 && (gMC.cond & 0x80)){
 		Rect sheepRect = {48, 0, 64, 16};
@@ -408,10 +408,10 @@ void PutMyChar(int fx, int fy)
 	rect.bottom += 32 * gMIMCurrentNum;
 
 	if ((gMC.equip & EQUIP_FAR_PLACE) && (gArmsData[gSelectedArms].code == 2 
-		|| (gArmsData[gSelectedArms].code == 12 && (GetNPCFlag(871) || GetNPCFlag(880))))){
+		|| (gArmsData[gSelectedArms].code == 12 && (GetNPCFlag(Flags::UNIVERSAL_CATALYST) || GetNPCFlag(Flags::FREEZE_STAR))))){
 		Rect limitRect = {160, 112, 176, 128};
 		int dist = 5;
-		if (GetNPCFlag(871)) dist = 7;
+		if (GetNPCFlag(Flags::UNIVERSAL_CATALYST)) dist = 7;
 		for (int x = 0; x < gMap.width; x++){
 			for (int y = 0; y < gMap.length; y++){
 				if (Distance(gMC.x/0x2000, gMC.y/0x2000, x, y) == dist){
@@ -523,7 +523,7 @@ static int ameKeyPressed;
 
 bool IsDashEquipped(){
 	return (gMC.equip & (EQUIP_SUPER_DASH | EQUIP_DASH_AMULET) || (gMC.flag & 0x100 && gMC.equip & EQUIP_WATER_THURST) || GetNPCFlag(4300)
-	|| ((GetNPCFlag(4100) || GetNPCFlag(7999)) && gArmsData[gSelectedArms].code == 9) || GetNPCFlag(866) || GetNPCFlag(5120) || GetNPCFlag(874) || GetNPCFlag(871) || GetNPCFlag(876));
+	|| ((GetNPCFlag(4100) || GetNPCFlag(7999)) && gArmsData[gSelectedArms].code == 9) || GetNPCFlag(Flags::CAPE_OF_SHADOWS) || GetNPCFlag(5120) || GetNPCFlag(Flags::DISCORDIAN_VISOR) || GetNPCFlag(Flags::FLAMING_BOOSTER) || GetNPCFlag(Flags::SHIELD_OF_TIME));
 }
 
 void ActMyChar_Normal(bool bKey)
@@ -546,7 +546,7 @@ void ActMyChar_Normal(bool bKey)
 		return;
 
 	physics = (gMC.flag & 0x100) ? &gMC.physics_underwater : &gMC.physics_normal;
-	if (GetNPCFlag(863)){
+	if (GetNPCFlag(Flags::DIVING_SUIT)){
 		physics = &gMC.physics_normal;
 	}
 	
@@ -562,7 +562,7 @@ void ActMyChar_Normal(bool bKey)
 		max_move = gMC.physics_underwater.max_move;	// Underwater or in wind
 	else
 		max_move = gMC.physics_normal.max_move;	// Normal conditions
-	if (GetNPCFlag(863))
+	if (GetNPCFlag(Flags::DIVING_SUIT))
 		max_move = gMC.physics_normal.max_move;
 	if ((gMC.flag & 0x100) && (gMC.equip & EQUIP_WATER_THURST)){
 		jump = gMC.physics_normal.jump*1.25;
@@ -570,11 +570,11 @@ void ActMyChar_Normal(bool bKey)
 		if (gMC.equip & EQUIP_WINGS){
 			jump = 1600;
 		}
-		if (GetNPCFlag(866)){
+		if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)){
 			jump = 1800;
 		}
 	}
-	if (GetNPCFlag(863)){
+	if (GetNPCFlag(Flags::DIVING_SUIT)){
 		gMC.no_splash_or_air_limit_underwater = 1;
 		if (gMC.flag & 0x100)
 			gravity2 = 0;
@@ -689,11 +689,11 @@ void ActMyChar_Normal(bool bKey)
 		max_dash *= 1.25;
 		resist *= 1.25;
 	}
-	if (GetNPCFlag(869)){
+	if (GetNPCFlag(Flags::TERRA_BOOTS)){
 		dash1 *= 1.2;
 	}
 	if (gMC.tileset == TYPE_ICE){
-		if (!(gMC.equip & EQUIP_SKATES) && !GetNPCFlag(869)){
+		if (!(gMC.equip & EQUIP_SKATES) && !GetNPCFlag(Flags::TERRA_BOOTS)){
 			resist /= 2;
 			dash1 *= 0.9;
 		}
@@ -749,7 +749,7 @@ void ActMyChar_Normal(bool bKey)
 		}
 	}
 
-	if (GetNPCFlag(880) && (gArmsData[gSelectedArms].code == 2 || gArmsData[gSelectedArms].code == 12)){
+	if (GetNPCFlag(Flags::FREEZE_STAR) && (gArmsData[gSelectedArms].code == 2 || gArmsData[gSelectedArms].code == 12)){
 		for (int i = 0; i < NPC_MAX; i++){
 			if (Random(0, 10) == 0 && std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[i].code_char) == etherealEntities.end() && gNPC[i].damage > 0 && Distance(gMC.x, gMC.y, gNPC[i].x, gNPC[i].y) <= 88_pix){
 				gNPC[i].freeze += 10;
@@ -775,17 +775,17 @@ void ActMyChar_Normal(bool bKey)
 		if (gMC.equip & EQUIP_BOOSTER_2_0)
 		{
 			gMC.boost_cnt = 40;
-			if (gMC.equip & EQUIP_BOOSTER_FUEL || GetNPCFlag(862)){
+			if (gMC.equip & EQUIP_BOOSTER_FUEL || GetNPCFlag(Flags::SUPER_BOOSTER)){
 				gMC.boost_cnt = 90;
 			}
 		}
-		else if (GetNPCFlag(869)){
+		else if (GetNPCFlag(Flags::TERRA_BOOTS)){
 			gMC.boost_cnt = 60;
 		}
 		else
 		{
 			gMC.boost_cnt = 0;
-			if (gMC.equip & EQUIP_BOOSTER_FUEL || GetNPCFlag(862)){
+			if (gMC.equip & EQUIP_BOOSTER_FUEL || GetNPCFlag(Flags::SUPER_BOOSTER)){
 				gMC.boost_cnt = 15;
 			}
 		}
@@ -809,13 +809,13 @@ void ActMyChar_Normal(bool bKey)
 				if (gMC.equip & EQUIP_SPEED_SHOES){
 					maximal_dash *= 1.75;
 				}
-				if (GetNPCFlag(869)){
+				if (GetNPCFlag(Flags::TERRA_BOOTS)){
 					maximal_dash = 1535;
 				}
 				if (gMC.equip & EQUIP_SKATES && gKey & gKeyAbility){
 					maximal_dash = 1500;
 				}
-				if (GetNPCFlag(879)){
+				if (GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)){
 					maximal_dash *= 2;
 					dashy *= 3;
 				}
@@ -836,7 +836,7 @@ void ActMyChar_Normal(bool bKey)
 					}
 				}
 
-				if(!(gKey & gKeyAbility && GetNPCFlag(872))){
+				if(!(gKey & gKeyAbility && GetNPCFlag(Flags::AMPHIBIAN_MEDAL))){
 					if (gKey & gKeyLeft){
 						gMC.direct = 0;
 					}
@@ -846,7 +846,7 @@ void ActMyChar_Normal(bool bKey)
 					}
 				}
 
-				if ((gMC.xm <= -max_dash*1.5 || gMC.xm >= max_dash*1.5) && (gMC.equip & EQUIP_SPEED_SHOES || GetNPCFlag(879)))
+				if ((gMC.xm <= -max_dash*1.5 || gMC.xm >= max_dash*1.5) && (gMC.equip & EQUIP_SPEED_SHOES || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)))
 				{
 					static int speedEffects;
 					if (++speedEffects % 4 == 1)
@@ -890,10 +890,10 @@ void ActMyChar_Normal(bool bKey)
 		// Start boosting
 		if (bKey)
 		{
-			if ((gMC.equip & (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) || GetNPCFlag(869)) && gKeyTrg & gKeyJump &&
+			if ((gMC.equip & (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) || GetNPCFlag(Flags::TERRA_BOOTS)) && gKeyTrg & gKeyJump &&
 			 (gMC.boost_cnt != 0) && (!gMC.pogo || !(gMC.equip & EQUIP_DOUBLE_JUMP)))
 			{
-				if (GetNPCFlag(869))
+				if (GetNPCFlag(Flags::TERRA_BOOTS))
 				{
 					gMC.boost_sw = 1;
 
@@ -944,7 +944,7 @@ void ActMyChar_Normal(bool bKey)
 				maximal_dash *= 1.75;
 				dashy *= 1.35;
 			}
-			if (GetNPCFlag(879)){
+			if (GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)){
 				maximal_dash *= 2;
 				dashy *= 3;
 			}
@@ -963,7 +963,7 @@ void ActMyChar_Normal(bool bKey)
 				}
 			}
 
-			if(!(gKey & gKeyAbility && GetNPCFlag(872))){
+			if(!(gKey & gKeyAbility && GetNPCFlag(Flags::AMPHIBIAN_MEDAL))){
 					if (gKey & gKeyLeft){
 						gMC.direct = 0;
 					}
@@ -982,7 +982,7 @@ void ActMyChar_Normal(bool bKey)
 			else if (gMC.boost_sw == 2)
 				gMC.ym /= 2;
 		}
-		if (gMC.equip & (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) && gMC.boost_sw != 0 && (gMC.boost_cnt == 0) && !GetNPCFlag(862))
+		if (gMC.equip & (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) && gMC.boost_sw != 0 && (gMC.boost_cnt == 0) && !GetNPCFlag(Flags::SUPER_BOOSTER))
 		{
 			if (gMC.boost_sw == 1)
 				gMC.xm /= 2;
@@ -1017,7 +1017,7 @@ void ActMyChar_Normal(bool bKey)
 					|| (gMC.equip & EQUIP_ALIEN_MEDAL && gMC.pogo && GetAttribute(round(((float)gMC.x) / 0x2000), round(((float)gMC.y + 0x200 * 15) / 0x2000)) == 66)
 					|| ((gMC.equip & EQUIP_WALL_JUMP || GetNPCFlag(4300)) && GetAttribute(round(((float)gMC.x) / 0x2000) + 1, round(((float)gMC.y) / 0x2000)) == 65)
 					|| ((gMC.equip & EQUIP_WALL_JUMP || GetNPCFlag(4300)) && GetAttribute(round(((float)gMC.x) / 0x2000) - 1, round(((float)gMC.y) / 0x2000)) == 65)
-					 || ((gMC.equip & EQUIP_DOUBLE_JUMP || GetNPCFlag(4300) || gMC.saraDash || (GetNPCFlag(866))) && gMC.pogo)))
+					 || ((gMC.equip & EQUIP_DOUBLE_JUMP || GetNPCFlag(4300) || gMC.saraDash || (GetNPCFlag(Flags::CAPE_OF_SHADOWS))) && gMC.pogo)))
 		{
 			if (gMC.flag & 0x2000)
 			{
@@ -1042,7 +1042,7 @@ void ActMyChar_Normal(bool bKey)
 					gMC.direct = 2;
 					gMC.pogo = true;
 				}
-				else if ((gMC.equip & EQUIP_DOUBLE_JUMP || GetNPCFlag(4300) || (GetNPCFlag(866)) || gMC.saraDash) && gMC.pogo == true && !(gMC.flag & 8 || gMC.flag & 0x10 || gMC.flag & 0x20 || gMC.flag & 0x100) ){
+				else if ((gMC.equip & EQUIP_DOUBLE_JUMP || GetNPCFlag(4300) || (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) || gMC.saraDash) && gMC.pogo == true && !(gMC.flag & 8 || gMC.flag & 0x10 || gMC.flag & 0x20 || gMC.flag & 0x100) ){
 					gMC.pogo = false;
 					SetDestroyNpChar(gMC.x, gMC.y, gMC.view.back, 5);
 				}
@@ -1128,7 +1128,7 @@ void ActMyChar_Normal(bool bKey)
 		gMC.ym += gravity1;
 	}
 	// Booster 0.8
-	else if ((GetNPCFlag(869) && (!(gMC.equip & EQUIP_BOOSTER_2_0)) && gMC.boost_sw != 0))
+	else if ((GetNPCFlag(Flags::TERRA_BOOTS) && (!(gMC.equip & EQUIP_BOOSTER_2_0)) && gMC.boost_sw != 0))
 	{
 		// Booster particles
 		if (gMC.boost_cnt % 3 == 0)
@@ -1163,7 +1163,7 @@ void ActMyChar_Normal(bool bKey)
 			}
 		}
 		gMC.ym += gravity2;
-		if (GetNPCFlag(879)){
+		if (GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)){
 			gMC.ym -= 0.008f * abs(gMC.xm);
 		}
 	}
@@ -1252,7 +1252,7 @@ void ActMyChar_Normal(bool bKey)
 	if (bKey && gKey & gKeyAbility && gMC.equip & EQUIP_WINGS && gMC.ym  * (gMC.flip ? -1 : 1) > max_move / 2.8){
 		gMC.ym = max_move / 2.8 * (gMC.flip ? -1 : 1);
 	}
-	if (gMC.ym > max_move / 6 && CheckForCooldown(gCooldowns, DASH_TIMER_ID) >= DashCooldown() / 2 && (GetNPCFlag(866))){
+	if (gMC.ym > max_move / 6 && CheckForCooldown(gCooldowns, DASH_TIMER_ID) >= DashCooldown() / 2 && (GetNPCFlag(Flags::CAPE_OF_SHADOWS))){
 		gMC.ym = max_move / 6;
 	}
 	if (gMC.ym > max_move && !(gMC.equip & EQUIP_HEAVY_WEIGHT && gKey & gKeyAbility)){
@@ -1308,11 +1308,11 @@ void ActMyChar_Normal(bool bKey)
 		}
 	}
 	if (gMC.dashDuration > 0 && gMC.dashDuration < DashDuration()){
-		if (!GetNPCFlag(874) || gBL.flag)
+		if (!GetNPCFlag(Flags::DISCORDIAN_VISOR) || gBL.flag)
 		{
 			gMC.dashDuration++;
 			gMC.visualDashDuration++;
-			if (GetNPCFlag(871) && gMC.dashDuration % 3 == 0){
+			if (GetNPCFlag(Flags::FLAMING_BOOSTER) && gMC.dashDuration % 3 == 0){
 				int xCoord, yCoord;
 				xCoord = gMC.x - 0x200 * 7;
 				yCoord = gMC.y - 0x200 * 7;
@@ -1334,7 +1334,7 @@ void ActMyChar_Normal(bool bKey)
 						gMC.xm = 0x500;
 					}
 				}
-				if (GetNPCFlag(866))
+				if (GetNPCFlag(Flags::CAPE_OF_SHADOWS))
 				{
 					gMC.pogo = true;
 				}
@@ -1401,7 +1401,7 @@ void ActMyChar_Normal(bool bKey)
 			} else {
 				gMC.dashDuration = 0;
 			}
-			if (GetNPCFlag(866)){
+			if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)){
 				gMC.pogo = true;
 			}
 		}
@@ -1414,7 +1414,7 @@ void ActMyChar_Normal(bool bKey)
 		if (gMC.ameDashState){
 					gMC.ameDashState = false;
 		}
-		if (GetNPCFlag(866)){
+		if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)){
 			gMC.pogo = true;
 		}
 	}
@@ -1474,7 +1474,7 @@ void ActMyChar_Normal(bool bKey)
 			SetCaret(gMC.x + 5*0x200, gMC.y, 15, 2);
 		}
 	}
-	if (GetNPCFlag(866) && gMC.ym < -max_move*1.2){
+	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS) && gMC.ym < -max_move*1.2){
 		gMC.ym = -max_move*1.2;
 	} else if (gMC.ym < -max_move)
 		gMC.ym = -max_move;
@@ -1891,7 +1891,7 @@ void ActMyChar(bool bKey)
 		}
 	}
 
-	if ((GetNPCFlag(882) || GetNPCFlag(883)) && CountBulletNum(86) == 0){
+	if ((GetNPCFlag(Flags::NANITES_ABSORBER) || GetNPCFlag(Flags::MILITARY_ARMAMENT)) && CountBulletNum(86) == 0){
 		SetBullet(86, gMC.x, gMC.y);
 	}
 
@@ -1951,7 +1951,7 @@ void ActMyChar(bool bKey)
 		}
 	}
 
-	if (gKeyTrg & gMouseClick && gMC.chaosAnim == 0 && CheckForCooldown(gCooldowns, CHAOS_KEY_ID) == -1 && (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED) && GetNPCFlag(703)){
+	if (gKeyTrg & gMouseClick && gMC.chaosAnim == 0 && CheckForCooldown(gCooldowns, CHAOS_KEY_ID) == -1 && (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED) && GetNPCFlag(Flags::CHAOS_KEY)){
 		int fx, fy, x, y;
 		GetFramePosition(&fx, &fy);
 		x = fx + ScreenToSubpixelCoord(gMouseX);
@@ -2000,17 +2000,17 @@ void ActMyChar(bool bKey)
 		}
 	}
 
-	if (gKeyTrg & gKeyAbility && (GetNPCFlag(860) || GetNPCFlag(875) || GetNPCFlag(876)) && 
+	if (gKeyTrg & gKeyAbility && (GetNPCFlag(Flags::TIMELINE_RING) || GetNPCFlag(Flags::WINTER_CLOCK) || GetNPCFlag(Flags::SHIELD_OF_TIME)) && 
 			CheckForCooldown(gCooldowns, TIME_RING_ID) == -1 && 
 			CheckForCooldown(gCooldowns, TIME_STOP_ID) == -1){
 		SetFlash(gMC.x, gMC.y, 1, RGB(154, 209, 232) | (0x80 << 24));
-		if (GetNPCFlag(860) || GetNPCFlag(876)){
+		if (GetNPCFlag(Flags::TIMELINE_RING) || GetNPCFlag(Flags::SHIELD_OF_TIME)){
 			PlaySoundObject(101, SOUND_MODE_PLAY);
 			for (int i = 0; i < SE_MAX; i++)
 				ChangeSoundFrequency(i, 1200);
 			InitiateCooldown(gCooldowns, TIME_STOP_ID);
 			PlayOrganyaMusic();
-		} else if (GetNPCFlag(875)){
+		} else if (GetNPCFlag(Flags::WINTER_CLOCK)){
 			PlaySoundObject(118, SOUND_MODE_PLAY);
 			for (int i = 0; i < NPC_MAX; i++){
 				if (gNPC[i].cond & 0x80 &&

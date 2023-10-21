@@ -147,7 +147,7 @@ void HitBossBullet(void)
 			}
 
 			if (gBoss[bos].shock > 0 && ((gBul[bul].code_bullet > 27 && gBul[bul].code_bullet < 31) ||
-				 (gBul[bul].code_bullet == 57) || (gBul[bul].code_bullet == 69) || (GetNPCFlag(873) && gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && CountBulletNum(16)) || (gBul[bul].code_bullet == 4 && gBul[bul].life > 0)))
+				 (gBul[bul].code_bullet == 57) || (gBul[bul].code_bullet == 69) || (GetNPCFlag(Flags::HIGH_OCTANE_TANK) && gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && CountBulletNum(16)) || (gBul[bul].code_bullet == 4 && gBul[bul].life > 0)))
 				continue;
 
 			if (gBul[bul].damage == -1)
@@ -212,7 +212,7 @@ void HitBossBullet(void)
 						}
 						continue;
 					}
-					if (GetNPCFlag(874)){
+					if (GetNPCFlag(Flags::DISCORDIAN_VISOR)){
 						dmg = round(dmg * 1.25f);
 					}
 					if (gMC.equip & EQUIP_SUNGLASSES){
@@ -242,7 +242,7 @@ void HitBossBullet(void)
 					}
 
 					gBoss[bos_].life -= dmg;
-					if (gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(873)){
+					if (gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
 						SetBullet(16, gBul[bul].x, gBul[bul].y, 0);
 					}
 
@@ -262,7 +262,7 @@ void HitBossBullet(void)
 						}
 					}
 
-					if (/* GetNPCFlag(851) */true){
+					if (/* GetNPCFlag(Flags::WHIMSICAL_STAR) */true){
 						for (int b1 = 0; b1 < BULLET_MAX; b1++){
 							if (gBul[b1].code_bullet == 57 && gBul[b1].npc == NULL){
 								gBul[b1].npc = &gBoss[bos_];

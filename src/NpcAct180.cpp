@@ -83,7 +83,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 		npc->xm = 0;
 	if (npc->xm > 0 && npc->flag & 4)
 		npc->xm = 0;
-	if (GetNPCFlag(865)){
+	if (GetNPCFlag(Flags::AUGMENTED_MAN)){
 	if (gKey & gKeyLeft){
 		npc->xm -= 0x14 * 3;
 	}
@@ -216,7 +216,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 	if (gCurlyShoot_wait == 10)
 		npc->count2 = 10;
 
-	if (gCurlyShoot_wait == 5 && npc->flag & 8 && (Random(0, 2) || (GetNPCFlag(865) && gKeyTrg & gKeyJump)))
+	if (gCurlyShoot_wait == 5 && npc->flag & 8 && (Random(0, 2) || (GetNPCFlag(Flags::AUGMENTED_MAN) && gKeyTrg & gKeyJump)))
 	{
 		npc->count1 = 0;
 		npc->ym = -0x600;
@@ -228,7 +228,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 		else
 			npc->act_no = 310;
 	}
-	if (++npc->exp % 6 == 0 && npc->xm != 0 && gCurlyShoot_x != 0 && gCurlyShoot_y != 0 && GetNPCFlag(865)){
+	if (++npc->exp % 6 == 0 && npc->xm != 0 && gCurlyShoot_x != 0 && gCurlyShoot_y != 0 && GetNPCFlag(Flags::AUGMENTED_MAN)){
 			BULLET *bul = SetBullet(47, npc->x,  npc->y);
 						if (bul != NULL){
 						bul->tgt_x = gCurlyShoot_x + Random(-0x2000 * 3.5, 0x2000 * 3.5);
@@ -273,7 +273,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 
 #ifdef FIX_BUGS
 			// I assume this is what was intended
-			if (npc->flag & 8 && (npc->count1 > 10 || (GetNPCFlag(865) && gKeyTrg & gKeyJump)))
+			if (npc->flag & 8 && (npc->count1 > 10 || (GetNPCFlag(Flags::AUGMENTED_MAN) && gKeyTrg & gKeyJump)))
 #else
 			if (npc->flag && 8 && npc->count1 > 10)
 #endif

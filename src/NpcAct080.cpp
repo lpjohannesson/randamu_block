@@ -820,7 +820,7 @@ void ActNpcHeart(NPCHAR *npc)
 			npc->ani_no = 0;
 	}
 
-	if (GetNPCFlag(870) && Distance(gMC.x, gMC.y, npc->x, npc->y) < 4 * 0x2000){
+	if (GetNPCFlag(Flags::BADGE_OF_LOVE) && Distance(gMC.x, gMC.y, npc->x, npc->y) < 4 * 0x2000){
 		int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
 			npc->ym = GetSin(deg) * 3;
 			npc->xm = GetCos(deg) * 3;
