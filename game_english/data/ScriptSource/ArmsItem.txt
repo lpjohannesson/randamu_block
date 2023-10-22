@@ -681,9 +681,12 @@ Equipped the Timeline Ring.<NOD<WAI0003<FRE<EVE5037
 <FLJ0851:7038<ELJ
 <KEY<MSGA little trinket made by
 Chaba in the labyrinth.<NOD
-A whimsical star follows your mouse
-cursor, latches to enemies and
-collects small pickups.<NOD<CLR
+A whimsical star follows you,
+latches to enemies and
+collects small pickups.<NOD
+Clicking switches star between
+following mouse's cursor
+and following player.<NOD<CLR
 Will you equip it?<YNJ0000<FL+0851<SR+<MSG
 Equipped the Whimsical Star.<NOD<WAI0003<FRE<EVE5038
 #6039
