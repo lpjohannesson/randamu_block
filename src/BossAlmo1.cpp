@@ -433,13 +433,6 @@ void ActBossChar_Core(void)
 
 			++npc->act_wait;
 
-			if (npc->act_wait % 100 == 1)
-			{
-				gCurlyShoot_wait = Random(80, 100);
-				gCurlyShoot_x = gBoss[11].x;
-				gCurlyShoot_y = gBoss[11].y;
-			}
-
 			if (npc->act_wait < shellTime / 4 && npc->act_wait % 3 == 1){
 				PlaySoundObject(25, SOUND_MODE_PLAY);
 				SetNpChar(33, npc->x + (Random(-48, -16) * 0x200), npc->y + (Random(-64, 64) * 0x200), Random(-0x350, 0x350), Random(-0x300, 0), 0, NULL, 0x100);

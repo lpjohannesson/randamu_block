@@ -1018,9 +1018,6 @@ void ActNpc171(NPCHAR *npc)
 			{
 				SetNpChar(172, npc->x, npc->y, 0, 0, npc->direct, NULL, 0x100);
 				npc->count1 = -100;
-				gCurlyShoot_wait = Random(80, 100);
-				gCurlyShoot_x = npc->x;
-				gCurlyShoot_y = npc->y;
 			}
 
 			break;
@@ -1181,10 +1178,6 @@ void ActNpcNinjaGaudi(NPCHAR *npc)
 
 				PlaySoundObject(39, SOUND_MODE_PLAY);
 				npc->ani_no = 3;
-
-				gCurlyShoot_wait = Random(80, 100);
-				gCurlyShoot_x = npc->x;
-				gCurlyShoot_y = npc->y;
 			}
 
 			if ((npc->act_wait-5) % 10 == 0)

@@ -459,13 +459,6 @@ void ActBossChar_Undead(void)
 
 			++npc->act_wait;
 
-			if (npc->act_wait % 100 == 1)
-			{
-				gCurlyShoot_wait = Random(80, 100);
-				gCurlyShoot_x = gBoss[11].x;
-				gCurlyShoot_y = gBoss[11].y;
-			}
-
 			if (npc->act_wait < 300)
 			{
 				if (npc->act_wait % 120 == 1)
@@ -579,14 +572,7 @@ void ActBossChar_Undead(void)
 				gBoss[5].ani_no = 0;
 			}
 
-			if (++npc->act_wait % 100 == 1)
-			{
-				gCurlyShoot_wait = Random(80, 100);
-				gCurlyShoot_x = gBoss[11].x;
-				gCurlyShoot_y = gBoss[11].y;
-			}
-
-			if (npc->act_wait % 120 == 1)
+			if (++npc->act_wait % 120 == 1)
 				SetNpChar(288, npc->x - (32 * 0x200), npc->y - (16 * 0x200), 0, 0, 1, NULL, 0x20);
 
 			if (npc->act_wait % 120 == 61)
