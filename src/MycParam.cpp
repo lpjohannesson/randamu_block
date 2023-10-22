@@ -273,6 +273,9 @@ void DamageMyChar(int damage)
 	if (gMC.equip & EQUIP_SUNGLASSES){
 		gMC.shock /= 2;
 	}
+	if (finalDamage <= 1){
+		gMC.shock *= 0.66f;
+	}
 	if ((GetNPCFlag(Flags::NANITES_ABSORBER) || GetNPCFlag(Flags::MILITARY_ARMAMENT)) && CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1
 						&& CheckForCooldown(gCooldowns, NANITES_TIME_ID) == -1){
 		InitiateCooldown(gCooldowns, NANITES_TIME_ID);
