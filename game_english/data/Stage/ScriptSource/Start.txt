@@ -29,7 +29,7 @@ the next stage.<NOD<END
 #0095
 <AM+0009:0000<AM+0008:0000<AM+0015:0000<END
 #0096
-<FLJ4201:0000<AM+0003:0100<FL+4201<END
+<FLJ4201:0000<IT+0021<EQ+0016<AM+0003:0100<FL+4201<END
 #0097
 <END
 #0098
@@ -364,8 +364,8 @@ damages enemies with trail
 and keeps your speed when
 you run out of fuel.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1008<IT+0008<IT-0023<IT-0044<EQ-@384<FL-0752<EQ-0032<FL-0743<MM-Created =Super Booster=!<WAI0135<NOD<CLO<PS-0001<RMU<END
 #0602
-<PRI<MSG<GIT1009Diving Suit allows
-to breath underwater, removes
+<PRI<MSG<GIT1009Diving Suit makes
+air supply deply slower,<NOD removes
 speed reduction from water,<NOD
 allows to swim with holding Jump
 and makes jellies passive.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1009<IT+0009<IT-0021<IT-0028<EQ-0016<E2-0025<FL-0760<MM-Created =Diving Suit=!<WAI0135<NOD<CLO<PS-0002<RMU<END

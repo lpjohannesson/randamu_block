@@ -434,9 +434,10 @@ damage to enemies.<NOD<CLRDo you want to equip it?<YNJ0000<EQ+0032<FL+0862<MSG
 Equipped Super Booster.<NOD<WAI0003<FRE<EVE5008
 #6009
 <FLJ0863:7009<ELJ
-<KEY<MSGProvides underwater
-breathing, removes speed
-penalty and allows to swim
+<KEY<MSGProvides improved 
+underwater breathing,<NOD
+removes speed penalty 
+and allows to swim
 by holding Jump.<NOD Makes
 <NAM buoyant and mutually
 invulnerable to jellies.<NOD<CLR
@@ -537,9 +538,9 @@ Polar Star and Nemesis recover some ammo.<WAI9999<END
 gun and Spur charges up. Makes Polar
 Star and Nemesis recharge very slowly.<WAI9999<END
 #6021
-<MSG<TURYou can breathe underwater with
-this. Also provides lava immunity for
-8 seconds.<WAI9999<END
+<MSG<TURSignificantly increases air supply
+underwater and reduces drowning, also
+provides lava immunity for 8 seconds.<WAI9999<END
 #6022
 <FLJ0747:7022<ELJ
 <KEY<MSGA fully automatic stopwatch,

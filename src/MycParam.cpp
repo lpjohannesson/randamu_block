@@ -734,11 +734,8 @@ void PutMyAir(int x, int y)
 		{112, 80, 144, 88},
 	};
 
-	if (gMC.no_splash_or_air_limit_underwater)
-		return;
-
-	if (gMC.equip & EQUIP_AIR_TANK && !gMC.hell)
-		return;
+	// if (gMC.equip & EQUIP_AIR_TANK && !gMC.hell)
+	// 	return;
 
 	if (gMC.air_get != 0)
 	{

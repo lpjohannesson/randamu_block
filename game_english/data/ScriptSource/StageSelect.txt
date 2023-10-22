@@ -83,7 +83,7 @@ can upgrade her weapons to level 4.<WAI9999<END
 #0951
 <MSG<TURHer immunity time is increased by 1 second,
 and life capsules give 4 HP instead of 3.
-She also gets 9 HP at start.<WAI9999<END
+She also gets 9 HP and Air Tank at start.<WAI9999<END
 #0952
 <MSG<TURUse Dash key while holding
 Blade to dash-slash.<WAI9999<END

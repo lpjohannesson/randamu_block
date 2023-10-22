@@ -962,6 +962,7 @@ void HitMyCharNpChar(void)
 		{
 			PlaySoundObject(20, SOUND_MODE_PLAY);
 			AddLifeMyChar(gNPC[i].exp);
+			gMC.air = std::min(gMC.air + gNPC[i].exp * 50, 1000);
 			gNPC[i].cond = 0;
 		}
 

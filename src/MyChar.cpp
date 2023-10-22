@@ -575,7 +575,6 @@ void ActMyChar_Normal(bool bKey)
 		}
 	}
 	if (GetNPCFlag(Flags::DIVING_SUIT)){
-		gMC.no_splash_or_air_limit_underwater = 1;
 		if (gMC.flag & 0x100)
 			gravity2 = 0;
 	}
@@ -1764,39 +1763,42 @@ void ActMyChar_Stream(bool bKey)
 	gMC.y += gMC.ym;
 }
 
+void AirDeplete(){
+	int rate = 1;
+	if (!gMC.hell){
+		if (gMC.equip & EQUIP_AIR_TANK || GetNPCFlag(Flags::DIVING_SUIT)){
+			rate = 3;
+		}
+	}
+	if (gCounter % rate == 0){
+		gMC.air = std::max(gMC.air - 1, 0);
+	}
+}
+
 void AirProcess(void)
 {
-	if (gMC.equip & EQUIP_AIR_TANK && !gMC.hell)
-	{
-		gMC.air = 1000;
-		gMC.air_get = 0;
-	}
-	else
-	{
-		if (!(gMC.flag & 0x100) || gMC.no_splash_or_air_limit_underwater)
+	if (!(gMC.flag & 0x100) || gMC.no_splash_or_air_limit_underwater)
 		{
-			if (gMC.difficulty < DIFFICULTY_RESONANT){
-				gMC.air = 1000;
-				if (gMC.hell){
-					gMC.air = 480;
-				}
-			} else {
-				int limit = 1000;
-				if (gMC.hell){
-					limit = 480;
-				}
-				if (++gMC.air > limit){
-					gMC.air = limit;
-				} else {
-					gMC.air_get = 27;
-				}
+			int limit = 1000;
+			if (gMC.hell){
+				limit = 480;
 			}
+			int airBoost = 25;
+			if (gMC.difficulty >= DIFFICULTY_RESONANT && !gMC.hell){
+				airBoost = 1;
+			}
+			gMC.air = std::min(gMC.air + airBoost, limit);
+			if (gMC.hell){
+				gMC.air = std::min(gMC.air + airBoost/2, limit);
+			}
+			if (gMC.air < limit && gMC.air_get <= 0) gMC.air_get = airBoost;
 		}
 		else
 		{
 			if ((gMC.tileset == TYPE_LIVING_WATERWAY || gMC.tileset == TYPE_IKACHAN) && gMC.depth > genContext.doctorStage)
-				gMC.air--;
-			if (--gMC.air <= 0)
+				AirDeplete();
+			AirDeplete();
+			if (gMC.air <= 0)
 			{
 				if (gMC.hell) return;
 				//start drowning
@@ -1806,6 +1808,9 @@ void AirProcess(void)
 					gMC.drowningTimer = 60;
 					if (gMC.difficulty > DIFFICULTY_REINFORCED)
 						gMC.drowningTimer = 30;
+					if (gMC.equip & EQUIP_AIR_TANK || GetNPCFlag(Flags::DIVING_SUIT)){
+						gMC.drowningTimer *= 1.33;
+					}
 					for (int a = 0; a < 6; ++a)
 					{
 						int x = gMC.x + (Random(-8, 8) * 0x200);
@@ -1818,11 +1823,6 @@ void AirProcess(void)
 					// Drown
 					gMC.deathReason = 0;
 					StartTextScript(41);
-
-					// if (gMC.direct == 0)
-					// 	SetCaret(gMC.x, gMC.y, 8, 0);
-					// else
-					// 	SetCaret(gMC.x, gMC.y, 8, 2);
 
 					gMC.cond &= ~0x80;
 				}
@@ -1838,7 +1838,6 @@ void AirProcess(void)
 			if (gMC.air_get != 0)
 				--gMC.air_get;
 		}
-	}
 }
 
 int hungerRate = 600;
