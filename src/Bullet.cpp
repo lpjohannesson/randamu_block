@@ -212,7 +212,7 @@ BULLET_TABLE gBulTbl[] = {
 	{10, 4, 46, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
 	// Super Missile Launcher explosion
 	{2, 100, 100, 20, 12, 12, 0, 0, {0, 0, 0, 0}, 1, 1},
-	{2, 100, 100, 20, 20, 20, 0, 0, {0, 0, 0, 0}, 1, 1},
+	{1, 120, 200, 32, 32, 20, 0, 0, {0, 0, 0, 0}, 1, 1},
 	{2, 100, 100, 20, 12, 12, 0, 0, {0, 0, 0, 0}, 1, 1},
 	// Nemesis
 	{3, 3, 22, 32, 4, 4, 3, 3, {8, 8, 8, 8}, 0.75, 0.75},
@@ -4010,7 +4010,7 @@ void ActBullet_SuperBom(BULLET *bul, int level)
 					bul->act_wait = 10;
 					break;
 				case 2:
-					bul->act_wait = 15;
+					bul->act_wait = 35;
 					break;
 				case 3:
 					bul->act_wait = 6;
@@ -4027,8 +4027,10 @@ void ActBullet_SuperBom(BULLET *bul, int level)
 						SetDestroyNpCharUp(bul->x + (Random(-16, 16) * 0x200), bul->y + (Random(-16, 16) * 0x200), bul->enemyXL, 2);
 					break;
 				case 2:
+					bul->x = gMC.x + gMC.xm * 2;
+					bul->y = gMC.y + gMC.ym * 2;
 					if (bul->act_wait % 3 == 0)
-						SetDestroyNpCharUp(bul->x + (Random(-48, 48) * 0x200), bul->y + (Random(-48, 48) * 0x200), bul->enemyXL, 7);
+						SetDestroyNpCharUp(bul->x + (Random(-32, 32) * 0x200), bul->y + (Random(-32, 32) * 0x200), bul->enemyXL, 5);
 					break;
 				case 3:
 					if (bul->act_wait % 3 == 0)
