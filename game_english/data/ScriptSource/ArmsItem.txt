@@ -633,7 +633,9 @@ Equipped Clay Figure Medal.<NOD<SNP0190:0091:0091:0000<WAI0003<FRE<EVE5031
 <FLJ0740:7032<ELJ
 <KEY<MSGI love little man<NOD. Little man will
 follow you and commit
-murder.<NOD<CLR
+murder.<NOD Stay in interact
+animation to make him
+target nearby enemies.<NOD<CLR
 Do you want to equip it?<YNJ0000<SNP0180:0000:0000:0002<FL+0740<MSG
 Equipped Little Man.<NOD<WAI0003<FRE<EVE5032
 #6033

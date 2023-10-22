@@ -52,6 +52,15 @@ void ActNpcLittleMan(NPCHAR *npc)
 		{144, 112, 160, 128},
 	};
 
+	NPCHAR* targetNPC = GetClosest(npc->x, npc->y);
+	if (targetNPC != NULL && targetNPC->code_char != 69 && targetNPC->code_char != 156 && Distance(targetNPC->x, targetNPC->y, npc->x, npc->y) < 6 * 0x2000){
+		gCurlyShoot_x = targetNPC->x;
+		gCurlyShoot_y = targetNPC->y;
+	} else {
+		gCurlyShoot_x = 0;
+		gCurlyShoot_y = 0;
+	}
+
 	if (npc->y < coords.second - (10 * 0x10 * 0x200))
 	{
 		if (npc->y < 16 * 0x10 * 0x200)
@@ -76,6 +85,12 @@ void ActNpcLittleMan(NPCHAR *npc)
 		{
 			npc->tgt_x = gMC.x;
 			npc->tgt_y = gMC.y;
+			if (gMC.cond & 1){
+				if (targetNPC != NULL && targetNPC->code_char != 69 && targetNPC->code_char != 156 && Distance(targetNPC->x, targetNPC->y, coords.first, coords.second) < 12 * 0x2000){
+					npc->tgt_x = targetNPC->x;
+					npc->tgt_y = targetNPC->y;
+				}
+			}
 		}
 	}
 
@@ -85,10 +100,10 @@ void ActNpcLittleMan(NPCHAR *npc)
 		npc->xm = 0;
 	if (GetNPCFlag(Flags::AUGMENTED_MAN)){
 	if (gKey & gKeyLeft){
-		npc->xm -= 0x14 * 3;
+		npc->xm -= 0x14 * 6;
 	}
 	if (gKey & gKeyRight){
-		npc->xm += 0x14 * 3;
+		npc->xm += 0x14 * 6;
 	}
 	}
 
@@ -134,7 +149,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 
 		case 100:
 			npc->ani_no = 0;
-			npc->xm = (npc->xm * 7) / 8;
+			npc->xm = (npc->xm * 3) / 4;
 			npc->count1 = 0;
 
 			if (npc->x > npc->tgt_x + (8 * 0x200))
@@ -142,20 +157,20 @@ void ActNpcLittleMan(NPCHAR *npc)
 				npc->act_no = 200;
 				npc->ani_no = 1;
 				npc->direct = 0;
-				npc->act_wait = Random(20, 60);
+				npc->act_wait = Random(10, 30);
 			}
 			else if (npc->x < npc->tgt_x - (8 * 0x200)) 
 			{
 				npc->act_no = 300;
 				npc->ani_no = 1;
 				npc->direct = 2;
-				npc->act_wait = Random(20, 60);
+				npc->act_wait = Random(10, 30);
 			}
 
 			break;
 
 		case 200:
-			npc->xm -= 0x14;
+			npc->xm -= 0x28;
 			npc->direct = 0;
 
 			if (npc->flag & 1)
@@ -166,7 +181,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 			break;
 
 		case 210:
-			npc->xm -= 0x14;
+			npc->xm -= 0x28;
 			npc->direct = 0;
 
 			if (npc->flag & 8)
@@ -175,7 +190,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 			break;
 
 		case 300:
-			npc->xm += 0x14;
+			npc->xm += 0x28;
 			npc->direct = 2;
 
 			if (npc->flag & 4)
@@ -186,7 +201,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 			break;
 
 		case 310:
-			npc->xm += 0x14;
+			npc->xm += 0x28;
 			npc->direct = 2;
 
 			if (npc->flag & 8)
@@ -195,16 +210,9 @@ void ActNpcLittleMan(NPCHAR *npc)
 			break;
 	}
 
-	NPCHAR* targetNPC = GetClosest(npc->x, npc->y);
-	if (targetNPC != NULL && Distance(targetNPC->x, targetNPC->y, npc->x, npc->y) < 6 * 0x2000){
-		gCurlyShoot_x = targetNPC->x;
-		gCurlyShoot_y = targetNPC->y;
-	} else {
-		gCurlyShoot_x = 0;
-		gCurlyShoot_y = 0;
-	}
+	int tpDistance = 10 * 16_pix;
 
-	if (Distance(npc->x, npc->y, coords.first, coords.second) > 10 * 0x2000){
+	if (Distance(npc->x, npc->y, coords.first, coords.second) > tpDistance){
 		npc->x = coords.first;
 		npc->y = coords.second;
 		SetNpChar(4, coords.first, coords.second, 0, 0, 0, NULL, 0x100);
@@ -216,10 +224,10 @@ void ActNpcLittleMan(NPCHAR *npc)
 	if (gCurlyShoot_wait == 10)
 		npc->count2 = 10;
 
-	if (gCurlyShoot_wait == 5 && npc->flag & 8 && (Random(0, 2) || (GetNPCFlag(Flags::AUGMENTED_MAN) && gKeyTrg & gKeyJump)))
+	if ((gCurlyShoot_wait == 5 || ((gMC.cond & 1) && std::abs(npc->y - npc->tgt_y) >= 24_pix)) && npc->flag & 8 && (Random(0, 2) || (GetNPCFlag(Flags::AUGMENTED_MAN) && gKeyTrg & gKeyJump)))
 	{
 		npc->count1 = 0;
-		npc->ym = -0x600;
+		npc->ym = -0x700;
 		npc->ani_no = 1;
 		gCurlyShoot_wait = 20;
 
@@ -228,7 +236,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 		else
 			npc->act_no = 310;
 	}
-	if (++npc->exp % 6 == 0 && npc->xm != 0 && gCurlyShoot_x != 0 && gCurlyShoot_y != 0 && GetNPCFlag(Flags::AUGMENTED_MAN)){
+	if (++npc->exp % 9 == 0 && npc->xm != 0 && gCurlyShoot_x != 0 && gCurlyShoot_y != 0 && GetNPCFlag(Flags::AUGMENTED_MAN)){
 			BULLET *bul = SetBullet(47, npc->x,  npc->y);
 						if (bul != NULL){
 						bul->tgt_x = gCurlyShoot_x + Random(-0x2000 * 3.5, 0x2000 * 3.5);
@@ -273,7 +281,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 
 #ifdef FIX_BUGS
 			// I assume this is what was intended
-			if (npc->flag & 8 && (npc->count1 > 10 || (GetNPCFlag(Flags::AUGMENTED_MAN) && gKeyTrg & gKeyJump)))
+			if (npc->flag & 8 && (npc->count1 > 5 || (GetNPCFlag(Flags::AUGMENTED_MAN) && gKeyTrg & gKeyJump)))
 #else
 			if (npc->flag && 8 && npc->count1 > 10)
 #endif
@@ -294,7 +302,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 
 	if (npc->act_no >= 100 && npc->act_no < 500)
 	{
-		if (npc->x < coords.first - (50 * 0x200) || npc->x > coords.first + (50 * 0x200))
+		if (npc->x < coords.first - (40 * 0x200) || npc->x > coords.first + (40 * 0x200))
 		{
 #ifdef FIX_BUGS
 			if (npc->flag & 5)
@@ -311,11 +319,13 @@ void ActNpcLittleMan(NPCHAR *npc)
 		}
 	}
 
-	if (npc->act_no % 25 == 0){
-		NPCHAR* target = FindNpCharHere(npc->x, npc->y);
+	if (npc->exp % 4 == 0){
+		if (gMC.cond & 1 && npc->exp % 40 == 0)
+			SetNpChar(333, npc->tgt_x, npc->tgt_y, 0, 0, 3, NULL, 0x100);
+		NPCHAR* target = FindNpCharHere(npc->x, npc->y, 6_pix, 6_pix);
 		if (target != NULL){
 			if (target->code_char != 69 && target->code_char != 156)
-				DealDamage(*target, 3);
+				DealDamage(*target, gMC.cond & 1 ? 3 : 1);
 		}
 	}
 

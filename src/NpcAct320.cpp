@@ -928,8 +928,10 @@ void ActNpc333(NPCHAR *npc)
 			npc->act_no = 1;
 			npc->tgt_x = npc->x;
 			npc->tgt_y = npc->y;
-			PlaySoundObject(103, SOUND_MODE_PLAY);
-			npc->y = gMC.y;
+			if (npc->direct != 3){
+				PlaySoundObject(103, SOUND_MODE_PLAY);
+				npc->y = gMC.y;
+			}
 			// Fallthrough
 		case 1:
 			if (++npc->act_wait / 2 % 2)
