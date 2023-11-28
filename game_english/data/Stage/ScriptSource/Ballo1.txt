@@ -27,13 +27,14 @@
 #0500
 <DNP0500<MYD0002
 <KEY<MSGWelcome to my realm.<NOD<CLR
-<FAC0029I feel the power of crimson
-around you...<NOD<CLRThis place is created
+<FAC0029I feel the power of
+crimson around you...<NOD<CLRThis place is created
 from energy of similar to
 <GIT1034the Red Crystal.<NOD I
-didn't thought than someone
-would actually attempt to
-recover its power.<NOD<GIT0000<CLRBut I was mistaken.<NOD<CLRLiving beings weren't
+didn't thought than
+someone would actually
+attempt to recover
+its power.<NOD<GIT0000<CLRBut I was mistaken.<NOD<CLRLiving beings weren't
 supposed to enter
 this realm.<NOD
 And you will pay for that.<NOD

@@ -29,7 +29,8 @@ again...<NOD<CLO<WAI0090
 <PRI<MSG<FAC0030There you are!
 The red myst have been
 destroyed.<NOD You good?<NOD
-If not, that's alright too.<NOD<CLROkay, let's go home!<NOD<CLO<FAC0000
+If not, that's alright
+too.<NOD<CLROkay, let's go home!<NOD<CLO<FAC0000
 <KEY<FON0402:0016
 <CNP0402:0012:0002<WAI0002
 <ANP0402:0100:0002<WAI0100

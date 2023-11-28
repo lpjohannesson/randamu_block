@@ -459,8 +459,9 @@ Equipped Shield of Resilience.<NOD<WAI0003<FRE<EVE5010
 <KEY<MSGI love little man, especially if
 he has weapons<NOD. Augmented man will
 follow your movements and commit
-murder using energy blasts.<NOD They
-also appear on any of your attacks.<NOD<CLR
+murder using energy blasts.<NOD
+They also appear on
+any of your attacks.<NOD<CLR
 Do you want to equip it?<YNJ0000<SNP0180:0000:0000:0002<FL+0865<E2+0029<MSG
 Equipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 #6012
@@ -743,8 +744,9 @@ and Nemesis by 50%.<WAI9999<END
 #6046
 <FLJ0750:7046<ELJ
 <KEY<MSGSignificantly increases falling
-speed in air and allows <NAM to 
-kill enemies by falling on them,
+speed in air.<NOD
+Allows <NAM to kill enemies
+by falling on them,
 if holding Ability key.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+q536<FL+0750<MSG
 Equipped Heavy Weight.<NOD<WAI0003<FRE<EVE5046
