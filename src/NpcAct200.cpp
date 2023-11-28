@@ -39,6 +39,8 @@ void ActNpcDragon(NPCHAR *npc)
 		case 0:
 			npc->act_no = 10;
 			npc->count1 = 0;
+			npc->bits |= NPC_INVULNERABLE;
+			npc->bits &= ~NPC_SHOOTABLE;
 			// Fallthrough
 		case 10:
 			if (++npc->ani_wait > 20)
