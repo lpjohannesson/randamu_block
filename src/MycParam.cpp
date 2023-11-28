@@ -271,7 +271,7 @@ void DamageMyChar(int damage)
 		gMC.air -= finalDamage * 25;
 	}
 	if (gMC.equip & EQUIP_SUNGLASSES){
-		gMC.shock /= 2;
+		gMC.shock /= 3;
 	}
 	if (finalDamage <= 1){
 		gMC.shock *= 0.66f;
