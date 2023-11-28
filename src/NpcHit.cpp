@@ -716,7 +716,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			npc.waterEffect = std::min(npc.waterEffect + Random(10, 25), 120);
 		}
 
-		if (bul->code_bullet == 19){
+		if (bul->code_bullet == 19 && !isEthereal){
 			PlaySoundObject(21, SOUND_MODE_PLAY);
 			int lol = Random(10, 30);
 			for (int i = 0; i < lol; i++)
