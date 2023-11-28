@@ -1020,11 +1020,11 @@ void ShootBullet_Machinegun2(int level)
 	static int wait;
 
 	if (!(gKey & gKeyShot))
-		gMC.rensha = gMC.equip & EQUIP_OVERCHARGE ? 2 : 4;
+		gMC.rensha = gMC.equip & EQUIP_OVERCHARGE ? 3 : 5;
 
 	if (gKey & gKeyShot)
 	{
-		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 2 : 4))
+		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 3 : 5))
 			return;
 
 		gMC.rensha = 0;
@@ -1042,9 +1042,9 @@ void ShootBullet_Machinegun2(int level)
 			return;
 		}
 
-		int i = Random(1, level*2);
+		int i = Random(1, std::round(level*1.5f));
 		if (Random(0, 2) == 0 && gMC.equip & EQUIP_OVERCHARGE){
-			i *= 2;
+			i *= 1.5f;
 		}
 
 		if (gMC.up)
@@ -1145,7 +1145,7 @@ void ShootBullet_Machinegun2(int level)
 		}
 		else
 		{
-			if (wait > 2)
+			if (wait > 3)
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
