@@ -710,13 +710,13 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		dmg *= float(Random(50, 175)) / 100.0f;
 	}
 
-	if (bul != NULL){
+	if (bul != NULL && !isEthereal){
 
 		if (std::find(waterBullets.begin(), waterBullets.end(), bul->code_bullet) != waterBullets.end()){
 			npc.waterEffect = std::min(npc.waterEffect + Random(10, 25), 120);
 		}
 
-		if (bul->code_bullet == 19 && !isEthereal){
+		if (bul->code_bullet == 19){
 			PlaySoundObject(21, SOUND_MODE_PLAY);
 			int lol = Random(10, 30);
 			for (int i = 0; i < lol; i++)
@@ -757,7 +757,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 
 		if (bul->code_bullet == 89){
 			SetCaret(npc.x, npc.y, 12, 0);
-			if (Random(0, 4) == 0 && !isEthereal)
+			if (Random(0, 4) == 0)
 				for (int i = 0; i < 5; i++)
 					SpawnQuiverProjectile(npc);
 		}
