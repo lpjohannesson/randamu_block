@@ -2507,7 +2507,7 @@ void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments
 				SetNpChar(bossID, x1 * 0x2000, y1 * 0x2000 + (bossID == 44 ? 0x200 * 8 : 0), 0, 0, gMC.direct, NULL, 0x100, 7000,
 						NPC_SOLID_SOFT | NPC_SHOOTABLE | NPC_SHOW_DAMAGE, Flags::LEVEL_BOSS_DEFEATED);
 			else
-				SetNpChar(18, x1 * 0x2000, y1 * 0x2000, 0, 0, 0, NULL, 0x100, 99, NPC_INTERACTABLE);
+				SetNpChar(18, x1 * 0x2000, y1 * 0x2000, 0, 0, 0, NULL, 0, 99, NPC_INTERACTABLE);
 		}
 	}
 }

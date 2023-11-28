@@ -587,7 +587,7 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 
 	if (std::find(bossNPCsList.begin(), bossNPCsList.end(), npc->code_char) != bossNPCsList.end())
 	{
-		SetNpChar(18, npc->x, npc->y - 8 + 0x200, 0, 0, 0, NULL, 0x100, 99, 0x2000);
+		SetNpChar(18, npc->x, npc->y - 8 + 0x200, 0, 0, 0, NULL, 0, 99, 0x2000);
 		AddScore(7500);  StartBossLife2();
 	}
 
