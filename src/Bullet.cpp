@@ -4051,7 +4051,7 @@ void ActBullet_SuperBom(BULLET *bul, int level)
 			switch (level)
 			{
 				case 1:
-					bul->act_wait = 10;
+					bul->act_wait = 35;
 					break;
 				case 2:
 					bul->act_wait = 35;
@@ -4068,7 +4068,7 @@ void ActBullet_SuperBom(BULLET *bul, int level)
 			{
 				case 1:
 					if (bul->act_wait % 3 == 0)
-						SetDestroyNpCharUp(bul->x + (Random(-16, 16) * 0x200), bul->y + (Random(-16, 16) * 0x200), bul->enemyXL, 2);
+						SetDestroyNpCharUp(bul->x + (Random(-32, 32) * 0x200), bul->y + (Random(-32, 32) * 0x200), bul->enemyXL, 3);
 					break;
 				case 2:
 					bul->x = gMC.x + gMC.xm * 2;
@@ -4419,7 +4419,7 @@ void ActBullet_Spur2(BULLET *bul, int level)
 	bul->damage = -1;
 	bul->iframes = 3;
 
-	SetBullet(32, bul->x, bul->y, bul->direct);
+	SetBullet(31, bul->x, bul->y, bul->direct);
 }
 
 void ActBullet_SpurTail(BULLET *bul, int level)

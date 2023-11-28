@@ -296,10 +296,10 @@ void ActNpcTNT(NPCHAR *npc)
 					DestroyBlock(map_x-2, map_y+1);
 					DestroyBlock(map_x-2, map_y-1);
 					DestroyBlock(map_x+2, map_y-1);
-					SetBullet(32, npc->x + 0x200 * 24, npc->y + 0x200 * 24, 0);
-					SetBullet(32, npc->x - 0x200 * 24, npc->y + 0x200 * 24, 0);
-					SetBullet(32, npc->x + 0x200 * 24, npc->y - 0x200 * 24, 0);
-					SetBullet(32, npc->x - 0x200 * 24, npc->y - 0x200 * 24, 0);
+					SetBullet(31, npc->x + 0x200 * 24, npc->y + 0x200 * 24, 0);
+					SetBullet(31, npc->x - 0x200 * 24, npc->y + 0x200 * 24, 0);
+					SetBullet(31, npc->x + 0x200 * 24, npc->y - 0x200 * 24, 0);
+					SetBullet(31, npc->x - 0x200 * 24, npc->y - 0x200 * 24, 0);
 
 					for (int i = 0; i < NPC_MAX; i++)
 					{
