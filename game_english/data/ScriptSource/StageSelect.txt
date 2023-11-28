@@ -169,7 +169,7 @@ Copper Bulwark + Ballos Burger<WAI9999<END
 Turbocharge + Creativity Cartridge<WAI9999<END
 #1008
 <KEY<MSG<TUR<GIT1016- Terra Boots -
-Speed Shoes + Nice Shoes<WAI9999<END
+Speed Shoes + Nice Skates<WAI9999<END
 #1009
 <KEY<MSG<TUR<GIT1017- Badge of Love -
 Curly's Underwear + Iron Bond<WAI9999<END
