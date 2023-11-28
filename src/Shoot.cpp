@@ -1600,16 +1600,16 @@ void ShootBullet_FrontieBuster(int level)
 	int cooldown;
 	switch (level){
 		case 1:
-			cooldown = 9;
+			cooldown = 7;
 			break;
 		case 2:
-			cooldown = 40;
+			cooldown = 35;
 			break;
 		case 3:
 			cooldown = 3;
 			break;
 		case 4:
-			cooldown = std::max(15, 40 - CountBulletNum(bul_no)*5);
+			cooldown = std::max(15, 35 - CountBulletNum(bul_no)*5);
 			break;
 	}
 
