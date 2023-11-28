@@ -36,9 +36,9 @@ invulnerable, 3x faster but uncontrollable.<WAI9999<END
 Fires bubbles in high succession.
 On level 3 creates a shielding.<WAI9999<END
 #1008
-<FLJ4450:0998<FLJ7999:0998<MSG<TUR- Energy Whip -
-Hold to swing energetic piercing whip.
-Can be controlled by mouse.<WAI9999<END
+<FLJ4450:0998<FLJ7999:0998<MSG<TUR- Energy Flail -
+Throws powerful energetic flail, heavily
+affected by gravity when holding Shoot.<WAI9999<END
 #1009
 <MSG<TUR- Blade -
 A mutli-shot, high-damage weapon.

@@ -777,13 +777,13 @@ void ShootBullet_Hook(int level)
 			return;
 	}
 
-	if ((!(gMouseHold) && !(gKey & gKeyShot)))
+	if (!(gKey & gKeyShot))
 		gMC.rensha = 0;
 
 	if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && gKeyTrg & gKeyShot) || (!GetNPCFlag(Flags::BRACKET_CHARACTER) && gKey & gKeyShot))
 	{
 		if (!GetNPCFlag(Flags::BRACKET_CHARACTER))
-			if (++gMC.rensha < 7)
+			if (++gMC.rensha < 3)
 				return;
 
 		gMC.rensha = 0;
@@ -838,59 +838,6 @@ void ShootBullet_Hook(int level)
 				bul->tgt_y = gMC.y;
 				}
 			}
-		}
-
-		PlaySoundObject(103, SOUND_MODE_PLAY);
-		chainWrap = true;
-	} else if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && gKeyTrg & gMouseClick) || (!GetNPCFlag(Flags::BRACKET_CHARACTER) && gMouseHold))
-	{
-		if (!GetNPCFlag(Flags::BRACKET_CHARACTER))
-			if (++gMC.rensha < 7)
-				return;
-
-		gMC.rensha = 0;
-
-		int fx, fy, x, y;
-		GetFramePosition(&fx, &fy);
-		x = fx + ScreenToSubpixelCoord(gMouseX);
-		y = fy + ScreenToSubpixelCoord(gMouseY);
-		BULLET* bul;
-		if (gMC.up)
-		{
-			if (gMC.direct == 0)
-			{
-				bul = SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y - (8 * 0x200));
-			}
-			else
-			{
-				bul = SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y - (8 * 0x200));
-			}
-		}
-		else if (gMC.down)
-		{
-			if (gMC.direct == 0)
-			{
-				bul = SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y + (8 * 0x200));
-			}
-			else
-			{
-				bul = SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y + (8 * 0x200));
-			}
-		}
-		else
-		{
-			if (gMC.direct == 0)
-			{
-				bul = SetBullet(bul_no, gMC.x - (2 * 0x200), gMC.y + (2 * 0x200));
-			}
-			else
-			{
-				bul = SetBullet(bul_no, gMC.x + (2 * 0x200), gMC.y + (2 * 0x200));
-			}
-		}
-		if (bul != NULL){
-		bul->tgt_x = x;
-		bul->tgt_y = y;
 		}
 
 		PlaySoundObject(103, SOUND_MODE_PLAY);
