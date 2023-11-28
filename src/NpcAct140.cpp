@@ -373,6 +373,17 @@ void ActNpc141(NPCHAR *npc)
 		{304, 32, 320, 48},
 	};
 
+	if (npc->pNpc->code_char != 140){
+		npc->cond = 0;
+		npc->act_wait = 0;
+		SetCaret(npc->x, npc->y, 2, 0);
+
+		for (i = 0; i < 4; ++i)
+			SetNpChar(4, npc->x, npc->y, Random(-0x200, 0x200), Random(-0x200, 0x200), 0, NULL, 0x100);
+
+		return;
+	}
+
 	switch (npc->act_no)
 	{
 		case 0:
