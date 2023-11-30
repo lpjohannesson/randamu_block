@@ -2961,8 +2961,8 @@ void ProcessIndividualNPCSpawning(const std::string& name){
 					{
 						do
 						{
-							x = Random(1, gMap.width-1, RandomCategories::SEEDED_NPCS);
-							y = Random(1, gMap.length-1, RandomCategories::SEEDED_NPCS);
+							x = Random(0, gMap.width, RandomCategories::SEEDED_NPCS);
+							y = Random(0, gMap.length, RandomCategories::SEEDED_NPCS);
 						} while (Distance(x, y, gMC.x / 0x2000, gMC.y / 0x2000) < spawnInfo.distanceFromPlayer);
 					} while (!(CheckSpawnCondition(spawnInfo, x, y)) || IntersectCheck(genContext.bossRect, x, y));
 					int direction = ((!spawnInfo.wallDirection || GetTile(x + 1, y) == 1)) ? 0 : 2;
