@@ -244,7 +244,7 @@ void ActNpc235(NPCHAR *npc);
 void ActNpc236(NPCHAR *npc);
 void ActNpc237(NPCHAR *npc);
 void ActNpcTurret(NPCHAR *npc);
-void ActNpc239(NPCHAR *npc);
+void ActNpcMiniTurret(NPCHAR *npc);
 void ActNpc240(NPCHAR *npc);
 void ActNpcDuplicateCritter(NPCHAR *npc);
 void ActNpc242(NPCHAR *npc);

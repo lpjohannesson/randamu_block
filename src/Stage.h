@@ -102,7 +102,8 @@ enum {
 	GIMMICK_BLOCKS = 5,
 	GIMMICK_PUPPY = 6,
 	GIMMICK_ROOMS = 7,
-	GIMMICK_OPEN = 8
+	GIMMICK_OPEN = 8,
+	GIMMICK_DEFENDED = 9
 };
 
 struct GenerationContext {

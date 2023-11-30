@@ -1295,34 +1295,142 @@ void ActNpcTurret(NPCHAR *npc)
 }
 
 // Cage bars
-void ActNpc239(NPCHAR *npc)
+void ActNpcMiniTurret(NPCHAR *npc)
 {
-	Rect rcLeft = {192, 48, 256, 80};
-	Rect rcRight = {96, 112, 144, 144};
+	int i;
+
+	Rect rc[3] = {
+		{160, 240, 176, 256},
+		{176, 240, 192, 256},
+		{190, 240, 208, 256},
+	};
+
+	int waitTime = 50;
+	int detectionSize = 10_pix;
+	if (gMC.difficulty > DIFFICULTY_HARDENED){
+		waitTime = 60;
+		detectionSize = 20_pix;
+	}
+
+	if (npc->life < 950)
+	{
+		npc->act_no = 0;
+		npc->ani_no = 0;
+		npc->life = 1000;
+		npc->count1 = 60 * 25;
+		if (gMC.difficulty > DIFFICULTY_HARDENED){
+			npc->count1 /= 2;
+		}
+		npc->bits &= ~NPC_SHOOTABLE;
+		npc->bits |= NPC_INVULNERABLE;
+		PlaySoundObject(72, SOUND_MODE_PLAY);
+		for (i = 0; i < 12; ++i)
+		{
+			SetNpChar(4, npc->x + (Random(-16, 16) * 0x200), npc->y + (Random(-8, 8) * 0x200), 0, 0, 0, NULL, 0x100);
+			PlaySoundObject(12, SOUND_MODE_PLAY);
+		}
+	}
 
 	switch (npc->act_no)
 	{
 		case 0:
 			npc->act_no = 1;
+			npc->tgt_x = npc->x;
+			npc->tgt_y = npc->y;
+			if (npc->direct)
+				npc->view.front = 16 * 0x200;
+			npc->view.back = 8 * 0x200;
+			// Fallthrough
+		case 1:
+			if (--npc->count1 <= 0){
+				npc->bits &= ~NPC_INVULNERABLE;
+				npc->bits |= NPC_SHOOTABLE;
+				if (npc->direct == 0 && gMC.x < npc->x && gMC.x > npc->x - (192 * 0x200) && gMC.y > npc->y - detectionSize && gMC.y < npc->y + detectionSize)
+				{
+					npc->act_no = 10;
+					npc->act_wait = 0;
+					npc->ani_no = 2;
+				}
 
-			if (npc->direct == 0)
-			{
-				npc->x += 8 * 0x200;
-				npc->y += 16 * 0x200;
+				if (npc->direct == 2 && gMC.x > npc->x && gMC.x < npc->x + (192 * 0x200) && gMC.y > npc->y - detectionSize && gMC.y < npc->y + detectionSize)
+				{
+					npc->act_no = 10;
+					npc->act_wait = 0;
+					npc->ani_no = 2;
+				}
+
+				if (npc->shock){
+					npc->act_no = 20;
+					npc->act_wait += waitTime/2;
+					npc->ani_no = 2;
+				}
+			} else if (npc->count1 - 1 == 0){
+				for (i = 0; i < 6; ++i)
+				{
+					SetNpChar(4, npc->x + (Random(-16, 16) * 0x200), npc->y + (Random(-8, 8) * 0x200), 0, 0, 0, NULL, 0x100);
+				}
+			} else if (npc->count1 % (Random(2, 6)) == 0){
+				SetCaret(npc->x + Random(-6_pix, 6_pix), npc->y + Random(-6_pix, 6_pix), 3, 0);
 			}
-			else
+
+			break;
+
+		case 10:
+
+			if (++npc->act_wait == 4 || gMC.difficulty > DIFFICULTY_HARDENED)
 			{
-				npc->view.front = 24 * 0x200;
-				npc->view.back = 24 * 0x200;
-				npc->view.top = 8 * 0x200;
-				npc->view.back = 24 * 0x200;
+				npc->act_no = 20;
+				npc->act_wait = 0;
+
+				for (i = 0; i < 4; ++i)
+				{
+					SetNpChar(4, npc->x + (Random(-16, 16) * 0x200), npc->y + (Random(-8, 8) * 0x200), 0, 0, 0, NULL, 0x100);
+					PlaySoundObject(12, SOUND_MODE_PLAY);
+				}
+			}
+
+			break;
+
+		case 20:
+			npc->damage = 0;
+
+			if (++npc->act_wait % 8 == 0){
+				PlaySoundObject(39, SOUND_MODE_PLAY);
+				auto flame = CreateNpChar(38, npc->x, npc->y, 0, 0, npc->direct, NULL, 0x100);
+				flame->xm = 0x300 + Random(-0x200, 0x200);
+				if (npc->direct == 0)
+					flame->xm *= -1;
+				flame->ym = Random(-0x300, 0x300);
+			}
+
+			if (npc->act_wait > waitTime)
+			{
+				npc->act_wait = 0;
+				npc->act_no = 30;
+			}
+
+			break;
+
+		case 30:
+			npc->damage = 0;
+			npc->ani_no = 1;
+
+			if (++npc->act_wait == 8 || gMC.difficulty > DIFFICULTY_HARDENED)
+			{
+				npc->act_no = 1;
+				npc->act_wait = 0;
+				npc->ani_no = 0;
 			}
 
 			break;
 	}
 
-	if (npc->direct == 0)
-		npc->rect = rcLeft;
-	else
-		npc->rect = rcRight;
+	// if (npc->direct == 0 && gMC.x < npc->x)
+	// 	npc->hit.back = 16 * 0x200;
+	// else if (npc->direct == 2 && gMC.x > npc->x)
+	// 	npc->hit.back = 16 * 0x200;
+	// else
+
+
+	npc->rect = rc[npc->ani_no];
 }

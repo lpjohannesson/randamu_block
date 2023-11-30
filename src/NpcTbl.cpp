@@ -255,7 +255,7 @@ const NPCFUNCTION gpNpcFuncTbl[] = {
 	ActNpc236,
 	ActNpc237,
 	ActNpcTurret,
-	ActNpc239,
+	ActNpcMiniTurret,
 	ActNpc240,
 	ActNpcDuplicateCritter,
 	ActNpc242,
