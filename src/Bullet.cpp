@@ -245,7 +245,7 @@ BULLET_TABLE gBulTbl[] = {
 	{4, 100, 50, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 1
 	{8, 100, 13, 44, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 2
 	{7, 100, 30, 36, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75}, //level 3
-	{15, 100, 19, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 3 splits
+	{-1, 100, 19, 44, 8, 8, 4, 2, {8, 8, 8, 8}, 0.75, 0.75}, //level 3 splits
 	// Lvl2 boomerang blade flame
 	{3, 1, 40, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
 	// Homing sword
@@ -2544,8 +2544,8 @@ void ActBullet_BoomerangSword1(BULLET *bul)
 	}
 
 	if (bul->act_no == 1){
-		if (bul->code_bullet == 56)
-			bul->damage = 6;
+		if (bul->code_bullet == 55)
+			bul->damage = 5;
 		else
 			bul->damage = 4;
 	}
@@ -2775,7 +2775,7 @@ void ActBullet_BoomerangSword3(BULLET *bul)
 		bul->count1 = 0;
 	}
 
-	bul->damage = 7;
+	bul->damage = 0;
 
 	if (bul->count1 == 3)
 		bul->bbits &= ~4;
