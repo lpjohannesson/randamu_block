@@ -1081,7 +1081,7 @@ void InitTileset(){
 		std::string typeName = gJConfig["gimmick"];
 		if (typeName != "")
 		{
-			for (char i = GIMMICK_GRASS; i < GIMMICK_OPEN + 1; i++)
+			for (char i = GIMMICK_GRASS; i < GIMMICK_DEFENDED + 1; i++)
 			{
 				if (GetGimmick(typeName) == i)
 				{
