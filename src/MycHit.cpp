@@ -1038,9 +1038,9 @@ void HitMyCharNpChar(void)
 		{
 			if (gNPC[i].bits & NPC_REAR_AND_TOP_DONT_HURT)
 			{
-				if (gMC.saraDash > 0){
+				if (gMC.saraDash > 0 && hit != 0){
 					if (hitTimer == 0){
-						DealDamage(gNPC[i], 1);
+						DealDamage(gNPC[i], 2);
 						hitTimer = 1;
 					}
 				}
@@ -1066,7 +1066,7 @@ void HitMyCharNpChar(void)
 			{
 				if (gMC.saraDash > 0){
 					if (hitTimer == 0){
-						DealDamage(gNPC[i], 1);
+						DealDamage(gNPC[i], 2);
 						hitTimer = 1;
 					}
 				}
@@ -1287,11 +1287,11 @@ void HitMyCharBoss(void)
 
 		if (gBoss[b].bits & NPC_REAR_AND_TOP_DONT_HURT)
 		{
-			if (gMC.saraDash > 0)
+			if (gMC.saraDash > 0 && hit != 0)
 			{
 				if (hitTimer == 0)
 				{
-					DealDamage(gBoss[b], 1);
+					DealDamage(gBoss[b], 2);
 					hitTimer = 1;
 				}
 			}
@@ -1318,7 +1318,7 @@ void HitMyCharBoss(void)
 			{
 				if (hitTimer == 0)
 				{
-					DealDamage(gBoss[b], 1);
+					DealDamage(gBoss[b], 2);
 					hitTimer = 1;
 				}
 			}
