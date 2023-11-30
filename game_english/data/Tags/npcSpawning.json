@@ -335,8 +335,8 @@
 	"mini_turrets": {
 			"ID": 239,
 			"gimmick": "9",
-			"minCount": 20,
-			"maxCount": 30,
+			"minCount": 30,
+			"maxCount": 40,
 			"faceAwayFromWall": true,
 			"surface": false, "wall": true
 	},
