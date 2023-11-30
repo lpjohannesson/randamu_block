@@ -1369,8 +1369,8 @@ void ActNpcMiniTurret(NPCHAR *npc)
 				{
 					SetNpChar(4, npc->x + (Random(-16, 16) * 0x200), npc->y + (Random(-8, 8) * 0x200), 0, 0, 0, NULL, 0x100);
 				}
-			} else if (npc->count1 % (Random(2, 6)) == 0){
-				SetCaret(npc->x + Random(-6_pix, 6_pix), npc->y + Random(-6_pix, 6_pix), 3, 0);
+			} else if (npc->count1 % (Random(10, 20)) == 0){
+				SetNpChar(4, npc->x + (Random(-5, 5) * 0x200), npc->y + (Random(-5, 5) * 0x200), 0, 0, 0, NULL, 0x100);
 			}
 
 			break;
