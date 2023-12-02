@@ -105,18 +105,224 @@ Credits:
 - Based on: CSE2 Enhanced by Clownacy and GabrielTFS
 - Music: Cory Welch, Tinned Duck, 2dbro, Zenix, txin, mLurker, Alula, Safusaka, zeroflafi, Dredged Crusader
 - Used sprites: ZarroTsu, AsperDev, Tert, Taiki, MintyFresh, Raymundo, lolkit
-- Coding help: Kaitlyn
+- Coding help: Autumn Hazel
 - Bracket OC: Jamark
 - Improved Map System: Ikuyo and Onyx
 - Monogram font: datagoblin
 - Zlib for C++: Piti118, Deepak Bandyopadhyay, Lutz Kettner, zlib team
 - JSON decoding: Niels Lohmann and contributors
 - Update checking: quyse, Mark Lakata and libcurl team
-- Crossovers: 2dbro and Kim Tyranto
+- Crossovers: 2dbro and Cybryll/Kim Tyranto
 - Translation help: Fluffy-Fuwafuwa
-- Ideas: NethoWarrior, eli, Tert, Taiki, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
+- Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.43 (Gamekutsu Rebaldamu) (December 2nd 2023):
+New content:
+- Overhauled air supply mechanic:
+	* no longer is restored instantly, but at 2.5%/frame
+	* air tank/diving suit no longer remove air supply, but make it deplete 3x slower (doesn't apply to lava)
+	* drowning is slowed by 33% if air tank is equipped
+	* hearts restore 10%-30% of air when picked up
+- Added new gimmick, Defended: 
+	* it spawns flamethrowers and mini-turrets
+	* mini-turret is a smaller variant of turret, that shoots flames
+	* mini-turret cannot be destroyed, but gets shut down after taking 50 damage
+	* mini-turret will reenable itself after 25 seconds of downtime
+
+Balance changes:
+- Taking 1 damage gives less immunity frames.
+- Significantly buffed wetness effect:
+	* wet projectiles now inflict effect for longer and stack up to 120 frames
+- Buffed Spur:
+	* increased the hitting rate for spur beams from 3/2 to 2/1
+	* uncharged shots now have no range limit but travel slightly slower and deal 4 damage instead of 5
+- Buffed Snake:
+	* now travels 2.5x faster (and covers 1.5x more range on lvl2+)
+	* reduced lifetime from 20/21/26/38 to 9/12/15/19
+	* changed damage from 3/5/7/10 to 4/5/5/5
+	* now can pierce 2/3/4 times with 15 local immunity frames at lvl2+
+	* slightly increased hitbox
+- Changed Fireball:
+	* now always have 2 hits instead of 3 on lvl3
+	* reduced damage of lvl3 to 8(4\*2) from 9(3\*3)
+	* extended its lifetime from 100 to 120 frames
+- Reworked Machine Gun:
+	* reduced firing and recharge rate by half
+	* bullets move 2x faster and have 2x larger hitbox
+	* increased damage from 2/3/4/6 to 3/5/7/9
+	* increased Curly's damage from 2-3/3-4/4-5/6-7 to 3-4/5-6/7-8/9-10
+	* now can pierce 2 (6 on lvl4) enemies with 10 local immunity frames
+- Reworked Bubbler lvl1:
+	* reduced damage from 4 to 0
+	* now has 3 bullet limit
+	* increased lifetime from 40 to 250 frames
+	* bullets travel slightly slower
+	* now acts as homing mine, flying to closest enemies and exploding into wet droplets
+	* increased xp requirement from 5 to 25
+- Changed Bubbler lvl2:
+	* now has 1.5x faster speed and 25% less spread
+	* reduced its damage from 3 to 2
+	* reduced its lifetime from 60 to 50 frames 
+	* reduced its attack rate from 3 to 4
+- Reworked Floodtide:
+	* increased hitbox and changed animation to be more accurate
+	* increased damage from 5/7/10/11 to 6/9/12/15
+	* increased attack speed from 32/27/24/22 to 24/19/17/14
+	* lvl1 watery explosion now triggers when killing the enemy, increased amount of droplets by 2x
+	* lvl2 droplets now appear only every 5 swings
+	* only lvl3 whirlpool can now exist on the level, extended its lifetime by 2.5x
+	* lvl3 whirlpools spawn less droplets, but can do 3 damage with 16 iframes
+	* lvl3 whirpools explode into 2x more droplets
+	* lvl3 sword spawns nano quiver projectiles when hitting
+- Buffed Boomerang Blades in general:
+	* now have local immunity frames instead of static, allowing each one to hit individually
+	* now deal same amount of damage on way forward and way back
+- Buffed Boomerang Blades lvl1:
+	* increased lifetime from 40 to 50 frames
+	* blades move 16% faster
+	* decreased bullet limit from 11 to 3
+- Reworked Boomerang Blades lvl2:
+	* the blade travels 2x faster
+	* reduced lifetime from 20 to 13 frames
+	* reduced base damage from 15 to 7
+	* now deals more damage if it travels longer, with up to 15 damage at max range
+	* reduced amount of flames at max range by 2x
+	* now shoots occasional flames on its way back
+- Changed Boomerang Blades lvl3:
+	* reduced its damage from 7 to 0 (still can hit enemies with no damage)
+	* increased child blade damage from 4 to 5
+	* blade travels 20% faster, but reduced lifetime from 33 to 30 frames
+- Nerfed Boomerang Blades lvl4:
+	* changed damage to 8
+	* now is only limited to one blade on the screen
+	* reduced amount of spawning slashes by 2x
+- Reworked Electrum Shotgun:
+	* increased slightly the spread and the lifetime of bullets
+	* decreased max ammo by 2x
+	* increased recharge duration from 60 to 100 frames
+	* now deals 0 damage, but marks enemies with target signs
+	* targeted enemies take 3x more damage from next hit, but deal 1.5x more damage to player
+	* attacking with shotgun again with any enemies targeted will zap them to deal heavy damage
+- Reworked Rocket Launcher:
+	* decreased max ammo by 2x
+	* now can collect xp, collecting 20 xp refills one ammo
+	* missile deals damage 2x more frequently
+- Nerfed/tweaked Blade:
+	* blade's slashes now deal 0-1 damage instead of 1
+	* decreased hitbox of slashes by 2 pixels
+	* increased hitbox of main blade by 4 pixels
+	* increased damage of main blade from 1/2 to 2/3
+- Reworked Rifle:
+	* removed ammo requirement entirely
+	* now pierces infinitely, with 10 local immunity frames instead of 16 static-ish immunity frames
+	* reduced damage from 10/14/22 to 4/7/10
+	* reduced lifetime from 27/36/52 to 24/30/46 frames
+	* increased lvl1's hitbox by 50%
+	* increased lvl2/3's hitbox by 12.5%
+- Buffed Mining Laser:
+	* reduced its static iframes from 8 to 4
+	* doubled its recharge speed
+	* recharging no longer applies when xp bar is empty and only reduces movement speed by 33%
+	* recharging no longer reduces teleport-dash's distance
+- Reworked Energy Whip/Hook Shot:
+	* renamed into Energy Flail 
+	* updated sprites
+	* removed ability to control with a mouse
+	* reduced static iframes from 25 into 15
+	* increased lifetime from 15/20/52/6 to 25/30/70/12 frames
+	* changed damage from 10/13/15 to 12/15/10, but damage is halved on retrieval
+	* increased both enemy and tile hitbox by ~40%
+	* the bullet now moves 30%-40% slower
+	* on retrieving and when holding Shoot, drops down and shoots energy bullets every second
+	* when in such state, the projectile follows gravity and player's horizontal velocity
+	* those changes do not appear when using Bracket's hook shot variation
+- Reworked/tweaked Gatling Gun: 
+	* reduced firerate and recharge rate by 1.5x, to fit with Machine Gun's changes
+	* now fires 1-(level\*1.5) bullets at once, not just one
+	* this has a chance to be doubled, with overclock equipped
+	* now always consumes 1 ammo
+	* reduced max ammo from 600 to 200
+	- reduced recharge without Turbocharge from 2 to 3
+- Buffed Robotic Equipment:
+	* no longer uses its booster functionality while underwater
+	* increased Snake's projectile probability per shot from 4% to 4.5%
+	* increased Bubbler's spike projectile probability per shot from 25% to 33%
+- Reworked Hellsweep:
+	* damage adjusted from 5/7/10/11 to 12/19/25/32
+	* lifetime increased from 26/20/18/16 to 48/38/34/28 frames
+	* ported animation code edits from Floodtide
+	* lvl2 spawns 2 fireballs instead of 1
+	* lvl2 fireballs spawn 0.5 tiles lower
+	* reduced amount of lvl3 flames from 10-25 to 5-20, but made them last 2x longer
+	* empowered state now triggers at 33% max HP, not 50%
+- Buffed Frontier Buster: 
+	* increased use time from 9/40/3/40 to 7/35/3/35
+- Buffed Water Gun:
+	* can now slowly charge when player is underwater
+- Rebalanced Little Man/Augmented Man:
+	* significantly increased his inertion, acceleration and friction
+	* he now follows player more tightly and jumps more frequently
+	* fixed damage dealing not properly conforming to 3 damage per 25 frames
+	* set his damage rate to 1 damage per 4 frames
+	* going into interacting animation now makes him hunt nearby enemies
+	* in hunting state, little man shows targets over enemies and deals 3 damage instead of 1
+	* reduced Excerpt's little man count from 4 to 2
+	* reduced Augmented Man's attack rate from 6 to 9
+- Changed Ballos Burger:
+	* reduced its bullet's damage per frame from 2 to 1
+	* increased explosion lifetime from 15 to 35 frames
+	* explosion now roughly follows the player
+	* explosion's area is increased to better match visuals
+	* reduced the radius of visuals from 48 pixels to 32 pixels
+	* reduced visual smoke rate from 7 to 5
+- Nerfed Iron Bond: 
+	* added 1 second to initial regen cooldown after taking damage
+- Reworked Cool Sunglasses: 
+	* now reduce player's immunity frames by 3x instead of making player take 1.75x damage
+- Buffed Nice Skates/Terra Boots: 
+	* now removes low friction in Hekichu Caverns
+- Buffed Cape of Shadows: 
+	* increased the speed modifier of its dash by 12.5%
+- Buffed Gravity Necklace: 
+	* reduced its cooldown from 90 to 60 frames
+- Nerfed Pair of Wings: 
+	* reduced charged jump's power modifier from 0.4 to 0.75
+- Tweaked Sara's dashing state: 
+	* now deals 2 damage, instead of 1
+	* fixed dashing hitting beetles and similar enemies across entire map
+- Hunter's food now actually drops and does so more frequently.
+
+Misc/Quality of Life:
+- Re-added water splashing for Diving Suit.
+- Curly now starts with Air Tank.
+- Improved ProcGen's air control.
+- Whimsical Star now follows player instead of mouse's cursor by default.
+- Removed rest of irrelevant references to vanilla's Curly AI.
+- Switched hardcoded NPC flags to use constants.
+- Attempting to fix GetClosest function being weird (due to overflowing).
+- NPC's immunity frames are now reset on its death.
+- Attempted to fix the strange things and crashes with newer RNG behavior, which may change stages on reloading the save.
+
+Bug fixes:
+- Rewritten some TSC scripts to fix <NOD new line issues (fixes #13).
+- Added some gravity force to Doctor P1's projectile phase (fixes #25).
+- Fixed Dragon's left side's stray pixels (fixes #26).
+- Dragon is now invulnerable before first attack (fixes #27).
+- Fixed wrong weapon icon for Frontier Buster's crafting info (fixes #28).
+- Cape of Shadows now properly applies slow gravity after a dash (fixes #29).
+- Failing to do teleport-dash will still replenish Cape of Shadows's double jump (fixes #30).
+- Added a check for weapons going past max xp in some rare cases (fixes #31).
+- Shadow Toroko's blocks now self-destruct after their master dies (fixes #32).
+- The level boss door now spawns at highest priority possible (probably fixes #34).
+- Fixed Ame's up-aiming and interacting sprites shifting too much (fixes #35).
+- Fixed saved game's cooldowns not properly restored (fixes #36).
+- Bosses can no longer be hurt during star collect jingle (fixes #40).
+- Made a bunch of other effects not trigger on ethereal entities (fixes #41).
+- Fixed Terra Boots mislabeling Nice Skates in crafting description (fixes #42).
+- Fixed Bubbler lvl1 spawning bullets on grass (fixes #44).
+- Fixed Flaming Booster and Universal Catalyst conflicting with each other.
+
 1.42.3 (Bossing Issues Away) (July 8th 2023):
 - Implemented turbo text button toggle: it makes TSC parse 2x faster when active (<WAI stays at normal speed if the speed would break the script), it is B by default.
 - Implemented Miracle Matter upgrade for Snake: Frontier Buster.
