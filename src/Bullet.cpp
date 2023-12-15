@@ -74,6 +74,13 @@ void DeleteBullet(int code)
 				gBul[i].cond = 0;
 }
 
+void DeleteSpecificBullet(int code)
+{
+	for (int i = 0; i < BULLET_MAX; ++i)
+		if (gBul[i].cond & 0x80 && gBul[i].code_bullet == code)
+			gBul[i].cond = 0;
+}
+
 void ClearBullet(void)
 {
 	// Identical to InitBullet

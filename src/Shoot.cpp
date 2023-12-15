@@ -436,9 +436,6 @@ void ShootBullet_Shotgun(int level)
 	int deg, xm, ym, tgt_x, tgt_y, direct;
 	int bul_no = 4;
 
-	if (CountBulletNum(bul_no) > 0)
-		return;
-
 	if (gKeyTrg & gKeyShot)
 	{
 		bool targeted = false;
@@ -467,7 +464,8 @@ void ShootBullet_Shotgun(int level)
 				lightning->count1 = 1;
 			}
 		}
-		if (!targeted){
+		if (!targeted && CountBulletNum(bul_no) <= 0){
+
 			if (!UseArmsEnergy(1))
 			{
 				PlaySoundObject(37, SOUND_MODE_PLAY);
@@ -564,13 +562,15 @@ void ShootBullet_Shotgun(int level)
 				
 				PlaySoundObject(49, SOUND_MODE_PLAY);
 			}
+		} else if (targeted) {
+			DeleteSpecificBullet(bul_no);
 		}
 	}
 	else
 	{
 		++wait;
 
-		if (wait > 100)
+		if (wait > 130)
 		{
 			wait = 0;
 			ChargeArmsEnergy(1);

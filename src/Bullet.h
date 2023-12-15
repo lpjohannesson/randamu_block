@@ -67,6 +67,7 @@ void InitBullet(void);
 int CountArmsBullet(int arms_code);
 int CountBulletNum(int bullet_code);
 void DeleteBullet(int code);
+void DeleteSpecificBullet(int code);
 void ClearBullet(void);
 void PutBullet(int fx, int fy);
 void SetBullet(int no, int x, int y, int dir);
