@@ -245,7 +245,7 @@ void DamageMyChar(int damage)
 	}
 	gMC.cond &= ~1;
 	gMC.shock = 128;
-	gMC.regenCount = RegenDelayScaling()*2;
+	gMC.regenCount = 0;
 	gMC.regenMaxCount = -1;
 	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 		InitiateCooldown(gCooldowns, DUCK_TIMER_ID);
