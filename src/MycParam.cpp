@@ -673,7 +673,7 @@ void PutMyLife(bool flash)
 
 	// Draw bar
 	rcCase.right = 64;
-	float healingRate = 3;
+	float healingRate = 6;
 	rcLife.right += (((gMC.life * 40) + (gMC.equip & EQUIP_MIMIGA_MASK && 
 		gMC.life < gMC.max_life && gMC.shock == 0 ? (gMC.regenCount / healingRate) : 0)) / gMC.max_life);
 	rcBr.right += (((gMC.lifeBr * 40)) / gMC.max_life);
