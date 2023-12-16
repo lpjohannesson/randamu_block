@@ -2758,7 +2758,12 @@ void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArgum
 		{
 			SetNPCFlag(Flags::LAST_LEVEL_CH1_DOOR);
 		}
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["final_tileset"]))){
+		int shadowDepth = 9 + genContext.doctorStage;
+		if (ChallengeEnabled("fast_run")){
+			shadowDepth = 6 + genContext.doctorStage;
+		}
+		if ((!ChallengeExists("tileset") && genContext.tileset == GetTileset(std::get<std::string>(genArguments["final_tileset"]))) ||
+			(ChallengeExists("tileset") && gMC.depth == shadowDepth)){
 			SetNPCFlag(Flags::LAST_LEVEL_CH2_DOOR);
 		}
 		SetNpChar(18, doorX * 0x2000, doorY * 0x2000, 0, 0, 0, NULL, 0, ChallengeEnabled("full_clear") ? 116 : 99, NPC_INTERACTABLE);
