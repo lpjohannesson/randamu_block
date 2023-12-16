@@ -487,7 +487,7 @@ Equipped Sacred Aegis.<NOD<WAI0003<FRE<EVE5013
 #6014
 <MSG<TURIncreases charge speed on MG and Spur,
 increases ammo on Polar Star and
-Nemesis and charges them slowly.<WAI0040<CLRProvides a chance to not consume ammo
+Nemesis and charges them slowly.<NOD<CLRProvides a chance to not consume ammo
 on any weapon.<WAI9999<END
 #6015
 <KEY<MSGThis will restore 35 HP,
