@@ -318,7 +318,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Frontie-buster lv3
 	{1, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
 	// Frontie-buster lv4
-	{1, 15, 40, 32, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1}
+	{1, 15, 40, 32, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1},
+	// Gatling Gun
+	{1, 2, 20, 32, 4, 2, 2, 2, {8, 8, 8, 8}, 0.10, 0.10},
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -1668,12 +1670,14 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 
 	bul->local_iframes = 10;
 
-	if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
-		switch (level){
-			case 1: bul->damage = Random(3, 4); break;
-			case 2: bul->damage = Random(5, 6); break;
-			case 3: bul->damage = Random(7, 8); break;
-			case 4: bul->damage = Random(9, 10); break;
+	if (bul->code_bullet != 92){
+		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+			switch (level){
+				case 1: bul->damage = Random(3, 4); break;
+				case 2: bul->damage = Random(5, 6); break;
+				case 3: bul->damage = Random(7, 8); break;
+				case 4: bul->damage = Random(9, 10); break;
+			}
 		}
 	}
 
@@ -1708,7 +1712,7 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 		if (gMC.equip & EQUIP_OVERCHARGE)
 			secondMove = 390;
 		if (gArmsData[gSelectedArms].code == 21)
-			secondMove *= 4;
+			secondMove *= 7;
 
 		bul->act_no = 1;
 
@@ -5570,6 +5574,10 @@ void ActBullet(void)
 
 					case 91:
 						ActBullet_HomingFrontieBust2(&gBul[i]);
+						break;
+
+					case 92:
+						ActBullet_MachineGun(&gBul[i], 1);
 						break;
 				}
 			}
