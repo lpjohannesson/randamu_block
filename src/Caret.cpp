@@ -35,7 +35,8 @@ CARET_TABLE gCaretTable[] = {
 	{0x800, 0x800},
 	{0x2800, 0x800},
 	{0x6800, 0x800},
-	{0x1000, 0x1000}
+	{0x1000, 0x1000},
+	{0x800, 0x800}
 };
 
 void InitCaret(void)
@@ -286,13 +287,6 @@ void ActCaret07(CARET *crt)
 
 	crt->rect = rcLeft[crt->ani_no];
 	crt->opacity -= 0.08f;
-
-	if (GetNPCFlag(Flags::SUPER_BOOSTER) && ++crt->act_wait % 2 == 0)
-	{
-		NPCHAR* npc = FindNpCharHere(crt->x, crt->y);
-		if (npc != NULL)
-			DealDamage(*npc, 1);
-	}
 
 	switch (crt->direct)
 	{
@@ -606,8 +600,61 @@ void ActCaret18(CARET *crt)
 	crt->rect = rect[crt->ani_no];
 }
 
+//separate caret for super booster
+void ActCaret19(CARET *crt)
+{
+	Rect rcLeft[7] = {
+		{56, 0, 64, 8},
+		{64, 0, 72, 8},
+		{72, 0, 80, 8},
+		{80, 0, 88, 8},
+		{88, 0, 96, 8},
+		{96, 0, 104, 8},
+		{104, 0, 112, 8},
+	};
+
+	if (++crt->ani_wait > 1)
+	{
+		crt->ani_wait = 0;
+
+		if (++crt->ani_no > 6)
+		{
+			crt->cond = 0;
+		#ifdef FIX_BUGS
+			return;	// The code below will use 'ani_no' to access 'rcLeft', even though it's now too high
+		#endif
+		}
+	}
+
+	crt->rect = rcLeft[crt->ani_no];
+	crt->opacity -= 0.08f;
+
+	if (GetNPCFlag(Flags::SUPER_BOOSTER) && ++crt->act_wait % 2 == 0)
+	{
+		NPCHAR* npc = FindNpCharHere(crt->x, crt->y);
+		if (npc != NULL)
+			DealDamage(*npc, 1);
+	}
+
+	switch (crt->direct)
+	{
+		case 0:
+			crt->x -= 2 * 0x200;
+			break;
+		case 1:
+			crt->y -= 2 * 0x200;
+			break;
+		case 2:
+			crt->x += 2 * 0x200;
+			break;
+		case 3:
+			crt->y += 2 * 0x200;
+			break;
+	}
+}
+
 typedef void (*CARETFUNCTION)(CARET*);
-CARETFUNCTION gpCaretFuncTbl[19] =
+CARETFUNCTION gpCaretFuncTbl[20] =
 {
 	ActCaret00,
 	ActCaret01,
@@ -627,7 +674,8 @@ CARETFUNCTION gpCaretFuncTbl[19] =
 	ActCaret15,
 	ActCaret16,
 	ActCaret17,
-	ActCaret18
+	ActCaret18,
+	ActCaret19
 };
 
 void ActCaret(void)

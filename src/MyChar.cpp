@@ -1092,11 +1092,12 @@ void ActMyChar_Normal(bool bKey)
 			// Boost particles (and sound)
 			if (gKeyTrg & gKeyJump || gMC.boost_cnt % 3 == 1)
 			{
+				const int boostPart = GetNPCFlag(Flags::SUPER_BOOSTER) ? 19 : 7;
 				if (gMC.direct == 0){
-					SetCaret(gMC.x + (2 * 0x200), gMC.y + (2 * 0x200), 7, 2);
+					SetCaret(gMC.x + (2 * 0x200), gMC.y + (2 * 0x200), boostPart, 2);
 				}
 				if (gMC.direct == 2){
-					SetCaret(gMC.x - (2 * 0x200), gMC.y + (2 * 0x200), 7, 0);
+					SetCaret(gMC.x - (2 * 0x200), gMC.y + (2 * 0x200), boostPart, 0);
 				}
 
 				PlaySoundObject(113, SOUND_MODE_PLAY);
