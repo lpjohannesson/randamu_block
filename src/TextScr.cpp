@@ -1277,6 +1277,9 @@ int ActualTextScriptProc(void)
 								case enum_ESCRETURN_exit:
 									return enum_ESCRETURN_exit;
 
+								case enum_ESCRETURN_ranks:
+									return enum_ESCRETURN_ranks;
+
 								case enum_ESCRETURN_restart:
 									return enum_ESCRETURN_restart;
 							}	
@@ -1285,6 +1288,9 @@ int ActualTextScriptProc(void)
 							{
 								case enum_ESCRETURN_exit:
 									return enum_ESCRETURN_exit;
+
+								case enum_ESCRETURN_ranks:
+									return enum_ESCRETURN_ranks;
 
 								case enum_ESCRETURN_restart:
 									return enum_ESCRETURN_restart;
@@ -1313,6 +1319,9 @@ int ActualTextScriptProc(void)
 						{
 							case enum_ESCRETURN_exit:
 								return enum_ESCRETURN_exit;
+
+							case enum_ESCRETURN_ranks:
+								return enum_ESCRETURN_ranks;
 
 							case enum_ESCRETURN_restart:
 								return enum_ESCRETURN_restart;

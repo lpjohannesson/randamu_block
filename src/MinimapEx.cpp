@@ -389,6 +389,9 @@ int MiniMapExLoop(void)
 
 				case enum_ESCRETURN_restart:
 					return enum_ESCRETURN_restart;
+
+				case enum_ESCRETURN_ranks:
+					return enum_ESCRETURN_ranks;
 			}
 		}
 
@@ -401,6 +404,9 @@ int MiniMapExLoop(void)
 
 				case enum_ESCRETURN_restart:
 					return enum_ESCRETURN_restart;
+
+				case enum_ESCRETURN_ranks:
+					return enum_ESCRETURN_ranks;
 			}
 		}
 
@@ -451,6 +457,9 @@ int MiniMapExLoop(void)
 
 				case enum_ESCRETURN_restart:
 					return enum_ESCRETURN_restart;
+
+				case enum_ESCRETURN_ranks:
+					return enum_ESCRETURN_ranks;
 			}
 		}
 
@@ -463,6 +472,9 @@ int MiniMapExLoop(void)
 
 				case enum_ESCRETURN_restart:
 					return enum_ESCRETURN_restart;
+
+				case enum_ESCRETURN_ranks:
+					return enum_ESCRETURN_ranks;
 			}
 		}
 
@@ -561,6 +573,9 @@ int MiniMapExLoop(void)
 
 				case enum_ESCRETURN_restart:
 					return enum_ESCRETURN_restart;
+
+				case enum_ESCRETURN_ranks:
+					return enum_ESCRETURN_ranks;
 			}
 		}
 
@@ -573,6 +588,9 @@ int MiniMapExLoop(void)
 
 				case enum_ESCRETURN_restart:
 					return enum_ESCRETURN_restart;
+
+				case enum_ESCRETURN_ranks:
+					return enum_ESCRETURN_ranks;
 			}
 		}
 

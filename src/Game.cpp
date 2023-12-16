@@ -805,7 +805,10 @@ static int ModeAction(void)
 				switch (CampLoop())
 				{
 					case enum_ESCRETURN_exit:
-						return 0;
+						return 2;
+
+					case enum_ESCRETURN_ranks:
+						return 1;
 
 					case enum_ESCRETURN_restart:
 						return 3;
@@ -824,7 +827,10 @@ static int ModeAction(void)
 				switch (MiniMapExLoop())
 				{
 				case enum_ESCRETURN_exit:
-					return 0;
+					return 2;
+
+				case enum_ESCRETURN_ranks:
+					return 1;
 
 				case enum_ESCRETURN_restart:
 					return 3;
@@ -836,7 +842,10 @@ static int ModeAction(void)
 				switch (MiniMapLoop())
 				{
 				case enum_ESCRETURN_exit:
-					return 0;
+					return 2;
+
+				case enum_ESCRETURN_ranks:
+					return 1;
 
 				case enum_ESCRETURN_restart:
 					return 3;
@@ -863,7 +872,7 @@ static int ModeAction(void)
 			switch (TextScriptProc())
 			{
 				case enum_ESCRETURN_exit:
-					return 0;
+					return 2;
 
 				case enum_ESCRETURN_ranks:
 					return 1;

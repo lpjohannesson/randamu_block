@@ -210,6 +210,9 @@ int StageSelectLoop(int *p_event)
 				case enum_ESCRETURN_exit:
 					return enum_ESCRETURN_exit;
 
+				case enum_ESCRETURN_ranks:
+					return enum_ESCRETURN_ranks;
+
 				case enum_ESCRETURN_restart:
 					return enum_ESCRETURN_restart;
 			}
@@ -222,6 +225,9 @@ int StageSelectLoop(int *p_event)
 				case enum_ESCRETURN_exit:
 					return enum_ESCRETURN_exit;
 
+				case enum_ESCRETURN_ranks:
+					return enum_ESCRETURN_ranks;
+
 				case enum_ESCRETURN_restart:
 					return enum_ESCRETURN_restart;
 			}
@@ -233,6 +239,9 @@ int StageSelectLoop(int *p_event)
 		{
 			case enum_ESCRETURN_exit:
 				return enum_ESCRETURN_exit;
+
+			case enum_ESCRETURN_ranks:
+				return enum_ESCRETURN_ranks;
 
 			case enum_ESCRETURN_restart:
 				return enum_ESCRETURN_restart;
