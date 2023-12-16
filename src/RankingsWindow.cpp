@@ -632,11 +632,16 @@ int RankingLoop(void)
 
 		if (gKey & gKeyAbility)
 		{
+			const int scrolling = 10;
 			if (gKeyTrg & gKeyArmsRev)
 			{
-				if (selectedRank > 10)
+				if (gRankings.size() <= scrolling)
 				{
-					selectedRank -= 10;
+					//do nothing
+				} 
+				else if (selectedRank > scrolling)
+				{
+					selectedRank -= scrolling;
 				}
 				else
 				{
@@ -647,9 +652,13 @@ int RankingLoop(void)
 			}
 			if (gKeyTrg & gKeyArms)
 			{
-				if (selectedRank < gRankings.size() - 10)
+				if (gRankings.size() <= scrolling)
 				{
-					selectedRank += 10;
+					//do nothing
+				} 
+				else if (selectedRank < gRankings.size() - scrolling)
+				{
+					selectedRank += scrolling;
 				}
 				else
 				{
