@@ -3306,7 +3306,7 @@ int Call_Pause(void)
 		{{GetCSE2Message("title_reload"), ""}, {Callback_Save, NULL}, NULL, "", 0, !(gMC.cond != 0 && !gBL.flag && gStageNo != 64 && IsProfile() && !ChallengeEnabled("timer"))},
 		{{GetCSE2Message("title_config"), ""}, {Callback_Configuration, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("title_options"), ""}, {Callback_Options, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_tutorial"), ""}, {Callback_Tutorial, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_tutorial"), ""}, {Callback_Tutorial, NULL}, NULL, "", 0, gTS.mode != 0},
 		{{GetCSE2Message("title_rankings"), ""}, {Callback_Rankings, NULL}, NULL, "", 0, gRankings.size() == 0},
 		{{GetCSE2Message("title_updates"), ""}, {Callback_ModPage, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("title_quit"), ""}, {Callback_Quit, NULL}, NULL, "", 0, false}
