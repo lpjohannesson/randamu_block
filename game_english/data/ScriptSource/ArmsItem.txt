@@ -723,7 +723,7 @@ enables charged swims
 and allows to dash underwater
 with Dash key.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+8192<FL+0754<MSG
-Equipped Water Thursters.<NOD<WAI0003<FRE<EVE5042
+Equipped Water Thrusters.<NOD<WAI0003<FRE<EVE5042
 #6043
 <FLJ0753:7043<ELJ
 <KEY<MSGAllows <NAM to jump
