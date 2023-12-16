@@ -29,7 +29,7 @@ An automatic rapid-fire gun.
 Automatically recharges over time.<WAI9999<END
 #1005
 <MSG<TUR- Rocket Launcher -
-Turns Quote into missile, making him
+Turns player into missile, making them
 invulnerable, 3x faster but uncontrollable.<WAI9999<END
 #1007
 <MSG<TUR- Bubbler -
