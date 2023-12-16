@@ -416,7 +416,7 @@ summons Curly Brace to aid you
 and provides life regen.<NOD
 Hearts move towards <NAM and
 on fatal hit Curly will sacrifice
-herself to heal you.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1017<IT+0017<IT-0035<IT-0039<FL-0751<DNA0320<EQ-0064<FL-0746<MM-Created =Badge of Love=!<WAI0135<NOD<CLO<PS-0009<RMU<END
+herself to heal you.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1017<IT+0017<IT-0035<IT-0039<DNA0320<FL-0751<EQ-0064<FL-0746<MM-Created =Badge of Love=!<WAI0135<NOD<CLO<PS-0009<RMU<END
 #0610
 <PRI<MSG<GIT1018Universal Catalyst
 allows to place and destroy
@@ -471,7 +471,7 @@ summons both Little Man and Curly
 Brace to fight for you.<NOD
 When Curly shoots her Nemesis,
 Little Man will follow up with
-Lv2 fireball projectiles.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1068<IT+0068<IT-0032<IT-0035<DNA0320<DNA0321<DNA0180<FL-0740<FL-0751<MM-Created =Little Man's
+Lv2 fireball projectiles.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1068<DNA0320<DNA0180<DNA0321<IT+0068<IT-0032<IT-0035<FL-0740<FL-0751<MM-Created =Little Man's
 Underwear=!<WAI0135<NOD<CLO<PS-0017<RMU<END
 #0618
 <PRI<MSG<GIT1069Nuclear Stomper

@@ -1035,7 +1035,7 @@ Deequipped Sacred Aegis.<NOD<WAI0003<FRE<EVE5013
 Deequipped Terra Boots.<NOD<WAI0003<FRE<EVE5016
 
 #7017
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0870<DNA0320<DNA0321<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<FL-0870<EQ-0064<MSG
 Deequipped Badge of Love.<NOD<WAI0003<FRE<EVE5017
 
 #7018
@@ -1049,8 +1049,8 @@ Deequipped Frostbite Stopwatch.<NOD<WAI0003<FRE<EVE5022
 <KEY<MSGDo you want to remove it?<YNJ0000<EQ-0032<FL-0743<MSG
 Deequipped Booster v2.0.<NOD<WAI0003<FRE<EVE5023
 #7024
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0872<FL-0705<EQ-0128<MSG
-Deequipped Amphibian Medal.<NOD<WAI0003<DNP0195<FRE<EVE5024
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0195<FL-0872<FL-0705<EQ-0128<MSG
+Deequipped Amphibian Medal.<NOD<WAI0003<FRE<EVE5024
 #7025
 <KEY<MSGDo you want to remove it?<YNJ0000<E2-0019<FL-0873<MSG
 Deequipped High-Octane Tank.<NOD<WAI0003<FRE<EVE5025
@@ -1071,8 +1071,8 @@ Deequipped Momentum Throttler.<NOD<WAI0003<FRE<EVE5029
 Deequipped Wall Hook.<NOD<WAI0003<FRE<EVE5030
 
 #7031
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0017<FL-0745<MSG
-Deequipped Clay Figure Medal.<NOD<WAI0003<DNA0190<FRE<EVE5031
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0190<E2-0017<FL-0745<MSG
+Deequipped Clay Figure Medal.<NOD<WAI0003<FRE<EVE5031
 
 #7032
 <KEY<MSGDo you want to remove it?<YNJ0000<DNA0180<FL-0740<MSG
@@ -1083,12 +1083,12 @@ Deequipped Little Man.<NOD<WAI0003<FRE<EVE5032
 Deequipped Copper Bulwark.<NOD<WAI0003<FRE<EVE5033
 
 #7035
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0751<DNA0320<DNA0321<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<FL-0751<MSG
 Deequipped Curly's Underwear.<NOD<WAI0003<FRE<EVE5035
 
 #7036
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0749<EQ-0128<MSG
-Deequipped Alien Medal.<NOD<WAI0003<DNA0189<FRE<EVE5036
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0189<FL-0749<EQ-0128<MSG
+Deequipped Alien Medal.<NOD<WAI0003<FRE<EVE5036
 
 #7037
 <KEY<MSGDo you want to remove it?<YNJ0000<FL-0860<MSG
@@ -1187,7 +1187,7 @@ Deequipped Flaming Booster.<NOD<WAI0003<FRE<EVE5066
 Deequipped Shield of Time.<NOD<WAI0003<FRE<EVE5067
 
 #7068
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0877<FL-0751<DNA0320<DNA0321<DNA0180<FL-0740<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<DNA0180<FL-0877<FL-0751<FL-0740<MSG
 Deequipped Little Man's Underwear.<NOD<WAI0003<FRE<EVE5068
 
 #7069
