@@ -201,7 +201,7 @@ int WriteMiniMap(int x, int y){
 		}
 
 		//chests, items, life capsules
-		if(gNPC[i].code_char == 0xF || gNPC[i].code_char == 0x46){
+		if(gNPC[i].code_char == 0xF){
 			int npc_x = gNPC[i].x / (0x10*0x200);
 			int npc_y = gNPC[i].y / (0x10*0x200);
 
