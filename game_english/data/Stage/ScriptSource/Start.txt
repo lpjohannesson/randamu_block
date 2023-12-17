@@ -350,7 +350,7 @@ at terminals!<NOD<END
 #0305
 <CMU0052<WAI0200<RMU<END
 #0310
-<KEY<MMJ0311<MSG<GIT1007No Miracle Matter found.<NOD<CLRFind Miracle Matter before each
+<PRI<MMJ0311<MSG<GIT1007No Miracle Matter found.<NOD<CLRFind Miracle Matter before each
 level boss.<NOD This item
 can be used to craft special
 items.<NOD<END
