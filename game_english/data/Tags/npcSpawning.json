@@ -232,7 +232,7 @@
 			"parent": "grass_critters",
 			"secondCampaign": true
 	},
-	"grass_critters_second_camp": {
+	"grass_town_second_camp_critters": {
 			"parent": "grass_critters",
 			"gimmick": "-1",
 			"secondCampaign": true,
