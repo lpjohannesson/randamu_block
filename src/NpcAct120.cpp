@@ -584,7 +584,7 @@ void ActNpcPuppy(NPCHAR *npc)
 
 	if (npc->act_no >= 10){
 		NPCHAR* target = FindNpCharHere(npc->x, npc->y);
-		if (target != NULL){
+		if (target != NULL && target->code_char != npc->code_char){
 			DealDamage(*target, 2);
 		}
 	}
