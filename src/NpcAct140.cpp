@@ -59,42 +59,10 @@ void ActNpcShadowToroko(NPCHAR *npc)
 	switch (npc->act_no)
 	{
 		case 0:
-			npc->act_no = 1;
-			npc->ani_no = 9;
-			npc->act_wait = 0;
+			npc->act_no = 10;
 			npc->bits &= ~NPC_INTERACTABLE;
+			npc->bits |= NPC_SHOOTABLE;
 			// Fallthrough
-		case 1:
-			if (++npc->act_wait > 50)
-			{
-				npc->act_no = 2;
-				npc->act_wait = 0;
-				npc->ani_no = 8;
-			}
-
-			break;
-
-		case 2:
-			if (++npc->ani_no > 10)
-				npc->ani_no = 9;
-
-			if (++npc->act_wait > 50)
-			{
-				npc->act_no = 3;
-				npc->act_wait = 0;
-				npc->ani_no = 0;
-			}
-
-			break;
-
-		case 3:
-			if (++npc->act_wait > 50)
-			{
-				npc->act_no = 10;
-				npc->bits |= NPC_SHOOTABLE;
-			}
-
-			break;
 
 		case 10:
 			npc->bits = npc->bits;	// Chances are this line isn't accurate to the original source code, but it produces the same assembly
