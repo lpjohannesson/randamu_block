@@ -1786,7 +1786,7 @@ void AirProcess(void)
 			}
 			int airBoost = 25;
 			if (gMC.difficulty >= DIFFICULTY_RESONANT && !gMC.hell){
-				airBoost = 1;
+				airBoost = 8;
 			}
 			gMC.air = std::min(gMC.air + airBoost, limit);
 			if (gMC.hell){
