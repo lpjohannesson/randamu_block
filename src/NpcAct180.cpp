@@ -325,7 +325,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 		NPCHAR* target = FindNpCharHere(npc->x, npc->y, 6_pix, 6_pix);
 		if (target != NULL){
 			if (target->code_char != 69 && target->code_char != 156)
-				DealDamage(*target, gMC.cond & 1 ? 3 : 1);
+				DealDamage(*target, gMC.cond & 1 ? 5 : 2);
 		}
 	}
 
