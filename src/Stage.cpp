@@ -2207,7 +2207,7 @@ void CreateRefills(GenerationContext& genContext, GenerationArguments& genArgume
 		rooms = limit;
 	}
 	if (gMC.difficulty > DIFFICULTY_BASIC)
-		rooms -= std::get<int>(genArguments["difficulty_reduction"])*gMC.difficulty;
+		rooms = std::max(1, rooms - std::get<int>(genArguments["difficulty_reduction"])*gMC.difficulty);
 	for (auto tileset: std::get<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset)){
 			rooms = 0;
