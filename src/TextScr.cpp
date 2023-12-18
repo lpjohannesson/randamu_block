@@ -791,7 +791,7 @@ int ActualTextScriptProc(void)
 							itemLimitEvent = 5501;
 							break;
 						case DIFFICULTY_RESONANT:
-							itemLimit = 4;
+							itemLimit = 5;
 							itemLimitEvent = 5502;
 							break;
 						}

@@ -391,7 +391,7 @@ known to portend the future.<WAI9999<END
 #5501
 <MSG<TURCan't equip more than 7 items.<WAI9999<END
 #5502
-<MSG<TURCan't equip more than 4 items.<WAI9999<END
+<MSG<TURCan't equip more than 5 items.<WAI9999<END
 #5996
 <MSG<TURCan't remove the last weapon.<WAI9999<END
 #5997

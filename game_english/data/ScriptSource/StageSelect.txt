@@ -246,5 +246,5 @@ to spawn with less value.<WAI9999<END
 than 7 items.<WAI9999<END
 #2053
 <MSG<TURScore increase: +150%. Can't equip more
-than 4 items. Water is more dangerous
+than 5 items. Water is more dangerous
 and there is less experience.<WAI9999<END
