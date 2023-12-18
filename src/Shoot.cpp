@@ -2739,7 +2739,7 @@ void ShootBullet(void)
 	}
 
 	// Run functions
-	if (gMC.cond & 2 || CheckForCooldown(gCooldowns, SHEEP_CURSE_ID) > 0)
+	if (gMC.cond & 2 || IsASheep())
 		return;
 
 	switch (gArmsData[gSelectedArms].code)

@@ -159,6 +159,7 @@ void ShowMyChar(bool bShow);
 void PutMyChar(int fx, int fy);
 void ActMyChar_Normal(bool bKey);
 bool IsDashEquipped();
+bool IsASheep();
 void ActMyChar(bool bKey);
 void GetMyCharPosition(int *x, int *y);
 void SetMyCharPosition(int x, int y);

@@ -76,6 +76,10 @@ int DashCooldown(){
 	return 40;
 }
 
+bool IsASheep(){
+	return CheckForCooldown(gCooldowns, SHEEP_CURSE_ID) != -1 || ChallengeEnabled("sheepCharacter");
+}
+
 void InitMyChar(void)
 {
 	memset(&gMC, 0, sizeof(MYCHAR));
@@ -310,7 +314,7 @@ void PutMyChar(int fx, int fy)
 	const int accRectNum[] = {6, 5, 2, 1, 4, 7, 3, 0, 8, 9};
 	const int accOrderFlag[] = {Flags::DIVING_SUIT, Flags::DISCORDIAN_VISOR, Flags::CAPE_OF_SHADOWS, Flags::SHIELD_OF_RESILIENCE, Flags::SACRED_AEGIS, Flags::HIGH_OCTANE_TANK, Flags::FLAMING_BOOSTER, Flags::SHIELD_OF_TIME};
 	const int accRectNumFlag[] = {11, 15, 12, 10, 13, 14, 16, 17};
-	if (CheckForCooldown(gCooldowns, SHEEP_CURSE_ID) != -1 && (gMC.cond & 0x80)){
+	if (IsASheep() && (gMC.cond & 0x80)){
 		Rect sheepRect = {48, 0, 64, 16};
 		if (gMC.direct == 2) sheepRect = {48, 16, 64, 32};
 		PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top + 0x200 *3) - SubpixelToScreenCoord(fy), &sheepRect, SURFACE_ID_LEVEL_SPRITESET_1);
@@ -1865,7 +1869,7 @@ void ActMyChar(bool bKey)
 	if (gMC.exp_wait != 0)
 		--gMC.exp_wait;
 
-	if (CheckForCooldown(gCooldowns, SHEEP_CURSE_ID) != -1){
+	if (IsASheep()){
 		bKey = true;
 	}
 

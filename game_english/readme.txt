@@ -78,6 +78,7 @@ To set the value, put it as ""name": value" in config.json (it's created automat
 - 'secondCampaign': enables/disables the starting point being levels after Doctor's boss fight.
 - 'superHotMode': enables/disables the game mode where holding any keys stops the flow of time.
 - 'randomSizeMode': enables/disables the ability for generated levels to have variable size, not just 118x118.
+- 'sheepCharacter': enables/disables the character being permanently a sheep.
 - 'character': defines what custom character to use.
 Character codes:
 - CurlyBrac - Curly Brace
