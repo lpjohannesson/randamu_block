@@ -302,7 +302,7 @@ BULLET_TABLE gBulTbl[] = {
 	{19, 100, 38, 52, 16, 14, 5, 3, {10, 10, 10, 10}, 1, 1},
 	{25, 100, 34, 52, 17, 17, 5, 3, {12, 12, 12, 12}, 1, 1},
 	// hellsweep mine
-	{-1, 2, 100, 8, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+	{-1, 100, 75, 8, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
 	// lvl3 hellsweep flamings
 	{-1, 100, 200, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
 	// lvl4 Hellsweep
@@ -1363,10 +1363,16 @@ void ActBullet_FireMine(BULLET *bul)
 		return;
 	}
 
+	if (bul->count1 > 10){
+		bul->damage = 0;
+	}
+
 	bBreak = false;
 	if (bul->flag & 2 && bul->flag & 8)
 		bBreak = true;
 	if (bul->flag & 1 && bul->flag & 4)
+		bBreak = true;
+	if (bul->life < 100)
 		bBreak = true;
 
 	if (bul->direct == 0 && bul->flag & 1){
@@ -3652,9 +3658,9 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 					PlaySoundObject(33, SOUND_MODE_PLAY);
 					bully->direct = gMC.direct;
 					if (bul->direct == 0)
-						bully->xm = -Random(0, 1800);
+						bully->xm = -Random(0, 2000);
 					else
-						bully->xm = Random(0, 1800);
+						bully->xm = Random(0, 2000);
 					if (gMC.up){
 						bully->ym = Random(-1300, -400);
 						bully->xm /= 3;
@@ -3693,7 +3699,7 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 					bully->direct = gMC.direct;
 					if (level == 2)
 						bully->damage = 1;
-					bully->life = Random(1, 4);
+					bully->life = Random(2, 5);
 					if (bul->direct == 0)
 						bully->xm = -Random(0, 1800);
 					else
