@@ -504,7 +504,7 @@ from damage.<NOD This ability has
 homing projectiles on attacking
 enemies<NOD and
 semi-frequently from
-nanites shield.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1073<IT+0073<IT-0071<IT-0055<FL-0712<E2-0029<FL-0882<MM-Created =Military Armament=!<WAI0135<NOD<CLO<PS-0021<RMU<END
+nanites shield.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1073<IT+0073<IT-0072<IT-0055<FL-0712<E2-0029<FL-0882<MM-Created =Military Armament=!<WAI0135<NOD<CLO<PS-0021<RMU<END
 #0636
 <PRI<MSG<GIT0020Hellsweep is fire-related
 sword, just like Floodtide.<NOD
