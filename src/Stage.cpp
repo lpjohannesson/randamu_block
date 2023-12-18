@@ -3328,7 +3328,7 @@ static const struct
 	{"Resource/ORG/Move", "", MUSIC_TYPE_ORGANYA, true},
 	{"Resource/ORG/Walk", "", MUSIC_TYPE_ORGANYA, true},
 	{"Resource/ORG/CityOne", "", MUSIC_TYPE_ORGANYA, true},
-	{"Resource/ORG/Enemy Hall", "", MUSIC_TYPE_ORGANYA, true}, //reinforced boss fight
+	{"Resource/ORG/Regular_Battle_Chip_Challenge", "", MUSIC_TYPE_ORGANYA, true}, //reinforced boss fight
 	{"Resource/ORG/Abstract Anomaly", "", MUSIC_TYPE_ORGANYA, true},
 	{"Resource/ORG/wind bombing", "", MUSIC_TYPE_ORGANYA, true},
 	{"Resource/ORG/TechnoShmeckno", "", MUSIC_TYPE_ORGANYA, true}

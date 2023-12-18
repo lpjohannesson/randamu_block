@@ -30,7 +30,7 @@ bool StartBossLife(int code_event)
 	gBL.br = gNPC[i].life;
 	gBL.pLife = &gNPC[i].life;
 	if (gMC.difficulty > DIFFICULTY_HARDENED)
-		ChangeMusic(MUS_ENEMY_HALL);
+		ChangeMusic(MUS_CHIP_CHALLENGE);
 	else
 		ChangeMusic(MUS_EYES_OF_FLAME);
 
