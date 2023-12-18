@@ -3412,6 +3412,8 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 		return;
 	}
 
+	bool isBoostActive = CheckForCooldown(gCooldowns, FLOODTIDE_BOOST_ID) != -1;
+
 	if (bul->act_no == 0){
 		if (bul->direct == 2){
 			bul->angle = -120;
@@ -3423,12 +3425,15 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 			bul->centerY = 1;
 			bul->angle = 120;
 		}
-		if (gMC.flag & 0x100){
+		if (gMC.flag & 0x100 || isBoostActive){
 			bul->life_count /= 2;
 			bul->count2 = 1;
 		}
 		bul->iframes = bul->life_count;
 		bul->act_no = 1;
+		if (bul->ani_no != 0){
+			bul->damage *= 4;
+		}
 	} else {
 		int spinValue = 6 + level*2;
 		int swingValue = 13;
@@ -3443,6 +3448,30 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 
 		int whirlLimit = 1;
 		if (level == 4) whirlLimit = 2;
+
+		if (bul->ani_no != 0){
+			SetCaret(bul->x + Random(-4_pix, 4_pix), bul->y + Random(-4_pix, 4_pix), 1, 0);
+		}
+
+		if (isBoostActive && bul->count1 == swingValue){
+			BULLET *quiverProj = SetBullet(47, bul->x, bul->y);
+			if (quiverProj != NULL){
+				quiverProj->damage = gBulTbl[bul->code_bullet].damage / 2;
+				if (gMC.up){
+					quiverProj->tgt_x = bul->x;
+					quiverProj->tgt_y = bul->y - 16_pix;
+				} else if (gMC.down){
+					quiverProj->tgt_x = bul->x;
+					quiverProj->tgt_y = bul->y + 16_pix;
+				} else {
+					if (gMC.direct == 0)
+						quiverProj->tgt_x = bul->x - 16_pix;
+					else
+						quiverProj->tgt_x = bul->x + 16_pix;
+					quiverProj->tgt_y = bul->y;
+				}
+			}
+		}
 
 		if (level >= 3 && bul->count1 == swingValue && CountBulletNum(62) < whirlLimit){
 			int lol = 1;
@@ -3517,8 +3546,16 @@ void ActBullet_SwordSwing(BULLET *bul, int level)
 			}
 		}
 
-		if (bul->life != 100 && (level == 1 || level == 4)){
-			bul->life = 100;
+		if (bul->life != 100){
+			if (bul->ani_no != 0){
+				if (CheckForCooldown(gCooldowns, FLOODTIDE_BOOST_ID) == -1)
+					InitiateCooldown(gCooldowns, FLOODTIDE_BOOST_ID);
+				bul->damage = std::max(bul->damage - gBulTbl[bul->code_bullet].damage, static_cast<int>(gBulTbl[bul->code_bullet].damage));
+				PlaySoundObject(21);
+			}
+
+			if (level == 1 || level == 4)
+				bul->life = 100;
 		}
 	}
 
@@ -3560,6 +3597,8 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 		return;
 	}
 
+	bool isBoostActive = CheckForCooldown(gCooldowns, HELLSWEEP_BOOST_ID) != -1;
+
 	if (bul->act_no == 0){
 		if (bul->direct == 2){
 			bul->angle = -120;
@@ -3571,12 +3610,15 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 			bul->centerY = 1;
 			bul->angle = 120;
 		}
-		if (gMC.life <= gMC.max_life / 3){
+		if (gMC.life <= gMC.max_life / 3 || isBoostActive){
 			bul->life_count /= 2;
 			bul->count2 = 1;
 		}
 		bul->iframes = bul->life_count;
 		bul->act_no = 1;
+		if (bul->ani_no != 0){
+			bul->damage *= 4;
+		}
 	} else {
 		int spinValue = 3 + level*1;
 		int swingValue = 26;
@@ -3591,6 +3633,14 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 
 		int whirlLimit = 3;
 		if (level == 4) whirlLimit = 5;
+
+		if (bul->ani_no != 0){
+			SetCaret(bul->x + Random(-4_pix, 4_pix), bul->y + Random(-4_pix, 4_pix), 1, 2);
+		}
+
+		if (isBoostActive){
+			SetBullet(67, gMC.x + Random(-16_pix, 16_pix), gMC.y + Random(-16_pix, 16_pix), Random(0, 3));
+		}
 
 		if ((level == 3) && bul->count1 == swingValue){
 			int lol = Random(5, 20);
@@ -3666,13 +3716,21 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 			}
 		}
 
-		if (bul->life != 100 && (level == 1 || level == 4)){
-			bul->life = 100;
-			BULLET *bully = SetBullet(83, bul->x, bul->y);
-			if (bully != NULL)
-			{
-				PlaySoundObject(21, SOUND_MODE_PLAY);
-				bully->direct = gMC.direct;
+		if (bul->life != 100){
+			if (bul->ani_no != 0){
+				if (CheckForCooldown(gCooldowns, HELLSWEEP_BOOST_ID) == -1)
+					InitiateCooldown(gCooldowns, HELLSWEEP_BOOST_ID);
+				bul->damage = std::max(bul->damage - gBulTbl[bul->code_bullet].damage, static_cast<int>(gBulTbl[bul->code_bullet].damage));
+				PlaySoundObject(72);
+			}
+			if ((level == 1 || level == 4)){
+				bul->life = 100;
+				BULLET *bully = SetBullet(83, bul->x, bul->y);
+				if (bully != NULL)
+				{
+					PlaySoundObject(21, SOUND_MODE_PLAY);
+					bully->direct = gMC.direct;
+				}
 			}
 		}
 	}

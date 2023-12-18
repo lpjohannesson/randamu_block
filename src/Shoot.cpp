@@ -2567,8 +2567,14 @@ void ShootBullet_SwordSwing(int level)
 {
 	int bul_no;
 
-	if (CountBulletNum(58) > 0 || CountBulletNum(59) > 0 || CountBulletNum(60) > 0 || CountBulletNum(74) > 0)
+	if (CountBulletNum(58) > 0 || CountBulletNum(59) > 0 || CountBulletNum(60) > 0 || CountBulletNum(74) > 0){
+		ClearCooldown(gCooldowns, SHEATHING_TIMER_ID);
 		return;
+	}
+
+	if (CheckForCooldown(gCooldowns, SHEATHING_TIMER_ID) == -1 && (GetNPCFlag(Flags::AMY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
+		InitiateCooldown(gCooldowns, SHEATHING_TIMER_ID);
+	}
 
 	switch (level)
 	{
@@ -2591,26 +2597,44 @@ void ShootBullet_SwordSwing(int level)
 
 	if (gKey & gKeyShot)
 	{
+		BULLET* bul;
+		
 		if (gMC.up)
 		{
-			if (gMC.direct == 0)
-				SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y + (4 * 0x200), 0);
-			else
-				SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y + (4 * 0x200), 2);
+			if (gMC.direct == 0){
+				bul = SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y + (4 * 0x200));
+				bul->direct = 0;
+			}
+			else{
+				bul = SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y + (4 * 0x200));
+				bul->direct = 2;
+			}
 		}
 		else if (gMC.down)
 		{
-			if (gMC.direct == 0)
-				SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y - (6 * 0x200), 0);
-			else
-				SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y - (6 * 0x200), 2);
+			if (gMC.direct == 0){
+				bul = SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y - (6 * 0x200));
+				bul->direct = 0;
+			}
+			else{
+				bul = SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y - (6 * 0x200));
+				bul->direct = 2;
+			}
 		}
 		else
 		{
-			if (gMC.direct == 0)
-				SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y - (3 * 0x200), 0);
-			else
-				SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y - (3 * 0x200), 2);
+			if (gMC.direct == 0){
+				bul = SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y - (3 * 0x200));
+				bul->direct = 0;
+			}
+			else{
+				bul = SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y - (3 * 0x200));
+				bul->direct = 2;
+			}
+		}
+		if (CheckForCooldown(gCooldowns, SHEATHING_TIMER_ID) == 0){
+			bul->ani_no = 1;
+			PlaySoundObject(65, SOUND_MODE_PLAY);
 		}
 
 		PlaySoundObject(106, SOUND_MODE_PLAY);
@@ -2621,8 +2645,14 @@ void ShootBullet_SwordSwing2(int level)
 {
 	int bul_no;
 
-	if (CountBulletNum(80) > 0 || CountBulletNum(81) > 0 || CountBulletNum(82) > 0 || CountBulletNum(85) > 0)
+	if (CountBulletNum(80) > 0 || CountBulletNum(81) > 0 || CountBulletNum(82) > 0 || CountBulletNum(85) > 0){
+		ClearCooldown(gCooldowns, SHEATHING_TIMER_ID);
 		return;
+	}
+
+	if (CheckForCooldown(gCooldowns, SHEATHING_TIMER_ID) == -1 && (GetNPCFlag(Flags::AMY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
+		InitiateCooldown(gCooldowns, SHEATHING_TIMER_ID);
+	}
 
 	switch (level)
 	{
@@ -2645,26 +2675,44 @@ void ShootBullet_SwordSwing2(int level)
 
 	if (gKey & gKeyShot)
 	{
+		BULLET* bul;
+		
 		if (gMC.up)
 		{
-			if (gMC.direct == 0)
-				SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y + (4 * 0x200), 0);
-			else
-				SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y + (4 * 0x200), 2);
+			if (gMC.direct == 0){
+				bul = SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y + (4 * 0x200));
+				bul->direct = 0;
+			}
+			else{
+				bul = SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y + (4 * 0x200));
+				bul->direct = 2;
+			}
 		}
 		else if (gMC.down)
 		{
-			if (gMC.direct == 0)
-				SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y - (6 * 0x200), 0);
-			else
-				SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y - (6 * 0x200), 2);
+			if (gMC.direct == 0){
+				bul = SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y - (6 * 0x200));
+				bul->direct = 0;
+			}
+			else{
+				bul = SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y - (6 * 0x200));
+				bul->direct = 2;
+			}
 		}
 		else
 		{
-			if (gMC.direct == 0)
-				SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y - (3 * 0x200), 0);
-			else
-				SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y - (3 * 0x200), 2);
+			if (gMC.direct == 0){
+				bul = SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y - (3 * 0x200));
+				bul->direct = 0;
+			}
+			else{
+				bul = SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y - (3 * 0x200));
+				bul->direct = 2;
+			}
+		}
+		if (CheckForCooldown(gCooldowns, SHEATHING_TIMER_ID) == 0){
+			bul->ani_no = 1;
+			PlaySoundObject(65, SOUND_MODE_PLAY);
 		}
 
 		PlaySoundObject(106, SOUND_MODE_PLAY);

@@ -68,8 +68,8 @@ The god of exploring yourself, has every
 tool to destroy, but gets less score.<WAI9999<END
 #0917
 <MSG<TUR                 - Ame -
-Cat agility allows her to lunge forward
-with pressing dash button.<WAI9999<END
+Cat agility allows her to charge up swords
+and lunge forward on pressing dash button.<WAI9999<END
 #0918
 <MSG<TUR               - ProcGen -
 The robot that moves on wheel, spreads
@@ -135,8 +135,9 @@ damage, XP drops and i-frames.<WAI9999<END
 double jumping, hooking, destroying rows of
 blocks, gliding and many more.<WAI9999<END
 #0967
-<MSG<TURHer fragility and inexperience
-leaves her with 33% less HP.<WAI9999<END
+<MSG<TURHold any sword for 3.5 seconds without
+using to charge it. Her fragility and 
+inexperience leaves her with 33% less HP.<WAI9999<END
 #0968
 <MSG<TURProcGen's wheel makes it hard to turn
 around, unless using flight. Flight also

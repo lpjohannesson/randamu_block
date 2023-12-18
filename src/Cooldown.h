@@ -23,11 +23,15 @@ const int NANITES_TIME_ID = 7;
 const int NANITES_CD_ID = 8;
 const int GRAVITY_FLIP_ID = 9;
 const int FLOODTIDE_ATTACK_ID = 10;
+const int SHEATHING_TIMER_ID = 11;
+const int FLOODTIDE_BOOST_ID = 12;
+const int HELLSWEEP_BOOST_ID = 13;
 
 void InitiateCooldown(std::vector<Cooldown>& list, int id);
 void InitiateCooldown(std::vector<Cooldown>& list, int id, int duration);
 void IncrementCooldown(std::vector<Cooldown>& list, int id, int duration);
 void OverrideCooldown(std::vector<Cooldown>& list, int id, int duration);
+void ClearCooldown(std::vector<Cooldown>& list, int id);
 int CheckForCooldown(std::vector<Cooldown>& list, int id);
 void PutCooldownList(std::vector<Cooldown>& list);
 void ActCooldownList(std::vector<Cooldown>& list);
