@@ -119,6 +119,57 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.43.1 (Gamekutsu Rebaldamu, Part 2) (December 19th 2023):
+- Tweaked/buffed Electric Shotgun:
+	* reduced max ammo from 20 to 5
+	* now much more spammable: pressing Shoot when anything is targeted will remove all existing shots
+	* reduced effective recharge speed from 100 frames to 130 frames
+- Massively nerfed/reworked Gatling Gun:
+	* dear god, this was overpowered in a way I forgot it was
+	* now has its own bullet instead of reducing normal Machine Gun's bullets
+	* reduced damage from 3-3 to 1-2, and no longer affected by Curly's boost
+	* reduced effective firerate from 4(3)/2(1)/1(1) to 5(3)
+	* reduced effective amount of bullets from 1-2/2-6/3-12 to 1-3/1-5/1-7
+	* reduced recharge rate from 3/2/1 to 5
+	* increased spread of bullets by ~33%
+	* decreased the range and knockback of bullets by ~20%
+- Added sword charging/sheathing ability for Ame: 
+	* hold any sword weapon for 3.5 seconds without using to charge it up
+	* hitting enemies with charged sword does 4x more damage and empowers it for 7 seconds
+	* empowered swords swing 2x faster and have additional projectiles
+- Buffed Hellsweep's projectiles: 
+	* lvl1 bomb now explodes on touching enemies, but only after 10 frames of existing, and lasts 75 frames instead of 100
+	* increased piercing of lvl2 fireballs from 1-4 to 2-5
+	* increased max speed of lvl3 flamings by 11%
+- Buffed Little Man: 
+	* increased his damage from 1/3 to 2/5
+- Tweaked some of Resonant's difficulty:
+	* increased item limit from 4 to 5
+	* increased air gain outside of water to be 3x less than normal rather than 25x
+	* now has guaranteed refill station
+- Tutorial can no longer be invoked when another script is running.
+- Replaced Reinforced boss music with different track.
+- Added "sheepCharacter" config option to permanently turn player into a sheep.
+- Added "speedrunMetadata" config option to generate some pointer data for speedruns as JSON.
+- Changed Missile Launcher's description to be character-independent.
+- Changed waiting on Energy Crystal's description to be <NOD.
+- Fixed a typo on Water Thrusters equipping message.
+- Fixed Military Armament crafting not taking away Nanites Absorber.
+- Edited normal ending's choice script to be more clear.
+- Fixed Iron Bond's nerf not working as it should.
+- Fixed second campaign Grasstown critters deadlock (fixes #46).
+- Fixed some stunlock issues with puppies trying to damage themselves out of bounds (fixes #47?).
+- Fixed Super Booster applying its effect to unrelated accessories (fixes #48).
+- Fixed the issues of allies and floating items persisting when their source is unequipped (fixes #50).
+- Fixed second campaign wins being recognized as drowned rather than completed (fixes #52).
+- Last depth of second campaign now always sends to Final Chamber even if tileset is locked (fixes #53).
+- Fixed issues with Ballos not transitioning into his map boss forms (fixes #54).
+- Fixed Mimiga Village's campfires rendering as chests on Improved Map System (fixes #55).
+- Fixed fast ranking scroll crash if there is less than 10 entries (fixes #56).
+- Fixed all reported cases of transitioning to Rankings and Title Screen not working properly (fixes #57).
+- Removed Shadow Toroko's transformation entirely (fixes #58).
+- "No Miracle Matter" message now stops the game action while it is running (fixes #59).
+
 1.43 (Gamekutsu Rebaldamu) (December 2nd 2023):
 New content:
 - Overhauled air supply mechanic:

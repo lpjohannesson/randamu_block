@@ -43,8 +43,8 @@ bool GetCompileVersion(int *v1, int *v2, int *v3, int *v4)
 {
 	*v1 = 1;
 	*v2 = 43;
-	*v3 = 0;
-	*v4 = 5;
+	*v3 = 1;
+	*v4 = 0;
 	return true;
 }
 
@@ -64,7 +64,7 @@ bool RemoveFromArray(int* array, int value, size_t array_size){
 }
 
 std::string GetVersionName(){
-	return "Gamekutsu Rebaldamu";
+	return "Gamekutsu Rebaldamu, Part 2";
 }
 
 bool IsBeta(){
