@@ -41,7 +41,7 @@ Each resource override folder should contain info.json (with name and descriptio
 - You can't load your save if boss is alive, or Quote is dead, or when you are at King's Table.
 - Machine Gun and Bubbler have increased firerate, damage and spread.
 - Fireball has increased momentum and decreased gravity.
-- Ranking entries are sorted by score. When it exceeds 99, the run with lowest score will be deleted.
+- Ranking entries are sorted by score.
 
 Challenges/modifiers system (config.json):
 To set the value, put it as ""name": value" in config.json (it's created automatically).
