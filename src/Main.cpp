@@ -147,6 +147,12 @@ void from_json(const json &j, GenerationMetadata &gm)
 	}
 }
 
+std::string GivePointerString(const void* p){
+	std::stringstream lol;
+	lol << p;
+	return lol.str();
+}
+
 void ReloadConfig(){
 	auto timing = std::chrono::steady_clock::now();
 	if (!IsKeyFile("config.json")){
@@ -191,6 +197,17 @@ void ReloadConfig(){
 		timeStopCoefficients[std::stoi(key)] = value;
 	}
 	messageBank = ParseMapTag("Tags/messages.json");
+
+	if (ChallengeEnabled("speedrunMetadata")){
+		WriteGameLog("Writing out speedrun flag data.");
+		json speedrunData = json::object();
+		speedrunData["depth"] = GivePointerString(&gMC.depth);
+		speedrunData["timer"] = GivePointerString(&time_count);
+		speedrunData["gameMode"] = GivePointerString(&gGameMode);
+		speedrunData["endFlag"] = GivePointerString(&gMC.grass);
+		WriteJSON(gModulePath + "/speedrunData.json", speedrunData, mode::normal);
+	}
+
 	WriteGameLog("Config and tags reloaded in ", since<std::chrono::microseconds>(timing).count(), " us.");
 }
 

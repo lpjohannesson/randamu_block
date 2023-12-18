@@ -72,6 +72,7 @@ To set the value, put it as ""name": value" in config.json (it's created automat
 - 'pitch_randomizer': enables/disables the pitch randomization function, intended to make Organya soundtrack more varied to listen to.
 - 'debug': enables/disables debug mode. In debug mode, you can move in every direction without gravity, enemies die instantly, you take no damage, use no ammo and doors open without requiring stars.
 - 'stage_debug": enables/disables dumping the order of level generation stages into game log.
+- 'speedrunMetadata': enables/disables creating "speedrunData.json" with some pointers on every config reload.
 - 'hitboxes': enables/disables overlay that shows entity hitboxes.
 - 'legacyUI': enables/disables programmer art designs used in early releases. Cannot be toggled off on April 1st.
 - 'oneDamage': enables/disables the configuration to make every weapon deal one damage per hit at max.
