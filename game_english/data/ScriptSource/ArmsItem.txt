@@ -413,8 +413,9 @@ at refill stations.<WAI9999<END
 <FLJ0725:7004
 <ELJ
 <KEY<MSGA silver locket in
-the shape of a fish.<NOD Allows
-dashing with Dash key.<NOD<CLR
+the shape of a fish.<NOD Empowers dash
+move, allowing it to go through
+enemies and spikes without damage.<NOD<CLR
 Do you want to equip it?<YNJ0000<E2+0026<FL+0725<MSG
 Equipped Silver Locket.<NOD<WAI0003<FRE<EVE5004
 #6005

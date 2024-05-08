@@ -194,13 +194,11 @@ void ActCooldownList(std::vector<Cooldown>& list){
                         break;
 
                     case DASH_TIMER_ID:
-                        if (IsDashEquipped()){
-                            SetCaret(gMC.x, gMC.y, 2, 2);
-                            SetCaret(gMC.x-0x1000, gMC.y, 2, 2);
-                            SetCaret(gMC.x+0x1000, gMC.y, 2, 2);
-                            SetCaret(gMC.x, gMC.y+0x1000, 2, 2);
-                            SetCaret(gMC.x, gMC.y-0x1000, 2, 2);
-                        }
+                        SetCaret(gMC.x, gMC.y, 2, 2);
+                        SetCaret(gMC.x-0x1000, gMC.y, 2, 2);
+                        SetCaret(gMC.x+0x1000, gMC.y, 2, 2);
+                        SetCaret(gMC.x, gMC.y+0x1000, 2, 2);
+                        SetCaret(gMC.x, gMC.y-0x1000, 2, 2);
                         break;
                         
                 }

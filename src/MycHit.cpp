@@ -383,7 +383,7 @@ int JudgeHitMyCharDamage(int x, int y)
 
 	if (abs(gMC.xm) > 1250 && (GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
 
-	if (gMC.dashDuration > 0) return hit;
+	if (gMC.dashDuration > 0 && IsDashEquipped()) return hit;
 
 	if (gMC.x - 0x800 < (x * 0x10 + 4) * 0x200
 		&& gMC.x + 0x800 > (x * 0x10 - 4) * 0x200
@@ -400,7 +400,7 @@ int JudgeHitMyCharDamageW(int x, int y)
 
 	if (abs(gMC.xm) > 1250 && (GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
 
-	if (gMC.dashDuration > 0) return hit;
+	if (gMC.dashDuration > 0 && IsDashEquipped()) return hit;
 
 	if (gMC.x - 0x800 < (x * 0x10 + 4) * 0x200
 		&& gMC.x + 0x800 > (x * 0x10 - 4) * 0x200
@@ -989,7 +989,7 @@ void HitMyCharNpChar(void)
 		}
 
 		if (hit != 0){
-			if ((gMC.dashDuration > 0)){
+			if ((gMC.dashDuration > 0 && IsDashEquipped())){
 				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME))&& 
 				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), gNPC[i].code_char) != bonkableEnemies.end()){
 					if (GetNPCFlag(Flags::SACRED_AEGIS)){
@@ -1046,7 +1046,7 @@ void HitMyCharNpChar(void)
 				}
 				if ((gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 0x100) && gKey & gKeyAbility){
 				}
-				else if ((gMC.dashDuration > 0)){
+				else if ((gMC.dashDuration > 0) && IsDashEquipped()){
 				}
 				else {
 					int damage = gNPC[i].damage;
@@ -1072,7 +1072,7 @@ void HitMyCharNpChar(void)
 				}
 				if ((gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 0x100) && gKey & gKeyAbility){
 				}
-				else if ((gMC.dashDuration > 0)){
+				else if ((gMC.dashDuration > 0 && IsDashEquipped())){
 				}
 				else {
 					if (ChallengeEnabled("spike_kill") && (gNPC[i].code_char == 246 || gNPC[i].code_char == 114) && gNPC[i].damage == 13){

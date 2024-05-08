@@ -47,7 +47,8 @@ int DashDuration(){
 	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SUNGLASSES) return 44;
 	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 14;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 25;
-	return 19;
+	if (IsDashEquipped()) return 19;
+	return 16;
 }
 
 float DashSpeed(){
@@ -61,7 +62,8 @@ float DashSpeed(){
 	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 2.25;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 1.85;
 	if (gMC.equip & EQUIP_SPEED_SHOES) return 1.7;
-	return 1.6;
+	if (IsDashEquipped()) return 1.6;
+	return 1.4;
 }
 
 int DashCooldown(){
@@ -73,7 +75,8 @@ int DashCooldown(){
 	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 35;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 50;
 	if (!(gMC.equip & EQUIP_DASH_AMULET) && GetNPCFlag(Flags::AMY_CHARACTER)) return 120;
-	return 40;
+	if (IsDashEquipped()) return 40;
+	return 45;
 }
 
 bool IsASheep(){
@@ -1274,7 +1277,7 @@ void ActMyChar_Normal(bool bKey)
 
 	if (bKey && ((gKeyTrg & gKeyDash)) && 
 		CheckForCooldown(gCooldowns, DASH_TIMER_ID) == -1
-		 && gMC.dashDuration == 0 && IsDashEquipped()){
+		 && gMC.dashDuration == 0){
 		InitiateCooldown(gCooldowns, DASH_TIMER_ID);
 		gMC.dashDuration = 1;
 		gMC.visualDashDuration = 1;
@@ -1329,7 +1332,8 @@ void ActMyChar_Normal(bool bKey)
 				gMC.dashLock = -1;
 				gMC.dashDuration = 0;
 				gMC.xm /= 2;
-				gMC.shock += 10;
+				if (IsDashEquipped())
+					gMC.shock += 10;
 				if (gMC.ameDashState){
 					gMC.ameDashState = false;
 					if (gMC.flag & 1){
@@ -1414,7 +1418,8 @@ void ActMyChar_Normal(bool bKey)
 		gMC.dashLock = -1;
 		gMC.dashDuration = 0;
 		gMC.xm /= 2;
-		gMC.shock += 10;
+		if (IsDashEquipped())
+			gMC.shock += 10;
 		if (gMC.ameDashState){
 					gMC.ameDashState = false;
 		}
