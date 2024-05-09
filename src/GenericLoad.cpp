@@ -87,6 +87,8 @@ static const struct
 	{63, "PixTone/063.pxt", SOUND_TYPE_PIXTONE},
 	{64, "PixTone/064.pxt", SOUND_TYPE_PIXTONE},
 	{65, "PixTone/065.pxt", SOUND_TYPE_PIXTONE},
+	{66, "PixTone/066.pxt", SOUND_TYPE_PIXTONE},
+	{67, "PixTone/067.pxt", SOUND_TYPE_PIXTONE},
 	{70, "PixTone/070.pxt", SOUND_TYPE_PIXTONE},
 	{71, "PixTone/071.pxt", SOUND_TYPE_PIXTONE},
 	{72, "PixTone/072.pxt", SOUND_TYPE_PIXTONE},
