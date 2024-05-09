@@ -508,11 +508,24 @@ void SwitchWeapon(void){
 			gItemData[gSelectedItem].level = gArmsData[gSelectedArms].level;
 			gItemData[gSelectedItem].ammo = gArmsData[gSelectedArms].num;
 			gItemData[gSelectedItem].xp = gArmsData[gSelectedArms].exp;
+			for (auto weapon: miracleWeaponryList){
+				auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
+				if (weapon == currentCode - 100 && CheckPermitStage(36+it)){
+					SubPermitStage(it+36);
+				}
+			}
+
 			gArmsData[gSelectedArms].code = replacementCode;
 			gArmsData[gSelectedArms].max_num = ammoNeeded;
 			gArmsData[gSelectedArms].num = ammoExisting;
 			gArmsData[gSelectedArms].level = levelExisting;
 			gArmsData[gSelectedArms].exp = xpNeeded;
+			for (auto weapon: miracleWeaponryList){
+				auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
+				if (weapon == replacementCode - 100 && !CheckPermitStage(36+it)){
+					AddPermitStage(it+36, 636 + it);
+				}
+			}
 			StopTextScript();
 			return;
 		}
