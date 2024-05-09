@@ -173,15 +173,15 @@
 	},
 	"firethrowers_defended": {
 			"ID": 97,
-			"minCount": 15,
-			"maxCount": 30,
+			"minCount": 10,
+			"maxCount": 18,
 			"gimmick": "9",
 			"trapBlock": true
 	},
 	"firethrowers_defended_second_camp": {
 			"parent": "firethrowers_defended",
-			"minCount": 60,
-			"maxCount": 115,
+			"minCount": 30,
+			"maxCount": 75,
 			"secondCampaign": true
 	},
 	"gravityStuff": {
@@ -335,8 +335,8 @@
 	"mini_turrets": {
 			"ID": 239,
 			"gimmick": "9",
-			"minCount": 30,
-			"maxCount": 40,
+			"minCount": 15,
+			"maxCount": 25,
 			"faceAwayFromWall": true,
 			"surface": false, "wall": true
 	},
