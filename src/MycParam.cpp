@@ -243,6 +243,8 @@ void DamageMyChar(int damage)
 			sound = 54;
 		if (GetNPCFlag(Flags::MISERY_CHARACTER))
 			sound = 66;
+		if (GetNPCFlag(Flags::PUPPY_CHARACTER))
+			sound = 105;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 	}
 	gMC.cond &= ~1;
@@ -400,7 +402,7 @@ void Die(void){
 			sound = 25;
 		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 35;
-		if (GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER))
+		if (GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER) || GetNPCFlag(Flags::PUPPY_CHARACTER))
 			sound = 53;
 		if (GetNPCFlag(Flags::MISERY_CHARACTER))
 			sound = 67;
