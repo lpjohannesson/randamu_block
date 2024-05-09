@@ -404,7 +404,7 @@ and allows Polar Star and Nemesis
 to recharge slowly.<NOD It also 
 increases max ammo on Polar Star
 and Nemesis and provides chance
-for any weapon to not consume ammo.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1014<IT+0014<IT-0020<IT-0045<FL+0861<MM-Created =Energy Crystal=!<WAI0135<NOD<CLO<PS-0007<RMU<END
+for any weapon to not consume ammo.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1014<IT+0014<IT-0020<IT-0045<FL+0861<EQ+P776<MM-Created =Energy Crystal=!<WAI0135<NOD<CLO<PS-0007<RMU<END
 #0608
 <PRI<MSG<GIT1016Terra Boots allow
 to move incredible fast on
