@@ -633,10 +633,9 @@ void SpawnQuiverProjectile(NPCHAR &npc)
 	int x, y;
 		do
 		{
-			x = Random(0, gMap.width*0x2000);
-			y = Random(0, gMap.length*0x2000);
-		} while (!(Distance(npc.x, npc.y, x, y) < 90_pix  && 
-					Distance(npc.x, npc.y, x, y) > 8_pix));
+			x = Random(std::max(0, npc.x - 50_pix), std::min(npc.x + 50_pix, gMap.width*16_pix));
+			y = Random(std::max(0, npc.y - 50_pix), std::min(npc.y + 50_pix, gMap.length*16_pix));
+		} while (Distance(npc.x, npc.y, x, y) < 8_pix);
 		BULLET *quiverProj = SetBullet(47, x, y);
 		if (quiverProj != NULL){
 			quiverProj->tgt_x = npc.x;
