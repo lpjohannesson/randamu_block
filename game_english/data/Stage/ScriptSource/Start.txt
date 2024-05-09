@@ -375,7 +375,7 @@ increases immunity frames, removes
 knockback and protects <NAM
 from fatal hits.<NOD It also reduces
 all damage by 1 and has 33% chance
-to nullify damage below 4.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1010<IT+0010<IT-0031<IT-0052<E2-0017<E2-0022<FL-0745<FL-0739<MM-Created =Shield of
+to nullify damage below 4.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1010<IT+0010<IT-0031<IT-0052<E2-0017<E2-0022<DNA0190<FL-0745<FL-0739<MM-Created =Shield of
 Resilience=!<WAI0135<NOD<CLO<PS-0003<RMU<END
 #0604
 <PRI<MSG<GIT1011Augmented Man
