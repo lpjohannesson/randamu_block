@@ -122,6 +122,7 @@ namespace Flags {
 	inline constexpr int MILITARY_ARMAMENT        = 883;
 
 	inline constexpr int STAR_SAVE_FLAG_BEGIN     = 950;
+	inline constexpr int BADGE_OF_LOVE_REVIVE_PROC= 970;
 
 	inline constexpr int PROCGEN_CHARACTER        = 1024;
 	inline constexpr int SERENITY_CHARACTER       = 2048;
