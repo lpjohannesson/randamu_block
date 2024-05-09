@@ -1174,7 +1174,7 @@ bool LoadMapAssets(){
 	std::string path;
 	bool bError = false;
 	InitTileset();
-	if (genContext.gimmick == GIMMICK_DARKNESS)
+	if (genContext.gimmick == GIMMICK_DARKNESS || ChallengeEnabled("darkness"))
 		path = path_dir + "/PrtNCave" + genContext.tileset;
 	else
 		path = path_dir + "/PrtCave" + genContext.tileset;
