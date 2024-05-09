@@ -235,9 +235,9 @@ void DamageMyChar(int damage)
 		int sound = 16;
 		if (GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 			sound = 52;
-		if (GetNPCFlag(Flags::CURLY_CHARACTER))
+		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 57;
-		if (GetNPCFlag(Flags::TOROKO_CHARACTER))
+		if (GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER))
 			sound = 50;
 		if (GetNPCFlag(Flags::PROCGEN_CHARACTER))
 			sound = 54;
@@ -396,9 +396,9 @@ void Die(void){
 		int sound = 17;
 		if (GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 			sound = 25;
-		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER))
+		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 35;
-		if (GetNPCFlag(Flags::TOROKO_CHARACTER))
+		if (GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER))
 			sound = 53;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 		gMC.cond = 0;
