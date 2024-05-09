@@ -8,6 +8,7 @@
 #include <cstring>
 
 #include "ArmsItem.h"
+#include "Boss.h"
 #include "BossLife.h"
 #include "Draw.h"
 #include "Caret.h"
@@ -1919,41 +1920,43 @@ void ActBullet_Missile(BULLET *bul, int level)
 		gMC.direct = bul->direct;
 
 		// Camera
-		if (gMC.direct == 0)
-		{
-			gMC.index_x -= 0x200;
-			if (gMC.index_x < -0x8000)
-				gMC.index_x = -0x8000;
-		}
-		else
-		{
-			gMC.index_x += 0x200;
-			if (gMC.index_x > 0x8000)
-				gMC.index_x = 0x8000;
-		}
-		if (gKey & gKeyUp)
-		{
-			gMC.index_y -= 0x200;
-			if (gMC.index_y < -0x8000)
-				gMC.index_y = -0x8000;
-		}
-		else if (gKey & gKeyDown)
-		{
-			gMC.index_y += 0x200;
-			if (gMC.index_y > 0x8000)
-				gMC.index_y = 0x8000;
-		}
-		else
-		{
-			if (gMC.index_y > 0x200)
+		if (gBoss[0].code_char != 5){
+			if (gMC.direct == 0)
+			{
+				gMC.index_x -= 0x200;
+				if (gMC.index_x < -0x8000)
+					gMC.index_x = -0x8000;
+			}
+			else
+			{
+				gMC.index_x += 0x200;
+				if (gMC.index_x > 0x8000)
+					gMC.index_x = 0x8000;
+			}
+			if (gKey & gKeyUp)
+			{
 				gMC.index_y -= 0x200;
-			if (gMC.index_y < -0x200)
+				if (gMC.index_y < -0x8000)
+					gMC.index_y = -0x8000;
+			}
+			else if (gKey & gKeyDown)
+			{
 				gMC.index_y += 0x200;
-		}
+				if (gMC.index_y > 0x8000)
+					gMC.index_y = 0x8000;
+			}
+			else
+			{
+				if (gMC.index_y > 0x200)
+					gMC.index_y -= 0x200;
+				if (gMC.index_y < -0x200)
+					gMC.index_y += 0x200;
+			}
 
-		gMC.tgt_x = gMC.x + gMC.index_x;
-		gMC.tgt_y = gMC.y + gMC.index_y;
-		SetFrameTargetMyChar(8);
+			gMC.tgt_x = gMC.x + gMC.index_x;
+			gMC.tgt_y = gMC.y + gMC.index_y;
+			SetFrameTargetMyChar(8);
+		}
 
 		break;
 	}
