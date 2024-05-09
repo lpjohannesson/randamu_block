@@ -431,7 +431,7 @@ halves the damage from spikes and
 increases weapon range by 33%.<NOD It
 also reduces damage from presses
 to 9 and allows to strafe with
-Ability key.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1024<IT+0024<IT-0036<IT-0057<FL-0705<EQ-0128<FL-0749<DNA0189<MM-Created =Amphibian Medal=!<WAI0135<NOD<CLO<PS-0011<RMU<END
+Ability key.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1024<IT+0024<IT-0036<IT-0057<FL-0705<EQ-0128<DNA0189<FL-0749<MM-Created =Amphibian Medal=!<WAI0135<NOD<CLO<PS-0011<RMU<END
 #0612
 <PRI<MSG<GIT1025High-Octane Tank
 overloads Machine Gun and Bubbler,
