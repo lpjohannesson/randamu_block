@@ -157,7 +157,7 @@ void ReloadConfig(){
 	auto timing = std::chrono::steady_clock::now();
 	if (!IsKeyFile("config.json")){
 		WriteGameLog("Config doesn't exist, recreating it.");
-		WriteJSON(gModulePath + "/config.json", json::object(), mode::normal);
+		WriteJSON(gModulePath + "/config.json", json::object(), mode::normal, 3);
 	}
 
 	gJConfig = ReadJSON(gModulePath + "/config.json", mode::normalGlobal);

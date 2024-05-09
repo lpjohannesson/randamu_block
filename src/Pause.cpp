@@ -1762,7 +1762,7 @@ static int Callback_Character2(OptionsMenu *parent_menu, size_t this_option, Cal
 		return CALLBACK_CONTINUE;
 	restart_required = false;
 	int return_value = Callback_PickCharacter(parent_menu, this_option);	// Restart game
-	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal);
+	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal, 3);
 	ReloadConfig();
 	LoadInterface(ChallengeEnabled("legacyUI"));
 	gGameMode = 3;
@@ -2639,7 +2639,7 @@ static int Callback_Configuration(OptionsMenu *parent_menu, size_t this_option, 
 	if (return_value == CALLBACK_CONTINUE)
 		PlaySoundObject(5, SOUND_MODE_PLAY);
 
-	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal);
+	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal, 3);
 
 	return return_value;
 }
@@ -2694,7 +2694,7 @@ static int Callback_Configuration2(OptionsMenu *parent_menu, size_t this_option,
 	if (return_value == CALLBACK_CONTINUE)
 		PlaySoundObject(5, SOUND_MODE_PLAY);
 
-	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal);
+	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal, 3);
 	ReloadConfig();
 	LoadInterface(ChallengeEnabled("legacyUI"));
 
