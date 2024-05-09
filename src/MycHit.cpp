@@ -1124,7 +1124,7 @@ void HitMyCharNpChar(void)
 					StartTextScript(gNPC[i].code_event);
 				}
 			}
-			if (gNPC[i].code_char != 15 && gNPC[i].code_char != 17)
+			if (gNPC[i].code_char != 15 && gNPC[i].code_char != 17 && gNPC[i].code_char != 32 || gNPC[i].code_char != 253)
 				StartTextScript(gNPC[i].code_event);
 			if (gNPC[i].code_char == 32 || gNPC[i].code_char == 253) {
 				if (gBL.flag){
