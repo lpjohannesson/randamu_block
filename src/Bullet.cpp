@@ -1790,7 +1790,7 @@ void ActBullet_Missile(BULLET *bul, int level)
 
 	// if (bul->life != 10)
 	// 	bHit = true;
-	if (bul->flag & 0xF)
+	if (bul->flag & 0xF || (!(gMC.x > 32_pix && gMC.x < (gMap.width-3)*0x2000 && gMC.y > 32_pix && gMC.y < (gMap.length-3)*0x2000) && gMC.outerWallInit))
 		bHit = true;
 	if (bHit)
 	{
