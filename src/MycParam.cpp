@@ -696,7 +696,7 @@ void PutMyScore(int y){
 	Rect rcStars = {16, 80, 32, 96};
 	Rect rcStairs = {113, 112, 141, 121};
 	Rect rcPoints = {81, 73, 109, 80};
-	Rect rcMiracle = {228, 2, 252, 16};
+	Rect rcMiracle = {228, 0, 252, 16};
 	Rect rcTurboText[2] = {{112, 104, 120, 112}, {120, 104, 128, 112}};
 	int depthy = 0;
 	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER)) depthy = 3;
@@ -729,7 +729,7 @@ void PutMyScore(int y){
 	}
 	if (gMC.miracle > 0){
 		for (int l = 0; l < gMC.miracle; l++)
-			PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(WINDOW_WIDTH - 25), PixelToScreenCoord(((lol / 8) * 10) + (lol > 0 ? 30 : 15) + l * 15), &rcMiracle, SURFACE_ID_ITEM_IMAGE);
+			PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(WINDOW_WIDTH - 25), PixelToScreenCoord(((lol / 8) * 10) + (lol > 0 ? 33 : 17) + l * 17), &rcMiracle, SURFACE_ID_ITEM_IMAGE);
 	}
 }
 

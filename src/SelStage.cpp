@@ -133,7 +133,7 @@ void PutStageSelectObject(void)
 	Rect rcStage;
 
 	Rect rcView = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
-	Rect rcMiracle = {228, 2, 252, 16};
+	Rect rcMiracle = {228, 0, 252, 16};
 
 	Rect rcCur[2] = {
 		{80, 88, 112, 104},
