@@ -24,7 +24,6 @@ void ActNpcPlatform(NPCHAR *npc)
 		npc->bits |= NPC_SOLID_HARD;
 		if (gKey & gKeyDown){
 			npc->bits &= ~NPC_SOLID_HARD;
-			gMC.cond &= ~1;
 		}
 	} else {
 		npc->bits &= ~NPC_SOLID_HARD;
