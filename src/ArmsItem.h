@@ -6,7 +6,7 @@
 
 // Limits for the amount of weapons and items
 #define ARMS_MAX 13
-#define ITEM_MAX 0x23
+#define ITEM_MAX 0x26
 
 // "Arms" is a synonym of "weapon" here
 // "Code" means "ID" here
