@@ -1799,7 +1799,7 @@ void ActBullet_Missile(BULLET *bul, int level)
 		gMC.direct = 2;
 	}
 
-	bul->life = 100;
+	bul->life = 1000;
 	if (++bul->count1 % 3 == 0){
 		bul->damage = 1;
 	} else {
