@@ -70,7 +70,7 @@ int DashCooldown(){
 	if (GetNPCFlag(Flags::DISCORDIAN_VISOR)) return 88;
 	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) return 25;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;
-	if (GetNPCFlag(Flags::KING_CHARACTER) || (GetNPCFlag(Flags::MAHIN_CHARACTER) && gArmsData[gSelectedArms].code == 9)) return 110;
+	if ((GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[gSelectedArms].code == 9) return 110;
 	if ((gMC.equip & (EQUIP_SUPER_DASH | EQUIP_SUNGLASSES)) || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 45;
 	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 35;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 50;
