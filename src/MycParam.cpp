@@ -149,7 +149,7 @@ int RegenDelayScaling(){
 }
 
 int RegenerationDelay(){
-	return RegenDelayScaling()*3 + gMC.regenMaxCount*RegenDelayScaling();
+	return 2400;
 }
 
 int RegenerationCap(){
@@ -250,7 +250,6 @@ void DamageMyChar(int damage)
 	gMC.cond &= ~1;
 	gMC.shock = 128;
 	gMC.regenCount = 0;
-	gMC.regenMaxCount = -1;
 	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 		InitiateCooldown(gCooldowns, DUCK_TIMER_ID);
 	gMC.star = 0;
@@ -680,8 +679,8 @@ void PutMyLife(bool flash)
 	// Draw bar
 	rcCase.right = 64;
 	float healingRate = 6;
-	rcLife.right += (((gMC.life * 40) + (gMC.equip & EQUIP_MIMIGA_MASK && 
-		gMC.life < gMC.max_life && gMC.shock == 0 ? (gMC.regenCount / healingRate) : 0)) / gMC.max_life);
+	rcLife.right += (((gMC.life * 40)/*  + (gMC.equip & EQUIP_MIMIGA_MASK && 
+		gMC.life < gMC.max_life && gMC.shock == 0 ? (gMC.regenCount / healingRate) : 0) */) / gMC.max_life);
 	rcBr.right += (((gMC.lifeBr * 40)) / gMC.max_life);
 
 	PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(16), PixelToScreenCoord(40), &rcDifficulty, SURFACE_ID_TEXT_BOX);

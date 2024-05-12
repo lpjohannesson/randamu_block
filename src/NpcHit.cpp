@@ -768,6 +768,18 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	if (ChallengeEnabled("oneDamage") && dmg > 0) //one damage option
 		dmg = 1;
 
+	if (gMC.equip & EQUIP_MIMIGA_MASK && std::find(lifestealEnemies.begin(), lifestealEnemies.end(), npc.code_char) != lifestealEnemies.end()){
+		gMC.regenCounter += 100 * (npc.life <= dmg ? npc.life : dmg);
+		while (gMC.regenCounter >= RegenerationDelay()){
+			gMC.regenCounter -= RegenerationDelay();
+			PlaySoundObject(42);
+			int targetX = npc.x + Random(-8, 8) * 1_pix;
+			int targetY = npc.y + Random(-8, 8) * 1_pix;
+			SetLifeObject(targetX, targetY, 2);
+			SetCaret(npc.x, npc.y, 12, 0);
+		}
+	}
+
 	npc.life -= dmg;
 
 	if (Random(0, 2) == 0 && dmg != 0 && gMC.equip & EQUIP_NANO_QUIVER && 

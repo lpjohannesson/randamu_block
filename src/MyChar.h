@@ -119,7 +119,7 @@ struct MYCHAR
 	unsigned long seed;
 	bool randomSeed;
 	int regenCount;
-	int regenMaxCount;
+	int regenCounter;
 	int dashDuration;
 	int visualDashDuration;
 	int dashLock;

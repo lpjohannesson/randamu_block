@@ -382,6 +382,7 @@ const NPCFUNCTION gpNpcFuncTbl[] = {
 NPC_TABLE *gNpcTable;
 std::vector<int> bonkableEnemies;
 std::vector<int> lifeImmuneEnemies;
+std::vector<int> lifestealEnemies;
 std::vector<int> waterBullets;
 std::vector<int> knockImmuneEnemies;
 std::vector<int> etherealEntities;
@@ -408,6 +409,7 @@ void LoadNPCTags(){
 		knockImmuneEnemies = ParseTag<int>("Tags/knockbackImmune.json");
 		etherealEntities = ParseTag<int>("Tags/etherealEntities.json");
 		aquaticEntities = ParseTag<int>("Tags/aquaticEntities.json");
+		lifestealEnemies = ParseTag<int>("Tags/lifestealEntities.json");
 
 		json npcSpawningProto = ReadJSON("Tags/npcSpawning.json");
 		for (auto &[key, val] : npcSpawningProto.items())

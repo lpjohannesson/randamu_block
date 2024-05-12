@@ -413,7 +413,7 @@ Jump button to fly very high.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI
 #0609
 <PRI<MSG<GIT1017Badge of Love
 summons Curly Brace to aid you
-and provides life regen.<NOD
+and provides lifesteal.<NOD
 Hearts move towards <NAM and
 on fatal hit Curly will sacrifice
 herself to heal you.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1017<IT+0017<IT-0035<IT-0039<DNA0320<FL-0751<EQ-0064<FL-0746<MM-Created =Badge of Love=!<WAI0135<NOD<CLO<PS-0009<RMU<END

@@ -510,7 +510,7 @@ Equipped Terra Boots.<NOD<WAI0003<FRE<EVE5016
 <KEY<MSGThe badge of one who will
 never leave you behind...<NOD Summons
 Curly Brace to aid <NAM.<NOD Provides
-passive life regeneration and
+hearts via damaging enemies and
 protection to acidic water.<NOD
 Hearts will gravitate towards
 <NAM if close enough.<NOD
@@ -696,10 +696,9 @@ Equipped the Whimsical Star.<NOD<WAI0003<FRE<EVE5038
 <KEY<MSG<NAM's tie to Curly Brace, the
 only warrior <NAM would
 trust their back to.<NOD Grants
-passive life regeneration.<NOD
-Removes damage from acidic water, 
-but can't heal while under this
-water.<NOD<CLR
+lifesteal via dropping hearts
+from damaging enemies.<NOD
+Removes damage from acidic water.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0064<FL+0746<MSG
 Equipped Iron Bond.<NOD<WAI0003<FRE<EVE5039
 <WAI9999<END

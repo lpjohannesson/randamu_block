@@ -1923,16 +1923,16 @@ void ActMyChar(bool bKey)
 	else if (gMC.equip & EQUIP_MIMIGA_MASK && bKey)
 	{
 		int regenDelay = RegenerationDelay();
-		if (++gMC.regenCount > regenDelay && gMC.life < gMC.max_life)
-		{
-			if (!((gMC.tileset == 'A' || gMC.tileset == '9' || gMC.tileset == 'E') && gMC.flag & 0x100))
-			{
-				AddLifeMyChar(1);
-				gMC.regenMaxCount = std::max(RegenerationCap(), gMC.regenMaxCount + 1);
-				PlaySoundObject(20, SOUND_MODE_PLAY);
-			}
-			gMC.regenCount = 0;
-		}
+		// if (++gMC.regenCount > regenDelay && gMC.life < gMC.max_life)
+		// {
+		// 	if (!((gMC.tileset == 'A' || gMC.tileset == '9' || gMC.tileset == 'E') && gMC.flag & 0x100))
+		// 	{
+		// 		AddLifeMyChar(1);
+		// 		gMC.regenMaxCount = std::max(RegenerationCap(), gMC.regenMaxCount + 1);
+		// 		PlaySoundObject(20, SOUND_MODE_PLAY);
+		// 	}
+		// 	gMC.regenCount = 0;
+		// }
 	}
 
 	if (gMC.doctorShock != 0){
