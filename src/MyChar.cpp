@@ -1118,14 +1118,16 @@ void ActMyChar_Normal(bool bKey)
 			// Boost particles (and sound)
 			if (gKeyTrg & gKeyJump || gMC.boost_cnt % 3 == 1)
 			{
-				SetCaret(gMC.x, gMC.y + (6 * 0x200), 7, 3);
+				const int boostPart = GetNPCFlag(Flags::SUPER_BOOSTER) ? 19 : 7;
+				SetCaret(gMC.x, gMC.y + (6 * 0x200), boostPart, 3);
 				PlaySoundObject(113, SOUND_MODE_PLAY);
 			}
 		}
 		else if (gMC.boost_sw == 3 && (gKeyTrg & gKeyJump || gMC.boost_cnt % 3 == 1))
 		{
 			// Boost particles (and sound)
-			SetCaret(gMC.x, gMC.y - (6 * 0x200), 7, 1);
+			const int boostPart = GetNPCFlag(Flags::SUPER_BOOSTER) ? 19 : 7;
+			SetCaret(gMC.x, gMC.y - (6 * 0x200), boostPart, 1);
 			PlaySoundObject(113, SOUND_MODE_PLAY);
 		}
 	}

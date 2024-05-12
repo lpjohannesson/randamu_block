@@ -629,9 +629,9 @@ void ActCaret19(CARET *crt)
 	crt->rect = rcLeft[crt->ani_no];
 	crt->opacity -= 0.08f;
 
-	if (GetNPCFlag(Flags::SUPER_BOOSTER) && ++crt->act_wait % 2 == 0)
+	if (GetNPCFlag(Flags::SUPER_BOOSTER))
 	{
-		NPCHAR* npc = FindNpCharHere(crt->x, crt->y);
+		NPCHAR* npc = FindNpCharHere(crt->x, crt->y, 6, 6);
 		if (npc != NULL)
 			DealDamage(*npc, 1);
 	}
