@@ -1418,7 +1418,7 @@ void ActNpc257(NPCHAR *npc)
 
 			if (gStageNo == 87){
 				if (--npc->act_wait < 0){
-					npc->act_wait = Random(2, 16);
+					npc->act_wait = Random(7, 28);
 					NPCHAR* target = GetTarget(npc->x, npc->y);
 					if (target != NULL && !GetNPCFlag(Flags::BALLOS_BOSS_DONE)){
 						int deg = GetArktan(npc->x - target->x, npc->y - target->y);
