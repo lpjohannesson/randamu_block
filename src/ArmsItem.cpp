@@ -1082,7 +1082,7 @@ bool UseArmsEnergy(long num)
 
 	if (gArmsData[gSelectedArms].max_num == 0)
 		return true;	// No ammo needed
-	if (gArmsData[gSelectedArms].num == 0)
+	if (gArmsData[gSelectedArms].num < num)
 		return false;	// No ammo left
 
 	if (Random(0, 2) == 0 && GetNPCFlag(Flags::ENERGY_CRYSTAL)) return true;
