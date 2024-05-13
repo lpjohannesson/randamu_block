@@ -578,67 +578,159 @@ void ShootBullet_Shotgun(int level)
 	}
 }
 
+int water_charge;
 
 void ShootBullet_WaterStar(int level)
 {
 	int bul_no;
+	bool bShot;
 	static int wait;
-	ZeroExpMyChar();
+	static bool bMax;
+
+	bShot = false;
+
+	if (gKey & gKeyShot)
+	{
+		AddExpMyChar(2);
+
+		if (++water_charge / 2 % 2)
+		{
+			switch (level)
+			{
+				case 3: case 4:
+					if (!IsMaxExpMyChar())
+						PlaySoundObject(61, SOUND_MODE_PLAY);
+
+					break;
+			}
+		}
+	}
+	else
+	{
+		if (water_charge)
+			bShot = true;
+
+		water_charge = 0;
+	}
+
+	if (IsMaxExpMyChar())
+	{
+		if (!bMax)
+		{
+			bMax = true;
+			PlaySoundObject(65, SOUND_MODE_PLAY);
+		}
+	}
+	else
+	{
+		bMax = false;
+	}
+
+	if (!(gKey & gKeyShot))
+		ZeroExpMyChar();
 
 	switch (level)
 	{
 		case 1:
-			bul_no = 4;
+			bul_no = 93;
+			bShot = false;
 			break;
 
-		case 2:
-			bul_no = 5;
-			break;
+		case 3: case 4:
+			if (bMax)
+				bul_no = 39;
+			else
+				bul_no = 0;
 
-		case 3:
-			bul_no = 6;
 			break;
 	}
 
-	if (CountArmsBullet(2) > 1)
-		return;
-
-	if (gKeyTrg & gKeyShot)
+	if (gKeyTrg & gKeyShot || bShot)
 	{
-		if (!UseArmsEnergy(1))
-		{
-			PlaySoundObject(37, SOUND_MODE_PLAY);
-		}
-		else
-		{
-			if ((gKey & gKeyUp && gMC.equip & EQUIP_FAR_PLACE) || gMC.up)
+		if (bul_no == 39){
+			if (!UseArmsEnergy(20))
 			{
-				SetCaret(gMC.x + (1 * 0x200), gMC.y - (9 * 0x200), 3, 0);
-			}
-			else if ((gKey & gKeyDown && gMC.equip & EQUIP_FAR_PLACE) || gMC.down)
-			{
-				SetCaret(gMC.x + (1 * 0x200), gMC.y + (9 * 0x200), 3, 0);
+				PlaySoundObject(37, SOUND_MODE_PLAY);
 			}
 			else
 			{
-				if (gMC.direct == 0)
+				if ((gKey & gKeyUp && gMC.equip & EQUIP_FAR_PLACE) || gMC.up)
 				{
-					SetCaret(gMC.x - (16 * 0x200), gMC.y - (5 * 0x200), 3, 0);
+					SetCaret(gMC.x + (1 * 0x200), gMC.y - (9 * 0x200), 3, 0);
+				}
+				else if ((gKey & gKeyDown && gMC.equip & EQUIP_FAR_PLACE) || gMC.down)
+				{
+					SetCaret(gMC.x + (1 * 0x200), gMC.y + (9 * 0x200), 3, 0);
 				}
 				else
 				{
-					SetCaret(gMC.x + (16 * 0x200), gMC.y - (5 * 0x200), 3, 0);
+					if (gMC.direct == 0)
+					{
+						SetCaret(gMC.x - (16 * 0x200), gMC.y - (5 * 0x200), 3, 0);
+					}
+					else
+					{
+						SetCaret(gMC.x + (16 * 0x200), gMC.y - (5 * 0x200), 3, 0);
+					}
 				}
+				SetNpChar(299, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100);
+				PlaySoundObject(32, SOUND_MODE_PLAY);
 			}
-			SetNpChar(299, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100);
-			PlaySoundObject(32, SOUND_MODE_PLAY);
+		} else if (bul_no != 0) {
+			if (!UseArmsEnergy(1))
+			{
+				PlaySoundObject(37, SOUND_MODE_PLAY);
+			}
+			else
+			{
+				if (gMC.up)
+				{
+					if (gMC.direct == 0)
+					{
+						SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
+						SetCaret(gMC.x - (1 * 0x200), gMC.y - (8 * 0x200), 3, 0);
+					}
+					else
+					{
+						SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
+						SetCaret(gMC.x + (1 * 0x200), gMC.y - (8 * 0x200), 3, 0);
+					}
+				}
+				else if (gMC.down)
+				{
+					if (gMC.direct == 0)
+					{
+						SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
+						SetCaret(gMC.x - (1 * 0x200), gMC.y + (8 * 0x200), 3, 0);
+					}
+					else
+					{
+						SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y + (8 * 0x200), GravityDirect(3));
+						SetCaret(gMC.x + (1 * 0x200), gMC.y + (8 * 0x200), 3, 0);
+					}
+				}
+				else
+				{
+					if (gMC.direct == 0)
+					{
+						SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y + (3 * 0x200), 0);
+						SetCaret(gMC.x - (12 * 0x200), gMC.y + (3 * 0x200), 3, 0);
+					}
+					else
+					{
+						SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y + (3 * 0x200), 2);
+						SetCaret(gMC.x + (12 * 0x200), gMC.y + (3 * 0x200), 3, 0);
+					}
+				}
+						
+				PlaySoundObject(49, SOUND_MODE_PLAY);
+			}
 		}
-	}
-	else if (gMC.flag & 0x100)
+	} else if (gMC.flag & 0x100)
 	{
 		++wait;
 
-		if (wait > 160)
+		if (wait > (GetNPCFlag(Flags::WATER_GUN_EFFECT) ? 32 : 16))
 		{
 			wait = 0;
 			ChargeArmsEnergy(1);

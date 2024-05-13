@@ -5,6 +5,7 @@
 #include "Back.h"
 #include "Boss.h"
 #include "BossLife.h"
+#include "Bullet.h"
 #include "Flags.h"
 #include "Frame.h"
 #include "Game.h"
@@ -1775,12 +1776,31 @@ void ActNpc299(NPCHAR *npc)
 	else
 		npc->y -= 0x45;
 
+	if (npc->act_wait > 250){
+		npc->cond = 0;
+		SetDestroyNpChar(npc->x, npc->y, 20_pix, 10);
+		PlaySoundObject(65, SOUND_MODE_PLAY);
+		for (int deg = 0; deg < 0x100; deg += 0x10)
+		{
+			int xm = GetCos(deg) * 2.5;
+			int ym = GetSin(deg) * 2.5;
+			BULLET* bul = SetBullet(93, npc->x, npc->y);
+			bul->act_no = 1;
+			bul->direct = 4;
+			bul->xm = xm;
+			bul->ym = ym;
+		}
+		return;
+	}
+
 	for (NPCHAR& npcW : gNPC){
 		if (npcW.x - npcW.hit.back < npc->x + npc->hit.back
 		&& npcW.x + npcW.hit.back > npc->x - npc->hit.back
 		&& npcW.y - npcW.hit.top < npc->y + npc->hit.bottom
-		&& npcW.y + npcW.hit.bottom > npc->y - npc->hit.top)
+		&& npcW.y + npcW.hit.bottom > npc->y - npc->hit.top){
 			npcW.flag |= 0x100;
+			npcW.waterEffect = 120;
+		}
 	}
 
 	if (JudgeHitMyCharNPC3(npc) == 0 && GetNPCFlag(Flags::WATER_GUN_EFFECT))

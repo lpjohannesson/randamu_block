@@ -322,6 +322,8 @@ BULLET_TABLE gBulTbl[] = {
 	{1, 15, 40, 32, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1},
 	// Gatling Gun
 	{1, 2, 20, 32, 4, 2, 2, 2, {8, 8, 8, 8}, 0.10, 0.10},
+	// Water Gun projectile
+	{0, 1, 30, 8, 8, 8, 2, 2, {4, 4, 4, 4}, 2, 2},
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -2073,7 +2075,7 @@ void ActBullet_Bom(BULLET *bul, int level)
 	}
 }
 
-void ActBullet_Bubblin1(BULLET *bul)
+void ActBullet_Bubblin1(BULLET *bul, int variant = 1)
 {
 	if (bul->flag & 0x2FF)
 	{
@@ -2138,10 +2140,19 @@ void ActBullet_Bubblin1(BULLET *bul)
 					bul->act_no = 2;
 				}
 				break;
+			case 4:
+				bul->xm *= 0.98;
+				bul->ym *= 0.98;
+				if (std::abs(bul->ym) <= 10 || std::abs(bul->xm) <= 10) {
+					bul->ym = 0;
+					bul->xm = 0;
+					bul->act_no = 2;
+				}
+				break;
 		}
 	} else if (bul->act_no == 2) {
 		if (bul->npc == NULL || !(bul->npc->cond & 0x80)){
-			bul->npc = GetClosest(bul->x, bul->y, 48_pix);
+			bul->npc = GetClosest(bul->x, bul->y, (variant == 2 ? 56_pix : 48_pix));
 		} else {
 			SetCaret(bul->x, bul->y, 1, 0);
 			bul->tgt_x = bul->npc->x;
@@ -2157,7 +2168,7 @@ void ActBullet_Bubblin1(BULLET *bul)
 	bul->x += bul->xm;
 	bul->y += bul->ym;
 
-	if (++bul->act_wait > 250)
+	if (++bul->act_wait > (variant == 2 ? 250 : 100))
 	{
 		bul->cond = 0;
 		SetCaret(bul->x, bul->y, 15, 0);
@@ -5408,6 +5419,11 @@ void ActBullet(void)
 						break;
 					case 71:
 						ActBullet_Bubblin4(&gBul[i]);
+						break;
+
+					// Water Gun
+					case 93:
+						ActBullet_Bubblin1(&gBul[i], 2);
 						break;
 
 					// Bubbler level 3 spines

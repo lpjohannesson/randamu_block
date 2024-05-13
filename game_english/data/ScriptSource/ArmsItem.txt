@@ -60,9 +60,9 @@ Crushes tiles into dust.<WAI9999<END
 Hold down the button to
 fire a laser.<WAI9999<END
 #1014
-<MSG<TUR- Water Gun -
-Projects water shield that makes any entity
-it touches considered underwater.<WAI9999<END
+<MSG<TUR- Water Sprayer -
+Shoots homing explosive bubbles, hold
+down to create a big water bubble.<WAI9999<END
 #1015
 <MSG<TUR- Boomerang Blades -
 Throws spinning returning knives.

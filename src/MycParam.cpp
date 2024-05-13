@@ -39,7 +39,7 @@ ARMS_LEVEL gArmsLevelTable[] =
 	{{40, 50, 20, 60}}, //
 	{{1000,  1000,  1000, 1000}}, //nemesis
 	{{60, 90, 260, 420}}, //spur
-	{{200, 200, 0, 200}}, //water gun
+	{{0, 0, 300, 0}}, //water gun
 	{{30, 60, 10, 70}}, //boomerang blades
 	{{30, 50, 20, 70}}, //rifle
 	{{40, 60, 20, 80}}, //tideblade
@@ -71,7 +71,7 @@ void AddExpMyChar(int x)
 
 	gArmsData[gSelectedArms].exp += x;
 
-	bool zeroXPArm = arms_code == 13 || arms_code == 2 || arms_code == 12;
+	bool zeroXPArm = arms_code == 13 || arms_code == 2 || arms_code == 12 || arms_code == 14;
 
 	int max_lv = 2;
 	if (GetNPCFlag(Flags::SERENITY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) max_lv = 3;

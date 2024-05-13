@@ -715,9 +715,9 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			npc.waterEffect = std::min(npc.waterEffect + Random(10, 25), 120);
 		}
 
-		if (bul->code_bullet == 19){
+		if (bul->code_bullet == 19 || bul->code_bullet == 93){
 			PlaySoundObject(21, SOUND_MODE_PLAY);
-			int lol = Random(10, 30);
+			int lol = bul->code_bullet == 93 ? Random(10, 35) : Random(5, 10);
 			for (int i = 0; i < lol; i++)
 			{
 				int x, y;
