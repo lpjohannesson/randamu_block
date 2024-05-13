@@ -598,7 +598,7 @@ void ActBullet_Hook(BULLET *bul, int level)
 	else if ((++bul->count1 > bul->life_count || bul->flag & 0xF) && bul->act_no == 1)
 	{
 		bul->act_no = 2;
-		bul->damage /= 2;
+		bul->damage /= 4;
 	}
 	// if (bul->flag & 0xF){
 	// 	bul->act_no = 3;
@@ -653,6 +653,7 @@ void ActBullet_Hook(BULLET *bul, int level)
 			}
 		}
 		if (bul->act_no == 2){
+			bul->iframes = 6;
 			if ((!(gKey & gKeyShot) || (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
 					 bul->y > gMC.y - 0x200*8 && bul->y < gMC.y + 0x200*8)){
 				bul->cond = 0;
@@ -668,12 +669,12 @@ void ActBullet_Hook(BULLET *bul, int level)
 			}
 			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
 			deg += Random(-1, 1);
-			if (gKey & gKeyShot && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 16 * 16_pix){
+			if (gKey & gKeyShot && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 8 * 16_pix){
 				// if (gMC.x > bul->x)
 				// 	bul->xm = 0x50;
 				// else
 				// 	bul->xm = -0x50;
-				bul->xm = gMC.xm / 4;
+				bul->xm = gMC.xm / 2;
 
 				bul->ym += 0x100;
 				if (bul->ym > 0x6FF)
@@ -683,9 +684,9 @@ void ActBullet_Hook(BULLET *bul, int level)
 					bul->ym = -0x100;
 
 				if (bul->flag & 1)
-					bul->xm = 0x100;
+					bul->xm = 0x200;
 				else if (bul->flag & 4)
-					bul->xm = -0x100;
+					bul->xm = -0x200;
 			} else {
 				bul->ym = GetSin(deg) * speed;
 				bul->xm = GetCos(deg) * speed;
@@ -711,7 +712,7 @@ void ActBullet_Hook(BULLET *bul, int level)
 			}
 			bul->x += bul->xm;
 			bul->y += bul->ym;
-			if (bul->act_no == 2 && bul->count1 % 50 == 0 && gKey & gKeyShot && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
+			if (bul->act_no == 2 && level == 2 && bul->count1 % 4 == 0 && gKey & gKeyShot && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
 				int x, y;
 				do
 				{
@@ -719,12 +720,12 @@ void ActBullet_Hook(BULLET *bul, int level)
 					y = Random(0, gMap.length*0x2000);
 				} while (!(Distance(bul->x, bul->y, x, y) < 90_pix  && 
 							Distance(bul->x, bul->y, x, y) > 8_pix));
-				for (int i = 0; i < 5 * level; i++){
+				for (int i = 0; i < Random(1, 2); i++){
 					BULLET *quiverProj = SetBullet(47, bul->x, bul->y);
 					if (quiverProj != NULL){
 						quiverProj->tgt_x = x;
 						quiverProj->tgt_y = y;
-						quiverProj->count1 = quiverProj->life_count/3;
+						quiverProj->count1 = quiverProj->life_count/1.5f;
 					}
 				}
 			}
