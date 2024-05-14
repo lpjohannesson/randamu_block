@@ -240,9 +240,9 @@ int CooldownDuration(int id){
         case CHAOS_KEY_ID:
             return 1200;
         case TIME_RING_ID:
-            return 1800;
+            return 2400;
         case TIME_STOP_ID:
-            return 350;
+            return 380;
         case SHEEP_CURSE_ID:
             return 225;
         case SARA_DAMAGE_ID:

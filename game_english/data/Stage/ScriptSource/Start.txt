@@ -452,7 +452,7 @@ which goes through walls.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020
 chill enemies with 25% chance.<NOD It
 also allows to freeze every enemy
 on screen for period of time.<NOD This
-has 35 seconds cooldown.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1060<IT+0060<IT-0037<IT-0022<FL-0860<EQ-0256<FL-0747<MM-Created =Winter Clock=!<WAI0135<NOD<CLO<PS-0014<RMU<END
+has 40 seconds cooldown.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1060<IT+0060<IT-0037<IT-0022<FL-0860<EQ-0256<FL-0747<MM-Created =Winter Clock=!<WAI0135<NOD<CLO<PS-0014<RMU<END
 #0615
 <PRI<MSG<GIT1066Flaming Booster makes
 Fireball leave a damaging trail.<NOD

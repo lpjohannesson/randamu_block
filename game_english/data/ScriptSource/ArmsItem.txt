@@ -676,7 +676,7 @@ legendary time ring,<NOD this
 thing allows you to stop
 time for a brief moment
 with Ability key.<NOD
-This has 30 seconds cooldown.<NOD<CLR
+This has 40 seconds cooldown.<NOD<CLR
 Will you equip it?<YNJ0000<FL+0860<MSG
 Equipped the Timeline Ring.<NOD<WAI0003<FRE<EVE5037
 #6038
@@ -868,7 +868,7 @@ Equipped Lead Weight.<NOD<WAI0003<FRE<EVE5059
 legendary time ring,<NOD this
 thing allows you to cast freeze
 on all enemies on screen.<NOD
-This has 30 seconds cooldown.<NOD It 
+This has 40 seconds cooldown.<NOD It 
 also makes bullets chill enemies
 with 25% chance.<NOD<CLR
 Will you equip it?<YNJ0000<EQ+0256<FL+0875<MSG
