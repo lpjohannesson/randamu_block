@@ -1635,6 +1635,7 @@ int ActualTextScriptProc(void)
 								SaveScore(gMC.seed);
 						}
 						DeleteSave();
+						gDaily = false;
 						SaveRankings();
 						gTS.p_read += 4;
 					}
