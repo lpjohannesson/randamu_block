@@ -512,14 +512,9 @@ void ActNpcMainPress(NPCHAR *npc)
 				npc->bits |= NPC_SOLID_HARD;
 				npc->damage = 0;
 				npc->xm = 0;
-				if (gMC.difficulty > DIFFICULTY_REINFORCED && Distance(npc->x, npc->y, gMC.x, gMC.y) < 135_pix){
-					if (gMC.x < npc->x){
-						npc->xm = -0x200;
-					} else {
-						npc->xm = 0x200;
-					}
-					npc->ym = Random(-0xBFF, -0x5FF);
-					npc->act_no = 5;
+				if (gMC.difficulty > DIFFICULTY_REINFORCED){
+					npc->ym = -0x6FF;
+					npc->act_no = 1;
 				}
 			}
 
@@ -536,6 +531,17 @@ void ActNpcMainPress(NPCHAR *npc)
 		if (npc->ym > maxSpeed)
 			npc->ym = maxSpeed;
 
+		if (npc->flag & 0x100){
+			npc->y += npc->ym / 2;
+			npc->x += npc->xm / 2;
+		} else {
+			npc->y += npc->ym;
+			npc->x += npc->xm;
+		}
+	}
+
+	if (npc->act_no == 1 && gMC.difficulty > DIFFICULTY_REINFORCED)
+	{
 		if (npc->flag & 0x100){
 			npc->y += npc->ym / 2;
 			npc->x += npc->xm / 2;
