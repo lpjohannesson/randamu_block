@@ -201,8 +201,6 @@ void DamageMyChar(int damage)
 			SetCaret(gMC.x-0x1800, gMC.y+0x1800, 2, 2);
 	}
 
-	int finalDamage = damage;
-
 	if (GetNPCFlag(Flags::SHIELD_OF_RESILIENCE) && damage > 1){
 		damage -= 1;
 		PlaySoundObject(54, SOUND_MODE_PLAY);
@@ -214,7 +212,6 @@ void DamageMyChar(int damage)
 	}
 	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
 		damage *= float(Random(50, 175)) / 100.0f;
-		finalDamage = damage;
 	}
 
 	if (gMC.shock)
@@ -271,12 +268,12 @@ void DamageMyChar(int damage)
 		gMC.shock *= 0.75;
 	}
 	if (gMC.difficulty > DIFFICULTY_REINFORCED && gMC.flag & 0x100){
-		gMC.air -= finalDamage * 25;
+		gMC.air -= damage * 25;
 	}
 	if (gMC.equip & EQUIP_SUNGLASSES){
 		gMC.shock /= 3;
 	}
-	if (finalDamage <= 1){
+	if (damage <= 1){
 		gMC.shock *= 0.66f;
 	}
 	if ((GetNPCFlag(Flags::NANITES_ABSORBER) || GetNPCFlag(Flags::MILITARY_ARMAMENT)) && CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1
@@ -332,13 +329,13 @@ void DamageMyChar(int damage)
 	// Lose experience
 	if (gArmsData[gSelectedArms].code != 18){
 	if (gMC.equip & EQUIP_ARMS_BARRIER){
-		gArmsData[gSelectedArms].exp -= finalDamage*damageMod;
+		gArmsData[gSelectedArms].exp -= damage*damageMod;
 		if (gArmsData[gSelectedArms].code == 2 || gArmsData[gSelectedArms].code == 12){
-			ChargeArmsEnergy(finalDamage*1.5);
+			ChargeArmsEnergy(damage*1.5);
 		}
 	}
 	else
-		gArmsData[gSelectedArms].exp -= finalDamage * 2 * damageMod;
+		gArmsData[gSelectedArms].exp -= damage * 2 * damageMod;
 
 	while (gArmsData[gSelectedArms].exp < 0)
 	{
