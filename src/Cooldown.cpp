@@ -255,9 +255,9 @@ int CooldownDuration(int id){
                 return DashCooldown() + 120;
             return std::max(DashCooldown(), 1);
         case NANITES_TIME_ID:
-            return 240;
+            return 180;
         case NANITES_CD_ID:
-            return 3600;
+            return 2400;
         case GRAVITY_FLIP_ID:
             return 60;
         case FLOODTIDE_ATTACK_ID:

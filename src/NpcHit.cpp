@@ -678,7 +678,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	}
 
 	if (CheckForCooldown(gCooldowns, NANITES_TIME_ID) != -1){
-		dmg *= 1.66;
+		dmg *= 2;
 	}
 
 	if (GetNPCFlag(Flags::DISCORDIAN_VISOR)){ //discordian visor

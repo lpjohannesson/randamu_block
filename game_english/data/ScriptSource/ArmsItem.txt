@@ -903,7 +903,7 @@ makes dash cooldown longer.<NOD
 It also allows you to stop
 time for a brief moment
 with Ability key.<NOD
-This has 30 seconds cooldown.<NOD<CLR
+This has 40 seconds cooldown.<NOD<CLR
 Do you want to equip it?<YNJ0000<FL+0876<MSG
 Equipped Shield of Time.<NOD<WAI0003<FRE<EVE5067
 
@@ -965,10 +965,10 @@ Equipped Freeze Star.<NOD<WAI0003<FRE<EVE5071
 <KEY<MSGGives <NAM nanomachine
 protection on taking
 damage.<NOD The damage will
-be nullified<NOD and give four
+be nullified<NOD and give three
 seconds of invulnerability,<NOD
 during which all bullets will
-deal +66% damage.<NOD This has 60
+deal +100% damage.<NOD This has 40
 seconds cooldown, during which
 the taken damage will be
 normal.<NOD<CLR
@@ -982,10 +982,10 @@ determined Patriots,<NOD this
 thing uses nanomachines in
 both defensive and offensive
 ways.<NOD Taking damage nullifies
-it and gives four seconds
+it and gives three seconds
 of invulnerability,<NOD
 during which all bullets will
-deal +66% damage.<NOD This has 60
+deal +100% damage.<NOD This has 40
 seconds cooldown, during which
 the taken damage will be
 normal.<NOD<CLRDealing damage creates

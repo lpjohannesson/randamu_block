@@ -500,7 +500,7 @@ Nemesis.<NOD<CLRCraft it?<YNJ0311<CLR<MM-<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WA
 <PRI<MSG<GIT1073Military Armament uses
 nanomachines to protect <NAM
 from damage.<NOD This ability has
-60 seconds cooldown.<NOD It also shoots
+40 seconds cooldown.<NOD It also shoots
 homing projectiles on attacking
 enemies<NOD and
 semi-frequently from
