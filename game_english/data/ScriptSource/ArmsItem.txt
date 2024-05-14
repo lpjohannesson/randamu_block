@@ -184,7 +184,7 @@ known to portend the future.<WAI9999<END
 #5020
 <MSG<TURTurbocharge<WAI9999<END
 #5021
-<MSG<TURCurly's Air Tank<WAI9999<END
+<MSG<TURAir Tank<WAI9999<END
 #5022
 <MSG<TUR<FLJ0747:5122Frostbite Stopwatch<WAI9999<END
 #5023
