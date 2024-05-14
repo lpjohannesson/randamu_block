@@ -195,9 +195,6 @@ void ActNpcDoctorP1(NPCHAR *npc)
 	case DIFFICULTY_REINFORCED:
 		maxLife = 1000;
 		break;
-	case DIFFICULTY_RESONANT:
-		maxLife = 1200;
-		break;
 	}
 	if (gMC.difficulty > DIFFICULTY_HARDENED){
 		waitTimeMod = 22 - 9 * (1.0f - (static_cast<float>(npc->life) / static_cast<float>(maxLife)));
@@ -623,9 +620,6 @@ void ActNpcDoctorP2(NPCHAR *npc)
 	{
 	case DIFFICULTY_REINFORCED:
 		maxLife = 1150;
-		break;
-	case DIFFICULTY_RESONANT:
-		maxLife = 1450;
 		break;
 	}
 	int attackPatternTime = 18;

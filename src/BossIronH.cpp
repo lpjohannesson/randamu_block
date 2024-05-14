@@ -20,8 +20,6 @@ int Ironhead_HealthValue(){
 			return 1000;
 		case DIFFICULTY_REINFORCED:
 			return 1100;
-		case DIFFICULTY_RESONANT:
-			return 1300;
 	}
 }
 

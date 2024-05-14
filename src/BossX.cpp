@@ -519,8 +519,6 @@ int MonstX_HealthValue(){
 			return 650;
 		case DIFFICULTY_REINFORCED:
 			return 900;
-		case DIFFICULTY_RESONANT:
-			return 1150;
 	}
 }
 

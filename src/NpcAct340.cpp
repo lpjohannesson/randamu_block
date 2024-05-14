@@ -43,9 +43,6 @@ void ActNpc340(NPCHAR *npc)
 			case DIFFICULTY_REINFORCED:
 				npc->life = 1400;
 				break;
-			case DIFFICULTY_RESONANT:
-				npc->life = 1800;
-				break;
 			}
 			break;
 

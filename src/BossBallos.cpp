@@ -21,8 +21,6 @@ int Ballos1_HealthValue(){
 			return 800;
 		case DIFFICULTY_REINFORCED:
 			return 900;
-		case DIFFICULTY_RESONANT:
-			return 1000;
 	}
 }
 
@@ -32,8 +30,6 @@ int Ballos2_HealthValue(){
 			return 1600;
 		case DIFFICULTY_REINFORCED:
 			return 2300;
-		case DIFFICULTY_RESONANT:
-			return 2900;
 	}
 }
 

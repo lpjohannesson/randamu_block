@@ -126,8 +126,6 @@ int Omega_HealthValue(){
 			return 1000;
 		case DIFFICULTY_REINFORCED:
 			return 1400;
-		case DIFFICULTY_RESONANT:
-			return 1750;
 	}
 }
 

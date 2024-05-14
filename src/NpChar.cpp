@@ -75,7 +75,7 @@ static void SetUniqueParameter(NPCHAR *npc)
 	switch (gMC.difficulty){
 		case DIFFICULTY_HARDENED: lifeMod = 1.2f; break;
 		case DIFFICULTY_REINFORCED: lifeMod = 1.33f; break;
-		case DIFFICULTY_RESONANT: lifeMod = 1.5f; break;
+		case DIFFICULTY_RESONANT: lifeMod = 1.33f; break;
 	}
 	if (std::find(lifeImmuneEnemies.begin(), lifeImmuneEnemies.end(), code) == lifeImmuneEnemies.end())
 		npc->life *= lifeMod;

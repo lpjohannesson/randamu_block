@@ -20,8 +20,6 @@ int Core_HealthValue(){
 			return 1000;
 		case DIFFICULTY_REINFORCED:
 			return 750;
-		case DIFFICULTY_RESONANT:
-			return 950;
 	}
 }
 

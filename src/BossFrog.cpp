@@ -136,8 +136,6 @@ int Balfrog_HealthValue(){
 			return 1000;
 		case DIFFICULTY_REINFORCED:
 			return 1350;
-		case DIFFICULTY_RESONANT:
-			return 1800;
 	}
 }
 
