@@ -3331,7 +3331,31 @@ static const struct
 	{"Resource/ORG/Regular_Battle_Chip_Challenge", "", MUSIC_TYPE_ORGANYA, true}, //reinforced boss fight
 	{"Resource/ORG/Abstract Anomaly", "", MUSIC_TYPE_ORGANYA, true},
 	{"Resource/ORG/wind bombing", "", MUSIC_TYPE_ORGANYA, true},
-	{"Resource/ORG/TechnoShmeckno", "", MUSIC_TYPE_ORGANYA, true}
+	{"Resource/ORG/TechnoShmeckno", "", MUSIC_TYPE_ORGANYA, true},
+	{"Resource/ORG/ninety", "", MUSIC_TYPE_ORGANYA, true}, //first cave (second camp)
+	{"Resource/ORG/Fragments", "", MUSIC_TYPE_ORGANYA, true}, //darkest cave (second camp)
+	{"Resource/ORG/Hub", "", MUSIC_TYPE_ORGANYA, true}, //headman (second camp)
+	{"Resource/ORG/Ascension Demake", "", MUSIC_TYPE_ORGANYA, true}, //pasture (second camp)
+	{"Resource/ORG/battlefield 18percent slower", "", MUSIC_TYPE_ORGANYA, true}, //castle (second camp)
+	{"Resource/ORG/NaviCust4 16percent slower", "", MUSIC_TYPE_ORGANYA, true}, //space (second camp)
+	{"Resource/ORG/Cyber Academy", "", MUSIC_TYPE_ORGANYA, true}, //mines (second camp)
+	{"Resource/ORG/CidHighwind", "", MUSIC_TYPE_ORGANYA, true}, //dungeon (second camp)
+	{"Resource/ORG/Tech3", "", MUSIC_TYPE_ORGANYA, true}, //egg corridor (second camp)
+	{"Resource/ORG/IHateCrypticPuzzles", "", MUSIC_TYPE_ORGANYA, true}, //sand zone (second camp)
+	{"Resource/ORG/underworld", "", MUSIC_TYPE_ORGANYA, true}, //village (second camp)
+	{"Resource/ORG/Gold", "", MUSIC_TYPE_ORGANYA, true}, //waterway (second camp)
+	{"Resource/ORG/grean sleaves", "", MUSIC_TYPE_ORGANYA, true}, //core (second camp)
+	{"Resource/ORG/i made the ocean floor org better", "", MUSIC_TYPE_ORGANYA, true}, //watery caves (second camp)
+	{"Resource/ORG/the_imps_org", "", MUSIC_TYPE_ORGANYA, true}, //labyrinth (second camp)
+	{"Resource/ORG/synth fortress 14percent slower", "", MUSIC_TYPE_ORGANYA, true}, //outer wall (second camp)
+	{"Resource/ORG/tensioin", "", MUSIC_TYPE_ORGANYA, true}, //ice (second camp)
+	{"Resource/ORG/OPERATION 15percent slower", "", MUSIC_TYPE_ORGANYA, true}, //laboratory (second camp)
+	{"Resource/ORG/DEADLOCKED", "", MUSIC_TYPE_ORGANYA, true}, //hell (second camp)
+	{"Resource/ORG/MoonMarsSakurabe3", "", MUSIC_TYPE_ORGANYA, true}, //grasstown (second camp)
+	{"Resource/ORG/VS DUO 12percent slower", "", MUSIC_TYPE_ORGANYA, true}, //arcadia (second camp)
+	{"Resource/ORG/invisible wing", "", MUSIC_TYPE_ORGANYA, true}, //frontdoors (second camp)
+	{"Resource/ORG/Gesticulation", "", MUSIC_TYPE_ORGANYA, true}, //marsh (second camp)
+	{"Resource/ORG/Normality", "", MUSIC_TYPE_ORGANYA, true}, //plantation (second camp)
 };
 
 std::vector<std::string> fileExtension = {"ogg", "mp3", "org"}; 
@@ -3341,6 +3365,7 @@ void ChangeMusic(MusicID no)
 	if (no == (MusicID)6)
 	{
 		int musicIDs[] = {1, 2, 4, 5, 6, 8, 9, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 33, 45, 46, 49, 69, 70, 71, 73, 74, 75};
+		bool secondCamp = (gMC.depth >= genContext.doctorStage);
 		MusicID id = (MusicID)musicIDs[Random(0, ARRAY_SIZE(musicIDs) - 1, RandomCategories::SEEDED_PRIMARY)];
 		no = id;
 		if (Random(0, 2, RandomCategories::SEEDED_PRIMARY) == 0)
@@ -3348,80 +3373,80 @@ void ChangeMusic(MusicID no)
 			switch (gMC.tileset)
 			{
 			case TYPE_FIRST_CAVE:
-				no = MUS_FIRST_CAVE_BGM;
+				no = secondCamp ? MUS_FIRST_CAVE_BGM_2 : MUS_FIRST_CAVE_BGM;
 				break;
 			case TYPE_SAND_ZONE:
-				no = MUS_MELTDOWN2;
+				no = secondCamp ? MUS_NOTMELTDOWN : MUS_MELTDOWN2;
 				break;
 			case TYPE_LABYRINTH:
-				no = MUS_LABYRINTH_BGM;
+				no = secondCamp ? MUS_LABYRINTH_BGM_2 : MUS_LABYRINTH_BGM;
 				break;
 			case TYPE_MIMIGA_VILLAGE:
-				no = MUS_VILLAGE_BGM;
+				no = secondCamp ? MUS_VILLAGE_BGM_2 : MUS_VILLAGE_BGM;
 				break;
 			case TYPE_LIVING_WATERWAY:
-				no = MUS_WATERWAY_BGM;
+				no = secondCamp ? MUS_WATERWAY_BGM_2 : MUS_WATERWAY_BGM;
 				break;
 			case TYPE_EGGS:
-				no = MUS_EGGS_BGM;
+				no = secondCamp ? MUS_EGGS_BGM_2 : MUS_EGGS_BGM;
 				break;
 			case TYPE_GRASSTOWN:
-				no = MUS_GRASSTOWN_BGM;
+				no = secondCamp ? MUS_GRASSTOWN_BGM_2 : MUS_GRASSTOWN_BGM;
 				break;
 			case TYPE_OUTER_WALL:
-				no = MUS_SKYLAND_BGM;
+				no = secondCamp ? MUS_SKYLAND_BGM_2 : MUS_SKYLAND_BGM;
 				break;
 			case TYPE_ALMOND:
-				no = MUS_CORE_BGM;
+				no = secondCamp ? MUS_CORE_BGM_2 : MUS_CORE_BGM;
 				break;
 			case TYPE_PLANTATION:
-				no = MUS_PLANTATION_BGM;
+				no = secondCamp ? MUS_PLANTATION_BGM_2 : MUS_PLANTATION_BGM;
 				break;
 			case TYPE_ICE:
-				no = MUS_ICE_BGM;
+				no = secondCamp ? MUS_ICE_BGM_2 : MUS_ICE_BGM;
 				break;
 			case TYPE_LABORATORY:
-				no = MUS_LABORATORY_BGM;
+				no = secondCamp ? MUS_LABORATORY_BGM_2 : MUS_LABORATORY_BGM;
 				break;
 			case TYPE_SPACESTATION:
-				no = MUS_TINN2D;
+				no = secondCamp ? MUS_NAVICUST4 : MUS_TINN2D;
 				break;
 			case TYPE_MARSH:
-				no = MUS_MARSH_BGM;
+				no = secondCamp ? MUS_MARSH_BGM_2 : MUS_MARSH_BGM;
 				break;
 			case TYPE_INDOORS:
-				no = MUS_INDOORS_BGM;
+				no = secondCamp ? MUS_INDOORS_BGM_2 : MUS_INDOORS_BGM;
 				break;
 			case TYPE_HEADMAN:
-				no = MUS_HEADMAN_BGM;
+				no = secondCamp ? MUS_HEADMAN_BGM_2 : MUS_HEADMAN_BGM;
 				break;
 			case TYPE_DUNGEON:
-				no = MUS_DUNGEON_BGM;
+				no = secondCamp ? MUS_DUNGEON_BGM_2 : MUS_DUNGEON_BGM;
 				break;
 			case TYPE_MESA:
-				no = MUS_MESA_BGM;
+				no = secondCamp ? MUS_MESA_BGM_2 : MUS_MESA_BGM;
 				break;
 			case TYPE_CASTLE:
-				no = MUS_CASTLE_BGM;
+				no = secondCamp ? MUS_CASTLE_BGM_2 : MUS_CASTLE_BGM;
 				break;
 			case TYPE_SHEEP:
-				no = MUS_SHEEP_BGM;
+				no = secondCamp ? MUS_SHEEP_BGM_2 : MUS_SHEEP_BGM;
 				break;
 			case TYPE_IKACHAN:
-				no = MUS_IKA_BGM;
+				no = secondCamp ? MUS_IKA_BGM_2 : MUS_IKA_BGM;
 				break;
 			}
 		}
 		switch (gMC.tileset)
 		{
 		case TYPE_HELL:
-			no = MUS_HELL_BGM;
+			no = secondCamp ? MUS_HELL_BGM_2 : MUS_HELL_BGM;
 			break;
 		case TYPE_ARCADIA:
-			no = MUS_ARCADIA_BGM;
+			no = secondCamp ? MUS_ARCADIA_BGM_2 : MUS_ARCADIA_BGM;
 			break;
 		case TYPE_DARKCAVE:
-			no = MUS_DARKCAVE_BGM;
+			no = secondCamp ? MUS_DARKCAVE_BGM_2 : MUS_DARKCAVE_BGM;
 			break;
 		case TYPE_SHADOW:
 			no = MUS_SHADOW_BGM;

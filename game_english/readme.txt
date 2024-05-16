@@ -105,7 +105,7 @@ Character codes:
 Credits:
 - Cave Story: Daisuke "Pixel" Amaya
 - Based on: CSE2 Enhanced by Clownacy and GabrielTFS
-- Music: Cory Welch, Tinned Duck, 2dbro, Zenix, txin, mLurker, Alula, Safusaka, zeroflafi, Dredged Crusader
+- Music: Cory Welch, Tinned Duck, 2dbro, Zenix, txin, mLurker, Alula, Safusaka, zeroflafi, Dredged Crusader, AquaDoesStuff, yellow, Raymundo
 - Used sprites: ZarroTsu, AsperDev, Tert, Taiki, MintyFresh, Raymundo, lolkit
 - Coding help: Autumn Hazel
 - Bracket OC: Jamark
