@@ -990,39 +990,39 @@ void InitTileset(){
 	} else if (rlDepth < shadowDepth) {
 		tilesets = {TYPE_FIRST_CAVE, TYPE_SAND_ZONE, TYPE_GRASSTOWN, TYPE_MIMIGA_VILLAGE,
 		 TYPE_EGGS, TYPE_PLANTATION, TYPE_IKACHAN, TYPE_LABYRINTH, TYPE_OUTER_WALL, TYPE_ICE};
-		if (rlDepth >= 12){
+		if (rlDepth >= genContext.doctorStage + 2){
 			tilesets.push_back(TYPE_MARSH);
 			tilesets.push_back(TYPE_HEADMAN);
 			tilesets.push_back(TYPE_MESA);
 			tilesets.push_back(TYPE_LIVING_WATERWAY);
 			tilesets.push_back(TYPE_SHEEP);
 		}
-		if (rlDepth >= 13){
+		if (rlDepth >= genContext.doctorStage + 3){
 			tilesets.push_back(TYPE_DUNGEON);
 			tilesets.push_back(TYPE_INDOORS);
 			tilesets.push_back(TYPE_SPACESTATION);
 			tilesets.push_back(TYPE_DARKCAVE);
 			tilesets.push_back(TYPE_LABORATORY);
 		}
-		if (rlDepth >= 14){
+		if (rlDepth >= genContext.doctorStage + 4){
 			tilesets.push_back(TYPE_CASTLE);
 			tilesets.push_back(TYPE_HELL);
 			tilesets.push_back(TYPE_ARCADIA);
 			tilesets.push_back(TYPE_ALMOND);
 		}
-		if (rlDepth >= 15){
+		if (rlDepth >= genContext.doctorStage + 5){
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_MIMIGA_VILLAGE));
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_FIRST_CAVE));
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_GRASSTOWN));
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_SAND_ZONE));
 		}
-		if (rlDepth >= 16){
+		if (rlDepth >= genContext.doctorStage + 6){
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_ICE));
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_LABYRINTH));
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_OUTER_WALL));
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_IKACHAN));
 		}
-		if (rlDepth >= 16){
+		if (rlDepth >= genContext.doctorStage + 6){
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_MARSH));
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_SHEEP));
 			tilesets.erase(std::find(tilesets.begin(), tilesets.end(), TYPE_PLANTATION));
