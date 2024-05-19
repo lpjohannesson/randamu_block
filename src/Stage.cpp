@@ -840,6 +840,10 @@ void SelectCharacter(std::string character) {
 			gMC.max_life = 3;
 		}
 	}
+	if (ChallengeEnabled("secondCampaign"))
+	{
+		gMC.life = gMC.max_life = gMC.max_life*2;
+	}
 }
 
 GenerationContext genContext;
