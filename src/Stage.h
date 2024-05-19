@@ -263,6 +263,7 @@ std::string TilesetName();
 std::string TilesetName(char id);
 std::string GimmickName();
 std::string CharacterCode(int id);
+bool IsItSecondCampaign();
 void PutMappingName(void);
 char GetGimmick(std::string id);
 char GetTileset(std::string id);

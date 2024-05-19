@@ -929,6 +929,10 @@ unsigned long GenerateSeed(){
 	return seed;
 } 
 
+bool IsItSecondCampaign(){
+	return gMC.depth >= genContext.doctorStage;
+}
+
 void InitTileset(){
 	std::vector<char> tilesets{};
 	int rlDepth = gMC.depth;
@@ -1178,6 +1182,9 @@ bool LoadMapAssets(){
 		path = path_dir + "/PrtNCave" + genContext.tileset;
 	else
 		path = path_dir + "/PrtCave" + genContext.tileset;
+
+	if (IsItSecondCampaign() && genContext.tileset != TYPE_SHADOW)
+		path += "_2";
 	if (!ReloadBitmap_File(path.c_str(), SURFACE_ID_LEVEL_TILESET))
 		bError = true;
 
@@ -1325,6 +1332,10 @@ bool LoadMapAssets(){
 		path = "bkShadow";
 		break;
 	}
+	if (IsItSecondCampaign() && (fs::exists(GetResourcePath(path + "_2.png")) || 
+								fs::exists(GetResourcePath(path + "_2.pbm")) ||
+								fs::exists(GetResourcePath(path + "_2.bmp"))))
+		path += "_2";
 	gMC.tileset = genContext.tileset;
 	int scrollType = gTMT[13].bkType;
 	if (genContext.tileset == TYPE_OUTER_WALL || genContext.tileset == TYPE_SPACESTATION || genContext.tileset == TYPE_CASTLE)
@@ -3592,7 +3603,10 @@ std::string TilesetName(){
 }
 
 std::string TilesetName(char id){
-	auto search = stageNames.find(std::string{id});
+	auto idString = std::string{id};
+	if (IsItSecondCampaign() && stageNames.contains(idString + "_2"))
+		idString += "_2";
+	auto search = stageNames.find(idString);
 	if (search != stageNames.end()) return search->second;
 	return "";
 }
