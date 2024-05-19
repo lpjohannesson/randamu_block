@@ -2609,7 +2609,6 @@ static int Callback_Configuration(OptionsMenu *parent_menu, size_t this_option, 
 		{{GetCSE2Message("config_one_damage"), ""}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_relativistic"), ""}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_random_size_maps"), ""}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 		{{GetCSE2Message("config_secondCampaign"), ""}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_no_map"), ""}, {Callback_NoMap, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_improve_map"), ""}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
@@ -2655,7 +2654,6 @@ static int Callback_Configuration2(OptionsMenu *parent_menu, size_t this_option,
 
 	Option options_pc[] = {
 		{{GetCSE2Message("config_new_game"), ""}, {Callback_Character, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_darkness"), ""}, {Callback_Darkness, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_charge_jump"), ""}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_adv_arms"), ""}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
@@ -2664,7 +2662,6 @@ static int Callback_Configuration2(OptionsMenu *parent_menu, size_t this_option,
 		{{GetCSE2Message("config_one_damage"), ""}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_relativistic"), ""}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_random_size_maps"), ""}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 		{{GetCSE2Message("config_secondCampaign"), ""}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_no_map"), ""}, {Callback_NoMap, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("config_improve_map"), ""}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
@@ -2719,7 +2716,9 @@ static int Callback_Options(OptionsMenu *parent_menu, size_t this_option, Callba
 		{{GetCSE2Message("options_controls"), ""}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("options_framerate"), ""}, {Callback_Framerate, NULL}, &conf, "", 0, false},
 		{{GetCSE2Message("options_scrolling"), ""}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false}
+		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 	};
 
 	Option options_pc[] = {
@@ -2729,7 +2728,9 @@ static int Callback_Options(OptionsMenu *parent_menu, size_t this_option, Callba
 		{{GetCSE2Message("options_vsync"), ""}, {Callback_Vsync, NULL}, &conf, "", 0, false},
 		{{GetCSE2Message("options_controls"), ""}, {Callback_Resolution, NULL}, &conf, "", 0, false},
 		{{GetCSE2Message("options_scrolling"), ""}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false}
+		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 	};
 
 	OptionsMenu options_menu = {
@@ -2773,7 +2774,9 @@ static int Callback_Options2(OptionsMenu *parent_menu, size_t this_option, Callb
 		{{GetCSE2Message("options_controls"), ""}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
 		{{GetCSE2Message("options_framerate"), ""}, {Callback_Framerate, NULL}, &conf, "", 0, false},
 		{{GetCSE2Message("options_scrolling"), ""}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false}
+		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 	};
 
 	Option options_pc[] = {
@@ -2783,7 +2786,9 @@ static int Callback_Options2(OptionsMenu *parent_menu, size_t this_option, Callb
 		{{GetCSE2Message("options_vsync"), ""}, {Callback_Vsync, NULL}, &conf, "", 0, false},
 		{{GetCSE2Message("options_controls"), ""}, {Callback_Resolution, NULL}, &conf, "", 0, false},
 		{{GetCSE2Message("options_scrolling"), ""}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false}
+		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 	};
 
 	OptionsMenu options_menu = {
