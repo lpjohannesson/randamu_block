@@ -127,6 +127,10 @@ further.<NOD<YNJ0421<CLR
 #0421
 <MSG<GIT0000You decided to not use
 Red Crystal just yet...<NOD<CLR<GIT1034<IT+0034Claimed =Red Crystal=!<NOD<STC<LI+1000<AE+<CLO<FL-1111
+<WAI0150
+<MSGSomething about this is
+very strange...<NOD<CLRIt pulls you
+into new world!<NOD<WAI0030
 <TRA0013:0201:0000:0000
 
 
