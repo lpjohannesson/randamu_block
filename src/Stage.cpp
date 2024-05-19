@@ -3168,6 +3168,8 @@ bool TransferStage(int no, int w, int x, int y)
 			SetBullet(57, gMC.x, gMC.y + 0x2500, 1);
 		gNameFlag = true;
 		gNameTimer = 0;
+		if (IsItSecondCampaign() && !CheckItem(34))
+			AddItemData(34);
 
 		WriteGameLog("Level generated in ", since(timing).count(), " ms.");
 	}
