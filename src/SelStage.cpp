@@ -233,6 +233,11 @@ int StageSelectLoop(int *p_event)
 			}
 		}
 
+		if (gKeyTrg & gKeyTurboText){
+			PlaySoundObject(80);
+			turboTextEnabled = !turboTextEnabled;
+		}
+
 		MoveStageSelectCursor();
 
 		switch (TextScriptProc())

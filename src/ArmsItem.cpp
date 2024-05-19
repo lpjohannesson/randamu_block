@@ -985,6 +985,11 @@ int CampLoop(void)
 			ChangeMusic(MUS_MELTDOWN2);
 		}
 
+		if (gKeyTrg & gKeyTurboText){
+			PlaySoundObject(80);
+			turboTextEnabled = !turboTextEnabled;
+		}
+
 		if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 			MoveCampCursor();
 
