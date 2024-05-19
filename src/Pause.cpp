@@ -2792,7 +2792,7 @@ static int Callback_Options2(OptionsMenu *parent_menu, size_t this_option, Callb
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("options_title"),
+		"",
 		restart_required ? GetCSE2Message("options_restart") : "",
 		is_console ? options_console : options_pc,
 		is_console ? (sizeof(options_console) / sizeof(options_console[0])) : (sizeof(options_pc) / sizeof(options_pc[0])),
