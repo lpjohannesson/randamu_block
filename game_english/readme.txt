@@ -21,6 +21,7 @@ Each resource override folder should contain info.json (with name and descriptio
 - By default game runs in 60fps, 852x480 widescreen and smooth scrolling.
 - Map System is available from start, press W.
 - You can swim by pressing Z underwater.
+- You can charge forward, or dash, by pressing Dash key, by default it's Left Shift.
 - Certain items require Ability key to be binded, by default it's C.
 - You can speed up TSC scripts with pressing Turbo Text button, by default it's B. 
 - Use Ability key in inventory to trash items into the void.
@@ -76,7 +77,7 @@ To set the value, put it as ""name": value" in config.json (it's created automat
 - 'hitboxes': enables/disables overlay that shows entity hitboxes.
 - 'legacyUI': enables/disables programmer art designs used in early releases. Cannot be toggled off on April 1st.
 - 'oneDamage': enables/disables the configuration to make every weapon deal one damage per hit at max.
-- 'secondCampaign': enables/disables the starting point being levels after Doctor's boss fight.
+- 'secondCampaign': enables/disables the starting point being levels after Doctor's boss fight, also doubles starting HP to compensate.
 - 'superHotMode': enables/disables the game mode where holding any keys stops the flow of time.
 - 'randomSizeMode': enables/disables the ability for generated levels to have variable size, not just 118x118.
 - 'sheepCharacter': enables/disables the character being permanently a sheep.
@@ -119,6 +120,109 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.44 (Seconds & Moments With You) (May 20th 2024):
+New content:
+- Added default dash:
+	* it is weaker and doesn't grant immunity frames, so it cannot be used to go through enemies and spikes
+	* Silver Locket allows dashes to have immunity frames
+	* characters that had dashes with immunity frames before this update will still have them
+- Overhauled second campaign:
+	* now has its own tileset art, backgrounds and stage-specific music
+	* tilesets show different names when appearing in second campaign to accompany this
+	* "Start from Level 11" is now named "Second Campaign Mode", properly uses post-Doctor's tileset rotation and gives double health to player to compensate for harder enemies at the start
+- Added Experimental Resource Pack (or "aspermental") as package-in:
+	* it includes resprites and reimaginations of game's assets by AsperDev, that clash with current art style
+	* feedback on how it fits and how good it is will be appreciated
+
+Balance changes:
+- Buffed Snake:
+	* increased lvl3 damage from 5 to 6
+- Nerfed Curly's Underwear:
+	* decreased damage from 4/4 to 8/1
+	* decreased Curly's Nemesis bullet's lifespan from 20 frames to 17 frames
+- Nerfed Defended gimmick:
+	* now is less likely to appear
+	* reduced amount of firethrowers from 15-30 (60-115 in 2nd campaign) to 10-18 (30-75)
+	* reduced amount of fire turrets from 30-40 to 15-25
+- Adjusted some knockback modifiers (mostly to make associated weapons' knockback weaker).
+- Reworked Iron Bond:
+	* now provides active healing: each 24 dealt damage a heart drops at entity
+	* overkill damage doesn't contribute to this healing
+	* lifestealEntities tag provides all valid entities for tracking and dropping hearts
+- Nerfed Ballos fight's red crystal helper attack rate from every 2-16 frames to every 7-28 frames.
+- Buffed Super Booster:
+	* increased DPS by 2x
+	* vertical boosts now damage enemies as well
+	* increased hitbox from 8x8 to 12x12 pixels
+- Changed Machine Gun:
+	* reduced bullet lifespan from 22 to 16 frames
+	* increased bullet hitboxes
+- Buffed Energy Flail:
+	* flail's moving speed is significantly increased
+	* decreased gravity-affected damage by 2x, but decreased its static immunity frames from 15 to 6
+	* energy bullets only appear from lvl2 flail, but changed the amount of bullets from 10 every 50 frames to 1-2 every 4 frames
+	* slightly decreased the lifespan of energy bullets
+- Nerfed Bubbler:
+	* lvl1 bullets now explode into 5-10 pellets instead of 10-30
+	* decreased lvl1 bullet lifespan from 250 to 100 frames
+- Reworked Water Gun:
+	* renamed into Water Sprayer
+	* increased max ammo from 25 to 100
+	* now shoots homing exploding bubbles as primary attack
+	* now has charge (hold X) attack that brings the water shield
+	* water shield now gives 120 frames of wetness to enemies that touch it
+	* water shield can expire after 250 frames and explode into 16 smaller exploding bubbles
+- Refactored/buffed Nano Quiver:
+	* now takes place in 100x100 pixel circle around the enemy
+	* removed the "too far" restriction on quiver projectile's position, leaving only too close restriction
+- Nerfed Timeline Ring:
+	* increased timestop duration from 5.83 s to 6.33 s
+	* increased timestop cooldown from 30 s to 40 s
+- Buffed Nanites Absorber:
+	* decreased cooldown from 60 s to 40 s
+	* decreased duration from 4 s to 3 s but increased damage boost from +66% to +100%
+- Removed Resonant difficulty's health increase for enemies and bosses.
+- Changed Resonant Press AI:
+	* now retracts back to ceiling instead of hopping like a crazy critter
+- Nerfed some late game enemies:
+	* reduced core base's HP from 210 to 140
+	* reduced laser gaudi's HP from 110 to 70
+	* reduced shuriken gaudi's HP from 100 to 85
+	* reduced chaos frog's HP from 85 to 55
+	* reduced dragon's HP from 150 to 110
+	* reduced laser frog's HP from 200 to 115
+	* reduced shadow toroko's HP from 250 to 140
+	* reduced shadow misery's HP from 175 to 95
+	* reduced shadow wildsery's HP from 125 to 90
+- Damage-negating effects no longer deplete weapon's EXP and player's air supply.
+- Added Ballos into list of enemies possible to hit with Copper Bulwark.
+
+Misc/Quality of Life:
+- Turbo Text button is now usable in inventory and Miracle Matter crafting screens.
+- Increased item limit by 3.
+- Configuration's JSON file is now properly spaced out.
+- Darkness-specific tileset variants now show with "darkness" config option.
+- Reimplemented female-specific character sounds and added ones to Misery and Puppy.
+- Life Capsules and Energy Capsules are no longer openable during boss fights.
+- Missile Launcher no longer allows player to go through map bounds in sky and Jethead stage.
+- Updated Hekichu Caverns tileset (by Tert).
+- Daily runs can no longer be replayed upon death.
+- Air Tank is no longer named "Curly's Air Tank" in inventory.
+- Added a bit for second campaign existence in Red Crystal claim after Doctor's fight.
+- Moved some options from Gameplay section into General section.
+
+Bug fixes:
+- Badge of Love's Curly ally no longer comes back to life after being sacrified on previous stage.
+- Fixed Miracle Matter icon being smaller than it should be.
+- Reloading saves in pause no longer works on non-randomized stages (fixes #24).
+- Missile Launcher's missile no longer breaks camera during Jethead fight (fixes #61).
+- Fixed a bunch of visual issues related to boss chambers (fixes #62 and satisfies #5).
+- Fixed Clay Figure Medal and Alien Medal overworld NPCs reappearing when getting their Miracle Matter upgrades (fixes #63).
+- Fixed Energy Crystal not providing effects of Turbocharge and Creativity Cartridge (fixes #65).
+- Switching weapons in inventory now accounts for Miracle Matter weapons (fixes #68).
+- Made fire turrets immune to knockback (fixes #69).
+- Solid NPCs no longer push player beyond the bottom of the stage (fixes #77).
+
 1.43.1 (Gamekutsu Rebaldamu, Part 2) (December 19th 2023):
 - Tweaked/buffed Electric Shotgun:
 	* reduced max ammo from 20 to 5
