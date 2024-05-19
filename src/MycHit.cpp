@@ -784,7 +784,7 @@ int JudgeHitMyCharNPC4(NPCHAR *npc)
 		{
 			if (gMC.y - gMC.hit.top < npc->y + npc->hit.bottom/mod && gMC.y - gMC.hit.top > npc->y)
 			{
-				if (gMC.ym < npc->ym)
+				if (gMC.ym < npc->ym && gMC.y + gMC.ym < (gMap.length-2) * 16_pix)
 				{
 					gMC.y = npc->y + npc->hit.bottom/mod + gMC.hit.top + 0x200;
 					gMC.ym = npc->ym;
