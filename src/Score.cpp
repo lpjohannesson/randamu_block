@@ -75,8 +75,7 @@ void LoadRankings(){
 		WriteJSON(gModulePath + "/rankings.json", json::array());
 	}
 
-	json rankings = ReadJSON(gModulePath + "/rankings.json", mode::encryptedGlobal);
-	gRankings = rankings;
+	gRankings = ReadJSON(gModulePath + "/rankings.json", mode::encryptedGlobal);
 	WriteGameLog("Rankings loaded in ", since(timing).count(), " ms.");
 }
 
@@ -105,8 +104,10 @@ void SaveRankings(){
 	rank["fast_run"] = ChallengeEnabled("fast_run");
 	rank["death"] = gMC.deathReason;
 
-	auto preceedingRank = std::find_if(gRankings.begin(), gRankings.end(), [&rank](json a){
-		return a["score"] < rank["score"];
+	int rankScore = rank["score"];
+
+	auto preceedingRank = std::find_if(gRankings.begin(), gRankings.end(), [&rankScore](json a){
+		return a["score"] < rankScore;
 	});
 	gRankings.insert(preceedingRank, rank);
 	selectedRank = std::distance(gRankings.begin(), std::find(gRankings.begin(), gRankings.end(), rank));
