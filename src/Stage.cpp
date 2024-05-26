@@ -3234,7 +3234,10 @@ bool TransferStage(int no, int w, int x, int y)
 		}
 		if (no == 87)
 		{
-			gMC.depth = genContext.doctorStage*2;
+			if (ChallengeEnabled("secondCampaign"))
+				gMC.depth += 1;
+			else
+				gMC.depth = genContext.doctorStage*2;
 		}
 		gMC.a = 0;
 		SpawnAllies(genContext, stageGenerationMetadata["allies"]);
