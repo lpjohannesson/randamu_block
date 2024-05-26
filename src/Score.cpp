@@ -77,23 +77,6 @@ void LoadRankings(){
 
 	json rankings = ReadJSON(gModulePath + "/rankings.json", mode::encryptedGlobal);
 	gRankings = rankings;
-	int conversions = 0;
-	for (auto& record : gRankings){
-		if (!record.contains("version")){
-			record["version"] = 2;
-			json newFlags = json::array();
-			auto flagVector = record["flags"].get<std::vector<int>>();
-			for (int flag = 0; flag < flagVector.size()*8; flag++){
-				if (GET_FLAG(flagVector, flag)){
-					newFlags.push_back(flag);
-				}
-			}
-			record["flags"] = newFlags;
-			conversions++;
-		}
-	}
-	if (conversions != 0)
-		WriteGameLog("Successfully converted ", conversions, " ranking records to version 2.");
 	WriteGameLog("Rankings loaded in ", since(timing).count(), " ms.");
 }
 
