@@ -398,7 +398,7 @@ void DestroyBlock(int x, int y)
 			int tile = GetTile(x, y - 1);
 			ChangeMap(x, y-1, 0);
 			int y1 = y - 1;
-			while (GetAttribute(x, y1+1) == 0){
+			while (GetAttribute(x, y1+1) == 0 && y1 < (gMap.length-1)){
 				y1++;
 			}
 			ChangeMapS(x, y1, tile);
