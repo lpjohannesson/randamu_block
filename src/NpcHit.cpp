@@ -879,6 +879,11 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			}
 		}
 
+		if (gMC.difficulty > DIFFICULTY_HARDENED && npc.code_char == 246){
+			if (!(npc.flag & 8) && npc.act_no == 1)
+				npc.act_no = 5;
+		}
+
 		if (npc.bits & NPC_SHOW_DAMAGE)
 			npc.damage_view -= dmg;
 		starTarget = &npc;

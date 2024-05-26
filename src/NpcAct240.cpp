@@ -457,6 +457,12 @@ void ActNpcMainPress(NPCHAR *npc)
 				npc->act_no = 5;
 
 			break;
+		case 4:
+			if (npc->flag & 2)
+			{
+				npc->act_no = 1;
+			}
+			break;
 
 		case 5:
 			if (npc->flag & 8)
@@ -513,8 +519,8 @@ void ActNpcMainPress(NPCHAR *npc)
 				npc->damage = 0;
 				npc->xm = 0;
 				if (gMC.difficulty > DIFFICULTY_REINFORCED){
-					npc->ym = -0x6FF;
-					npc->act_no = 1;
+					npc->ym = -0x7FF;
+					npc->act_no = 4;
 				}
 			}
 
@@ -540,7 +546,7 @@ void ActNpcMainPress(NPCHAR *npc)
 		}
 	}
 
-	if (npc->act_no == 1 && gMC.difficulty > DIFFICULTY_REINFORCED)
+	if (npc->act_no == 4 && gMC.difficulty > DIFFICULTY_REINFORCED)
 	{
 		if (npc->flag & 0x100){
 			npc->y += npc->ym / 2;
