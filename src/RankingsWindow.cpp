@@ -509,6 +509,7 @@ void PutRankingObject(void)
 	}
 
 	int maxDepth = (fast_run ? 6 : 10);
+	bool isSecondCamp = gRankings[selectedRank].value("second_camp_start", false);
 
 	if (++anime >= 40)
 			anime = 0;
@@ -539,7 +540,8 @@ void PutRankingObject(void)
 			74, 51, 41, 66
 		};
 		if (gRankings[selectedRank]["depth"].get<int>() != maxDepth){
-			if (gRankings[selectedRank]["depth"].get<int>() > maxDepth){
+			if (gRankings[selectedRank]["depth"].get<int>() > maxDepth || 
+				(isSecondCamp)){
 				Rect crystal = {76, 64, 86, 80};
 				PutBitmap3(&rcView, PixelToScreenCoord(29), PixelToScreenCoord(65+8), &crystal, SURFACE_ID_ITEM_IMAGE);
 			}
@@ -557,7 +559,7 @@ void PutRankingObject(void)
 			Rect rect = {58, 28, 122, 92};
 			PutBitmap3(&rcView, PixelToScreenCoord(12), PixelToScreenCoord(85+8), &rect, SURFACE_ID_CREDITS_IMAGE);
 		}
-		if (gRankings[selectedRank]["depth"].get<int>() == maxDepth*2){
+		if (gRankings[selectedRank]["depth"].get<int>() == maxDepth*(isSecondCamp ? 1 : 2)){
 			Rect rect = {38, 20, 102, 84};
 			PutBitmap3(&rcView, PixelToScreenCoord(12), PixelToScreenCoord(85+8), &rect, SURFACE_ID_CREDITS_IMAGE_2);
 		}

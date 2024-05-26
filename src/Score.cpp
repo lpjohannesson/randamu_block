@@ -102,6 +102,7 @@ void SaveRankings(){
 	rank["tileset"] = gMC.tileset;
 	rank["seed"] = gMC.seed;
 	rank["fast_run"] = ChallengeEnabled("fast_run");
+	rank["second_camp_start"] = ChallengeEnabled("secondCampaign");
 	rank["death"] = gMC.deathReason;
 
 	int rankScore = rank["score"];
