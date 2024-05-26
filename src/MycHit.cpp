@@ -822,7 +822,7 @@ int JudgeHitMyCharNPC4(NPCHAR *npc)
 					else
 						hit |= 8;
 				}
-				else if (!(gMC.flag & 8) && gMC.ym > npc->ym)
+				else if (!(gMC.flag & 8) && gMC.ym > npc->ym && gMC.y + gMC.ym > 2 * 16_pix)
 				{
 					gMC.y = npc->y - npc->hit.top/mod - gMC.hit.bottom + 0x200;
 					gMC.ym = npc->ym;
