@@ -945,7 +945,7 @@ void InitTileset(){
 		rlDepth++;
 	if (ChallengeEnabled("fast_run")){
 		rlDepth *= 2;
-		shadowDepth = 12 + genContext.doctorStage*2;
+		shadowDepth = 10 + genContext.doctorStage*2;
 	}
 	if (gMC.depth < genContext.doctorStage)
 	{
@@ -2775,7 +2775,7 @@ void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArgum
 		}
 		int shadowDepth = 9 + genContext.doctorStage;
 		if (ChallengeEnabled("fast_run")){
-			shadowDepth = 6 + genContext.doctorStage;
+			shadowDepth = 5 + genContext.doctorStage;
 		}
 		if (gMC.depth == shadowDepth){
 			SetNPCFlag(Flags::LAST_LEVEL_CH2_DOOR);
