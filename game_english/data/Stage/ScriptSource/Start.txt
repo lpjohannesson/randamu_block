@@ -404,7 +404,8 @@ and allows Polar Star and Nemesis
 to recharge slowly.<NOD It also 
 increases max ammo on Polar Star
 and Nemesis and provides chance
-for any weapon to not consume ammo.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1014<IT-0020<IT-0045<IT+0014<FL+0861<EQ+P776<MM-Created =Energy Crystal=!<WAI0135<NOD<CLO<PS-0007<RMU<END
+for any weapon to not 
+consume ammo.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1014<IT-0020<IT-0045<IT+0014<FL+0861<EQ+P776<MM-Created =Energy Crystal=!<WAI0135<NOD<CLO<PS-0007<RMU<END
 #0608
 <PRI<MSG<GIT1016Terra Boots allow
 to move incredible fast on
@@ -445,8 +446,9 @@ explode on enemy hits.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<W
 weapon damage by 25% and allows
 to teleport with mouse. This has
 20 seconds cooldown.<NOD It also grants
-special teleportation dash
-which goes through walls.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1026<IT-0053<IT-0058<IT+0026<FL-0703<E2-0024<FL-0737<MM-Created =Discordian Visor=!<WAI0135<NOD<CLO<PS-0013<RMU<END
+special teleportation
+dash which goes through 
+walls.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1026<IT-0053<IT-0058<IT+0026<FL-0703<E2-0024<FL-0737<MM-Created =Discordian Visor=!<WAI0135<NOD<CLO<PS-0013<RMU<END
 #0614
 <PRI<MSG<GIT1060Winter Clock makes bullets
 chill enemies with 25% chance.<NOD It
@@ -501,8 +503,8 @@ Nemesis.<NOD<CLRCraft it?<YNJ0311<CLR<MM-<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WA
 nanomachines to protect <NAM
 from damage.<NOD This ability has
 40 seconds cooldown.<NOD It also shoots
-homing projectiles on attacking
-enemies<NOD and
+homing projectiles 
+on attacking enemies<NOD and
 semi-frequently from
 nanites shield.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1073<IT-0072<IT-0055<IT+0073<FL-0712<E2-0029<FL-0882<MM-Created =Military Armament=!<WAI0135<NOD<CLO<PS-0021<RMU<END
 #0636
