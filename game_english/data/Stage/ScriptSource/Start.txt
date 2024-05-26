@@ -362,20 +362,20 @@ charged version of Booster
 2.0.<NOD It has 100% more fuel,
 damages enemies with trail
 and keeps your speed when
-you run out of fuel.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1008<IT+0008<IT-0023<IT-0044<EQ-@384<FL-0752<EQ-0032<FL-0743<MM-Created =Super Booster=!<WAI0135<NOD<CLO<PS-0001<RMU<END
+you run out of fuel.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1008<IT-0023<IT-0044<IT+0008<EQ-@384<FL-0752<EQ-0032<FL-0743<MM-Created =Super Booster=!<WAI0135<NOD<CLO<PS-0001<RMU<END
 #0602
 <PRI<MSG<GIT1009Diving Suit makes
 air supply deply slower,<NOD removes
 speed reduction from water,<NOD
 allows to swim with holding Jump
-and makes jellies passive.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1009<IT+0009<IT-0021<IT-0028<EQ-0016<E2-0025<FL-0760<MM-Created =Diving Suit=!<WAI0135<NOD<CLO<PS-0002<RMU<END
+and makes jellies passive.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1009<IT-0021<IT-0028<IT+0009<EQ-0016<E2-0025<FL-0760<MM-Created =Diving Suit=!<WAI0135<NOD<CLO<PS-0002<RMU<END
 #0603
 <PRI<MSG<GIT1010Shield of Resilience
 increases immunity frames, removes
 knockback and protects <NAM
 from fatal hits.<NOD It also reduces
 all damage by 1 and has 33% chance
-to nullify damage below 4.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1010<IT+0010<IT-0031<IT-0052<E2-0017<E2-0022<DNA0190<FL-0745<FL-0739<MM-Created =Shield of
+to nullify damage below 4.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1010<IT-0031<IT-0052<IT+0010<E2-0017<E2-0022<DNA0190<FL-0745<FL-0739<MM-Created =Shield of
 Resilience=!<WAI0135<NOD<CLO<PS-0003<RMU<END
 #0604
 <PRI<MSG<GIT1011Augmented Man
@@ -384,19 +384,19 @@ your movement and rapidly shooting
 energetic blasts into nearby
 enemies.<NOD Same blasts will
 also occasionally spawn
-on your own attacks.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1011<IT+0011<IT-0032<IT-0055<E2-0029<DNA0180<FL-0740<FL-0712<MM-Created =Augmented Man=!<WAI0135<NOD<CLO<PS-0004<RMU<END
+on your own attacks.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1011<IT-0032<IT-0055<IT+0011<E2-0029<DNA0180<FL-0740<FL-0712<MM-Created =Augmented Man=!<WAI0135<NOD<CLO<PS-0004<RMU<END
 #0605
 <PRI<MSG<GIT1012Cape of Shadows allows
 you to dash with Ability key
 and grants higher jump height
 and double jump.<NOD Has ability to
-chain double jumps and dashes.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1012<IT+0012<IT-0004<IT-0041<E2-0026<EQ-4096<FL-0755<FL-0725<MM-Created =Cape of Shadows=!<WAI0135<NOD<CLO<PS-0005<RMU<END
+chain double jumps and dashes.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1012<IT-0004<IT-0041<IT+0012<E2-0026<EQ-4096<FL-0755<FL-0725<MM-Created =Cape of Shadows=!<WAI0135<NOD<CLO<PS-0005<RMU<END
 #0606
 <PRI<MSG<GIT1013Sacred Aegis grants
 super powerful dash which explodes
 all enemies it touches.<NOD Also
 deals explosion damage if <NAM is
-attacked.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1013<IT+0013<IT-0047<IT-0033<E2-0027<EQ-0001<FL-0748<FL-0724<MM-Created =Sacred Aegis=!<WAI0135<NOD<CLO<PS-0006<RMU<END
+attacked.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1013<IT-0047<IT-0033<IT+0013<E2-0027<EQ-0001<FL-0748<FL-0724<MM-Created =Sacred Aegis=!<WAI0135<NOD<CLO<PS-0006<RMU<END
 #0607
 <PRI<MSG<GIT1014Energy Crystal hastens
 recharge of Machine Gun and Spur.
@@ -404,26 +404,26 @@ and allows Polar Star and Nemesis
 to recharge slowly.<NOD It also 
 increases max ammo on Polar Star
 and Nemesis and provides chance
-for any weapon to not consume ammo.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1014<IT+0014<IT-0020<IT-0045<FL+0861<EQ+P776<MM-Created =Energy Crystal=!<WAI0135<NOD<CLO<PS-0007<RMU<END
+for any weapon to not consume ammo.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1014<IT-0020<IT-0045<IT+0014<FL+0861<EQ+P776<MM-Created =Energy Crystal=!<WAI0135<NOD<CLO<PS-0007<RMU<END
 #0608
 <PRI<MSG<GIT1016Terra Boots allow
 to move incredible fast on
 the ground.<NOD It also allows to hold
-Jump button to fly very high.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1016<IT+0016<IT-0056<IT-0040<FL-0708<E2-0030<EQ-2048<FL-0756<MM-Created =Terra Boots=!<WAI0135<NOD<CLO<PS-0008<RMU<END
+Jump button to fly very high.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1016<IT-0056<IT-0040<IT+0016<FL-0708<E2-0030<EQ-2048<FL-0756<MM-Created =Terra Boots=!<WAI0135<NOD<CLO<PS-0008<RMU<END
 #0609
 <PRI<MSG<GIT1017Badge of Love
 summons Curly Brace to aid you
 and provides lifesteal.<NOD
 Hearts move towards <NAM and
 on fatal hit Curly will sacrifice
-herself to heal you.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1017<IT+0017<IT-0035<IT-0039<DNA0320<FL-0751<EQ-0064<FL-0746<MM-Created =Badge of Love=!<WAI0135<NOD<CLO<PS-0009<RMU<END
+herself to heal you.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1017<IT-0035<IT-0039<IT+0017<DNA0320<FL-0751<EQ-0064<FL-0746<MM-Created =Badge of Love=!<WAI0135<NOD<CLO<PS-0009<RMU<END
 #0610
 <PRI<MSG<GIT1018Universal Catalyst
 allows to place and destroy
 blocks with mouse.<NOD It also makes 
 Nemesis destroy 2 blocks at
 once and makes Polar Star account
-for momentum.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1018<IT+0018<DNA0192<DNA0193<IT-0050<IT-0051<FL-0741<E2-0021<E2-0020<FL-0742<MM-Created =Universal 
+for momentum.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1018<DNA0192<DNA0193<IT-0050<IT-0051<IT+0018<FL-0741<E2-0021<E2-0020<FL-0742<MM-Created =Universal 
 Catalyst=!<WAI0135<NOD<CLO<PS-0010<RMU<END
 #0611
 <PRI<MSG<GIT1024Amphibian Medal
@@ -431,14 +431,14 @@ halves the damage from spikes and
 increases weapon range by 33%.<NOD It
 also reduces damage from presses
 to 9 and allows to strafe with
-Ability key.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1024<IT+0024<IT-0036<IT-0057<FL-0705<EQ-0128<DNA0189<FL-0749<MM-Created =Amphibian Medal=!<WAI0135<NOD<CLO<PS-0011<RMU<END
+Ability key.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1024<IT-0036<IT-0057<IT+0024<FL-0705<EQ-0128<DNA0189<FL-0749<MM-Created =Amphibian Medal=!<WAI0135<NOD<CLO<PS-0011<RMU<END
 #0612
 <PRI<MSG<GIT1025High-Octane Tank
 overloads Machine Gun and Bubbler,
 increasing their firerate and
 spread.<NOD It also buffs Fireball
 by making it spawn flames and
-explode on enemy hits.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1025<IT+0025<IT-0048<IT-0049<FL-0744<E2-0018<E2-0019<FL-0720<MM-Created =High-Octane Tank=!<WAI0135<NOD
+explode on enemy hits.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1025<IT-0048<IT-0049<IT+0025<FL-0744<E2-0018<E2-0019<FL-0720<MM-Created =High-Octane Tank=!<WAI0135<NOD
 <CLO<PS-0012<RMU<END
 #0613
 <PRI<MSG<GIT1026Discordian Visor increases
@@ -446,32 +446,32 @@ weapon damage by 25% and allows
 to teleport with mouse. This has
 20 seconds cooldown.<NOD It also grants
 special teleportation dash
-which goes through walls.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1026<IT+0026<IT-0053<IT-0058<FL-0703<E2-0024<FL-0737<MM-Created =Discordian Visor=!<WAI0135<NOD<CLO<PS-0013<RMU<END
+which goes through walls.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1026<IT-0053<IT-0058<IT+0026<FL-0703<E2-0024<FL-0737<MM-Created =Discordian Visor=!<WAI0135<NOD<CLO<PS-0013<RMU<END
 #0614
 <PRI<MSG<GIT1060Winter Clock makes bullets
 chill enemies with 25% chance.<NOD It
 also allows to freeze every enemy
 on screen for period of time.<NOD This
-has 40 seconds cooldown.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1060<IT+0060<IT-0037<IT-0022<FL-0860<EQ-0256<FL-0747<MM-Created =Winter Clock=!<WAI0135<NOD<CLO<PS-0014<RMU<END
+has 40 seconds cooldown.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1060<IT-0037<IT-0022<IT+0060<FL-0860<EQ-0256<FL-0747<MM-Created =Winter Clock=!<WAI0135<NOD<CLO<PS-0014<RMU<END
 #0615
 <PRI<MSG<GIT1066Flaming Booster makes
 Fireball leave a damaging trail.<NOD
 The same trail appears when you
-dash with Dash key.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1066<IT+0066<IT-0004<IT-0048<FL-0744<E2-0026<E2-0018<FL-0744<FL-0725<MM-Created =Flaming Booster=!<WAI0135<NOD<CLO<PS-0015<RMU<END
+dash with Dash key.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1066<IT-0004<IT-0048<IT+0066<FL-0744<E2-0026<E2-0018<FL-0744<FL-0725<MM-Created =Flaming Booster=!<WAI0135<NOD<CLO<PS-0015<RMU<END
 #0616
 <PRI<MSG<GIT1067Shield of Time gives
 <NAM an aggressive dash with
 Dash key.<NOD This dash freezes enemy
 it hits but makes cooldown
 longer.<NOD Ability key grants
-the usual time-stop.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1067<IT+0067<IT-0033<IT-0037<FL-0860<FL-0724<E2-0027<MM-Created =Shield of Time=!<WAI0135<NOD<CLO<PS-0016<RMU<END
+the usual time-stop.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1067<IT-0033<IT-0037<IT+0067<FL-0860<FL-0724<E2-0027<MM-Created =Shield of Time=!<WAI0135<NOD<CLO<PS-0016<RMU<END
 #0617
 <PRI<MSG<GIT1068Little Man's Underwear
 summons both Little Man and Curly
 Brace to fight for you.<NOD
 When Curly shoots her Nemesis,
 Little Man will follow up with
-Lv2 fireball projectiles.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1068<DNA0320<DNA0180<DNA0321<IT+0068<IT-0032<IT-0035<FL-0740<FL-0751<MM-Created =Little Man's
+Lv2 fireball projectiles.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1068<DNA0320<DNA0180<DNA0321<IT-0032<IT-0035<IT+0068<FL-0740<FL-0751<MM-Created =Little Man's
 Underwear=!<WAI0135<NOD<CLO<PS-0017<RMU<END
 #0618
 <PRI<MSG<GIT1069Nuclear Stomper
@@ -479,13 +479,13 @@ allows to hold Ability key
 to fall faster in air.<NOD It
 also makes <NAM explode
 when falling on enemies
-with the ability.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1069<IT+0069<IT-0046<IT-0047<FL-0748<EQ-0001<FL-0750<EQ-q536<MM-Created =Nuclear Stomper=!<WAI0135<NOD<CLO<PS-0018<RMU<END
+with the ability.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1069<IT-0046<IT-0047<IT+0069<FL-0748<EQ-0001<FL-0750<EQ-q536<MM-Created =Nuclear Stomper=!<WAI0135<NOD<CLO<PS-0018<RMU<END
 #0619
 <PRI<MSG<GIT1070Omniquick Sneakers
 provides immense mobility.<NOD It
 gives insane speed and
 ability to smoothly change
-directions.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1070<IT+0070<IT-0040<IT-0029<FL-0756<EQ-2048<FL-0738<E2-0023<MM-Created =Omniquick Sneakers=!<WAI0135<NOD<CLO<PS-0019<RMU<END
+directions.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1070<IT-0040<IT-0029<IT+0070<FL-0756<EQ-2048<FL-0738<E2-0023<MM-Created =Omniquick Sneakers=!<WAI0135<NOD<CLO<PS-0019<RMU<END
 #0620
 <PRI<MSG<GIT1069Freeze Star
 allows to place blocks
@@ -495,7 +495,7 @@ for momentum, <NOD chills
 enemies, <NOD and creates
 chilling ring around <NAM,<NOD
 when they hold Polar Star or
-Nemesis.<NOD<CLRCraft it?<YNJ0311<CLR<MM-<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1071<IT+0071<IT-0051<IT-0022<FL-0747<EQ-0256<FL-0741<E2-0021<DNA0193<MM-Created =Freeze Star=!<WAI0135<NOD<CLO<PS-0020<RMU<END
+Nemesis.<NOD<CLRCraft it?<YNJ0311<CLR<MM-<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1071<IT-0051<IT-0022<IT+0071<FL-0747<EQ-0256<FL-0741<E2-0021<DNA0193<MM-Created =Freeze Star=!<WAI0135<NOD<CLO<PS-0020<RMU<END
 #0621
 <PRI<MSG<GIT1073Military Armament uses
 nanomachines to protect <NAM
@@ -504,7 +504,7 @@ from damage.<NOD This ability has
 homing projectiles on attacking
 enemies<NOD and
 semi-frequently from
-nanites shield.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1073<IT+0073<IT-0072<IT-0055<FL-0712<E2-0029<FL-0882<MM-Created =Military Armament=!<WAI0135<NOD<CLO<PS-0021<RMU<END
+nanites shield.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1073<IT-0072<IT-0055<IT+0073<FL-0712<E2-0029<FL-0882<MM-Created =Military Armament=!<WAI0135<NOD<CLO<PS-0021<RMU<END
 #0636
 <PRI<MSG<GIT0020Hellsweep is fire-related
 sword, just like Floodtide.<NOD
