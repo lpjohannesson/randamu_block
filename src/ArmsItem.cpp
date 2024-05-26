@@ -522,7 +522,7 @@ void SwitchWeapon(void){
 			gArmsData[gSelectedArms].exp = xpNeeded;
 			for (auto weapon: miracleWeaponryList){
 				auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
-				if (weapon == replacementCode - 100 && !CheckPermitStage(36+it)){
+				if (weapon == replacementCode && !CheckPermitStage(36+it)){
 					AddPermitStage(it+36, 636 + it);
 				}
 			}
