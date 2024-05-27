@@ -769,7 +769,10 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		dmg = 1;
 
 	if (gMC.equip & EQUIP_MIMIGA_MASK && std::find(lifestealEnemies.begin(), lifestealEnemies.end(), npc.code_char) != lifestealEnemies.end()){
-		gMC.regenCounter += 100 * (npc.life <= dmg ? npc.life : dmg);
+		int modifier = 100;
+		if (gMC.equip & EQUIP_SUNGLASSES)
+			modifier = std::round(modifier*0.6f);
+		gMC.regenCounter += modifier * (npc.life <= dmg ? npc.life : dmg);
 		while (gMC.regenCounter >= RegenerationDelay()){
 			gMC.regenCounter -= RegenerationDelay();
 			PlaySoundObject(42);
