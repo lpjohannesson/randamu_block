@@ -1638,6 +1638,9 @@ void ActNpc154(NPCHAR *npc)
 		npc->rect = grcKitR[npc->ani_no];
 }
 
+const int minLaserWaiting = 105;
+const int maxLaserWaiting = 205;
+
 // Gaudi (flying)
 void ActNpcLaserGaudi(NPCHAR *npc)
 {
@@ -1646,6 +1649,10 @@ void ActNpcLaserGaudi(NPCHAR *npc)
 	int xm, ym;
 
 	if (npc->x > gMC.x + (((WINDOW_WIDTH / 2) + 160) * 0x200) || npc->x < gMC.x - (((WINDOW_WIDTH / 2) + 160) * 0x200) || npc->y > gMC.y + (((WINDOW_HEIGHT / 2) + 120) * 0x200) || npc->y < gMC.y - (((WINDOW_HEIGHT / 2) + 120) * 0x200))
+		return;
+
+	if (npc->x - gFrame.x < 0 || npc->x - gFrame.x > WINDOW_WIDTH * 1_pix || 
+		npc->y - gFrame.y < 0 || npc->y - gFrame.y > WINDOW_WIDTH * 1_pix)
 		return;
 
 	switch (npc->act_no)
@@ -1662,7 +1669,7 @@ void ActNpcLaserGaudi(NPCHAR *npc)
 			npc->tgt_y = npc->y + (GetSin(deg) * 8);
 
 			npc->act_no = 1;
-			npc->act_wait = Random(125, 225);
+			npc->act_wait = Random(minLaserWaiting, maxLaserWaiting);
 			npc->ani_no = 14;
 			// Fallthrough
 		case 1:
@@ -1710,9 +1717,9 @@ void ActNpcLaserGaudi(NPCHAR *npc)
 			}
 			if (npc->act_wait > 10){
 				npc->act_no = 1;
-				npc->act_wait = Random(125, 225);
+				npc->act_wait = Random(minLaserWaiting, maxLaserWaiting);
 				if (gMC.difficulty > DIFFICULTY_HARDENED){
-					npc->act_wait = Random(100, 175);
+					npc->act_wait = Random(90, 155);
 				}
 				npc->ani_no = 14;
 				npc->ani_wait = 0;
