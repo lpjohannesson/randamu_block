@@ -2178,6 +2178,10 @@ void CreateLifeCapsules(GenerationContext& genContext, GenerationArguments& genA
 	{
 		rooms = limit;
 	}
+	if (IsItSecondCampaign() && genContext.doctorStage == 0)
+	{
+		rooms += std::get<int>(genArguments["second_camp_bonus"]);
+	}
 	if (ChallengeEnabled("no_health") || GetNPCFlag(Flags::DUCKMAN_CHARACTER))
 	{
 		limit = 0;
