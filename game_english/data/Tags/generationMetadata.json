@@ -354,7 +354,6 @@
 	"life_capsules": {
 		"min": 2,
 		"max": 3,
-		"second_camp_bonus": 1,
 		
 		"gimmick": "3",
 		
