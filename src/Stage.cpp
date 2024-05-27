@@ -840,9 +840,25 @@ void SelectCharacter(std::string character) {
 			gMC.max_life = 3;
 		}
 	}
-	if (ChallengeEnabled("secondCampaign"))
+	if (ChallengeEnabled("secondCampaign") && !GetNPCFlag(Flags::DUCKMAN_CHARACTER))
 	{
-		gMC.life = gMC.max_life = gMC.max_life*2;
+		int lifeCapsuleValue = 3;
+		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
+			lifeCapsuleValue = 4;
+		if (GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || 
+		GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER))
+			lifeCapsuleValue = 2;
+		
+		int lifeCapsuleAmount = LifeCapsuleLimit() / 1.5f * 0.75f;
+
+		for (int i = 0; i < lifeCapsuleAmount; i++){
+			if (gMC.difficulty > DIFFICULTY_BASIC && i < lifeCapsuleAmount / 3)
+				gMC.max_life += 2;
+			else
+				gMC.max_life += lifeCapsuleValue;
+		}
+
+		gMC.life = gMC.max_life;
 	}
 }
 
