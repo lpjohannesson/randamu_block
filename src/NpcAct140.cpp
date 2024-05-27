@@ -834,7 +834,7 @@ void ActNpcMainCritter(NPCHAR *npc)
 				npc->ani_no = 2;
 				npc->ym = -0x47E;
 				if (gMC.depth > genContext.doctorStage){
-					npc->ym = -0x620;
+					npc->ym = -0x6FF;
 				}
 				npc->damage = 3;
 				PlaySoundObject(30, SOUND_MODE_PLAY);
@@ -869,7 +869,7 @@ void ActNpcMainCritter(NPCHAR *npc)
 			flying = 40;
 			npc->damage = 0;
 			if (gMC.depth > genContext.doctorStage){
-				flying = 80;
+				flying = 30;
 			}
 
 			if (npc->flag & 7 || npc->act_wait > flying)
@@ -910,7 +910,7 @@ void ActNpcMainCritter(NPCHAR *npc)
 					deg += (unsigned char)Random(-6, 6);
 				int projSpeed = 4;
 				if (gMC.difficulty > DIFFICULTY_HARDENED)
-					projSpeed = 5;
+					projSpeed = 6;
 				ym = GetSin(deg) * projSpeed;
 				xm = GetCos(deg) * projSpeed;
 
@@ -1652,7 +1652,7 @@ void ActNpcLaserGaudi(NPCHAR *npc)
 		return;
 
 	if (npc->x - gFrame.x < 0 || npc->x - gFrame.x > WINDOW_WIDTH * 1_pix || 
-		npc->y - gFrame.y < 0 || npc->y - gFrame.y > WINDOW_WIDTH * 1_pix)
+		npc->y - gFrame.y < 0 || npc->y - gFrame.y > WINDOW_HEIGHT * 1_pix)
 		return;
 
 	switch (npc->act_no)
