@@ -850,6 +850,8 @@ void SelectCharacter(std::string character) {
 			lifeCapsuleValue = 2;
 		
 		int lifeCapsuleAmount = LifeCapsuleLimit() / 1.5f * 0.75f;
+		if (ChallengeEnabled("fast_run"))
+			lifeCapsuleAmount *= 0.6f;
 
 		for (int i = 0; i < lifeCapsuleAmount; i++){
 			if (gMC.difficulty > DIFFICULTY_BASIC && i < lifeCapsuleAmount / 3)
