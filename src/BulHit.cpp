@@ -92,7 +92,7 @@ int JudgeHitBulletBlock2(int x, int y, unsigned char *atrb, BULLET *bul)
 	{
 		for (i = 0; i < 4; ++i)
 		{
-			if (*atrb == 0x41 || *atrb == 0x61 || (*atrb == 0x46 && bul->code_bullet == 14))
+			if (*atrb == 0x41 || *atrb == 0x61)
 				block[i] = true;
 			else
 				block[i] = false;
@@ -104,7 +104,7 @@ int JudgeHitBulletBlock2(int x, int y, unsigned char *atrb, BULLET *bul)
 	{
 		for (i = 0; i < 4; ++i)
 		{
-			if (*atrb == 0x41 || *atrb == 0x43 || *atrb == 0x61)
+			if (*atrb == 0x41 || *atrb == 0x43 || *atrb == 0x61 || (*atrb == 0x46 && bul->code_bullet == 14))
 				block[i] = true;
 			else
 				block[i] = false;
