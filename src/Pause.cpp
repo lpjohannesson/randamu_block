@@ -9,8 +9,9 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
-#include <regex>
 #include <vector>
+#include <ctre.hpp>
+#include <unicode-db.hpp>
 
 #include "Backends/Controller.h"
 #include "Backends/Misc.h"
@@ -1119,7 +1120,10 @@ static int Callback_PickDifficulty(OptionsMenu *parent_menu, size_t this_option)
 	return CALLBACK_RESET;
 }
 
-std::string resourceDesc; 
+std::string resourceDesc;
+
+// inspired by word wrap from L.B on Stack Overflow
+auto WordWrap = ctre::range<"(.{1,44})(?:\\s|$)">;
 
 static int Callback_Resources(OptionsMenu *parent_menu, size_t this_option, CallbackAction action){
 	int scroll = 0;
@@ -1138,6 +1142,8 @@ static int Callback_Resources(OptionsMenu *parent_menu, size_t this_option, Call
 	resourceDesc = availableResources[selected_option].description;
 	if (resourceDesc == "")
 		resourceDesc = GetCSE2Message("resources_default");
+
+	std::string str = "Changes some of sprites to style, different from the rest of the game.";
 
 	for (;;)
 	{
@@ -1232,7 +1238,15 @@ static int Callback_Resources(OptionsMenu *parent_menu, size_t this_option, Call
 			PutBitmap3(&rcView, PixelToScreenCoord((WINDOW_WIDTH / 2 - 108)), PixelToScreenCoord(WINDOW_HEIGHT - 56), &rcIcon, SURFACE_ID_RESOURCE_ICON);
 			text_offset = 56;
 		}
-		PutText((WINDOW_WIDTH / 2 - 108) + text_offset, WINDOW_HEIGHT - 56, resourceDesc, RGB(0xFF, 0xFF, 0xFF));
+
+		int baseY = 0;
+
+		for (auto& part: WordWrap(resourceDesc)){
+			PutText((WINDOW_WIDTH / 2 - 108) + text_offset, WINDOW_HEIGHT - 56 + baseY, part.str(), RGB(0xFF, 0xFF, 0xFF));
+			baseY += 16;
+		}
+
+		// PutText((WINDOW_WIDTH / 2 - 108) + text_offset, WINDOW_HEIGHT - 56, resourceDesc, RGB(0xFF, 0xFF, 0xFF));
 		PutText(0, 0, GetCSE2Message("select_arrows_tip"), RGB(0xFF, 0xFF, 0xFF));
 		PutText(0, 15, GetCSE2Message("resources_reload"), RGB(0xFF, 0xFF, 0xFF));
 		PutText(0, 30, GetCSE2Message("resources_exit"), RGB(0xFF, 0xFF, 0xFF));
