@@ -1133,6 +1133,7 @@ void HitMyCharNpChar(void)
 					gMC.cond &= ~1;
 				} else {
 					SetNPCFlag(gNPC[i].code_flag);
+					StartTextScript(gNPC[i].code_event);
 					gNPC[i].cond = 0;
 					AddScore(1000);
 				}
