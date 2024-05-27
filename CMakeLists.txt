@@ -568,6 +568,10 @@ message(STATUS "Using JSON For Modern C++ (CMake)")
 find_package(nlohmann_json CONFIG REQUIRED)
 target_link_libraries(Randamu PRIVATE nlohmann_json::nlohmann_json)
 
+message(STATUS "Using Compile Time Regular Expressions (CMake)")
+find_package(ctre CONFIG REQUIRED)
+target_link_libraries(Randamu PRIVATE ctre::ctre)
+
 
 if(BACKEND_RENDERER MATCHES "OpenGLES2") 
 	find_package(OpenGLES2 REQUIRED)
