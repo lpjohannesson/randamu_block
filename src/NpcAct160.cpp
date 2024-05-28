@@ -1404,12 +1404,12 @@ void ActNpcFireyBuyo(NPCHAR *npc)
 		case 1:
 			if (npc->direct == 0)
 			{
-				if (npc->x < gMC.x + (160 * 0x200) && npc->x > gMC.x - (160 * 0x200) && npc->y < gMC.y + (160 * 0x200) && npc->y > gMC.y - (16 * 0x200))
+				if (npc->x < gMC.x + (160 * 0x200) && npc->x > gMC.x - (160 * 0x200) && npc->y < gMC.y + (160 * 0x200) && npc->y > gMC.y - (32 * 0x200))
 					++npc->count1;
 			}
 			else
 			{
-				if (npc->x < gMC.x + (160 * 0x200) && npc->x > gMC.x - (160 * 0x200) && npc->y < gMC.y + (16 * 0x200) && npc->y > gMC.y - (160 * 0x200))
+				if (npc->x < gMC.x + (160 * 0x200) && npc->x > gMC.x - (160 * 0x200) && npc->y < gMC.y + (32 * 0x200) && npc->y > gMC.y - (160 * 0x200))
 					++npc->count1;
 			}
 
@@ -1431,36 +1431,30 @@ void ActNpcFireyBuyo(NPCHAR *npc)
 			if (npc->ani_no > 1)
 				npc->ani_no = 0;
 
-			if (++npc->act_wait > 15)
+			if (++npc->act_wait > 2)
 			{
-				if (++npc->count2 > 2)
+				if (++npc->count2 > 25)
 				{
 					npc->count2 = 0;
-					npc->count1 = -50;
+					npc->count1 = -295;
 				}
 				else
 				{
-					npc->count1 = -10;
+					npc->count1 = 10;
 				}
 
 				int deg, xm, ym;
 				int coordX, coordY, flames, inaccuracy;
+				coordX = npc->x;
+				if (npc->direct == 0)
+					coordY = npc->y - 7_pix;
+				else
+					coordY = npc->y + 7_pix;
+				inaccuracy = 350;
 				if (gMC.difficulty > DIFFICULTY_HARDENED){
-					flames = Random(1, 2);
-					coordX = npc->x;
-					if (npc->direct == 0)
-						coordY = npc->y - 20_pix;
-					else
-						coordY = npc->y + 20_pix;
-					inaccuracy = 40;
+					flames = Random(2, 4);
 				} else {
-					flames = 1;
-					if (npc->direct == 0)
-						coordX = npc->x - (14 * 0x200) - gMC.x;
-					else
-						coordX = npc->x + (14 * 0x200) - gMC.x;
-					coordY = npc->y - gMC.y;
-					inaccuracy = 30;
+					flames = Random(1, 3);
 				}
 
 				for (int i = 0; i < flames; i++)
@@ -1472,8 +1466,8 @@ void ActNpcFireyBuyo(NPCHAR *npc)
 
 					deg += (unsigned char)Random(-inaccuracy, inaccuracy);
 
-					ym = GetSin(deg) * Random(2, 6);
-					xm = GetCos(deg) * Random(2, 6);
+					ym = GetSin(deg) * (Random(1, 3) / 15.0f);
+					xm = GetCos(deg) * (Random(1, 3) / 15.0f);
 
 					if (npc->direct == 0)
 						SetNpChar(202, npc->x, npc->y - (8 * 0x200), xm, ym, 0, NULL, 0x100);
