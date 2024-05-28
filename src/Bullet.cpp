@@ -324,6 +324,8 @@ BULLET_TABLE gBulTbl[] = {
 	{1, 2, 20, 32, 4, 2, 2, 2, {8, 8, 8, 8}, 0.10, 0.10},
 	// Water Gun projectile
 	{0, 1, 30, 8, 8, 8, 2, 2, {4, 4, 4, 4}, 2, 2},
+	// Mannan visuals
+	{-1, 2, 8, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 0.25, 0.25},
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -5340,6 +5342,7 @@ void ActBullet(void)
 						ActBullet_Frontia2(&gBul[i], 2);
 						break;
 					case 3:
+					case 94:
 						ActBullet_Frontia2(&gBul[i], 3);
 						break;
 					case 70:

@@ -3,11 +3,15 @@
 #include <cstddef>
 
 #include "BossLife.h"
+#include "Bullet.h"
 #include "Caret.h"
 #include "Game.h"
 #include "Frame.h"
 #include "MyChar.h"
+#include "MycHit.h"
+#include "MycParam.h"
 #include "NpChar.h"
+#include "NpcTbl.h"
 #include "Sound.h"
 #include "Triangle.h"
 #include "Stage.h"
@@ -1160,6 +1164,8 @@ void ActNpc034(NPCHAR *npc)
 		npc->rect = rcRight;
 }
 
+const int enrageTime = std::round(80);
+
 // Mannan
 void ActNpcMannan(NPCHAR *npc)
 {
@@ -1209,6 +1215,24 @@ void ActNpcMannan(NPCHAR *npc)
 				npc->act_no = 4;
 
 			break;
+	}
+
+	if (JudgeHitMyCharNPC3(npc)){
+		npc->ani_wait += 2;
+		if (npc->ani_wait > enrageTime){
+			if ((npc->ani_wait - enrageTime) % 25 == 0){
+				DamageMyChar(5);
+				npc->life = std::min(npc->life + 3, (int)gNpcTable[npc->code_char].life);
+				if (gMC.life <= 0 && gMC.deathReason == 0) DetermineHitReason(npc->code_char);
+				SetBullet(94, gMC.x + 32_pix - 8_pix, gMC.y + 8_pix, 0);
+				SetBullet(94, gMC.x - 8_pix, gMC.y + 32_pix + 8_pix, 1);
+				SetBullet(94, gMC.x - 32_pix - 8_pix, gMC.y + 8_pix, 2);
+				SetBullet(94, gMC.x - 8_pix, gMC.y - 32_pix + 8_pix, 3);
+			}
+		}
+	} else {
+		if (npc->ani_wait > 0) 
+			npc->ani_wait--;
 	}
 
 	Rect rcLeft[4] = {
