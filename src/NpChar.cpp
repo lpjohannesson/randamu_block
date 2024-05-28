@@ -596,7 +596,7 @@ void PutNpChar(int fx, int fy)
 				Rect hitbox = {
 					hitX / 0x200,
 					hitY / 0x200,
-					(hitX + gNPC[n].hit.back / mod + gNPC[n].hit.back / mod) / 0x200,
+					(hitX + gNPC[n].hit.back / mod + gNPC[n].hit.front / mod) / 0x200,
 					(hitY + gNPC[n].hit.top / mod + gNPC[n].hit.bottom / mod) / 0x200,
 				};
 				CortBox2(&hitbox, 0x7F0000FF);
