@@ -886,9 +886,9 @@ void ActNpcMissile(NPCHAR *npc)
 				npc->xm = Random(-2, -1) * 0x200;
 
 			if (npc->y < gMC.y)
-				npc->ym = Random(-5, 0) * 0x200;
+				npc->ym = Random(-3, 0) * 0x200;
 			else 
-				npc->ym = Random(0, 5) * 0x200;
+				npc->ym = Random(0, 3) * 0x200;
 			// Fallthrough
 		case 1:
 			++npc->count1;

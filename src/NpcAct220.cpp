@@ -1200,10 +1200,10 @@ void ActNpcTurret(NPCHAR *npc)
 	};
 
 	int waitTime = 50;
-	int detectionSize = 9_pix;
+	int detectionSize = 16_pix;
 	if (gMC.difficulty > DIFFICULTY_HARDENED){
 		waitTime = 20;
-		detectionSize = 20_pix;
+		detectionSize = 32_pix;
 	}
 
 	switch (npc->act_no)
