@@ -224,65 +224,65 @@ void ChangeOrganVolume(int no, long volume, signed char track)	// 300がMAXで30
 }
 
 // サウンドの再生 (Play sound)
-void PlayOrganObject(unsigned char key, int mode, signed char track, long freq)
+void PlayOrganObject(unsigned char key, int mode, signed char track, long freq, signed char pipi)
 {
-	if (!audio_backend_initialised)
-		return;
+    if (!audio_backend_initialised)
+        return;
 
-	if (lpORGANBUFFER[track][key / 12][key_twin[track]] != NULL)
-	{
-		switch (mode)
-		{
-			case 0:	// 停止 (Stop)
-				if (old_key[track] != 0xFF)
-				{
-					AudioBackend_StopSound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]]);
-					AudioBackend_RewindSound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]]);
-				}
-				break;
+    if (lpORGANBUFFER[track][key / 12][key_twin[track]] != NULL)
+    {
+        switch (mode)
+        {
+            case 0:    // 停止 (Stop)
+                if (old_key[track] != 0xFF)
+                {
+                    AudioBackend_StopSound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]]);
+                    AudioBackend_RewindSound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]]);
+                }
+                break;
 
-			case 1: // 再生 (Playback)
-				break;
+            case 1: // 再生 (Playback)
+                break;
 
-			case 2:	// 歩かせ停止 (Stop playback)
-				if (old_key[track] != 0xFF)
-				{
-					AudioBackend_PlaySound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]], false);
-					old_key[track] = 0xFF;
-				}
-				break;
+            case 2:    // 歩かせ停止 (Stop playback)
+                if (old_key[track] != 0xFF)
+                {
+                    if (pipi == 0) AudioBackend_PlaySound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]], false);
+                    old_key[track] = 0xFF;
+                }
+                break;
 
-			case -1:
-				if (old_key[track] == 0xFF)	// 新規鳴らす (New sound)
-				{
-					ChangeOrganFrequency(key % 12, track, freq);	// 周波数を設定して (Set the frequency)
-					AudioBackend_PlaySound(lpORGANBUFFER[track][key / 12][key_twin[track]], true);
-					old_key[track] = key;
-					key_on[track] = 1;
-				}
-				else if (key_on[track] == 1 && old_key[track] == key)	// 同じ音 (Same sound)
-				{
-					// 今なっているのを歩かせ停止 (Stop playback now)
-					AudioBackend_PlaySound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]], false);
-					key_twin[track]++;
-					if (key_twin[track] > 1)
-						key_twin[track] = 0;
-					AudioBackend_PlaySound(lpORGANBUFFER[track][key / 12][key_twin[track]], true);
-				}
-				else	// 違う音を鳴らすなら (If you make a different sound)
-				{
-					AudioBackend_PlaySound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]], false);	// 今なっているのを歩かせ停止 (Stop playback now)
-					key_twin[track]++;
-					if (key_twin[track] > 1)
-						key_twin[track] = 0;
-					ChangeOrganFrequency(key % 12, track, freq);	// 周波数を設定して (Set the frequency)
-					AudioBackend_PlaySound(lpORGANBUFFER[track][key / 12][key_twin[track]], true);
-					old_key[track] = key;
-				}
+            case -1:
+                if (old_key[track] == 0xFF)    // 新規鳴らす (New sound)
+                {
+                    ChangeOrganFrequency(key % 12, track, freq);    // 周波数を設定して (Set the frequency)
+                    AudioBackend_PlaySound(lpORGANBUFFER[track][key / 12][key_twin[track]], pipi == 0);
+                    old_key[track] = key;
+                    key_on[track] = 1;
+                }
+                else if (key_on[track] == 1 && old_key[track] == key)    // 同じ音 (Same sound)
+                {
+                    // 今なっているのを歩かせ停止 (Stop playback now)
+                    if (pipi == 0) AudioBackend_PlaySound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]], false);
+                    key_twin[track]++;
+                    if (key_twin[track] > 1)
+                        key_twin[track] = 0;
+                    AudioBackend_PlaySound(lpORGANBUFFER[track][key / 12][key_twin[track]], pipi == 0);
+                }
+                else    // 違う音を鳴らすなら (If you make a different sound)
+                {
+                    if (pipi == 0) AudioBackend_PlaySound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]], false);    // 今なっているのを歩かせ停止 (Stop playback now)
+                    key_twin[track]++;
+                    if (key_twin[track] > 1)
+                        key_twin[track] = 0;
+                    ChangeOrganFrequency(key % 12, track, freq);    // 周波数を設定して (Set the frequency)
+                    AudioBackend_PlaySound(lpORGANBUFFER[track][key / 12][key_twin[track]], pipi == 0);
+                    old_key[track] = key;
+                }
 
-				break;
-		}
-	}
+                break;
+        }
+    }
 }
 
 // オルガーニャオブジェクトを開放 (Open Organya object)
@@ -737,7 +737,7 @@ void ORGDATA::PlayData(void)
 		{
 			if (!g_mute[i] && np[i]->y != KEYDUMMY)	// 音が来た。 (The sound has come.)
 			{
-				PlayOrganObject(np[i]->y, -1, i, freq);
+				PlayOrganObject(np[i]->y, -1, i, freq, info.tdata[i].pipi);
 				now_leng[i] = np[i]->length;
 			}
 
@@ -750,7 +750,7 @@ void ORGDATA::PlayData(void)
 		}
 
 		if (now_leng[i] == 0)
-			PlayOrganObject(0, 2, i, freq);
+			PlayOrganObject(0, 2, i, freq, info.tdata[i].pipi);
 
 		if (now_leng[i] > 0)
 			now_leng[i]--;
@@ -885,7 +885,7 @@ void StopOrganyaMusic(void)
 
 	// Stop notes
 	for (int i = 0; i < MAXMELODY; i++)
-		PlayOrganObject(0, 2, i, 0);
+		PlayOrganObject(0, 2, i, 0, 0);
 
 	memset(old_key, 255, sizeof(old_key));
 	memset(key_on, 0, sizeof(key_on));
@@ -911,7 +911,7 @@ void EndOrganya(void)
 
 	for (int i = 0; i < MAXMELODY; i++)
 	{
-		PlayOrganObject(0, 0, i, 0);
+		PlayOrganObject(0, 0, i, 0, 0);
 		ReleaseOrganyaObject(i);
 	}
 }
