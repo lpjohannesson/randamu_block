@@ -1216,18 +1216,20 @@ void ActNpcTurret(NPCHAR *npc)
 			npc->view.back = 8 * 0x200;
 			// Fallthrough
 		case 1:
-			if (npc->direct == 0 && gMC.x < npc->x && gMC.x > npc->x - (192 * 0x200) && gMC.y > npc->y - detectionSize && gMC.y < npc->y + detectionSize)
-			{
-				npc->act_no = 10;
-				npc->act_wait = 0;
-				npc->ani_no = 2;
-			}
+			if (IntersectCheck({2 * 16_pix, 2 * 16_pix, (gMap.width-2) * 16_pix, (gMap.length-2) * 16_pix}, npc->x, npc->y)){
+				if (npc->direct == 0 && gMC.x < npc->x && gMC.x > npc->x - (192 * 0x200) && gMC.y > npc->y - detectionSize && gMC.y < npc->y + detectionSize)
+				{
+					npc->act_no = 10;
+					npc->act_wait = 0;
+					npc->ani_no = 2;
+				}
 
-			if (npc->direct == 2 && gMC.x > npc->x && gMC.x < npc->x + (192 * 0x200) && gMC.y > npc->y - detectionSize && gMC.y < npc->y + detectionSize)
-			{
-				npc->act_no = 10;
-				npc->act_wait = 0;
-				npc->ani_no = 2;
+				if (npc->direct == 2 && gMC.x > npc->x && gMC.x < npc->x + (192 * 0x200) && gMC.y > npc->y - detectionSize && gMC.y < npc->y + detectionSize)
+				{
+					npc->act_no = 10;
+					npc->act_wait = 0;
+					npc->ani_no = 2;
+				}
 			}
 
 			if (npc->shock){
