@@ -77,7 +77,7 @@ To set the value, put it as ""name": value" in config.json (it's created automat
 - 'hitboxes': enables/disables overlay that shows entity hitboxes.
 - 'legacyUI': enables/disables programmer art designs used in early releases. Cannot be toggled off on April 1st.
 - 'oneDamage': enables/disables the configuration to make every weapon deal one damage per hit at max.
-- 'secondCampaign': enables/disables the starting point being levels after Doctor's boss fight, also doubles starting HP to compensate.
+- 'secondCampaign': enables/disables the starting point being levels after Doctor's boss fight, with additional starting HP to compensate.
 - 'superHotMode': enables/disables the game mode where holding any keys stops the flow of time.
 - 'randomSizeMode': enables/disables the ability for generated levels to have variable size, not just 118x118.
 - 'sheepCharacter': enables/disables the character being permanently a sheep.
@@ -108,18 +108,76 @@ Credits:
 - Based on: CSE2 Enhanced by Clownacy and GabrielTFS
 - Music: Cory Welch, Tinned Duck, 2dbro, Zenix, txin, mLurker, Alula, Safusaka, zeroflafi, Dredged Crusader, AquaDoesStuff, yellow, Raymundo
 - Used sprites: ZarroTsu, AsperDev, Tert, Taiki, MintyFresh, Raymundo, lolkit
-- Coding help: Autumn Hazel
+- Coding help: Autumn Hazel, Strultz
 - Bracket OC: Jamark
 - Improved Map System: Ikuyo and Onyx
 - Monogram font: datagoblin
 - Zlib for C++: Piti118, Deepak Bandyopadhyay, Lutz Kettner, zlib team
 - JSON decoding: Niels Lohmann and contributors
 - Update checking: quyse, Mark Lakata and libcurl team
+- Word wrapping: L. B from Stack Overflow and Compile-Time Regular Expressions
 - Crossovers: 2dbro and Cybryll/Kim Tyranto
 - Translation help: Fluffy-Fuwafuwa
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.44.1 (Fixes and Tweaxes) (May 30th 2024):
+Enemy changes:
+- Reworked Core Base:
+	* reduced HP by 15
+	* reduced XP dropped by 20
+	* now creates a sort of shielding with a lot of slowly moving flames
+	* increased detection zone by 16 pixels up/down to make base less vulnerable
+- Buffed Mannans:
+	* increased hitbox
+	* now can steal HP, if player stands inside of them for too long, by damaging them and healing itself
+- Changed Turrets:
+	* decreased HP from 100 to 70
+	* increased exp from 8 to 14
+	* decreased the height variance for rockets
+	* increased vertical detection size
+	* no longer automically attack when being stuck outside of stage
+- Nerfed Second Campaign Critter:
+	* lowered flight time from 80 to 30
+	* increased jump velocity by 15%
+	* increased projectile speed from 5 to 6
+- Changed Laser Gaudis:
+	* no longer shoots if outside of the screen
+	* increased attack speed by ~12% to compensate
+- Changed Press:
+	* (Resonant) now has to ascend to top before falling again, increased ascending speed
+	* (Reinforced) now falls when taking any damage in waiting at the top state (satisfying #83)
+- Nerfed Mecha Ravils:
+	* reduced movement speed by ~30%, both of normal jump and dash
+	* decreased amount of projectiles from dash from 7 to 3
+	
+Misc changes:
+- Reworked starting health in Second Campaign mode (satisfies #90): 
+	* no longer applies to Duckman
+	* now works by applying HP equivalent to collecting 75% of life capsules from first campaign
+	* this accounts for 33% of life capsules in Hardened+ difficulties having lower value
+	* HP is also reduced for fast runs
+- Cool Sunglasses now only increase Iron Bond's lifesteal by 10% instead of 100%.
+- Optimized performance of rankings loading and saving, and removed older format conversion.
+- Any runs on this version, that start in Second Campaign mode, now have red crystal in rankings, just like normal runs.
+- Made pipi thing of Organya work, with help of Strultz (satisfies #93).
+
+Bug fixes:
+- Ballos's boss stage now has proper depth number on Second Campaign mode.
+- Fixed hitboxes configuration option not correctly rendering NPC hitboxes with inequal front and back.
+- Added word wrapping to resource overload descriptions (fixes #78).
+- Fixed Water Sprayer still being referred as Water Gun in chest pick up (fixes #79).
+- Fixed some Miracle Matter craft descriptions having empty lines in-game (fixes #80).
+- Fixed Shadowbuilt Crags not being generated in fast runs (fixes #81).
+- Fixed Missile Launcher not actually colliding with Jethead's arena borders (fixes #82).
+- Solid NPCs no longer push player character beyond top of the stage (fixes #84).
+- Fixed incorrect implementation of not allowing capsules to be opened in boss fights, making refills infinite and actual life capsules be infinite in some cases (fixes #85).
+- Fixed Miracle Matter weapon craft flags not actually coming back (fixes #86).
+- Fragile gimmick's blocks now fall into the void instead of causing a lot of lag (fixes #88).
+- Fixed Miracle Matter craft result being not granted to player, if inventory on moment of crafting was full (fixes #89).
+- Fixed the oversight with Badge of Life's revive triggering in unnecessary cases (fixes #92).
+- config.json options now properly save and reload when in General Options (fixes #94).
+
 1.44 (Seconds & Moments With You) (May 20th 2024):
 New content:
 - Added default dash:
