@@ -1475,7 +1475,7 @@ void ActNpcFireyBuyo(NPCHAR *npc)
 						SetNpChar(202, npc->x, npc->y + (8 * 0x200), xm, ym, 2, NULL, 0x100);
 				}
 
-				PlaySoundObject(39, SOUND_MODE_PLAY);
+				PlaySoundObject(61, SOUND_MODE_PLAY);
 
 				npc->act_no = 0;
 				npc->ani_no = 0;
