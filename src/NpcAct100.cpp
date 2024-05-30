@@ -1232,7 +1232,7 @@ void ActNpcMechaRavil(NPCHAR *npc)
 			npc->count1 = 0;
 			// Fallthrough
 		case 1:
-			if (gMC.x < npc->x + (135 * 0x200) && gMC.x > npc->x - (135 * 0x200) && gMC.y < npc->y + (64 * 0x200) && gMC.y > npc->y - (64 * 0x200))
+			if (gMC.x < npc->x + (150 * 0x200) && gMC.x > npc->x - (150 * 0x200) && gMC.y < npc->y + (80 * 0x200) && gMC.y > npc->y - (80 * 0x200))
 				npc->act_no = 10;
 
 			if (npc->shock)
@@ -1273,18 +1273,18 @@ void ActNpcMechaRavil(NPCHAR *npc)
 				else
 					npc->direct = 2;
 
-				npc->xm = (gMC.x - npc->x) / 45;
+				npc->xm = (gMC.x - npc->x) / 65;
 
 				if (++npc->count1 > 2)
 				{
 					npc->count1 = 0;
 					npc->ani_no = 4;
 					npc->act_no = 21;
-					npc->ym = -0x700;
-					npc->xm *= 2;
+					npc->ym = -0x600;
+					npc->xm *= 1.3f;
 					npc->damage = 10;
 					PlaySoundObject(102, SOUND_MODE_PLAY);
-					for (int i = 0; i < 7; i++)
+					for (int i = 0; i < 3; i++)
 					{
 						if (npc->direct == 0)
 							deg = 0x88;
@@ -1306,7 +1306,7 @@ void ActNpcMechaRavil(NPCHAR *npc)
 				else
 				{
 					npc->act_no = 21;
-					npc->ym = -0x600;
+					npc->ym = -0x500;
 					if (npc->direct == 0)
 						deg = 0x88;
 					else
