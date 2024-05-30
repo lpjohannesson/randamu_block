@@ -380,6 +380,7 @@ void Die(void){
 				LoseNpChar(&gNPC[i], false);
 			}
 		}
+		SetNPCFlag(Flags::BADGE_OF_LOVE_REVIVE_PROC);
 		gMC.life = gMC.max_life;
 		PlaySoundObject(71, SOUND_MODE_PLAY);
 		CutNPCFlag(Flags::BADGE_OF_LOVE);
