@@ -8,7 +8,7 @@
         "DIRECTX": "OFF",
         "PKG_CONFIG_STATIC_LIBS": "ON",
         "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
-        "CMAKE_TOOLCHAIN_FILE": "C:\\Users\\Administrator\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "D:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
     },
     "cmake.generator": "MinGW Makefiles",
     "C_Cpp.errorSquiggles": "enabled"
