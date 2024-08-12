@@ -96,3 +96,5 @@ game_english/libzlib1.dll
 .travis.yml
 game_english/beta.zip
 game_english/speedrunData.json
+
+/game_english/resources
