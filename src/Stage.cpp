@@ -2510,6 +2510,8 @@ void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArgument
 		SetNpChar(192, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::DESTRUCTION_ENERGIZER);
 	if (GetNPCFlag(Flags::CREATION_ENERGIZER))
 		SetNpChar(193, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::CREATION_ENERGIZER);
+	if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL))
+		SetNpChar(195, gMC.x, gMC.y + 0x2000, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::AMPHIBIAN_MEDAL);
 }
 
 void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments){
