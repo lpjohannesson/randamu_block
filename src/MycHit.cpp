@@ -1006,6 +1006,9 @@ void HitMyCharNpChar(void)
 							gNPC[i].freeze = 320;
 							IncrementCooldown(gCooldowns, DASH_TIMER_ID, 120);
 						}
+						if (gMC.ameDashState){
+							gMC.ameDashState = false;
+						}
 					}
 				} else {
 					int dashDamage = 4;
@@ -1257,6 +1260,9 @@ void HitMyCharBoss(void)
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
 						gMC.shock += 40;
+						if (gMC.ameDashState){
+							gMC.ameDashState = false;
+						}
 					}
 				} else {
 					int dashDamage = 4;
