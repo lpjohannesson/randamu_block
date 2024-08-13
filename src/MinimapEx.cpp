@@ -345,8 +345,8 @@ int WriteMiniMap(int x, int y){
         }
 	}
 
-	int my_x = gMC.x / (0x10*0x200);
-	int my_y = gMC.y / (0x10*0x200);
+	int my_x = ((gMC.x / 0x200) + 8) / 0x10;
+	int my_y = ((gMC.y / 0x200) + 8) / 0x10;
 	if (my_y >= y - MAP_HEIGHT && my_y <= y + MAP_HEIGHT && my_x >= x - MAP_WIDTH && my_x <= x + MAP_WIDTH)
 	{
 		int my_map_y = my_y - (y - MAP_HEIGHT);
