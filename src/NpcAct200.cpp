@@ -133,6 +133,13 @@ void ActNpcDragon(NPCHAR *npc)
 			break;
 	}
 
+	npc->ym += 0x40;
+	if (npc->ym > 0x5FF)
+		npc->ym = 0x5FF;
+
+	npc->x += npc->xm;
+	npc->y += npc->ym;
+
 	if (npc->direct == 0)
 		npc->rect = rcLeft[npc->ani_no];
 	else
