@@ -1566,7 +1566,7 @@ void ActNpc296(NPCHAR *npc)
 	if (gStageNo == gGeneratedStage){
 		waitTime = 380;
 		npc->y = gMC.y + Random(-24_pix, 24_pix);
-		npc->x = gFrame.x + ScreenToSubpixelCoord(WINDOW_WIDTH)*2;
+		npc->x = gFrame.x + ScreenToSubpixelCoord(PixelToScreenCoord(WINDOW_WIDTH));
 	}
 
 	if (++npc->act_wait > waitTime)

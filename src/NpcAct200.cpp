@@ -1185,7 +1185,7 @@ void ActNpcWindController(NPCHAR *npc)
 	}
 
 	npc->y = npc->tgt_y = gMC.y + Random(-24_pix, 24_pix);
-	npc->x = gFrame.x + ScreenToSubpixelCoord(WINDOW_WIDTH)*2.5f;
+	npc->x = gFrame.x + ScreenToSubpixelCoord(PixelToScreenCoord(WINDOW_WIDTH))*1.25f;
 
 	if (npc->act_no >= 10 && npc->act_no <= 30)
 	{
