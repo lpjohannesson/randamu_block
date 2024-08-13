@@ -40,6 +40,10 @@ bool StartBossLife(int code_event)
 		PaintRectangle(41, genContext.bossRect.left - 1, genContext.bossRect.top - 1, 
 				w + 2, h + 2);
 		ReplaceRectangle(41, 68, genContext.bossRect.left, genContext.bossRect.top, w, h);
+		if (!IntersectCheck(genContext.bossRect, gNPC[i].x / 16_pix, gNPC[i].y / 16_pix)){
+			gNPC[i].x = (genContext.bossRect.left + w / 2)*16_pix;
+			gNPC[i].y = (genContext.bossRect.top + h - 2)*16_pix;
+		}
 	}
 
 	return true;
