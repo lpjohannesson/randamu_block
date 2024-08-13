@@ -672,6 +672,16 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		return false;
 	}
 
+	if (isBoss){
+		Rect necessaryRect = {genContext.bossRect.left - 1, genContext.bossRect.top - 1, 
+						genContext.bossRect.right, genContext.bossRect.bottom};
+		if(IntersectCheck(necessaryRect, npc.x / 16_pix, npc.y / 16_pix)){
+			if ((gBL.flag == false && !GetNPCFlag(Flags::LEVEL_BOSS_DEFEATED) && !IntersectCheck(necessaryRect, gMC.x / 16_pix, gMC.y / 16_pix)) || gMusicNo == 52){
+				return false;
+			}
+		}
+	}
+
 	if (bul != NULL && bul->code_bullet == 89){
 		float speed;
 		switch (bul->direct){
