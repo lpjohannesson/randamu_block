@@ -14,7 +14,7 @@ extern bool gbSmoothScrolling;
 extern bool gbVsync;
 extern bool gbExtendedInfo;
 
-typedef enum SurfaceID
+enum SurfaceID
 {
 	SURFACE_ID_TITLE = 0,
 	SURFACE_ID_PIXEL = 1,
@@ -66,8 +66,9 @@ typedef enum SurfaceID
 	SURFACE_ID_CREDITS_IMAGE_2 = 47,
 	SURFACE_ID_RESOURCE_ICON = 48,
 	SURFACE_ID_DEATH = 49,
-	SURFACE_ID_MAX = 50,
-} SurfaceID;
+	SURFACE_ID_COOLDOWNS = 50,
+	SURFACE_ID_MAX = 51,
+};
 
 bool Flip_SystemTask(void);
 bool StartDirectDraw(const char *title, int lMagnification, bool b60fps, bool bSmoothScrolling, bool bVsync, bool bExtendedInfo);

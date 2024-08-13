@@ -259,6 +259,8 @@ bool LoadGenericData(void)
 		bError = true;
 	if (!MakeSurface_File("StageImage", SURFACE_ID_STAGE_ITEM))
 		bError = true;
+	if (!MakeSurface_File("Cooldowns", SURFACE_ID_COOLDOWNS))
+		bError = true;
 	if (!MakeSurface_File("Npc/NpcSym", SURFACE_ID_NPC_SYM))
 		bError = true;
 	if (!MakeSurface_File("Npc/NpcRavil", SURFACE_ID_RAVIL))

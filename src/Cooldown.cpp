@@ -69,14 +69,14 @@ bool IsCooldownReversed(Cooldown& cd){
 void PutCooldownList(std::vector<Cooldown>& list){
     int idd = 0;
     for (auto& cooldown: list){
-        Rect rcCooldownIcon = {16 + cooldown.id * 16, 16, 32 + cooldown.id*16, 32};
+        Rect rcCooldownIcon = {((1 + cooldown.id) % 16) * 16, 0 + ((1 + cooldown.id) / 16)*16, 16 + ((1 + cooldown.id) % 16)*16, 16 + ((1 + cooldown.id) / 16)*16};
         float cooldownDuration = (((float)cooldown.duration)/((float)CooldownDuration(cooldown.id)));
         if (IsCooldownReversed){
             cooldownDuration = 1.0f - cooldownDuration;
         }
-        Rect rcCooldownDuration = {0, 16 + (int)(16.0f*cooldownDuration), 16, 32};
-        PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(17 + idd*15), PixelToScreenCoord(58), &rcCooldownIcon, SURFACE_ID_ARMS_IMAGE);
-        PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(17 + idd*15), PixelToScreenCoord(58), &rcCooldownDuration, SURFACE_ID_ARMS_IMAGE);
+        Rect rcCooldownDuration = {0, 0 + (int)(16.0f*cooldownDuration), 16, 16};
+        PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(17 + idd*15), PixelToScreenCoord(58), &rcCooldownIcon, SURFACE_ID_COOLDOWNS);
+        PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(17 + idd*15), PixelToScreenCoord(58), &rcCooldownDuration, SURFACE_ID_COOLDOWNS);
         idd++;
     }
 }
