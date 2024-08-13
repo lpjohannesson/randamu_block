@@ -4664,8 +4664,6 @@ void ActBullet_HomingSword(BULLET *bul)
 		my = fy + ScreenToSubpixelCoord(gMouseY);
 	}
 
-	
-
 	if (bul->npc == NULL)
 	{
 		bul->damage = 0;
@@ -4735,6 +4733,10 @@ void ActBullet_HomingSword(BULLET *bul)
 							AddBulletMyChar(gNPC[i].code_event, gNPC[i].exp);
 							SetCaret(gNPC[i].x, gNPC[i].y, 3, 0);
 							SetCaret(gNPC[i].x, gNPC[i].y, 18, 0);
+							if (gMC.a == 10)
+							{
+								StartTextScript(305);
+							}
 							if (gMC.a == 20)
 							{
 								StartTextScript(303);
