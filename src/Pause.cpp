@@ -2707,7 +2707,6 @@ static int Callback_Configuration2(OptionsMenu *parent_menu, size_t this_option,
 
 	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal, 3);
 	ReloadConfig();
-	LoadInterface(ChallengeEnabled("legacyUI"));
 
 	return return_value;
 }
@@ -2766,6 +2765,8 @@ static int Callback_Options(OptionsMenu *parent_menu, size_t this_option, Callba
 	// Save our changes to the configuration file
 	memcpy(conf.bindings, bindings, sizeof(bindings));
 	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal, 3);
+	ReloadConfig();
+	LoadInterface(ChallengeEnabled("legacyUI"));
 
 	SaveConfigData(&conf);
 
@@ -2826,6 +2827,8 @@ static int Callback_Options2(OptionsMenu *parent_menu, size_t this_option, Callb
 	// Save our changes to the configuration file
 	memcpy(conf.bindings, bindings, sizeof(bindings));
 	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal, 3);
+	ReloadConfig();
+	LoadInterface(ChallengeEnabled("legacyUI"));
 
 	SaveConfigData(&conf);
 
