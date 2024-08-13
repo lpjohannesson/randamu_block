@@ -672,9 +672,10 @@ void MoveCampCursor(void)
 					SwitchWeapon();
 				}
 				else {
-					AddArmsData(gItemData[gSelectedItem].code - 100, gItemData[gSelectedItem].quantity, 
-						gItemData[gSelectedItem].xp, gItemData[gSelectedItem].ammo, gItemData[gSelectedItem].level);
+					auto ammoItem = gItemData[gSelectedItem];
 					SubItemData(gItemData[gSelectedItem].code);
+					AddArmsData(ammoItem.code - 100, ammoItem.quantity, 
+						ammoItem.xp, ammoItem.ammo, ammoItem.level);
 					PlaySoundObject(5, SOUND_MODE_PLAY);
 					StopTextScript();
 				}
