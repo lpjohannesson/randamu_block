@@ -20,6 +20,7 @@
 #include "Flags.h"
 #include "Flash.h"
 #include "Frame.h"
+#include "Font.h"
 #include "Game.h"
 #include "Generic.h"
 #include "KeyControl.h"
@@ -1720,6 +1721,11 @@ int ActualTextScriptProc(void)
 					else
 					{
 						// Get text to print
+						unsigned int symbolLength = 1;
+						std::string fullSymbol("\0\0\0\0");
+						if (!gJapanese)
+							UTF8ToUnicode(reinterpret_cast<const unsigned char*>(gTS.data) + gTS.p_read, &symbolLength);
+
 						c[0] = gTS.data[gTS.p_read];
 
 						if (c[0] & 0x80)
@@ -1739,23 +1745,30 @@ int ActualTextScriptProc(void)
 						}
 						else
 						{
-							PutText2(gTS.p_write * 6, 0, c, RGB(0xFF, 0xFF, 0xFE), (SurfaceID)(SURFACE_ID_TEXT_LINE1 + (gTS.line % 4)), gJapanese);
+							if (symbolLength > 1){
+								for (int i = 0; i < symbolLength; i++){
+									fullSymbol[i] = gTS.data[gTS.p_read + i];
+								}
+								PutText2(gTS.p_write * 6, 0, fullSymbol.c_str(), RGB(0xFF, 0xFF, 0xFE), (SurfaceID)(SURFACE_ID_TEXT_LINE1 + (gTS.line % 4)), gJapanese);
+							} else {
+								PutText2(gTS.p_write * 6, 0, c, RGB(0xFF, 0xFF, 0xFE), (SurfaceID)(SURFACE_ID_TEXT_LINE1 + (gTS.line % 4)), gJapanese);
+							}
 						}
 
-						strcat(text[gTS.line % 4], c);
+						strcat(text[gTS.line % 4], symbolLength > 1 ? fullSymbol.c_str() : c);
 						PlaySoundObject(2, SOUND_MODE_PLAY);
 						gTS.wait_beam = 0;
 
 						// Offset read and write positions
-						if (c[0] & 0x80)
+						if (c[0] & 0x80 && gJapanese)
 						{
-							gTS.p_read += 2;
-							gTS.p_write += 2;
+							gTS.p_read += symbolLength + 1;
+							gTS.p_write += symbolLength + 1;
 						}
 						else
 						{
-							gTS.p_read += 1;
-							gTS.p_write += 1;
+							gTS.p_read += symbolLength;
+							gTS.p_write += symbolLength;
 						}
 
 						int txt_limit = ((gTS.face != 0) ? 27 : 35);

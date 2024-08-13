@@ -8,6 +8,7 @@
 
 struct CSE2FontObject;
 
+unsigned long UTF8ToUnicode(const unsigned char *string, unsigned int *bytes_read);
 CSE2FontObject* LoadFontFromData(const unsigned char *data, size_t data_size, unsigned int cell_width, unsigned int cell_height);
 CSE2FontObject* LoadFont(const char *font_filename, unsigned int cell_width, unsigned int cell_height);
 void DrawCSE2Text(CSE2FontObject *font_object, RenderBackend_Surface *surface, int x, int y, unsigned long colour, const char *string, bool shift_jis = false);

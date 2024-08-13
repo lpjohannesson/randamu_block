@@ -851,7 +851,7 @@ static unsigned short ShiftJISToUnicode(const unsigned char *string, unsigned in
 	return shiftjis_to_unicode_lookup[lookup_index];
 }
 
-static unsigned long UTF8ToUnicode(const unsigned char *string, unsigned int *bytes_read)
+unsigned long UTF8ToUnicode(const unsigned char *string, unsigned int *bytes_read)
 {
 	unsigned int length;
 	unsigned long charcode;
