@@ -668,6 +668,10 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		return false;
 	}
 
+	if (bul != NULL && bul->code_bullet == 31 && isBoss && !gBL.flag){
+		return false;
+	}
+
 	if (bul != NULL && bul->code_bullet == 89){
 		float speed;
 		switch (bul->direct){
