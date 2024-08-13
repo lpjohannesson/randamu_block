@@ -34,6 +34,19 @@ void IncrementCooldown(std::vector<Cooldown>& list, int id, int duration){
     }
 }
 
+void AddToCooldown(std::vector<Cooldown>& list, int id, int duration){
+    boolean didIt = false;
+    for (auto& cooldown: list){
+        if (cooldown.id == id){
+            cooldown.duration += duration;
+            didIt = true;
+        }
+    }
+    if (!didIt){
+        InitiateCooldown(list, id, duration);
+    }
+}
+
 void OverrideCooldown(std::vector<Cooldown>& list, int id, int duration){
     list.erase(std::remove_if(list.begin(), list.end(), [id](Cooldown c){
         return c.id <= id;
@@ -229,7 +242,12 @@ void ActCooldownList(std::vector<Cooldown>& list){
                     case HELLSWEEP_BOOST_ID:
                         SetCaret(gMC.x + Random(-4_pix, 4_pix), gMC.y + Random(-4_pix, 4_pix), 1, 2);
                         break;
-                }
+
+                    case DOCTOR_SHOCK_ID:
+                        for (int i = 0; i < 7; i++)
+                            SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
+                        }
+                        break;
             }
         }
     }
@@ -270,6 +288,8 @@ int CooldownDuration(int id){
             return 220;
         case FLOODTIDE_BOOST_ID: case HELLSWEEP_BOOST_ID:
             return CooldownDuration(SHEATHING_TIMER_ID)*2;
+        case DOCTOR_SHOCK_ID:
+            return 75;
     }
     return 0;
 }

@@ -1937,17 +1937,8 @@ void ActMyChar(bool bKey)
 		// }
 	}
 
-	if (gMC.doctorShock != 0){
-		gMC.doctorShock--;
-	}
-
 	if (gMC.drowningTimer != 0){
 		gMC.drowningTimer--;
-	}
-
-	if (gMC.doctorShock > 0){
-		for (int i = 0; i < 7; i++)
-			SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
 	}
 
 	if (gMC.freeze != 0){
@@ -1977,7 +1968,7 @@ void ActMyChar(bool bKey)
 		}
 	}
 
-	if (gMC.doctorShock > 0 && Random(0, 2) == 0){
+	if (CheckForCooldown(gCooldowns, DOCTOR_SHOCK_ID) != -1 && Random(0, 2) == 0){
 		//do nothing
 	}
 	else if (gMC.freeze > 0 && Random(0, 3 + std::fmax((gMC.freeze-100)/5, 0)) > 1){

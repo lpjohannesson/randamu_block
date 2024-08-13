@@ -123,7 +123,6 @@ struct MYCHAR
 	int dashDuration;
 	int visualDashDuration;
 	int dashLock;
-	int doctorShock;
 	int drowningTimer;
 	bool flip;
 	bool lethalMomentum;

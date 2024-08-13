@@ -300,10 +300,10 @@ void DamageMyChar(int damage)
 	bool clayMedalProc = false;
 	if (gStageNo == 65){
 		if (Random(0, 2) <= 0){
-			gMC.doctorShock += 75;
+			AddToCooldown(gCooldowns, DOCTOR_SHOCK_ID, 75);
 		}
 		if (oldDamage == 1 || oldDamage == 14){
-			gMC.doctorShock += 150;
+			AddToCooldown(gCooldowns, DOCTOR_SHOCK_ID, 150);
 		}
 	}
 
