@@ -489,7 +489,7 @@ gives insane speed and
 ability to smoothly change
 directions.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1070<IT-0040<IT-0029<IT+0070<FL-0756<EQ-2048<FL-0738<E2-0023<MM-Created =Omniquick Sneakers=!<WAI0135<NOD<CLO<PS-0019<RMU<END
 #0620
-<PRI<MSG<GIT1069Freeze Star
+<PRI<MSG<GIT1071Freeze Star
 allows to place blocks
 with a mouse.<NOD It
 also makes Polar Star account
