@@ -1475,7 +1475,7 @@ int ActualTextScriptProc(void)
 							InitializeGame();
 					}
 					else if (IS_COMMAND('S','R','+')){
-						SetBullet(57, gMC.x, gMC.y + 0x2500, 0);
+						SetBullet(57, gMC.x, gMC.y + 0x2500, 1);
 						gTS.p_read += 4;
 					}
 					else if (IS_COMMAND('S', 'R', '-'))
