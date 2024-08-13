@@ -39,6 +39,8 @@ void ShootBullet_Frontia1(int level)
 {
 	int bul_no;
 
+	bool isEmpowered = gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER);
+
 	switch (level)
 	{
 		case 1:
@@ -56,17 +58,17 @@ void ShootBullet_Frontia1(int level)
 			bul_no = 70;
 			break;
 	}
-	if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
-	if (!(gKey & gKeyShot))
-		gMC.rensha = 10;
+	if (isEmpowered){
+		if (!(gKey & gKeyShot))
+			gMC.rensha = 10;
 	}
 
-	if (CountArmsBullet(1) > 3 * ((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)) ? 3 : 1))
+	if (CountArmsBullet(1) > 3 * (isEmpowered ? 3 : 1))
 		return;
-	if (CountBulletNum(70) > 3 * ((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)) ? 3 : 1))
+	if (CountBulletNum(70) > 3 * (isEmpowered ? 3 : 1))
 		return;
 
-	if (((gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)) && gKey & gKeyShot) || gKeyTrg & gKeyShot)
+	if ((isEmpowered && gKey & gKeyShot) || gKeyTrg & gKeyShot)
 	{
 		if (!UseArmsEnergy(1))
 		{
@@ -74,18 +76,18 @@ void ShootBullet_Frontia1(int level)
 		}
 		else
 		{
-			if (gMC.equip & EQUIP_PROPANE_TANK){
-			if (++gMC.rensha < 11)
-				return;
+			if (isEmpowered){
+				if (++gMC.rensha < 11)
+					return;
 
-			gMC.rensha = 0;
+				gMC.rensha = 0;
 			}
 
 			if (gMC.up)
 			{
 				if (gMC.direct == 0)
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
+					if (isEmpowered){
 						SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y - (10 * 0x200), GravityDirect(1));
 						SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y - (10 * 0x200), GravityDirect(1));
 					}
@@ -95,7 +97,7 @@ void ShootBullet_Frontia1(int level)
 				}
 				else
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
+					if (isEmpowered){
 						SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y - (10 * 0x200), GravityDirect(1));
 						SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y - (10 * 0x200), GravityDirect(1));
 					}
@@ -108,7 +110,7 @@ void ShootBullet_Frontia1(int level)
 			{
 				if (gMC.direct == 0)
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
+					if (isEmpowered){
 						SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y + (10 * 0x200), GravityDirect(3));
 						SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y + (10 * 0x200), GravityDirect(3));
 					}
@@ -118,7 +120,7 @@ void ShootBullet_Frontia1(int level)
 				}
 				else
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
+					if (isEmpowered){
 						SetBullet(bul_no, gMC.x - (4 * 0x200), gMC.y + (10 * 0x200), GravityDirect(3));
 						SetBullet(bul_no, gMC.x + (4 * 0x200), gMC.y + (10 * 0x200), GravityDirect(3));
 					}
@@ -131,7 +133,7 @@ void ShootBullet_Frontia1(int level)
 			{
 				if (gMC.direct == 0)
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
+					if (isEmpowered){
 						SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y - (4 * 0x200), 0);
 						SetBullet(bul_no, gMC.x - (6 * 0x200), gMC.y + (4 * 0x200), 0);
 					}
@@ -141,7 +143,7 @@ void ShootBullet_Frontia1(int level)
 				}
 				else
 				{
-					if (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER)){
+					if (isEmpowered){
 						SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y - (4 * 0x200), 2);
 						SetBullet(bul_no, gMC.x + (6 * 0x200), gMC.y + (4 * 0x200), 2);
 					}
