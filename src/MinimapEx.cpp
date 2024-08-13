@@ -519,19 +519,19 @@ int MiniMapExLoop(void)
         //     }
         // }
 		
-		if(map_x - 60 < 0){
-			map_x = 60;
+		if(map_x - gMap.width / 2 < 0){
+			map_x = gMap.width / 2;
 		}
 		
-		if(map_x + 60 >= gMap.width){
-			map_x = gMap.width - 60;
+		if(map_x + gMap.width / 2 >= gMap.width){
+			map_x = gMap.width - gMap.width / 2;
 		}
 
-		if(map_y - 65 < 0){
-			map_y = 65;
+		if(map_y - gMap.length * 5 / 10 < 0){
+			map_y = gMap.length * 5 / 10;
 		}
 		
-		if(map_y >= gMap.length){
+		if(map_y >= gMap.length ){
 			map_y = gMap.length;
 		}
 
