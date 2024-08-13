@@ -1008,7 +1008,8 @@ void HitNpCharBullet(void)
 				}
 				else if (gBul[b].code_bullet == 13
 					|| gBul[b].code_bullet == 14
-					|| gBul[b].code_bullet == 15)
+					|| gBul[b].code_bullet == 15
+					|| gBul[b].code_bullet == 57)
 				{
 					// Strange empty case that's needed for accurate assembly
 				}
