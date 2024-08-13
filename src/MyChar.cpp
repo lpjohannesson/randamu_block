@@ -492,13 +492,25 @@ void PutMyChar(int fx, int fy)
 		}
 	}
 
+	++gMC.bubble;
+
+	// Draw jump charge
+	Rect rcJumpCharge[4] = {
+		{176, 128, 192, 144},
+		{192, 128, 208, 144},
+		{208, 128, 224, 144},
+		{224, 128, 240, 144},
+	};
+	
+	if (gMC.chargeCD >= 30)
+		PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x) - PixelToScreenCoord(8) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y) - PixelToScreenCoord(8) - SubpixelToScreenCoord(fy), &rcJumpCharge[(gMC.bubble / 5) % 5], SURFACE_ID_CARET);
+
 	// Draw air tank
 	Rect rcBubble[2] = {
 		{56, 96, 80, 120},
 		{80, 96, 104, 120},
 	};
-
-	++gMC.bubble;
+	
 	if (gMC.equip & EQUIP_AIR_TANK && gMC.flag & 0x100)
 		PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x) - PixelToScreenCoord(12) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y) - PixelToScreenCoord(12) - SubpixelToScreenCoord(fy), &rcBubble[(gMC.bubble / 2) % 2], SURFACE_ID_CARET);
 	else if (gMC.unit == 1)
@@ -1557,7 +1569,6 @@ void ActMyChar_Normal(bool bKey)
 		} else if ((gKey & gKeyUp)) {
 			if (++gMC.chargeCD > 30){
 				gMC.chargeCD = 30;
-				SetCaret(gMC.x, gMC.y + gMC.hit.top, 13, 0);
 			}
 		}
 	}
