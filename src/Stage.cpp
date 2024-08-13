@@ -1200,10 +1200,13 @@ bool LoadMapAssets(){
 	std::string path;
 	bool bError = false;
 	InitTileset();
-	if (genContext.gimmick == GIMMICK_DARKNESS || ChallengeEnabled("darkness"))
+	if (genContext.gimmick == GIMMICK_DARKNESS || ChallengeEnabled("darkness")){
 		path = path_dir + "/PrtNCave" + genContext.tileset;
-	else
+		if (!ResourceExists(path))
+			path = path_dir + "/PrtCave" + genContext.tileset;
+	} else {
 		path = path_dir + "/PrtCave" + genContext.tileset;
+	}
 
 	if (IsItSecondCampaign() && genContext.tileset != TYPE_SHADOW)
 		path += "_2";
