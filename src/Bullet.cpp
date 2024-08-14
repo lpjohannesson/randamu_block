@@ -149,7 +149,7 @@ void PutBullet(int fx, int fy)
 				long long subpixelLength = abs(sqrt(xDist * xDist + yDist * yDist));
 				int chainLength = SubpixelToScreenCoord(subpixelLength);
 				double chainAngle = degToRad(pointDirection(targetX, targetY, x, y));
-				Rect chainRect = {223, 83, 236, 292};
+				Rect chainRect = {223, 83, 236, 92};
 				for (int i = 0; i < chainLength; i += chainWidth)
 				{
 					int c_x = SubpixelToScreenCoord(targetX) + (cos(chainAngle) * i) + (cos(chainAngle) * (chainWidth / 2)) - SubpixelToScreenCoord(fx);
