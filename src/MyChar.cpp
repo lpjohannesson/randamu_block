@@ -1031,7 +1031,7 @@ void ActMyChar_Normal(bool bKey)
 			gMC.down = false;
 
 		if (gKeyTrg & gKeyJump && (gMC.flag & 8 || gMC.flag & 0x10 || gMC.flag & 0x20 || 
-					(gMC.flag & 0x100 || gMC.boost_cnt <= 0)
+					(gMC.flag & 0x100)
 					|| (gMC.equip & EQUIP_ALIEN_MEDAL && gMC.pogo && GetAttribute(round(((float)gMC.x) / 0x2000), round(((float)gMC.y + 0x200 * 15) / 0x2000)) == 66)
 					|| ((gMC.equip & EQUIP_WALL_JUMP || GetNPCFlag(Flags::TOROKO_CHARACTER)) && GetAttribute(round(((float)gMC.x) / 0x2000) + 1, round(((float)gMC.y) / 0x2000)) == 65)
 					|| ((gMC.equip & EQUIP_WALL_JUMP || GetNPCFlag(Flags::TOROKO_CHARACTER)) && GetAttribute(round(((float)gMC.x) / 0x2000) - 1, round(((float)gMC.y) / 0x2000)) == 65)
