@@ -244,10 +244,11 @@ void ActCooldownList(std::vector<Cooldown>& list){
                         break;
 
                     case DOCTOR_SHOCK_ID:
-                        for (int i = 0; i < 7; i++)
+                        for (int i = 0; i < 7; i++) {
                             SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
                         }
                         break;
+                }
             }
         }
     }
