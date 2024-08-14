@@ -121,6 +121,68 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.44.2 (Fixes and Tweaxes TWO) (August 14th 2024):
+Implemented suggestions:
+- Added proper support for UTF-8 symbols longer, than a byte, for TSC default scrolling, thus opening the way to Chinese translation (satisfies #115).
+- Permadeath reminder on saving is removed if player saved once or more (satisfies #74).
+- Swimming now properly overrides boosting (satisfies #113).
+- Added new visual for jump being fully charged (done by AsperDev).
+
+Balance changes:
+- Buffed/reworked Energy Flail lvl4:
+	* increased damage from 1 to 4 and lifespan from 12 to 30, but decreased speed from 12 to 8
+	* decreased static immunity frames from 15/6 to 4/2
+	* now behaves like pre-1.43 Energy Whip
+	* secondary flails now spawn around the main whip in much more packed fashion
+	* secondary projectiles now have 4/2 local iframes instead of 15/6 static iframes, but do 4 damage instead of 12/3
+- Buffed Mining Laser:
+	* changed its immunity frames from 5 static to 3 local
+	* extended the range of lasers to infinity
+	* doubled amount of bullets and their spread for 3rd attack mode
+	* now can be charged using health, if there is no EXP stored
+- Tweaked Boomerang Blades lvl4:
+	* now has both blade slashes
+	* decreased the distance of blade's freeroam from 12 to 8 blocks
+	* tweaked bouncing to be less chaotic and less likely to go through walls
+	* added 12 bounces limit, triggered by enemy or solid block hits, after which the blade returns to player
+	* reduced block hitbox from 4x2 to 3x3
+- Increased damage counter of Iron Bond from 24 to 36.
+- Gravity Necklace's cooldown is now instantly reset after hitting the ground.
+- Nerfed Mesa/made him less annoying to fight:
+	* horizontal speed increased by 44%
+	* jump height increased by ~42%
+	* block throwing timing adjusted for new jump height
+	* pre-nerfed Mesa's mobility is now in Reinforced AI
+
+Misc changes:
+- Changed Doctor's slowdown status effect to use cooldown code.
+- Moved cooldown icons into Cooldowns.png.
+- Whimsical Star is set to follow the player by default, and no longer breaks on touching invulnerable NPC.
+
+Bugfixes:
+- Fixed Energy Flail chain's unintentionally huge rect.
+- Fixed Quate making stars randomly invisible.
+- Polar Star no longer becomes unusable if Spur's bullets exist on the level.
+- Tweaked Military Armament and Discordian Visor descriptions to fix text overflow (fully fixes #80).
+- Getting weapon out of inventory no longer instantly deletes its miracle crafting flag (fixes #86 again).
+- Changed the flag for Badge of Love's revive trigger from 970 to 1070 to not collide with star collection flags (fixes #92 again).
+- Made "Disable Music" and "Legacy Graphics" options properly affect in-game state (fixes #94 again).
+- Level boss is teleported into arena, if they are outside of it at the moment, when boss battle starts (fixes #95).
+- Copper Bulwark/Shield of Time dashes now properly reset Ame's dash visuals (fixes #96).
+- Dragon enemy is now affected by gravity (fixes #97).
+- Second campaign's freezing wind and cloud gimmicks now spawn correctly regardless of game's resolution (fixes #98).
+- Fixed Legacy Graphics lacking sprites for new cooldowns (fixes #99).
+- Fixed Freeze Star showing wrong icon during its crafting description (fixes #100).
+- Bosses are no longer damaged by explosions if they are inactive (fixes #101).
+- Fixed Snake firing at supersonic speed with Flaming Booster equipped (fixes #103).
+- Added a failsafe for a lack of darkness effect tileset (fixes #104).
+- Added Amphibian Medal into list of "allies" that respawns with each level (fixes #106).
+- Improved Map System's player's position is now weighted like normal Map System does (fixes #108).
+- Improved Map System is now properly centered on non-generated maps (fixes #109).
+- Non-bullet sources of damage are no longer ignoring level boss invincibility (fixes #110).
+- Whimsical Star now triggers "10 stars collected" jingle (fixes #111).
+- Floodtide's swing counter effect disappears if Floodtide disappears from inventory by any means (fixes #114).
+
 1.44.1 (Fixes and Tweaxes) (May 30th 2024):
 Enemy changes:
 - Reworked Core Base:

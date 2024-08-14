@@ -43,7 +43,7 @@ bool GetCompileVersion(int *v1, int *v2, int *v3, int *v4)
 {
 	*v1 = 1;
 	*v2 = 44;
-	*v3 = 1;
+	*v3 = 2;
 	*v4 = 0;
 	return true;
 }
@@ -64,7 +64,7 @@ bool RemoveFromArray(int* array, int value, size_t array_size){
 }
 
 std::string GetVersionName(){
-	return "Fixes and Tweaxes";
+	return "Fixes and Tweaxes TWO";
 }
 
 bool IsBeta(){
