@@ -503,7 +503,7 @@ void PutMyChar(int fx, int fy)
 	};
 	
 	if (gMC.chargeCD >= 30)
-		PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x) - PixelToScreenCoord(8) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y) - PixelToScreenCoord(8) - SubpixelToScreenCoord(fy), &rcJumpCharge[(gMC.bubble / 5) % 5], SURFACE_ID_CARET);
+		PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x) - PixelToScreenCoord(8) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y) - PixelToScreenCoord(8) - SubpixelToScreenCoord(fy), &rcJumpCharge[gMC.bubble % 4], SURFACE_ID_CARET);
 
 	// Draw air tank
 	Rect rcBubble[2] = {

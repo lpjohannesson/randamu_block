@@ -44,12 +44,12 @@ BEGIN
         BLOCK "041104b0"
         BEGIN
             VALUE "FileDescription", "Doukutsu Randamu"
-            VALUE "FileVersion", "1, 44, 2, 0"
+            VALUE "FileVersion", "1, 44, 2, 1"
             VALUE "InternalName", "Doukutsu Randamu"
             VALUE "LegalCopyright", "Trashbox Bobylev and contributors"
             VALUE "OriginalFilename", "CSE2.exe"
             VALUE "ProductName", "Doukutsu Randamu"
-            VALUE "ProductVersion", "1, 44, 2, 0"
+            VALUE "ProductVersion", "1, 44, 2, 1"
         END
     END
     BLOCK "VarFileInfo"
