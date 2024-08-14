@@ -909,7 +909,7 @@ void ActMyChar_Normal(bool bKey)
 		if (bKey)
 		{
 			if ((gMC.equip & (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) || GetNPCFlag(Flags::TERRA_BOOTS)) && gKeyTrg & gKeyJump &&
-			 (gMC.boost_cnt != 0) && (!gMC.pogo || !(gMC.equip & EQUIP_DOUBLE_JUMP)))
+			 (gMC.boost_cnt != 0) && !(gMC.flag & 0x100) && (!gMC.pogo || !(gMC.equip & EQUIP_DOUBLE_JUMP)))
 			{
 				if (GetNPCFlag(Flags::TERRA_BOOTS))
 				{
@@ -1031,7 +1031,7 @@ void ActMyChar_Normal(bool bKey)
 			gMC.down = false;
 
 		if (gKeyTrg & gKeyJump && (gMC.flag & 8 || gMC.flag & 0x10 || gMC.flag & 0x20 || 
-					(gMC.flag & 0x100 && gMC.boost_cnt <= 0)
+					(gMC.flag & 0x100 || gMC.boost_cnt <= 0)
 					|| (gMC.equip & EQUIP_ALIEN_MEDAL && gMC.pogo && GetAttribute(round(((float)gMC.x) / 0x2000), round(((float)gMC.y + 0x200 * 15) / 0x2000)) == 66)
 					|| ((gMC.equip & EQUIP_WALL_JUMP || GetNPCFlag(Flags::TOROKO_CHARACTER)) && GetAttribute(round(((float)gMC.x) / 0x2000) + 1, round(((float)gMC.y) / 0x2000)) == 65)
 					|| ((gMC.equip & EQUIP_WALL_JUMP || GetNPCFlag(Flags::TOROKO_CHARACTER)) && GetAttribute(round(((float)gMC.x) / 0x2000) - 1, round(((float)gMC.y) / 0x2000)) == 65)
@@ -1094,7 +1094,7 @@ void ActMyChar_Normal(bool bKey)
 		gMC.ym += 0x55;
 
 	// Booster 2.0 forces and effects
-	if (gMC.equip &  (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) && gMC.boost_sw != 0)
+	if (gMC.equip &  (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) && gMC.boost_sw != 0 && !(gMC.flag & 0x100))
 	{
 		if (gMC.boost_sw == 1)
 		{
@@ -1149,7 +1149,7 @@ void ActMyChar_Normal(bool bKey)
 		gMC.ym += gravity1;
 	}
 	// Booster 0.8
-	else if ((GetNPCFlag(Flags::TERRA_BOOTS) && (!(gMC.equip & EQUIP_BOOSTER_2_0)) && gMC.boost_sw != 0))
+	else if ((GetNPCFlag(Flags::TERRA_BOOTS) && (!(gMC.equip & EQUIP_BOOSTER_2_0)) && gMC.boost_sw != 0 && !(gMC.flag & 0x100)))
 	{
 		// Booster particles
 		if (gMC.boost_cnt % 3 == 0)
