@@ -3321,13 +3321,6 @@ void ActBullet_MiningLaser(BULLET *bul, int level)
 
 	static unsigned int inc;
 
-	if (++bul->count1 > bul->life_count)
-	{
-		bul->cond = 0;
-		SetCaret(bul->x, bul->y, 3, 0);
-		return;
-	}
-
 	switch (bul->act_no)
 	{
 		case 0:
@@ -3422,7 +3415,7 @@ void ActBullet_MiningLaser(BULLET *bul, int level)
 		{232, 96, 248, 112},
 	};
 
-	bul->iframes = 5;
+	bul->local_iframes = 3;
 
 	switch (level)
 	{

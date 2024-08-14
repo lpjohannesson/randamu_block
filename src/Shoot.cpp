@@ -1412,20 +1412,26 @@ void ShootBullet_MiningLaser(int level)
 			SetNPCFlag(Flags::MINING_LASER_MODE_BEGIN + gArmsData[gSelectedArms].level);
 		}
 	}
-	if (gKey & gKeyDown && gArmsData[gSelectedArms].exp > 0 
-		&& gArmsData[gSelectedArms].num < gArmsData[gSelectedArms].max_num){
+	if (gKey & gKeyDown && ((gArmsData[gSelectedArms].exp > 0 || (gMC.life > 1))
+		&& gArmsData[gSelectedArms].num < gArmsData[gSelectedArms].max_num)){
+		bool sacrificingLife = gArmsData[gSelectedArms].exp <= 0;
 		char caret = Random(0, 1);
-		SetCaret(gMC.x, gMC.y + 3_pix, caret ? 11 : 1, caret ? 0 : 1);
+		int caretAmount = sacrificingLife ? 3 : 1;
+		for (int i = 0; i < caretAmount; i++)
+			SetCaret(gMC.x, gMC.y + 3_pix, caret ? 11 : 1, caret ? 0 : 1);
 		PlaySoundObject(59, SOUND_MODE_PLAY);
-		if (++wait > 3){
+		if (++wait > (sacrificingLife ? 8 : 3)){
 			wait = 0;
-			gArmsData[gSelectedArms].exp--;
+			if (sacrificingLife){
+				gMC.life -= 1;
+				PlaySoundObject(16, SOUND_MODE_PLAY);
+			} else {
+				gArmsData[gSelectedArms].exp--;
+			}
 			if (gArmsData[gSelectedArms].num < gArmsData[gSelectedArms].max_num)
 				PlaySoundObject(65, SOUND_MODE_PLAY);
 			ChargeArmsEnergy(1);
 		}
-	} else {
-		wait = 0;
 	}
 	if (level == 2 && CountBulletNum(65) > 0)
 		return;
@@ -1587,9 +1593,9 @@ void ShootBullet_MiningLaser(int level)
 			}
 
 			int shots, spread, deg, speed;
-			shots = Random(25, 35);
-			spread = 50;
-			speed = 9;
+			shots = Random(50, 70);
+			spread = 100;
+			speed = 10;
 			for (int i = 0; i < shots; i++)
 			{
 				deg = GetArktan(gMC.x - tgt_x, gMC.y - tgt_y);
