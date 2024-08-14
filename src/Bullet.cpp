@@ -139,19 +139,21 @@ void PutBullet(int fx, int fy)
 			}
 			PutBitmap3Ex(&grcGame, SubpixelToScreenCoord(x) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(y) - SubpixelToScreenCoord(fy), &gBul[i].rect, SURFACE_ID_BULLET, gBul[i].angle, gBul[i].centerX, gBul[i].centerY, gBul[i].opacity);
 			
-			if (gBul[i].code_bullet >= 49 && gBul[i].code_bullet <= 51 || gBul[i].code_bullet == 73)
+			if (gBul[i].code_bullet >= 49 && gBul[i].code_bullet <= 51 || gBul[i].code_bullet == 73 || gBul[i].code_bullet == 95)
 			{
-				long long xDist = gMC.x - gBul[i].x;
-				long long yDist = gMC.y - gBul[i].y;
+				int targetX = gBul[i].code_bullet == 95 ? gBul[i].tgt_x : gMC.x;
+				int targetY = gBul[i].code_bullet == 95 ? gBul[i].tgt_y : gMC.y;
+				long long xDist = targetX - gBul[i].x;
+				long long yDist = targetY - gBul[i].y;
 				int chainWidth = PixelToScreenCoord(8);
 				long long subpixelLength = abs(sqrt(xDist * xDist + yDist * yDist));
 				int chainLength = SubpixelToScreenCoord(subpixelLength);
-				double chainAngle = degToRad(pointDirection(gMC.x, gMC.y, x, y));
+				double chainAngle = degToRad(pointDirection(targetX, targetY, x, y));
 				Rect chainRect = {223, 83, 236, 292};
 				for (int i = 0; i < chainLength; i += chainWidth)
 				{
-					int c_x = SubpixelToScreenCoord(gMC.x) + (cos(chainAngle) * i) + (cos(chainAngle) * (chainWidth / 2)) - SubpixelToScreenCoord(fx);
-					int c_y = (SubpixelToScreenCoord(gMC.y) - (sin(chainAngle) * i)) + (sin(chainAngle) * (chainWidth / 2)) - SubpixelToScreenCoord(fy);
+					int c_x = SubpixelToScreenCoord(targetX) + (cos(chainAngle) * i) + (cos(chainAngle) * (chainWidth / 2)) - SubpixelToScreenCoord(fx);
+					int c_y = (SubpixelToScreenCoord(targetY) - (sin(chainAngle) * i)) + (sin(chainAngle) * (chainWidth / 2)) - SubpixelToScreenCoord(fy);
 					PutBitmap3(&grcGame, c_x, c_y, &chainRect, SURFACE_ID_CARET);
 				}
 			}
@@ -285,7 +287,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Blade lv4
 	{3, 100, 35, 36, 6, 6, 4, 4, {12, 12, 12, 12}, 1, 1},
 	// Hook lv4
-	{1, 100, 12, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
+	{4, 100, 30, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
 	// Floodtide lv4
 	{15, 100, 14, 52, 12, 15, 4, 2, {12, 12, 12, 12}, 1, 1},
 	// Boomerang lv4
@@ -326,6 +328,8 @@ BULLET_TABLE gBulTbl[] = {
 	{0, 1, 30, 8, 8, 8, 2, 2, {4, 4, 4, 4}, 2, 2},
 	// Mannan visuals
 	{-1, 2, 8, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 0.25, 0.25},
+	// Hook lv4 spurts
+	{12, 100, 25, 105, 10, 10, 6, 6, {4, 4, 4, 4}, 0.33, 0.33},
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -585,7 +589,12 @@ void ActBullet_Homing(BULLET *bul)
 
 void ActBullet_Hook(BULLET *bul, int level)
 {
-	bul->iframes = 15;
+	if (bul->code_bullet == 95)
+		bul->local_iframes = 4;
+	else 
+		bul->iframes = 15;
+
+	if (level == 4) bul->iframes /= 4;
 
 	if (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 	{
@@ -602,7 +611,8 @@ void ActBullet_Hook(BULLET *bul, int level)
 	else if ((++bul->count1 > bul->life_count || bul->flag & 0xF) && bul->act_no == 1)
 	{
 		bul->act_no = 2;
-		bul->damage /= 4;
+		if (bul->code_bullet != 95)
+			bul->damage /= 4;
 	}
 	// if (bul->flag & 0xF){
 	// 	bul->act_no = 3;
@@ -622,7 +632,7 @@ void ActBullet_Hook(BULLET *bul, int level)
 			bul->life_count *= 2;
 		}
 		if (level == 4){
-			speed = 12;
+			speed = 8;
 		}
 		bul->ym = GetSin(deg) * speed;
 		bul->xm = GetCos(deg) * speed;
@@ -657,8 +667,14 @@ void ActBullet_Hook(BULLET *bul, int level)
 			}
 		}
 		if (bul->act_no == 2){
-			bul->iframes = 6;
-			if ((!(gKey & gKeyShot) || (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
+			if (bul->code_bullet == 95)
+				bul->local_iframes = 2;
+			else
+				bul->iframes = 6;
+
+			if (level == 4) bul->iframes /= 3;
+			
+			if ((!(gKey & gKeyShot && !((level == 4 || bul->code_bullet == 95))) || (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
 					 bul->y > gMC.y - 0x200*8 && bul->y < gMC.y + 0x200*8)){
 				bul->cond = 0;
 				chainWrap = false;
@@ -673,7 +689,7 @@ void ActBullet_Hook(BULLET *bul, int level)
 			}
 			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
 			deg += Random(-1, 1);
-			if (gKey & gKeyShot && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 8 * 16_pix){
+			if (gKey & gKeyShot && !(level == 4 || bul->code_bullet == 95) && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 8 * 16_pix){
 				// if (gMC.x > bul->x)
 				// 	bul->xm = 0x50;
 				// else
@@ -697,21 +713,18 @@ void ActBullet_Hook(BULLET *bul, int level)
 			}
 		}
 		if (bul->act_no != 3){
-			if (bul->life != 100 && level == 4)
+			if (bul->life != 100 && (level == 4))
 			{
 				bul->life = 100;
 				int x, y;
-				do
-				{
-					x = Random(0, gMap.width);
-					y = Random(0, gMap.length);
-				} while (!(Distance(bul->x / 0x2000, bul->y / 0x2000, x, y) < 9 &&
-						Distance(bul->x / 0x2000, bul->y / 0x2000, x, y) > 3));
-				BULLET *bully = SetBullet(49, x * 0x2000, y * 0x2000);
+				x = bul->x + Random(-24_pix, 24_pix);
+				y = bul->y + Random(-24_pix, 24_pix);
+				BULLET *bully = SetBullet(95, x, y);
 				if (bully != NULL)
 				{
 					bully->tgt_x = bul->x;
 					bully->tgt_y = bul->y;
+					bully->damage = 4;
 				}
 			}
 			bul->x += bul->xm;
@@ -5543,7 +5556,7 @@ void ActBullet(void)
 						ActBullet_Homing(&gBul[i]);
 						break;
 
-					case 49:
+					case 49: case 95:
 						ActBullet_Hook(&gBul[i], 1);
 						break;
 					case 50:
