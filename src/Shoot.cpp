@@ -317,9 +317,6 @@ void ShootBullet_PoleStar(int level)
 			break;
 	}
 
-	if (CountArmsBullet(2) > 1)
-		return;
-
 	if (gKeyTrg & gMouseClick && gMC.equip & EQUIP_FAR_PLACE)
 	{
 		if (gStageNo != gGeneratedStage || gBL.flag || !UseArmsEnergy(3))
