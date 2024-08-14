@@ -821,7 +821,8 @@ Equipped Cool Sunglasses.<NOD<WAI0003<FRE<EVE5053
 <KEY<MSGAllows to reverse
 gravity with Ability key.<NOD
 This ability has 1 second
-cooldown.<NOD<CLR
+cooldown, but instantly
+recharges on hitting any ground.<NOD<CLR
 Do you want to equip it?<YNJ0000<E2+0028<FL+0710<MSG
 Equipped Gravity Necklace.<NOD<WAI0003<FRE<EVE5054
 

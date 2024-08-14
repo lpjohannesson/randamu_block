@@ -807,6 +807,8 @@ void ActMyChar_Normal(bool bKey)
 				gMC.boost_cnt = 15;
 			}
 		}
+		if (gMC.equip & EQUIP_GRAVITY_FLIP)
+			ClearCooldown(gCooldowns, GRAVITY_FLIP_ID);
 
 		// Move in direction held
 		if (bKey)
