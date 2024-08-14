@@ -291,7 +291,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Floodtide lv4
 	{15, 100, 14, 52, 12, 15, 4, 2, {12, 12, 12, 12}, 1, 1},
 	// Boomerang lv4
-	{6, 100, 30, 44, 10, 10, 4, 2, {12, 12, 12, 12}, 0.75, 0.75},
+	{6, 100, 30, 44, 10, 10, 3, 3, {12, 12, 12, 12}, 0.75, 0.75},
 	// Spur lv4
 	{13, 13, 120, 64, 6, 6, 3, 3, {8, 8, 8, 8}, 1, 1},
 	// omega selfhurt
@@ -2926,14 +2926,16 @@ void ActBullet_BoomerangSword4(BULLET *bul)
 		bul->count1 = 0;
 	}
 
-	if (bul->life < 100)
+	if (bul->life < 100 && bul->count2 < 12)
 	{
+		bul->count2++;
 		bul->act_no = 3;
 		bul->life = 100;
 		bul->count1 = 0;
 	}
-	else if (bul->flag & 0xF)
+	else if (bul->flag & 0xF && bul->count2 < 12)
 	{
+		bul->count2++;
 		bul->act_no = 3;
 		bul->count1 = 0;
 	}
@@ -2973,7 +2975,7 @@ void ActBullet_BoomerangSword4(BULLET *bul)
 			bul->act_no = 1;
 			int deg = GetArktan(bul->x - (bul->x + Random(-0x200 * 4, 0x200 * 4)), 
 			bul->y - (bul->y + Random(-0x200 * 4, 0x200 * 4)));
-			deg += (unsigned char)Random(-6, 6);
+			deg += Random(-8, 8);
 			bul->ym = GetSin(deg) * 10;
 			bul->xm = GetCos(deg) * 10;
 		}
@@ -2988,15 +2990,13 @@ void ActBullet_BoomerangSword4(BULLET *bul)
 			bul->xm = GetCos(deg) * 10;
 		}
 		if (bul->count1 % 4 == 0){
-			if ((bul->count1 / 2) % 2 == 0)
-				SetBullet(23, bul->x, bul->y, 0);
-			else
-				SetBullet(23, bul->x, bul->y, 2);
+			SetBullet(23, bul->x, bul->y, 0);
+			SetBullet(23, bul->x, bul->y, 2);
 		}
 			
 		bul->x += bul->xm;
 		bul->y += bul->ym;
-		if (Distance(bul->x, bul->y, gMC.x, gMC.y) > 12 * 0x2000){
+		if (Distance(bul->x, bul->y, gMC.x, gMC.y) > 8 * 0x2000 || bul->count2 > 12){
 			bul->bbits |= 4;
 			bul->act_no = 2;
 		}
