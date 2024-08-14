@@ -89,7 +89,7 @@ static void SetUniqueParameter(NPCHAR *npc)
 	npc->view.bottom = gNpcTable[code].view.bottom * 0x200;
 	npc->knockEffect = 1.0f;
 	npc->opacity = 1.0f;
-	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
+	if (GetNPCFlag(Flags::QUATE_CHARACTER) && npc->code_char != 86){
 		npc->exp *= float(Random(40, 250)) / 100.0f;
 	}
 }
