@@ -149,7 +149,7 @@ int RegenDelayScaling(){
 }
 
 int RegenerationDelay(){
-	return 2400;
+	return 3600;
 }
 
 int RegenerationCap(){
