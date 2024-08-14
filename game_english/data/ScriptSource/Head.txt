@@ -4,6 +4,10 @@
 #0001
 <PRI<MSGEmpty.<NOD<END
 
+#0002
+<PRI<MSG
+Do you want to save?<NOD<YNJ0000<FL+0431<SVP<CLRGame saved.<NOD<END
+
 #0014
 <PRI<MSG<GIT1001
 Refill the pot instead of healing?<NOD<YNJ0017<IT-0001<IT+0015<GIT1015<CIV0001:0001<CLR
@@ -13,6 +17,7 @@ Refilled Life Pot.<NOD<GIT0000<END
 <PRI<MSGAn uncharged refill station.<NOD<END
 
 #0016
+<FLJ0431:0002
 <PRI<MSG
 Do you want to save?<NOD The death
 will be still permament;<NOD
