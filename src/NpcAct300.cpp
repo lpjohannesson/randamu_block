@@ -1833,14 +1833,21 @@ void ActNpc317(NPCHAR *npc)
 			npc->act_wait = 0;
 			npc->ani_no = 2;
 			npc->ym -= 0x6FF;
-			if (npc->x > gMC.x)
-				npc->xm = -0x190;
-			else
-				npc->xm = 0x190;
+			if (gMC.difficulty >= DIFFICULTY_REINFORCED){
+				if (npc->x > gMC.x)
+					npc->xm = -0x190;
+				else
+					npc->xm = 0x190;
+			} else {
+				if (npc->x > gMC.x)
+					npc->xm = -0x240;
+				else
+					npc->xm = 0x240;
+			}
 			SetNpChar(319, npc->x, npc->y, 0, 0, 0, npc, 0x100);
 			// Fallthrough
 		case 11:
-			if (++npc->act_wait > 35)
+			if (++npc->act_wait > (gMC.difficulty >= DIFFICULTY_REINFORCED ? 35 : 75))
 			{
 				npc->act_wait = 0;
 				npc->act_no = 12;
@@ -1858,12 +1865,20 @@ void ActNpc317(NPCHAR *npc)
 			break;
 	}
 	if (gMC.tileset == 'F'){
-			npc->ym += 0x39;
+			if (gMC.difficulty >= DIFFICULTY_REINFORCED){
+				npc->ym += 0x39;
+			} else {
+				npc->ym += 0x18;
+			}
 			if (npc->ym > 0x2FF)
 				npc->ym = 0x2FF;
 		} else {
 
-	npc->ym += 0x65;
+	if (gMC.difficulty >= DIFFICULTY_REINFORCED){
+		npc->ym += 0x65;
+	} else {
+		npc->ym += 0x30;
+	}
 	if (npc->ym > 0x5FF)
 		npc->ym = 0x5FF;
 		}
