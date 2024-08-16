@@ -290,7 +290,7 @@ int CooldownDuration(int id){
         case FLOODTIDE_BOOST_ID: case HELLSWEEP_BOOST_ID:
             return CooldownDuration(SHEATHING_TIMER_ID)*2;
         case DOCTOR_SHOCK_ID:
-            return 75;
+            return 500;
     }
     return 0;
 }
