@@ -121,8 +121,8 @@ bool WhenToRemoveCooldown(Cooldown& cd){
             return !std::any_of(swordWeps.begin(), swordWeps.end(), [](int wep_code){return gArmsData[gSelectedArms].code == wep_code;});
 
         case FLOODTIDE_ATTACK_ID:
-            return std::find_if(std::begin(gArmsData), std::end(gArmsData), [](ARMS weapon){return weapon.code == 17;}) == std::end(gArmsData) &&
-            std::find_if(std::begin(gItemData), std::end(gItemData), [](ITEM item){return item.code == 117;}) == std::end(gItemData);
+            return cd.duration <= 0 || (std::find_if(std::begin(gArmsData), std::end(gArmsData), [](ARMS weapon){return weapon.code == 17;}) == std::end(gArmsData) &&
+            std::find_if(std::begin(gItemData), std::end(gItemData), [](ITEM item){return item.code == 117;}) == std::end(gItemData));
     }
 }
 
