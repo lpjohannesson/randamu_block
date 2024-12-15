@@ -121,6 +121,12 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.44.2.2 (August 16th 2024):
+- Fixed Floodtide lvl2's swing counter not resetting properly.
+- Fixed Doctor shock effect's visual duration not representing the actual duration of the effect.
+- Fixed Resolution option saying "Controls".
+1.44.2.1 (August 14th 2024):
+- Fixed out-of-bounds error for jump charge animation.
 1.44.2 (Fixes and Tweaxes TWO) (August 14th 2024):
 Implemented suggestions:
 - Added proper support for UTF-8 symbols longer, than a byte, for TSC default scrolling, thus opening the way to Chinese translation (satisfies #115).
