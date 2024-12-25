@@ -1,4 +1,5 @@
 #include "MachineGun.h"
+
 #include "..\ArmsItem.h"
 #include "..\Bullet.h"
 #include "..\Caret.h"

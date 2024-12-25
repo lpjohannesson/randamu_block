@@ -1,4 +1,5 @@
 #include "Bubbler.h"
+
 #include "..\Bullet.h"
 #include "..\Caret.h"
 #include "..\Flags.h"

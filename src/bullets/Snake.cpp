@@ -1,3 +1,5 @@
+#include "Snake.h"
+
 #include "..\Bullet.h"
 #include "..\Caret.h"
 
