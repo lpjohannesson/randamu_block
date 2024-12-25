@@ -44,18 +44,18 @@ void ShootBullet_Frontia1(int level)
 	switch (level)
 	{
 		case 1:
-			bul_no = 1;
+			bul_no = Bullets::SNAKE_LVL_1;
 			break;
 
 		case 2:
-			bul_no = 2;
+			bul_no = Bullets::SNAKE_LVL_2;
 			break;
 
 		case 3:
-			bul_no = 3;
+			bul_no = Bullets::SNAKE_LVL_3;
 			break;
 		case 4:
-			bul_no = 70;
+			bul_no = Bullets::SNAKE_LVL_4;
 			break;
 	}
 	if (isEmpowered){
@@ -65,7 +65,7 @@ void ShootBullet_Frontia1(int level)
 
 	if (CountArmsBullet(1) > 3 * (isEmpowered ? 3 : 1))
 		return;
-	if (CountBulletNum(70) > 3 * (isEmpowered ? 3 : 1))
+	if (CountBulletNum(Bullets::SNAKE_LVL_4) > 3 * (isEmpowered ? 3 : 1))
 		return;
 
 	if ((isEmpowered && gKey & gKeyShot) || gKeyTrg & gKeyShot)
