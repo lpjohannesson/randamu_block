@@ -2568,22 +2568,22 @@ void ShootBullet_Spur(int level)
 			break;
 
 		case 2:
-			bul_no = 37;
+			bul_no = Bullets::SPUR_LVL_1;
 			break;
 
 		case 3:
 			if (bMax)
-				bul_no = 39;
+				bul_no = Bullets::SPUR_LVL_3;
 			else
-				bul_no = 38;
+				bul_no = Bullets::SPUR_LVL_2;
 
 			break;
 
 		case 4:
 			if (bMax)
-				bul_no = 76;
+				bul_no = Bullets::SPUR_LVL_4;
 			else
-				bul_no = 39;
+				bul_no = Bullets::SPUR_LVL_3;
 			break;
 	}
 

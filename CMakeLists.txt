@@ -56,6 +56,8 @@ add_executable(Randamu WIN32
 	"src/bullets/MachineGun.h"
 	"src/bullets/Snake.cpp"
 	"src/bullets/Snake.h"
+	"src/bullets/Spur.cpp"
+	"src/bullets/Spur.h"
 	"src/ArmsItem.cpp"
 	"src/ArmsItem.h"
 	"src/Back.cpp"

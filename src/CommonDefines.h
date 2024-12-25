@@ -177,6 +177,14 @@ namespace Bullets {
 	inline constexpr int MACHINE_GUN_LVL_4        = 69;
 	inline constexpr int MACHINE_GUN_GATLING      = 92;
 
+	inline constexpr int SPUR_LVL_1               = 37;
+	inline constexpr int SPUR_LVL_2               = 38;
+	inline constexpr int SPUR_LVL_3               = 39;
+	inline constexpr int SPUR_LVL_4               = 76;
+	inline constexpr int SPUR_TRAIL_LVL_1         = 40;
+	inline constexpr int SPUR_TRAIL_LVL_2         = 41;
+	inline constexpr int SPUR_TRAIL_LVL_3         = 42;
+
 	inline constexpr int MANNAN_ATTACK_VFX        = 94;
 }
 
