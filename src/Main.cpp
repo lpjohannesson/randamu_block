@@ -8,6 +8,7 @@
 #include <ctime>
 #include <string>
 
+#include "bullets\All.h"
 #include "Backends/Misc.h"
 #include "Bitmap.h"
 #include "Config.h"
@@ -207,6 +208,8 @@ void ReloadConfig(){
 		speedrunData["endFlag"] = GivePointerString(&gMC.grass);
 		WriteJSON(gModulePath + "/speedrunData.json", speedrunData, mode::normal);
 	}
+
+	RegisterBullets();
 
 	WriteGameLog("Config and tags reloaded in ", since<std::chrono::microseconds>(timing).count(), " us.");
 }

@@ -151,4 +151,9 @@ namespace Flags {
 	
 };
 
+namespace Bullets {
+	inline constexpr int NOTHING                  = 0;
+	inline constexpr int SNAKE_LVL_1              = 1;
+}
+
 #endif // __COMMONDEFINES_H__

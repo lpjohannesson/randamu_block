@@ -1,6 +1,8 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
+#include <functional>
+
 #include "CommonDefines.h"
 #include "NpChar.h"
 
@@ -46,6 +48,8 @@ struct BULLET
 	float opacity;
 };
 
+using BULLET_FUNC = void(BULLET*);
+
 struct BULLET_TABLE
 {
 	signed char damage;
@@ -61,7 +65,14 @@ struct BULLET_TABLE
 	float knockY;
 };
 
+struct BULLET_DEF
+{
+	BULLET_TABLE table;
+	std::function<BULLET_FUNC> act;
+};
+
 extern BULLET gBul[BULLET_MAX];
+extern std::map<decltype(Bullets::NOTHING), BULLET_DEF> gBulletTable;
 
 void InitBullet(void);
 int CountArmsBullet(int arms_code);
