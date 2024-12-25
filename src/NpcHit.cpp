@@ -831,9 +831,9 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 
 		if (isSword){
 			if (Random(0, 1))
-				SetBullet(79, npc.x, npc.y, 0);
+				SetBullet(Bullets::BLADE_SLASH_FAKE, npc.x, npc.y, 0);
 			else
-				SetBullet(79, npc.x, npc.y, 2);
+				SetBullet(Bullets::BLADE_SLASH_FAKE, npc.x, npc.y, 2);
 			if (bul->code_bullet == 58 || bul->code_bullet == 74){
 				PlaySoundObject(65, SOUND_MODE_PLAY);
 				int lol = Random(20, 30);
@@ -880,9 +880,9 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			if (isSword)
 			{
 				if (Random(0, 1))
-					SetBullet(79, npc.x, npc.y, 0);
+					SetBullet(Bullets::BLADE_SLASH_FAKE, npc.x, npc.y, 0);
 				else
-					SetBullet(79, npc.x, npc.y, 2);
+					SetBullet(Bullets::BLADE_SLASH_FAKE, npc.x, npc.y, 2);
 				if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end()){
 					if (bul->direct == 0)
 						npc.knockx = -Random(0x300, 0x5F0);

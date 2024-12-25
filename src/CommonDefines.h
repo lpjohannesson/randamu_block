@@ -184,6 +184,7 @@ namespace Bullets {
 	inline constexpr int SPUR_TRAIL_LVL_1             = 40;
 	inline constexpr int SPUR_TRAIL_LVL_2             = 41;
 	inline constexpr int SPUR_TRAIL_LVL_3             = 42;
+	inline constexpr int SPUR_LVL_0                   = 6;
 
 	inline constexpr int BOOMERANG_BLADE_LVL_1        = 52;
 	inline constexpr int BOOMERANG_BLADE_LVL_2        = 53;
@@ -192,6 +193,12 @@ namespace Bullets {
 	inline constexpr int BOOMERANG_BLADE_LVL_2_FLAME  = 56;
 	inline constexpr int BOOMERANG_BLADE_LVL_3_SPLIT  = 55;
 
+	inline constexpr int SHOTGUN_SHOT                 = 4;
+	inline constexpr int BLADE_SLASH                  = 23;
+	inline constexpr int ENEMY_CLEAR                  = 44;
+	inline constexpr int WATER_DROPLET                = 61;
+	inline constexpr int PROCGEN_GUN_SPARK            = 67;
+	inline constexpr int BLADE_SLASH_FAKE             = 79;
 	inline constexpr int MANNAN_ATTACK_VFX            = 94;
 }
 

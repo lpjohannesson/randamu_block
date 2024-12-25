@@ -266,10 +266,10 @@ void ActBullet_BoomerangSword3(BULLET *bul)
 		PlaySoundObject(106, SOUND_MODE_PLAY);
 	if (bul->count1 % 10 > 6 && bul->count1 % 10 < 9){
 			if (bul->count1 % 10 == 7){
-				SetBullet(23, bul->x, bul->y, 0);
+				SetBullet(Bullets::BLADE_SLASH, bul->x, bul->y, 0);
 			}
 			else{
-				SetBullet(23, bul->x, bul->y, 2);
+				SetBullet(Bullets::BLADE_SLASH, bul->x, bul->y, 2);
 			}
 	}
 
@@ -426,8 +426,8 @@ void ActBullet_BoomerangSword4(BULLET *bul)
 			bul->xm = GetCos(deg) * 10;
 		}
 		if (bul->count1 % 4 == 0){
-			SetBullet(23, bul->x, bul->y, 0);
-			SetBullet(23, bul->x, bul->y, 2);
+			SetBullet(Bullets::BLADE_SLASH, bul->x, bul->y, 0);
+			SetBullet(Bullets::BLADE_SLASH, bul->x, bul->y, 2);
 		}
 			
 		bul->x += bul->xm;
