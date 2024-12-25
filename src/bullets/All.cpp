@@ -10,4 +10,5 @@ void RegisterBullets(){
 
     RegisterSnake();
     RegisterFireball();
+    RegisterBubbler();
 }

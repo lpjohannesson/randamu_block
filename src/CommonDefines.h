@@ -164,6 +164,13 @@ namespace Bullets {
 	inline constexpr int FIREBALL_LVL_3           = 9;
 	inline constexpr int FIREBALL_LVL_4           = 68;
 
+	inline constexpr int BUBBLER_LVL_1            = 19;
+	inline constexpr int BUBBLER_LVL_2            = 20;
+	inline constexpr int BUBBLER_LVL_3            = 21;
+	inline constexpr int BUBBLER_LVL_4            = 71;
+	inline constexpr int BUBBLER_SPINE            = 22;
+	inline constexpr int BUBBLER_WATERGUN         = 93;
+
 	inline constexpr int MANNAN_ATTACK_VFX        = 94;
 }
 

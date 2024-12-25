@@ -631,7 +631,7 @@ void ShootBullet_WaterStar(int level)
 	switch (level)
 	{
 		case 1:
-			bul_no = 93;
+			bul_no = Bullets::BUBBLER_WATERGUN;
 			bShot = false;
 			break;
 
@@ -646,7 +646,7 @@ void ShootBullet_WaterStar(int level)
 
 	if (gKeyTrg & gKeyShot || bShot)
 	{
-		if (bul_no == 39){
+		if (bul_no == Bullets::BUBBLER_WATERGUN){
 			if (!UseArmsEnergy(20))
 			{
 				PlaySoundObject(37, SOUND_MODE_PLAY);
@@ -2062,12 +2062,12 @@ void ShootBullet_Bubblin1(void)
 		{
 			if (gMC.direct == 0)
 			{
-				SetBullet(19, gMC.x - (1 * 0x200), gMC.y - (2 * 0x200), GravityDirect(1));
+				SetBullet(Bullets::BUBBLER_LVL_1, gMC.x - (1 * 0x200), gMC.y - (2 * 0x200), GravityDirect(1));
 				SetCaret(gMC.x - (1 * 0x200), gMC.y - (2 * 0x200), 3, 0);
 			}
 			else
 			{
-				SetBullet(19, gMC.x + (1 * 0x200), gMC.y - (2 * 0x200), GravityDirect(1));
+				SetBullet(Bullets::BUBBLER_LVL_1, gMC.x + (1 * 0x200), gMC.y - (2 * 0x200), GravityDirect(1));
 				SetCaret(gMC.x + (1 * 0x200), gMC.y - (2 * 0x200), 3, 0);
 			}
 		}
@@ -2075,12 +2075,12 @@ void ShootBullet_Bubblin1(void)
 		{
 			if (gMC.direct == 0)
 			{
-				SetBullet(19, gMC.x - (1 * 0x200), gMC.y + (2 * 0x200), GravityDirect(3));
+				SetBullet(Bullets::BUBBLER_LVL_1, gMC.x - (1 * 0x200), gMC.y + (2 * 0x200), GravityDirect(3));
 				SetCaret(gMC.x - (1 * 0x200), gMC.y + (2 * 0x200), 3, 0);
 			}
 			else
 			{
-				SetBullet(19, gMC.x + (1 * 0x200), gMC.y + (2 * 0x200), GravityDirect(3));
+				SetBullet(Bullets::BUBBLER_LVL_1, gMC.x + (1 * 0x200), gMC.y + (2 * 0x200), GravityDirect(3));
 				SetCaret(gMC.x + (1 * 0x200), gMC.y + (2 * 0x200), 3, 0);
 			}
 		}
@@ -2088,12 +2088,12 @@ void ShootBullet_Bubblin1(void)
 		{
 			if (gMC.direct == 0)
 			{
-				SetBullet(19, gMC.x - (6 * 0x200), gMC.y + (3 * 0x200), 0);
+				SetBullet(Bullets::BUBBLER_LVL_1, gMC.x - (6 * 0x200), gMC.y + (3 * 0x200), 0);
 				SetCaret(gMC.x - (12 * 0x200), gMC.y + (3 * 0x200), 3, 0);
 			}
 			else
 			{
-				SetBullet(19, gMC.x + (6 * 0x200), gMC.y + (3 * 0x200), 2);
+				SetBullet(Bullets::BUBBLER_LVL_1, gMC.x + (6 * 0x200), gMC.y + (3 * 0x200), 2);
 				SetCaret(gMC.x + (12 * 0x200), gMC.y + (3 * 0x200), 3, 0);
 			}
 		}
@@ -2115,9 +2115,9 @@ void ShootBullet_Bubblin2(int level)
 		return;
 	
 	if (level != 4)
-		level += 18;
+		level += Bullets::BUBBLER_LVL_1 - 1;
 	else
-		level = 71;
+		level = Bullets::BUBBLER_LVL_4;
 
 	if (!(gKey & gKeyShot))
 		gMC.rensha = (gMC.equip & EQUIP_OVERCHARGE ? 3 : 4);

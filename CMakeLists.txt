@@ -48,6 +48,8 @@ add_executable(Randamu WIN32
 	"src/new_rng/pcg_basic.h"
 	"src/bullets/All.cpp"
 	"src/bullets/All.h"
+	"src/bullets/Bubbler.cpp"
+	"src/bullets/Bubbler.h"
 	"src/bullets/Fireball.cpp"
 	"src/bullets/Fireball.h"
 	"src/bullets/Snake.cpp"
