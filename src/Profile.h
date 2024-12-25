@@ -2,7 +2,6 @@
 #define __PROFILE_H__
 
 
-#include "CommonDefines.h"
 #include <cstdint>
 
 #include "ArmsItem.h"

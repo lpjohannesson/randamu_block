@@ -2,8 +2,6 @@
 #define __ORGANYA_H__
 
 
-#include "CommonDefines.h"
-
 #define MAXTRACK 16
 #define MAXMELODY 8
 #define MAXDRAM 8

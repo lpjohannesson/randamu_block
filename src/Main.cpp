@@ -11,6 +11,7 @@
 #include "bullets\All.h"
 #include "Backends/Misc.h"
 #include "Bitmap.h"
+#include "CommonDefines.h"
 #include "Config.h"
 #include "Draw.h"
 #ifdef EXTRA_SOUND_FORMATS
