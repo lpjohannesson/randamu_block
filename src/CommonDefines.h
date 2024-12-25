@@ -153,10 +153,16 @@ namespace Flags {
 
 namespace Bullets {
 	inline constexpr int NOTHING                  = 0;
+
 	inline constexpr int SNAKE_LVL_1              = 1;
 	inline constexpr int SNAKE_LVL_2              = 2;
 	inline constexpr int SNAKE_LVL_3              = 3;
 	inline constexpr int SNAKE_LVL_4              = 70;
+
+	inline constexpr int FIREBALL_LVL_1           = 7;
+	inline constexpr int FIREBALL_LVL_2           = 8;
+	inline constexpr int FIREBALL_LVL_3           = 9;
+	inline constexpr int FIREBALL_LVL_4           = 68;
 
 	inline constexpr int MANNAN_ATTACK_VFX        = 94;
 }

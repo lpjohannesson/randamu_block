@@ -750,7 +750,7 @@ void ShootBullet_FireBall(int level)
 			if (CountArmsBullet(3) > limit)
 				return;
 
-			bul_no = 7;
+			bul_no = Bullets::FIREBALL_LVL_1;
 			break;
 
 		case 2:
@@ -759,7 +759,7 @@ void ShootBullet_FireBall(int level)
 			if (CountArmsBullet(3) > limit)
 				return;
 
-			bul_no = 8;
+			bul_no = Bullets::FIREBALL_LVL_2;
 			break;
 
 		case 3:
@@ -768,7 +768,7 @@ void ShootBullet_FireBall(int level)
 			if (CountArmsBullet(3) > limit)
 				return;
 
-			bul_no = 9;
+			bul_no = Bullets::FIREBALL_LVL_3;
 			break;
 		
 		case 4:
@@ -777,7 +777,7 @@ void ShootBullet_FireBall(int level)
 			if (CountBulletNum(68) > limit)
 				return;
 
-			bul_no = 68;
+			bul_no = Bullets::FIREBALL_LVL_4;
 			break;
 	}
 

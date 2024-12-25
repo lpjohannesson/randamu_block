@@ -9,4 +9,5 @@ void RegisterBullets(){
     }});
 
     RegisterSnake();
+    RegisterFireball();
 }
