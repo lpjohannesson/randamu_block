@@ -10,10 +10,27 @@
 #define SPRITEBATCH_IMPLEMENTATION
 #include "../../../external/cute_spritebatch.h"
 
-#include "../../CommonDefines.h"
-
 #include "../Misc.h"
 #include "../Shared/SDL2.h"
+
+struct OTHER_Rect	// The original name for this struct is unknown
+{
+	int front;
+	int top;
+	int back;
+	int bottom;
+};
+
+#define RGBA(r,g,b,a) ((r) | ((g) << 8) | ((b) << 16) | ((a) << 24))
+#define RGB(r,g,b) ((r) | ((g) << 8) | ((b) << 16))
+
+struct Rect
+{
+	long left;
+	long top;
+	long right;
+	long bottom;
+};
 
 struct RenderBackend_Surface
 {
