@@ -350,31 +350,48 @@ void SetBullet(int no, int x, int y, int dir)
 	gBul[i].first_frame = true;
 	gBul[i].cond = 0x80;
 	gBul[i].direct = dir;
-	gBul[i].damage = gBulTbl[no].damage;
+	if (gBulletTable.contains(no)){
+		gBul[i].damage = gBulletTable[no].table.damage;
+		gBul[i].life = gBulletTable[no].table.life;
+		gBul[i].life_count = gBulletTable[no].table.life_count;
+		gBul[i].bbits = gBulletTable[no].table.bbits;
+		gBul[i].enemyXL = gBulletTable[no].table.enemyXL * 0x200;
+		gBul[i].enemyYL = gBulletTable[no].table.enemyYL * 0x200;
+		gBul[i].blockXL = gBulletTable[no].table.blockXL * 0x200;
+		gBul[i].blockYL = gBulletTable[no].table.blockYL * 0x200;
+		gBul[i].view.back = gBulletTable[no].table.view.back * 0x200;
+		gBul[i].view.front = gBulletTable[no].table.view.front * 0x200;
+		gBul[i].view.top = gBulletTable[no].table.view.top * 0x200;
+		gBul[i].view.bottom = gBulletTable[no].table.view.bottom * 0x200;
+		gBul[i].knockX = gBulletTable[no].table.knockX;
+		gBul[i].knockY = gBulletTable[no].table.knockY;
+	} else {
+		gBul[i].damage = gBulTbl[no].damage;
+		gBul[i].life = gBulTbl[no].life;
+		gBul[i].life_count = gBulTbl[no].life_count;
+		gBul[i].bbits = gBulTbl[no].bbits;
+		gBul[i].enemyXL = gBulTbl[no].enemyXL * 0x200;
+		gBul[i].enemyYL = gBulTbl[no].enemyYL * 0x200;
+		gBul[i].blockXL = gBulTbl[no].blockXL * 0x200;
+		gBul[i].blockYL = gBulTbl[no].blockYL * 0x200;
+		gBul[i].view.back = gBulTbl[no].view.back * 0x200;
+		gBul[i].view.front = gBulTbl[no].view.front * 0x200;
+		gBul[i].view.top = gBulTbl[no].view.top * 0x200;
+		gBul[i].view.bottom = gBulTbl[no].view.bottom * 0x200;
+		gBul[i].knockX = gBulTbl[no].knockX;
+		gBul[i].knockY = gBulTbl[no].knockY;
+	}
 	if (((no > 0 && no < 4) || no == 70) && gMC.equip & EQUIP_PROPANE_TANK){
 		gBul[i].damage /= 2;
 	}
-	gBul[i].life = gBulTbl[no].life;
-	gBul[i].life_count = gBulTbl[no].life_count;
 	if (gBul[i].life_count != 1 && gBul[i].code_bullet != 58 && gBul[i].code_bullet != 59 && gBul[i].code_bullet != 60){
 		if (GetNPCFlag(Flags::BATTERY_PACK)){
 			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
 			else gBul[i].life_count *= 1.25;
 		}
 	}
-	gBul[i].bbits = gBulTbl[no].bbits;
-	gBul[i].enemyXL = gBulTbl[no].enemyXL * 0x200;
-	gBul[i].enemyYL = gBulTbl[no].enemyYL * 0x200;
-	gBul[i].blockXL = gBulTbl[no].blockXL * 0x200;
-	gBul[i].blockYL = gBulTbl[no].blockYL * 0x200;
-	gBul[i].view.back = gBulTbl[no].view.back * 0x200;
-	gBul[i].view.front = gBulTbl[no].view.front * 0x200;
-	gBul[i].view.top = gBulTbl[no].view.top * 0x200;
-	gBul[i].view.bottom = gBulTbl[no].view.bottom * 0x200;
 	gBul[i].x = x;
 	gBul[i].y = y;
-	gBul[i].knockX = gBulTbl[no].knockX;
-	gBul[i].knockY = gBulTbl[no].knockY;
 	gBul[i].iframes = 0;
 	gBul[i].opacity = 1.0f;
 }
@@ -392,28 +409,48 @@ BULLET* SetBullet(int no, int x, int y)
 	gBul[i].code_bullet = no;
 	gBul[i].first_frame = true;
 	gBul[i].cond = 0x80;
-	gBul[i].damage = gBulTbl[no].damage;
-	gBul[i].life = gBulTbl[no].life;
-	gBul[i].life_count = gBulTbl[no].life_count;
+	if (gBulletTable.contains(no)){
+		gBul[i].damage = gBulletTable[no].table.damage;
+		gBul[i].life = gBulletTable[no].table.life;
+		gBul[i].life_count = gBulletTable[no].table.life_count;
+		gBul[i].bbits = gBulletTable[no].table.bbits;
+		gBul[i].enemyXL = gBulletTable[no].table.enemyXL * 0x200;
+		gBul[i].enemyYL = gBulletTable[no].table.enemyYL * 0x200;
+		gBul[i].blockXL = gBulletTable[no].table.blockXL * 0x200;
+		gBul[i].blockYL = gBulletTable[no].table.blockYL * 0x200;
+		gBul[i].view.back = gBulletTable[no].table.view.back * 0x200;
+		gBul[i].view.front = gBulletTable[no].table.view.front * 0x200;
+		gBul[i].view.top = gBulletTable[no].table.view.top * 0x200;
+		gBul[i].view.bottom = gBulletTable[no].table.view.bottom * 0x200;
+		gBul[i].knockX = gBulletTable[no].table.knockX;
+		gBul[i].knockY = gBulletTable[no].table.knockY;
+	} else {
+		gBul[i].damage = gBulTbl[no].damage;
+		gBul[i].life = gBulTbl[no].life;
+		gBul[i].life_count = gBulTbl[no].life_count;
+		gBul[i].bbits = gBulTbl[no].bbits;
+		gBul[i].enemyXL = gBulTbl[no].enemyXL * 0x200;
+		gBul[i].enemyYL = gBulTbl[no].enemyYL * 0x200;
+		gBul[i].blockXL = gBulTbl[no].blockXL * 0x200;
+		gBul[i].blockYL = gBulTbl[no].blockYL * 0x200;
+		gBul[i].view.back = gBulTbl[no].view.back * 0x200;
+		gBul[i].view.front = gBulTbl[no].view.front * 0x200;
+		gBul[i].view.top = gBulTbl[no].view.top * 0x200;
+		gBul[i].view.bottom = gBulTbl[no].view.bottom * 0x200;
+		gBul[i].knockX = gBulTbl[no].knockX;
+		gBul[i].knockY = gBulTbl[no].knockY;
+	}
+	if (((no > 0 && no < 4) || no == 70) && gMC.equip & EQUIP_PROPANE_TANK){
+		gBul[i].damage /= 2;
+	}
 	if (gBul[i].life_count != 1 && gBul[i].code_bullet != 58 && gBul[i].code_bullet != 59 && gBul[i].code_bullet != 60){
 		if (GetNPCFlag(Flags::BATTERY_PACK)){
 			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
 			else gBul[i].life_count *= 1.25;
 		}
 	}
-	gBul[i].bbits = gBulTbl[no].bbits;
-	gBul[i].enemyXL = gBulTbl[no].enemyXL * 0x200;
-	gBul[i].enemyYL = gBulTbl[no].enemyYL * 0x200;
-	gBul[i].blockXL = gBulTbl[no].blockXL * 0x200;
-	gBul[i].blockYL = gBulTbl[no].blockYL * 0x200;
-	gBul[i].view.back = gBulTbl[no].view.back * 0x200;
-	gBul[i].view.front = gBulTbl[no].view.front * 0x200;
-	gBul[i].view.top = gBulTbl[no].view.top * 0x200;
-	gBul[i].view.bottom = gBulTbl[no].view.bottom * 0x200;
 	gBul[i].x = x;
 	gBul[i].y = y;
-	gBul[i].knockX = gBulTbl[no].knockX;
-	gBul[i].knockY = gBulTbl[no].knockY;
 	gBul[i].iframes = 0;
 	gBul[i].opacity = 1.0f;
 	return &gBul[i];
