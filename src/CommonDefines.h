@@ -171,6 +171,12 @@ namespace Bullets {
 	inline constexpr int BUBBLER_SPINE            = 22;
 	inline constexpr int BUBBLER_WATERGUN         = 93;
 
+	inline constexpr int MACHINE_GUN_LVL_1        = 10;
+	inline constexpr int MACHINE_GUN_LVL_2        = 10;
+	inline constexpr int MACHINE_GUN_LVL_3        = 10;
+	inline constexpr int MACHINE_GUN_LVL_4        = 69;
+	inline constexpr int MACHINE_GUN_GATLING      = 92;
+
 	inline constexpr int MANNAN_ATTACK_VFX        = 94;
 }
 

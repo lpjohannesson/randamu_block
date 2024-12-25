@@ -947,19 +947,19 @@ void ShootBullet_Machinegun1(int level)
 	switch (level)
 	{
 		case 1:
-			bul_no = 10;
+			bul_no = Bullets::MACHINE_GUN_LVL_1;
 			break;
 
 		case 2:
-			bul_no = 11;
+			bul_no = Bullets::MACHINE_GUN_LVL_2;
 			break;
 
 		case 3:
-			bul_no = 12;
+			bul_no = Bullets::MACHINE_GUN_LVL_3;
 			break;
 
 		case 4:
-			bul_no = 69;
+			bul_no = Bullets::MACHINE_GUN_LVL_4;
 			break;
 	}
 
@@ -1107,7 +1107,7 @@ void ShootBullet_Machinegun1(int level)
 
 void ShootBullet_Machinegun2(int level)
 {
-	int bul_no = 92;
+	int bul_no = Bullets::MACHINE_GUN_GATLING;
 	static int wait;
 
 	if (!(gKey & gKeyShot))
