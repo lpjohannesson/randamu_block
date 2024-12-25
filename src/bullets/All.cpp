@@ -14,4 +14,5 @@ void RegisterBullets(){
     RegisterBubbler();
     RegisterMachineGun();
     RegisterSpur();
+    RegisterBoomerangBlades();
 }

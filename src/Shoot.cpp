@@ -2281,29 +2281,29 @@ void ShootBullet_BoomerangSword(int level)
 		return;
 
 	if (level == 1){
-		if (CountBulletNum(52) > 2)
+		if (CountBulletNum(Bullets::BOOMERANG_BLADE_LVL_1) > 2)
 			return;
 	} else {
-		if (CountBulletNum(51 + level) > 0)
+		if (CountBulletNum(Bullets::BOOMERANG_BLADE_LVL_1 + (level-1)) > 0)
 			return;
 	}
 
 	switch (level)
 	{
 		case 1:
-			bul_no = 52;
+			bul_no = Bullets::BOOMERANG_BLADE_LVL_1;
 			break;
 
 		case 2:
-			bul_no = 53;
+			bul_no = Bullets::BOOMERANG_BLADE_LVL_2;
 			break;
 
 		case 3:
-			bul_no = 54;
+			bul_no = Bullets::BOOMERANG_BLADE_LVL_3;
 			break;
 
 		case 4:
-			bul_no = 75;
+			bul_no = Bullets::BOOMERANG_BLADE_LVL_4;
 			break;
 	}
 

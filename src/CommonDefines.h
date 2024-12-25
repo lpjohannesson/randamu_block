@@ -152,40 +152,47 @@ namespace Flags {
 };
 
 namespace Bullets {
-	inline constexpr int NOTHING                  = 0;
+	inline constexpr int NOTHING                      = 0;
 
-	inline constexpr int SNAKE_LVL_1              = 1;
-	inline constexpr int SNAKE_LVL_2              = 2;
-	inline constexpr int SNAKE_LVL_3              = 3;
-	inline constexpr int SNAKE_LVL_4              = 70;
+	inline constexpr int SNAKE_LVL_1                  = 1;
+	inline constexpr int SNAKE_LVL_2                  = 2;
+	inline constexpr int SNAKE_LVL_3                  = 3;
+	inline constexpr int SNAKE_LVL_4                  = 70;
 
-	inline constexpr int FIREBALL_LVL_1           = 7;
-	inline constexpr int FIREBALL_LVL_2           = 8;
-	inline constexpr int FIREBALL_LVL_3           = 9;
-	inline constexpr int FIREBALL_LVL_4           = 68;
+	inline constexpr int FIREBALL_LVL_1               = 7;
+	inline constexpr int FIREBALL_LVL_2               = 8;
+	inline constexpr int FIREBALL_LVL_3               = 9;
+	inline constexpr int FIREBALL_LVL_4               = 68;
 
-	inline constexpr int BUBBLER_LVL_1            = 19;
-	inline constexpr int BUBBLER_LVL_2            = 20;
-	inline constexpr int BUBBLER_LVL_3            = 21;
-	inline constexpr int BUBBLER_LVL_4            = 71;
-	inline constexpr int BUBBLER_SPINE            = 22;
-	inline constexpr int BUBBLER_WATERGUN         = 93;
+	inline constexpr int BUBBLER_LVL_1                = 19;
+	inline constexpr int BUBBLER_LVL_2                = 20;
+	inline constexpr int BUBBLER_LVL_3                = 21;
+	inline constexpr int BUBBLER_LVL_4                = 71;
+	inline constexpr int BUBBLER_SPINE                = 22;
+	inline constexpr int BUBBLER_WATERGUN             = 93;
 
-	inline constexpr int MACHINE_GUN_LVL_1        = 10;
-	inline constexpr int MACHINE_GUN_LVL_2        = 10;
-	inline constexpr int MACHINE_GUN_LVL_3        = 10;
-	inline constexpr int MACHINE_GUN_LVL_4        = 69;
-	inline constexpr int MACHINE_GUN_GATLING      = 92;
+	inline constexpr int MACHINE_GUN_LVL_1            = 10;
+	inline constexpr int MACHINE_GUN_LVL_2            = 10;
+	inline constexpr int MACHINE_GUN_LVL_3            = 10;
+	inline constexpr int MACHINE_GUN_LVL_4            = 69;
+	inline constexpr int MACHINE_GUN_GATLING          = 92;
 
-	inline constexpr int SPUR_LVL_1               = 37;
-	inline constexpr int SPUR_LVL_2               = 38;
-	inline constexpr int SPUR_LVL_3               = 39;
-	inline constexpr int SPUR_LVL_4               = 76;
-	inline constexpr int SPUR_TRAIL_LVL_1         = 40;
-	inline constexpr int SPUR_TRAIL_LVL_2         = 41;
-	inline constexpr int SPUR_TRAIL_LVL_3         = 42;
+	inline constexpr int SPUR_LVL_1                   = 37;
+	inline constexpr int SPUR_LVL_2                   = 38;
+	inline constexpr int SPUR_LVL_3                   = 39;
+	inline constexpr int SPUR_LVL_4                   = 76;
+	inline constexpr int SPUR_TRAIL_LVL_1             = 40;
+	inline constexpr int SPUR_TRAIL_LVL_2             = 41;
+	inline constexpr int SPUR_TRAIL_LVL_3             = 42;
 
-	inline constexpr int MANNAN_ATTACK_VFX        = 94;
+	inline constexpr int BOOMERANG_BLADE_LVL_1        = 52;
+	inline constexpr int BOOMERANG_BLADE_LVL_2        = 53;
+	inline constexpr int BOOMERANG_BLADE_LVL_3        = 54;
+	inline constexpr int BOOMERANG_BLADE_LVL_4        = 75;
+	inline constexpr int BOOMERANG_BLADE_LVL_2_FLAME  = 56;
+	inline constexpr int BOOMERANG_BLADE_LVL_3_SPLIT  = 55;
+
+	inline constexpr int MANNAN_ATTACK_VFX            = 94;
 }
 
 #endif // __COMMONDEFINES_H__
