@@ -1647,23 +1647,23 @@ void ShootBullet_FrontieBuster(int level)
 	switch (level)
 	{
 		case 1:
-			bul_no = 87;
+			bul_no = Bullets::FRONTIER_BUSTER_LVL_1;
 			if (Random(0, 8) == 0)
-				bul_no = 88;
+				bul_no = Bullets::FRONTIER_BUSTER_LVL_1_HOMING;
 			break;
 
 		case 2:
-			bul_no = 89;
+			bul_no = Bullets::FRONTIER_BUSTER_LVL_2;
 			break;
 
 		case 3:
-			bul_no = 90;
+			bul_no = Bullets::FRONTIER_BUSTER_LVL_3;
 			if (Random(0, 30) == 0)
-				bul_no = 89;
+				bul_no = Bullets::FRONTIER_BUSTER_LVL_2;
 			break;
 
 		case 4:
-			bul_no = 91;
+			bul_no = Bullets::FRONTIER_BUSTER_LVL_4;
 			break;
 	}
 

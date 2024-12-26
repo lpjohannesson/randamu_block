@@ -56,6 +56,8 @@ add_executable(Randamu WIN32
 	"src/bullets/Bubbler.h"
 	"src/bullets/Fireball.cpp"
 	"src/bullets/Fireball.h"
+	"src/bullets/FrontierBuster.cpp"
+	"src/bullets/FrontierBuster.h"
 	"src/bullets/MachineGun.cpp"
 	"src/bullets/MachineGun.h"
 	"src/bullets/MiningLaser.cpp"

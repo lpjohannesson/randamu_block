@@ -205,6 +205,12 @@ namespace Bullets {
 	inline constexpr int MINING_LASER                 = 64;
 	inline constexpr int MINING_BOOM                  = 65;
 
+	inline constexpr int FRONTIER_BUSTER_LVL_1        = 87;
+	inline constexpr int FRONTIER_BUSTER_LVL_2        = 89;
+	inline constexpr int FRONTIER_BUSTER_LVL_3        = 90;
+	inline constexpr int FRONTIER_BUSTER_LVL_4        = 91;
+	inline constexpr int FRONTIER_BUSTER_LVL_1_HOMING = 88;
+
 	inline constexpr int SHOTGUN_SHOT                 = 4;
 	inline constexpr int BLADE_SLASH                  = 23;
 	inline constexpr int ENEMY_CLEAR                  = 44;

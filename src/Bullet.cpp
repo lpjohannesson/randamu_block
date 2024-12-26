@@ -317,15 +317,15 @@ BULLET_TABLE gBulTbl[] = {
 	// visuals for Nanites Absorber
 	{},
 	// Frontie-buster lv1
-	{2, 1, 100, 32, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+	{},
 	// Frontie-buster lv1 homing missile
-	{7, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1},
+	{},
 	// Frontie-buster lv2
-	{1, 3, 120, 32, 4, 4, 2, 2, {8, 8, 8, 8}, 0.5, 0.5},
+	{},
 	// Frontie-buster lv3
-	{1, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+	{},
 	// Frontie-buster lv4
-	{1, 15, 40, 32, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1},
+	{},
 	// Gatling Gun
 	{},
 	// Water Gun projectile
@@ -832,173 +832,6 @@ void ActBullet_FireMine(BULLET *bul)
 			bul->rect = rect_left1[(bul->ani_no+1)/2];
 		else
 			bul->rect = rect_right1[(bul->ani_no+1)/2];
-}
-
-void ActBullet_FrontieBust1(BULLET *bul, int level)
-{
-	int baseSpeed = 0x1000;
-	int inaccuracy = 0x200;
-	if (level == 3){
-		baseSpeed *= 0.85;
-		inaccuracy *= 3.5f;
-		bul->iframes = 3;
-	}
-
-	if (++bul->count1 > bul->life_count)
-	{
-		bul->cond = 0;
-		SetCaret(bul->x, bul->y, 3, 0);
-		return;
-	}
-
-	if (bul->act_no == 0)
-	{
-		bul->act_no = 1;
-
-		switch (bul->direct)
-		{
-			case 0:
-				bul->xm = -baseSpeed;
-				bul->ym = Random(-inaccuracy, inaccuracy);
-				break;
-			case 1:
-				bul->ym = -baseSpeed;
-				bul->xm = Random(-inaccuracy, inaccuracy);
-				break;
-			case 2:
-				bul->xm = baseSpeed;
-				bul->ym = Random(-inaccuracy, inaccuracy);
-				break;
-			case 3:
-				bul->ym = baseSpeed;
-				bul->xm = Random(-inaccuracy, inaccuracy);
-				break;
-		}
-	}
-	else
-	{
-		bul->x += bul->xm;
-		bul->y += bul->ym;
-
-		if (bul->flag & 0xD)
-			PlaySoundObject(34, SOUND_MODE_PLAY);
-	}
-
-	Rect rect_left1[4] = {
-		{128, 176, 144, 192},
-		{144, 176, 160, 192},
-		{160, 176, 176, 192},
-		{176, 176, 192, 192},
-	};
-
-	Rect rect_right1[4] = {
-		{128, 192, 144, 208},
-		{144, 192, 160, 208},
-		{160, 192, 176, 208},
-		{176, 192, 192, 208},
-	};
-
-	++bul->ani_no;
-	if (bul->ani_no > 3)
-		bul->ani_no = 0;
-
-	if (bul->direct == 0)
-		bul->rect = rect_left1[bul->ani_no];
-	else
-		bul->rect = rect_right1[bul->ani_no];
-
-	SetNpChar(129, bul->x, bul->y, 0, -0x200, std::max(0, bul->ani_no-1) + 3, NULL, 0x100);
-}
-
-void ActBullet_FrontieBust2(BULLET *bul)
-{
-	Rect rect[3] = {
-		{192, 16, 208, 32},
-		{208, 16, 224, 32},
-		{224, 16, 240, 32}
-	};
-
-	if (++bul->count1 > bul->life_count)
-	{
-		bul->cond = 0;
-		SetCaret(bul->x, bul->y, 3, 0);
-		return;
-	}
-	bul->iframes = 30;
-
-	if (bul->act_no == 0)
-	{
-		bul->ani_no = 0;
-		bul->act_no = 1;
-
-		switch (bul->direct)
-		{
-			case 0:
-				bul->xm = -0x380;
-				break;
-			case 1:
-				bul->ym = -0x380;
-				break;
-			case 2:
-				bul->xm = 0x380;
-				break;
-			case 3:
-				bul->ym = 0x380;
-				break;
-		}
-	}
-	else
-	{
-		switch (bul->direct)
-		{
-			case 0:
-				bul->xm += -0x60;
-				if (bul->xm < -0x1400){
-					bul->xm = -0x1400;
-					SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
-						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
-				}
-				break;
-			case 1:
-				bul->ym += -0x60;
-				if (bul->ym < -0x1400){
-					bul->ym = -0x1400;
-					SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
-						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
-				}
-				break;
-			case 2:
-				bul->xm += 0x60;
-				if (bul->xm > 0x1400){
-					bul->xm = 0x1400;
-					SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
-						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
-				}
-				break;
-			case 3:
-				bul->ym += 0x60;
-				if (bul->ym > 0x1400){
-					bul->ym = 0x1400;
-					SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
-						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
-				}
-				break;
-		}
-
-		bul->x += bul->xm;
-		bul->y += bul->ym;
-	}
-
-	if (++bul->ani_wait > 0)
-	{
-		bul->ani_wait = 0;
-		++bul->ani_no;
-	}
-
-	if (bul->ani_no > 2)
-		bul->ani_no = 0;
-
-	bul->rect = rect[bul->ani_no];
 }
 
 void ActBullet_Missile(BULLET *bul, int level)
@@ -2275,109 +2108,6 @@ void ActBullet_HomingSword(BULLET *bul)
 	SetCaret(bul->x, bul->y, 13, 0);
 }
 
-void ActBullet_HomingFrontieBust(BULLET *bul)
-{
-	if (++bul->count1 > bul->life_count)
-	{
-		bul->cond = 0;
-		SetCaret(bul->x, bul->y, 3, 0);
-		return;
-	}
-
-	bul->npc = GetClosest(bul->x, bul->y, 60_pix);
-
-	if (bul->act_no == 0){
-		bul->act_no = 1;
-
-		// Set speed
-		switch (bul->direct)
-		{
-		case 0:
-			bul->xm = -0x1000;
-			break;
-		case 1:
-			bul->ym = -0x1000;
-			break;
-		case 2:
-			bul->xm = 0x1000;
-			break;
-		case 3:
-			bul->ym = 0x1000;
-			break;
-		}
-	} else {
-		if (bul->npc != NULL){
-			unsigned char deg = GetArktan(bul->x - bul->npc->x, bul->y - bul->npc->y);
-			bul->ym = GetSin(deg) * 6;
-			bul->xm = GetCos(deg) * 6;
-		}
-	}
-
-	bul->x += bul->xm;
-	bul->y += bul->ym;
-
-	SetCaret(bul->x, bul->y, 3, 0);
-	SetCaret(bul->x, bul->y, 2, 2);
-	for (int i = 0; i < 3; i++)
-		SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
-						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
-}
-
-void ActBullet_HomingFrontieBust2(BULLET *bul)
-{
-	if (bul->npc == NULL){
-		if (++bul->count1 > bul->life_count)
-		{
-			bul->cond = 0;
-			SetCaret(bul->x, bul->y, 3, 0);
-			return;
-		}
-	}
-
-	bul->npc = GetClosest(bul->x, bul->y, 55_pix);
-	bul->local_iframes = 15;
-	int inaccuracy = 0x260;
-
-	if (bul->act_no == 0){
-		bul->act_no = 1;
-
-		// Set speed
-		switch (bul->direct)
-		{
-		case 0:
-			bul->xm = -0x1000;
-			bul->ym = Random(-inaccuracy, inaccuracy);
-			break;
-		case 1:
-			bul->ym = -0x1000;
-			bul->xm = Random(-inaccuracy, inaccuracy);
-			break;
-		case 2:
-			bul->xm = 0x1000;
-			bul->ym = Random(-inaccuracy, inaccuracy);
-			break;
-		case 3:
-			bul->ym = 0x1000;
-			bul->xm = Random(-inaccuracy, inaccuracy);
-			break;
-		}
-	} else {
-		if (bul->npc != NULL){
-			unsigned char deg = GetArktan(bul->x - bul->npc->x, bul->y - bul->npc->y);
-			bul->ym = GetSin(deg) * 8;
-			bul->xm = GetCos(deg) * 8;
-			bul->bbits = 4;
-		} else {
-			bul->bbits = 32;
-		}
-	}
-
-	bul->x += bul->xm;
-	bul->y += bul->ym;
-
-	SetCaret(bul->x, bul->y, 2, 2);
-}
-
 
 
 
@@ -2618,26 +2348,6 @@ void ActBullet(void)
 						break;
 					case 85:
 						ActBullet_SwordSwing2(&gBul[i], 4);
-						break;
-
-					case 87:
-						ActBullet_FrontieBust1(&gBul[i], 1);
-						break;
-
-					case 88:
-						ActBullet_HomingFrontieBust(&gBul[i]);
-						break;
-
-					case 89:
-						ActBullet_FrontieBust2(&gBul[i]);
-						break;
-
-					case 90:
-						ActBullet_FrontieBust1(&gBul[i], 3);
-						break;
-
-					case 91:
-						ActBullet_HomingFrontieBust2(&gBul[i]);
 						break;
 				}
 			}

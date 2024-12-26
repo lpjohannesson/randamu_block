@@ -8,5 +8,6 @@
 #include "Rifle.h"
 #include "Blade.h"
 #include "MiningLaser.h"
+#include "FrontierBuster.h"
 
 void RegisterBullets();
