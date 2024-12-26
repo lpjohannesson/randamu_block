@@ -5,5 +5,6 @@
 #include "Spur.h"
 #include "BoomerangBlades.h"
 #include "Misc.h"
+#include "Rifle.h"
 
 void RegisterBullets();

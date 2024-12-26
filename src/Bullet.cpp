@@ -221,9 +221,9 @@ BULLET_TABLE gBulTbl[] = {
 	{10, 3, 1, 32, 10, 10, 4, 2, {12, 12, 12, 12}, 0.1, 0.1},
 	{3, 100, 37, 36, 8, 8, 4, 4, {12, 12, 12, 12}, 1.66, 1.66},
 	// Rifle
-	{4, 2, 24, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
-	{7, 3, 30, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
-	{10, 4, 46, 32, 6, 6, 2, 2, {8, 8, 8, 8}, 0.3, 0.4},
+	{},
+	{},
+	{},
 	// Super Missile Launcher explosion
 	{2, 100, 100, 20, 12, 12, 0, 0, {0, 0, 0, 0}, 1, 1},
 	{1, 120, 200, 32, 32, 20, 0, 0, {0, 0, 0, 0}, 1, 1},
@@ -757,129 +757,6 @@ void ActBullet_Hook(BULLET *bul, int level)
 	};
 
 	bul->rect = rect[bul->ani_no];
-}
-
-void ActBullet_Rifle(BULLET *bul, int level)
-{
-	bul->local_iframes = 10;
-
-	if (++bul->count1 > bul->life_count)
-	{
-		bul->cond = 0;
-		SetCaret(bul->x, bul->y, 3, 0);
-		return;
-	}
-
-	if (bul->act_no == 0)
-	{
-		bul->act_no = 1;
-
-		// Set speed
-		switch (bul->direct)
-			{
-			case 0:
-				bul->xm = -0xE80;
-				break;
-			case 1:
-				bul->ym = -0xE80;
-				break;
-			case 2:
-				bul->xm = 0xE80;
-				break;
-			case 3:
-				bul->ym = 0xE80;
-				break;
-			}
-
-		// Set hitbox
-		switch (level)
-		{
-			case 1:
-				switch (bul->direct)
-				{
-					case 0:
-						bul->enemyYL = 0x600;
-						break;
-					case 1:
-						bul->enemyXL = 0x600;
-						break;
-					case 2:
-						bul->enemyYL = 0x600;
-						break;
-					case 3:
-						bul->enemyXL = 0x600;
-						break;
-				}
-				break;
-			case 2: case 3:
-				switch (bul->direct)
-				{
-					case 0:
-						bul->enemyYL = 0x900;
-						break;
-					case 1:
-						bul->enemyXL = 0x900;
-						break;
-					case 2:
-						bul->enemyYL = 0x900;
-						break;
-					case 3:
-						bul->enemyXL = 0x900;
-						break;
-				}
-				break;
-		}
-	}
-	else
-	{
-		// Move
-		bul->life = 100;
-		bul->x += bul->xm;
-		bul->y += bul->ym;
-	}
-
-	Rect rect1[2] = {
-		{128, 32, 144, 48},
-		{144, 32, 160, 48},
-	};
-
-	Rect rect2[2] = {
-		{160, 32, 176, 48},
-		{176, 32, 192, 48},
-	};
-
-	Rect rect3[2] = {
-		{128, 48, 144, 64},
-		{144, 48, 160, 64},
-	};
-
-	//Set framerect
-	switch (level)
-	{
-		case 1:
-			if (bul->direct == 1 || bul->direct == 3)
-				bul->rect = rect1[1];
-			else
-				bul->rect = rect1[0];
-
-			break;
-
-		case 2:
-			if (bul->direct == 1 || bul->direct == 3)
-				bul->rect = rect2[1];
-			else
-				bul->rect = rect2[0];
-
-			break;
-
-		case 3:
-			if (bul->direct == 1 || bul->direct == 3)
-				bul->rect = rect3[1];
-			else
-				bul->rect = rect3[0];
-
-			break;
-	}
 }
 
 void ActBullet_FireMine(BULLET *bul)
@@ -3257,17 +3134,6 @@ void ActBullet(void)
 						break;
 					case 72:
 						ActBullet_Sword3(&gBul[i], 3);
-						break;
-
-					// Rifle
-					case 28:
-						ActBullet_Rifle(&gBul[i], 1);
-						break;
-					case 29:
-						ActBullet_Rifle(&gBul[i], 2);
-						break;
-					case 30:
-						ActBullet_Rifle(&gBul[i], 3);
 						break;
 
 					// Super Missile Launcher explosion

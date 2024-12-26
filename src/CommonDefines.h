@@ -193,6 +193,10 @@ namespace Bullets {
 	inline constexpr int BOOMERANG_BLADE_LVL_2_FLAME  = 56;
 	inline constexpr int BOOMERANG_BLADE_LVL_3_SPLIT  = 55;
 
+	inline constexpr int RIFLE_LVL_1                  = 28;
+	inline constexpr int RIFLE_LVL_2                  = 29;
+	inline constexpr int RIFLE_LVL_3                  = 30;
+
 	inline constexpr int SHOTGUN_SHOT                 = 4;
 	inline constexpr int BLADE_SLASH                  = 23;
 	inline constexpr int ENEMY_CLEAR                  = 44;

@@ -213,19 +213,19 @@ void ShootBullet_Rifle(int level)
 	switch (level)
 	{
 		case 1:
-			bul_no = 28;
+			bul_no = Bullets::RIFLE_LVL_1;
 			break;
 
 		case 2:
-			bul_no = 29;
+			bul_no = Bullets::RIFLE_LVL_2;
 			break;
 
 		case 3:
-			bul_no = 30;
+			bul_no = Bullets::RIFLE_LVL_3;
 			break;
 		
 		case 4:
-			bul_no = 37;
+			bul_no = Bullets::SPUR_LVL_1;
 			break;
 	}
 
