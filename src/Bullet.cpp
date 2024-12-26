@@ -179,163 +179,6 @@ void PutBullet(int fx, int fy)
 
 std::map<decltype(Bullets::NOTHING), BULLET_DEF> gBulletTable;
 
-BULLET_TABLE gBulTbl[] = {
-	// Null
-	{},
-	// Snake
-	{},
-	{},
-	{},
-	// Polar Star
-	{},
-	{},
-	{},
-	// Fireball
-	{},
-	{},
-	{},
-	// Machine Gun
-	{},
-	{},
-	{},
-	// Missile Launcher
-	{},
-	{},
-	{},
-	// Missile Launcher explosion
-	{},
-	{},
-	{},
-	// Bubbler
-	{},
-	{},
-	{},
-	// Bubbler level 3 thorns
-	{},
-	// Blade slashes
-	{},
-	// Falling spike that deals 127 damage
-	{},
-	// Blade
-	{},
-	{},
-	{},
-	// Rifle
-	{},
-	{},
-	{},
-	// Super Missile Launcher explosion
-	{},
-	{},
-	{},
-	// Nemesis
-	{},
-	{},
-	{},
-	// Spur
-	{},
-	{},
-	{},
-	// Spur trail
-	{},
-	{},
-	{},
-	// Curly's Nemesis
-	{},
-	// Screen-nuke that kills all enemies
-	{},
-	// Whimsical Star
-	{},
-	// Little Man
-	{},
-	// Homing missile
-	{},
-	{},
-	// Hook
-	{},
-	{},
-	{},
-	// Boomerang blade
-	{}, //level 1
-	{}, //level 2
-	{}, //level 3
-	{}, //level 3 splits
-	// Lvl2 boomerang blade flame
-	{},
-	// Homing sword
-	{},
-	// Swing sword
-	{},
-	{},
-	{},
-	// Swing sword droplet
-	{},
-	// Whirlpool
-	{},
-	// Lol
-	{},
-	// Mining laser
-	{},
-	{},
-	{},
-	// Spark
-	{},
-	// Fireball lv4
-	{},
-	// Machine gun lv4
-	{},
-	// Snake lv4
-	{},
-	// Bubbler lv4
-	{},
-	// Blade lv4
-	{},
-	// Hook lv4
-	{},
-	// Floodtide lv4
-	{},
-	// Boomerang lv4
-	{},
-	// Spur lv4
-	{},
-	// omega selfhurt
-	{},
-	// red crystal blast
-	{},
-	// decorative slash
-	{},
-	// helltide sword
-	{},
-	{},
-	{},
-	// hellsweep mine
-	{},
-	// lvl3 hellsweep flamings
-	{},
-	// lvl4 Hellsweep
-	{},
-	// visuals for Nanites Absorber
-	{},
-	// Frontie-buster lv1
-	{},
-	// Frontie-buster lv1 homing missile
-	{},
-	// Frontie-buster lv2
-	{},
-	// Frontie-buster lv3
-	{},
-	// Frontie-buster lv4
-	{},
-	// Gatling Gun
-	{},
-	// Water Gun projectile
-	{},
-	// Mannan visuals
-	{},
-	// Hook lv4 spurts
-	{},
-};
-
 void SetBullet(int no, int x, int y, int dir)
 {
 	int i = 0;
@@ -350,37 +193,20 @@ void SetBullet(int no, int x, int y, int dir)
 	gBul[i].first_frame = true;
 	gBul[i].cond = 0x80;
 	gBul[i].direct = dir;
-	if (gBulletTable.contains(no)){
-		gBul[i].damage = gBulletTable[no].table.damage;
-		gBul[i].life = gBulletTable[no].table.life;
-		gBul[i].life_count = gBulletTable[no].table.life_count;
-		gBul[i].bbits = gBulletTable[no].table.bbits;
-		gBul[i].enemyXL = gBulletTable[no].table.enemyXL * 0x200;
-		gBul[i].enemyYL = gBulletTable[no].table.enemyYL * 0x200;
-		gBul[i].blockXL = gBulletTable[no].table.blockXL * 0x200;
-		gBul[i].blockYL = gBulletTable[no].table.blockYL * 0x200;
-		gBul[i].view.back = gBulletTable[no].table.view.back * 0x200;
-		gBul[i].view.front = gBulletTable[no].table.view.front * 0x200;
-		gBul[i].view.top = gBulletTable[no].table.view.top * 0x200;
-		gBul[i].view.bottom = gBulletTable[no].table.view.bottom * 0x200;
-		gBul[i].knockX = gBulletTable[no].table.knockX;
-		gBul[i].knockY = gBulletTable[no].table.knockY;
-	} else {
-		gBul[i].damage = gBulTbl[no].damage;
-		gBul[i].life = gBulTbl[no].life;
-		gBul[i].life_count = gBulTbl[no].life_count;
-		gBul[i].bbits = gBulTbl[no].bbits;
-		gBul[i].enemyXL = gBulTbl[no].enemyXL * 0x200;
-		gBul[i].enemyYL = gBulTbl[no].enemyYL * 0x200;
-		gBul[i].blockXL = gBulTbl[no].blockXL * 0x200;
-		gBul[i].blockYL = gBulTbl[no].blockYL * 0x200;
-		gBul[i].view.back = gBulTbl[no].view.back * 0x200;
-		gBul[i].view.front = gBulTbl[no].view.front * 0x200;
-		gBul[i].view.top = gBulTbl[no].view.top * 0x200;
-		gBul[i].view.bottom = gBulTbl[no].view.bottom * 0x200;
-		gBul[i].knockX = gBulTbl[no].knockX;
-		gBul[i].knockY = gBulTbl[no].knockY;
-	}
+	gBul[i].damage = gBulletTable[no].table.damage;
+	gBul[i].life = gBulletTable[no].table.life;
+	gBul[i].life_count = gBulletTable[no].table.life_count;
+	gBul[i].bbits = gBulletTable[no].table.bbits;
+	gBul[i].enemyXL = gBulletTable[no].table.enemyXL * 0x200;
+	gBul[i].enemyYL = gBulletTable[no].table.enemyYL * 0x200;
+	gBul[i].blockXL = gBulletTable[no].table.blockXL * 0x200;
+	gBul[i].blockYL = gBulletTable[no].table.blockYL * 0x200;
+	gBul[i].view.back = gBulletTable[no].table.view.back * 0x200;
+	gBul[i].view.front = gBulletTable[no].table.view.front * 0x200;
+	gBul[i].view.top = gBulletTable[no].table.view.top * 0x200;
+	gBul[i].view.bottom = gBulletTable[no].table.view.bottom * 0x200;
+	gBul[i].knockX = gBulletTable[no].table.knockX;
+	gBul[i].knockY = gBulletTable[no].table.knockY;
 	if (((no > 0 && no < 4) || no == 70) && gMC.equip & EQUIP_PROPANE_TANK){
 		gBul[i].damage /= 2;
 	}
@@ -409,37 +235,20 @@ BULLET* SetBullet(int no, int x, int y)
 	gBul[i].code_bullet = no;
 	gBul[i].first_frame = true;
 	gBul[i].cond = 0x80;
-	if (gBulletTable.contains(no)){
-		gBul[i].damage = gBulletTable[no].table.damage;
-		gBul[i].life = gBulletTable[no].table.life;
-		gBul[i].life_count = gBulletTable[no].table.life_count;
-		gBul[i].bbits = gBulletTable[no].table.bbits;
-		gBul[i].enemyXL = gBulletTable[no].table.enemyXL * 0x200;
-		gBul[i].enemyYL = gBulletTable[no].table.enemyYL * 0x200;
-		gBul[i].blockXL = gBulletTable[no].table.blockXL * 0x200;
-		gBul[i].blockYL = gBulletTable[no].table.blockYL * 0x200;
-		gBul[i].view.back = gBulletTable[no].table.view.back * 0x200;
-		gBul[i].view.front = gBulletTable[no].table.view.front * 0x200;
-		gBul[i].view.top = gBulletTable[no].table.view.top * 0x200;
-		gBul[i].view.bottom = gBulletTable[no].table.view.bottom * 0x200;
-		gBul[i].knockX = gBulletTable[no].table.knockX;
-		gBul[i].knockY = gBulletTable[no].table.knockY;
-	} else {
-		gBul[i].damage = gBulTbl[no].damage;
-		gBul[i].life = gBulTbl[no].life;
-		gBul[i].life_count = gBulTbl[no].life_count;
-		gBul[i].bbits = gBulTbl[no].bbits;
-		gBul[i].enemyXL = gBulTbl[no].enemyXL * 0x200;
-		gBul[i].enemyYL = gBulTbl[no].enemyYL * 0x200;
-		gBul[i].blockXL = gBulTbl[no].blockXL * 0x200;
-		gBul[i].blockYL = gBulTbl[no].blockYL * 0x200;
-		gBul[i].view.back = gBulTbl[no].view.back * 0x200;
-		gBul[i].view.front = gBulTbl[no].view.front * 0x200;
-		gBul[i].view.top = gBulTbl[no].view.top * 0x200;
-		gBul[i].view.bottom = gBulTbl[no].view.bottom * 0x200;
-		gBul[i].knockX = gBulTbl[no].knockX;
-		gBul[i].knockY = gBulTbl[no].knockY;
-	}
+	gBul[i].damage = gBulletTable[no].table.damage;
+	gBul[i].life = gBulletTable[no].table.life;
+	gBul[i].life_count = gBulletTable[no].table.life_count;
+	gBul[i].bbits = gBulletTable[no].table.bbits;
+	gBul[i].enemyXL = gBulletTable[no].table.enemyXL * 0x200;
+	gBul[i].enemyYL = gBulletTable[no].table.enemyYL * 0x200;
+	gBul[i].blockXL = gBulletTable[no].table.blockXL * 0x200;
+	gBul[i].blockYL = gBulletTable[no].table.blockYL * 0x200;
+	gBul[i].view.back = gBulletTable[no].table.view.back * 0x200;
+	gBul[i].view.front = gBulletTable[no].table.view.front * 0x200;
+	gBul[i].view.top = gBulletTable[no].table.view.top * 0x200;
+	gBul[i].view.bottom = gBulletTable[no].table.view.bottom * 0x200;
+	gBul[i].knockX = gBulletTable[no].table.knockX;
+	gBul[i].knockY = gBulletTable[no].table.knockY;
 	if (((no > 0 && no < 4) || no == 70) && gMC.equip & EQUIP_PROPANE_TANK){
 		gBul[i].damage /= 2;
 	}
