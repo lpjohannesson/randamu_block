@@ -611,7 +611,7 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 	{
 		for (int b1 = 0; b1 < BULLET_MAX; b1++)
 		{
-			if (gBul[b1].code_bullet == 57 && gBul[b1].npc == npc)
+			if (gBul[b1].code_bullet == Bullets::WHIMSICAL_STAR && gBul[b1].npc == npc)
 			{
 				gBul[b1].npc = NULL;
 			}
@@ -668,7 +668,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		return false;
 	}
 
-	if (bul != NULL && bul->code_bullet == 31 && isBoss && !gBL.flag){
+	if (bul != NULL && bul->code_bullet == Bullets::BIGGER_EXPLOSION && isBoss && !gBL.flag){
 		return false;
 	}
 
@@ -682,7 +682,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		}
 	}
 
-	if (bul != NULL && bul->code_bullet == 89){
+	if (bul != NULL && bul->code_bullet == Bullets::FRONTIER_BUSTER_LVL_2){
 		float speed;
 		switch (bul->direct){
 			case 0: case 2: speed = std::abs(bul->xm); break;
@@ -729,9 +729,9 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			npc.waterEffect = std::min(npc.waterEffect + Random(10, 25), 120);
 		}
 
-		if (bul->code_bullet == 19 || bul->code_bullet == 93){
+		if (bul->code_bullet == Bullets::BUBBLER_LVL_1 || bul->code_bullet == Bullets::BUBBLER_WATERGUN){
 			PlaySoundObject(21, SOUND_MODE_PLAY);
-			int lol = bul->code_bullet == 93 ? Random(10, 35) : Random(5, 10);
+			int lol = bul->code_bullet == Bullets::BUBBLER_WATERGUN ? Random(10, 35) : Random(5, 10);
 			for (int i = 0; i < lol; i++)
 			{
 				int x, y;
@@ -752,30 +752,30 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		}
 
 		if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end() &&
-				(GetNPCFlag(Flags::LEAD_WEIGHT) || bul->code_bullet == 14)){
+				(GetNPCFlag(Flags::LEAD_WEIGHT) || bul->code_bullet == Bullets::MOVING_MISSILE)){
 			npc.knockx = bul->xm * bul->knockX * npc.knockEffect;
 			npc.knocky = bul->ym * bul->knockY * npc.knockEffect;
 		}
 
-		if (bul->code_bullet == 4){
+		if (bul->code_bullet == Bullets::SHOTGUN_SHOT){
 			npc.targetingEffect = 1;
 		}
 
-		if (bul->code_bullet > 6 && bul->code_bullet < 10 && !CountBulletNum(Bullets::EXPLOSION) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
+		if (bul->code_bullet > Bullets::FIREBALL_LVL_1-1 && bul->code_bullet < Bullets::FIREBALL_LVL_3+1 && !CountBulletNum(Bullets::EXPLOSION) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
 			SetBullet(Bullets::EXPLOSION, bul->x, bul->y, 0);
 		}
 
-		if (bul->code_bullet == 87 && Random(0, 3) == 0)
+		if (bul->code_bullet == Bullets::FRONTIER_BUSTER_LVL_1 && Random(0, 3) == 0)
 			SpawnQuiverProjectile(npc);
 
-		if (bul->code_bullet == 89){
+		if (bul->code_bullet == Bullets::FRONTIER_BUSTER_LVL_2){
 			SetCaret(npc.x, npc.y, 12, 0);
 			if (Random(0, 4) == 0)
 				for (int i = 0; i < 5; i++)
 					SpawnQuiverProjectile(npc);
 		}
 
-		if (bul->code_bullet == 60 || bul->code_bullet == 74)
+		if (bul->code_bullet == Bullets::FLOODTIDE_LVL_3 || bul->code_bullet == Bullets::FLOODTIDE_LVL_4)
 			SpawnQuiverProjectile(npc);
 	}
 
@@ -800,13 +800,13 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	npc.life -= dmg;
 
 	if (Random(0, 2) == 0 && dmg != 0 && gMC.equip & EQUIP_NANO_QUIVER && 
-		(bul == NULL || (bul->code_bullet != 47 && bul->code_bullet != 45)))
+		(bul == NULL || (bul->code_bullet != Bullets::ENERGY_PROJECTILE && bul->code_bullet != Bullets::FIREBALL_FLAME)))
 	{
 		SpawnQuiverProjectile(npc);
 	}
 
 	for (int b1 = 0; b1 < BULLET_MAX; b1++){
-		if (gBul[b1].code_bullet == 57 && gBul[b1].npc == NULL && !isEthereal){ //whimsical star targetting
+		if (gBul[b1].code_bullet == Bullets::WHIMSICAL_STAR && gBul[b1].npc == NULL && !isEthereal){ //whimsical star targetting
 			gBul[b1].npc = &npc;
 			break;
 		}
@@ -814,8 +814,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 
 	bool isSword = bul != NULL;
 	if (isSword == true)
-		isSword = (bul->code_bullet == 58 || bul->code_bullet == 60 || bul->code_bullet == 59 || bul->code_bullet == 74
-			|| bul->code_bullet == 80 || bul->code_bullet == 81 || bul->code_bullet == 82 || bul->code_bullet == 85);
+		isSword = bul->code_bullet == Bullets::FLOODTIDE_LVL_1 || bul->code_bullet == Bullets::FLOODTIDE_LVL_2 || bul->code_bullet == Bullets::FLOODTIDE_LVL_3
+				|| bul->code_bullet == Bullets::HELLSWEEP_LVL_1 || bul->code_bullet == Bullets::HELLSWEEP_LVL_2 || bul->code_bullet == Bullets::HELLSWEEP_LVL_3 || bul->code_bullet == Bullets::HELLSWEEP_LVL_4;
 
 	if (npc.life < 1 || ChallengeEnabled("debug"))
 	{
@@ -834,7 +834,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 				SetBullet(Bullets::BLADE_SLASH_FAKE, npc.x, npc.y, 0);
 			else
 				SetBullet(Bullets::BLADE_SLASH_FAKE, npc.x, npc.y, 2);
-			if (bul->code_bullet == 58 || bul->code_bullet == 74){
+			if (bul->code_bullet == Bullets::FLOODTIDE_LVL_1 || bul->code_bullet == Bullets::FLOODTIDE_LVL_4){
 				PlaySoundObject(65, SOUND_MODE_PLAY);
 				int lol = Random(20, 30);
 				if (bul->count1 == 1) lol *= 1.5;
@@ -943,8 +943,8 @@ void HitNpCharBullet(void)
 
 		for (b = 0; b < BULLET_MAX; ++b)
 		{
-			bool isSword = gBul[b].code_bullet == 58 || gBul[b].code_bullet == 60 || gBul[b].code_bullet == 59
-				|| gBul[b].code_bullet == 80 || gBul[b].code_bullet == 81 || gBul[b].code_bullet == 82 || gBul[b].code_bullet == 85;
+			bool isSword = gBul[b].code_bullet == Bullets::FLOODTIDE_LVL_1 || gBul[b].code_bullet == Bullets::FLOODTIDE_LVL_2 || gBul[b].code_bullet == Bullets::FLOODTIDE_LVL_3
+				|| gBul[b].code_bullet == Bullets::HELLSWEEP_LVL_1 || gBul[b].code_bullet == Bullets::HELLSWEEP_LVL_2 || gBul[b].code_bullet == Bullets::HELLSWEEP_LVL_3 || gBul[b].code_bullet == Bullets::HELLSWEEP_LVL_4;
 
 			if (!(gBul[b].cond & 0x80))
 				continue;
@@ -959,22 +959,22 @@ void HitNpCharBullet(void)
 			}
 
 			if (gNPC[n].shock > 0 && (
-				 (gBul[b].code_bullet == 57) || (gBul[b].code_bullet == 69) || (GetNPCFlag(Flags::HIGH_OCTANE_TANK) && gBul[b].code_bullet > 6 && gBul[b].code_bullet < 10 && CountBulletNum(16))))
+				 (gBul[b].code_bullet == Bullets::WHIMSICAL_STAR) || (gBul[b].code_bullet == Bullets::MACHINE_GUN_LVL_4) || (GetNPCFlag(Flags::HIGH_OCTANE_TANK) && gBul[b].code_bullet > Bullets::FIREBALL_LVL_1-1 && gBul[b].code_bullet < Bullets::FIREBALL_LVL_3+1 && CountBulletNum(Bullets::EXPLOSION))))
 				continue;
 
 			if (gBul[b].damage == -1)
 				continue;
 
-			if (gBul[b].code_bullet == 4 && gNPC[n].targetingEffect > 0)
+			if (gBul[b].code_bullet == Bullets::SHOTGUN_SHOT && gNPC[n].targetingEffect > 0)
 				continue;
 
-			if (gBul[b].code_bullet == 77 && gNPC[n].code_char == 48)
+			if (gBul[b].code_bullet == Bullets::OMEGA_SELFHURT && gNPC[n].code_char == 48)
 				continue;
 
 			if (gNPC[n].shock > 0 && gNPC[n].code_event == 30)
 				continue;
 
-			if (gNPC[n].code_char == 126 && gBul[b].code_bullet == 46)
+			if (gNPC[n].code_char == 126 && gBul[b].code_bullet == Bullets::UNUSED_SHIELD_HITBOX)
 				continue;
 
 			if (gNPC[n].code_char == 100 && !IsBreakingBullet(gBul[b]))
@@ -1005,7 +1005,7 @@ void HitNpCharBullet(void)
 					if (!success)
 						continue;
 
-					if (gBul[b].code_bullet == 88){
+					if (gBul[b].code_bullet == Bullets::FRONTIER_BUSTER_LVL_1_HOMING){
 						PlaySoundObject(54);
 						SetDestroyNpChar(gNPC[n].x, gNPC[n].y, gNPC[n].hit.back, 16);
 					}
@@ -1016,10 +1016,8 @@ void HitNpCharBullet(void)
 					if (gBul[b].local_iframes > 0)
 						local_iframes[n][b] = gBul[b].local_iframes;
 				}
-				else if (gBul[b].code_bullet == 13
-					|| gBul[b].code_bullet == 14
-					|| gBul[b].code_bullet == 15
-					|| gBul[b].code_bullet == 57)
+				else if (gBul[b].code_bullet == Bullets::MOVING_MISSILE
+					|| gBul[b].code_bullet == Bullets::WHIMSICAL_STAR)
 				{
 					// Strange empty case that's needed for accurate assembly
 				}

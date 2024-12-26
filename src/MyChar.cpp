@@ -364,7 +364,7 @@ void PutMyChar(int fx, int fy)
 	gMC.rect_arms.right = gMC.rect_arms.left + 24;
 	gMC.rect_arms.top = (gArmsData[gSelectedArms].code / 13) * 96;
 	gMC.rect_arms.bottom = gMC.rect_arms.top + 16;
-	if (GetNPCFlag(Flags::MISERY_CHARACTER) && gArmsData[gSelectedArms].code == 13 || CountBulletNum(14)){
+	if (GetNPCFlag(Flags::MISERY_CHARACTER) && gArmsData[gSelectedArms].code == 13 || CountBulletNum(Bullets::MOVING_MISSILE)){
 		gMC.rect_arms = {0, 0, 0, 0};
 	}
 
@@ -457,10 +457,10 @@ void PutMyChar(int fx, int fy)
 	}
 	}
 
-	if (gMC.shock / 2 % 2 && !CountBulletNum(17))
+	if (gMC.shock / 2 % 2 && !CountBulletNum(Bullets::MISSILE_EXPLOSION))
 		return;
 
-	if (CountBulletNum(14))
+	if (CountBulletNum(Bullets::MOVING_MISSILE))
 		return;
 
 	// Draw player
@@ -1209,7 +1209,7 @@ void ActMyChar_Normal(bool bKey)
 	// if ((gMC.equip & EQUIP_HEAVY_WEIGHT) && (bKey && gKey & gKeyAbility)){
 	// 	gMC.ym = max_dash*3;
 	// }
-	if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (CountBulletNum(49) || CountBulletNum(50) || CountBulletNum(51))){
+	if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (CountBulletNum(Bullets::ENERGY_FLAIL_LVL_1) || CountBulletNum(Bullets::ENERGY_FLAIL_LVL_2) || CountBulletNum(Bullets::ENERGY_FLAIL_LVL_3))){
 		for (int i = 0; i < BULLET_MAX; ++i)
 		if (gBul[i].cond & 0x80 && (gBul[i].code_bullet + 2) / 3 == 17 && gBul[i].act_no == 3){
 			 if (gKeyTrg & gKeyJump){
