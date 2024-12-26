@@ -2,6 +2,10 @@
 
 #include "..\Bullet.h"
 #include "..\Caret.h"
+#include "..\Cooldown.h"
+#include "..\Flags.h"
+#include "..\MyChar.h"
+#include "..\Triangle.h"
 
 void ActBullet_Droplet(BULLET *bul)
 {
@@ -354,6 +358,158 @@ void ActBullet_EnemyClear(BULLET *bul)
 	bul->enemyYL = 0xC8000;
 }
 
+void ActBullet_Duck(BULLET *bul)
+{
+	if (bul->act_no == 0)
+	{
+		bul->ani_no = Random(0, 2);
+		bul->act_no = 1;
+
+		switch (bul->direct)
+		{
+			case 0:
+				bul->xm = Random(-0x800, -0x200);
+				bul->ym = Random(-0x200, -0x80);
+				break;
+			case 1:
+				bul->ym = Random(-0x800, -0x200);
+				bul->xm = Random(-0x200, -0x202);
+				break;
+			case 2:
+				bul->xm = Random(0x200, 0x800);
+				bul->ym = Random(-0x200, -0x80);
+				break;
+			case 3:
+				bul->ym = Random(0x100, 0x500);
+				bul->xm = Random(-0x200, -0x202);
+				break;
+		}
+	}
+	else
+	{
+		bul->ym += 50;
+		if (bul->ym >= 0x6FF)
+			bul->ym = 0x6FF;
+		bul->x += bul->xm;
+		bul->y += bul->ym;
+	}
+
+	if (++bul->ani_wait > 10)
+	{
+		bul->ani_wait = 0;
+		if (bul->ani_no == 0)
+			bul->ani_no = 1;
+		else
+			bul->ani_no = 0;
+	}
+
+	Rect rcs[][2] = {
+		{{30, 147, 42, 157}, {30, 162, 42, 172}},
+		{{66, 147, 76, 159}, {51, 147, 61, 159}},
+		{{78, 147, 90, 157}, {78, 162, 90, 172}},
+		{{50, 161, 60, 173}, {65, 161, 75, 173}}
+	};
+
+	bul->rect = rcs[bul->direct][bul->ani_no];
+}
+
+void ActBullet_Hitbox(BULLET *bul)
+{
+	if (++bul->count1 > bul->life_count)
+		bul->cond = 0;
+}
+
+void ActBullet_RedBurst(BULLET *bul)
+{
+	if (++bul->ani_no > Random(0, 3)){
+		bul->ani_no = 0;
+		SetCaret(bul->x, bul->y, 11, 0);
+	}
+
+	bul->y += bul->ym;
+	bul->x += bul->xm;
+}
+
+void ActBullet_SpikeDrop(BULLET *bul)
+{
+	Rect rc = {0, 0, 0, 0};
+
+	if (++bul->act_wait > 2)
+		bul->cond = 0;
+
+	bul->rect = rc;
+}
+
+void ActBullet_Nanites(BULLET *bul)
+{
+	unsigned char deg, lol, speed;
+
+	if (bul->act_no == 0)
+	{
+		bul->ani_no = Random(0, 2);
+		bul->act_no = 1;
+
+		bul->count1 = 0;
+		bul->count2 = 60;
+	}
+	else
+	{
+		if (CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1){
+			lol = 3;
+			speed = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 16 : 8);
+			
+			if (GetNPCFlag(Flags::MILITARY_ARMAMENT)){
+				short rate = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 5 : 40);
+				if (++bul->act_wait % rate == 0){
+					short amount = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 2 : 1);
+					for (int i = 0; i < amount; i++){
+						BULLET *bullet = SetBullet(47, bul->x, bul->y);
+						if (bullet != NULL){
+							bullet->direct = 1;
+							bullet->tgt_x = gMC.x;
+							bullet->tgt_y = gMC.y;
+						}
+					}
+				}
+			}
+		} else {
+			lol = 0;
+			speed = 20;
+		}
+		bul->count1 += speed;
+		SetNpChar(129, bul->x, bul->y, 0, 0, bul->ani_no + lol, NULL, 0x100);
+
+		deg = bul->count1 / 4;
+
+		bul->x = gMC.x + gMC.xm + bul->count2 * GetCos(deg) / 4;
+		bul->y = gMC.y + gMC.ym + bul->count2 * GetSin(deg) / 4;
+
+		// bul->xm = bul->tgt_x - bul->x;
+		// bul->ym = bul->tgt_y - bul->y;
+		// if ((bul->count1 / 2 % 2) == 0)
+		// 	bul->ym = (bul->tgt_y - bul->y) / 2;
+	}
+
+	if (++bul->ani_wait > 0)
+	{
+		bul->ani_wait = 0;
+		++bul->ani_no;
+	}
+
+	if (bul->ani_no > 2)
+		bul->ani_no = 0;
+
+	// bul->x += bul->xm;
+	// bul->y += bul->ym;
+
+	if (!GetNPCFlag(Flags::NANITES_ABSORBER) && !GetNPCFlag(Flags::MILITARY_ARMAMENT)){
+		bul->cond = 0;
+		return;
+	}
+		
+	bul->rect = {0,0,0,0};
+}
+
 void RegisterMiscBullets(){
     gBulletTable.insert({Bullets::WATER_DROPLET, {
         {-1, 1, 35, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
@@ -382,5 +538,29 @@ void RegisterMiscBullets(){
     gBulletTable.insert({Bullets::ENEMY_CLEAR, {
         {0, 4, 4, 4, 0, 0, 0, 0, {0, 0, 0, 0}, 1, 1},
         ActBullet_Edge2
+    }});
+    gBulletTable.insert({Bullets::DUCK, {
+        {2, 1, 22, 32, 4, 4, 4, 4, {8, 8, 8, 8}, 0.25, 0.25},
+        ActBullet_Duck
+    }});
+    gBulletTable.insert({Bullets::UNUSED_SHIELD_HITBOX, {
+        {1, 1, 1, 36, 4, 4, 4, 4, {1, 1, 1, 1}, 0.22, 0.22},
+        ActBullet_Hitbox
+    }});
+    gBulletTable.insert({Bullets::OMEGA_SELFHURT, {
+        {3, 1, 1, 36, 4, 4, 4, 4, {1, 1, 1, 1}, 0.22, 0.22},
+        ActBullet_Hitbox
+    }});
+    gBulletTable.insert({Bullets::RED_CRYSTAL_PROJECTILE, {
+        {4, 1, 20, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 0.14, 0.14},
+        ActBullet_RedBurst
+    }});
+    gBulletTable.insert({Bullets::FALLING_SPIKE, {
+        {127, 1, 2, 4, 8, 4, 8, 4, {0, 0, 0, 0}, 1, 1},
+        ActBullet_SpikeDrop
+    }});
+    gBulletTable.insert({Bullets::NANITES_VFX, {
+        {-1, 2, 100, 12, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+        ActBullet_Nanites
     }});
 }

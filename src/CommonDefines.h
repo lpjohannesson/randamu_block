@@ -163,6 +163,7 @@ namespace Bullets {
 	inline constexpr int FIREBALL_LVL_2               = 8;
 	inline constexpr int FIREBALL_LVL_3               = 9;
 	inline constexpr int FIREBALL_LVL_4               = 68;
+	inline constexpr int FIREBALL_FLAME               = 45;
 
 	inline constexpr int BUBBLER_LVL_1                = 19;
 	inline constexpr int BUBBLER_LVL_2                = 20;
@@ -202,8 +203,15 @@ namespace Bullets {
 	inline constexpr int ENEMY_CLEAR                  = 44;
 	inline constexpr int WATER_DROPLET                = 61;
 	inline constexpr int PROCGEN_GUN_SPARK            = 67;
+	inline constexpr int DUCK                         = 36;
+	inline constexpr int UNUSED_SHIELD_HITBOX         = 46;
+	inline constexpr int OMEGA_SELFHURT               = 77;
+	inline constexpr int RED_CRYSTAL_PROJECTILE       = 78;
+	inline constexpr int FALLING_SPIKE                = 24;
+
 	inline constexpr int BLADE_SLASH_FAKE             = 79;
 	inline constexpr int MANNAN_ATTACK_VFX            = 94;
+	inline constexpr int NANITES_VFX                  = 86;
 }
 
 #endif // __COMMONDEFINES_H__

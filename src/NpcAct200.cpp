@@ -422,7 +422,7 @@ void ActNpc205(NPCHAR *npc)
 				npc->damage = 0;
 				PlaySoundObject(12, SOUND_MODE_PLAY);
 				SetDestroyNpChar(npc->x, npc->y, npc->view.back, 4);
-				SetBullet(24, npc->x, npc->y, 0);
+				SetBullet(Bullets::FALLING_SPIKE, npc->x, npc->y, 0);
 				return;
 			}
 

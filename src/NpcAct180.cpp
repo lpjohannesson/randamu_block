@@ -1182,7 +1182,7 @@ void ActNpc196(NPCHAR *npc)
 			&& npc->y - npc->hit.bottom <= gNPC[n].y + gNPC[n].hit.bottom && gNPC[n].code_char != 196
 			&& gNPC[n].bits & NPC_SHOOTABLE){
 				if (gNPC[n].shock < 12){
-					SetBullet(46, gNPC[n].x, gNPC[n].y, 0);
+					SetBullet(Bullets::UNUSED_SHIELD_HITBOX, gNPC[n].x, gNPC[n].y, 0);
 				}
 			}
 	}

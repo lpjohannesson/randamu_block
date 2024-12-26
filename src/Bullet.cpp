@@ -215,7 +215,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Blade slashes
 	{},
 	// Falling spike that deals 127 damage
-	{127, 1, 2, 4, 8, 4, 8, 4, {0, 0, 0, 0}, 1, 1},
+	{},
 	// Blade
 	{2, 100, 32, 36, 8, 8, 4, 4, {12, 12, 12, 12}, 1.2, 1.2},
 	{10, 3, 1, 32, 10, 10, 4, 2, {12, 12, 12, 12}, 0.1, 0.1},
@@ -231,7 +231,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Nemesis
 	{3, 3, 22, 32, 4, 4, 3, 3, {8, 8, 8, 8}, 0.65, 0.65},
 	{4, 2, 22, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 1, 1},
-	{2, 1, 22, 32, 4, 4, 4, 4, {8, 8, 8, 8}, 0.25, 0.25},
+	{},
 	// Spur
 	{},
 	{},
@@ -245,9 +245,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Screen-nuke that kills all enemies
 	{},
 	// Whimsical Star
-	{1, 1, 100, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
+	{},
 	// Little Man
-	{1, 1, 1, 36, 4, 4, 4, 4, {1, 1, 1, 1}, 0.22, 0.22},
+	{},
 	// Homing missile
 	{2, 1, 30, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 0, 0},
 	{2, 1, 30, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 0, 0},
@@ -299,9 +299,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Spur lv4
 	{},
 	// omega selfhurt
-	{3, 1, 1, 36, 4, 4, 4, 4, {1, 1, 1, 1}, 0.22, 0.22},
+	{},
 	// red crystal blast
-	{4, 1, 20, 32, 2, 2, 2, 2, {8, 8, 8, 8}, 0.14, 0.14},
+	{},
 	// decorative slash
 	{},
 	// helltide sword
@@ -315,7 +315,7 @@ BULLET_TABLE gBulTbl[] = {
 	// lvl4 Hellsweep
 	{32, 100, 28, 52, 18, 18, 5, 3, {12, 12, 12, 12}, 1, 1},
 	// visuals for Nanites Absorber
-	{-1, 2, 100, 12, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+	{},
 	// Frontie-buster lv1
 	{2, 1, 100, 32, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
 	// Frontie-buster lv1 homing missile
@@ -459,61 +459,6 @@ BULLET* SetBullet(int no, int x, int y)
 bool IsBreakingBullet(BULLET &bul){
 	return (bul.code_bullet == 64 || bul.code_bullet == 65 || bul.code_bullet == 34 || bul.code_bullet == 35 ||
 	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul.code_bullet == 37 || bul.code_bullet == 38 || bul.code_bullet == 39)));
-}
-
-void ActBullet_Duck(BULLET *bul)
-{
-	if (bul->act_no == 0)
-	{
-		bul->ani_no = Random(0, 2);
-		bul->act_no = 1;
-
-		switch (bul->direct)
-		{
-			case 0:
-				bul->xm = Random(-0x800, -0x200);
-				bul->ym = Random(-0x200, -0x80);
-				break;
-			case 1:
-				bul->ym = Random(-0x800, -0x200);
-				bul->xm = Random(-0x200, -0x202);
-				break;
-			case 2:
-				bul->xm = Random(0x200, 0x800);
-				bul->ym = Random(-0x200, -0x80);
-				break;
-			case 3:
-				bul->ym = Random(0x100, 0x500);
-				bul->xm = Random(-0x200, -0x202);
-				break;
-		}
-	}
-	else
-	{
-		bul->ym += 50;
-		if (bul->ym >= 0x6FF)
-			bul->ym = 0x6FF;
-		bul->x += bul->xm;
-		bul->y += bul->ym;
-	}
-
-	if (++bul->ani_wait > 10)
-	{
-		bul->ani_wait = 0;
-		if (bul->ani_no == 0)
-			bul->ani_no = 1;
-		else
-			bul->ani_no = 0;
-	}
-
-	Rect rcs[][2] = {
-		{{30, 147, 42, 157}, {30, 162, 42, 172}},
-		{{66, 147, 76, 159}, {51, 147, 61, 159}},
-		{{78, 147, 90, 157}, {78, 162, 90, 172}},
-		{{50, 161, 60, 173}, {65, 161, 75, 173}}
-	};
-
-	bul->rect = rcs[bul->direct][bul->ani_no];
 }
 
 void ActBullet_Homing(BULLET *bul)
@@ -2109,16 +2054,6 @@ void ActBullet_SwordSwing2(BULLET *bul, int level)
 		bul->rect = rcRight[level-1];
 }
 
-void ActBullet_Drop(BULLET *bul)
-{
-	Rect rc = {0, 0, 0, 0};
-
-	if (++bul->act_wait > 2)
-		bul->cond = 0;
-
-	bul->rect = rc;
-}
-
 void ActBullet_SuperMissile(BULLET *bul, int level)
 {
 	bool bHit;
@@ -2485,12 +2420,6 @@ void ActBullet_Nemesis(BULLET *bul, int level)
 	bul->rect.right += ((level - 1) % 2) * 128;
 }
 
-void ActBullet_LittleMan(BULLET *bul)
-{
-	if (++bul->count1 > bul->life_count)
-		bul->cond = 0;
-}
-
 void ActBullet_HomingSword(BULLET *bul)
 {
 	Rect rcLeft[] = {
@@ -2849,87 +2778,6 @@ void ActBullet_HomingFrontieBust2(BULLET *bul)
 	SetCaret(bul->x, bul->y, 2, 2);
 }
 
-void ActBullet_RedBurst(BULLET *bul)
-{
-	if (++bul->ani_no > Random(0, 3)){
-		bul->ani_no = 0;
-		SetCaret(bul->x, bul->y, 11, 0);
-	}
-
-	bul->y += bul->ym;
-	bul->x += bul->xm;
-}
-
-void ActBullet_Nanites(BULLET *bul)
-{
-	unsigned char deg, lol, speed;
-
-	if (bul->act_no == 0)
-	{
-		bul->ani_no = Random(0, 2);
-		bul->act_no = 1;
-
-		bul->count1 = 0;
-		bul->count2 = 60;
-	}
-	else
-	{
-		if (CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1){
-			lol = 3;
-			speed = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 16 : 8);
-			
-			if (GetNPCFlag(Flags::MILITARY_ARMAMENT)){
-				short rate = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 5 : 40);
-				if (++bul->act_wait % rate == 0){
-					short amount = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 2 : 1);
-					for (int i = 0; i < amount; i++){
-						BULLET *bullet = SetBullet(47, bul->x, bul->y);
-						if (bullet != NULL){
-							bullet->direct = 1;
-							bullet->tgt_x = gMC.x;
-							bullet->tgt_y = gMC.y;
-						}
-					}
-				}
-			}
-		} else {
-			lol = 0;
-			speed = 20;
-		}
-		bul->count1 += speed;
-		SetNpChar(129, bul->x, bul->y, 0, 0, bul->ani_no + lol, NULL, 0x100);
-
-		deg = bul->count1 / 4;
-
-		bul->x = gMC.x + gMC.xm + bul->count2 * GetCos(deg) / 4;
-		bul->y = gMC.y + gMC.ym + bul->count2 * GetSin(deg) / 4;
-
-		// bul->xm = bul->tgt_x - bul->x;
-		// bul->ym = bul->tgt_y - bul->y;
-		// if ((bul->count1 / 2 % 2) == 0)
-		// 	bul->ym = (bul->tgt_y - bul->y) / 2;
-	}
-
-	if (++bul->ani_wait > 0)
-	{
-		bul->ani_wait = 0;
-		++bul->ani_no;
-	}
-
-	if (bul->ani_no > 2)
-		bul->ani_no = 0;
-
-	// bul->x += bul->xm;
-	// bul->y += bul->ym;
-
-	if (!GetNPCFlag(Flags::NANITES_ABSORBER) && !GetNPCFlag(Flags::MILITARY_ARMAMENT)){
-		bul->cond = 0;
-		return;
-	}
-		
-	bul->rect = {0,0,0,0};
-}
-
 
 
 
@@ -2967,32 +2815,6 @@ void ActBullet_Flamings(BULLET *bul)
 		bul->cond = 0;
 	else if (bul->count1 > 25)
 		bul->damage = 2;
-}
-
-void ActBullet_Star(BULLET *bul)
-{
-	Rect rc_h_lv1[3] = {
-		{0, 144, 8, 160},
-		{8, 144, 16, 160},
-		{16, 144, 24, 160},
-	};
-
-	if (++bul->ani_no > 2)
-		bul->ani_no = 0;
-
-	bul->rect = rc_h_lv1[bul->ani_no];
-
-	if (bul->flag & 8)
-		bul->ym = -0x120;
-
-	bul->ym += 70;
-	if (bul->ym > 0x3FF)
-		bul->ym = 0x3FF;
-
-	bul->y += bul->ym;
-
-	if (++bul->count1 > bul->life_count)
-		bul->cond = 0;
 }
 
 void ActBullet_Whirlpool(BULLET *bul)
@@ -3117,11 +2939,6 @@ void ActBullet(void)
 						ActBullet_Bom(&gBul[i], 3);
 						break;
 
-					// Falling spike that deals 127 damage
-					case 24:
-						ActBullet_Drop(&gBul[i]);
-						break;
-
 					// Blade
 					case 25:
 						ActBullet_Sword3(&gBul[i], 1);
@@ -3154,24 +2971,10 @@ void ActBullet(void)
 					case 35:
 						ActBullet_Nemesis(&gBul[i], 2);
 						break;
-					case 36:
-						ActBullet_Duck(&gBul[i]);
-						break;
 
 					// Curly's Nemesis
 					case 43:	// Identical to case 34
 						ActBullet_Nemesis(&gBul[i], 1);
-						break;
-
-					// Whimsical Star
-					case 45:
-						ActBullet_Star(&gBul[i]);
-						break;
-
-					// Little Man
-					case 46:
-					case 77:
-						ActBullet_LittleMan(&gBul[i]);
 						break;
 
 					case 47:
@@ -3222,10 +3025,6 @@ void ActBullet(void)
 						ActBullet_MiningLaser(&gBul[i], 3);
 						break;
 
-					case 78:
-						ActBullet_RedBurst(&gBul[i]);
-						break;
-
 					case 80:
 						ActBullet_SwordSwing2(&gBul[i], 1);
 						break;
@@ -3243,10 +3042,6 @@ void ActBullet(void)
 						break;
 					case 85:
 						ActBullet_SwordSwing2(&gBul[i], 4);
-						break;
-
-					case 86:
-						ActBullet_Nanites(&gBul[i]);
 						break;
 
 					case 87:

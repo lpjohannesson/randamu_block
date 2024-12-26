@@ -1340,7 +1340,7 @@ void ActMyChar_Normal(bool bKey)
 				xCoord = gMC.x - 0x200 * 7;
 				yCoord = gMC.y - 0x200 * 7;
 				for (int i = 0; i < 3; i++)
-					SetBullet(45, xCoord, yCoord, 0);
+					SetBullet(Bullets::FIREBALL_FLAME, xCoord, yCoord, 0);
 			}
 
 			if (gMC.flag & 1 || gMC.flag & 4)
@@ -1915,8 +1915,8 @@ void ActMyChar(bool bKey)
 		}
 	}
 
-	if ((GetNPCFlag(Flags::NANITES_ABSORBER) || GetNPCFlag(Flags::MILITARY_ARMAMENT)) && CountBulletNum(86) == 0){
-		SetBullet(86, gMC.x, gMC.y);
+	if ((GetNPCFlag(Flags::NANITES_ABSORBER) || GetNPCFlag(Flags::MILITARY_ARMAMENT)) && CountBulletNum(Bullets::NANITES_VFX) == 0){
+		SetBullet(Bullets::NANITES_VFX, gMC.x, gMC.y);
 	}
 
 	if ((gMC.tileset == 'A' || gMC.tileset == '9' || gMC.tileset == 'E') && (gMC.flag & 0x100 && !GetNPCFlag(Flags::WATER_GUN_EFFECT)) && !(gMC.equip & EQUIP_MIMIGA_MASK))

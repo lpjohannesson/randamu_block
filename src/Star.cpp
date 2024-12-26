@@ -113,7 +113,7 @@ void ActStar(void)
 						dir = 3;
 					else if (starTarget->y < star[i].y)
 						dir = 1;
-					SetBullet(36, star[i].x, star[i].y, dir);
+					SetBullet(Bullets::DUCK, star[i].x, star[i].y, dir);
 					star[i].act_no = Random(5, 25);
 					if (GetNPCFlag(Flags::MAHIN_CHARACTER)) star[i].act_no *= 2;
 				}

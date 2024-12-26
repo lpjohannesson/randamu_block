@@ -112,7 +112,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 			int xCoord, yCoord;
 			xCoord = bul->x - 0x200 * 5;
 			yCoord = bul->y - 0x200 * 5;
-			SetBullet(45, xCoord, yCoord, 0);
+			SetBullet(Bullets::FIREBALL_FLAME, xCoord, yCoord, 0);
 		}
 		if (bul->flag & 8){
 			bul->ym = -0x400;
@@ -206,6 +206,32 @@ void ActBullet_FireBall(BULLET *bul, int level)
 	}
 }
 
+void ActBullet_FireballFlame(BULLET *bul)
+{
+	Rect rc_h_lv1[3] = {
+		{0, 144, 8, 160},
+		{8, 144, 16, 160},
+		{16, 144, 24, 160},
+	};
+
+	if (++bul->ani_no > 2)
+		bul->ani_no = 0;
+
+	bul->rect = rc_h_lv1[bul->ani_no];
+
+	if (bul->flag & 8)
+		bul->ym = -0x120;
+
+	bul->ym += 70;
+	if (bul->ym > 0x3FF)
+		bul->ym = 0x3FF;
+
+	bul->y += bul->ym;
+
+	if (++bul->count1 > bul->life_count)
+		bul->cond = 0;
+}
+
 void RegisterFireball(){
     gBulletTable.insert({Bullets::FIREBALL_LVL_1, {
         {2, 2, 120, 8, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
@@ -222,5 +248,10 @@ void RegisterFireball(){
     gBulletTable.insert({Bullets::FIREBALL_LVL_4, {
         {5, 2, 120, 8, 4, 4, 4, 2, {8, 8, 8, 8}, 0.92, 0.95},
         [](BULLET* bul){ ActBullet_FireBall(bul, 4); }
+    }});
+
+    gBulletTable.insert({Bullets::FIREBALL_FLAME, {
+        {1, 1, 100, 8, 8, 8, 8, 8, {4, 2, 5, 2}, 0.5, 0.5},
+        ActBullet_FireballFlame
     }});
 }

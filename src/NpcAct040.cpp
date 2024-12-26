@@ -875,7 +875,7 @@ void ActNpc048(NPCHAR *npc)
 			npc->xm = -0x300;
 	} else if (npc->direct != 2){
 		npc->xm = 0;
-		SetBullet(77, npc->x, npc->y, 0);
+		SetBullet(Bullets::OMEGA_SELFHURT, npc->x, npc->y, 0);
 	}
 
 	if (npc->direct == 2)
