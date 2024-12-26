@@ -16,6 +16,8 @@ void RegisterBullets(){
     RegisterSpur();
     RegisterBoomerangBlades();
     RegisterRifle();
+    RegisterBlade();
+    RegisterMiningLaser();
 
     RegisterMiscBullets();
 }

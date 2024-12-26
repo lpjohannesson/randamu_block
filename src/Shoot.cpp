@@ -1417,17 +1417,17 @@ void ShootBullet_MiningLaser(int level)
 			ChargeArmsEnergy(1);
 		}
 	}
-	if (level == 2 && CountBulletNum(65) > 0)
+	if (level == 2 && CountBulletNum(Bullets::MINING_BOOM) > 0)
 		return;
-	if (level == 3 && CountBulletNum(64) > 0)
+	if (level == 3 && CountBulletNum(Bullets::MINING_LASER) > 0)
 		return;
 
-	bul_no = 64;
+	bul_no = Bullets::MINING_LASER;
 	int rensha, ammo;
 	switch (level)
 	{
 		case 1: rensha = 7; ammo = 1; break;
-		case 2: rensha = 20; ammo = 8; bul_no = 65; break;
+		case 2: rensha = 20; ammo = 8; bul_no = Bullets::MINING_BOOM; break;
 		case 3: rensha = 30; ammo = 30; break;
 		case 4: rensha = 11; ammo = 2; break;
 		case 5: rensha = 3; ammo = 1; break;
@@ -2208,25 +2208,21 @@ void ShootBullet_Sword(int level)
 
 	if (CountArmsBullet(9) > (level == 3 ? 1 : 0))
 		return;
-	if (CountBulletNum(72) > 2)
+	if (CountBulletNum(Bullets::BLADE_LVL_4) > 2)
 		return;
 
 	switch (level)
 	{
 		case 1:
-			bul_no = 25;
+			bul_no = Bullets::BLADE_LVL_1;
 			break;
 
-		case 2:
-			bul_no = 27;
-			break;
-
-		case 3:
-			bul_no = 27;
+		case 2: case 3:
+			bul_no = Bullets::BLADE_LVL_2;
 			break;
 
 		case 4:
-			bul_no = 72;
+			bul_no = Bullets::BLADE_LVL_4;
 			break;
 	}
 

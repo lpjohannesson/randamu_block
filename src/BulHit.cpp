@@ -19,7 +19,7 @@
 
 static void Vanish(BULLET *bul)
 {
-	if (bul->code_bullet != 64 && bul->code_bullet != 65 && bul->code_bullet != 36 && bul->code_bullet != 37 && bul->code_bullet != 38 && bul->code_bullet != 39)
+	if (bul->code_bullet != Bullets::MINING_LASER && bul->code_bullet != Bullets::MINING_BOOM && bul->code_bullet != 36 && bul->code_bullet != 37 && bul->code_bullet != 38 && bul->code_bullet != 39)
 		PlaySoundObject(28, SOUND_MODE_PLAY);
 	else if (bul->code_bullet != 36)
 		SetCaret(bul->x, bul->y, 2, 1);
@@ -41,7 +41,7 @@ int JudgeHitBulletBlock(int x, int y, BULLET *bul)
 	if (bul->x - bul->blockXL < ((x * 16) + 8) * 1_pix && bul->x + bul->blockXL > ((x * 16) - 8) * 1_pix && bul->y - bul->blockYL < ((y * 16) + 8) * 1_pix && bul->y + bul->blockYL > ((y * 16) - 8) * 1_pix)
 		hit |= 0x200;
 
-	if (hit && bul->bbits & 0x60 && InsideMap(x, y) && (GetAttribute(x, y) == 0x43 || (bul->code_bullet == 64 || bul->code_bullet == 65 || bul->code_bullet == 34 || bul->code_bullet == 35 ||
+	if (hit && bul->bbits & 0x60 && InsideMap(x, y) && (GetAttribute(x, y) == 0x43 || (bul->code_bullet == Bullets::MINING_LASER || bul->code_bullet == Bullets::MINING_BOOM || bul->code_bullet == 34 || bul->code_bullet == 35 ||
 	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39)))))
 	{
 		if (gMC.equip & EQUIP_MULTIBREAK && (bul->code_bullet == 34 || bul->code_bullet == 35) && bul->life > 1){
@@ -57,13 +57,13 @@ int JudgeHitBulletBlock(int x, int y, BULLET *bul)
 				}
 			}
 		}
-		else if (!(((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul->code_bullet == 64 || bul->code_bullet == 65 || bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))))
+		else if (!(((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul->code_bullet == Bullets::MINING_LASER || bul->code_bullet == Bullets::MINING_BOOM || bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))))
 			bul->cond = 0;
 
-		if (gStageNo == gGeneratedStage && gBL.flag != true && ((bul->code_bullet == 64|| bul->code_bullet == 65 || bul->code_bullet == 34 || bul->code_bullet == 35) || ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))))
+		if (gStageNo == gGeneratedStage && gBL.flag != true && ((bul->code_bullet == Bullets::MINING_LASER || bul->code_bullet == Bullets::MINING_BOOM || bul->code_bullet == 34 || bul->code_bullet == 35) || ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))))
 		{
 			DestroyBlock(x, y);
-			if (bul->code_bullet == 65){
+			if (bul->code_bullet == Bullets::MINING_BOOM){
 				DestroyBlock(x-1, y-1);
 				DestroyBlock(x+1, y+1);
 				DestroyBlock(x-1, y);

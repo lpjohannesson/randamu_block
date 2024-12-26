@@ -198,6 +198,13 @@ namespace Bullets {
 	inline constexpr int RIFLE_LVL_2                  = 29;
 	inline constexpr int RIFLE_LVL_3                  = 30;
 
+	inline constexpr int BLADE_LVL_1                  = 25;
+	inline constexpr int BLADE_LVL_2                  = 27;
+	inline constexpr int BLADE_LVL_4                  = 72;
+
+	inline constexpr int MINING_LASER                 = 64;
+	inline constexpr int MINING_BOOM                  = 65;
+
 	inline constexpr int SHOTGUN_SHOT                 = 4;
 	inline constexpr int BLADE_SLASH                  = 23;
 	inline constexpr int ENEMY_CLEAR                  = 44;
@@ -208,6 +215,7 @@ namespace Bullets {
 	inline constexpr int OMEGA_SELFHURT               = 77;
 	inline constexpr int RED_CRYSTAL_PROJECTILE       = 78;
 	inline constexpr int FALLING_SPIKE                = 24;
+	inline constexpr int HEAVY_WEIGHT_BLADES          = 26;
 
 	inline constexpr int BLADE_SLASH_FAKE             = 79;
 	inline constexpr int MANNAN_ATTACK_VFX            = 94;

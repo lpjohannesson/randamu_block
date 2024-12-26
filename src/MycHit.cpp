@@ -1028,7 +1028,7 @@ void HitMyCharNpChar(void)
 				SetBullet(16, gMC.x,  gMC.y, 0);
 				SetBullet(16, gMC.x,  gMC.y, 0);
 			} else {
-				SetBullet(26, gNPC[i].x, gNPC[i].y, 3);
+				SetBullet(Bullets::HEAVY_WEIGHT_BLADES, gNPC[i].x, gNPC[i].y, 3);
 			}
 		}
 
@@ -1282,7 +1282,7 @@ void HitMyCharBoss(void)
 				SetBullet(16, gMC.x,  gMC.y, 0);
 				SetBullet(16, gMC.x,  gMC.y, 0);
 			} else {
-				SetBullet(26, gBoss[b].x, gBoss[b].y, 3);
+				SetBullet(Bullets::HEAVY_WEIGHT_BLADES, gBoss[b].x, gBoss[b].y, 3);
 			}
 		}
 

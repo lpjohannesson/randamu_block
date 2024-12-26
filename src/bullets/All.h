@@ -6,5 +6,7 @@
 #include "BoomerangBlades.h"
 #include "Misc.h"
 #include "Rifle.h"
+#include "Blade.h"
+#include "MiningLaser.h"
 
 void RegisterBullets();

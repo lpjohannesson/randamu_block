@@ -217,9 +217,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Falling spike that deals 127 damage
 	{},
 	// Blade
-	{2, 100, 32, 36, 8, 8, 4, 4, {12, 12, 12, 12}, 1.2, 1.2},
-	{10, 3, 1, 32, 10, 10, 4, 2, {12, 12, 12, 12}, 0.1, 0.1},
-	{3, 100, 37, 36, 8, 8, 4, 4, {12, 12, 12, 12}, 1.66, 1.66},
+	{},
+	{},
+	{},
 	// Rifle
 	{},
 	{},
@@ -275,9 +275,9 @@ BULLET_TABLE gBulTbl[] = {
 	// Lol
 	{},
 	// Mining laser
-	{9, 100, 30, 32, 2, 2, 1, 1, {8, 8, 8, 8}, 0, 0},
-	{9, 100, 40, 40, 4, 4, 4, 4, {8, 8, 8, 8}, 0, 0},
-	{9, 100, 40, 40, 4, 4, 0, 0, {8, 8, 8, 8}, 0, 0},
+	{},
+	{},
+	{},
 	// Spark
 	{},
 	// Fireball lv4
@@ -289,7 +289,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Bubbler lv4
 	{},
 	// Blade lv4
-	{3, 100, 35, 36, 6, 6, 4, 4, {12, 12, 12, 12}, 1, 1},
+	{},
 	// Hook lv4
 	{4, 100, 30, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
 	// Floodtide lv4
@@ -457,7 +457,7 @@ BULLET* SetBullet(int no, int x, int y)
 }
 
 bool IsBreakingBullet(BULLET &bul){
-	return (bul.code_bullet == 64 || bul.code_bullet == 65 || bul.code_bullet == 34 || bul.code_bullet == 35 ||
+	return (bul.code_bullet == Bullets::MINING_LASER || bul.code_bullet == Bullets::MINING_BOOM || bul.code_bullet == 34 || bul.code_bullet == 35 ||
 	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul.code_bullet == 37 || bul.code_bullet == 38 || bul.code_bullet == 39)));
 }
 
@@ -1289,406 +1289,6 @@ void ActBullet_Bom(BULLET *bul, int level)
 			if (--bul->act_wait < 0)
 				bul->cond = 0;
 
-			break;
-	}
-}
-
-void ActBullet_Sword1(BULLET *bul)
-{
-	if (++bul->count1 > bul->life_count)
-	{
-		bul->cond = 0;
-		SetCaret(bul->x, bul->y, 3, 0);
-		return;
-	}
-
-	if (bul->count1 == 3)
-		bul->bbits &= ~4;
-
-	if (bul->count1 % 5 == 1)
-		PlaySoundObject(34, SOUND_MODE_PLAY);
-
-	if (bul->act_no == 0)
-	{
-		bul->act_no = 1;
-
-		switch (bul->direct)
-		{
-			case 0:
-				bul->xm = -0x800;
-				break;
-			case 1:
-				bul->ym = -0x800;
-				break;
-			case 2:
-				bul->xm = 0x800;
-				break;
-			case 3:
-				bul->ym = 0x800;
-				break;
-		}
-	}
-	else
-	{
-		bul->x += bul->xm;
-		bul->y += bul->ym;
-	}
-
-	Rect rcLeft[4] = {
-		{0, 48, 16, 64},
-		{16, 48, 32, 64},
-		{32, 48, 48, 64},
-		{48, 48, 64, 64},
-	};
-
-	Rect rcRight[4] = {
-		{64, 48, 80, 64},
-		{80, 48, 96, 64},
-		{96, 48, 112, 64},
-		{112, 48, 128, 64},
-	};
-
-	if (++bul->ani_wait > 1)
-	{
-		bul->ani_wait = 0;
-		++bul->ani_no;
-	}
-
-	if (bul->ani_no > 3)
-		bul->ani_no = 0;
-
-	if (bul->direct == 0)
-		bul->rect = rcLeft[bul->ani_no];
-	else
-		bul->rect = rcRight[bul->ani_no];
-}
-
-void ActBullet_Sword2(BULLET *bul)
-{
-	if (++bul->count1 > bul->life_count)
-	{
-		bul->cond = 0;
-		SetCaret(bul->x, bul->y, 3, 0);
-		return;
-	}
-
-	if (bul->count1 == 3)
-		bul->bbits &= ~4;
-
-	if (bul->count1 % 7 == 1)
-		PlaySoundObject(106, SOUND_MODE_PLAY);
-
-	if (bul->act_no == 0)
-	{
-		bul->act_no = 1;
-
-		switch (bul->direct)
-		{
-			case 0:
-				bul->xm = -0x800;
-				break;
-			case 1:
-				bul->ym = -0x800;
-				break;
-			case 2:
-				bul->xm = 0x800;
-				break;
-			case 3:
-				bul->ym = 0x800;
-				break;
-		}
-	}
-	else
-	{
-		bul->x += bul->xm;
-		bul->y += bul->ym;
-	}
-
-	Rect rcLeft[4] = {
-		{160, 48, 184, 72},
-		{184, 48, 208, 72},
-		{208, 48, 232, 72},
-		{232, 48, 256, 72},
-	};
-
-	Rect rcRight[4] = {
-		{160, 72, 184, 96},
-		{184, 72, 208, 96},
-		{208, 72, 232, 96},
-		{232, 72, 256, 96},
-	};
-
-	if (++bul->ani_wait > 1)
-	{
-		bul->ani_wait = 0;
-		++bul->ani_no;
-	}
-
-	if (bul->ani_no > 3)
-		bul->ani_no = 0;
-
-	if (bul->direct == 0)
-		bul->rect = rcLeft[bul->ani_no];
-	else
-		bul->rect = rcRight[bul->ani_no];
-}
-
-void ActBullet_Sword3(BULLET *bul, int level)
-{
-	Rect rcLeft[4] = {
-		{160, 48, 184, 72},
-		{184, 48, 208, 72},
-		{208, 48, 232, 72},
-		{232, 48, 256, 72},
-	};
-
-	Rect rcRight[4] = {
-		{160, 72, 184, 96},
-		{184, 72, 208, 96},
-		{208, 72, 232, 96},
-		{232, 72, 256, 96},
-	};
-
-	switch (bul->act_no)
-	{
-		case 0:
-			bul->act_no = 1;
-			bul->xm = 0;
-			bul->ym = 0;
-			// Fallthrough
-		case 1:
-			switch (bul->direct)
-			{
-				case 0:
-					bul->xm = -0x900;
-					break;
-				case 1:
-					bul->ym = -0x900;
-					break;
-				case 2:
-					bul->xm = 0x900;
-					break;
-				case 3:
-					bul->ym = 0x900;
-					break;
-			}
-			if (level == 3){
-				bul->xm *= 1.55;
-				bul->ym *= 1.55;
-			}
-
-			if (bul->life < 97)
-			{
-				bul->act_no = 2;
-				bul->ani_no = 1;
-				bul->damage = -1;
-				bul->act_wait = 0;
-			}
-
-			if (++bul->act_wait % 4 == 1)
-			{
-				PlaySoundObject(106, SOUND_MODE_PLAY);
-
-				if (++bul->count1 % 2){
-					SetBullet(23, bul->x, bul->y, 0);
-				}
-				else
-					SetBullet(23, bul->x, bul->y, 2);
-
-				if (level == 2 && Random(0, 3) <= 2){
-					if (++bul->count1 % 2){
-						SetBullet(23, bul->x, bul->y, 0);
-					}
-					else
-						SetBullet(23, bul->x, bul->y, 2);
-				}
-			}
-
-			if (++bul->count1 == 5)
-				bul->bbits &= ~4;
-
-			if (bul->count1 > bul->life_count)
-			{
-				bul->cond = 0;
-				SetCaret(bul->x, bul->y, 3, 0);
-				return;
-			}
-
-			break;
-
-		case 2:
-			bul->xm = 0;
-			bul->ym = 0;
-			++bul->act_wait;
-			int rngRoll = Random(0, 2);
-			if (level >= 2){
-				int rngRoll2 = Random(0, 2);
-				if (rngRoll2 > rngRoll) rngRoll = rngRoll2;
-			}
-
-			if (rngRoll == 2)
-			{
-				PlaySoundObject(106, SOUND_MODE_PLAY);
-
-				if (Random(0, 1) % 2)
-					SetBullet(23, bul->x + (Random(-0x15, 0x15) * 0x200), bul->y + (Random(-0x15, 0x15) * 0x200), 0);
-				else
-					SetBullet(23, bul->x + (Random(-0x15, 0x15) * 0x200), bul->y + (Random(-0x15, 0x15) * 0x200), 2);
-			}
-
-			if (level >= 2 && Random(0, 3) <= 1){
-				int rngRoll = Random(-1, 1);
-
-			if (rngRoll == 0)
-			{
-				PlaySoundObject(106, SOUND_MODE_PLAY);
-
-				if (Random(0, 1) % 2)
-					SetBullet(23, bul->x + (Random(-0x15, 0x15) * 0x200), bul->y + (Random(-0x15, 0x15) * 0x200), 0);
-				else
-					SetBullet(23, bul->x + (Random(-0x15, 0x15) * 0x200), bul->y + (Random(-0x15, 0x15) * 0x200), 2);
-			}
-			}
-
-			if (bul->act_wait > 95)
-				bul->cond = 0;
-	}
-
-	bul->x += bul->xm;
-	bul->y += bul->ym;
-
-	if (gMC.dashDuration > 0){
-		bul->x = gMC.x;
-		bul->y = gMC.y;
-	}
-	
-	if (++bul->ani_wait > 1)
-	{
-		bul->ani_wait = 0;
-		++bul->ani_no;
-	}
-
-	if (bul->ani_no > 3)
-		bul->ani_no = 0;
-
-	if (bul->direct == 0)
-		bul->rect = rcLeft[bul->ani_no];
-	else
-		bul->rect = rcRight[bul->ani_no];
-}
-
-void ActBullet_MiningLaser(BULLET *bul, int level)
-{
-	bool bHit;
-
-	static unsigned int inc;
-
-	switch (bul->act_no)
-	{
-		case 0:
-			bul->act_no = 1;
-
-			switch (bul->direct)
-			{
-				case 0:
-				case 2:
-					bul->tgt_y = bul->y;
-					bul->enemyXL = 0x1000;
-					bul->blockXL = 0x1000;
-					break;
-
-				case 1:
-				case 3:
-					bul->tgt_x = bul->x;
-					bul->enemyYL = 0x1000;
-					bul->blockYL = 0x1000;
-					break;
-			}
-
-				bul->ani_no = 0x500;
-			// Fallthrough
-		case 1:
-			if (bul->count2 != 1){
-			switch (bul->direct)
-			{
-				case 0:
-					bul->xm += -bul->ani_no;
-					break;
-				case 1:
-					bul->ym += -bul->ani_no;
-					break;
-				case 2:
-					bul->xm += bul->ani_no;
-					break;
-				case 3:
-					bul->ym += bul->ani_no;
-					break;
-			}
-			}
-
-			if (bul->xm < -0x1900)
-				bul->xm = -0x1900;
-			if (bul->xm > 0x1900)
-				bul->xm = 0x1900;
-
-			if (bul->ym < -0x1900)
-				bul->ym = -0x1900;
-			if (bul->ym > 0x1900)
-				bul->ym = 0x1900;
-
-			bul->x += bul->xm;
-			bul->y += bul->ym;
-
-			break;
-	}
-
-	if (++bul->count2 > 1)
-	{
-		bul->count2 = 0;
-
-		switch (bul->direct)
-		{
-			case 0:
-				SetCaret(bul->x + (8 * 0x200), bul->y, 1, 1);
-				break;
-			case 1:
-				SetCaret(bul->x, bul->y + (8 * 0x200), 1, 1);
-				break;
-			case 2:
-				SetCaret(bul->x - (8 * 0x200), bul->y, 1, 1);
-				break;
-			case 3:
-				SetCaret(bul->x, bul->y - (8 * 0x200), 1, 1);
-				break;
-		}
-	}
-
-	Rect rect1[4] = {
-		{120, 96, 136, 112},
-		{136, 96, 152, 112},
-		{152, 96, 168, 112},
-		{168, 96, 184, 112},
-	};
-
-	Rect rect2[4] = {
-		{184, 96, 200, 112},
-		{200, 96, 216, 112},
-		{216, 96, 232, 112},
-		{232, 96, 248, 112},
-	};
-
-	bul->local_iframes = 3;
-
-	switch (level)
-	{
-		case 1:
-			bul->rect = rect1[bul->direct];
-			break;
-		case 2:
-			bul->rect = rect2[bul->direct];
-			break;
-		case 3:
-			bul->rect = rect1[bul->direct];
 			break;
 	}
 }
@@ -2939,20 +2539,6 @@ void ActBullet(void)
 						ActBullet_Bom(&gBul[i], 3);
 						break;
 
-					// Blade
-					case 25:
-						ActBullet_Sword3(&gBul[i], 1);
-						break;
-					case 26:
-						ActBullet_Sword2(&gBul[i]);
-						break;
-					case 27:
-						ActBullet_Sword3(&gBul[i], 2);
-						break;
-					case 72:
-						ActBullet_Sword3(&gBul[i], 3);
-						break;
-
 					// Super Missile Launcher explosion
 					case 31:
 						ActBullet_SuperBom(&gBul[i], 1);
@@ -3013,16 +2599,6 @@ void ActBullet(void)
 
 					case 62:
 						ActBullet_Whirlpool(&gBul[i]);
-						break;
-					
-					case 64:
-						ActBullet_MiningLaser(&gBul[i], 1);
-						break;
-					case 65:
-						ActBullet_MiningLaser(&gBul[i], 2);
-						break;
-					case 66:
-						ActBullet_MiningLaser(&gBul[i], 3);
 						break;
 
 					case 80:
