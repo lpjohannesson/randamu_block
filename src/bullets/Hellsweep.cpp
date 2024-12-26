@@ -59,7 +59,7 @@ void ActBullet_Hellsweep(BULLET *bul, int level)
 		}
 
 		if (isBoostActive){
-			SetBullet(67, gMC.x + Random(-16_pix, 16_pix), gMC.y + Random(-16_pix, 16_pix), Random(0, 3));
+			SetBullet(Bullets::PROCGEN_GUN_SPARK, gMC.x + Random(-16_pix, 16_pix), gMC.y + Random(-16_pix, 16_pix), Random(0, 3));
 		}
 
 		if ((level == 3) && bul->count1 == swingValue){
@@ -145,7 +145,7 @@ void ActBullet_Hellsweep(BULLET *bul, int level)
 			}
 			if ((level == 1 || level == 4)){
 				bul->life = 100;
-				BULLET *bully = SetBullet(83, bul->x, bul->y);
+				BULLET *bully = SetBullet(Bullets::HELLSWEEP_FIREMINE, bul->x, bul->y);
 				if (bully != NULL)
 				{
 					PlaySoundObject(21, SOUND_MODE_PLAY);

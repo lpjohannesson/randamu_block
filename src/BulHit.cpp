@@ -72,7 +72,7 @@ int JudgeHitBulletBlock(int x, int y, BULLET *bul)
 				DestroyBlock(x, y+1);
 				DestroyBlock(x+1, y-1);
 				DestroyBlock(x-1, y+1);
-				SetBullet(31, ((x * 16) + 8) * 1_pix, ((y * 16) + 8) * 1_pix, 0);
+				SetBullet(Bullets::BIGGER_EXPLOSION, ((x * 16) + 8) * 1_pix, ((y * 16) + 8) * 1_pix, 0);
 			}
 		}
 	}

@@ -237,7 +237,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 			npc->act_no = 310;
 	}
 	if (++npc->exp % 9 == 0 && npc->xm != 0 && gCurlyShoot_x != 0 && gCurlyShoot_y != 0 && GetNPCFlag(Flags::AUGMENTED_MAN)){
-			BULLET *bul = SetBullet(47, npc->x,  npc->y);
+			BULLET *bul = SetBullet(Bullets::ENERGY_PROJECTILE, npc->x,  npc->y);
 						if (bul != NULL){
 						bul->tgt_x = gCurlyShoot_x + Random(-0x2000 * 3.5, 0x2000 * 3.5);
 						bul->tgt_y = gCurlyShoot_y + Random(-0x2000 * 3.5, 0x2000 * 3.5);
@@ -434,12 +434,12 @@ void ActNpc181(NPCHAR *npc)
 				{
 					if (npc->direct == 0)
 					{
-						SetBullet(12, npc->x - (4 * 0x200), npc->y + (3 * 0x200), 0);
+						SetBullet(Bullets::MACHINE_GUN_LVL_3, npc->x - (4 * 0x200), npc->y + (3 * 0x200), 0);
 						SetCaret(npc->x - (4 * 0x200), npc->y + (3 * 0x200), 3, 0);
 					}
 					else
 					{
-						SetBullet(12, npc->x + (4 * 0x200), npc->y + (3 * 0x200), 2);
+						SetBullet(Bullets::MACHINE_GUN_LVL_3, npc->x + (4 * 0x200), npc->y + (3 * 0x200), 2);
 						SetCaret(npc->x + (4 * 0x200), npc->y + (3 * 0x200), 3, 0);
 					}
 				}
@@ -447,12 +447,12 @@ void ActNpc181(NPCHAR *npc)
 				{
 					if (npc->direct == 0)
 					{
-						SetBullet(12, npc->x - (2 * 0x200), npc->y - (4 * 0x200), 1);
+						SetBullet(Bullets::MACHINE_GUN_LVL_3, npc->x - (2 * 0x200), npc->y - (4 * 0x200), 1);
 						SetCaret(npc->x - (2 * 0x200), npc->y - (4 * 0x200), 3, 0);
 					}
 					else
 					{
-						SetBullet(12, npc->x + (2 * 0x200), npc->y - (4 * 0x200), 1);
+						SetBullet(Bullets::MACHINE_GUN_LVL_3, npc->x + (2 * 0x200), npc->y - (4 * 0x200), 1);
 						SetCaret(npc->x + (2 * 0x200), npc->y - (4 * 0x200), 3, 0);
 					}
 				}
@@ -541,12 +541,12 @@ void ActNpc182(NPCHAR *npc)
 				{
 					if (npc->direct == 0)
 					{
-						SetBullet(6, npc->x - (4 * 0x200), npc->y + (3 * 0x200), 0);
+						SetBullet(Bullets::SPUR_LVL_0, npc->x - (4 * 0x200), npc->y + (3 * 0x200), 0);
 						SetCaret(npc->x - (4 * 0x200), npc->y + (3 * 0x200), 3, 0);
 					}
 					else
 					{
-						SetBullet(6, npc->x + (4 * 0x200), npc->y + (3 * 0x200), 2);
+						SetBullet(Bullets::SPUR_LVL_0, npc->x + (4 * 0x200), npc->y + (3 * 0x200), 2);
 						SetCaret(npc->x + (4 * 0x200), npc->y + (3 * 0x200), 3, 0);
 					}
 				}
@@ -554,12 +554,12 @@ void ActNpc182(NPCHAR *npc)
 				{
 					if (npc->direct == 0)
 					{
-						SetBullet(6, npc->x - (2 * 0x200), npc->y - (4 * 0x200), 1);
+						SetBullet(Bullets::SPUR_LVL_0, npc->x - (2 * 0x200), npc->y - (4 * 0x200), 1);
 						SetCaret(npc->x - (2 * 0x200), npc->y - (4 * 0x200), 3, 0);
 					}
 					else
 					{
-						SetBullet(6, npc->x + (2 * 0x200), npc->y - (4 * 0x200), 1);
+						SetBullet(Bullets::SPUR_LVL_0, npc->x + (2 * 0x200), npc->y - (4 * 0x200), 1);
 						SetCaret(npc->x + (2 * 0x200), npc->y - (4 * 0x200), 3, 0);
 					}
 				}

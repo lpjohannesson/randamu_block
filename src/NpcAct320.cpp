@@ -173,9 +173,9 @@ void ActNpc321(NPCHAR *npc)
 
 	npc->ani_no = npc->pNpc->ani_no;
 
-	if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED && CountBulletNum(43) < 2 && gKeyTrg & gKeyShot)
+	if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED && CountBulletNum(Bullets::NEMESIS_CURLY) < 2 && gKeyTrg & gKeyShot)
 	{
-		SetBullet(43, npc->pNpc->x, npc->pNpc->y, direct);
+		SetBullet(Bullets::NEMESIS_CURLY, npc->pNpc->x, npc->pNpc->y, direct);
 		SetCaret(npc->pNpc->x, npc->pNpc->y, 3, 0);
 		PlaySoundObject(117, SOUND_MODE_PLAY);
 		if (GetNPCFlag(Flags::LITTLE_MAN_UNDERWEAR)){
@@ -183,8 +183,8 @@ void ActNpc321(NPCHAR *npc)
 				if (!(gNPC[i].cond & 0x80))
 					continue;
 
-				if (gNPC[i].code_char == 180 && CountBulletNum(8) < 4){
-					SetBullet(8, gNPC[i].x, gNPC[i].y, direct);
+				if (gNPC[i].code_char == 180 && CountBulletNum(Bullets::FIREBALL_LVL_2) < 4){
+					SetBullet(Bullets::FIREBALL_LVL_2, gNPC[i].x, gNPC[i].y, direct);
 					SetCaret(gNPC[i].x, gNPC[i].y, 3, 0);
 				}
 			}

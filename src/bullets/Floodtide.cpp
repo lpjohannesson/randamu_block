@@ -60,7 +60,7 @@ void ActBullet_Floodtide(BULLET *bul, int level)
 		}
 
 		if (isBoostActive && bul->count1 == swingValue){
-			BULLET *quiverProj = SetBullet(47, bul->x, bul->y);
+			BULLET *quiverProj = SetBullet(Bullets::ENERGY_PROJECTILE, bul->x, bul->y);
 			if (quiverProj != NULL){
 				quiverProj->damage = gBulletTable[bul->code_bullet].table.damage / 2;
 				if (gMC.up){

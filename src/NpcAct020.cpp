@@ -1224,10 +1224,10 @@ void ActNpcMannan(NPCHAR *npc)
 				DamageMyChar(5);
 				npc->life = std::min(npc->life + 3, (int)gNpcTable[npc->code_char].life);
 				if (gMC.life <= 0 && gMC.deathReason == 0) DetermineHitReason(npc->code_char);
-				SetBullet(94, gMC.x + 32_pix - 8_pix, gMC.y + 8_pix, 0);
-				SetBullet(94, gMC.x - 8_pix, gMC.y + 32_pix + 8_pix, 1);
-				SetBullet(94, gMC.x - 32_pix - 8_pix, gMC.y + 8_pix, 2);
-				SetBullet(94, gMC.x - 8_pix, gMC.y - 32_pix + 8_pix, 3);
+				SetBullet(Bullets::MANNAN_ATTACK_VFX, gMC.x + 32_pix - 8_pix, gMC.y + 8_pix, 0);
+				SetBullet(Bullets::MANNAN_ATTACK_VFX, gMC.x - 8_pix, gMC.y + 32_pix + 8_pix, 1);
+				SetBullet(Bullets::MANNAN_ATTACK_VFX, gMC.x - 32_pix - 8_pix, gMC.y + 8_pix, 2);
+				SetBullet(Bullets::MANNAN_ATTACK_VFX, gMC.x - 8_pix, gMC.y - 32_pix + 8_pix, 3);
 			}
 		}
 	} else {

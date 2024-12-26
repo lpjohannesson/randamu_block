@@ -621,7 +621,7 @@ void ShootBullet_WaterStar(int level)
 
 		case 3: case 4:
 			if (bMax)
-				bul_no = 39;
+				bul_no = Bullets::SPUR_LVL_3;
 			else
 				bul_no = 0;
 
@@ -758,7 +758,7 @@ void ShootBullet_FireBall(int level)
 		case 4:
 			limit = 2 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
 			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
-			if (CountBulletNum(68) > limit)
+			if (CountBulletNum(Bullets::FIREBALL_LVL_4) > limit)
 				return;
 
 			bul_no = Bullets::FIREBALL_LVL_4;
@@ -1257,7 +1257,7 @@ void ShootBullet_RobotGun(int level)
 		{
 			SetBullet(bul_no, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
 			if (level > 1 && Random(0, snakeProbability) == 0)
-				SetBullet(3, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
+				SetBullet(Bullets::SNAKE_LVL_3, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
 			if (level > 1 && Random(0, additionalSparkProbability) == 0)
 				SetBullet(bul_no, gMC.x, gMC.y + (8 * 0x200), GravityDirect(3));
 			if (level > 2)
@@ -1309,7 +1309,7 @@ void ShootBullet_RobotGun(int level)
 			{
 				SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				if (level > 1 && Random(0, snakeProbability) == 0)
-					SetBullet(3, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
+					SetBullet(Bullets::SNAKE_LVL_3, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				if (level > 1 && Random(0, additionalSparkProbability) == 0)
 					SetBullet(bul_no, gMC.x + (3 * 0x200), gMC.y - (8 * 0x200), GravityDirect(1));
 				if (level > 2)
@@ -1612,7 +1612,7 @@ void FrontieBust3_OverheatFlamingShoot()
 		targetX = gMC.direct == 0 ? gMC.x - 3_pix : gMC.x + 3_pix;
 		targetY = gMC.down ? gMC.y + 8_pix : gMC.y - 8_pix;
 	}
-	BULLET *bully = SetBullet(84, targetX, targetY);
+	BULLET *bully = SetBullet(Bullets::HELLSWEEP_FLAME, targetX, targetY);
 	if (bully != NULL)
 	{
 		PlaySoundObject(33, SOUND_MODE_PLAY);
@@ -1808,64 +1808,13 @@ void ShootBullet_Missile(int level, bool bSuper)
 {
 	int bul_no;
 
-	if (bSuper)
-	{
-		switch (level)
-		{
-			case 1:
-				bul_no = 28;
-				break;
+	bul_no = Bullets::MOVING_MISSILE;
 
-			case 2:
-				bul_no = 29;
-				break;
+	if (CountArmsBullet(5) > 0)
+		return;
 
-			case 3:
-				bul_no = 30;
-				break;
-		}
-
-		switch (level)
-		{
-			case 1:
-				if (CountArmsBullet(10) > 0)
-					return;
-
-				if (CountArmsBullet(11) > 0)
-					return;
-
-				break;
-
-			case 2:
-				if (CountArmsBullet(10) > 1)
-					return;
-
-				if (CountArmsBullet(11) > 1)
-					return;
-
-				break;
-
-			case 3:
-				if (CountArmsBullet(10) > 3)
-					return;
-
-				if (CountArmsBullet(11) > 3)
-					return;
-
-				break;
-		}
-
-	}
-	else
-	{
-		bul_no = Bullets::MOVING_MISSILE;
-
-		if (CountArmsBullet(5) > 0)
-					return;
-
-		if (CountArmsBullet(6) > 0)
-			return;
-	}
+	if (CountArmsBullet(6) > 0)
+		return;
 
 	if (gKeyTrg & gKeyShot)
 	{
@@ -2089,7 +2038,7 @@ void ShootBullet_Bubblin2(int level)
 
 		gMC.rensha = 0;
 
-		if (!UseArmsEnergy((level == 71 && Random(0, 7) == 0 ? 0 : 1)))
+		if (!UseArmsEnergy((level == Bullets::BUBBLER_LVL_4 && Random(0, 7) == 0 ? 0 : 1)))
 		{
 			PlaySoundObject(37, SOUND_MODE_PLAY);
 
@@ -2233,7 +2182,7 @@ void ShootBullet_Sword(int level)
 void ShootBullet_BoomerangSword(int level)
 {
 	int bul_no;
-	if (level == 4 && CountBulletNum(75) > 0)
+	if (level == 4 && CountBulletNum(Bullets::BOOMERANG_BLADE_LVL_4) > 0)
 		return;
 
 	if (level == 1){

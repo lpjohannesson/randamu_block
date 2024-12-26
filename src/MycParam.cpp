@@ -359,7 +359,7 @@ void DamageMyChar(int damage)
 	}
 
 	if (gMC.equip & EQUIP_BOOSTER_0_8 || GetNPCFlag(Flags::SACRED_AEGIS) || GetNPCFlag(Flags::NUCLEAR_STOMPER)){
-		SetBullet(31, gMC.x + gMC.xm, gMC.y + gMC.ym, 0);
+		SetBullet(Bullets::BIGGER_EXPLOSION, gMC.x + gMC.xm, gMC.y + gMC.ym, 0);
 	}
 
 	// Tell player how much damage was taken

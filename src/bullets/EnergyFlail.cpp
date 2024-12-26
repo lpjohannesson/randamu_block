@@ -140,7 +140,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 				int x, y;
 				x = bul->x + Random(-24_pix, 24_pix);
 				y = bul->y + Random(-24_pix, 24_pix);
-				BULLET *bully = SetBullet(95, x, y);
+				BULLET *bully = SetBullet(Bullets::ENERGY_FLAIL_LVL_4_SPAWN, x, y);
 				if (bully != NULL)
 				{
 					bully->tgt_x = bul->x;
@@ -159,7 +159,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 				} while (!(Distance(bul->x, bul->y, x, y) < 90_pix  && 
 							Distance(bul->x, bul->y, x, y) > 8_pix));
 				for (int i = 0; i < Random(1, 2); i++){
-					BULLET *quiverProj = SetBullet(47, bul->x, bul->y);
+					BULLET *quiverProj = SetBullet(Bullets::ENERGY_PROJECTILE, bul->x, bul->y);
 					if (quiverProj != NULL){
 						quiverProj->tgt_x = x;
 						quiverProj->tgt_y = y;
@@ -169,10 +169,10 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 			}
 			if (level == 3){
 				if (bul->count1 % 8 == 0){
-					SetBullet(23, bul->x, bul->y, 0);
+					SetBullet(Bullets::BLADE_SLASH, bul->x, bul->y, 0);
 				}
 				else if (bul->count1 % 8 == 2){
-					SetBullet(23, bul->x, bul->y, 2);
+					SetBullet(Bullets::BLADE_SLASH, bul->x, bul->y, 2);
 				}
 			}
 		}

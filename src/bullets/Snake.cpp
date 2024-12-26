@@ -172,7 +172,7 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 		if (bul->count1 % 4 == 0 && level == 4){
 		int lol = Random(0, 2);
 		for (int i = 0; i < lol; i++){
-			BULLET* bully = SetBullet(56, bul->x, bul->y);
+			BULLET* bully = SetBullet(Bullets::BOOMERANG_BLADE_LVL_2_FLAME, bul->x, bul->y);
 			if (bully != NULL){
 				bully->direct = 0;
 				bully->xm = Random(-1700, 1700);

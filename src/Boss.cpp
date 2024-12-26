@@ -242,11 +242,11 @@ void HitBossBullet(void)
 					}
 
 					gBoss[bos_].life -= dmg;
-					if (gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
-						SetBullet(16, gBul[bul].x, gBul[bul].y, 0);
+					if (gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && !CountBulletNum(Bullets::EXPLOSION) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
+						SetBullet(Bullets::EXPLOSION, gBul[bul].x, gBul[bul].y, 0);
 					}
 
-					if (Random(0, 2) == 0 && dmg != 0 && gMC.equip & EQUIP_NANO_QUIVER && (gBul[bul].code_bullet != 47 && gBul[bul].code_bullet != 45))
+					if (Random(0, 2) == 0 && dmg != 0 && gMC.equip & EQUIP_NANO_QUIVER && (gBul[bul].code_bullet != Bullets::ENERGY_PROJECTILE && gBul[bul].code_bullet != Bullets::FIREBALL_FLAME))
 					{
 						int x, y;
 						do
@@ -255,7 +255,7 @@ void HitBossBullet(void)
 							y = Random(0, gMap.length);
 						} while (!(Distance(gBoss[bos_].x / 0x2000, gBoss[bos_].y / 0x2000, x, y) < 6 && 
 									Distance(gBoss[bos_].x / 0x2000, gBoss[bos_].y / 0x2000, x, y) > 2));
-						BULLET *bul = SetBullet(47, x * 0x2000, y * 0x2000);
+						BULLET *bul = SetBullet(Bullets::ENERGY_PROJECTILE, x * 0x2000, y * 0x2000);
 						if (bul != NULL){
 							bul->tgt_x = gBoss[bos_].x;
 							bul->tgt_y = gBoss[bos_].y;

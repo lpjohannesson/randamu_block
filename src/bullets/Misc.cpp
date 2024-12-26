@@ -471,7 +471,7 @@ void ActBullet_Nanites(BULLET *bul)
 				if (++bul->act_wait % rate == 0){
 					short amount = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 2 : 1);
 					for (int i = 0; i < amount; i++){
-						BULLET *bullet = SetBullet(47, bul->x, bul->y);
+						BULLET *bullet = SetBullet(Bullets::ENERGY_PROJECTILE, bul->x, bul->y);
 						if (bullet != NULL){
 							bullet->direct = 1;
 							bullet->tgt_x = gMC.x;

@@ -310,7 +310,7 @@ void ActBullet_Spur2(BULLET *bul, int level)
 	bul->damage = -1;
 	bul->iframes = 3;
 
-	SetBullet(31, bul->x, bul->y, bul->direct);
+	SetBullet(Bullets::BIGGER_EXPLOSION, bul->x, bul->y, bul->direct);
 }
 
 void RegisterSpur(){

@@ -1436,7 +1436,7 @@ void ActNpc257(NPCHAR *npc)
 						int deg = GetArktan(npc->x - target->x, npc->y - target->y);
 						int xm = GetCos(deg) * 4;
 						int ym = GetSin(deg) * 4;
-						BULLET* bul = SetBullet(78, npc->x, npc->y);
+						BULLET* bul = SetBullet(Bullets::RED_CRYSTAL_PROJECTILE, npc->x, npc->y);
 						bul->xm = xm; bul->ym = ym;
 					}
 				}

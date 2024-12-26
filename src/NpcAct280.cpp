@@ -1784,7 +1784,7 @@ void ActNpc299(NPCHAR *npc)
 		{
 			int xm = GetCos(deg) * 2.5;
 			int ym = GetSin(deg) * 2.5;
-			BULLET* bul = SetBullet(93, npc->x, npc->y);
+			BULLET* bul = SetBullet(Bullets::BUBBLER_WATERGUN, npc->x, npc->y);
 			bul->act_no = 1;
 			bul->direct = 4;
 			bul->xm = xm;

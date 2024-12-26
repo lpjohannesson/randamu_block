@@ -636,7 +636,7 @@ void SpawnQuiverProjectile(NPCHAR &npc)
 			x = Random(std::max(0, npc.x - 50_pix), std::min(npc.x + 50_pix, gMap.width*16_pix));
 			y = Random(std::max(0, npc.y - 50_pix), std::min(npc.y + 50_pix, gMap.length*16_pix));
 		} while (Distance(npc.x, npc.y, x, y) < 8_pix);
-		BULLET *quiverProj = SetBullet(47, x, y);
+		BULLET *quiverProj = SetBullet(Bullets::ENERGY_PROJECTILE, x, y);
 		if (quiverProj != NULL){
 			quiverProj->tgt_x = npc.x;
 			quiverProj->tgt_y = npc.y;
@@ -741,7 +741,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 					y = Random(0, gMap.length*0x2000);
 				} while (!(Distance(npc.x, npc.y, x, y) < 32_pix  && 
 							Distance(npc.x, npc.y, x, y) > 4_pix));
-				BULLET *bully = SetBullet(61, x, y);
+				BULLET *bully = SetBullet(Bullets::WATER_DROPLET, x, y);
 				if (bully != NULL)
 				{
 					bully->direct = 0;
@@ -761,8 +761,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			npc.targetingEffect = 1;
 		}
 
-		if (bul->code_bullet > 6 && bul->code_bullet < 10 && !CountBulletNum(16) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
-			SetBullet(16, bul->x, bul->y, 0);
+		if (bul->code_bullet > 6 && bul->code_bullet < 10 && !CountBulletNum(Bullets::EXPLOSION) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
+			SetBullet(Bullets::EXPLOSION, bul->x, bul->y, 0);
 		}
 
 		if (bul->code_bullet == 87 && Random(0, 3) == 0)
@@ -847,7 +847,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 						y = Random(0, gMap.length*0x2000);
 					} while (!(Distance(npc.x, npc.y, x, y) < 48_pix  && 
 								Distance(npc.x, npc.y, x, y) > 4_pix));
-					BULLET *bully = SetBullet(61, x, y);
+					BULLET *bully = SetBullet(Bullets::WATER_DROPLET, x, y);
 					if (bully != NULL)
 					{
 						bully->direct = 0;

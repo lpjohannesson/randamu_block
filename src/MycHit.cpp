@@ -993,8 +993,8 @@ void HitMyCharNpChar(void)
 				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME))&& 
 				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), gNPC[i].code_char) != bonkableEnemies.end()){
 					if (GetNPCFlag(Flags::SACRED_AEGIS)){
-						SetBullet(16, gMC.x,  gMC.y, 0);
-						SetBullet(16, gMC.x,  gMC.y, 0);
+						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
+						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 					} else {
 						if (IntersectDamageCheck(gNPC[i], gMC.x, gMC.y))
 							DealDamage(gNPC[i], 30);
@@ -1023,10 +1023,10 @@ void HitMyCharNpChar(void)
 
 		if (hit != 0 && gNPC[i].bits & NPC_SHOOTABLE && (gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 200) && gKey & gKeyAbility){
 			if (GetNPCFlag(Flags::NUCLEAR_STOMPER)){
-				SetBullet(16, gMC.x,  gMC.y, 0);
-				SetBullet(16, gMC.x,  gMC.y, 0);
-				SetBullet(16, gMC.x,  gMC.y, 0);
-				SetBullet(16, gMC.x,  gMC.y, 0);
+				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
+				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
+				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
+				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 			} else {
 				SetBullet(Bullets::HEAVY_WEIGHT_BLADES, gNPC[i].x, gNPC[i].y, 3);
 			}
@@ -1251,8 +1251,8 @@ void HitMyCharBoss(void)
 			if ((gMC.dashDuration > 0)){
 				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gBoss[b].bits & NPC_SHOOTABLE){
 					if (GetNPCFlag(Flags::SACRED_AEGIS)){
-						SetBullet(16, gMC.x,  gMC.y, 0);
-						SetBullet(16, gMC.x,  gMC.y, 0);
+						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
+						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 					} else {
 						if (IntersectDamageCheck(gBoss[b], gMC.x, gMC.y))
 							DealDamage(gBoss[b], 30);
@@ -1277,10 +1277,10 @@ void HitMyCharBoss(void)
 
 		if (hit != 0 && gBoss[b].bits & NPC_SHOOTABLE && (gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 200) && gKey & gKeyAbility){
 			if (GetNPCFlag(Flags::NUCLEAR_STOMPER)){
-				SetBullet(16, gMC.x,  gMC.y, 0);
-				SetBullet(16, gMC.x,  gMC.y, 0);
-				SetBullet(16, gMC.x,  gMC.y, 0);
-				SetBullet(16, gMC.x,  gMC.y, 0);
+				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
+				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
+				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
+				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 			} else {
 				SetBullet(Bullets::HEAVY_WEIGHT_BLADES, gBoss[b].x, gBoss[b].y, 3);
 			}

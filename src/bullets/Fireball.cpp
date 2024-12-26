@@ -21,7 +21,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 		if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		int lol = Random(4, 8);
 		for (int i = 0; i < lol; i++){
-			BULLET* bully = SetBullet(56, bul->x, bul->y);
+			BULLET* bully = SetBullet(Bullets::BOOMERANG_BLADE_LVL_2_FLAME, bul->x, bul->y);
 			if (bully != NULL){
 				bully->direct = 0;
 				bully->xm = Random(-1700, 1700);
@@ -41,13 +41,13 @@ void ActBullet_FireBall(BULLET *bul, int level)
 	if (bul->direct == 0 && bul->flag & 1){
 		bul->direct = 2;
 		if (level == 4){
-			SetBullet(8, bul->x, bul->y, 0);
+			SetBullet(Bullets::FIREBALL_LVL_2, bul->x, bul->y, 0);
 		}
 	}
 	if (bul->direct == 2 && bul->flag & 4){
 		bul->direct = 0;
 		if (level == 4){
-			SetBullet(8, bul->x, bul->y, 0);
+			SetBullet(Bullets::FIREBALL_LVL_2, bul->x, bul->y, 0);
 		}
 	}
 
@@ -117,7 +117,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 		if (bul->flag & 8){
 			bul->ym = -0x400;
 			if (level == 4){
-				SetBullet(8, bul->x, bul->y, 1);
+				SetBullet(Bullets::FIREBALL_LVL_2, bul->x, bul->y, 1);
 			}
 			if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 				bul->ym *= 1.5;
