@@ -217,6 +217,13 @@ namespace Bullets {
 	inline constexpr int FLOODTIDE_LVL_4              = 74;
 	inline constexpr int FLOODTIDE_WHIRLPOOL          = 62;
 
+	inline constexpr int HELLSWEEP_LVL_1              = 80;
+	inline constexpr int HELLSWEEP_LVL_2              = 81;
+	inline constexpr int HELLSWEEP_LVL_3              = 82;
+	inline constexpr int HELLSWEEP_LVL_4              = 85;
+	inline constexpr int HELLSWEEP_FIREMINE           = 83;
+	inline constexpr int HELLSWEEP_FLAME              = 84;
+
 	inline constexpr int SHOTGUN_SHOT                 = 4;
 	inline constexpr int BLADE_SLASH                  = 23;
 	inline constexpr int ENEMY_CLEAR                  = 44;

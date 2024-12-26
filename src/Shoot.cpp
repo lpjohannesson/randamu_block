@@ -2722,7 +2722,7 @@ void ShootBullet_SwordSwing2(int level)
 {
 	int bul_no;
 
-	if (CountBulletNum(80) > 0 || CountBulletNum(81) > 0 || CountBulletNum(82) > 0 || CountBulletNum(85) > 0){
+	if (CountBulletNum(Bullets::HELLSWEEP_LVL_1) > 0 || CountBulletNum(Bullets::HELLSWEEP_LVL_2) > 0 || CountBulletNum(Bullets::HELLSWEEP_LVL_3) > 0 || CountBulletNum(Bullets::HELLSWEEP_LVL_4) > 0){
 		ClearCooldown(gCooldowns, SHEATHING_TIMER_ID);
 		return;
 	}
@@ -2734,19 +2734,19 @@ void ShootBullet_SwordSwing2(int level)
 	switch (level)
 	{
 		case 1:
-			bul_no = 80;
+			bul_no = Bullets::HELLSWEEP_LVL_1;
 			break;
 
 		case 2:
-			bul_no = 81;
+			bul_no = Bullets::HELLSWEEP_LVL_2;
 			break;
 
 		case 3:
-			bul_no = 82;
+			bul_no = Bullets::HELLSWEEP_LVL_3;
 			break;
 		
 		case 4:
-			bul_no = 85;
+			bul_no = Bullets::HELLSWEEP_LVL_4;
 			break;
 	}
 

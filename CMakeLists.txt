@@ -60,6 +60,8 @@ add_executable(Randamu WIN32
 	"src/bullets/Floodtide.h"
 	"src/bullets/FrontierBuster.cpp"
 	"src/bullets/FrontierBuster.h"
+	"src/bullets/Hellsweep.cpp"
+	"src/bullets/Hellsweep.h"
 	"src/bullets/MachineGun.cpp"
 	"src/bullets/MachineGun.h"
 	"src/bullets/MiningLaser.cpp"

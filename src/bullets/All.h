@@ -10,5 +10,6 @@
 #include "MiningLaser.h"
 #include "FrontierBuster.h"
 #include "Floodtide.h"
+#include "Hellsweep.h"
 
 void RegisterBullets();
