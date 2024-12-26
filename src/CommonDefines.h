@@ -231,6 +231,12 @@ namespace Bullets {
 	inline constexpr int NEMESIS_MAIN                 = 34;
 	inline constexpr int NEMESIS_CURLY                = 43;
 
+	inline constexpr int ENERGY_FLAIL_LVL_1           = 49;
+	inline constexpr int ENERGY_FLAIL_LVL_2           = 50;
+	inline constexpr int ENERGY_FLAIL_LVL_3           = 51;
+	inline constexpr int ENERGY_FLAIL_LVL_4           = 73;
+	inline constexpr int ENERGY_FLAIL_LVL_4_SPAWN     = 95;
+
 	inline constexpr int SHOTGUN_SHOT                 = 4;
 	inline constexpr int BLADE_SLASH                  = 23;
 	inline constexpr int ENEMY_CLEAR                  = 44;

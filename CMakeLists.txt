@@ -54,6 +54,8 @@ add_executable(Randamu WIN32
 	"src/bullets/BoomerangBlades.h"
 	"src/bullets/Bubbler.cpp"
 	"src/bullets/Bubbler.h"
+	"src/bullets/EnergyFlail.cpp"
+	"src/bullets/EnergyFlail.h"
 	"src/bullets/Fireball.cpp"
 	"src/bullets/Fireball.h"
 	"src/bullets/Floodtide.cpp"

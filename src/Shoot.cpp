@@ -825,30 +825,30 @@ void ShootBullet_Hook(int level)
 	switch (level)
 	{
 		case 1:
-			bul_no = 49;
+			bul_no = Bullets::ENERGY_FLAIL_LVL_1;
 			break;
 
 		case 2:
-			bul_no = 50;
+			bul_no = Bullets::ENERGY_FLAIL_LVL_2;
 			break;
 
 		case 3:
-			bul_no = 51;
+			bul_no = Bullets::ENERGY_FLAIL_LVL_3;
 			break;
 		case 4:
-			bul_no = 73;
+			bul_no = Bullets::ENERGY_FLAIL_LVL_4;
 			break;
 	}
 
 	if (level == 4){
-		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(73) > 1))
+		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_4) > 1))
 			return;
-		else if (!GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(73) > 0)
+		else if (!GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_4) > 0)
 			return;
 	} else {
-		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(48 + level) > 1))
+		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_1 + (level-1)) > 1))
 			return;
-		else if (!GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(48 + level) > 0)
+		else if (!GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_1 + (level-1)) > 0)
 			return;
 	}
 

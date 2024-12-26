@@ -12,5 +12,6 @@
 #include "Floodtide.h"
 #include "Hellsweep.h"
 #include "Nemesis.h"
+#include "EnergyFlail.h"
 
 void RegisterBullets();

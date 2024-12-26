@@ -252,9 +252,9 @@ BULLET_TABLE gBulTbl[] = {
 	{},
 	{},
 	// Hook
-	{12, 100, 25, 105, 10, 10, 6, 6, {4, 4, 4, 4}, 0.33, 0.33},
-	{15, 100, 30, 105, 11, 11, 6, 6, {4, 4, 4, 4}, 0.33, 0.33},
-	{10, 100, 35, 105, 12, 12, 6, 6, {4, 4, 4, 4}, 0.33, 0.33},
+	{},
+	{},
+	{},
 	// Boomerang blade
 	{}, //level 1
 	{}, //level 2
@@ -291,7 +291,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Blade lv4
 	{},
 	// Hook lv4
-	{4, 100, 30, 105, 12, 12, 4, 4, {4, 4, 4, 4}, 0.33, 0.33},
+	{},
 	// Floodtide lv4
 	{},
 	// Boomerang lv4
@@ -333,7 +333,7 @@ BULLET_TABLE gBulTbl[] = {
 	// Mannan visuals
 	{},
 	// Hook lv4 spurts
-	{12, 100, 25, 105, 10, 10, 6, 6, {4, 4, 4, 4}, 0.33, 0.33},
+	{},
 };
 
 void SetBullet(int no, int x, int y, int dir)
@@ -461,202 +461,6 @@ bool IsBreakingBullet(BULLET &bul){
 	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul.code_bullet == 37 || bul.code_bullet == 38 || bul.code_bullet == 39)));
 }
 
-void ActBullet_Hook(BULLET *bul, int level)
-{
-	if (bul->code_bullet == 95)
-		bul->local_iframes = 4;
-	else 
-		bul->iframes = 15;
-
-	if (level == 4) bul->iframes /= 4;
-
-	if (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
-	{
-		bul->blockXL = 0x200 * 4;
-		bul->blockYL = 0x200 * 4;
-		if ((++bul->count1 > bul->life_count) && bul->act_no == 1)
-		{
-			bul->act_no = 2;
-		}
-		if (bul->flag & 0xF && bul->act_no == 1){
-			bul->act_no = 3;
-		}
-	}
-	else if ((++bul->count1 > bul->life_count || bul->flag & 0xF) && bul->act_no == 1)
-	{
-		bul->act_no = 2;
-		if (bul->code_bullet != 95)
-			bul->damage /= 4;
-	}
-	// if (bul->flag & 0xF){
-	// 	bul->act_no = 3;
-	// 	chainWrap = true;
-	// }
-
-	if (bul->act_no == 0)
-	{
-		bul->act_no = 1;
-
-		int deg = GetArktan(bul->x - bul->tgt_x, bul->y - bul->tgt_y);
-		if (!GetNPCFlag(Flags::BRACKET_CHARACTER))
-			deg += Random(-1, 1);
-		int speed = 7;
-		if (level == 3){
-			speed = 5.75;
-			bul->life_count *= 2;
-		}
-		if (level == 4){
-			speed = 8;
-		}
-		bul->ym = GetSin(deg) * speed;
-		bul->xm = GetCos(deg) * speed;
-	}
-	else
-	{
-		if (bul->act_no == 3){
-			if (bul->count2 == 0){
-				bul->count2 = 1;
-			for (int i = 0; i < BULLET_MAX; ++i)
-				if (gBul[i].cond & 0x80 && (gBul[i].code_bullet + 2) / 3 == 17 && &gBul[i] != bul)
-				{
-					gBul[i].cond = 0;
-					break;
-				}
-			}
-			if (bul->x > gMC.x - 0x200*12 && bul->x < gMC.x + 0x200*12 &&
-					 bul->y > gMC.y - 0x200*12 && bul->y < gMC.y + 0x200*12){
-				gMC.xm = 0;
-				gMC.ym = 0;
-				bul->xm = 0;
-				bul->ym = 0;
-			} else {
-				gMC.xm = 0;
-				gMC.ym = 0;
-			int speed = 6 + level*3;
-			int deg = GetArktan(gMC.x - bul->x, gMC.y - bul->y);
-			bul->ym = GetSin(deg) * speed;
-			bul->xm = GetCos(deg) * speed;
-			gMC.x += bul->xm;
-			gMC.y += bul->ym;
-			}
-		}
-		if (bul->act_no == 2){
-			if (bul->code_bullet == 95)
-				bul->local_iframes = 2;
-			else
-				bul->iframes = 6;
-
-			if (level == 4) bul->iframes /= 3;
-			
-			if ((!(gKey & gKeyShot && !((level == 4 || bul->code_bullet == 95))) || (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
-					 bul->y > gMC.y - 0x200*8 && bul->y < gMC.y + 0x200*8)){
-				bul->cond = 0;
-				chainWrap = false;
-				return;
-			}
-			int speed = 12;
-			if (level == 3){
-				speed = 8;
-			}
-			if (level == 4){
-				speed = 16;
-			}
-			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
-			deg += Random(-1, 1);
-			if (gKey & gKeyShot && !(level == 4 || bul->code_bullet == 95) && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 8 * 16_pix){
-				// if (gMC.x > bul->x)
-				// 	bul->xm = 0x50;
-				// else
-				// 	bul->xm = -0x50;
-				bul->xm = gMC.xm / 2;
-
-				bul->ym += 0x100;
-				if (bul->ym > 0x6FF)
-					bul->ym = 0x6FF;
-
-				if (bul->flag & 8)
-					bul->ym = -0x100;
-
-				if (bul->flag & 1)
-					bul->xm = 0x200;
-				else if (bul->flag & 4)
-					bul->xm = -0x200;
-			} else {
-				bul->ym = GetSin(deg) * speed;
-				bul->xm = GetCos(deg) * speed;
-			}
-		}
-		if (bul->act_no != 3){
-			if (bul->life != 100 && (level == 4))
-			{
-				bul->life = 100;
-				int x, y;
-				x = bul->x + Random(-24_pix, 24_pix);
-				y = bul->y + Random(-24_pix, 24_pix);
-				BULLET *bully = SetBullet(95, x, y);
-				if (bully != NULL)
-				{
-					bully->tgt_x = bul->x;
-					bully->tgt_y = bul->y;
-					bully->damage = 4;
-				}
-			}
-			bul->x += bul->xm;
-			bul->y += bul->ym;
-			if (bul->act_no == 2 && level == 2 && bul->count1 % 4 == 0 && gKey & gKeyShot && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
-				int x, y;
-				do
-				{
-					x = Random(0, gMap.width*0x2000);
-					y = Random(0, gMap.length*0x2000);
-				} while (!(Distance(bul->x, bul->y, x, y) < 90_pix  && 
-							Distance(bul->x, bul->y, x, y) > 8_pix));
-				for (int i = 0; i < Random(1, 2); i++){
-					BULLET *quiverProj = SetBullet(47, bul->x, bul->y);
-					if (quiverProj != NULL){
-						quiverProj->tgt_x = x;
-						quiverProj->tgt_y = y;
-						quiverProj->count1 = quiverProj->life_count/1.5f;
-					}
-				}
-			}
-			if (level == 3){
-				if (bul->count1 % 8 == 0){
-					SetBullet(23, bul->x, bul->y, 0);
-				}
-				else if (bul->count1 % 8 == 2){
-					SetBullet(23, bul->x, bul->y, 2);
-				}
-			}
-		}
-	}
-
-	// CARET* crt = SetCaret(bul->x, bul->y, 18);
-	// crt->xm = bul->x;
-	// crt->ym = bul->y;
-	// crt->act_no = bul->count1 % 50;
-		
-	bul->rect = {130, 144, 142, 158};
-
-	if (++bul->ani_wait > 2)
-	{
-		bul->ani_wait = 0;
-		++bul->ani_no;
-	}
-
-	if (bul->ani_no > 3)
-		bul->ani_no = 0;
-
-	Rect rect[4] = {
-		{128, 176, 144, 192},
-		{144, 176, 160, 192},
-		{160, 176, 176, 192},
-		{176, 176, 192, 192}
-	};
-
-	bul->rect = rect[bul->ani_no];
-}
-
 void ActBullet(void)
 {
 	int i;
@@ -675,22 +479,6 @@ void ActBullet(void)
 				gBul[i].first_frame = false;
 				if (gBulletTable.contains(gBul[i].code_bullet)){
 					gBulletTable[gBul[i].code_bullet].act(&gBul[i]);
-				} else
-				switch (gBul[i].code_bullet)
-				{
-
-					case 49: case 95:
-						ActBullet_Hook(&gBul[i], 1);
-						break;
-					case 50:
-						ActBullet_Hook(&gBul[i], 2);
-						break;
-					case 51:
-						ActBullet_Hook(&gBul[i], 3);
-						break;
-					case 73:
-						ActBullet_Hook(&gBul[i], 4);
-						break;
 				}
 			}
 		}
