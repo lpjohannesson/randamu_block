@@ -21,6 +21,7 @@ void RegisterBullets(){
     RegisterFrontierBuster();
     RegisterFloodtide();
     RegisterHellsweep();
+    RegisterNemesis();
 
     RegisterMiscBullets();
 }

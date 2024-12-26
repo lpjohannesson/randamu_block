@@ -2293,26 +2293,11 @@ void ShootBullet_BoomerangSword(int level)
 
 void ShootBullet_Nemesis(int level)
 {
-	int bul_no;
+	int bul_no = Bullets::NEMESIS_MAIN;
 	static int wait;
 	ZeroExpMyChar();
 
-	switch (level)
-	{
-		case 1:
-			bul_no = 34;
-			break;
-
-		case 2:
-			bul_no = 35;
-			break;
-
-		case 3:
-			bul_no = 36;
-			break;
-	}
-
-	if (CountBulletNum(34) > 1)
+	if (CountBulletNum(Bullets::NEMESIS_MAIN) > 1)
 		return;
 
 	if (gKeyTrg & gMouseClick && GetNPCFlag(Flags::UNIVERSAL_CATALYST))

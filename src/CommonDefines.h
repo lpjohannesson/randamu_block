@@ -228,6 +228,9 @@ namespace Bullets {
 	inline constexpr int MOVING_MISSILE               = 14;
 	inline constexpr int MISSILE_EXPLOSION            = 17;
 
+	inline constexpr int NEMESIS_MAIN                 = 34;
+	inline constexpr int NEMESIS_CURLY                = 43;
+
 	inline constexpr int SHOTGUN_SHOT                 = 4;
 	inline constexpr int BLADE_SLASH                  = 23;
 	inline constexpr int ENEMY_CLEAR                  = 44;

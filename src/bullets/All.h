@@ -11,5 +11,6 @@
 #include "FrontierBuster.h"
 #include "Floodtide.h"
 #include "Hellsweep.h"
+#include "Nemesis.h"
 
 void RegisterBullets();

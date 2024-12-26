@@ -68,6 +68,8 @@ add_executable(Randamu WIN32
 	"src/bullets/MiningLaser.h"
 	"src/bullets/Misc.cpp"
 	"src/bullets/Misc.h"
+	"src/bullets/Nemesis.cpp"
+	"src/bullets/Nemesis.h"
 	"src/bullets/Rifle.cpp"
 	"src/bullets/Rifle.h"
 	"src/bullets/Snake.cpp"
