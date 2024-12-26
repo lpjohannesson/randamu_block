@@ -2644,7 +2644,7 @@ void ShootBullet_SwordSwing(int level)
 {
 	int bul_no;
 
-	if (CountBulletNum(58) > 0 || CountBulletNum(59) > 0 || CountBulletNum(60) > 0 || CountBulletNum(74) > 0){
+	if (CountBulletNum(Bullets::FLOODTIDE_LVL_1) > 0 || CountBulletNum(Bullets::FLOODTIDE_LVL_2) > 0 || CountBulletNum(Bullets::FLOODTIDE_LVL_3) > 0 || CountBulletNum(Bullets::FLOODTIDE_LVL_4) > 0){
 		ClearCooldown(gCooldowns, SHEATHING_TIMER_ID);
 		return;
 	}
@@ -2656,19 +2656,19 @@ void ShootBullet_SwordSwing(int level)
 	switch (level)
 	{
 		case 1:
-			bul_no = 58;
+			bul_no = Bullets::FLOODTIDE_LVL_1;
 			break;
 
 		case 2:
-			bul_no = 59;
+			bul_no = Bullets::FLOODTIDE_LVL_2;
 			break;
 
 		case 3:
-			bul_no = 60;
+			bul_no = Bullets::FLOODTIDE_LVL_3;
 			break;
 		
 		case 4:
-			bul_no = 74;
+			bul_no = Bullets::FLOODTIDE_LVL_4;
 			break;
 	}
 

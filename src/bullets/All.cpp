@@ -19,6 +19,7 @@ void RegisterBullets(){
     RegisterBlade();
     RegisterMiningLaser();
     RegisterFrontierBuster();
+    RegisterFloodtide();
 
     RegisterMiscBullets();
 }

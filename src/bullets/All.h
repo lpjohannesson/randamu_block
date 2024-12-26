@@ -9,5 +9,6 @@
 #include "Blade.h"
 #include "MiningLaser.h"
 #include "FrontierBuster.h"
+#include "Floodtide.h"
 
 void RegisterBullets();
