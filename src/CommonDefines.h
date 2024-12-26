@@ -223,11 +223,17 @@ namespace Bullets {
 	inline constexpr int HELLSWEEP_LVL_4              = 85;
 	inline constexpr int HELLSWEEP_FIREMINE           = 83;
 	inline constexpr int HELLSWEEP_FLAME              = 84;
+	inline constexpr int HELLSWEEP_EXPLOSION          = 18;
+
+	inline constexpr int MOVING_MISSILE               = 14;
+	inline constexpr int MISSILE_EXPLOSION            = 17;
 
 	inline constexpr int SHOTGUN_SHOT                 = 4;
 	inline constexpr int BLADE_SLASH                  = 23;
 	inline constexpr int ENEMY_CLEAR                  = 44;
 	inline constexpr int WATER_DROPLET                = 61;
+	inline constexpr int EXPLOSION                    = 16;
+	inline constexpr int BIGGER_EXPLOSION             = 31;
 	inline constexpr int PROCGEN_GUN_SPARK            = 67;
 	inline constexpr int DUCK                         = 36;
 	inline constexpr int UNUSED_SHIELD_HITBOX         = 46;
@@ -235,6 +241,8 @@ namespace Bullets {
 	inline constexpr int RED_CRYSTAL_PROJECTILE       = 78;
 	inline constexpr int FALLING_SPIKE                = 24;
 	inline constexpr int HEAVY_WEIGHT_BLADES          = 26;
+	inline constexpr int ENERGY_PROJECTILE            = 47;
+	inline constexpr int WHIMSICAL_STAR               = 57;
 
 	inline constexpr int BLADE_SLASH_FAKE             = 79;
 	inline constexpr int MANNAN_ATTACK_VFX            = 94;

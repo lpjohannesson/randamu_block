@@ -1858,37 +1858,13 @@ void ShootBullet_Missile(int level, bool bSuper)
 	}
 	else
 	{
-		bul_no = 14;
+		bul_no = Bullets::MOVING_MISSILE;
 
-		switch (level)
-		{
-			case 1:
-				if (CountArmsBullet(5) > 0)
+		if (CountArmsBullet(5) > 0)
 					return;
 
-				if (CountArmsBullet(6) > 0)
-					return;
-
-				break;
-
-			case 2:
-				if (CountArmsBullet(5) > 1)
-					return;
-
-				if (CountArmsBullet(6) > 1)
-					return;
-
-				break;
-
-			case 3:
-				if (CountArmsBullet(5) > 3)
-					return;
-
-				if (CountArmsBullet(6) > 3)
-					return;
-
-				break;
-		}
+		if (CountArmsBullet(6) > 0)
+			return;
 	}
 
 	if (gKeyTrg & gKeyShot)

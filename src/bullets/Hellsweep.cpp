@@ -191,7 +191,7 @@ void ActBullet_FireMine(BULLET *bul)
 	{
 		bul->cond = 0;
 		SetCaret(bul->x, bul->y, 3, 0);
-		SetBullet(18, bul->x, bul->y, 0);
+		SetBullet(Bullets::HELLSWEEP_EXPLOSION, bul->x, bul->y, 0);
 		return;
 	}
 
@@ -218,7 +218,7 @@ void ActBullet_FireMine(BULLET *bul)
 	{
 		bul->cond = 0;
 		SetCaret(bul->x, bul->y, 2, 0);
-		SetBullet(18, bul->x, bul->y, 0);
+		SetBullet(Bullets::HELLSWEEP_EXPLOSION, bul->x, bul->y, 0);
 		PlaySoundObject(28, SOUND_MODE_PLAY);
 		return;
 	}
