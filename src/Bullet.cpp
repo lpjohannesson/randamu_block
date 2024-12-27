@@ -121,7 +121,7 @@ void PutBullet(int fx, int fy)
 					y = gBul[i].y - gBul[i].view.back;
 					break;
 			}
-			if (gBul[i].code_bullet == 89)
+			if (gBul[i].code_bullet == Bullets::FRONTIER_BUSTER_LVL_2)
 			{
 				Rect neededRect[3][3] = {
 						{{128, 160, 144, 176}, {144, 160, 160, 176}, {160, 160, 176, 176}},
@@ -141,10 +141,10 @@ void PutBullet(int fx, int fy)
 			}
 			PutBitmap3Ex(&grcGame, SubpixelToScreenCoord(x) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(y) - SubpixelToScreenCoord(fy), &gBul[i].rect, SURFACE_ID_BULLET, gBul[i].angle, gBul[i].centerX, gBul[i].centerY, gBul[i].opacity);
 			
-			if (gBul[i].code_bullet >= 49 && gBul[i].code_bullet <= 51 || gBul[i].code_bullet == 73 || gBul[i].code_bullet == 95)
+			if (gBul[i].code_bullet >= Bullets::ENERGY_FLAIL_LVL_1 && gBul[i].code_bullet <= Bullets::ENERGY_FLAIL_LVL_3 || gBul[i].code_bullet == Bullets::ENERGY_FLAIL_LVL_4 || gBul[i].code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN)
 			{
-				int targetX = gBul[i].code_bullet == 95 ? gBul[i].tgt_x : gMC.x;
-				int targetY = gBul[i].code_bullet == 95 ? gBul[i].tgt_y : gMC.y;
+				int targetX = gBul[i].code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN ? gBul[i].tgt_x : gMC.x;
+				int targetY = gBul[i].code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN ? gBul[i].tgt_y : gMC.y;
 				long long xDist = targetX - gBul[i].x;
 				long long yDist = targetY - gBul[i].y;
 				int chainWidth = PixelToScreenCoord(8);
@@ -210,7 +210,7 @@ void SetBullet(int no, int x, int y, int dir)
 	if (((no > 0 && no < 4) || no == 70) && gMC.equip & EQUIP_PROPANE_TANK){
 		gBul[i].damage /= 2;
 	}
-	if (gBul[i].life_count != 1 && gBul[i].code_bullet != 58 && gBul[i].code_bullet != 59 && gBul[i].code_bullet != 60){
+	if (gBul[i].life_count != Bullets::SNAKE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_2 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_3){
 		if (GetNPCFlag(Flags::BATTERY_PACK)){
 			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
 			else gBul[i].life_count *= 1.25;
@@ -252,7 +252,7 @@ BULLET* SetBullet(int no, int x, int y)
 	if (((no > 0 && no < 4) || no == 70) && gMC.equip & EQUIP_PROPANE_TANK){
 		gBul[i].damage /= 2;
 	}
-	if (gBul[i].life_count != 1 && gBul[i].code_bullet != 58 && gBul[i].code_bullet != 59 && gBul[i].code_bullet != 60){
+	if (gBul[i].life_count != Bullets::SNAKE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_2 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_3){
 		if (GetNPCFlag(Flags::BATTERY_PACK)){
 			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
 			else gBul[i].life_count *= 1.25;
@@ -266,8 +266,8 @@ BULLET* SetBullet(int no, int x, int y)
 }
 
 bool IsBreakingBullet(BULLET &bul){
-	return (bul.code_bullet == Bullets::MINING_LASER || bul.code_bullet == Bullets::MINING_BOOM || bul.code_bullet == 34 || bul.code_bullet == 35 ||
-	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul.code_bullet == 37 || bul.code_bullet == 38 || bul.code_bullet == 39)));
+	return (bul.code_bullet == Bullets::MINING_LASER || bul.code_bullet == Bullets::MINING_BOOM || bul.code_bullet == Bullets::NEMESIS_MAIN ||
+	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul.code_bullet == Bullets::SPUR_LVL_1 || bul.code_bullet == Bullets::SPUR_LVL_2 || bul.code_bullet == Bullets::SPUR_LVL_3)));
 }
 
 void ActBullet(void)

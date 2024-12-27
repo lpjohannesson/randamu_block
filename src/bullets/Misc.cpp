@@ -822,7 +822,7 @@ void ActBullet_WhimsicalStar(BULLET *bul)
 
 void ActBullet_Explosion(BULLET *bul, int level)
 {
-	if (bul->code_bullet == 17){
+	if (bul->code_bullet == Bullets::MISSILE_EXPLOSION){
 	gMC.unit = 0;
 	gMC.shock = 30;
 	}

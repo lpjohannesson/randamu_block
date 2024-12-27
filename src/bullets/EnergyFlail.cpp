@@ -10,7 +10,7 @@
 
 void ActBullet_EnergyFlail(BULLET *bul, int level)
 {
-	if (bul->code_bullet == 95)
+	if (bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN)
 		bul->local_iframes = 4;
 	else 
 		bul->iframes = 15;
@@ -32,7 +32,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 	else if ((++bul->count1 > bul->life_count || bul->flag & 0xF) && bul->act_no == 1)
 	{
 		bul->act_no = 2;
-		if (bul->code_bullet != 95)
+		if (bul->code_bullet != Bullets::ENERGY_FLAIL_LVL_4_SPAWN)
 			bul->damage /= 4;
 	}
 	// if (bul->flag & 0xF){
@@ -88,14 +88,14 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 			}
 		}
 		if (bul->act_no == 2){
-			if (bul->code_bullet == 95)
+			if (bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN)
 				bul->local_iframes = 2;
 			else
 				bul->iframes = 6;
 
 			if (level == 4) bul->iframes /= 3;
 			
-			if ((!(gKey & gKeyShot && !((level == 4 || bul->code_bullet == 95))) || (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
+			if ((!(gKey & gKeyShot && !((level == 4 || bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN))) || (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
 					 bul->y > gMC.y - 0x200*8 && bul->y < gMC.y + 0x200*8)){
 				bul->cond = 0;
 				chainWrap = false;
@@ -110,7 +110,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 			}
 			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
 			deg += Random(-1, 1);
-			if (gKey & gKeyShot && !(level == 4 || bul->code_bullet == 95) && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 8 * 16_pix){
+			if (gKey & gKeyShot && !(level == 4 || bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN) && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 8 * 16_pix){
 				// if (gMC.x > bul->x)
 				// 	bul->xm = 0x50;
 				// else

@@ -27,7 +27,7 @@ void ActBullet_BoomerangSword1(BULLET *bul)
 	}
 
 	if (bul->act_no == 1){
-		if (bul->code_bullet == 55)
+		if (bul->code_bullet == Bullets::BOOMERANG_BLADE_LVL_3_SPLIT)
 			bul->damage = 5;
 		else
 			bul->damage = 4;
@@ -86,7 +86,7 @@ void ActBullet_BoomerangSword1(BULLET *bul)
 			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
 			bul->ym = GetSin(deg) * 2.9;
 			bul->xm = GetCos(deg) * 2.9;
-			if (bul->code_bullet == 55){
+			if (bul->code_bullet == Bullets::BOOMERANG_BLADE_LVL_3_SPLIT){
 				bul->ym = GetSin(deg) * 6.96;
 				bul->xm = GetCos(deg) * 6.96;
 			}
