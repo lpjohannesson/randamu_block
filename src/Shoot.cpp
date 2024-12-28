@@ -630,7 +630,7 @@ void ShootBullet_WaterStar(int level)
 
 	if (gKeyTrg & gKeyShot || bShot)
 	{
-		if (bul_no == Bullets::BUBBLER_WATERGUN){
+		if (bul_no == Bullets::SPUR_LVL_3){
 			if (!UseArmsEnergy(20))
 			{
 				PlaySoundObject(37, SOUND_MODE_PLAY);
