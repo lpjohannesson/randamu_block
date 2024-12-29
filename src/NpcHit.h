@@ -1,6 +1,7 @@
 #ifndef __NPCHIT_H__
 #define __NPCHIT_H__
 
+#include <utility>
 
 #include "CommonDefines.h"
 
@@ -21,6 +22,7 @@ void JudgeHitNpCharWater(NPCHAR *npc, int x, int y);
 void HitNpCharMap(void);
 void LoseNpChar(NPCHAR *npc, bool bVanish);
 bool IntersectDamageCheck(NPCHAR &npc, int x, int y, int xl = 4_pix, int yl = 4_pix);
+bool IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul);
 bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul = NULL);
 void HitNpCharBullet(void);
 

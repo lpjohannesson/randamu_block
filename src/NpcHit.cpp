@@ -643,6 +643,41 @@ void SpawnQuiverProjectile(NPCHAR &npc)
 		}
 }
 
+bool IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul){
+	if (bul.first.iframes > 0 && static_iframes[npc.second].contains(bul.first.code_bullet)){
+		if (static_iframes[npc.second][bul.first.code_bullet] != 0)
+			return false;
+	}
+	if (bul.first.local_iframes > 0 && local_iframes[npc.second].contains(bul.second)){
+		if (local_iframes[npc.second][bul.second] != 0)
+			return false;
+	}
+
+	if (bul.first.damage == -1)
+		return false;
+
+	if (bul.first.code_bullet == Bullets::SHOTGUN_SHOT && npc.first.targetingEffect > 0)
+		return false;
+
+	if (npc.first.shock > 0 && (
+		(bul.first.code_bullet == Bullets::WHIMSICAL_STAR) || (bul.first.code_bullet == Bullets::MACHINE_GUN_LVL_4) || (GetNPCFlag(Flags::HIGH_OCTANE_TANK) && bul.first.code_bullet > Bullets::FIREBALL_LVL_1-1 && bul.first.code_bullet < Bullets::FIREBALL_LVL_3+1 && CountBulletNum(Bullets::EXPLOSION))))
+		return false;
+	
+	if (!npc.first.isBoss){
+		if (bul.first.code_bullet == Bullets::OMEGA_SELFHURT && npc.first.code_char == 48)
+			return false;
+
+		if (npc.first.shock > 0 && npc.first.code_event == 30)
+			return false;
+
+		if (npc.first.code_char == 126 && bul.first.code_bullet == Bullets::UNUSED_SHIELD_HITBOX)
+			return false;
+
+		if (npc.first.code_char == 100 && !IsBreakingBullet(bul.first))
+			return false;
+	}
+}
+
 bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 {
 	if (!(npc.bits & NPC_SHOOTABLE))
@@ -926,8 +961,6 @@ void HitNpCharBullet(void)
 			continue;
 		}
 
-		bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[n].code_char) != etherealEntities.end();
-
 		Rect necessaryRect = {genContext.bossRect.left - 1, genContext.bossRect.top - 1, 
 						genContext.bossRect.right, genContext.bossRect.bottom};
 
@@ -949,36 +982,8 @@ void HitNpCharBullet(void)
 			if (!(gBul[b].cond & 0x80))
 				continue;
 
-			if (gBul[b].iframes > 0 && static_iframes[n].contains(gBul[b].code_bullet)){
-				if (static_iframes[n][gBul[b].code_bullet] != 0)
-					continue;
-			}
-			if (gBul[b].local_iframes > 0 && local_iframes[n].contains(b)){
-				if (local_iframes[n][b] != 0)
-					continue;
-			}
-
-			if (gNPC[n].shock > 0 && (
-				 (gBul[b].code_bullet == Bullets::WHIMSICAL_STAR) || (gBul[b].code_bullet == Bullets::MACHINE_GUN_LVL_4) || (GetNPCFlag(Flags::HIGH_OCTANE_TANK) && gBul[b].code_bullet > Bullets::FIREBALL_LVL_1-1 && gBul[b].code_bullet < Bullets::FIREBALL_LVL_3+1 && CountBulletNum(Bullets::EXPLOSION))))
+			if (!IsAbleToDamage({gNPC[n], n}, {gBul[b], b}))
 				continue;
-
-			if (gBul[b].damage == -1)
-				continue;
-
-			if (gBul[b].code_bullet == Bullets::SHOTGUN_SHOT && gNPC[n].targetingEffect > 0)
-				continue;
-
-			if (gBul[b].code_bullet == Bullets::OMEGA_SELFHURT && gNPC[n].code_char == 48)
-				continue;
-
-			if (gNPC[n].shock > 0 && gNPC[n].code_event == 30)
-				continue;
-
-			if (gNPC[n].code_char == 126 && gBul[b].code_bullet == Bullets::UNUSED_SHIELD_HITBOX)
-				continue;
-
-			if (gNPC[n].code_char == 100 && !IsBreakingBullet(gBul[b]))
-	 			continue;
 
 			// Check if bullet touches npc
 			bHit = false;
@@ -1029,7 +1034,7 @@ void HitNpCharBullet(void)
 					gBul[b].life = 0;
 					continue;
 				}
-				if (!isEthereal)
+				if (std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[n].code_char) == etherealEntities.end())
 					--gBul[b].life;
 			}
 		}

@@ -1,6 +1,8 @@
 #include "Boss.h"
 
 #include <cstring>
+#include <functional>
+#include <map>
 
 #include "CommonDefines.h"
 
@@ -29,6 +31,10 @@
 #include "ValueView.h"
 
 NPCHAR gBoss[BOSS_MAX];
+
+std::map<int, std::function<bool(std::pair<NPCHAR&, int>, std::pair<BULLET&, int>)>> bossCanBulletDmgFuncs = {
+	{1, Omega_IsAbleToDamage}
+};
 
 void InitBossChar(int code)
 {
@@ -121,49 +127,21 @@ void HitBossBullet(void)
 
 		for (bul = 0; bul < BULLET_MAX; ++bul)
 		{
+			if (gBoss[bos].cond & 0x10)
+				bos_ = 0;
+			else
+				bos_ = bos;
+
 			bool isSword = gBul[bul].code_bullet == 58 || gBul[bul].code_bullet == 60 || gBul[bul].code_bullet == 59;
 
 			if (!(gBul[bul].cond & 0x80))
 				continue;
 
-			if (gBul[bul].iframes > 0 && static_iframes[bos + NPC_MAX].contains(gBul[bul].code_bullet)){
-				if (static_iframes[bos + NPC_MAX][gBul[bul].code_bullet] != 0)
-					continue;
-			}
-
-			if (gBul[bul].local_iframes > 0 && local_iframes[bos + NPC_MAX].contains(bul)){
-				if (local_iframes[bos + NPC_MAX][bul] != 0)
-					continue;
-			}
-
-			if (gBoss[bos].shock > 0 && ((gBul[bul].code_bullet > 27 && gBul[bul].code_bullet < 31) ||
-				 (gBul[bul].code_bullet == 57) || (gBul[bul].code_bullet == 69) || (GetNPCFlag(Flags::HIGH_OCTANE_TANK) && gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && CountBulletNum(16)) || (gBul[bul].code_bullet == 4 && gBul[bul].life > 0)))
+			if (!IsAbleToDamage({gBoss[bos_], NPC_MAX + bos_}, {gBul[bul], bul}))
 				continue;
 
-			if (gBul[bul].damage == -1)
+			if (!bossCanBulletDmgFuncs[gBoss[bos_].code_char]({gBoss[bos_], NPC_MAX + bos_}, {gBul[bul], bul}))
 				continue;
-
-			if (gBul[bul].code_bullet == 4 && gBoss[gBoss[bos].cond & 0x10 ? 0 : bos].targetingEffect > 0)
-				continue;
-
-			if (gBoss[bos].code_char == 1 && gBoss[0].life > Omega_HealthValue() * 0.75f && gBul[bul].code_bullet != 77)
-				continue;
-
-			if (gBoss[bos].code_char == 1 && gBoss[0].life < Omega_HealthValue() * 0.75f && gBul[bul].code_bullet == 77)
-				continue;
-
-			if (gBul[bul].code_bullet == 77 && gBoss[bos].code_char == 48)
-				continue;
-
-			if (gBoss[bos].shock > 0 && gBoss[bos].code_event == 30)
-				continue;
-
-			if (gBoss[bos].code_char == 126 && gBul[bul].code_bullet == 46)
-				continue;
-
-			if (gBoss[bos].code_char == 100 && !(gBul[bul].code_bullet == 64 || gBul[bul].code_bullet == 65 || gBul[bul].code_bullet == 34 || gBul[bul].code_bullet == 35 ||
-	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (gBul[bul].code_bullet == 37 || gBul[bul].code_bullet == 38 || gBul[bul].code_bullet == 39))))
-	 			continue;
 
 			// Check if bullet touches boss
 			bHit = false;
@@ -185,18 +163,10 @@ void HitBossBullet(void)
 				// Damage boss
 				if (gBoss[bos].bits & NPC_SHOOTABLE)
 				{
-					if (gBoss[bos].cond & 0x10)
-						bos_ = 0;
-					else
-						bos_ = bos;
-
 					int dmg = gBul[bul].damage;
 					if (gBoss[bos_].code_char == 30) dmg = 0;
 					if (gMC.equip & EQUIP_NIKUMARU_COUNTER && Random(1, 3) == 1 && gBoss[bos_].damage > 0){
-						if (gBoss[bos_].code_char == 263 || gBoss[bos_].code_char == 267){
-							gBoss[bos_].freeze += gBul[bul].damage*12;
-						} else
-							gBoss[bos_].freeze += gBul[bul].damage*30;
+						gBoss[bos_].freeze += gBul[bul].damage*30;
 						if (gBoss[bos_].freeze > 100){
 							gBoss[bos_].freeze = 100;
 						}
@@ -232,7 +202,7 @@ void HitBossBullet(void)
 					}
 
 					gBoss[bos_].life -= dmg;
-					if (gBul[bul].code_bullet > 6 && gBul[bul].code_bullet < 10 && !CountBulletNum(Bullets::EXPLOSION) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
+					if (((gBul[bul].code_bullet >= Bullets::FIREBALL_LVL_1 && gBul[bul].code_bullet <= Bullets::FIREBALL_LVL_3 || gBul[bul].code_bullet == Bullets::FIREBALL_LVL_4)) && !CountBulletNum(Bullets::EXPLOSION) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
 						SetBullet(Bullets::EXPLOSION, gBul[bul].x, gBul[bul].y, 0);
 					}
 
@@ -252,18 +222,16 @@ void HitBossBullet(void)
 						}
 					}
 
-					if (/* GetNPCFlag(Flags::WHIMSICAL_STAR) */true){
-						for (int b1 = 0; b1 < BULLET_MAX; b1++){
-							if (gBul[b1].code_bullet == 57 && gBul[b1].npc == NULL){
-								gBul[b1].npc = &gBoss[bos_];
-								break;
-							}
+					for (int b1 = 0; b1 < BULLET_MAX; b1++){
+						if (gBul[b1].code_bullet == Bullets::WHIMSICAL_STAR && gBul[b1].npc == NULL){
+							gBul[b1].npc = &gBoss[bos_];
+							break;
 						}
 					}
 
 					if (gBoss[bos_].life < 1 || ChallengeEnabled("debug"))
 					{
-						gBoss[bos_].life = bos_;
+						gBoss[bos_].life = 0;
 
 						if (gMC.cond & 0x80 && gBoss[bos_].bits & NPC_EVENT_WHEN_KILLED)
 						{
@@ -321,12 +289,7 @@ void HitBossBullet(void)
 					if (gBul[bul].life < 1)
 						gBul[bul].cond = 0;
 				}
-				else if (gBul[bul].code_bullet == 13
-					|| gBul[bul].code_bullet == 14
-					|| gBul[bul].code_bullet == 15
-					|| gBul[bul].code_bullet == 28
-					|| gBul[bul].code_bullet == 29
-					|| gBul[bul].code_bullet == 30)
+				else if (gBul[bul].code_bullet == Bullets::MOVING_MISSILE)
 				{
 					--gBul[bul].life;
 				}
