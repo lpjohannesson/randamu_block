@@ -33,6 +33,7 @@
 NPCHAR gBoss[BOSS_MAX];
 
 std::map<int, std::function<bool(std::pair<NPCHAR&, int>, std::pair<BULLET&, int>)>> bossCanBulletDmgFuncs = {
+	{0, [](std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul){return false;}},
 	{1, Omega_IsAbleToDamage}
 };
 
