@@ -676,6 +676,8 @@ bool IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul){
 		if (npc.first.code_char == 100 && !IsBreakingBullet(bul.first))
 			return false;
 	}
+
+	return true;
 }
 
 bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)

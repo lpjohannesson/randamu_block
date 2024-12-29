@@ -135,6 +135,8 @@ bool Omega_IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> b
 
 	if (npc.first.life < Omega_HealthValue() * 0.75f && bul.first.code_bullet == Bullets::OMEGA_SELFHURT)
 		return false;
+
+	return true;
 }
 
 void ActBossChar_Omega(void)
