@@ -30,9 +30,6 @@
 
 NPCHAR gBoss[BOSS_MAX];
 
-std::map<int, std::map<int, int>> boss_static_iframes;
-std::map<int, std::map<int, int>> boss_local_iframes;
-
 void InitBossChar(int code)
 {
 	memset(gBoss, 0, sizeof(gBoss));
@@ -40,16 +37,9 @@ void InitBossChar(int code)
 	gBoss[0].code_char = code;
 
 	for (int i = 0; i < BOSS_MAX; i++){
-		boss_static_iframes[i] = {};
-		boss_local_iframes[i] = {};
-	}
-	
-	for (auto storage : boss_static_iframes){
-		storage.second.clear();
-	}
-
-	for (auto storage : boss_local_iframes){
-		storage.second.clear();
+		static_iframes[i + NPC_MAX].clear();
+		local_iframes[i + NPC_MAX].clear();
+		gBoss[i].isBoss = true;
 	}
 }
 
@@ -136,13 +126,13 @@ void HitBossBullet(void)
 			if (!(gBul[bul].cond & 0x80))
 				continue;
 
-			if (gBul[bul].iframes > 0 && boss_static_iframes[bos].contains(gBul[bul].code_bullet)){
-				if (boss_static_iframes[bos][gBul[bul].code_bullet] != 0)
+			if (gBul[bul].iframes > 0 && static_iframes[bos + NPC_MAX].contains(gBul[bul].code_bullet)){
+				if (static_iframes[bos + NPC_MAX][gBul[bul].code_bullet] != 0)
 					continue;
 			}
 
-			if (gBul[bul].local_iframes > 0 && boss_local_iframes[bos].contains(bul)){
-				if (local_iframes[bos][bul] != 0)
+			if (gBul[bul].local_iframes > 0 && local_iframes[bos + NPC_MAX].contains(bul)){
+				if (local_iframes[bos + NPC_MAX][bul] != 0)
 					continue;
 			}
 
@@ -302,9 +292,9 @@ void HitBossBullet(void)
 					else
 					{
 						if (gBul[bul].iframes > 0)
-							boss_static_iframes[bos][gBul[bul].code_bullet] = gBul[bul].iframes;
+							static_iframes[bos + NPC_MAX][gBul[bul].code_bullet] = gBul[bul].iframes;
 						if (gBul[bul].local_iframes > 0)
-							boss_static_iframes[bos][bul] = gBul[bul].local_iframes;
+							static_iframes[bos + NPC_MAX][bul] = gBul[bul].local_iframes;
 						if (gBoss[bos].shock < 14)
 						{
 							SetCaret(gBul[bul].x, gBul[bul].y, 11, 0);
@@ -390,21 +380,6 @@ void ActBossChar(void)
 		for (bos = 0; bos < BOSS_MAX; ++bos)
 			if (gBoss[bos].shock)
 				--gBoss[bos].shock;
-
-		for (auto& npc: boss_static_iframes){
-			for (auto& iframes: npc.second){
-				if (iframes.second > 0){
-					iframes.second--;
-				}
-			}
-		}
-		for (auto& npc: boss_local_iframes){
-			for (auto& iframes: npc.second){
-				if (iframes.second > 0){
-					iframes.second--;
-				}
-			}
-		}
 	}
 }
 
