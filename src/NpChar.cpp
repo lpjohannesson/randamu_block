@@ -529,6 +529,9 @@ Rect targeting_visual_rect[2] = {
 		{104, 120, 128, 144},
 };
 
+float glowing = 0.0f;
+bool glowUp = true;
+
 void PutNpChar(int fx, int fy)
 {
 	int n;
@@ -628,6 +631,32 @@ void PutNpChar_Above(int fx, int fy)
 				side = gNPC[n].view.front;
 			else
 				side = gNPC[n].view.back;
+
+			if (gNPC[n].code_char == 37){
+				if (glowUp){
+					glowing += 1.33f / 60.0f;
+					if (glowing >= 1.25f){
+						glowUp = false;
+					}
+				} else {
+					glowing -= 1.33f / 60.0f;
+					if (glowing <= 0.0f){
+						glowUp = true;
+					}
+				}
+				Rect glowy = {112, 272, 160, 320};
+				int glowyWidth = (glowy.right - glowy.left)*1_pix;
+				int glowyHeight = (glowy.bottom - glowy.top)*1_pix;
+				if (glowing > 0.0f){
+					PutBitmap3(
+						&grcGame,
+						SubpixelToScreenCoord(gNPC[n].x - glowyWidth / 2) - SubpixelToScreenCoord(fx) + PixelToScreenCoord(a),
+						SubpixelToScreenCoord(gNPC[n].y - glowyHeight / 2) - SubpixelToScreenCoord(fy),
+						&glowy,
+						(SurfaceID)gNPC[n].surf,
+						std::min(1.0f, glowing));
+				}
+			}
 
 			PutBitmap3(
 				&grcGame,
