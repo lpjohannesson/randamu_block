@@ -510,7 +510,8 @@
 		
 	},
 	"tutorial_sign": {
-		"spawn_distance": 6
+		"spawn_distance": 6,
+		"cutoff": 7
 	},
 	"stars": {
 		"star_count": 20,

@@ -2767,7 +2767,7 @@ void CreateDecos(GenerationContext& genContext, GenerationArguments& genArgument
 }
 
 void CreateTutorialSign(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (gMC.depth < genContext.doctorStage - 1)
+	if (gMC.depth < std::get<int>(genArguments["cutoff"]))
 	{
 		int x1, y1;
 		do

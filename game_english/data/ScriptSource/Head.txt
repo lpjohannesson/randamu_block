@@ -94,24 +94,24 @@ of that.<NOD<END
 <PRI<MSG<TUR<FAC0001You can place and destroy
 blocks with Polar Star and
 Nemesis.<NOD<CLR<FAC0003Collect 10 stars to open
-the door to next stage.<NOD<END
+the door to next stage.
+Look them on your map system.<NOD<END
 
 #0072
-<PRI<MSG<TUR<FAC0002Each level has chests
-and life upgrades to pick
-up.<NOD<CLRThere is always 2 chests
-and 2-4 life capsules on each
-stage.<NOD<CLR<FAC0004Other interactable
-objects exist such as full
-heals and save points.<NOD<END
+<PRI<MSG<TUR<FAC0005The world around you
+reacts to blocks broken and
+placed.<NOD<CLRTraps and enemies can
+be blocked by walls, and water
+will flow into available space.<NOD<END
 
 #0073
-<PRI<MSG<TUR<FAC0005Many objects are affected
-by gravity, including traps.<NOD<CLRBreak and place
-blocks to dodge and negate presses
-and spikes.<NOD<CLR<FAC0006Water tends to spill
-out when there is a place
-to flow, be careful!<NOD<END
+<PRI<MSG<TUR<FAC0006Several new movement
+options are helpful for the
+adventure.<NOD<CLRDashing (on Left Shift)
+will make your character rush
+forward, with a cooldown.<NOD<CLR<FAC0011Looking up will charge
+a stronger jump, that is
+usually twice as high.<NOD<END
 
 #0074
 <PRI<MSG<TUR<FAC0007Every 4 stages you 
@@ -122,12 +122,15 @@ level you can encounter
 terminals to craft new items.<NOD<END
 
 #0075
-<PRI<MSG<TUR<FAC0009Certain locations
-have various kinds of
-harmful liquid.<NOD<CLRLava deals damage
-like enemies, while acidic water
-slowly chips you away.<NOD<CLRThis can be countered 
-by using certain items.<NOD<END
+<PRI<MSG<TUR<FAC0002Each level has chests
+and life upgrades to pick
+up.<NOD<CLRThere is always 2 chests
+and 2-4 life capsules on each
+stage.<NOD<CLR<FAC0004Other interactable
+objects exist such as full
+heals and save points.<NOD<CLRAll of them have
+unique colors on Map
+System.<NOD<END
 
 #0076
 <PRI<MSG<TUR<FAC0010Sometimes, you will have
@@ -140,44 +143,35 @@ will put them as items.<NOD<CLRPressing Z will put them
 back and pressing Dash will
 switch them around.<NOD<END
 
-#0077
-<PRI<MSG<TUR<FAC0011Quote is not alone on
-this adventure.<NOD<CLRYou can select other
-characters in Configuration.<NOD<END
-
-#0078
-<PRI<MSG<TUR<FAC0012As dungeon progresses,
-only strongest enemies will
-remain.<NOD<CLROn depth 10, you
-will meet something way stronger
-than level bosses.<NOD<END
-
 #0080
 <PRI<MSG<CMU0051<TUR<DRK<FAC0001You can place and destroy
 blocks with Polar Star and
 Nemesis.<NOD<CLR<FAC0003Collect 10 stars to open
-the door to next stage.<NOD<CLR<FAC0002Each level has chests
+the door to next stage.
+Look them on your map system.<NOD<CLR<FAC0005The world around you
+reacts to blocks broken and
+placed.<NOD<CLRTraps and enemies can
+be blocked by walls, and water
+will flow into available space.<NOD<CLR<FAC0006Several new movement
+options are helpful for the
+adventure.<NOD<CLRDashing (on Left Shift)
+will make your character rush
+forward, with a cooldown.<NOD<CLR<FAC0011Looking up will charge
+a stronger jump, that is
+usually twice as high.<NOD<CLR<FAC0007Every 4 stages you 
+will encounter a level boss,
+which blocks the door.<NOD<CLRDefeat it to
+progress.<NOD<CLR<FAC0008After each boss
+level you can encounter
+terminals to craft new items.<NOD<CLR<FAC0002Each level has chests
 and life upgrades to pick
 up.<NOD<CLRThere is always 2 chests
 and 2-4 life capsules on each
 stage.<NOD<CLR<FAC0004Other interactable
 objects exist such as full
-heals and save points.<NOD<CLR<FAC0005Many objects are affected
-by gravity, including traps.<NOD<CLRBreak and place
-blocks to dodge and negate presses
-and spikes.<NOD<CLR<FAC0006Water tends to spill
-out when there is a place
-to flow, be careful!<NOD<CLR<FAC0007Every 4 stages you 
-will encounter a level boss,
-which blocks the door.<NOD<CLRDefeat it to
-progress.<NOD<CLR<FAC0008After each boss
-level you can encounter
-terminals to craft new items.<NOD<CLR<FAC0009Certain locations
-have various kinds of
-harmful liquid.<NOD<CLRLava deals damage
-like enemies, while acidic water
-slowly chips you away.<NOD<CLRThis can be countered 
-by using certain items.<NOD<CLR<FAC0010Sometimes, you will have
+heals and save points.<NOD<CLRAll of them have
+unique colors on Map
+System.<NOD<CLR<FAC0010Sometimes, you will have
 less inventory space than
 desired.<NOD<CLRYou can press Ability key
 on items in inventory
@@ -185,13 +179,7 @@ to get rid of them.<NOD<CLRPressing Ability
 on weapons in inventory
 will put them as items.<NOD<CLRPressing Z will put them
 back and pressing Dash will
-switch them around.<NOD<CLR<FAC0011Quote is not alone on
-this adventure.<NOD<CLRYou can select other
-characters in Configuration.<NOD<CLR<FAC0012As dungeon progresses,
-only strongest enemies will
-remain.<NOD<CLROn depth 10, you
-will meet something way stronger
-than level bosses.<NOD<RMU<END
+switch them around.<NOD<RMU<END
 
 
 XX: head.tsc   4000 - 4099
