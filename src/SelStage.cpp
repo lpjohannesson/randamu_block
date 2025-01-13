@@ -159,10 +159,7 @@ void PutStageSelectObject(void)
 
 	if (stage_num != 0)
 	{
-		if (stage_num % STAGE_PER_LINE != 0)
-			stage_x = (WINDOW_WIDTH - ((stage_num % STAGE_PER_LINE) * 40) - 120) / 2;
-		else
-			stage_x = (WINDOW_WIDTH - (stage_num * 40)) / 2;
+		stage_x = WINDOW_WIDTH / 2 - ((std::min(stage_num, STAGE_PER_LINE)) * 40) / 2;
 
 		PutBitmap3(&rcView, PixelToScreenCoord(stage_x + ((gSelectedStage % STAGE_PER_LINE) * 40)), 
 			PixelToScreenCoord((WINDOW_HEIGHT / 2) - 56 + 18 * (gSelectedStage / STAGE_PER_LINE)), &rcCur[flash / 2 % 2], SURFACE_ID_TEXT_BOX);
