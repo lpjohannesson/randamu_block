@@ -2042,7 +2042,44 @@ void CreateSkyBorders(GenerationContext& genContext, GenerationArguments& genArg
 	}
 }
 
+int fluidcounting(std::vector<int>& visited, int x, int y)
+{
+	int count = 0;
+	if(InsideMap(x, y) && GetAttribute(x, y) != 0x41 && visited[x + (y * gMap.width)] == 0)
+    {
+		visited[x + (y * gMap.width)] = 1;
+        count += 1;
+        count += fluidcounting(visited, x+1, y);
+        count += fluidcounting(visited, x-1, y);
+		count += fluidcounting(visited, x, y-1);
+		count += fluidcounting(visited, x, y+1);
+    }
+	return count;
+}
+
+void fluidfilling(int x, int y)
+{
+	if(InsideMap(x, y) && GetAttribute(x, y) != 0x41)
+    {
+		std::array<std::array<int, 2>, 2> possibleTiles = {{{32, 33}, {48, 49}}};
+		int tile = possibleTiles[y % 2][x % 2];
+		gMap.data[x + (y * gMap.width)] = tile;
+        fluidfilling(x+1, y);
+        fluidfilling(x-1, y);
+		fluidfilling(x, y-1);
+		fluidfilling(x, y+1);
+    }
+}
+
 void PolishStage(GenerationContext& genContext, GenerationArguments& genArguments){
+	std::vector<int> visited(gMap.width*gMap.length);
+	for (int t = 0; t < gMap.width * gMap.length; t++){
+		int count = fluidcounting(visited, XCoord(t), YCoord(t));
+		if (count > 0 && count <= std::get<int>(genArguments["too_small_threshold"])){
+			fluidfilling(XCoord(t), YCoord(t));
+		}
+	}
+
 	int width = gMap.width;
 	const int NEIGHBOURS8[] = {-width - 1, -width, -width + 1, -1, +1, +width - 1, +width, +width + 1};
 	for (int t = 0; t < gMap.width * gMap.length; t++)
