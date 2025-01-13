@@ -204,17 +204,6 @@ bool AddArmsData(long code, long max_num, long exp, long num, long level)
 
 bool SubArmsData(long code)
 {
-	for (auto weapon: miracleWeaponryList){
-		auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
-		if (weapon == code && CheckPermitStage(36+it)){
-			SubPermitStage(it+36);
-			if (gMC.miracle > 0){
-				PlaySoundObject(72);
-				PlaySoundObject(101);
-			}
-		}
-	}
-
 	// Search for code
 	int i;
 	for (i = 0; i < ARMS_MAX; ++i)
@@ -235,6 +224,17 @@ bool SubArmsData(long code)
 	// Clear farthest weapon and select first
 	gArmsData[i - 1].code = 0;
 	gSelectedArms = 0;
+
+	for (auto weapon: miracleWeaponryList){
+		auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
+		if (weapon == code && CheckPermitStage(36+it)){
+			SubPermitStage(it+36);
+			if (gMC.miracle > 0){
+				PlaySoundObject(72);
+				PlaySoundObject(101);
+			}
+		}
+	}
 
 	return true;
 }
@@ -348,30 +348,6 @@ bool CheckItemSpace()
 
 bool SubItemData(long code)
 {
-	if (code > 100){
-		for (auto weapon: miracleWeaponryList){
-			auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
-			if (weapon == code - 100 && CheckPermitStage(36+it)){
-				SubPermitStage(it+36);
-				if (gMC.miracle > 0){
-					PlaySoundObject(72);
-					PlaySoundObject(101);
-				}
-			}
-		}
-	}
-
-	for (auto miracle : miracleList){
-		auto it = std::distance(miracleList.begin(), std::find(miracleList.begin(), miracleList.end(), miracle));
-		if ((!CheckItem(miracle.first) || !CheckItem(miracle.second)) && CheckPermitStage(it+1)){
-			SubPermitStage(it+1);
-			if (gMC.miracle > 0){
-				PlaySoundObject(72);
-				PlaySoundObject(101);
-			}
-		}
-	}
-
 	// Search for code
 	int i;
 	for (i = 0; i < ITEM_MAX; ++i)
@@ -394,6 +370,30 @@ bool SubItemData(long code)
 		case 45: gMC.equip &= ~EQUIP_MORE_AMMO; break;
 		case 20: gMC.equip &= ~EQUIP_TURBOCHARGE; break;
 		case 14: CutNPCFlag(Flags::ENERGY_CRYSTAL); gMC.equip &= ~EQUIP_TURBOCHARGE; gMC.equip &= ~EQUIP_MORE_AMMO; break;
+	}
+
+	if (code > 100){
+		for (auto weapon: miracleWeaponryList){
+			auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
+			if (weapon == code - 100){
+				SubPermitStage(it+36);
+				if (gMC.miracle > 0){
+					PlaySoundObject(72);
+					PlaySoundObject(101);
+				}
+			}
+		}
+	}
+
+	for (auto miracle : miracleList){
+		auto it = std::distance(miracleList.begin(), std::find(miracleList.begin(), miracleList.end(), miracle));
+		if (!(CheckItem(miracle.first) && CheckItem(miracle.second))){
+			SubPermitStage(it+1);
+			if (gMC.miracle > 0){
+				PlaySoundObject(72);
+				PlaySoundObject(101);
+			}
+		}
 	}
 
 	return true;
