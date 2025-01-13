@@ -1047,13 +1047,8 @@ void ActBullet_Missile(BULLET *bul)
 		bul->y += bul->ym;
 
 		gMC.unit = 2;
-		if ((GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gKey & gKeyJump){
-			gMC.x = bul->x;
-			gMC.y = bul->y;
-		} else {
-			gMC.x += bul->xm;
-			gMC.y += bul->ym;
-		}
+		gMC.x = bul->x;
+		gMC.y = bul->y;
 		gMC.direct = bul->direct;
 
 		// Camera
