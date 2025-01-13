@@ -1648,7 +1648,7 @@ void ShootBullet_FrontieBuster(int level)
 	{
 		case 1:
 			bul_no = Bullets::FRONTIER_BUSTER_LVL_1;
-			if (Random(0, 8) == 0)
+			if (Random(0, 6) == 0)
 				bul_no = Bullets::FRONTIER_BUSTER_LVL_1_HOMING;
 			break;
 
@@ -1658,7 +1658,7 @@ void ShootBullet_FrontieBuster(int level)
 
 		case 3:
 			bul_no = Bullets::FRONTIER_BUSTER_LVL_3;
-			if (Random(0, 30) == 0)
+			if (Random(0, 25) == 0)
 				bul_no = Bullets::FRONTIER_BUSTER_LVL_2;
 			break;
 
@@ -1681,10 +1681,10 @@ void ShootBullet_FrontieBuster(int level)
 	int cooldown;
 	switch (level){
 		case 1:
-			cooldown = 7;
+			cooldown = 6;
 			break;
 		case 2:
-			cooldown = 35;
+			cooldown = 25;
 			break;
 		case 3:
 			cooldown = 3;

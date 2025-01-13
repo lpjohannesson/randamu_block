@@ -725,7 +725,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			case 0: case 2: speed = std::abs(bul->xm); break;
 			case 1: case 3: speed = std::abs(bul->ym); break;
 		}
-		dmg += std::round(speed / 512.0f * 3.5f);
+		dmg += std::round(speed / 512.0f * 5.0f);
 	}
 
 	if (CheckForCooldown(gCooldowns, NANITES_TIME_ID) != -1){

@@ -278,7 +278,7 @@ void ActBullet_HomingFrontierBuster2(BULLET *bul)
 
 void RegisterFrontierBuster(){
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_1, {
-        {2, 1, 100, 32, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+        {4, 1, 100, 32, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
         [](BULLET* bul){ ActBullet_FrontierBuster1(bul, 1); }
     }});
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_2, {
@@ -286,16 +286,16 @@ void RegisterFrontierBuster(){
         ActBullet_FrontierBuster2
     }});
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_3, {
-        {1, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+        {2, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
         [](BULLET* bul){ ActBullet_FrontierBuster1(bul, 3); }
     }});
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_4, {
-        {1, 15, 40, 32, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1},
+        {2, 15, 40, 32, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1},
         ActBullet_HomingFrontierBuster2
     }});
 
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_1_HOMING, {
-        {7, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1},
+        {10, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1},
         ActBullet_HomingFrontierBuster
     }});
 }
