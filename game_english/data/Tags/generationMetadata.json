@@ -275,7 +275,8 @@
 		"closed_gimmick_boost": 0.66
 	},
 	"polishing": {
-		"too_small_threshold": 12
+		"too_small_space_threshold": 12,
+		"too_small_solid_threshold": 0
 	},
 	"spikes": {
 	    "min": 50,
