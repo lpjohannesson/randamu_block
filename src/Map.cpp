@@ -303,7 +303,7 @@ void ShiftMapParts(int x, int y)
 
 bool ChangeMap(int x, int y, unsigned char no)
 {
-    if (x < gMap.width-1 && y < gMap.length-1 && x > 1 && y > 1)
+    if (InsideMap(x, y))
         gMap.data[x + (y * gMap.width)] = no;
 
 	return true;
@@ -327,7 +327,7 @@ bool EditMapS(int t, unsigned char no)
 
 bool ChangeMapS(int x, int y, unsigned char no)
 {
-    if (x < gMap.width-1 && y < gMap.length-1 && x > 1 && y > 1){
+    if (InsideMap(x, y)){
         gMap.data[x + (y * gMap.width)] = no;
 		// gMC.mapMods[x + (y * gMap.width)] = no;
 		mapModifications.insert_or_assign({x, y}, no);
@@ -338,7 +338,7 @@ bool ChangeMapS(int x, int y, unsigned char no)
 
 bool ReplaceMap(int x, int y, unsigned char old_no, unsigned char new_no)
 {
-    if (x < gMap.width-1 && y < gMap.length-1 && x > 1 && y > 1){
+    if (InsideMap(x, y)){
 		if (gMap.data[x + (y * gMap.width)] == old_no)
 			gMap.data[x + (y * gMap.width)] = new_no;
 	}
@@ -348,7 +348,7 @@ bool ReplaceMap(int x, int y, unsigned char old_no, unsigned char new_no)
 
 bool ReplaceMapS(int x, int y, unsigned char old_no, unsigned char new_no)
 {
-    if (x < gMap.width-1 && y < gMap.length-1 && x > 0 && y > 0){
+    if (InsideMap(x, y)){
 		if (gMap.data[x + (y * gMap.width)] == old_no){
 			gMap.data[x + (y * gMap.width)] = new_no;
 			// gMC.mapMods[x + (y * gMap.width)] = new_no;
