@@ -118,6 +118,9 @@ struct GenerationContext {
 	Rect bossRect;
 	int bossRate;
 	int doctorStage;
+	struct {
+		int x; int y;
+	} initialPlayerPos;
 };
 
 extern std::map<std::string, GenerationFunction> generationStepDefintions;

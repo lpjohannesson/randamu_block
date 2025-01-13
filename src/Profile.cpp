@@ -147,13 +147,6 @@ bool SaveProfile(const char *name)
 		saveMapMods[coords_key] = tile;
 	}
 	profileJson[PROFILE_MAP_MODS] = saveMapMods;
-	// std::stringstream mapModsSerial;
-	// for (int i = 0; i < gMap.width*gMap.length; i++){
-	// 	unsigned char tile = gMC.mapMods[i];
-	// 	if (tile == 0xFF) tile = '_'; //95
-	// 	mapModsSerial << tile;
-	// }
-	// profileJson[PROFILE_MAP_MODS] = mapModsSerial.str();
 	profileJson[PROFILE_GEN_CHESTS] = gMC.generatedChests;
 	profileJson[PROFILE_AVAILABLE_IDS] = gAvailableIDs;
 	SaveRNG(profileJson);
@@ -225,12 +218,10 @@ bool LoadProfile(const char *name)
 			mapModifications.insert_or_assign(coords, tile);
 		}
 	} else if (version == 2){
-		// memset(gMC.mapMods, 0xFF, sizeof(gMC.mapMods));
 		auto str = profileJson[PROFILE_MAP_MODS].get<std::string>();
 		for (int i = 0; i < 13924; i++){
 			char tile = str[i];
 			if (tile == '_') tile = 0xFF;
-			// gMC.mapMods[i] = tile;
 			mapModifications.insert_or_assign({i % 118, i / 118}, tile);
 		}
 	}
@@ -240,7 +231,9 @@ bool LoadProfile(const char *name)
 	gMC.seed = profileJson[PROFILE_SEED].get<int>();
 	gMC.randomSeed = false;
 	LoadRNG(profileJson);
-	if (!TransferStage(profileJson[PROFILE_STAGE].get<int>(), 0, 0, 1))
+	gMC.x = profileJson[PROFILE_X].get<int>();
+	gMC.y = profileJson[PROFILE_Y].get<int>();
+	if (!TransferStage(profileJson[PROFILE_STAGE].get<int>(), 0, gMC.x / 16_pix, gMC.y / 16_pix))
 		return false;
 
 	// Set character properties
@@ -253,8 +246,6 @@ bool LoadProfile(const char *name)
 	gMC.cond = 0x80;
 	gMC.air = 1000;
 	gMC.lifeBr = profileJson[PROFILE_HP].get<int>();
-	gMC.x = profileJson[PROFILE_X].get<int>();
-	gMC.y = profileJson[PROFILE_Y].get<int>();
 	gMC.a = profileJson[PROFILE_A].get<short>();
 	gMC.score = profileJson[PROFILE_SCORE].get<int>();
 

@@ -2484,13 +2484,13 @@ void CreateSpaceCells(GenerationContext& genContext, GenerationArguments& genArg
 void SpawnPlayer(GenerationContext& genContext, GenerationArguments& genArguments){
 	do
 	{
-		gMC.x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
-		gMC.y = Random(0, gMap.length / (genContext.tileset == GetTileset(std::get<std::string>(genArguments["rising_water_tileset"])) ? std::get<int>(genArguments["rising_water_ratio"]) : 1), RandomCategories::SEEDED_PRIMARY);
-	} while (!HasSurface(gMC.x, gMC.y));
-	gMC.x *= 0x2000;
-	gMC.y *= 0x2000;
+		genContext.initialPlayerPos.x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
+		genContext.initialPlayerPos.y = Random(0, gMap.length / (genContext.tileset == GetTileset(std::get<std::string>(genArguments["rising_water_tileset"])) ? std::get<int>(genArguments["rising_water_ratio"]) : 1), RandomCategories::SEEDED_PRIMARY);
+	} while (!HasSurface(genContext.initialPlayerPos.x, genContext.initialPlayerPos.y));
+	genContext.initialPlayerPos.x *= 0x2000;
+	genContext.initialPlayerPos.y *= 0x2000;
 	if (genContext.newStage)
-		SetNpChar(18, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 22, 0x0000);
+		SetNpChar(18, genContext.initialPlayerPos.x, genContext.initialPlayerPos.y, 0, 0, 0, NULL, 0x100, 22, 0x0000);
 }
 
 void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArguments){
@@ -2532,7 +2532,7 @@ void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments
 			{
 				x = Random(3, gMap.width - w - 1, RandomCategories::SEEDED_NPCS);
 				y = Random(3, gMap.length - h - 1, RandomCategories::SEEDED_NPCS);
-			} while (Distance(gMC.x / 0x2000, gMC.y / 0x2000, x, y) < std::get<int>(genArguments["spawn_distance"]));
+			} while (Distance(genContext.initialPlayerPos.x / 0x2000, genContext.initialPlayerPos.y / 0x2000, x, y) < std::get<int>(genArguments["spawn_distance"]));
 			if (!ChallengeEnabled("no_breaking"))
 				PaintRectangle(41, x - 1, y - 1, w + 2, h + 2);
 			PaintRectangle(68, x, y, w, h);
@@ -2776,7 +2776,7 @@ void CreateTutorialSign(GenerationContext& genContext, GenerationArguments& genA
 			{
 				x1 = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 				y1 = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
-			} while (Distance(x1, y1, gMC.x / 0x2000, gMC.y / 0x2000) > std::get<int>(genArguments["spawn_distance"]));
+			} while (Distance(x1, y1, genContext.initialPlayerPos.x / 0x2000, genContext.initialPlayerPos.y / 0x2000) > std::get<int>(genArguments["spawn_distance"]));
 		} while (!(HasSurface(x1, y1) && (GetNpCharHere(x1, y1) != 17) && (GetNpCharHere(x1, y1) != 16)) || IntersectCheck(genContext.bossRect, x1, y1 + 1));
 		SetNpChar(37, x1 * 0x2000, y1 * 0x2000, 0, 0, 0, NULL, 0, 
 			genContext.legacyRNG ? 69 : 70 + gMC.depth, NPC_INTERACTABLE);
@@ -2859,8 +2859,8 @@ void HandleMiracles(GenerationContext& genContext, GenerationArguments& genArgum
 void HandleHell(GenerationContext& genContext, GenerationArguments& genArguments){
 	if (gMC.hell)
 	{
-		SetNpChar(17, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 17, 0x2000);
-		SetNpChar(292, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 17, 0x2000);
+		SetNpChar(17, genContext.initialPlayerPos.x, genContext.initialPlayerPos.y, 0, 0, 0, NULL, 0x100, 17, 0x2000);
+		SetNpChar(292, genContext.initialPlayerPos.x, genContext.initialPlayerPos.y, 0, 0, 0, NULL, 0x100, 17, 0x2000);
 	}
 }
 
@@ -3005,7 +3005,7 @@ void ProcessIndividualNPCSpawning(const std::string& name){
 						{
 							x = Random(0, gMap.width, RandomCategories::SEEDED_NPCS);
 							y = Random(0, gMap.length, RandomCategories::SEEDED_NPCS);
-						} while (Distance(x, y, gMC.x / 0x2000, gMC.y / 0x2000) < spawnInfo.distanceFromPlayer);
+						} while (Distance(x, y, genContext.initialPlayerPos.x / 0x2000, genContext.initialPlayerPos.y / 0x2000) < spawnInfo.distanceFromPlayer);
 					} while (!(CheckSpawnCondition(spawnInfo, x, y)) || IntersectCheck(genContext.bossRect, x, y));
 					int direction = ((!spawnInfo.wallDirection || GetTile(x + 1, y) == 1)) ? 0 : 2;
 					if (spawnInfo.bothCeilingAndSurface)
@@ -3182,6 +3182,8 @@ bool TransferStage(int no, int w, int x, int y)
 		} catch (std::bad_variant_access error){
 			WriteGameLog("At stage ", lastStage, " the exception with metadata happened: ", error.what());
 		}
+		if (genContext.newStage)
+			SetMyCharPosition(genContext.initialPlayerPos.x, genContext.initialPlayerPos.y);
 
 		SetFrameMyChar();
 		ClearBullet();
