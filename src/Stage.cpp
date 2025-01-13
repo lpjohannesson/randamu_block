@@ -2814,7 +2814,7 @@ void CreateTutorialSign(GenerationContext& genContext, GenerationArguments& genA
 				x1 = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 				y1 = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 			} while (Distance(x1, y1, genContext.initialPlayerPos.x / 0x2000, genContext.initialPlayerPos.y / 0x2000) > std::get<int>(genArguments["spawn_distance"]));
-		} while (!(HasSurface(x1, y1) && (GetNpCharHere(x1, y1) != 17) && (GetNpCharHere(x1, y1) != 16)) || IntersectCheck(genContext.bossRect, x1, y1 + 1));
+		} while (!(HasSurface(x1, y1) && (GetNpCharHere(x1, y1) != 17) && (GetNpCharHere(x1, y1) != 16) && (GetNpCharHere(x1, y1) != 32)) || IntersectCheck(genContext.bossRect, x1, y1 + 1));
 		SetNpChar(37, x1 * 0x2000, y1 * 0x2000, 0, 0, 0, NULL, 0, 
 			genContext.legacyRNG ? 69 : 70 + gMC.depth, NPC_INTERACTABLE);
 	}
