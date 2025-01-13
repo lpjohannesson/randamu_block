@@ -941,11 +941,7 @@ void ActBullet_Missile(BULLET *bul)
 	}
 
 	bul->life = 1000;
-	if (++bul->count1 % 3 == 0){
-		bul->damage = 1;
-	} else {
-		bul->damage = 0;
-	}
+	bul->iframes = 3;
 
 	switch (bul->act_no)
 	{
