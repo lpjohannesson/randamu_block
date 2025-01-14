@@ -1806,7 +1806,7 @@ void AirProcess(void)
 		{
 			int limit = 1000;
 			if (gMC.hell){
-				limit = 480;
+				limit = 160;
 			}
 			int airBoost = 25;
 			if (gMC.difficulty >= DIFFICULTY_RESONANT && !gMC.hell){
