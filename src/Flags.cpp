@@ -5,6 +5,7 @@
 #include <string_view>
 
 #include "Main.h"
+#include "MyChar.h"
 
 // Macros for setting, un-setting and getting flags
 // Each flag is stored in a bit, so we can use the exact same macros we'd use for bits
@@ -49,7 +50,10 @@ bool CheckFlagTrait(std::string_view trait)
 {
 	for (const auto &[flag, traits]: flagTraits){
 		if (std::find(traits.begin(), traits.end(), trait) != traits.end()){
-			if (GetNPCFlag(flag))
+			if (flag < 0){
+				if (gMC.equip & std::abs(flag))
+					return true;
+			} else if (GetNPCFlag(flag))
 				return true;
 		}
 	}
