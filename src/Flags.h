@@ -16,4 +16,6 @@ void SetSkipFlag(long a);
 void CutSkipFlag(long a);
 bool GetSkipFlag(long a);
 
+bool CheckFlagTrait(std::string_view trait);
+
 #endif // __FLAGS_H__

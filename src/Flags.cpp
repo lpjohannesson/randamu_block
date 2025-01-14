@@ -1,6 +1,10 @@
 #include "Flags.h"
 
+#include <algorithm>
 #include <cstring>
+#include <string_view>
+
+#include "Main.h"
 
 // Macros for setting, un-setting and getting flags
 // Each flag is stored in a bit, so we can use the exact same macros we'd use for bits
@@ -39,6 +43,17 @@ bool GetNPCFlag(long a)
 		return true;
 	else
 		return false;
+}
+
+bool CheckFlagTrait(std::string_view trait)
+{
+	for (const auto &[flag, traits]: flagTraits){
+		if (std::find(traits.begin(), traits.end(), trait) != traits.end()){
+			if (GetNPCFlag(flag))
+				return true;
+		}
+	}
+	return false;
 }
 
 // Skip flags

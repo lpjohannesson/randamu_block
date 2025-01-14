@@ -1,6 +1,7 @@
 #ifndef __COMMONDEFINES_H__
 #define __COMMONDEFINES_H__
 
+#include <string>
 
 #define WINDOW_WIDTH 426
 #define WINDOW_HEIGHT 240
@@ -150,6 +151,10 @@ namespace Flags {
 	inline constexpr int MINING_LASER_MODE_BEGIN  = 6900;
 	
 };
+
+namespace FlagTraits {
+	
+}
 
 namespace Bullets {
 	inline constexpr int NOTHING                      = 0;
