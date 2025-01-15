@@ -42,6 +42,17 @@ bool GetNPCFlagRank(int a)
 	return std::find(flagStorage.begin(), flagStorage.end(), a) != flagStorage.end();
 }
 
+bool CheckFlagTraitRank(std::string_view trait)
+{
+	for (const auto &[flag, traits]: flagTraits){
+		if (std::find(traits.begin(), traits.end(), trait) != traits.end()){
+			if (GetNPCFlagRank(flag))
+				return true;
+		}
+	}
+	return false;
+}
+
 void PutActiveArmRank(void)
 {
 	int x;
