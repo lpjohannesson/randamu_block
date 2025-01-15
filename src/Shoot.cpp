@@ -39,7 +39,7 @@ void ShootBullet_Frontia1(int level)
 {
 	int bul_no;
 
-	bool isEmpowered = gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::FLAMING_BOOSTER);
+	bool isEmpowered = CheckFlagTrait(FlagTraits::SNAKE_EMPOWER);
 
 	switch (level)
 	{
@@ -730,7 +730,7 @@ void ShootBullet_FireBall(int level)
 	{
 		case 1:
 			limit = 2 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
-			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
+			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
 
@@ -739,7 +739,7 @@ void ShootBullet_FireBall(int level)
 
 		case 2:
 			limit = 3 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
-			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
+			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
 
@@ -748,7 +748,7 @@ void ShootBullet_FireBall(int level)
 
 		case 3:
 			limit = 5 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
-			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
+			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
 
@@ -757,7 +757,7 @@ void ShootBullet_FireBall(int level)
 		
 		case 4:
 			limit = 2 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
-			if (GetNPCFlag(Flags::MAXY_CHARACTER)) limit *= 1.5;
+			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)) limit *= 1.5;
 			if (CountBulletNum(Bullets::FIREBALL_LVL_4) > limit)
 				return;
 
@@ -841,23 +841,23 @@ void ShootBullet_Hook(int level)
 	}
 
 	if (level == 4){
-		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_4) > 1))
+		if ((CheckFlagTrait(FlagTraits::HOOK_FLAIL) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_4) > 1))
 			return;
-		else if (!GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_4) > 0)
+		else if (!CheckFlagTrait(FlagTraits::HOOK_FLAIL) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_4) > 0)
 			return;
 	} else {
-		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_1 + (level-1)) > 1))
+		if ((CheckFlagTrait(FlagTraits::HOOK_FLAIL) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_1 + (level-1)) > 1))
 			return;
-		else if (!GetNPCFlag(Flags::BRACKET_CHARACTER) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_1 + (level-1)) > 0)
+		else if (!CheckFlagTrait(FlagTraits::HOOK_FLAIL) && CountBulletNum(Bullets::ENERGY_FLAIL_LVL_1 + (level-1)) > 0)
 			return;
 	}
 
 	if (!(gKey & gKeyShot))
 		gMC.rensha = 0;
 
-	if ((GetNPCFlag(Flags::BRACKET_CHARACTER) && gKeyTrg & gKeyShot) || (!GetNPCFlag(Flags::BRACKET_CHARACTER) && gKey & gKeyShot))
+	if ((CheckFlagTrait(FlagTraits::HOOK_FLAIL) && gKeyTrg & gKeyShot) || (!CheckFlagTrait(FlagTraits::HOOK_FLAIL) && gKey & gKeyShot))
 	{
-		if (!GetNPCFlag(Flags::BRACKET_CHARACTER))
+		if (!CheckFlagTrait(FlagTraits::HOOK_FLAIL))
 			if (++gMC.rensha < 3)
 				return;
 
@@ -977,8 +977,8 @@ void ShootBullet_Machinegun1(int level)
 
 		if (gMC.up)
 		{
-			if (level >= 3 || (GetNPCFlag(Flags::CURLY_CHARACTER))){
-				if (GetNPCFlag(Flags::CURLY_CHARACTER)){
+			if (level >= 3 || (CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN))){
+				if (CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN)){
 					switch (level){
 						case 1:
 							gMC.ym += 0x60; break;
@@ -1007,11 +1007,11 @@ void ShootBullet_Machinegun1(int level)
 		}
 		else if (gMC.down)
 		{
-			if (level >= 3 || (GetNPCFlag(Flags::CURLY_CHARACTER)))
+			if (level >= 3 || CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN))
 			{
 				float mod = 1;
 
-				if (GetNPCFlag(Flags::CURLY_CHARACTER)){
+				if (CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN)){
 					switch (level){
 						case 1:
 							mod = 0.4; break;
@@ -1124,8 +1124,8 @@ void ShootBullet_Machinegun2(int level)
 
 		if (gMC.up)
 		{
-			if (level >= 3 || (GetNPCFlag(Flags::CURLY_CHARACTER))){
-				if (GetNPCFlag(Flags::CURLY_CHARACTER)){
+			if (level >= 3 || CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN)){
+				if (CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN)){
 					switch (level){
 						case 1:
 							gMC.ym += 0x60; break;
@@ -1154,11 +1154,11 @@ void ShootBullet_Machinegun2(int level)
 		}
 		else if (gMC.down)
 		{
-			if (level >= 3 || (GetNPCFlag(Flags::CURLY_CHARACTER)))
+			if (level >= 3 || CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN))
 			{
 				float mod = 1;
 
-				if (GetNPCFlag(Flags::CURLY_CHARACTER)){
+				if (CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN)){
 					switch (level){
 						case 1:
 							mod = 0.4; break;
@@ -2559,7 +2559,7 @@ void ShootBullet_SwordSwing(int level)
 		return;
 	}
 
-	if (CheckForCooldown(gCooldowns, SHEATHING_TIMER_ID) == -1 && (GetNPCFlag(Flags::AMY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
+	if (CheckForCooldown(gCooldowns, SHEATHING_TIMER_ID) == -1 && CheckFlagTrait(FlagTraits::SWORD_SHEATHING)){
 		InitiateCooldown(gCooldowns, SHEATHING_TIMER_ID);
 	}
 
@@ -2637,7 +2637,7 @@ void ShootBullet_SwordSwing2(int level)
 		return;
 	}
 
-	if (CheckForCooldown(gCooldowns, SHEATHING_TIMER_ID) == -1 && (GetNPCFlag(Flags::AMY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
+	if (CheckForCooldown(gCooldowns, SHEATHING_TIMER_ID) == -1 && CheckFlagTrait(FlagTraits::SWORD_SHEATHING)){
 		InitiateCooldown(gCooldowns, SHEATHING_TIMER_ID);
 	}
 

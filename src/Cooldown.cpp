@@ -189,9 +189,9 @@ void ActCooldownList(std::vector<Cooldown>& list){
 
                     case DUCK_TIMER_ID:
                         {
-                            short& star_storage_link = GetNPCFlag(Flags::DUCKMAN_CHARACTER) ? gMC.life : gMC.star;
+                            short& star_storage_link = CheckFlagTrait(FlagTraits::DUCK_HEALTH) ? gMC.life : gMC.star;
                             int d = 0;
-                            if (GetNPCFlag(Flags::DUCKMAN_CHARACTER))
+                            if (CheckFlagTrait(FlagTraits::DUCK_HEALTH))
                                 d = 1;
                             if ((star_storage_link)-d < 3){
                                 (star_storage_link) += 1;

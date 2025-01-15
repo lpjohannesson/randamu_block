@@ -509,7 +509,7 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 	// Create drop
 	if (npc->exp != 0)
 	{
-		if (Random(0, 1) == 0 && GetNPCFlag(Flags::HUNTER_CHARACTER)){
+		if (Random(0, 1) == 0 && CheckFlagTrait(FlagTraits::HUNGER_SYSTEM)){
 			SetLifeObject(npc->x, npc->y, 1);
 		}
 		int roll = Random(1, 5);
@@ -789,7 +789,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		}
 
 		if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end() &&
-				(GetNPCFlag(Flags::LEAD_WEIGHT) || bul->code_bullet == Bullets::MOVING_MISSILE)){
+				(CheckFlagTrait(FlagTraits::KNOCKBACK) || bul->code_bullet == Bullets::MOVING_MISSILE)){
 			npc.knockx = bul->xm * bul->knockX * npc.knockEffect;
 			npc.knocky = bul->ym * bul->knockY * npc.knockEffect;
 		}
@@ -798,7 +798,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			npc.targetingEffect = 1;
 		}
 
-		if (bul->code_bullet > Bullets::FIREBALL_LVL_1-1 && bul->code_bullet < Bullets::FIREBALL_LVL_3+1 && !CountBulletNum(Bullets::EXPLOSION) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
+		if (bul->code_bullet > Bullets::FIREBALL_LVL_1-1 && bul->code_bullet < Bullets::FIREBALL_LVL_3+1 && !CountBulletNum(Bullets::EXPLOSION) && CheckFlagTrait(FlagTraits::EXPLODING_FIREBALL)){
 			SetBullet(Bullets::EXPLOSION, bul->x, bul->y, 0);
 		}
 
@@ -959,7 +959,7 @@ void HitNpCharBullet(void)
 		if (gNPC[n].bits & NPC_SHOOTABLE && gNPC[n].bits & NPC_INTERACTABLE)
 			continue;
 
-		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[n].code_char) != aquaticEntities.end()) && (gMC.equip & EQUIP_FISHY || GetNPCFlag(Flags::DIVING_SUIT))){
+		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[n].code_char) != aquaticEntities.end()) && CheckFlagTrait(FlagTraits::WATER_MOB_FRIEND)){
 			continue;
 		}
 

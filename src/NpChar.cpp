@@ -589,7 +589,7 @@ void PutNpChar(int fx, int fy)
 			if (ChallengeEnabled("hitboxes"))
 			{
 				int mod = 1;
-				if (GetNPCFlag(Flags::MAXY_CHARACTER) && gNPC[n].damage)
+				if (CheckFlagTrait(FlagTraits::WITCH_HITBOX) && gNPC[n].damage)
 				{
 					mod = 3;
 				}

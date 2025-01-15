@@ -10,7 +10,7 @@
 void ActBullet_FireBall(BULLET *bul, int level)
 {
 	bool bBreak;
-	if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+	if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)){
 		bul->life_count = 60;
 	}
 
@@ -18,7 +18,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 	{
 		bul->cond = 0;
 		SetCaret(bul->x, bul->y, 3, 0);
-		if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+		if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)){
 		int lol = Random(4, 8);
 		for (int i = 0; i < lol; i++){
 			BULLET* bully = SetBullet(Bullets::BOOMERANG_BLADE_LVL_2_FLAME, bul->x, bul->y);
@@ -101,14 +101,14 @@ void ActBullet_FireBall(BULLET *bul, int level)
 
 				break;
 		}
-		if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+		if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)){
 			bul->xm *= 1.7;
 			bul->ym *= 1.3;
 		}
 	}
 	else
 	{
-		if (bul->count1 % 7 == 0 && (gMC.equip & EQUIP_PROPANE_TANK || GetNPCFlag(Flags::HIGH_OCTANE_TANK) || GetNPCFlag(Flags::FLAMING_BOOSTER))){
+		if (bul->count1 % 7 == 0 && CheckFlagTrait(FlagTraits::PROPANE_TRAIL)){
 			int xCoord, yCoord;
 			xCoord = bul->x - 0x200 * 5;
 			yCoord = bul->y - 0x200 * 5;
@@ -119,19 +119,19 @@ void ActBullet_FireBall(BULLET *bul, int level)
 			if (level == 4){
 				SetBullet(Bullets::FIREBALL_LVL_2, bul->x, bul->y, 1);
 			}
-			if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)){
 				bul->ym *= 1.5;
 			}
 		}
 		else if (bul->flag & 1){
 			bul->xm = 0x500;
-			if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)){
 				bul->xm *= 1.5;
 			}
 		}
 		else if (bul->flag & 4){
 			bul->xm = -0x500;
-			if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)){
 				bul->xm *= 1.5;
 			}
 		}
@@ -139,7 +139,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 		bul->ym += 40;
 		if (bul->ym > 0x3FF)
 			bul->ym = 0x3FF;
-		if (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+		if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)){
 			if (bul->ym > 0x100)
 				bul->ym /= 2;
 		}

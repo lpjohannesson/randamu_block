@@ -1,8 +1,143 @@
 {
-    "222": [
-        "mechanical"
+    "-1073741824": [
+        "ice_skates", "no_slippery"
     ],
-    "221": [
-        "fishy"
+    "-33554432": [
+        "water_mob_friend"
+    ],
+    "-268435456": [
+        "gravity_flip"
+    ],
+    "-134217728": [
+        "super_dash"
+    ],
+    "-67108864": [
+        "buffed_dash"
+    ],
+    "-16777216": [
+        "dash_float", "star_dash_vfx"
+    ],
+    "-4194304": [
+        "iframes_boost"
+    ],
+    "-262144": [
+        "propane_trail", "buffed_snake"
+    ],
+    "-131072": [
+        "ko_prevention"
+    ],
+    "-65536": [
+        "stomping"
+    ],
+    "-16384": [
+        "booster_2_0", "can_boost"
+    ],
+    "-1024": [
+        "wall_jump"
+    ],
+    "-32": [
+        "booster_2_0", "can_boost"
+    ],
+    "-1": [
+        "explode_on_hit"
+    ],
+    "703": [
+        "mouse_teleport"
+    ],
+    "708": [
+        "ice_skates"
+    ],
+    "711": [
+        "knockback"
+    ],
+    "860": [
+        "timestop"
+    ],
+    "863": [
+        "water_mob_friend"
+    ],
+    "864": [
+        "iframes_boost", "ko_prevention"
+    ],
+    "866": [
+        "buffed_dash"
+    ],
+    "867": [
+        "explode_on_hit", "super_dash"
+    ],
+    "868": [
+        "buffed_dash", "propane_trail", "buffed_snake"
+    ],
+    "869": [
+        "booster_0_8", "can_boost", "no_slippery"
+    ],
+    "872": [
+        "press_dmg_reduce"
+    ],
+    "873": [
+        "exploding_fireball", "propane_trail"
+    ],
+    "874": [
+        "buffed_dash"
+    ],
+    "876": [
+        "super_dash", "timestop"
+    ],
+    "878": [
+        "explode_on_hit", "stomping"
+    ],
+    "879": [
+        "spike_evading"
+    ],
+    "882": [
+        "nanites"
+    ],
+    "883": [
+        "nanites"
+    ],
+    "2048": [
+        "level_4_weapons"
+    ],
+    "3333": [
+        "hunger_system"
+    ],
+    "4096": [
+        "spike_evading"
+    ],
+    "4100": [
+        "blade_dash"
+    ],
+    "4150": [
+        "excerpt_allies"
+    ],
+    "4200": [
+        "buffed_machine_gun", "low_hp_resist"
+    ],
+    "4250": [
+        "dash_sprint"
+    ],
+    "4280": [
+        "ducks", "duck_health"
+    ],
+    "4300": [
+        "buffed_dash", "last_stand", "wall_jump"
+    ],
+    "4350": [
+        "controlled_rocket"
+    ],
+    "4400": [
+        "invidia", "witch_ascending"
+    ],
+    "4405": [
+        "dash_float", "dash_projectile_repel", "witch_fireball", "witch_dash_vfx", "witch_hitbox"
+    ],
+    "4450": [
+        "hook_flail"
+    ],
+    "5120": [
+        "buffed_dash", "cat_dash", "cat_float", "sword_sheathing"
+    ],
+    "7999": [
+        "better_ducks", "blade_dash", "buffed_machine_gun", "controlled_rocket", "dash_float", "dash_projectile_repel", "dash_sprint", "ducks", "invidia", "hook_flail", "last_stand", "level_4_weapons", "low_hp_resist", "sword_sheathing", "witch_dash_vfx",  "witch_fireball"
     ]
 }

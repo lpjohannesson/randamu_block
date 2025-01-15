@@ -203,7 +203,7 @@ void HitBossBullet(void)
 					}
 
 					gBoss[bos_].life -= dmg;
-					if (((gBul[bul].code_bullet >= Bullets::FIREBALL_LVL_1 && gBul[bul].code_bullet <= Bullets::FIREBALL_LVL_3 || gBul[bul].code_bullet == Bullets::FIREBALL_LVL_4)) && !CountBulletNum(Bullets::EXPLOSION) && GetNPCFlag(Flags::HIGH_OCTANE_TANK)){
+					if (((gBul[bul].code_bullet >= Bullets::FIREBALL_LVL_1 && gBul[bul].code_bullet <= Bullets::FIREBALL_LVL_3 || gBul[bul].code_bullet == Bullets::FIREBALL_LVL_4)) && !CountBulletNum(Bullets::EXPLOSION) && CheckFlagTrait(FlagTraits::EXPLODING_FIREBALL)){
 						SetBullet(Bullets::EXPLOSION, gBul[bul].x, gBul[bul].y, 0);
 					}
 

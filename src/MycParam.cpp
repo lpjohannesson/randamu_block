@@ -74,7 +74,7 @@ void AddExpMyChar(int x)
 	bool zeroXPArm = arms_code == 13 || arms_code == 2 || arms_code == 12 || arms_code == 14;
 
 	int max_lv = 2;
-	if (GetNPCFlag(Flags::SERENITY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) max_lv = 3;
+	if (CheckFlagTrait(FlagTraits::LEVEL_4_WEAPONS)) max_lv = 3;
 	if (isMiningLaser) max_lv = lv;
 
 	if (lv == max_lv)
@@ -131,7 +131,7 @@ bool IsMaxExpMyChar(void)
 	int arms_code;
 
 	int max_lv = 3;
-	if (GetNPCFlag(Flags::SERENITY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) max_lv = 4;
+	if (CheckFlagTrait(FlagTraits::LEVEL_4_WEAPONS)) max_lv = 4;
 
 	if (gArmsData[gSelectedArms].level == max_lv)
 	{
@@ -184,7 +184,7 @@ void DamageMyChar(int damage)
 		damage *= 1.75;
 	}
 
-	if ((GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gMC.life < gMC.max_life*0.5){
+	if (CheckFlagTrait(FlagTraits::LOW_HP_RESIST) && gMC.life < gMC.max_life*0.5){
 		damage *= 0.66;
 	}
 
@@ -205,7 +205,7 @@ void DamageMyChar(int damage)
 		damage -= 1;
 		PlaySoundObject(54, SOUND_MODE_PLAY);
 	}
-	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER) && damage != 0){
+	if (CheckFlagTrait(FlagTraits::DUCK_HEALTH) && damage != 0){
 		if (damage > 9) damage = 3;
 		else if (damage > 4) damage = 2;
 		else damage = 1;
@@ -247,7 +247,7 @@ void DamageMyChar(int damage)
 	gMC.cond &= ~1;
 	gMC.shock = 128;
 	gMC.regenCount = 0;
-	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
+	if (CheckFlagTrait(FlagTraits::DUCKS))
 		InitiateCooldown(gCooldowns, DUCK_TIMER_ID);
 	gMC.star = 0;
 	if (GetNPCFlag(Flags::MAXY_CHARACTER)){
@@ -256,10 +256,12 @@ void DamageMyChar(int damage)
 	if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		gMC.shock = 200;
 	}
-	if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && damage != 0){
-		gMC.shock *= 1.5;
-	} else if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && damage == 0){
-		gMC.shock *= 0.75;
+	if (CheckFlagTrait(FlagTraits::IFRAMES_BOOST)){
+		if (damage != 0){
+			gMC.shock *= 1.5;
+		} else {
+			gMC.shock *= 0.75;
+		}
 	}
 	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
 		gMC.shock *= float(Random(40, 150)) / 100.0f;
@@ -276,7 +278,7 @@ void DamageMyChar(int damage)
 	if (damage <= 1){
 		gMC.shock *= 0.66f;
 	}
-	if ((GetNPCFlag(Flags::NANITES_ABSORBER) || GetNPCFlag(Flags::MILITARY_ARMAMENT)) && CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1
+	if (CheckFlagTrait(FlagTraits::NANITES) && CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1
 						&& CheckForCooldown(gCooldowns, NANITES_TIME_ID) == -1){
 		InitiateCooldown(gCooldowns, NANITES_TIME_ID);
 		gMC.shock = CooldownDuration(NANITES_TIME_ID);
@@ -294,7 +296,7 @@ void DamageMyChar(int damage)
 	}
 	else
 	{
-		if (!(gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)))
+		if (!CheckFlagTrait(FlagTraits::IFRAMES_BOOST))
 			gMC.ym = -0x400 * (gMC.flip ? -1 : 1);
 	}
 	bool clayMedalProc = false;
@@ -307,7 +309,7 @@ void DamageMyChar(int damage)
 		}
 	}
 
-	if ((gMC.equip & EQUIP_CLAY_FIGURE || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && (gMC.life - damage) <= 0 && gMC.life > 1){
+	if (CheckFlagTrait(FlagTraits::KO_PREVENTION) && (gMC.life - damage) <= 0 && gMC.life > 1){
 		for (int i = 0; i < 50; i++)
 			SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
 		PlaySoundObject(102, SOUND_MODE_PLAY);
@@ -358,12 +360,12 @@ void DamageMyChar(int damage)
 	}
 	}
 
-	if (gMC.equip & EQUIP_BOOSTER_0_8 || GetNPCFlag(Flags::SACRED_AEGIS) || GetNPCFlag(Flags::NUCLEAR_STOMPER)){
+	if (CheckFlagTrait(FlagTraits::EXPLODE_ON_HIT)){
 		SetBullet(Bullets::BIGGER_EXPLOSION, gMC.x + gMC.xm, gMC.y + gMC.ym, 0);
 	}
 
 	// Tell player how much damage was taken
-	if (!(gMC.life <= 0 && GetNPCFlag(Flags::BADGE_OF_LOVE)) && !GetNPCFlag(Flags::DUCKMAN_CHARACTER))
+	if (!(gMC.life <= 0 && GetNPCFlag(Flags::BADGE_OF_LOVE)) && !CheckFlagTrait(FlagTraits::DUCK_HEALTH))
 		SetValueView(&gMC.x, &gMC.y, -damage);
 
 	// Death
@@ -389,7 +391,7 @@ void Die(void){
 		for (int i = 0; i < 100; i++)
 			SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
 	}
-	else if ((GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && !GetNPCFlag(Flags::TOROKO_BLEEDING_OUT)){
+	else if (CheckFlagTrait(FlagTraits::LAST_STAND) && !GetNPCFlag(Flags::TOROKO_BLEEDING_OUT)){
 			gMC.life = 0;
 			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		} else {
@@ -434,7 +436,7 @@ void AddLifeMyChar(int x)
 		Die();
 		return;
 	}
-	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER) && x > 0 && x < 1000) x = 1;
+	if (CheckFlagTrait(FlagTraits::DUCK_HEALTH) && x > 0 && x < 1000) x = 1;
 
 	if (x == 1000)
 		gMC.air = 1000;
@@ -445,7 +447,7 @@ void AddLifeMyChar(int x)
 	gMC.lifeBr = gMC.life;
 	if (gMC.life <= 0)
 	{
-		if (GetNPCFlag(Flags::TOROKO_CHARACTER) && !GetNPCFlag(Flags::TOROKO_BLEEDING_OUT)){
+		if (CheckFlagTrait(FlagTraits::LAST_STAND) && !GetNPCFlag(Flags::TOROKO_BLEEDING_OUT)){
 			gMC.life = 0;
 			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		} else {
@@ -466,7 +468,7 @@ void AddLifeMyChar(int x)
 
 void AddMaxLifeMyChar(int val)
 {
-	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER))
+	if (CheckFlagTrait(FlagTraits::DUCK_HEALTH))
 		return;
 		
 	gMC.max_life += (short)val;
@@ -493,7 +495,7 @@ void PutArmsEnergy(bool flash)
 	bool isMiningLaser = gArmsData[gSelectedArms].code == 18;
 
 	int max_lv = 2;
-	if (GetNPCFlag(Flags::SERENITY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) max_lv = 3;
+	if (CheckFlagTrait(FlagTraits::LEVEL_4_WEAPONS)) max_lv = 3;
 	if (isMiningLaser) max_lv = gArmsData[gSelectedArms].level;
 
 	// Draw max ammo
@@ -588,11 +590,11 @@ void PutActiveArmsList(void)
 		// Draw icon
 		rect.left = gArmsData[a].code * 16;
 		rect.right = rect.left + 16;
-		if ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[a].code == 13){
+		if (CheckFlagTrait(FlagTraits::INVIDIA) && gArmsData[a].code == 13){
 			rect.left = 10 * 16;
 			rect.right = rect.left + 16;
 		}
-		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[a].code == 8){
+		if (CheckFlagTrait(FlagTraits::HOOK_FLAIL) && gArmsData[a].code == 8){
 			rect.left = 6 * 16;
 			rect.right = rect.left + 16;
 		}
@@ -621,11 +623,11 @@ void PutActiveArm(void)
 		// Draw icon
 		rect.left = gArmsData[gSelectedArms].code * 16;
 		rect.right = rect.left + 16;
-		if ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[gSelectedArms].code == 13){
+		if (CheckFlagTrait(FlagTraits::INVIDIA) && gArmsData[gSelectedArms].code == 13){
 			rect.left = 10 * 16;
 			rect.right = rect.left + 16;
 		}
-		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[gSelectedArms].code == 8){
+		if (CheckFlagTrait(FlagTraits::HOOK_FLAIL) && gArmsData[gSelectedArms].code == 8){
 			rect.left = 6 * 16;
 			rect.right = rect.left + 16;
 		}
@@ -638,7 +640,7 @@ void PutMyLife(bool flash)
 		return;
 	}
 
-	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER)){
+	if (CheckFlagTrait(FlagTraits::DUCK_HEALTH)){
 		Rect rcDuck = {78, 162, 90, 172};
 		for (int i = 0; i < gMC.life-1; i++){
 			PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(25 + 13*i), PixelToScreenCoord(40), &rcDuck, SURFACE_ID_BULLET);
@@ -651,7 +653,7 @@ void PutMyLife(bool flash)
 	rcDifficulty.bottom += gMC.difficulty*8;
 	Rect rcLife = {193, 24, 193, 32};
 	Rect rcBr = {193, 32, 193, 40};
-	if (GetNPCFlag(Flags::HUNTER_CHARACTER)){
+	if (CheckFlagTrait(FlagTraits::HUNGER_SYSTEM)){
 		rcCase.top += 80;
 		rcCase.bottom += 80;
 		rcLife.top += 8;
@@ -696,7 +698,7 @@ void PutMyScore(int y){
 	Rect rcMiracle = {228, 0, 252, 16};
 	Rect rcTurboText[2] = {{112, 104, 120, 112}, {120, 104, 128, 112}};
 	int depthy = 0;
-	if (GetNPCFlag(Flags::DUCKMAN_CHARACTER)) depthy = 3;
+	if (CheckFlagTrait(FlagTraits::DUCK_HEALTH)) depthy = 3;
 
 	PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(16), PixelToScreenCoord(0), &rcStars, SURFACE_ID_NPC_SYM);
 	PutBitmap3_NoFlip(&grcGame, PixelToScreenCoord(16), PixelToScreenCoord(48 + depthy), &rcStairs, SURFACE_ID_TEXT_BOX);

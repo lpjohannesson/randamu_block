@@ -1896,7 +1896,7 @@ void ActNpc355(NPCHAR *npc)
 		npc->rect.top += 32 * gMIMCurrentNum;
 		npc->rect.bottom += 32 * gMIMCurrentNum;
 	} else {
-		if (GetNPCFlag(Flags::EXCERPT_CHARACTER)){
+		if (CheckFlagTrait(FlagTraits::EXCERPT_ALLIES)){
 			npc->rect.top -= 32;
 			npc->rect.bottom -= 32;
 		}

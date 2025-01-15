@@ -13,7 +13,7 @@ void ActBullet_Spur(BULLET *bul, int level)
 		return;
 	}
 
-	if (GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+	if (CheckFlagTrait(FlagTraits::INVIDIA)){
 		bul->bbits = 104;
 	}
 
@@ -104,7 +104,7 @@ void ActBullet_Spur(BULLET *bul, int level)
 
 	bul->damage = bul->life;
 
-	if (!GetNPCFlag(Flags::MISERY_CHARACTER) && !GetNPCFlag(Flags::MAHIN_CHARACTER)){
+	if (!CheckFlagTrait(FlagTraits::INVIDIA)){
 	switch (level)
 	{
 		case 1:
@@ -197,7 +197,7 @@ void ActBullet_SpurTail(BULLET *bul, int level)
 
 	bul->iframes = 1;
 
-	if (!GetNPCFlag(Flags::MISERY_CHARACTER) && !GetNPCFlag(Flags::MAHIN_CHARACTER)){
+	if (!CheckFlagTrait(FlagTraits::INVIDIA)){
 	switch (level)
 	{
 		case 1:
@@ -236,7 +236,7 @@ void ActBullet_Spur2(BULLET *bul, int level)
 		return;
 	}
 
-	if (GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+	if (CheckFlagTrait(FlagTraits::INVIDIA)){
 		bul->bbits = 104;
 	}
 

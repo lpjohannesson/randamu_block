@@ -74,11 +74,11 @@ void PutActiveArmRank(void)
 		// Draw icon
 		rect.left = gRankings[selectedRank]["arms"][gSelectedArmsRanking].get<ARMS>().code * 16;
 		rect.right = rect.left + 16;
-		if ((GetNPCFlagRank(Flags::MISERY_CHARACTER) || GetNPCFlagRank(Flags::MAHIN_CHARACTER)) && gRankings[selectedRank]["arms"][gSelectedArmsRanking].get<ARMS>().code == 13){
+		if (CheckFlagTraitRank(FlagTraits::INVIDIA) && gRankings[selectedRank]["arms"][gSelectedArmsRanking].get<ARMS>().code == 13){
 			rect.left = 10 * 16;
 			rect.right = rect.left + 16;
 		}
-		if ((GetNPCFlagRank(Flags::BRACKET_CHARACTER) || GetNPCFlagRank(Flags::MAHIN_CHARACTER)) && gRankings[selectedRank]["arms"][gSelectedArmsRanking].get<ARMS>().code == 8){
+		if (CheckFlagTraitRank(FlagTraits::HOOK_FLAIL) && gRankings[selectedRank]["arms"][gSelectedArmsRanking].get<ARMS>().code == 8){
 			rect.left = 6 * 16;
 			rect.right = rect.left + 16;
 		}
@@ -95,7 +95,7 @@ void PutMyLifeRank()
 	}
 	Rect rcLife = {193, 24, 193, 32};
 	Rect rcBr = {193, 32, 193, 40};
-	if (GetNPCFlagRank(Flags::HUNTER_CHARACTER)){
+	if (CheckFlagTraitRank(FlagTraits::HUNGER_SYSTEM)){
 		rcCase.top += 80;
 		rcCase.bottom += 80;
 		rcLife.top += 8;
@@ -177,7 +177,7 @@ void PutArmsEnergyRank()
 	int exp_now = gRankings[selectedRank]["arms"][gSelectedArmsRanking].get<ARMS>().exp;
 	int exp_next = gArmsLevelTable[arms_code].exp[lv];
 	int max_lv = 2;
-	if (GetNPCFlagRank(Flags::SERENITY_CHARACTER) || GetNPCFlagRank(Flags::MAHIN_CHARACTER)) max_lv = 3;
+	if (CheckFlagTraitRank(FlagTraits::LEVEL_4_WEAPONS)) max_lv = 3;
 
 	PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(gArmsEnergyX + 24), PixelToScreenCoord(32), &rcExpBox, SURFACE_ID_TEXT_BOX);
 
@@ -430,13 +430,13 @@ void PutRankingObject(void)
 		rcArms.right = rcArms.left + 16;
 		rcArms.top = 0;
 		rcArms.bottom = rcArms.top + 16;
-		if ((GetNPCFlagRank(Flags::MISERY_CHARACTER) || GetNPCFlagRank(Flags::MAHIN_CHARACTER)) && gRankings[selectedRank]["arms"][i].get<ARMS>().code == 13){
+		if (CheckFlagTraitRank(FlagTraits::INVIDIA) && gRankings[selectedRank]["arms"][i].get<ARMS>().code == 13){
 			rcArms.left = (10) * 16;
 			rcArms.right = rcArms.left + 16;
 			rcArms.top = 0;
 			rcArms.bottom = rcArms.top + 16;
 		}
-		if ((GetNPCFlagRank(Flags::BRACKET_CHARACTER) || GetNPCFlagRank(Flags::MAHIN_CHARACTER)) && gRankings[selectedRank]["arms"][i].get<ARMS>().code == 8){
+		if (CheckFlagTraitRank(FlagTraits::HOOK_FLAIL) && gRankings[selectedRank]["arms"][i].get<ARMS>().code == 8){
 			rcArms.left = 6 * 16;
 			rcArms.right = rcArms.left + 16;
 			rcArms.top = 0;
@@ -495,14 +495,14 @@ void PutRankingObject(void)
 			rcItem.right = rcItem.left + 16;
 			rcItem.top = 0;
 			rcItem.bottom = rcItem.top + 16;
-			if ((GetNPCFlagRank(Flags::MISERY_CHARACTER) || GetNPCFlagRank(Flags::MAHIN_CHARACTER)) && gRankings[selectedRank]["items"][i].get<ITEM>().code == 113)
+			if (CheckFlagTraitRank(FlagTraits::INVIDIA) && gRankings[selectedRank]["items"][i].get<ITEM>().code == 113)
 			{
 				rcItem.left = (10) * 16;
 				rcItem.right = rcItem.left + 16;
 				rcItem.top = 0 * 16;
 				rcItem.bottom = rcItem.top + 16;
 			}
-			if ((GetNPCFlagRank(Flags::BRACKET_CHARACTER) || GetNPCFlagRank(Flags::MAHIN_CHARACTER)) && gRankings[selectedRank]["items"][i].get<ITEM>().code == 108)
+			if (CheckFlagTraitRank(FlagTraits::HOOK_FLAIL) && gRankings[selectedRank]["items"][i].get<ITEM>().code == 108)
 			{
 				rcItem.left = (6) * 16;
 				rcItem.right = rcItem.left + 16;

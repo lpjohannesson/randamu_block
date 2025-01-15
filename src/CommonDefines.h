@@ -153,7 +153,53 @@ namespace Flags {
 };
 
 namespace FlagTraits {
-	
+	inline constexpr const char* NANITES            = "nanites";
+	inline constexpr const char* TIMESTOP           = "timestop";
+	inline constexpr const char* INVIDIA            = "invidia";
+	inline constexpr const char* BLADE_DASH         = "blade_dash";
+	inline constexpr const char* DUCKS              = "ducks";
+	inline constexpr const char* HOOK_FLAIL         = "hook_flail";
+	inline constexpr const char* WITCH_FIREBALL     = "witch_fireball";
+	inline constexpr const char* PROPANE_TRAIL      = "propane_trail";
+	inline constexpr const char* BUFFED_MACHINE_GUN = "buffed_machine_gun";
+	inline constexpr const char* CONTROLLED_ROCKET  = "controlled_rocket";
+	inline constexpr const char* SUPER_DASH         = "super_dash";
+	inline constexpr const char* SPIKE_EVADING      = "spike_evading";
+	inline constexpr const char* WITCH_HITBOX       = "witch_hitbox";
+	inline constexpr const char* WATER_MOB_FRIEND   = "water_mob_friend";
+	inline constexpr const char* PROJECTILE_REPEL   = "dash_projectile_repel";
+	inline constexpr const char* STOMPING           = "stomping";
+	inline constexpr const char* LEVEL_4_WEAPONS    = "level_4_weapons";
+	inline constexpr const char* IFRAMES_BOOST      = "iframes_boost";
+	inline constexpr const char* KO_PREVENTION      = "ko_prevention";
+	inline constexpr const char* EXPLODE_ON_HIT     = "explode_on_hit";
+	inline constexpr const char* LAST_STAND         = "last_stand";
+	inline constexpr const char* SNAKE_EMPOWER      = "buffed_snake";
+	inline constexpr const char* SWORD_SHEATHING    = "sword_sheathing";
+	inline constexpr const char* HUNGER_SYSTEM      = "hunger_system";
+	inline constexpr const char* KNOCKBACK          = "knockback";
+	inline constexpr const char* MOUSE_TELEPORT     = "mouse_teleport";
+	inline constexpr const char* ICE_SKATES         = "ice_skates";
+	inline constexpr const char* NO_SLIPPERY        = "no_slippery";
+	inline constexpr const char* EXCERPT_ALLIES     = "excerpt_allies";
+	inline constexpr const char* LOW_HP_RESIST      = "low_hp_resist";
+	inline constexpr const char* DASH_SPRINT        = "dash_sprint";
+	inline constexpr const char* DUCK_HEALTH        = "duck_health";
+	inline constexpr const char* BUFFED_DASH        = "buffed_dash";
+	inline constexpr const char* WALL_JUMP          = "wall_jump";
+	inline constexpr const char* WITCH_ASCENDING    = "witch_ascending";
+	inline constexpr const char* DASH_FLOAT         = "dash_float";
+	inline constexpr const char* CAT_DASH           = "cat_dash";
+	inline constexpr const char* CAT_FLOAT          = "cat_float";
+	inline constexpr const char* WITCH_DASH_VFX     = "witch_dash_vfx";
+	inline constexpr const char* STAR_DASH_VFX      = "star_dash_vfx";
+	inline constexpr const char* BETTER_DUCKS       = "better_ducks";
+	inline constexpr const char* CAN_BOOST          = "can_boost";
+	inline constexpr const char* BOOSTER_0_8        = "booster_0_8";
+	inline constexpr const char* BOOSTER_2_0        = "booster_2_0";
+	inline constexpr const char* GRAVITY_FLIP       = "gravity_flip";
+	inline constexpr const char* EXPLODING_FIREBALL = "exploding_fireball";
+	inline constexpr const char* PRESS_DMG_REDUCE   = "press_dmg_reduce";
 }
 
 namespace Bullets {

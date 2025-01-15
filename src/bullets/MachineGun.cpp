@@ -36,7 +36,7 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 	bul->local_iframes = 10;
 
 	if (bul->code_bullet != Bullets::MACHINE_GUN_GATLING){
-		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+		if (CheckFlagTrait(FlagTraits::BUFFED_MACHINE_GUN)){
 			switch (level){
 				case 1: bul->damage = Random(3, 4); break;
 				case 2: bul->damage = Random(5, 6); break;

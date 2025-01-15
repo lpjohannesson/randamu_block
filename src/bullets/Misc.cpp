@@ -510,7 +510,7 @@ void ActBullet_Nanites(BULLET *bul)
 	// bul->x += bul->xm;
 	// bul->y += bul->ym;
 
-	if (!GetNPCFlag(Flags::NANITES_ABSORBER) && !GetNPCFlag(Flags::MILITARY_ARMAMENT)){
+	if (!CheckFlagTrait(FlagTraits::NANITES)){
 		bul->cond = 0;
 		return;
 	}
@@ -976,7 +976,7 @@ void ActBullet_Missile(BULLET *bul)
 		gMC.direct = 2;
 		}
 
-		if ((GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gKey & gKeyJump){
+		if (CheckFlagTrait(FlagTraits::CONTROLLED_ROCKET) && gKey & gKeyJump){
 			if (gKey & gKeyUp){
 				bul->xm = 0;
 				if (bul->ym > 0){
@@ -1027,7 +1027,7 @@ void ActBullet_Missile(BULLET *bul)
 		}
 		}
 
-		if ((GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gKey & gKeyJump){
+		if (CheckFlagTrait(FlagTraits::CONTROLLED_ROCKET) && gKey & gKeyJump){
 			
 		} else {
 			gMC.shock = 2;

@@ -17,7 +17,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 
 	if (level == 4) bul->iframes /= 4;
 
-	if (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
+	if (CheckFlagTrait(FlagTraits::HOOK_FLAIL))
 	{
 		bul->blockXL = 0x200 * 4;
 		bul->blockYL = 0x200 * 4;
@@ -45,7 +45,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 		bul->act_no = 1;
 
 		int deg = GetArktan(bul->x - bul->tgt_x, bul->y - bul->tgt_y);
-		if (!GetNPCFlag(Flags::BRACKET_CHARACTER))
+		if (!CheckFlagTrait(FlagTraits::HOOK_FLAIL))
 			deg += Random(-1, 1);
 		int speed = 7;
 		if (level == 3){
@@ -95,7 +95,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 
 			if (level == 4) bul->iframes /= 3;
 			
-			if ((!(gKey & gKeyShot && !((level == 4 || bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN))) || (GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
+			if ((!(gKey & gKeyShot && !((level == 4 || bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN))) || CheckFlagTrait(FlagTraits::HOOK_FLAIL))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
 					 bul->y > gMC.y - 0x200*8 && bul->y < gMC.y + 0x200*8)){
 				bul->cond = 0;
 				chainWrap = false;
@@ -110,7 +110,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 			}
 			int deg = GetArktan(bul->x - gMC.x, bul->y - gMC.y);
 			deg += Random(-1, 1);
-			if (gKey & gKeyShot && !(level == 4 || bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN) && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 8 * 16_pix){
+			if (gKey & gKeyShot && !(level == 4 || bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN) && !CheckFlagTrait(FlagTraits::HOOK_FLAIL) && Distance(gMC.x, gMC.y, bul->x, bul->y) < 8 * 16_pix){
 				// if (gMC.x > bul->x)
 				// 	bul->xm = 0x50;
 				// else
@@ -150,7 +150,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 			}
 			bul->x += bul->xm;
 			bul->y += bul->ym;
-			if (bul->act_no == 2 && level == 2 && bul->count1 % 4 == 0 && gKey & gKeyShot && !(GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
+			if (bul->act_no == 2 && level == 2 && bul->count1 % 4 == 0 && gKey & gKeyShot && !CheckFlagTrait(FlagTraits::HOOK_FLAIL)){
 				int x, y;
 				do
 				{

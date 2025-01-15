@@ -803,13 +803,13 @@ void PutCampObject(void)
 		rcArms.right = rcArms.left + 16;
 		rcArms.top = 0;
 		rcArms.bottom = rcArms.top + 16;
-		if ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[i].code == 13){
+		if (CheckFlagTrait(FlagTraits::INVIDIA) && gArmsData[i].code == 13){
 			rcArms.left = (10) * 16;
 			rcArms.right = rcArms.left + 16;
 			rcArms.top = 0 * 16;
 			rcArms.bottom = rcArms.top + 16;
 		}
-		if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gArmsData[i].code == 8){
+		if (CheckFlagTrait(FlagTraits::HOOK_FLAIL) && gArmsData[i].code == 8){
 			rcArms.left = (6) * 16;
 			rcArms.right = rcArms.left + 16;
 			rcArms.top = 0 * 16;
@@ -868,14 +868,14 @@ void PutCampObject(void)
 			rcItem.right = rcItem.left + 16;
 			rcItem.top = 0;
 			rcItem.bottom = rcItem.top + 16;
-			if ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gItemData[i].code == 113)
+			if (CheckFlagTrait(FlagTraits::INVIDIA) && gItemData[i].code == 113)
 			{
 				rcItem.left = (10) * 16;
 				rcItem.right = rcItem.left + 16;
 				rcItem.top = 0 * 16;
 				rcItem.bottom = rcItem.top + 16;
 			}
-			if ((GetNPCFlag(Flags::BRACKET_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && gItemData[i].code == 108)
+			if (CheckFlagTrait(FlagTraits::HOOK_FLAIL) && gItemData[i].code == 108)
 			{
 				rcItem.left = (6) * 16;
 				rcItem.right = rcItem.left + 16;

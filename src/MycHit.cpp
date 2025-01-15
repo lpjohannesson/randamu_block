@@ -381,7 +381,7 @@ int JudgeHitMyCharDamage(int x, int y)
 {
 	int hit = 0;
 
-	if (abs(gMC.xm) > 1250 && (GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
+	if (abs(gMC.xm) > 1250 && CheckFlagTrait(FlagTraits::SPIKE_EVADING)) return hit;
 
 	if (gMC.dashDuration > 0 && IsDashEquipped()) return hit;
 
@@ -394,11 +394,12 @@ int JudgeHitMyCharDamage(int x, int y)
 	return hit;
 }
 
+// TODO: sue shouldn't be able to avoid lava
 int JudgeHitMyCharDamageW(int x, int y)
 {
 	int hit = 0;
 
-	if (abs(gMC.xm) > 1250 && (GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS))) return hit;
+	if (abs(gMC.xm) > 1250 && CheckFlagTrait(FlagTraits::SPIKE_EVADING)) return hit;
 
 	if (gMC.dashDuration > 0 && IsDashEquipped()) return hit;
 
@@ -652,7 +653,7 @@ int JudgeHitMyCharNPC(NPCHAR *npc)
 {
 	int hit = 0;
 	int mod = 1;
-	if (GetNPCFlag(Flags::MAXY_CHARACTER) && npc->damage){
+	if (CheckFlagTrait(FlagTraits::WITCH_HITBOX) && npc->damage){
 		mod = 3;
 	}
 
@@ -721,7 +722,7 @@ unsigned char JudgeHitMyCharNPC3(NPCHAR *npc)
 {
 	int size = 2 * 0x200;
 	int mod = 1;
-	if (GetNPCFlag(Flags::MAXY_CHARACTER) && npc->damage){
+	if (CheckFlagTrait(FlagTraits::WITCH_HITBOX) && npc->damage){
 		size = 0x200;
 		mod = 3;
 	}
@@ -751,7 +752,7 @@ int JudgeHitMyCharNPC4(NPCHAR *npc)
 	// TODO: comment this
 	int hit = 0;
 	int mod = 1;
-	if (GetNPCFlag(Flags::MAXY_CHARACTER) && npc->damage){
+	if (CheckFlagTrait(FlagTraits::WITCH_HITBOX) && npc->damage){
 		mod = 3;
 	}
 
@@ -900,7 +901,7 @@ void HitMyCharNpChar(void)
 			hit = JudgeHitMyCharNPC3(&gNPC[i]);
 		}
 
-		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[i].code_char) != aquaticEntities.end()) && (gMC.equip & EQUIP_FISHY || GetNPCFlag(Flags::DIVING_SUIT))){
+		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[i].code_char) != aquaticEntities.end()) && CheckFlagTrait(FlagTraits::WATER_MOB_FRIEND)){
 			hit = 0;
 		}
 
@@ -908,7 +909,7 @@ void HitMyCharNpChar(void)
 			&& gMC.x - 0x200 * 8 < gNPC[i].x + gNPC[i].hit.back
 			&& gMC.y + 0x200 * 8 > gNPC[i].y - gNPC[i].hit.top
 			&& gMC.y - 0x200 * 8 < gNPC[i].y + gNPC[i].hit.bottom
-			&& gMC.dashDuration > 0 && gNPC[i].damage && gNPC[i].life == 1 && (GetNPCFlag(Flags::MAXY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))){
+			&& gMC.dashDuration > 0 && gNPC[i].damage && gNPC[i].life == 1 && CheckFlagTrait(FlagTraits::PROJECTILE_REPEL)){
 				SetDestroyNpChar(gNPC[i].x, gNPC[i].y, 5 * 0x200, 10);
 				LoseNpChar(&gNPC[i], false);
 		}
@@ -990,7 +991,7 @@ void HitMyCharNpChar(void)
 
 		if (hit != 0){
 			if ((gMC.dashDuration > 0 && IsDashEquipped())){
-				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME))&& 
+				if (CheckFlagTrait(FlagTraits::SUPER_DASH) && 
 				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), gNPC[i].code_char) != bonkableEnemies.end()){
 					if (GetNPCFlag(Flags::SACRED_AEGIS)){
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
@@ -1021,7 +1022,7 @@ void HitMyCharNpChar(void)
 			}
 		}
 
-		if (hit != 0 && gNPC[i].bits & NPC_SHOOTABLE && (gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 200) && gKey & gKeyAbility){
+		if (hit != 0 && gNPC[i].bits & NPC_SHOOTABLE && CheckFlagTrait(FlagTraits::STOMPING) && (gMC.ym >= 200) && gKey & gKeyAbility){
 			if (GetNPCFlag(Flags::NUCLEAR_STOMPER)){
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
@@ -1249,7 +1250,7 @@ void HitMyCharBoss(void)
 
 		if (hit != 0){
 			if ((gMC.dashDuration > 0)){
-				if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gBoss[b].bits & NPC_SHOOTABLE){
+				if ((CheckFlagTrait(FlagTraits::SUPER_DASH)) && gBoss[b].bits & NPC_SHOOTABLE){
 					if (GetNPCFlag(Flags::SACRED_AEGIS)){
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
@@ -1275,7 +1276,7 @@ void HitMyCharBoss(void)
 			}
 		}
 
-		if (hit != 0 && gBoss[b].bits & NPC_SHOOTABLE && (gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 200) && gKey & gKeyAbility){
+		if (hit != 0 && gBoss[b].bits & NPC_SHOOTABLE && CheckFlagTrait(FlagTraits::STOMPING) && (gMC.ym >= 200) && gKey & gKeyAbility){
 			if (GetNPCFlag(Flags::NUCLEAR_STOMPER)){
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);

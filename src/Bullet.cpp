@@ -267,7 +267,7 @@ BULLET* SetBullet(int no, int x, int y)
 
 bool IsBreakingBullet(BULLET &bul){
 	return (bul.code_bullet == Bullets::MINING_LASER || bul.code_bullet == Bullets::MINING_BOOM || bul.code_bullet == Bullets::NEMESIS_MAIN ||
-	 ((GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && (bul.code_bullet == Bullets::SPUR_LVL_1 || bul.code_bullet == Bullets::SPUR_LVL_2 || bul.code_bullet == Bullets::SPUR_LVL_3)));
+	 (CheckFlagTrait(FlagTraits::INVIDIA) && (bul.code_bullet == Bullets::SPUR_LVL_1 || bul.code_bullet == Bullets::SPUR_LVL_2 || bul.code_bullet == Bullets::SPUR_LVL_3)));
 }
 
 void ActBullet(void)
