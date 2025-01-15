@@ -35,6 +35,9 @@ option(FORCE_LOCAL_LIBS "Compile the built-in versions of SDL2, GLFW3, and FreeT
 
 project(CSE2 LANGUAGES C CXX)
 
+if (CMAKE_BUILD_TYPE EQUAL "Debug")
+	set(CMAKE_CXX_FLAGS "-O1")
+endif (CMAKE_BUILD_TYPE EQUAL "Debug")
 if (CMAKE_BUILD_TYPE EQUAL "Release")
 	set(CMAKE_CXX_FLAGS "-O3 -m32")
 	set (CMAKE_C_FLAGS "-m32")
