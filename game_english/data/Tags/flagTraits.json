@@ -1,143 +1,143 @@
 {
     "-1073741824": [
-        "ice_skates", "no_slippery"
+        {"name": "ice_skates"}, {"name": "no_slippery"}
     ],
     "-33554432": [
-        "water_mob_friend"
+        {"name": "water_mob_friend"}
     ],
     "-268435456": [
-        "gravity_flip"
+        {"name": "gravity_flip"}
     ],
     "-134217728": [
-        "super_dash"
+        {"name": "super_dash"}
     ],
     "-67108864": [
-        "buffed_dash"
+        {"name": "buffed_dash"}
     ],
     "-16777216": [
-        "dash_float", "star_dash_vfx"
+        {"name": "dash_float"}, {"name": "star_dash_vfx"}
     ],
     "-4194304": [
-        "iframes_boost"
+        {"name": "iframes_boost"}
     ],
     "-262144": [
-        "propane_trail", "buffed_snake"
+        {"name": "propane_trail"}, {"name": "buffed_snake"}
     ],
     "-131072": [
-        "ko_prevention"
+        {"name": "ko_prevention"}
     ],
     "-65536": [
-        "stomping"
+        {"name": "stomping"}
     ],
     "-16384": [
-        "booster_2_0", "can_boost"
+        {"name": "booster_2_0"}, {"name": "can_boost"}
     ],
     "-1024": [
-        "wall_jump"
+        {"name": "wall_jump"}
     ],
     "-32": [
-        "booster_2_0", "can_boost"
+        {"name": "booster_2_0"}, {"name": "can_boost"}
     ],
     "-1": [
-        "explode_on_hit"
+        {"name": "explode_on_hit"}
     ],
     "703": [
-        "mouse_teleport"
+        {"name": "mouse_teleport"}
     ],
     "708": [
-        "ice_skates"
+        {"name": "ice_skates"}
     ],
     "711": [
-        "knockback"
+        {"name": "knockback"}
     ],
     "860": [
-        "timestop"
+        {"name": "timestop"}
     ],
     "863": [
-        "water_mob_friend"
+        {"name": "water_mob_friend"}
     ],
     "864": [
-        "iframes_boost", "ko_prevention"
+        {"name": "iframes_boost"}, {"name": "ko_prevention"}
     ],
     "866": [
-        "buffed_dash"
+        {"name": "buffed_dash"}
     ],
     "867": [
-        "explode_on_hit", "super_dash"
+        {"name": "explode_on_hit"}, {"name": "super_dash"}
     ],
     "868": [
-        "buffed_dash", "propane_trail", "buffed_snake"
+        {"name": "buffed_dash"}, {"name": "propane_trail"}, {"name": "buffed_snake"}
     ],
     "869": [
-        "booster_0_8", "can_boost", "no_slippery"
+        {"name": "booster_0_8"}, {"name": "can_boost"}, {"name": "no_slippery"}
     ],
     "872": [
-        "press_dmg_reduce"
+        {"name": "press_dmg_reduce"}
     ],
     "873": [
-        "exploding_fireball", "propane_trail"
+        {"name": "exploding_fireball"}, {"name": "propane_trail"}
     ],
     "874": [
-        "buffed_dash"
+        {"name": "buffed_dash"}
     ],
     "876": [
-        "super_dash", "timestop"
+        {"name": "super_dash"}, {"name": "timestop"}
     ],
     "878": [
-        "explode_on_hit", "stomping"
+        {"name": "explode_on_hit"}, {"name": "stomping"}
     ],
     "879": [
-        "spike_evading"
+        {"name": "spike_evading"}
     ],
     "882": [
-        "nanites"
+        {"name": "nanites"}
     ],
     "883": [
-        "nanites"
+        {"name": "nanites"}
     ],
     "2048": [
-        "level_4_weapons"
+        {"name": "level_4_weapons"}
     ],
     "3333": [
-        "hunger_system"
+        {"name": "hunger_system"}
     ],
     "4096": [
-        "spike_evading"
+        {"name": "spike_evading"}
     ],
     "4100": [
-        "blade_dash"
+        {"name": "blade_dash"}
     ],
     "4150": [
-        "excerpt_allies"
+        {"name": "excerpt_allies"}
     ],
     "4200": [
-        "buffed_machine_gun", "low_hp_resist"
+        {"name": "buffed_machine_gun"}, {"name": "low_hp_resist"}
     ],
     "4250": [
-        "dash_sprint"
+        {"name": "dash_sprint"}
     ],
     "4280": [
-        "ducks", "duck_health"
+        {"name": "ducks"}, {"name": "duck_health"}
     ],
     "4300": [
-        "buffed_dash", "last_stand", "wall_jump"
+        {"name": "buffed_dash"}, {"name": "last_stand"}, {"name": "wall_jump"}
     ],
     "4350": [
-        "controlled_rocket"
+        {"name": "controlled_rocket"}
     ],
     "4400": [
-        "invidia", "witch_ascending"
+        {"name": "invidia"}, {"name": "witch_ascending"}
     ],
     "4405": [
-        "dash_float", "dash_projectile_repel", "witch_fireball", "witch_dash_vfx", "witch_hitbox"
+        {"name": "dash_float"}, {"name": "dash_projectile_repel"}, {"name": "witch_fireball"}, {"name": "witch_dash_vfx"}, {"name": "witch_hitbox"}
     ],
     "4450": [
-        "hook_flail"
+        {"name": "hook_flail"}
     ],
     "5120": [
-        "buffed_dash", "cat_dash", "cat_float", "sword_sheathing"
+        {"name": "buffed_dash"}, {"name": "cat_dash"}, {"name": "cat_float"}, {"name": "sword_sheathing"}
     ],
     "7999": [
-        "better_ducks", "blade_dash", "buffed_machine_gun", "controlled_rocket", "dash_float", "dash_projectile_repel", "dash_sprint", "ducks", "invidia", "hook_flail", "last_stand", "level_4_weapons", "low_hp_resist", "sword_sheathing", "witch_dash_vfx",  "witch_fireball"
+        {"name": "better_ducks"}, {"name": "blade_dash"}, {"name": "buffed_machine_gun"}, {"name": "controlled_rocket"}, {"name": "dash_float"}, {"name": "dash_projectile_repel"}, {"name": "dash_sprint"}, {"name": "ducks"}, {"name": "invidia"}, {"name": "hook_flail"}, {"name": "last_stand"}, {"name": "level_4_weapons"}, {"name": "low_hp_resist"}, {"name": "sword_sheathing"}, {"name": "witch_dash_vfx"},  {"name": "witch_fireball"}
     ]
 }

@@ -46,7 +46,7 @@ std::vector<std::string> stageGenerationOrder;
 std::vector<std::int32_t> bossNPCsList;
 std::map<std::string, GenerationArguments> stageGenerationMetadata;
 std::map<int, int> timeStopCoefficients;
-std::map<int, std::vector<std::string>> flagTraits;
+std::map<int, std::vector<GenerationArguments>> flagTraits;
 
 CONFIG_BINDING bindings[BINDING_TOTAL];
 
@@ -199,9 +199,17 @@ void ReloadConfig(){
 	for (const auto &[key, value]: tempTSC){
 		timeStopCoefficients[std::stoi(key)] = value;
 	}
-	auto tempTraits = ParseMapTag<std::string, std::vector<std::string>>("Tags/flagTraits.json");
-	for (const auto &[key, value]: tempTraits){
-		flagTraits[std::stoi(key)] = value;
+	json protoTraits = ReadJSON("Tags/flagTraits.json");
+	for (auto &[name, data]: protoTraits.items()){
+		std::vector<GenerationArguments> metadataList;
+		for (auto &[_, d]: data.items()){
+			GenerationArguments metadata;
+			for (auto &[n, j]: d.items()){
+				from_json(j, metadata[n]);
+			}
+			metadataList.push_back(metadata);
+		}
+		flagTraits[std::stoi(name)] = metadataList;
 	}
 	messageBank = ParseMapTag("Tags/messages.json");
 
