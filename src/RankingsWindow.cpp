@@ -42,12 +42,10 @@ bool GetNPCFlagRank(int a)
 	return std::find(flagStorage.begin(), flagStorage.end(), a) != flagStorage.end();
 }
 
-bool CheckFlagTraitRank(std::string_view trait)
+bool CheckFlagTraitRank(std::string trait)
 {
-	for (const auto &[flag, traits]: flagTraits){
-		if (std::find_if(traits.begin(), traits.end(), [trait](decltype(traits)::value_type traitElement){
-			return traitElement.contains("name") && std::get<std::string>(traitElement["name"]) == trait;
-		}) != traits.end()){
+	if (flagTraits.contains(trait)){
+		for (const auto &[flag, info]: flagTraits[trait]){
 			if (GetNPCFlagRank(flag))
 				return true;
 		}

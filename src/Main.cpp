@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <map>
+#include <set>
 #include <cstddef>
 #include <cstdlib>
 #include <cstring>
@@ -46,7 +47,7 @@ std::vector<std::string> stageGenerationOrder;
 std::vector<std::int32_t> bossNPCsList;
 std::map<std::string, GenerationArguments> stageGenerationMetadata;
 std::map<int, int> timeStopCoefficients;
-std::map<int, std::vector<GenerationArguments>> flagTraits;
+std::map<std::string, std::map<int, GenerationArguments>> flagTraits;
 
 CONFIG_BINDING bindings[BINDING_TOTAL];
 
@@ -200,16 +201,17 @@ void ReloadConfig(){
 		timeStopCoefficients[std::stoi(key)] = value;
 	}
 	json protoTraits = ReadJSON("Tags/flagTraits.json");
-	for (auto &[name, data]: protoTraits.items()){
-		std::vector<GenerationArguments> metadataList;
-		for (auto &[_, d]: data.items()){
-			GenerationArguments metadata;
-			for (auto &[n, j]: d.items()){
-				from_json(j, metadata[n]);
+	for (auto &[flag, traits]: protoTraits.items()){
+		for (auto &[_, trait]: traits.items()){
+			flagTraits.try_emplace(trait["name"].get<std::string>(), std::map<int, GenerationArguments>{});
+			auto traitInfo = trait;
+			traitInfo.erase("name");
+			GenerationArguments metadataMap;
+			for (auto &[n, d]: traitInfo.items()){
+				from_json(d, metadataMap[n]);
 			}
-			metadataList.push_back(metadata);
+			flagTraits[trait["name"].get<std::string>()].try_emplace(std::stoi(flag), metadataMap);
 		}
-		flagTraits[std::stoi(name)] = metadataList;
 	}
 	messageBank = ParseMapTag("Tags/messages.json");
 

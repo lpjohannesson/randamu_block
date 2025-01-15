@@ -46,18 +46,15 @@ bool GetNPCFlag(long a)
 		return false;
 }
 
-bool CheckFlagTrait(std::string_view trait)
+bool CheckFlagTrait(std::string trait)
 {
-	for (const auto &[flag, traits]: flagTraits){
-		for (auto& traitElement: traits){
-			if (traitElement.contains("name") && std::get<std::string>(traitElement.at("name")) == trait){
-				if (flag < 0){
-					if (gMC.equip & std::abs(flag))
-						return true;
-				} else if (GetNPCFlag(flag))
+	if (flagTraits.contains(trait)){
+		for (const auto &[flag, info]: flagTraits[trait]){
+			if (flag < 0){
+				if (gMC.equip & std::abs(flag))
 					return true;
-				break;
-			}
+			} else if (GetNPCFlag(flag))
+				return true;
 		}
 	}
 	return false;
