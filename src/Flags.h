@@ -3,6 +3,7 @@
 
 
 #include "CommonDefines.h"
+#include "StageGen.h"
 
 extern unsigned char gFlagNPC[1000];
 extern unsigned char gSkipFlag[8];
@@ -17,5 +18,7 @@ void CutSkipFlag(long a);
 bool GetSkipFlag(long a);
 
 bool CheckFlagTrait(std::string trait);
+
+const GenerationMetadata& GetFlagTraitData(std::string trait, std::string parameter);
 
 #endif // __FLAGS_H__
