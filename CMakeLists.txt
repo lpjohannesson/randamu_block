@@ -443,9 +443,9 @@ set_target_properties(Randamu PROPERTIES
 	C_EXTENSIONS OFF
 )
 
-# Force strict C++20
+# Force strict C++23
 set_target_properties(Randamu PROPERTIES
-	CXX_STANDARD 20
+	CXX_STANDARD 23
 	CXX_STANDARD_REQUIRED ON
 	CXX_EXTENSIONS OFF
 )
