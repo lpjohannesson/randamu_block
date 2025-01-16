@@ -91,7 +91,13 @@ struct MYCHAR_DEFINITION
 	std::vector<int> blacklistedChestFlags;
 	std::vector<int> characterFlags;
 	std::vector<int> startingItems;
-	std::vector<int> startingWeapons;
+
+	struct WEAPON {
+		int id; int maxAmmo;
+		NLOHMANN_DEFINE_TYPE_INTRUSIVE(WEAPON, id, maxAmmo)
+	};
+
+	std::vector<WEAPON> startingWeapons;
 
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, spritesheet, physics_diff,
 		hurtSound, deathSound, immunityFrames, lifeCapsuleLimit, lifeCapsuleValue,
