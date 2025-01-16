@@ -83,6 +83,8 @@ struct MYCHAR_DEFINITION
 		NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_PHYSICS_DIFF, max_dash, max_move, gravity1, gravity2, dash1, dash2, resist, jump)
 	} physics_diff;
 
+	int maxLife = 6;
+
 	int hurtSound = 16;
 	int deathSound = 17;
 	int immunityFrames = 128;
@@ -99,7 +101,7 @@ struct MYCHAR_DEFINITION
 
 	std::vector<WEAPON> startingWeapons{{3, 0}};
 
-	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, spritesheet, physics_diff,
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, spritesheet, physics_diff, maxLife,
 		hurtSound, deathSound, immunityFrames, lifeCapsuleLimit, lifeCapsuleValue,
 		blacklistedChestFlags, characterFlags, startingItems, startingWeapons)
 };
