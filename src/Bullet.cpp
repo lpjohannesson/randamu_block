@@ -211,9 +211,8 @@ void SetBullet(int no, int x, int y, int dir)
 		gBul[i].damage /= 2;
 	}
 	if (gBul[i].life_count != Bullets::SNAKE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_2 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_3){
-		if (GetNPCFlag(Flags::BATTERY_PACK)){
-			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
-			else gBul[i].life_count *= 1.25;
+		if (CheckFlagTrait(FlagTraits::BULLET_LIFE_BOOST)){
+			gBul[i].life_count *= std::get<float>(GetFlagTraitData(FlagTraits::BULLET_LIFE_BOOST, "boost"));
 		}
 	}
 	gBul[i].x = x;
@@ -253,9 +252,8 @@ BULLET* SetBullet(int no, int x, int y)
 		gBul[i].damage /= 2;
 	}
 	if (gBul[i].life_count != Bullets::SNAKE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_2 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_3){
-		if (GetNPCFlag(Flags::BATTERY_PACK)){
-			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) gBul[i].life_count *= 1.33;
-			else gBul[i].life_count *= 1.25;
+		if (CheckFlagTrait(FlagTraits::BULLET_LIFE_BOOST)){
+			gBul[i].life_count *= std::get<float>(GetFlagTraitData(FlagTraits::BULLET_LIFE_BOOST, "boost"));
 		}
 	}
 	gBul[i].x = x;

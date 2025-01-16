@@ -198,10 +198,9 @@ void ActBullet_Whirlpool(BULLET *bul)
 	bul->rect = {288, 128, 298, 138};
 	bul->life_count = 500;
 	bul->iframes = 10;
-	if (GetNPCFlag(Flags::BATTERY_PACK)){
-			if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL)) bul->life_count *= 1.33;
-			else bul->life_count *= 1.25;
-		}
+	if (CheckFlagTrait(FlagTraits::BULLET_LIFE_BOOST)){
+		bul->life_count *= std::get<float>(GetFlagTraitData(FlagTraits::BULLET_LIFE_BOOST, "boost"));
+	}
 
 	if (++bul->ani_wait > 0)
 	{

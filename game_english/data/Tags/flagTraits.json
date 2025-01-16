@@ -44,6 +44,9 @@
     "703": [
         {"name": "mouse_teleport"}
     ],
+    "705": [
+        {"name": "bullet_life_boost", "boost": 1.25}
+    ],
     "708": [
         {"name": "ice_skates"}
     ],
@@ -72,7 +75,7 @@
         {"name": "booster_0_8"}, {"name": "can_boost"}, {"name": "no_slippery"}
     ],
     "872": [
-        {"name": "press_dmg_reduce"}
+        {"name": "press_dmg_reduce"}, {"name": "bullet_life_boost", "boost": 1.33}
     ],
     "873": [
         {"name": "exploding_fireball"}, {"name": "propane_trail"}

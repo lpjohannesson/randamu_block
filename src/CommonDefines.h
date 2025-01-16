@@ -200,6 +200,7 @@ namespace FlagTraits {
 	inline constexpr const char* GRAVITY_FLIP       = "gravity_flip";
 	inline constexpr const char* EXPLODING_FIREBALL = "exploding_fireball";
 	inline constexpr const char* PRESS_DMG_REDUCE   = "press_dmg_reduce";
+	inline constexpr const char* BULLET_LIFE_BOOST  = "bullet_life_boost";
 }
 
 namespace Bullets {
