@@ -610,10 +610,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::TOROKO_CHARACTER))
-	{
-		items = {601, 1301, 1401, 3701};
-	}
 	if (GetNPCFlag(Flags::MISERY_CHARACTER))
 	{
 		items = {401, 501, 601, 901, 1501, 1601, 1701, 1901, 2001, 2801, 2901, 3001, 3101, 4701, 4801, 5501, 5601, 5701};
@@ -693,13 +689,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "FluffMimi")
-		{
-			SetNPCFlag(Flags::TOROKO_CHARACTER);
-			gMIMCurrentNum = 3;
-			gMC.life = 3;
-			gMC.max_life = 3;
-		}
 		if (character == "Raymundo")
 		{
 			SetNPCFlag(Flags::MISERY_CHARACTER);
@@ -824,7 +813,7 @@ void SelectCharacter(std::string character) {
 		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
 			lifeCapsuleValue = 4;
 		if (GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || 
-		GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER))
+		GetNPCFlag(Flags::AMY_CHARACTER))
 			lifeCapsuleValue = 2;
 		
 		int lifeCapsuleAmount = LifeCapsuleLimit() / 1.5f * 0.75f;

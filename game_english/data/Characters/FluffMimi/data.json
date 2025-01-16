@@ -1,0 +1,23 @@
+{
+    "name": "Toroko",
+
+    "maxLife": 9,
+
+    "physics_diff": {
+        "jump" : 1.5,
+		"dash1" : 1.15,
+		"dash2" : 1.15,
+		"max_dash" : 1.15,
+		"gravity2" : 0.9
+    },
+
+    "hurtSound": 50,
+    "deathSound": 53,
+
+    "lifeCapsuleValue": 2,
+
+    "blacklistedChestFlags": [601, 1301, 1401, 3701],
+    "characterFlags": [4300],
+    "startingItems": [],
+    "startingWeapons": [{"id": 7, "maxAmmo": 100}]
+}

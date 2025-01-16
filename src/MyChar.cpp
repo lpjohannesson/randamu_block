@@ -600,11 +600,6 @@ void ActMyChar_Normal(bool bKey)
 			gravity2 = 0;
 	}
 	if (GetNPCFlag(Flags::TOROKO_CHARACTER)){
-		jump *= 1.5;
-		dash1 *= 1.15;
-		dash2 *= 1.15;
-		max_dash *= 1.15;
-		gravity2 *= 0.9;
 		if (gMC.life == 0){
 			dash1 *= 1.15;
 			dash2 *= 1.15;
