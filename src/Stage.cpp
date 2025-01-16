@@ -610,10 +610,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::CURLY_CHARACTER))
-	{
-		items = {701};
-	}
 	if (GetNPCFlag(Flags::KING_CHARACTER))
 	{
 		items = {2801, 3701, 3801, 4601, 4701};
@@ -707,13 +703,6 @@ void SelectCharacter(std::string character) {
 			gMIMCurrentNum = 2;
 			gMC.life = 5;
 			gMC.max_life = 5;
-		}
-		if (character == "CurlyBrac")
-		{
-			SetNPCFlag(Flags::CURLY_CHARACTER);
-			gMIMCurrentNum = 1;
-			gMC.life = 9;
-			gMC.max_life = 9;
 		}
 		if (character == "FluffMimi")
 		{
@@ -843,7 +832,7 @@ void SelectCharacter(std::string character) {
 	if (ChallengeEnabled("secondCampaign") && !GetNPCFlag(Flags::DUCKMAN_CHARACTER))
 	{
 		int lifeCapsuleValue = 3;
-		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
+		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
 			lifeCapsuleValue = 4;
 		if (GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || 
 		GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER))

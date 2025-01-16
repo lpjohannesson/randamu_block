@@ -1,6 +1,8 @@
 {
     "name": "Curly",
 
+    "maxLife": 9,
+
     "physics_diff": {
         "dash1" : 0.82,
 		"dash2" : 0.82,
@@ -17,7 +19,7 @@
     "lifeCapsuleLimit": 26,
     "lifeCapsuleValue": 4,
 
-    "blacklistedChestFlags": 700,
+    "blacklistedChestFlags": [700],
     "characterFlags": [4200, -16],
     "startingItems": [21],
     "startingWeapons": [{"id": 4, "maxAmmo": 100}]

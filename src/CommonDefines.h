@@ -134,7 +134,6 @@ namespace Flags {
 	inline constexpr int SUE_CHARACTER            = 4096;
 	inline constexpr int KING_CHARACTER           = 4100;
 	inline constexpr int EXCERPT_CHARACTER        = 4150;
-	inline constexpr int CURLY_CHARACTER          = 4200;
 	inline constexpr int QUATE_CHARACTER          = 4242;
 	inline constexpr int SARA_CHARACTER           = 4250;
 	inline constexpr int DUCKMAN_CHARACTER        = 4280;
