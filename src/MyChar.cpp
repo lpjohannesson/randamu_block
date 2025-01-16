@@ -41,7 +41,7 @@ std::vector<int> gAvailableIDs;
 std::vector<Cooldown> gCooldowns = {};
 std::map<std::pair<short, short>, unsigned char> mapModifications;
 
-std::map<std::string, MYCHAR_DEFINITION> availableCharacters;
+nlohmann::ordered_map<std::string, MYCHAR_DEFINITION> availableCharacters;
 
 int DashDuration(){
 	if (gMC.ameDashState) return 2000000;

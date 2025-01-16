@@ -205,6 +205,40 @@ void ReloadConfig(){
 			}
 		}
 	}
+
+	auto orderPath = fs::path(gDataPath) / "Characters/order.txt";
+
+	if (!fs::exists(orderPath)){
+		auto file = std::ofstream{orderPath};
+		for (auto path: characterDefPaths){
+			file << path.string() << std::endl;
+		}
+	} else {
+		auto file = std::ifstream{orderPath};
+		std::vector<fs::path> orderedPaths;
+		std::string path;
+		while (file >> path){
+			orderedPaths.push_back(path);
+		}
+		if (characterDefPaths.size() > orderedPaths.size()){
+			auto unaccountedChars = characterDefPaths;
+
+			for(const auto &element: orderedPaths){
+				const auto it = std::find(unaccountedChars.begin(), unaccountedChars.end(), element);
+				if(it != unaccountedChars.end()){
+					unaccountedChars.erase(it);
+				}
+			}
+
+			file.close();
+			auto file = std::ofstream{orderPath};
+			for (auto path: unaccountedChars){
+				file << path.string() << std::endl;
+				orderedPaths.push_back(path);
+			}
+		}
+		std::swap(characterDefPaths, orderedPaths);
+	}
 	for (auto characterDefPath: characterDefPaths) {
 		 json characterDef = ReadJSON(("Characters" / characterDefPath / "data.json").string());
 		 availableCharacters[characterDefPath.string()] = characterDef;

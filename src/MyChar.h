@@ -192,7 +192,7 @@ extern std::map<std::pair<short, short>, unsigned char> mapModifications;
 extern std::vector<int> gAvailableIDs;
 extern std::vector<Cooldown> gCooldowns;
 
-extern std::map<std::string, MYCHAR_DEFINITION> availableCharacters;
+extern nlohmann::ordered_map<std::string, MYCHAR_DEFINITION> availableCharacters;
 
 extern MYCHAR gMC;
 
