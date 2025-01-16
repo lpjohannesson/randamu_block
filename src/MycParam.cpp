@@ -230,7 +230,7 @@ void DamageMyChar(int damage)
 	}
 	else{
 		int sound = 16;
-		if (GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
+		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
 			sound = 52;
 		if (GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 57;
@@ -397,7 +397,7 @@ void Die(void){
 		} else {
 		gMC.life = 0;
 		int sound = 17;
-		if (GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
+		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
 			sound = 25;
 		if (GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 35;
@@ -452,8 +452,6 @@ void AddLifeMyChar(int x)
 			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		} else {
 		int sound = 17;
-		if (GetNPCFlag(Flags::KING_CHARACTER))
-			sound = 25;
 		if (GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER))
 			sound = 35;
 		if (GetNPCFlag(Flags::TOROKO_CHARACTER))

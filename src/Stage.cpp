@@ -610,10 +610,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::KING_CHARACTER))
-	{
-		items = {2801, 3701, 3801, 4601, 4701};
-	}
 	if (GetNPCFlag(Flags::TOROKO_CHARACTER))
 	{
 		items = {601, 1301, 1401, 3701};
@@ -697,13 +693,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "KingTable")
-		{
-			SetNPCFlag(Flags::KING_CHARACTER);
-			gMIMCurrentNum = 2;
-			gMC.life = 5;
-			gMC.max_life = 5;
-		}
 		if (character == "FluffMimi")
 		{
 			SetNPCFlag(Flags::TOROKO_CHARACTER);

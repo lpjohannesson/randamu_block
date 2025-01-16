@@ -1,0 +1,21 @@
+{
+    "name": "King",
+
+    "maxLife": 5,
+
+    "physics_diff": {
+        "jump" : 1.25,
+		"dash1" : 1.06,
+		"dash2" : 1.06,
+		"max_dash" : 1.06,
+		"max_move" : 1.025
+    },
+
+    "hurtSound": 52,
+    "deathSound": 25,
+
+    "blacklistedChestFlags": [2801, 3701, 3801, 4601, 4701],
+    "characterFlags": [4100],
+    "startingItems": [],
+    "startingWeapons": [{"id": 9, "maxAmmo": 0}, {"id": 8, "maxAmmo": 0}, {"id": 15, "maxAmmo": 0}]
+}
