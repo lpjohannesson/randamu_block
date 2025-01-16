@@ -232,7 +232,7 @@ void DamageMyChar(int damage)
 		int sound = 16;
 		if (GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 			sound = 52;
-		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
+		if (GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 57;
 		if (GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER))
 			sound = 50;
@@ -253,7 +253,7 @@ void DamageMyChar(int damage)
 	if (GetNPCFlag(Flags::MAXY_CHARACTER)){
 		gMC.shock = 70;
 	}
-	if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER)){
+	if (GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		gMC.shock = 200;
 	}
 	if (CheckFlagTrait(FlagTraits::IFRAMES_BOOST)){
@@ -399,7 +399,7 @@ void Die(void){
 		int sound = 17;
 		if (GetNPCFlag(Flags::KING_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
 			sound = 25;
-		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
+		if (GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 35;
 		if (GetNPCFlag(Flags::TOROKO_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || GetNPCFlag(Flags::AMY_CHARACTER) || GetNPCFlag(Flags::PUPPY_CHARACTER))
 			sound = 53;
@@ -454,7 +454,7 @@ void AddLifeMyChar(int x)
 		int sound = 17;
 		if (GetNPCFlag(Flags::KING_CHARACTER))
 			sound = 25;
-		if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER))
+		if (GetNPCFlag(Flags::SARA_CHARACTER) || GetNPCFlag(Flags::LILY_CHARACTER))
 			sound = 35;
 		if (GetNPCFlag(Flags::TOROKO_CHARACTER))
 			sound = 53;

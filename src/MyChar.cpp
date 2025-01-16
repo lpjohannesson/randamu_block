@@ -638,14 +638,6 @@ void ActMyChar_Normal(bool bKey)
 		if (gKey & gKeyAbility)
 			max_dash *= 2;
 	}
-	if (GetNPCFlag(Flags::CURLY_CHARACTER)){
-		dash1 *= 0.82;
-		dash2 *= 0.82;
-		max_dash *= 0.71;
-		jump *= 1.15;
-		gravity2 *= 0.88;
-		gravity1 *= 1.25;
-	}
 	if (GetNPCFlag(Flags::KING_CHARACTER)){
 		jump *= 1.25;
 		dash1 *= 1.06;

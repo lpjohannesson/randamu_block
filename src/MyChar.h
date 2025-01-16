@@ -97,7 +97,7 @@ struct MYCHAR_DEFINITION
 		NLOHMANN_DEFINE_TYPE_INTRUSIVE(WEAPON, id, maxAmmo)
 	};
 
-	std::vector<WEAPON> startingWeapons;
+	std::vector<WEAPON> startingWeapons{{3, 0}};
 
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, spritesheet, physics_diff,
 		hurtSound, deathSound, immunityFrames, lifeCapsuleLimit, lifeCapsuleValue,

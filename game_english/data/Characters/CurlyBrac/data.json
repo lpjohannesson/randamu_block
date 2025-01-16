@@ -1,0 +1,24 @@
+{
+    "name": "Curly",
+
+    "physics_diff": {
+        "dash1" : 0.82,
+		"dash2" : 0.82,
+		"max_dash" : 0.71,
+		"jump" : 1.15,
+        "gravity1" : 1.25,
+		"gravity2" : 0.88
+    },
+
+    "hurtSound": 57,
+    "deathSound": 35,
+    "immunityFrames": 200,
+
+    "lifeCapsuleLimit": 26,
+    "lifeCapsuleValue": 4,
+
+    "blacklistedChestFlags": 700,
+    "characterFlags": [4200, -16],
+    "startingItems": [21],
+    "startingWeapons": [{"id": 4, "maxAmmo": 100}]
+}

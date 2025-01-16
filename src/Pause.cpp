@@ -1284,6 +1284,8 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 	StartTextScript(900 + selectedChar);
 	ChangeMusic(MUS_SELECT);
 
+	int characterAmount = availableCharacters.size();
+
 	for (;;)
 	{
 		GetTrg();

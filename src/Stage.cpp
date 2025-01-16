@@ -485,7 +485,7 @@ void msvc_srand_s2(uint32_t x)
 int LifeCapsuleLimit()
 {
 	int limit = 18;
-	if (GetNPCFlag(Flags::CURLY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
+	if (GetNPCFlag(Flags::MAHIN_CHARACTER))
 	{
 		limit = 26;
 	}
