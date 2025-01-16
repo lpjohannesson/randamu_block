@@ -136,7 +136,6 @@ namespace Flags {
 	inline constexpr int QUATE_CHARACTER          = 4242;
 	inline constexpr int SARA_CHARACTER           = 4250;
 	inline constexpr int DUCKMAN_CHARACTER        = 4280;
-	inline constexpr int TOROKO_CHARACTER         = 4300;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
 	inline constexpr int LILY_CHARACTER           = 4350;
 	inline constexpr int MISERY_CHARACTER         = 4400;
@@ -199,6 +198,7 @@ namespace FlagTraits {
 	inline constexpr const char* EXPLODING_FIREBALL = "exploding_fireball";
 	inline constexpr const char* PRESS_DMG_REDUCE   = "press_dmg_reduce";
 	inline constexpr const char* BULLET_LIFE_BOOST  = "bullet_life_boost";
+	inline constexpr const char* DOUBLE_JUMP        = "double_jump";
 }
 
 namespace Bullets {

@@ -1018,7 +1018,7 @@ void ActMyChar_Normal(bool bKey)
 					|| (gMC.equip & EQUIP_ALIEN_MEDAL && gMC.pogo && GetAttribute(round(((float)gMC.x) / 0x2000), round(((float)gMC.y + 0x200 * 15) / 0x2000)) == 66)
 					|| (CheckFlagTrait(FlagTraits::WALL_JUMP) && (GetAttribute(round(((float)gMC.x) / 0x2000) + 1, round(((float)gMC.y) / 0x2000)) == 65)
 					|| GetAttribute(round(((float)gMC.x) / 0x2000) - 1, round(((float)gMC.y) / 0x2000)) == 65)
-					 || ((gMC.equip & EQUIP_DOUBLE_JUMP || GetNPCFlag(Flags::TOROKO_CHARACTER) || gMC.saraDash || (GetNPCFlag(Flags::CAPE_OF_SHADOWS))) && gMC.pogo)))
+					 || ((CheckFlagTrait(FlagTraits::DOUBLE_JUMP) || gMC.saraDash) && gMC.pogo)))
 		{
 			if (gMC.flag & 0x2000)
 			{
@@ -1043,7 +1043,7 @@ void ActMyChar_Normal(bool bKey)
 					gMC.direct = 2;
 					gMC.pogo = true;
 				}
-				else if ((gMC.equip & EQUIP_DOUBLE_JUMP || GetNPCFlag(Flags::TOROKO_CHARACTER) || (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) || gMC.saraDash) && gMC.pogo == true && !(gMC.flag & 8 || gMC.flag & 0x10 || gMC.flag & 0x20 || gMC.flag & 0x100) ){
+				else if ((CheckFlagTrait(FlagTraits::DOUBLE_JUMP) || gMC.saraDash) && gMC.pogo == true && !(gMC.flag & 8 || gMC.flag & 0x10 || gMC.flag & 0x20 || gMC.flag & 0x100) ){
 					gMC.pogo = false;
 					SetDestroyNpChar(gMC.x, gMC.y, gMC.view.back, 5);
 				}
