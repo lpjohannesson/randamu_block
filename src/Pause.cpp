@@ -1123,7 +1123,7 @@ static int Callback_PickDifficulty(OptionsMenu *parent_menu, size_t this_option)
 std::string resourceDesc;
 
 // inspired by word wrap from L.B on Stack Overflow
-auto WordWrap = ctre::range<"(.{1,44})(?:\\s|$)">;
+auto WordWrap = ctre::search_all<"(.{1,44})(?:\\s|$)">;
 
 static int Callback_Resources(OptionsMenu *parent_menu, size_t this_option, CallbackAction action){
 	int scroll = 0;
@@ -3032,10 +3032,10 @@ static int Callback_ModPage(OptionsMenu *parent_menu, size_t this_option, Callba
 						{
 							needUpdate = true;
 							json downloadJson = json::parse(client.Get(downloadURL));
-							trueDownloadUrl = downloadJson["url"];
+							trueDownloadUrl = downloadJson["url"].get<std::string>();
 						}
 					} else {
-						errorMessage = respJson["errors"][0];
+						errorMessage = respJson["errors"][0].get<std::string>();
 						succeed = false;
 						errored = true;
 					}
