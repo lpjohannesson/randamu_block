@@ -599,12 +599,11 @@ void ActMyChar_Normal(bool bKey)
 		if (gMC.flag & 0x100)
 			gravity2 = 0;
 	}
-	if (GetNPCFlag(Flags::TOROKO_CHARACTER)){
-		if (gMC.life == 0){
-			dash1 *= 1.15;
-			dash2 *= 1.15;
-			max_dash *= 1.15;
-		}
+	if (CheckFlagTrait(FlagTraits::LAST_STAND) && gMC.life == 0){
+		float speedBoost = std::get<float>(GetFlagTraitData(FlagTraits::LAST_STAND, "speed_boost"));
+		dash1 *= speedBoost;
+		dash2 *= speedBoost;
+		max_dash *= speedBoost;
 	}
 	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
 		float jumpHeight = float(Random(125, 300)) / 100.0f;
