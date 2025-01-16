@@ -41,6 +41,8 @@ std::vector<int> gAvailableIDs;
 std::vector<Cooldown> gCooldowns = {};
 std::map<std::pair<short, short>, unsigned char> mapModifications;
 
+std::map<std::string, MYCHAR_DEFINITION> availableCharacters;
+
 int DashDuration(){
 	if (gMC.ameDashState) return 2000000;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;

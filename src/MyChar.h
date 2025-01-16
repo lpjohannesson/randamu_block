@@ -64,6 +64,40 @@ struct MYCHAR_PHYSICS
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE(MYCHAR_PHYSICS, max_dash, max_move, gravity1, gravity2, dash1, dash2, resist, jump)
 };
 
+struct MYCHAR_DEFINITION
+{
+	std::string name;
+	std::string spritesheet = "MyChar.png";
+	
+	struct MYCHAR_PHYSICS_DIFF
+	{
+		float max_dash = 1.0f;
+		float max_move = 1.0f;
+		float gravity1 = 1.0f;
+		float gravity2 = 1.0f;
+		float dash1 = 1.0f;
+		float dash2 = 1.0f;
+		float resist = 1.0f;
+		float jump = 1.0f;
+
+		NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_PHYSICS_DIFF, max_dash, max_move, gravity1, gravity2, dash1, dash2, resist, jump)
+	} physics_diff;
+
+	int hurtSound = 16;
+	int deathSound = 17;
+	int immunityFrames = 128;
+	int lifeCapsuleLimit = 18;
+	int lifeCapsuleValue = 3;
+	std::vector<int> blacklistedChestFlags;
+	std::vector<int> characterFlags;
+	std::vector<int> startingItems;
+	std::vector<int> startingWeapons;
+
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, spritesheet, physics_diff,
+		hurtSound, deathSound, immunityFrames, lifeCapsuleLimit, lifeCapsuleValue,
+		blacklistedChestFlags, characterFlags, startingItems, startingWeapons)
+};
+
 struct MYCHAR
 {
 	unsigned char cond;
@@ -149,6 +183,8 @@ extern std::map<std::pair<short, short>, unsigned char> mapModifications;
 
 extern std::vector<int> gAvailableIDs;
 extern std::vector<Cooldown> gCooldowns;
+
+extern std::map<std::string, MYCHAR_DEFINITION> availableCharacters;
 
 extern MYCHAR gMC;
 

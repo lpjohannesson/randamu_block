@@ -190,6 +190,26 @@ void ReloadConfig(){
 		}
 		stageGenerationMetadata[name] = metadataMap;
 	}
+
+	WriteGameLog("Loading playable characters.");
+	std::vector<fs::path> characterDefPaths;
+	for (auto resource : availableResources){
+		auto resourcePath = resource.path / "Characters";
+		if (fs::exists(resourcePath)){
+			fs::recursive_directory_iterator begin(resourcePath);
+       		fs::recursive_directory_iterator end;
+			for (auto& path : begin){
+				if (fs::is_directory(path) && path.path().string()[0] != '_' && std::find(characterDefPaths.begin(), characterDefPaths.end(), path) == characterDefPaths.end()){
+					characterDefPaths.push_back(fs::relative(path, availableResources[0].path / "Characters"));
+				}
+			}
+		}
+	}
+	for (auto characterDefPath: characterDefPaths) {
+		 json characterDef = ReadJSON(("Characters" / characterDefPath / "data.json").string());
+		 availableCharacters[characterDefPath.string()] = characterDef;
+	}
+
 	characterNames = ParseMapTag("Tags/characterNames.json");
 	stageNames = ParseMapTag("Tags/stageNames.json");
 	for (const auto &[key, _] : stageNames)
