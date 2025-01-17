@@ -652,7 +652,6 @@ void ActMyChar_Normal(bool bKey)
 		jump *= 1.25;
 		gravity2 *= 0.85;
 		gravity1 *= 1.6;
-		gMC.no_splash_or_air_limit_underwater = 1;
 		if (gKey & gKeyAbility)
 			max_dash *= 2;
 	}
@@ -663,14 +662,6 @@ void ActMyChar_Normal(bool bKey)
 		resist *= 0.5;
 		gravity1 *= 2;
 		gravity2 *= 0.8;
-	}
-	if (GetNPCFlag(Flags::MISERY_CHARACTER)){
-		jump *= 1.05;
-		dash1 *= 1.075;
-		dash2 *= 1.075;
-		max_dash *= 1.075;
-		gravity2 = 0;
-		gMC.no_splash_or_air_limit_underwater = 1;
 	}
 	if (GetNPCFlag(Flags::HUNTER_CHARACTER)){
 		dash1 *= 1.08;

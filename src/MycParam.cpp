@@ -238,8 +238,6 @@ void DamageMyChar(int damage)
 			sound = 50;
 		if (GetNPCFlag(Flags::PROCGEN_CHARACTER))
 			sound = 54;
-		if (GetNPCFlag(Flags::MISERY_CHARACTER))
-			sound = 66;
 		if (GetNPCFlag(Flags::PUPPY_CHARACTER))
 			sound = 105;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
@@ -403,8 +401,6 @@ void Die(void){
 			sound = 35;
 		if (GetNPCFlag(Flags::AMY_CHARACTER) || GetNPCFlag(Flags::PUPPY_CHARACTER))
 			sound = 53;
-		if (GetNPCFlag(Flags::MISERY_CHARACTER))
-			sound = 67;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 		gMC.cond = 0;
 		SetDestroyNpChar(gMC.x, gMC.y, 0x1400, 0x40);

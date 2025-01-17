@@ -610,10 +610,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::MISERY_CHARACTER))
-	{
-		items = {401, 501, 601, 901, 1501, 1601, 1701, 1901, 2001, 2801, 2901, 3001, 3101, 4701, 4801, 5501, 5601, 5701};
-	}
 	if (GetNPCFlag(Flags::MODERN_QUOTE_CHARACTER))
 	{
 		items = {801, 3701};
@@ -685,13 +681,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "Raymundo")
-		{
-			SetNPCFlag(Flags::MISERY_CHARACTER);
-			gMIMCurrentNum = 4;
-			gMC.life = 12;
-			gMC.max_life = 12;
-		}
 		if (character == "Upntscale")
 		{
 			SetNPCFlag(Flags::MODERN_QUOTE_CHARACTER);
@@ -2117,8 +2106,10 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 	if (CheckItemSpace())
 	{
 		rooms = std::get<int>(genArguments["amount"]);
-		if (GetNPCFlag(Flags::MISERY_CHARACTER) || GetNPCFlag(Flags::MAHIN_CHARACTER))
-			rooms = std::get<int>(genArguments["misery_amount"]);
+		if (CheckFlagTrait(FlagTraits::CHEST_BOOST))
+		{
+			rooms *= std::get<float>(GetFlagTraitData(FlagTraits::CHEST_BOOST, "base"));
+		}
 		limit = ChallengeValue("chest_limit");
 		if (limit != -1 && (limit <= rooms || limit > std::get<int>(genArguments["amount"])))
 		{

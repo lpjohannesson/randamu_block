@@ -1,0 +1,21 @@
+{
+    "name": "Misery",
+
+    "maxLife": 12,
+
+    "physics_diff": {
+        "jump" : 1.05,
+		"dash1" : 1.075,
+		"dash2" : 1.075,
+		"max_dash" :1.075,
+		"gravity2" : 0
+    },
+
+    "hurtSound": 66,
+    "deathSound": 67,
+
+    "blacklistedChestFlags": [401, 501, 601, 901, 1501, 1601, 1701, 1901, 2001, 2801, 2901, 3001, 3101, 4701, 4801, 5501, 5601, 5701],
+    "characterFlags": [4400],
+    "startingItems": [],
+    "startingWeapons": [{"id": 13, "maxAmmo": 0}]
+}

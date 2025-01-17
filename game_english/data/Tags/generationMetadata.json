@@ -340,7 +340,6 @@
 	},
 	"chests": {
 		"amount": 2,
-		"misery_amount": 1,
 		
 		"vault_gimmick": "3",
 		"vault_boost": 2,
