@@ -20,5 +20,6 @@ bool GetSkipFlag(long a);
 bool CheckFlagTrait(std::string trait);
 
 const GenerationMetadata& GetFlagTraitData(std::string trait, std::string parameter);
+std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait);
 
 #endif // __FLAGS_H__
