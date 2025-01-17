@@ -618,10 +618,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {801, 3701};
 	}
-	if (GetNPCFlag(Flags::SUE_CHARACTER))
-	{
-		items = {4801};
-	}
 	if (GetNPCFlag(Flags::LILY_CHARACTER)){
 		items = {1501, 1901, 3101};
 	}
@@ -799,20 +795,13 @@ void SelectCharacter(std::string character) {
 			gMC.life = 6;
 			gMC.max_life = 6;
 		}
-		if (character == "Sakamoto")
-		{
-			SetNPCFlag(Flags::SUE_CHARACTER);
-			gMIMCurrentNum = 19;
-			gMC.life = 3;
-			gMC.max_life = 3;
-		}
 	}
 	if (ChallengeEnabled("secondCampaign") && !GetNPCFlag(Flags::DUCKMAN_CHARACTER))
 	{
 		int lifeCapsuleValue = 3;
 		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
 			lifeCapsuleValue = 4;
-		if (GetNPCFlag(Flags::LILY_CHARACTER) || GetNPCFlag(Flags::SUE_CHARACTER) || 
+		if (GetNPCFlag(Flags::LILY_CHARACTER) || 
 		GetNPCFlag(Flags::AMY_CHARACTER))
 			lifeCapsuleValue = 2;
 		
@@ -2143,9 +2132,9 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 		{
 			rooms += std::get<int>(genArguments["dungeon_boost"]);
 		}
-		if (GetNPCFlag(Flags::SUE_CHARACTER))
+		if (CheckFlagTrait(FlagTraits::CHEST_BOOST))
 		{
-			rooms += std::get<int>(genArguments["sue_boost"]);
+			rooms += std::get<int>(GetFlagTraitData(FlagTraits::CHEST_BOOST, "amount"));
 		}
 		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["blacklist_tileset"])))
 		{

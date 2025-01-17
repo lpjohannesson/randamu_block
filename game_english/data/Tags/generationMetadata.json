@@ -348,8 +348,6 @@
 		"dungeon_tileset": "L",
 		"dungeon_boost": 2,
 		
-		"sue_boost": 2,
-		
 		"blacklist_tileset": "P"
 	},
 	"life_capsules": {

@@ -61,11 +61,13 @@ bool CheckFlagTrait(std::string trait)
 }
 
 const GenerationMetadata empty;
+std::map<int, GenerationArguments> emptydata;
 
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait){
 	if (flagTraits.contains(trait)){
 		return flagTraits[trait];
 	}
+	return emptydata;
 }
 
 const GenerationMetadata& GetFlagTraitData(std::string trait, std::string parameter){

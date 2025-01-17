@@ -199,6 +199,7 @@ namespace FlagTraits {
 	inline constexpr const char* PRESS_DMG_REDUCE   = "press_dmg_reduce";
 	inline constexpr const char* BULLET_LIFE_BOOST  = "bullet_life_boost";
 	inline constexpr const char* DOUBLE_JUMP        = "double_jump";
+	inline constexpr const char* CHEST_BOOST        = "chest_boost";
 }
 
 namespace Bullets {

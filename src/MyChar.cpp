@@ -632,14 +632,6 @@ void ActMyChar_Normal(bool bKey)
 		if (gKey & gKeyAbility)
 			max_dash *= 2;
 	}
-	if (GetNPCFlag(Flags::SUE_CHARACTER)){
-		jump *= 1.08;
-		gravity2 *= 0.7;
-		dash1 *= 1.4;
-		dash2 *= 1.4;
-		max_dash *= 1.2;
-		max_move *= 1.1;
-	}
 	if (GetNPCFlag(Flags::PROCGEN_CHARACTER)){
 		jump *= 1.1;
 		dash1 *= 1.6;

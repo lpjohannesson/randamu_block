@@ -108,7 +108,7 @@
         {"name": "hunger_system"}
     ],
     "4096": [
-        {"name": "spike_evading"}
+        {"name": "spike_evading"}, {"name": "chest_boost", "amount": 2}
     ],
     "4100": [
         {"name": "blade_dash"}
