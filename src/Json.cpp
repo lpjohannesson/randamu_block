@@ -2,6 +2,7 @@
 #include "Json.h"
 #include "Log.h"
 #include <fstream>
+#include <ranges>
 #include "cpp/gstream.hpp"
 #include "Backends/Misc.h"
 #include "ResourceCode.h"
@@ -34,7 +35,7 @@ json ReadJSON(const std::string &path, mode m){
         case mode::normal:
             i = std::ifstream(GetResourcePath(0, path));
             i >> j;
-            for (int rID : GetNumbers(1, (int)(availableResources.size()))){
+            for (int rID : std::views::iota(1, (int)(availableResources.size()))){
                 std::ifstream overrideI = std::ifstream(GetResourcePath(rID, path));
                 json overrideJ;
                 overrideI >> overrideJ;
@@ -44,7 +45,7 @@ json ReadJSON(const std::string &path, mode m){
         case mode::encrypted:
             i2.open(GetResourcePath(0, path).c_str());
             i2 >> j;
-            for (int rID : GetNumbers(1, (int)(availableResources.size()))){
+            for (int rID : std::views::iota(1, (int)(availableResources.size()))){
                 igzstream overrideI = igzstream(GetResourcePath(rID, path).c_str());
                 json overrideJ;
                 overrideI >> overrideJ;

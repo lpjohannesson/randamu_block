@@ -21,13 +21,4 @@ bool ErrorLog(const char *string, int value);
 bool IsShiftJIS(unsigned char c);
 bool IsEnableBitmap(const char *path);
 
-template<typename Num = int>
-std::vector<Num, std::allocator<Num>> GetNumbers(Num begin, Num end){
-	std::vector<Num, std::allocator<Num>> arr;
-	for (Num num = begin; num < end; num++)
-		arr.push_back(num);
-
-	return arr;
-}
-
 #endif // __GENERIC_H__
