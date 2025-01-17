@@ -218,7 +218,8 @@ void ReloadConfig(){
 		std::vector<fs::path> orderedPaths;
 		std::string path;
 		while (file >> path){
-			orderedPaths.push_back(path);
+			if (!path.empty())
+				orderedPaths.push_back(path);
 		}
 		if (characterDefPaths.size() > orderedPaths.size()){
 			auto unaccountedChars = characterDefPaths;
