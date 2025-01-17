@@ -4,6 +4,8 @@
 #include <cstddef>
 #include <cstring>
 
+#include <ranges>
+
 #include <vector>
 
 #include "CommonDefines.h"
@@ -18,6 +20,7 @@
 #include "Flash.h"
 #include "Frame.h"
 #include "Game.h"
+#include "Generic.h"
 #include "KeyControl.h"
 #include "Log.h"
 #include "Main.h"
@@ -435,11 +438,22 @@ void PutMyChar(int fx, int fy)
 		PutBitmap3_Flip(&grcGame, 
 		SubpixelToScreenCoord(gMC.x - gMC.view.front - gMC.xm*(1+i*3))
 		 - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top - gMC.ym*(1+i*3)) - SubpixelToScreenCoord(fy), &rect, (SurfaceID)((int)SURFACE_ID_DASH_VISUAL), 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
+	auto hiddenItems = GetFlagTraitData(FlagTraits::HIDDEN_EQUIPS);
 	for (int i = 0; i < ARRAY_SIZE(accOrder); i++)
 	{
 		if (gMC.equip & accOrder[i])
 		{
-			if (GetNPCFlag(Flags::SUE_CHARACTER) && accOrder[i] == EQUIP_SKATES) continue;
+			bool skip = false;
+			for (const auto&[flag, oof]: MapIterate(hiddenItems, [](int flag, GenerationArguments value)->bool{
+				return GetNPCFlag(flag) && value.contains("flags");
+			})){
+				for (const auto& flag : std::get<std::vector<int>>(oof.second))
+					if (accOrder[i] == std::abs(flag)){
+						skip = true;
+						break;
+					}
+			}
+			if (skip) continue;
 			Rect accRect = gMC.rect;
 			accRect.top += 32 * accRectNum[i];
 			accRect.bottom += 32 * accRectNum[i];
@@ -450,7 +464,17 @@ void PutMyChar(int fx, int fy)
 	{
 		if (GetNPCFlag(accOrderFlag[i]))
 		{
-			if (GetNPCFlag(Flags::SUE_CHARACTER) && accOrder[i] == EQUIP_SKATES) continue;
+			bool skip = false;
+			for (const auto&[flag, oof]: MapIterate(hiddenItems, [](int flag, GenerationArguments value)->bool{
+				return GetNPCFlag(flag) && value.contains("flags");
+			})){
+				for (const auto& flag : std::get<std::vector<int>>(oof.second))
+					if (accOrderFlag[i] == flag){
+						skip = true;
+						break;
+					}
+			}
+			if (skip) continue;
 			Rect accRect = gMC.rect;
 			accRect.top += 32 * accRectNumFlag[i];
 			accRect.bottom += 32 * accRectNumFlag[i];

@@ -131,7 +131,6 @@ namespace Flags {
 	inline constexpr int REFILL_SAVE_FLAG_BEGIN   = 2630;
 	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
 	inline constexpr int HUNTER_CHARACTER         = 3333;
-	inline constexpr int SUE_CHARACTER            = 4096;
 	inline constexpr int EXCERPT_CHARACTER        = 4150;
 	inline constexpr int QUATE_CHARACTER          = 4242;
 	inline constexpr int SARA_CHARACTER           = 4250;
@@ -200,6 +199,7 @@ namespace FlagTraits {
 	inline constexpr const char* BULLET_LIFE_BOOST  = "bullet_life_boost";
 	inline constexpr const char* DOUBLE_JUMP        = "double_jump";
 	inline constexpr const char* CHEST_BOOST        = "chest_boost";
+	inline constexpr const char* HIDDEN_EQUIPS      = "hidden_equips";
 }
 
 namespace Bullets {
