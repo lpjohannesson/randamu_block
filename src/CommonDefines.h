@@ -200,6 +200,7 @@ namespace FlagTraits {
 	inline constexpr const char* DOUBLE_JUMP        = "double_jump";
 	inline constexpr const char* CHEST_BOOST        = "chest_boost";
 	inline constexpr const char* HIDDEN_EQUIPS      = "hidden_equips";
+	inline constexpr const char* AMPHIBIOUS         = "amphibious";
 }
 
 namespace Bullets {

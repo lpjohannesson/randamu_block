@@ -724,6 +724,8 @@ void ActMyChar_Normal(bool bKey)
 		gravity1 *= 0.66;
 		gravity2 *= 0.66;
 	}
+	if (CheckFlagTrait(FlagTraits::AMPHIBIOUS))
+		gMC.no_splash_or_air_limit_underwater = 1;
 	bool miningLaserCharge = gKey & gKeyDown && gArmsData[gSelectedArms].code == 18 && gArmsData[gSelectedArms].exp > 0;
 	if (miningLaserCharge){
 		max_dash /= 1.5;

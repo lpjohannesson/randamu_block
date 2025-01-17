@@ -133,7 +133,7 @@
         {"name": "controlled_rocket"}
     ],
     "4400": [
-        {"name": "invidia"}, {"name": "witch_ascending"}
+        {"name": "amphibious"}, {"name": "invidia"}, {"name": "witch_ascending"}
     ],
     "4405": [
         {"name": "dash_float"}, {"name": "dash_projectile_repel"}, {"name": "witch_fireball"}, {"name": "witch_dash_vfx"}, {"name": "witch_hitbox"}
@@ -145,6 +145,6 @@
         {"name": "buffed_dash"}, {"name": "cat_dash"}, {"name": "cat_float"}, {"name": "sword_sheathing"}
     ],
     "7999": [
-        {"name": "better_ducks"}, {"name": "blade_dash"}, {"name": "buffed_machine_gun"}, {"name": "controlled_rocket"}, {"name": "dash_float"}, {"name": "dash_projectile_repel"}, {"name": "dash_sprint"}, {"name": "ducks"}, {"name": "invidia"}, {"name": "hook_flail"}, {"name": "last_stand"}, {"name": "level_4_weapons"}, {"name": "low_hp_resist"}, {"name": "sword_sheathing"}, {"name": "witch_dash_vfx"},  {"name": "witch_fireball"}
+        {"name": "amphibious"}, {"name": "better_ducks"}, {"name": "blade_dash"}, {"name": "buffed_machine_gun"}, {"name": "controlled_rocket"}, {"name": "dash_float"}, {"name": "dash_projectile_repel"}, {"name": "dash_sprint"}, {"name": "ducks"}, {"name": "invidia"}, {"name": "hook_flail"}, {"name": "last_stand"}, {"name": "level_4_weapons"}, {"name": "low_hp_resist"}, {"name": "sword_sheathing"}, {"name": "witch_dash_vfx"},  {"name": "witch_fireball"}
     ]
 }
