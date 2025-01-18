@@ -387,7 +387,15 @@ void PutMyChar(int fx, int fy)
 	gMC.rect_arms.right = gMC.rect_arms.left + 24;
 	gMC.rect_arms.top = (gArmsData[gSelectedArms].code / 13) * 96;
 	gMC.rect_arms.bottom = gMC.rect_arms.top + 16;
-	if (GetNPCFlag(Flags::MISERY_CHARACTER) && gArmsData[gSelectedArms].code == 13 || CountBulletNum(Bullets::MOVING_MISSILE)){
+	bool skipWeapon = false;
+	for (const auto&[flag, oof]: GetActualFlagTraitData(FlagTraits::HIDDEN_WEAPONS, "ids")){
+		for (const auto& id : std::get<std::vector<int>>(oof.second))
+			if (gArmsData[gSelectedArms].code == id){
+				skipWeapon = true;
+				break;
+			}
+	}
+	if (skipWeapon || CountBulletNum(Bullets::MOVING_MISSILE)){
 		gMC.rect_arms = {0, 0, 0, 0};
 	}
 
