@@ -444,9 +444,7 @@ void PutMyChar(int fx, int fy)
 		if (gMC.equip & accOrder[i])
 		{
 			bool skip = false;
-			for (const auto&[flag, oof]: MapIterate(hiddenItems, [](int flag, GenerationArguments value)->bool{
-				return GetNPCFlag(flag) && value.contains("flags");
-			})){
+			for (const auto&[flag, oof]: GetActualFlagTraitData(FlagTraits::HIDDEN_EQUIPS, "flags")){
 				for (const auto& flag : std::get<std::vector<int>>(oof.second))
 					if (accOrder[i] == std::abs(flag)){
 						skip = true;

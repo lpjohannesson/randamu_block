@@ -3,6 +3,7 @@
 
 
 #include "CommonDefines.h"
+#include "Generic.h"
 #include "StageGen.h"
 
 extern unsigned char gFlagNPC[1000];
@@ -21,5 +22,9 @@ bool CheckFlagTrait(std::string trait);
 
 const GenerationMetadata& GetFlagTraitData(std::string trait, std::string parameter);
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait);
-
+inline auto GetActualFlagTraitData(std::string trait, std::string parameter){
+	return MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [parameter](int flag, GenerationArguments value)->bool{
+		return GetNPCFlag(flag) && value.contains(parameter);
+	});
+}
 #endif // __FLAGS_H__
