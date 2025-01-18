@@ -4,6 +4,7 @@
 
 #include "CommonDefines.h"
 #include "Generic.h"
+#include "MyChar.h"
 #include "StageGen.h"
 
 extern unsigned char gFlagNPC[1000];
@@ -24,7 +25,7 @@ const GenerationMetadata& GetFlagTraitData(std::string trait, std::string parame
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait);
 inline auto GetActualFlagTraitData(std::string trait, std::string parameter){
 	return MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [parameter](int flag, GenerationArguments value)->bool{
-		return GetNPCFlag(flag) && value.contains(parameter);
+		return (flag < 0 ? (gMC.equip & std::abs(flag)) : GetNPCFlag(flag)) && value.contains(parameter);
 	});
 }
 #endif // __FLAGS_H__
