@@ -23,9 +23,12 @@ bool CheckFlagTrait(std::string trait);
 
 const GenerationMetadata& GetFlagTraitData(std::string trait, std::string parameter);
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait);
+
+template<typename ArgType>
 inline auto GetActualFlagTraitData(std::string trait, std::string parameter){
-	return MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [parameter](int flag, GenerationArguments value)->bool{
+	auto mapView = MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [parameter](int flag, GenerationArguments value)->bool{
 		return (flag < 0 ? (gMC.equip & std::abs(flag)) : GetNPCFlag(flag)) && value.contains(parameter);
 	});
+    return std::views::zip(mapView | std::views::keys, mapView | std::views::values | std::views::values | std::views::transform([](auto&& arg)->ArgType{ return std::get<ArgType>(arg);}));
 }
 #endif // __FLAGS_H__

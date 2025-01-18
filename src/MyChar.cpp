@@ -341,8 +341,8 @@ void PutMyChar(int fx, int fy)
 		if (gMC.equip & accOrder[i])
 		{
 			bool skip = false;
-			for (const auto&[flag, oof]: GetActualFlagTraitData(FlagTraits::HIDDEN_EQUIPS, "flags")){
-				for (const auto& flag : std::get<std::vector<int>>(oof.second))
+			for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_EQUIPS, "flags")){
+				for (const auto& flag : oof)
 					if (accOrder[i] == std::abs(flag)){
 						skip = true;
 						break;
@@ -360,8 +360,8 @@ void PutMyChar(int fx, int fy)
 		if (GetNPCFlag(accOrderFlag[i]))
 		{
 			bool skip = false;
-			for (const auto&[flag, oof]: GetActualFlagTraitData(FlagTraits::HIDDEN_EQUIPS, "flags")){
-				for (const auto& flag : std::get<std::vector<int>>(oof.second))
+			for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_EQUIPS, "flags")){
+				for (const auto& flag : oof)
 					if (accOrderFlag[i] == flag){
 						skip = true;
 						break;
@@ -388,12 +388,12 @@ void PutMyChar(int fx, int fy)
 	gMC.rect_arms.top = (gArmsData[gSelectedArms].code / 13) * 96;
 	gMC.rect_arms.bottom = gMC.rect_arms.top + 16;
 	bool skipWeapon = false;
-	for (const auto&[flag, oof]: GetActualFlagTraitData(FlagTraits::HIDDEN_WEAPONS, "ids")){
-		for (const auto& id : std::get<std::vector<int>>(oof.second))
+	for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_WEAPONS, "ids")){
+		for (const auto& id : oof)
 			if (gArmsData[gSelectedArms].code == id){
 				skipWeapon = true;
 				break;
-			}
+		}
 	}
 	if (skipWeapon || CountBulletNum(Bullets::MOVING_MISSILE)){
 		gMC.rect_arms = {0, 0, 0, 0};
@@ -470,8 +470,8 @@ void PutMyChar(int fx, int fy)
 		if (gMC.equip & accOrder[i])
 		{
 			bool skip = false;
-			for (const auto&[flag, oof]: GetActualFlagTraitData(FlagTraits::HIDDEN_EQUIPS, "flags")){
-				for (const auto& flag : std::get<std::vector<int>>(oof.second))
+			for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_EQUIPS, "flags")){
+				for (const auto& flag : oof)
 					if (accOrder[i] == std::abs(flag)){
 						skip = true;
 						break;
@@ -489,8 +489,8 @@ void PutMyChar(int fx, int fy)
 		if (GetNPCFlag(accOrderFlag[i]))
 		{
 			bool skip = false;
-			for (const auto&[flag, oof]: GetActualFlagTraitData(FlagTraits::HIDDEN_EQUIPS, "flags")){
-				for (const auto& flag : std::get<std::vector<int>>(oof.second))
+			for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_EQUIPS, "flags")){
+				for (const auto& flag : oof)
 					if (accOrderFlag[i] == flag){
 						skip = true;
 						break;
