@@ -133,7 +133,7 @@
         {"name": "controlled_rocket"}
     ],
     "4400": [
-        {"name": "amphibious"}, {"name": "chest_boost", "base": 0.5}, {"name": "invidia"}, {"name": "witch_ascending"}
+        {"name": "amphibious"}, {"name": "chest_boost", "base": 0.5}, {"name": "hidden_weapons", "ids": [13]}, {"name": "invidia"}, {"name": "witch_ascending"}
     ],
     "4405": [
         {"name": "dash_float"}, {"name": "dash_projectile_repel"}, {"name": "witch_fireball"}, {"name": "witch_dash_vfx"}, {"name": "witch_hitbox"}
