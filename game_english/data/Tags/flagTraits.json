@@ -1,150 +1,150 @@
 {
-    "-1073741824": [
-        {"name": "ice_skates"}, {"name": "no_slippery"}
-    ],
-    "-33554432": [
-        {"name": "water_mob_friend"}
-    ],
-    "-268435456": [
-        {"name": "gravity_flip"}
-    ],
-    "-134217728": [
-        {"name": "super_dash"}
-    ],
-    "-67108864": [
-        {"name": "buffed_dash"}
-    ],
-    "-16777216": [
-        {"name": "dash_float"}, {"name": "star_dash_vfx"}
-    ],
-    "-4194304": [
-        {"name": "iframes_boost"}
-    ],
-    "-262144": [
-        {"name": "propane_trail"}, {"name": "buffed_snake"}
-    ],
-    "-131072": [
-        {"name": "ko_prevention"}
-    ],
-    "-65536": [
-        {"name": "stomping"}
-    ],
-    "-16384": [
-        {"name": "booster_2_0"}, {"name": "can_boost"}
-    ],
-    "-1024": [
-        {"name": "wall_jump"}
-    ],
-    "-512": [
-        {"name": "double_jump"}
-    ],
-    "-32": [
-        {"name": "booster_2_0"}, {"name": "can_boost"}
-    ],
-    "-1": [
-        {"name": "explode_on_hit"}
-    ],
-    "703": [
-        {"name": "mouse_teleport"}
-    ],
-    "705": [
-        {"name": "bullet_life_boost", "boost": 1.25}
-    ],
-    "708": [
-        {"name": "ice_skates"}
-    ],
-    "711": [
-        {"name": "knockback"}
-    ],
-    "860": [
-        {"name": "timestop"}
-    ],
-    "863": [
-        {"name": "water_mob_friend"}
-    ],
-    "864": [
-        {"name": "iframes_boost"}, {"name": "ko_prevention"}
-    ],
-    "866": [
-        {"name": "buffed_dash"}, {"name": "double_jump"}
-    ],
-    "867": [
-        {"name": "explode_on_hit"}, {"name": "super_dash"}
-    ],
-    "868": [
-        {"name": "buffed_dash"}, {"name": "propane_trail"}, {"name": "buffed_snake"}
-    ],
-    "869": [
-        {"name": "booster_0_8"}, {"name": "can_boost"}, {"name": "no_slippery"}
-    ],
-    "872": [
-        {"name": "press_dmg_reduce"}, {"name": "bullet_life_boost", "boost": 1.33}
-    ],
-    "873": [
-        {"name": "exploding_fireball"}, {"name": "propane_trail"}
-    ],
-    "874": [
-        {"name": "buffed_dash"}
-    ],
-    "876": [
-        {"name": "super_dash"}, {"name": "timestop"}
-    ],
-    "878": [
-        {"name": "explode_on_hit"}, {"name": "stomping"}
-    ],
-    "879": [
-        {"name": "spike_evading"}
-    ],
-    "882": [
-        {"name": "nanites"}
-    ],
-    "883": [
-        {"name": "nanites"}
-    ],
-    "2048": [
-        {"name": "level_4_weapons"}
-    ],
-    "3333": [
-        {"name": "hunger_system"}
-    ],
-    "4096": [
-        {"name": "spike_evading"}, {"name": "chest_boost", "amount": 2}, 
-        {"name": "hidden_equips", "flags": [-1073741824]}
-    ],
-    "4100": [
-        {"name": "blade_dash"}
-    ],
-    "4150": [
-        {"name": "excerpt_allies"}
-    ],
-    "4200": [
-        {"name": "buffed_machine_gun"}, {"name": "low_hp_resist"}
-    ],
-    "4250": [
-        {"name": "dash_sprint"}
-    ],
-    "4280": [
-        {"name": "ducks"}, {"name": "duck_health"}
-    ],
-    "4300": [
-        {"name": "buffed_dash"}, {"name": "double_jump"}, {"name": "last_stand", "speed_boost": 1.15}, {"name": "wall_jump"}
-    ],
-    "4350": [
-        {"name": "controlled_rocket"}
-    ],
-    "4400": [
-        {"name": "amphibious"}, {"name": "chest_boost", "base": 0.5}, {"name": "hidden_weapons", "ids": [13]}, {"name": "invidia"}, {"name": "witch_ascending"}
-    ],
-    "4405": [
-        {"name": "dash_float"}, {"name": "dash_projectile_repel"}, {"name": "witch_fireball"}, {"name": "witch_dash_vfx"}, {"name": "witch_hitbox"}
-    ],
-    "4450": [
-        {"name": "hook_flail"}
-    ],
-    "5120": [
-        {"name": "buffed_dash"}, {"name": "cat_dash"}, {"name": "cat_float"}, {"name": "sword_sheathing"}
-    ],
-    "7999": [
-        {"name": "amphibious"}, {"name": "better_ducks"}, {"name": "blade_dash"}, {"name": "buffed_machine_gun"}, {"name": "controlled_rocket"}, {"name": "chest_boost", "base": 0.5}, {"name": "dash_float"}, {"name": "dash_projectile_repel"}, {"name": "dash_sprint"}, {"name": "ducks"}, {"name": "invidia"}, {"name": "hook_flail"}, {"name": "last_stand"}, {"name": "level_4_weapons"}, {"name": "low_hp_resist"}, {"name": "sword_sheathing"}, {"name": "witch_dash_vfx"},  {"name": "witch_fireball"}
-    ]
+    "-1073741824": {
+        "ice_skates": {}, "no_slippery": {}
+    },
+    "-33554432": {
+        "water_mob_friend": {}
+    },
+    "-268435456": {
+        "gravity_flip": {}
+    },
+    "-134217728": {
+        "super_dash": {}
+    },
+    "-67108864": {
+        "buffed_dash": {}
+    },
+    "-16777216": {
+        "dash_float": {}, "star_dash_vfx": {}
+    },
+    "-4194304": {
+        "iframes_boost": {}
+    },
+    "-262144": {
+        "propane_trail": {}, "buffed_snake": {}
+    },
+    "-131072": {
+        "ko_prevention": {}
+    },
+    "-65536": {
+        "stomping": {}
+    },
+    "-16384": {
+        "booster_2_0": {}, "can_boost": {}
+    },
+    "-1024": {
+        "wall_jump": {}
+    },
+    "-512": {
+        "double_jump": {}
+    },
+    "-32": {
+        "booster_2_0": {}, "can_boost": {}
+    },
+    "-1": {
+        "explode_on_hit": {}
+    },
+    "703": {
+        "mouse_teleport": {}
+    },
+    "705": {
+        "bullet_life_boost": {"boost": 1.25}
+    },
+    "708": {
+        "ice_skates": {}
+    },
+    "711": {
+        "knockback": {}
+    },
+    "860": {
+        "timestop": {}
+    },
+    "863": {
+        "water_mob_friend": {}
+    },
+    "864": {
+        "iframes_boost": {}, "ko_prevention": {}
+    },
+    "866": {
+        "buffed_dash": {}, "double_jump": {}
+    },
+    "867": {
+        "explode_on_hit": {}, "super_dash": {}
+    },
+    "868": {
+        "buffed_dash": {}, "propane_trail": {}, "buffed_snake": {}
+    },
+    "869": {
+        "booster_0_8": {}, "can_boost": {}, "no_slippery": {}
+    },
+    "872": {
+        "press_dmg_reduce": {}, "bullet_life_boost": {"boost": 1.33}
+    },
+    "873": {
+        "exploding_fireball": {}, "propane_trail": {}
+    },
+    "874": {
+        "buffed_dash": {}
+    },
+    "876": {
+        "super_dash": {}, "timestop": {}
+    },
+    "878": {
+        "explode_on_hit": {}, "stomping": {}
+    },
+    "879": {
+        "spike_evading": {}
+    },
+    "882": {
+        "nanites": {}
+    },
+    "883": {
+        "nanites": {}
+    },
+    "2048": {
+        "level_4_weapons": {}
+    },
+    "3333": {
+        "hunger_system": {}
+    },
+    "4096": {
+        "spike_evading": {}, "chest_boost": {"amount": 2}, 
+        "hidden_equips": {"flags": [-1073741824]}
+    },
+    "4100": {
+        "blade_dash": {}
+    },
+    "4150": {
+        "excerpt_allies": {}
+    },
+    "4200": {
+        "buffed_machine_gun": {}, "low_hp_resist": {}
+    },
+    "4250": {
+        "dash_sprint": {}
+    },
+    "4280": {
+        "ducks": {}, "duck_health": {}
+    },
+    "4300": {
+        "buffed_dash": {}, "double_jump": {}, "last_stand": {"speed_boost": 1.15}, "wall_jump": {}
+    },
+    "4350": {
+        "controlled_rocket": {}
+    },
+    "4400": {
+        "amphibious": {}, "chest_boost": {"base": 0.5}, "hidden_weapons": {"ids": [13]}, "invidia": {}, "witch_ascending": {}
+    },
+    "4405": {
+        "dash_float": {}, "dash_projectile_repel": {}, "witch_fireball": {}, "witch_dash_vfx": {}, "witch_hitbox": {}
+    },
+    "4450": {
+        "hook_flail": {}
+    },
+    "5120": {
+        "buffed_dash": {}, "cat_dash": {}, "cat_float": {}, "sword_sheathing": {}
+    },
+    "7999": {
+        "amphibious": {}, "better_ducks": {}, "blade_dash": {}, "buffed_machine_gun": {}, "controlled_rocket": {}, "chest_boost": {"base": 0.5}, "dash_float": {}, "dash_projectile_repel": {}, "dash_sprint": {}, "ducks": {}, "invidia": {}, "hook_flail": {}, "last_stand": {}, "level_4_weapons": {}, "low_hp_resist": {}, "sword_sheathing": {}, "witch_dash_vfx": {},  "witch_fireball": {}
+    }
 }

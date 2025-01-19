@@ -257,15 +257,14 @@ void ReloadConfig(){
 	}
 	json protoTraits = ReadJSON("Tags/flagTraits.json");
 	for (auto &[flag, traits]: protoTraits.items()){
-		for (auto &[_, trait]: traits.items()){
-			flagTraits.try_emplace(trait["name"].get<std::string>(), std::map<int, GenerationArguments>{});
-			auto traitInfo = trait;
-			traitInfo.erase("name");
+		for (auto &[traitName, traitData]: traits.items()){
+			flagTraits.try_emplace(traitName, std::map<int, GenerationArguments>{});
+			auto traitInfo = traitData;
 			GenerationArguments metadataMap;
 			for (auto &[n, d]: traitInfo.items()){
 				from_json(d, metadataMap[n]);
 			}
-			flagTraits[trait["name"].get<std::string>()].try_emplace(std::stoi(flag), metadataMap);
+			flagTraits[traitName].try_emplace(std::stoi(flag), metadataMap);
 		}
 	}
 	messageBank = ParseMapTag("Tags/messages.json");
