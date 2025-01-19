@@ -144,16 +144,8 @@ bool IsMaxExpMyChar(void)
 	return false;
 }
 
-int RegenDelayScaling(){
-	return 60;
-}
-
 int RegenerationDelay(){
-	return 3600;
-}
-
-int RegenerationCap(){
-	return std::max(6, gMC.max_life / 4);
+	return GetFlagTraitData<int>(FlagTraits::LIFESTEAL, "amount_per_heart");
 }
 
 void DamageMyChar(int damage)

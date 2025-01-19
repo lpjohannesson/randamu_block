@@ -21,7 +21,6 @@ enum
 	EQUIP_ARMS_BARRIER = 4,
 	EQUIP_TURBOCHARGE = 8,
 	EQUIP_AIR_TANK = 0x10,
-	EQUIP_MIMIGA_MASK = 0x40,
 	EQUIP_ALIEN_MEDAL = 0x80,
 	EQUIP_NIKUMARU_COUNTER = 0x100,
 	EQUIP_DOUBLE_JUMP = 0x200,
@@ -158,7 +157,7 @@ struct MYCHAR
 	unsigned long seed;
 	bool randomSeed;
 	int regenCount;
-	int regenCounter;
+	float regenCounter;
 	int dashDuration;
 	int visualDashDuration;
 	int dashLock;

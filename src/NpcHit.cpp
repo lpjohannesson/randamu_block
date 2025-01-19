@@ -819,10 +819,10 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	if (ChallengeEnabled("oneDamage") && dmg > 0) //one damage option
 		dmg = 1;
 
-	if (gMC.equip & EQUIP_MIMIGA_MASK && std::find(lifestealEnemies.begin(), lifestealEnemies.end(), npc.code_char) != lifestealEnemies.end()){
-		int modifier = 100;
-		if (gMC.equip & EQUIP_SUNGLASSES)
-			modifier = std::round(modifier*0.6f);
+	if (CheckFlagTrait(FlagTraits::LIFESTEAL) && std::find(lifestealEnemies.begin(), lifestealEnemies.end(), npc.code_char) != lifestealEnemies.end()){
+		float modifier = 1;
+		for (const auto& [flag, value]: GetActualFlagTraitData<float>(FlagTraits::LIFESTEAL_MODIFIER, "amount"))
+			modifier *= value;
 		gMC.regenCounter += modifier * (npc.life <= dmg ? npc.life : dmg);
 		while (gMC.regenCounter >= RegenerationDelay()){
 			gMC.regenCounter -= RegenerationDelay();

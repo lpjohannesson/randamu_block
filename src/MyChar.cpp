@@ -1922,7 +1922,7 @@ void ActMyChar(bool bKey)
 		SetBullet(Bullets::NANITES_VFX, gMC.x, gMC.y);
 	}
 
-	if ((gMC.tileset == 'A' || gMC.tileset == '9' || gMC.tileset == 'E') && (gMC.flag & 0x100 && !GetNPCFlag(Flags::WATER_GUN_EFFECT)) && !(gMC.equip & EQUIP_MIMIGA_MASK))
+	if ((gMC.tileset == 'A' || gMC.tileset == '9' || gMC.tileset == 'E') && (gMC.flag & 0x100 && !GetNPCFlag(Flags::WATER_GUN_EFFECT)) && !CheckFlagTrait(FlagTraits::ACID_IMMUNITY))
 	{
 		if (++gMC.regenCount % 6 == 0)
 		{
@@ -1937,20 +1937,6 @@ void ActMyChar(bool bKey)
 			if (gMC.life > 0)
 				gMC.deathReason = 0;
 		}
-	}
-	else if (gMC.equip & EQUIP_MIMIGA_MASK && bKey)
-	{
-		int regenDelay = RegenerationDelay();
-		// if (++gMC.regenCount > regenDelay && gMC.life < gMC.max_life)
-		// {
-		// 	if (!((gMC.tileset == 'A' || gMC.tileset == '9' || gMC.tileset == 'E') && gMC.flag & 0x100))
-		// 	{
-		// 		AddLifeMyChar(1);
-		// 		gMC.regenMaxCount = std::max(RegenerationCap(), gMC.regenMaxCount + 1);
-		// 		PlaySoundObject(20, SOUND_MODE_PLAY);
-		// 	}
-		// 	gMC.regenCount = 0;
-		// }
 	}
 
 	if (gMC.drowningTimer != 0){

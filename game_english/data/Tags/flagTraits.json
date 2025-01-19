@@ -50,8 +50,14 @@
     "711": {
         "knockback": {}
     },
+    "737": {
+        "lifesteal_modifier": {"amount": 0.67}
+    },
     "743": {
         "booster_2_0": {}, "can_boost": {"amount": 40}
+    },
+    "746": {
+        "acid_immunity": {}, "lifesteal": {"amount_per_heart": 36}
     },
     "748": {
         "explode_on_hit": {}
@@ -82,6 +88,9 @@
     },
     "869": {
         "booster_0_8": {}, "can_boost": {"amount": 60}, "no_slippery": {}
+    },
+    "870": {
+        "acid_immunity": {}, "lifesteal": {"amount_per_heart": 36}
     },
     "872": {
         "press_dmg_reduce": {}, "bullet_life_boost": {"boost": 1.33}

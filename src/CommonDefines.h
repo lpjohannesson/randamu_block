@@ -203,6 +203,9 @@ namespace FlagTraits {
 	inline constexpr const char* HIDDEN_WEAPONS            = "hidden_weapons";
 	inline constexpr const char* BOOSTER_FUEL_BOOST        = "booster_fuel_boost";
 	inline constexpr const char* DONT_SLOW_ON_BOOST_END    = "dont_slow_on_boost_end";
+	inline constexpr const char* ACID_IMMUNITY             = "acid_immunity";
+	inline constexpr const char* LIFESTEAL                 = "lifesteal";
+	inline constexpr const char* LIFESTEAL_MODIFIER        = "lifesteal_modifier";
 }
 
 namespace Bullets {
