@@ -41,9 +41,6 @@
     "-32": {
         "booster_2_0": {}, "can_boost": {}
     },
-    "-1": {
-        "explode_on_hit": {}
-    },
     "703": {
         "mouse_teleport": {}
     },
@@ -55,6 +52,12 @@
     },
     "711": {
         "knockback": {}
+    },
+    "743": {
+        "booster_2_0": {}, "can_boost": {"amount": 40}
+    },
+    "748": {
+        "explode_on_hit": {}
     },
     "860": {
         "timestop": {}

@@ -17,7 +17,6 @@
 // gMC.equip
 enum
 {
-	EQUIP_BOOSTER_0_8 = 1,
 	EQUIP_MAP = 2,
 	EQUIP_ARMS_BARRIER = 4,
 	EQUIP_TURBOCHARGE = 8,
