@@ -1,0 +1,12 @@
+{
+    "name": "Quote",
+
+    "maxLife": 10,
+
+    "lifeCapsuleLimit": 15,
+
+    "blacklistedChestFlags": [801, 3701],
+    "characterFlags": [2222, -32, 725, 743, -67108864],
+    "startingItems": [23, 4],
+    "startingWeapons": [{"id": 13, "maxAmmo": 0}]
+}

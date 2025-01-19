@@ -489,10 +489,6 @@ int LifeCapsuleLimit()
 	{
 		limit = 26;
 	}
-	if (GetNPCFlag(Flags::MODERN_QUOTE_CHARACTER))
-	{
-		limit = 15;
-	}
 	if (GetNPCFlag(Flags::HUNTER_CHARACTER))
 	{
 		limit = 30;
@@ -610,10 +606,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::MODERN_QUOTE_CHARACTER))
-	{
-		items = {801, 3701};
-	}
 	if (GetNPCFlag(Flags::LILY_CHARACTER)){
 		items = {1501, 1901, 3101};
 	}
@@ -681,13 +673,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "Upntscale")
-		{
-			SetNPCFlag(Flags::MODERN_QUOTE_CHARACTER);
-			gMIMCurrentNum = 5;
-			gMC.life = 10;
-			gMC.max_life = 10;
-		}
 		if (character == "Russia")
 		{
 			SetNPCFlag(Flags::HUNTER_CHARACTER);
