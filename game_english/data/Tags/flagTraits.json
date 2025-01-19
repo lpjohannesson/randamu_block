@@ -29,9 +29,6 @@
     "-65536": {
         "stomping": {}
     },
-    "-16384": {
-        "booster_2_0": {}, "can_boost": {}
-    },
     "-1024": {
         "wall_jump": {}
     },
@@ -59,8 +56,14 @@
     "748": {
         "explode_on_hit": {}
     },
+    "752": {
+        "booster_2_0": {}, "can_boost": {"amount": 15}, "booster_fuel_boost": {"amount": 2.25}
+    },
     "860": {
         "timestop": {}
+    },
+    "862": {
+        "booster_2_0": {}, "can_boost": {"amount": 90}, "dont_slow_on_boost_end": {}
     },
     "863": {
         "water_mob_friend": {}
@@ -78,7 +81,7 @@
         "buffed_dash": {}, "propane_trail": {}, "buffed_snake": {}
     },
     "869": {
-        "booster_0_8": {}, "can_boost": {}, "no_slippery": {}
+        "booster_0_8": {}, "can_boost": {"amount": 60}, "no_slippery": {}
     },
     "872": {
         "press_dmg_reduce": {}, "bullet_life_boost": {"boost": 1.33}

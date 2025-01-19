@@ -801,24 +801,15 @@ void ActMyChar_Normal(bool bKey)
 		gMC.boost_sw = 0;
 		gMC.pogo = true;
 		gMC.chargeActive = false;
-
-		if (gMC.equip & EQUIP_BOOSTER_2_0)
-		{
-			gMC.boost_cnt = 40;
-			if (gMC.equip & EQUIP_BOOSTER_FUEL || GetNPCFlag(Flags::SUPER_BOOSTER)){
-				gMC.boost_cnt = 90;
-			}
+		for (const auto&[_, amount]: GetActualFlagTraitData<int>(FlagTraits::CAN_BOOST, "amount")){
+			if (amount > gMC.boost_cnt) gMC.boost_cnt = amount;
 		}
-		else if (GetNPCFlag(Flags::TERRA_BOOTS)){
-			gMC.boost_cnt = 60;
+		float boostAmount = 1;
+		for (const auto&[_, amount]: GetActualFlagTraitData<float>(FlagTraits::BOOSTER_FUEL_BOOST, "amount")){
+			auto activeFlags = GetTraitActiveFlags(FlagTraits::BOOSTER_FUEL_BOOST);
+			if (std::ranges::find(activeFlags, amount) == activeFlags.end()) boostAmount *= amount;
 		}
-		else
-		{
-			gMC.boost_cnt = 0;
-			if (gMC.equip & EQUIP_BOOSTER_FUEL || GetNPCFlag(Flags::SUPER_BOOSTER)){
-				gMC.boost_cnt = 15;
-			}
-		}
+		gMC.boost_cnt *= boostAmount;
 		if (CheckFlagTrait(FlagTraits::GRAVITY_FLIP))
 			ClearCooldown(gCooldowns, GRAVITY_FLIP_ID);
 
@@ -1007,14 +998,14 @@ void ActMyChar_Normal(bool bKey)
 		}
 
 		// Slow down when stopped boosting (Booster 2.0)
-		if (gMC.equip & (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) && gMC.boost_sw != 0 && !(gKey & gKeyJump))
+		if (CheckFlagTrait(FlagTraits::CAN_BOOST) && CheckFlagTrait(FlagTraits::BOOSTER_2_0) && gMC.boost_sw != 0 && !(gKey & gKeyJump))
 		{
 			if (gMC.boost_sw == 1)
 				gMC.xm /= 2;
 			else if (gMC.boost_sw == 2)
 				gMC.ym /= 2;
 		}
-		if (gMC.equip & (EQUIP_BOOSTER_2_0 | EQUIP_BOOSTER_FUEL) && gMC.boost_sw != 0 && (gMC.boost_cnt == 0) && !GetNPCFlag(Flags::SUPER_BOOSTER))
+		if (CheckFlagTrait(FlagTraits::CAN_BOOST) && CheckFlagTrait(FlagTraits::BOOSTER_2_0) && gMC.boost_sw != 0 && (gMC.boost_cnt == 0) && !CheckFlagTrait(FlagTraits::DONT_SLOW_ON_BOOST_END))
 		{
 			if (gMC.boost_sw == 1)
 				gMC.xm /= 2;

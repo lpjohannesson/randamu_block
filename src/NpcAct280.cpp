@@ -447,7 +447,7 @@ void ActNpcWildMiseryEnemy(NPCHAR *npc)
 			else
 				npc->ani_no = 5;
 
-			if (gMC.equip & EQUIP_BOOSTER_2_0)
+			if (CheckFlagTrait(FlagTraits::BOOSTER_2_0))
 			{
 				if (npc->act_wait % 10 == 1)
 				{
