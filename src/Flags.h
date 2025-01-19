@@ -2,8 +2,10 @@
 #define __FLAGS_H__
 
 
+#include <any>
 #include "CommonDefines.h"
 #include "Generic.h"
+#include "Main.h"
 #include "MyChar.h"
 #include "StageGen.h"
 
@@ -21,8 +23,10 @@ bool GetSkipFlag(long a);
 
 bool CheckFlagTrait(std::string trait);
 
+template<typename T> struct get_detail { static inline T _empty; };
+
 template <IsGenMetadata ArgType>
-const ArgType& GetFlagTraitData(std::string trait, std::string parameter){
+inline const ArgType& GetFlagTraitData(std::string trait, std::string parameter){
 	if (flagTraits.contains(trait)){
 		for (const auto &[flag, info]: flagTraits[trait]){
 			if (info.contains(parameter)){
@@ -34,8 +38,9 @@ const ArgType& GetFlagTraitData(std::string trait, std::string parameter){
 			}
 		}
 	}
-	return empty;
+	return get_detail<ArgType>::_empty;
 }
+
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait);
 
 inline auto GetTraitActiveFlags(std::string trait){

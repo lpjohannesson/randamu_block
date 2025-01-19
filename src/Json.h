@@ -1,6 +1,7 @@
 #ifndef __JSON_H__
 #define __JSON_H__
 
+#include <concepts>
 #include <fstream>
 
 #include "cpp/gstream.hpp"
@@ -20,14 +21,12 @@ enum class mode {
 };
 
 template<typename T>
-concept IsJson = requires {
-    typename T::json_serializer;
-};
+concept IsJson = std::derived_from<T, json>;
 
-template <typename IsJson = json>
-void UpdateJSON(IsJson& j, const IsJson& overrideJ, int resourceID){
+template <IsJson JsonType = json>
+void UpdateJSON(JsonType& j, const JsonType& overrideJ, int resourceID){
     if (overrideJ.contains("override")){
-        json overrideContent = overrideJ["override"];
+        JsonType overrideContent = overrideJ["override"];
         for (auto &[name, data]: overrideContent.items()){
             if (j.contains(name))
                 j[name] = data;
@@ -38,9 +37,9 @@ void UpdateJSON(IsJson& j, const IsJson& overrideJ, int resourceID){
     }
 }
 
-template <typename IsJson = json>
-IsJson ReadJSON(const std::string &path, mode m){
-    IsJson j;
+template <IsJson JsonType = json>
+JsonType ReadJSON(const std::string &path, mode m){
+    JsonType j;
     std::ifstream i;
     igzstream i2;
     try
@@ -52,9 +51,9 @@ IsJson ReadJSON(const std::string &path, mode m){
             i >> j;
             for (int rID : std::views::iota(1, (int)(availableResources.size()))){
                 std::ifstream overrideI = std::ifstream(GetResourcePath(rID, path));
-                IsJson overrideJ;
+                JsonType overrideJ;
                 overrideI >> overrideJ;
-                UpdateJSON<IsJson>(j, overrideJ, rID);
+                UpdateJSON<JsonType>(j, overrideJ, rID);
             }
             break;
         case mode::encrypted:
@@ -62,9 +61,9 @@ IsJson ReadJSON(const std::string &path, mode m){
             i2 >> j;
             for (int rID : std::views::iota(1, (int)(availableResources.size()))){
                 igzstream overrideI = igzstream(GetResourcePath(rID, path).c_str());
-                IsJson overrideJ;
+                JsonType overrideJ;
                 overrideI >> overrideJ;
-                UpdateJSON<IsJson>(j, overrideJ, rID);
+                UpdateJSON<JsonType>(j, overrideJ, rID);
             }
             break;
         case mode::normalGlobal:
@@ -77,14 +76,14 @@ IsJson ReadJSON(const std::string &path, mode m){
             break;
         }
         return j;
-    } catch (typename IsJson::exception& e){
+    } catch (typename JsonType::exception& e){
         WriteGameLog("JSON error has been encountered: ", e.what());
         Backend_ShowMessageBox("JSON error has been encountered!", e.what());
-        return IsJson();
+        return JsonType();
     }
 }
-template <IsJson IsJson = json>
-void WriteJSON(const std::string &path, const IsJson &j, mode m, int spaces = -1){
+template <IsJson JsonType = json>
+void WriteJSON(const std::string &path, const JsonType &j, mode m, int spaces = -1){
     std::string js = j.dump(spaces);
     if (m == mode::encrypted){
         ogzstream o(path.c_str());
@@ -95,12 +94,12 @@ void WriteJSON(const std::string &path, const IsJson &j, mode m, int spaces = -1
     }
 }
 
-template <typename IsJson = json>
-IsJson ReadJSON(const std::string &path){
-    return ReadJSON<IsJson>(path, mode::encrypted);
+template <IsJson JsonType = json>
+JsonType ReadJSON(const std::string &path){
+    return ReadJSON<JsonType>(path, mode::encrypted);
 }
-template <typename IsJson = json>
-void WriteJSON(const std::string &path, const IsJson &j, int spaces = -1){
-    WriteJSON<IsJson>(path, j, mode::encrypted, spaces);
+template <IsJson JsonType = json>
+void WriteJSON(const std::string &path, const JsonType &j, int spaces = -1){
+    WriteJSON<JsonType>(path, j, mode::encrypted, spaces);
 }
 #endif // __JSON_H__

@@ -60,7 +60,6 @@ bool CheckFlagTrait(std::string trait)
 	return false;
 }
 
-const GenerationMetadata empty;
 std::map<int, GenerationArguments> emptydata;
 
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait){
