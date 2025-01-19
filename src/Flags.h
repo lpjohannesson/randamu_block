@@ -21,7 +21,7 @@ bool GetSkipFlag(long a);
 
 bool CheckFlagTrait(std::string trait);
 
-template <typename ArgType>
+template <IsGenMetadata ArgType>
 const ArgType& GetFlagTraitData(std::string trait, std::string parameter){
 	if (flagTraits.contains(trait)){
 		for (const auto &[flag, info]: flagTraits[trait]){
@@ -45,7 +45,7 @@ inline auto GetTraitActiveFlags(std::string trait){
     return mapView | std::views::keys;
 }
 
-template<typename ArgType>
+template<IsGenMetadata ArgType>
 inline auto GetActualFlagTraitData(std::string trait, std::string parameter){
 	auto mapView = MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [parameter](int flag, GenerationArguments value)->bool{
 		return (flag < 0 ? (gMC.equip & std::abs(flag)) : GetNPCFlag(flag)) && value.contains(parameter);
