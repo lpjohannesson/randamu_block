@@ -83,7 +83,7 @@ IsJson ReadJSON(const std::string &path, mode m){
         return IsJson();
     }
 }
-template <typename IsJson = json>
+template <IsJson IsJson = json>
 void WriteJSON(const std::string &path, const IsJson &j, mode m, int spaces = -1){
     std::string js = j.dump(spaces);
     if (m == mode::encrypted){
