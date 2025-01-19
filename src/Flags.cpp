@@ -70,21 +70,6 @@ std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait){
 	return emptydata;
 }
 
-const GenerationMetadata& GetFlagTraitData(std::string trait, std::string parameter){
-	if (flagTraits.contains(trait)){
-		for (const auto &[flag, info]: flagTraits[trait]){
-			if (info.contains(parameter)){
-				if (flag < 0){
-					if (gMC.equip & std::abs(flag))
-						return info.at(parameter);
-				} else if (GetNPCFlag(flag))
-					return info.at(parameter);
-			}
-		}
-	}
-	return empty;
-}
-
 // Skip flags
 void SetSkipFlag(long a)
 {

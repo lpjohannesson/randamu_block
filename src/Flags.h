@@ -21,7 +21,21 @@ bool GetSkipFlag(long a);
 
 bool CheckFlagTrait(std::string trait);
 
-const GenerationMetadata& GetFlagTraitData(std::string trait, std::string parameter);
+template <typename ArgType>
+const ArgType& GetFlagTraitData(std::string trait, std::string parameter){
+	if (flagTraits.contains(trait)){
+		for (const auto &[flag, info]: flagTraits[trait]){
+			if (info.contains(parameter)){
+				if (flag < 0){
+					if (gMC.equip & std::abs(flag))
+						return std::get<ArgType>(info.at(parameter));
+				} else if (GetNPCFlag(flag))
+					return std::get<ArgType>(info.at(parameter));
+			}
+		}
+	}
+	return empty;
+}
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait);
 
 inline auto GetTraitActiveFlags(std::string trait){
