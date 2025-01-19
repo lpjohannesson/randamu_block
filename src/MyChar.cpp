@@ -445,11 +445,10 @@ void PutMyChar(int fx, int fy)
 	rect.top += 32 * gMIMCurrentNum;
 	rect.bottom += 32 * gMIMCurrentNum;
 
-	if ((gMC.equip & EQUIP_FAR_PLACE) && (gArmsData[gSelectedArms].code == 2 
+	if (CheckFlagTrait(FlagTraits::RANGED_BLOCK_PLACE) && (gArmsData[gSelectedArms].code == 2 
 		|| (gArmsData[gSelectedArms].code == 12 && (GetNPCFlag(Flags::UNIVERSAL_CATALYST) || GetNPCFlag(Flags::FREEZE_STAR))))){
 		Rect limitRect = {160, 112, 176, 128};
-		int dist = 5;
-		if (GetNPCFlag(Flags::UNIVERSAL_CATALYST)) dist = 7;
+		int dist = GetFlagTraitData<int>(FlagTraits::RANGED_BLOCK_PLACE, "distance");
 		for (int x = 0; x < gMap.width; x++){
 			for (int y = 0; y < gMap.length; y++){
 				if (Distance(gMC.x/0x2000, gMC.y/0x2000, x, y) == dist){

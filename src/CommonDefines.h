@@ -211,6 +211,8 @@ namespace FlagTraits {
 	inline constexpr const char* CHILL                     = "chill";
 	inline constexpr const char* WALL_STICKY               = "wall_sticky";
 	inline constexpr const char* ENERGY_PROJECTILE_ON_HIT  = "energy_projectile_on_hit";
+	inline constexpr const char* RANGED_BLOCK_PLACE        = "ranged_block_place";
+	inline constexpr const char* PRECISE_PLACEMENT         = "precise_placement";
 }
 
 namespace Bullets {

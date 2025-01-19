@@ -301,7 +301,7 @@ void ShootBullet_PoleStar(int level)
 	static int wait;
 	ZeroExpMyChar();
 
-	if (gKeyTrg & gMouseClick && gMC.equip & EQUIP_FAR_PLACE)
+	if (gKeyTrg & gMouseClick && CheckFlagTrait(FlagTraits::RANGED_BLOCK_PLACE))
 	{
 		if (gStageNo != gGeneratedStage || gBL.flag || !UseArmsEnergy(3))
 		{
@@ -314,8 +314,7 @@ void ShootBullet_PoleStar(int level)
 			GetFramePosition(&fx, &fy);
 			x = fx + ScreenToSubpixelCoord(gMouseX);
 			y = fy + ScreenToSubpixelCoord(gMouseY);
-			float dist = 5.5;
-			if (GetNPCFlag(Flags::UNIVERSAL_CATALYST)) dist = 7.5;
+			float dist = GetFlagTraitData<int>(FlagTraits::RANGED_BLOCK_PLACE, "distance") + 0.5f;
 			if (Distance(gMC.x, gMC.y, x, y) > dist*0x2000)
 			{
 				ChargeArmsEnergy(3);
@@ -358,7 +357,7 @@ void ShootBullet_PoleStar(int level)
 		{
 			if (gMC.up)
 			{
-				if (gMC.equip & EQUIP_FAR_PLACE){
+				if (CheckFlagTrait(FlagTraits::PRECISE_PLACEMENT)){
 					PlaceBlock(round(((float)gMC.x + gMC.xm) / 0x2000), round(((float)gMC.y + gMC.ym) / 0x2000) - 1 * (gMC.flip ? -1 : 1));
 				} else
 					PlaceBlock(round(((float)gMC.x) / 0x2000), round(((float)gMC.y) / 0x2000) - 1 * (gMC.flip ? -1 : 1));
@@ -366,7 +365,7 @@ void ShootBullet_PoleStar(int level)
 			}
 			else if (gMC.down)
 			{
-				if (gMC.equip & EQUIP_FAR_PLACE){
+				if (CheckFlagTrait(FlagTraits::PRECISE_PLACEMENT)){
 					PlaceBlock(round(((float)gMC.x + gMC.xm) / 0x2000), round(((float)gMC.y + gMC.ym) / 0x2000) + 1 * (gMC.flip ? -1 : 1));
 				} else
 					PlaceBlock(round(((float)gMC.x) / 0x2000), round(((float)gMC.y) / 0x2000) + 1 * (gMC.flip ? -1 : 1));
@@ -376,7 +375,7 @@ void ShootBullet_PoleStar(int level)
 			{
 				if (gMC.direct == 0)
 				{
-					if (gMC.equip & EQUIP_FAR_PLACE){
+					if (CheckFlagTrait(FlagTraits::PRECISE_PLACEMENT)){
 						PlaceBlock(round(((float)gMC.x + gMC.xm) / 0x2000) - 1, round(((float)gMC.y + gMC.ym) / 0x2000));
 					} else
 						PlaceBlock(round(((float)gMC.x) / 0x2000) - 1, round(((float)gMC.y) / 0x2000));
@@ -384,7 +383,7 @@ void ShootBullet_PoleStar(int level)
 				}
 				else
 				{
-					if (gMC.equip & EQUIP_FAR_PLACE){
+					if (CheckFlagTrait(FlagTraits::PRECISE_PLACEMENT)){
 						PlaceBlock(round(((float)gMC.x + gMC.xm) / 0x2000) + 1, round(((float)gMC.y + gMC.ym) / 0x2000));
 					} else
 						PlaceBlock(round(((float)gMC.x) / 0x2000) + 1, round(((float)gMC.y) / 0x2000));
@@ -637,11 +636,11 @@ void ShootBullet_WaterStar(int level)
 			}
 			else
 			{
-				if ((gKey & gKeyUp && gMC.equip & EQUIP_FAR_PLACE) || gMC.up)
+				if (gKey & gKeyUp || gMC.up)
 				{
 					SetCaret(gMC.x + (1 * 0x200), gMC.y - (9 * 0x200), 3, 0);
 				}
-				else if ((gKey & gKeyDown && gMC.equip & EQUIP_FAR_PLACE) || gMC.down)
+				else if (gKey & gKeyDown || gMC.down)
 				{
 					SetCaret(gMC.x + (1 * 0x200), gMC.y + (9 * 0x200), 3, 0);
 				}
