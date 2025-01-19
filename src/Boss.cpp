@@ -166,10 +166,10 @@ void HitBossBullet(void)
 				{
 					int dmg = gBul[bul].damage;
 					if (gBoss[bos_].code_char == 30) dmg = 0;
-					if (gMC.equip & EQUIP_NIKUMARU_COUNTER && Random(1, 3) == 1 && gBoss[bos_].damage > 0){
-						gBoss[bos_].freeze += gBul[bul].damage*30;
-						if (gBoss[bos_].freeze > 100){
-							gBoss[bos_].freeze = 100;
+					if (CheckFlagTrait(FlagTraits::CHILL) && Random(1, GetFlagTraitData<int>(FlagTraits::CHILL, "chance")) == 1 && gBoss[bos_].damage > 0){
+						gBoss[bos_].freeze += gBul[bul].damage*GetFlagTraitData<int>(FlagTraits::CHILL, "rate");
+						if (gBoss[bos_].freeze > GetFlagTraitData<int>(FlagTraits::CHILL, "cap")){
+							gBoss[bos_].freeze = GetFlagTraitData<int>(FlagTraits::CHILL, "cap");
 						}
 						continue;
 					}

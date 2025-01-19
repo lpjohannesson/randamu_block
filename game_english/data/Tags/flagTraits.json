@@ -59,6 +59,9 @@
     "746": {
         "acid_immunity": {}, "lifesteal": {"amount_per_heart": 36}
     },
+    "747": {
+        "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}
+    },
     "748": {
         "explode_on_hit": {}
     },
@@ -104,6 +107,9 @@
     "874": {
         "buffed_dash": {}
     },
+    "875": {
+        "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}
+    },
     "876": {
         "super_dash": {}, "timestop": {}
     },
@@ -112,6 +118,9 @@
     },
     "879": {
         "spike_evading": {}
+    },
+    "880": {
+        "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}
     },
     "882": {
         "nanites": {}
