@@ -914,7 +914,7 @@ void ActMyChar_Normal(bool bKey)
 		if (bKey)
 		{
 			if (CheckFlagTrait(FlagTraits::CAN_BOOST) && gKeyTrg & gKeyJump &&
-			 (gMC.boost_cnt != 0) && !(gMC.flag & 0x100) && (!gMC.pogo || !(gMC.equip & EQUIP_DOUBLE_JUMP)))
+			 (gMC.boost_cnt != 0) && !(gMC.flag & 0x100) && (!gMC.pogo || !CheckFlagTrait(FlagTraits::DOUBLE_JUMP)))
 			{
 				if (CheckFlagTrait(FlagTraits::BOOSTER_0_8))
 				{
@@ -1489,7 +1489,7 @@ void ActMyChar_Normal(bool bKey)
 		SetCaret(gMC.x, gMC.y, 11, 1);
 	}
 
-	if (gKey & gKeyAbility && gMC.equip & EQUIP_WALL_JUMP){
+	if (gKey & gKeyAbility && CheckFlagTrait(FlagTraits::WALL_STICKY)){
 		int wall1 = GetAttribute(round((((gMC.x) / 0x200) - 2)/16), round(((float)gMC.y) / 0x2000));
 		int wall2 = GetAttribute(round((((gMC.x) / 0x200) + 15)/16), round(((float)gMC.y) / 0x2000));
 		if (wall1 == 65){

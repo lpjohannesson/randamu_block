@@ -209,6 +209,7 @@ namespace FlagTraits {
 	inline constexpr const char* JUMP_ON_SPIKES            = "jump_on_spikes";
 	inline constexpr const char* SPIKE_DAMAGE_RESIST       = "spike_damage_resist";
 	inline constexpr const char* CHILL                     = "chill";
+	inline constexpr const char* WALL_STICKY               = "wall_sticky";
 }
 
 namespace Bullets {

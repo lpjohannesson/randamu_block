@@ -29,12 +29,6 @@
     "-65536": {
         "stomping": {}
     },
-    "-1024": {
-        "wall_jump": {}
-    },
-    "-512": {
-        "double_jump": {}
-    },
     "-32": {
         "booster_2_0": {}, "can_boost": {}
     },
@@ -70,6 +64,12 @@
     },
     "752": {
         "booster_2_0": {}, "can_boost": {"amount": 15}, "booster_fuel_boost": {"amount": 2.25}
+    },
+    "753": {
+        "double_jump": {}
+    },
+    "757": {
+        "wall_jump": {}, "wall_sticky": {}
     },
     "860": {
         "timestop": {}
