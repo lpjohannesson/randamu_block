@@ -694,7 +694,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	bool isBoss = std::find(bossNPCsList.begin(), bossNPCsList.end(), npc.code_char) != bossNPCsList.end();
 	if (isEthereal) dmg = 0;
 
-	if (CheckFlagTrait(FlagTraits::CHILL) && Random(1, GetFlagTraitData<int>(FlagTraits::CHILL, "chance")) == 1 && npc.damage > 0){
+	if (CheckFlagTrait(FlagTraits::CHILL) && Random(1, GetFlagTraitData<int>(FlagTraits::CHILL, "chance")-1) == 1 && npc.damage > 0){
 		bool isResistant = false;
 		for (const auto& id: GetFlagTraitData<std::vector<int>>(FlagTraits::CHILL, "resist_npcs")){
 			if (npc.code_char == id) isResistant = true;
