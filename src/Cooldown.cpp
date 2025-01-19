@@ -35,7 +35,7 @@ void IncrementCooldown(std::vector<Cooldown>& list, int id, int duration){
 }
 
 void AddToCooldown(std::vector<Cooldown>& list, int id, int duration){
-    boolean didIt = false;
+    bool didIt = false;
     for (auto& cooldown: list){
         if (cooldown.id == id){
             cooldown.duration += duration;
