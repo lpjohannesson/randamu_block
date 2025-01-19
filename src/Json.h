@@ -100,7 +100,7 @@ IsJson ReadJSON(const std::string &path){
     return ReadJSON<IsJson>(path, mode::encrypted);
 }
 template <typename IsJson = json>
-void WriteJSON(const std::string &path, const json &j, int spaces = -1){
+void WriteJSON(const std::string &path, const IsJson &j, int spaces = -1){
     WriteJSON<IsJson>(path, j, mode::encrypted, spaces);
 }
 #endif // __JSON_H__
