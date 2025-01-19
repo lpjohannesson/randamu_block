@@ -1,12 +1,6 @@
 {
-    "-1073741824": {
-        "ice_skates": {}, "no_slippery": {}
-    },
     "-33554432": {
         "water_mob_friend": {}
-    },
-    "-268435456": {
-        "gravity_flip": {}
     },
     "-134217728": {
         "super_dash": {}
@@ -23,15 +17,6 @@
     "-262144": {
         "propane_trail": {}, "buffed_snake": {}
     },
-    "-131072": {
-        "ko_prevention": {}
-    },
-    "-65536": {
-        "stomping": {}
-    },
-    "-32": {
-        "booster_2_0": {}, "can_boost": {}
-    },
     "703": {
         "mouse_teleport": {}
     },
@@ -39,7 +24,10 @@
         "bullet_life_boost": {"boost": 1.25}
     },
     "708": {
-        "ice_skates": {}
+        "ice_skates": {}, "no_slippery": {}
+    },
+    "710": {
+        "gravity_flip": {}
     },
     "711": {
         "knockback": {}
@@ -53,6 +41,9 @@
     "743": {
         "booster_2_0": {}, "can_boost": {"amount": 40}
     },
+    "745": {
+        "ko_prevention": {}
+    },
     "746": {
         "acid_immunity": {}, "lifesteal": {"amount_per_heart": 36}
     },
@@ -64,6 +55,9 @@
     },
     "749": {
         "jump_on_spikes": {}, "spike_damage_resist": {}
+    },
+    "750": {
+        "stomping": {}
     },
     "752": {
         "booster_2_0": {}, "can_boost": {"amount": 15}, "booster_fuel_boost": {"amount": 2.25}
