@@ -62,6 +62,9 @@
     "748": {
         "explode_on_hit": {}
     },
+    "749": {
+        "jump_on_spikes": {}, "spike_damage_resist": {}
+    },
     "752": {
         "booster_2_0": {}, "can_boost": {"amount": 15}, "booster_fuel_boost": {"amount": 2.25}
     },
@@ -93,7 +96,7 @@
         "acid_immunity": {}, "lifesteal": {"amount_per_heart": 36}
     },
     "872": {
-        "press_dmg_reduce": {}, "bullet_life_boost": {"boost": 1.33}
+        "jump_on_spikes": {}, "spike_damage_resist": {}, "press_dmg_reduce": {}, "bullet_life_boost": {"boost": 1.33}
     },
     "873": {
         "exploding_fireball": {}, "propane_trail": {}

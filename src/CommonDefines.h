@@ -206,6 +206,8 @@ namespace FlagTraits {
 	inline constexpr const char* ACID_IMMUNITY             = "acid_immunity";
 	inline constexpr const char* LIFESTEAL                 = "lifesteal";
 	inline constexpr const char* LIFESTEAL_MODIFIER        = "lifesteal_modifier";
+	inline constexpr const char* JUMP_ON_SPIKES            = "jump_on_spikes";
+	inline constexpr const char* SPIKE_DAMAGE_RESIST       = "spike_damage_resist";
 }
 
 namespace Bullets {
