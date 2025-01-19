@@ -199,7 +199,7 @@ void ActBullet_Whirlpool(BULLET *bul)
 	bul->life_count = 500;
 	bul->iframes = 10;
 	if (CheckFlagTrait(FlagTraits::BULLET_LIFE_BOOST)){
-		bul->life_count *= std::get<float>(GetFlagTraitData(FlagTraits::BULLET_LIFE_BOOST, "boost"));
+		bul->life_count *= GetFlagTraitData<float>(FlagTraits::BULLET_LIFE_BOOST, "boost");
 	}
 
 	if (++bul->ani_wait > 0)

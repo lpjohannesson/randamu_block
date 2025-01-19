@@ -646,7 +646,7 @@ void ActMyChar_Normal(bool bKey)
 			gravity2 = 0;
 	}
 	if (CheckFlagTrait(FlagTraits::LAST_STAND) && gMC.life == 0){
-		float speedBoost = std::get<float>(GetFlagTraitData(FlagTraits::LAST_STAND, "speed_boost"));
+		float speedBoost = GetFlagTraitData<float>(FlagTraits::LAST_STAND, "speed_boost");
 		dash1 *= speedBoost;
 		dash2 *= speedBoost;
 		max_dash *= speedBoost;

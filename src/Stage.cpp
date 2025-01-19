@@ -2093,7 +2093,7 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 		rooms = std::get<int>(genArguments["amount"]);
 		if (CheckFlagTrait(FlagTraits::CHEST_BOOST))
 		{
-			rooms *= std::get<float>(GetFlagTraitData(FlagTraits::CHEST_BOOST, "base"));
+			rooms *= GetFlagTraitData<float>(FlagTraits::CHEST_BOOST, "base");
 		}
 		limit = ChallengeValue("chest_limit");
 		if (limit != -1 && (limit <= rooms || limit > std::get<int>(genArguments["amount"])))
@@ -2110,7 +2110,7 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 		}
 		if (CheckFlagTrait(FlagTraits::CHEST_BOOST))
 		{
-			rooms += std::get<int>(GetFlagTraitData(FlagTraits::CHEST_BOOST, "amount"));
+			rooms += GetFlagTraitData<int>(FlagTraits::CHEST_BOOST, "amount");
 		}
 		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["blacklist_tileset"])))
 		{
