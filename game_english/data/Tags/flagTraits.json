@@ -44,6 +44,9 @@
     "711": {
         "knockback": {}
     },
+    "712": {
+        "energy_projectile_on_hit": {"chance": 3}
+    },
     "737": {
         "lifesteal_modifier": {"amount": 0.67}
     },
@@ -82,6 +85,9 @@
     },
     "864": {
         "iframes_boost": {}, "ko_prevention": {}
+    },
+    "865": {
+        "energy_projectile_on_hit": {"chance": 3}
     },
     "866": {
         "buffed_dash": {}, "double_jump": {}
@@ -126,7 +132,7 @@
         "nanites": {}
     },
     "883": {
-        "nanites": {}
+        "nanites": {}, "energy_projectile_on_hit": {"chance": 3}
     },
     "2048": {
         "level_4_weapons": {}

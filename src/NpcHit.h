@@ -25,5 +25,6 @@ bool IntersectDamageCheck(NPCHAR &npc, int x, int y, int xl = 4_pix, int yl = 4_
 bool IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul);
 bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul = NULL);
 void HitNpCharBullet(void);
+void SpawnQuiverProjectile(NPCHAR &npc);
 
 #endif // __NPCHIT_H__

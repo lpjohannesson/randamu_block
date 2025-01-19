@@ -840,7 +840,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 
 	npc.life -= dmg;
 
-	if (Random(0, 2) == 0 && dmg != 0 && gMC.equip & EQUIP_NANO_QUIVER && 
+	if (CheckFlagTrait(FlagTraits::ENERGY_PROJECTILE_ON_HIT) && Random(0, GetFlagTraitData<int>(FlagTraits::ENERGY_PROJECTILE_ON_HIT, "chance")-1) == 0 && dmg != 0 && 
 		(bul == NULL || (bul->code_bullet != Bullets::ENERGY_PROJECTILE && bul->code_bullet != Bullets::FIREBALL_FLAME)))
 	{
 		SpawnQuiverProjectile(npc);
