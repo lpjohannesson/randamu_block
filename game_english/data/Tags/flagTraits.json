@@ -77,6 +77,9 @@
     "753": {
         "double_jump": {}
     },
+    "756": {
+        "speed_boots": {"acceleration": 1, "speed_multiplier": 1.75, "particle_threshold": 1.5}
+    },
     "757": {
         "wall_jump": {}, "wall_sticky": {}
     },
@@ -132,7 +135,7 @@
         "accelerate_fall": {}, "explode_on_hit": {}, "stomping": {"explosive": true}
     },
     "879": {
-        "spike_evading": {}, "manual_rocket_stop": {}, "tighter_turning": {"effect": 1}
+        "speed_boots": {"acceleration": 3, "speed_multiplier": 2, "particle_threshold": 1.5}, "spike_evading": {}, "manual_rocket_stop": {}, "tighter_turning": {"effect": 1}
     },
     "880": {
         "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}

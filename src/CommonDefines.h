@@ -222,6 +222,7 @@ namespace FlagTraits {
 	inline constexpr const char* FIRERATE_BOOST                = "firerate_boost";
 	inline constexpr const char* INACCURATE_VELOCITY_MODIFIER  = "inaccurate_velocity_modifier";
 	inline constexpr const char* ACCELERATE_FALL               = "accelerate_fall";
+	inline constexpr const char* SPEED_BOOTS                   = "speed_boots";
 }
 
 namespace Bullets {

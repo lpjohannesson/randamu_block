@@ -777,18 +777,15 @@ void ActMyChar_Normal(bool bKey)
 			{
 				int maximal_dash = max_dash;
 				int dashy = dash1;
-				if (gMC.equip & EQUIP_SPEED_SHOES){
-					maximal_dash *= 1.75;
-				}
 				if (GetNPCFlag(Flags::TERRA_BOOTS)){
 					maximal_dash = 1535;
 				}
 				if (CheckFlagTrait(FlagTraits::ICE_SKATES) && gKey & gKeyAbility){
 					maximal_dash = 1500;
 				}
-				if (GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)){
-					maximal_dash *= 2;
-					dashy *= 3;
+				if (CheckFlagTrait(FlagTraits::SPEED_BOOTS)){
+					maximal_dash *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SPEED_BOOTS, "speed_multiplier"));
+					dashy *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SPEED_BOOTS, "acceleration"));
 				}
 				if (gKey & gKeyLeft && gMC.xm > -maximal_dash){
 					if (gMC.xm > 0){
@@ -817,17 +814,20 @@ void ActMyChar_Normal(bool bKey)
 					}
 				}
 
-				if ((gMC.xm <= -max_dash*1.5 || gMC.xm >= max_dash*1.5) && (gMC.equip & EQUIP_SPEED_SHOES || GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)))
-				{
-					static int speedEffects;
-					if (++speedEffects % 4 == 1)
+				if (CheckFlagTrait(FlagTraits::SPEED_BOOTS)){
+					float threshold = std::max(1.0f, GetFlagTraitData<float>(FlagTraits::SPEED_BOOTS, "particle_threshold"));
+					if (gMC.xm <= -max_dash*threshold || gMC.xm >= max_dash*threshold)
 					{
-						if (gMC.direct == 0)
-							SetCaret(gMC.x + (1 * 0x200), gMC.y + (6 * 0x200), 7, 2);
-						if (gMC.direct == 2)
-							SetCaret(gMC.x - (1 * 0x200), gMC.y + (6 * 0x200), 7, 0);
+						static int speedEffects;
+						if (++speedEffects % 4 == 1)
+						{
+							if (gMC.direct == 0)
+								SetCaret(gMC.x + (1 * 0x200), gMC.y + (6 * 0x200), 7, 2);
+							if (gMC.direct == 2)
+								SetCaret(gMC.x - (1 * 0x200), gMC.y + (6 * 0x200), 7, 0);
 
-						PlaySoundObject(113, SOUND_MODE_PLAY);
+							PlaySoundObject(113, SOUND_MODE_PLAY);
+						}
 					}
 				}
 
