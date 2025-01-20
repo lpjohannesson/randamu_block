@@ -51,8 +51,8 @@ std::vector<MYCHAR_EQUIP_DEFINITION> equipVisuals;
 int DashDuration(){
 	if (gMC.ameDashState) return 2000000;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;
-	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SUNGLASSES) return 44;
-	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 14;
+	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SUNGLASSES) return 44;
+	if (CheckFlagTrait(FlagTraits::SUPER_DASH)) return 14;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 25;
 	if (IsDashEquipped()) return 19;
 	return 16;
@@ -63,10 +63,10 @@ float DashSpeed(){
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 2.75f;
 	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) return 1.8;
 	if (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9) return 3;
-	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SPEED_SHOES && gMC.equip & EQUIP_SUNGLASSES) return 2.25;
-	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SUNGLASSES) return 2.6;
-	if ((gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) && gMC.equip & EQUIP_SPEED_SHOES) return 2.35;
-	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 2.25;
+	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SPEED_SHOES && gMC.equip & EQUIP_SUNGLASSES) return 2.25;
+	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SUNGLASSES) return 2.6;
+	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SPEED_SHOES) return 2.35;
+	if (CheckFlagTrait(FlagTraits::SUPER_DASH)) return 2.25;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 1.85;
 	if (gMC.equip & EQUIP_SPEED_SHOES) return 1.7;
 	if (IsDashEquipped()) return 1.6;
@@ -78,8 +78,8 @@ int DashCooldown(){
 	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) return 25;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;
 	if (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9) return 110;
-	if ((gMC.equip & (EQUIP_SUPER_DASH | EQUIP_SUNGLASSES)) || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 45;
-	if (gMC.equip & EQUIP_SUPER_DASH || GetNPCFlag(Flags::SHIELD_OF_TIME)) return 35;
+	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SUNGLASSES) return 45;
+	if (CheckFlagTrait(FlagTraits::SUPER_DASH)) return 35;
 	if (gMC.equip & EQUIP_SUNGLASSES) return 50;
 	if (!CheckFlagTrait(FlagTraits::BUFFED_DASH) && CheckFlagTrait(FlagTraits::CAT_DASH)) return 120;
 	if (IsDashEquipped()) return 40;
