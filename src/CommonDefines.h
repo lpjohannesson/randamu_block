@@ -213,6 +213,8 @@ namespace FlagTraits {
 	inline constexpr const char* ENERGY_PROJECTILE_ON_HIT  = "energy_projectile_on_hit";
 	inline constexpr const char* RANGED_BLOCK_PLACE        = "ranged_block_place";
 	inline constexpr const char* PRECISE_PLACEMENT         = "precise_placement";
+	inline constexpr const char* MANUAL_ROCKET_STOP        = "manual_rocket_stop";
+	inline constexpr const char* TIGHTER_TURNING           = "tighter_turning";
 }
 
 namespace Bullets {

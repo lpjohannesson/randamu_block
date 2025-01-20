@@ -1109,7 +1109,7 @@ void ActBullet_Missile(BULLET *bul)
 		break;
 	}
 
-	if (gKeyTrg & gKeyAbility && gMC.equip & (EQUIP_THROTTLER))
+	if (gKeyTrg & gKeyAbility && CheckFlagTrait(FlagTraits::MANUAL_ROCKET_STOP))
 	{
 		bul->cond = 0;
 		SetBullet(Bullets::MISSILE_EXPLOSION, bul->x, bul->y, 0);

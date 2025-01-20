@@ -842,8 +842,8 @@ void ActMyChar_Normal(bool bKey)
 					dashy *= 3;
 				}
 				if (gKey & gKeyLeft && gMC.xm > -maximal_dash){
-					if (gMC.xm > 0 && gMC.equip & EQUIP_THROTTLER){
-						gMC.xm -= dashy;
+					if (gMC.xm > 0){
+						gMC.xm -= dashy*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect");
 					}
 					gMC.xm -= dashy;
 					if (gMC.saraDash > 0 && gMC.xm > -500){
@@ -851,7 +851,7 @@ void ActMyChar_Normal(bool bKey)
 					}
 				}
 				if (gKey & gKeyRight && gMC.xm < maximal_dash){
-					if (gMC.xm < 0 && gMC.equip & EQUIP_THROTTLER) gMC.xm += dashy;
+					if (gMC.xm < 0) gMC.xm += dashy*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect");
 					gMC.xm += dashy;
 					if (gMC.saraDash > 0 && gMC.xm < 500){
 						gMC.xm = 500;
@@ -971,14 +971,14 @@ void ActMyChar_Normal(bool bKey)
 				dashy *= 3;
 			}
 			if (gKey & gKeyLeft && gMC.xm > -maximal_dash){
-				if (gMC.xm > 0 && gMC.equip & EQUIP_THROTTLER) gMC.xm -= dash2;
+				if (gMC.xm > 0) gMC.xm -= dash2*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect");
 				gMC.xm -= dash2;
 				if (gMC.saraDash > 0 && gMC.xm > -500){
 					gMC.xm = -500;
 				}
 			}
 			if (gKey & gKeyRight && gMC.xm < maximal_dash){
-				if (gMC.xm < 0 && gMC.equip & EQUIP_THROTTLER) gMC.xm += dash2;
+				if (gMC.xm < 0) gMC.xm += dash2*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect");
 				gMC.xm += dash2;
 				if (gMC.saraDash > 0 && gMC.xm < 500){
 					gMC.xm = 500;
