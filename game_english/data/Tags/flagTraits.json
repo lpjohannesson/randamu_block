@@ -1,7 +1,4 @@
 {
-    "-33554432": {
-        "water_mob_friend": {}
-    },
     "-134217728": {
         "super_dash": {}
     },
@@ -83,6 +80,9 @@
     "757": {
         "wall_jump": {}, "wall_sticky": {}
     },
+    "760": {
+        "water_mob_friend": {}, "water_floating": {}
+    },
     "860": {
         "timestop": {}
     },
@@ -90,7 +90,7 @@
         "booster_2_0": {}, "can_boost": {"amount": 90}, "dont_slow_on_boost_end": {}
     },
     "863": {
-        "water_mob_friend": {}
+        "water_mob_friend": {}, "water_floating": {}
     },
     "864": {
         "iframes_boost": {}, "ko_prevention": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}

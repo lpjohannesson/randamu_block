@@ -1144,13 +1144,10 @@ void ActMyChar_Normal(bool bKey)
 	// Normal gravity
 	else
 	{
-		if (gMC.equip & EQUIP_FISHY && !(bKey && gKey & gKeyAbility) && gMC.flag & 0x100){
+		if (CheckFlagTrait(FlagTraits::WATER_FLOATING) && !(bKey && gKey & gKeyAbility) && gMC.flag & 0x100){
 			gMC.ym -= gravity1*2;
 		}
 		else{
-			if (gMC.equip & EQUIP_FISHY && !(bKey && gKey & gKeyAbility) && gMC.flag & 0x100){
-				gMC.ym += gravity1*5;
-			} else
 			gMC.ym += gravity1;
 		}
 	}
