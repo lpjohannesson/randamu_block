@@ -70,12 +70,11 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 				move = 0x2400;
 				break;
 		}
-		if (gMC.equip & EQUIP_OVERCHARGE){
-			move *= 1.2f;
-		}
 		secondMove = 0xFF;
-		if (gMC.equip & EQUIP_OVERCHARGE)
-			secondMove = 390;
+		if (CheckFlagTrait(FlagTraits::INACCURATE_VELOCITY_MODIFIER)){
+			move *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "machine_gun_velocity"));
+			secondMove *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "machine_gun_inaccuracy"));
+		}
 		if (gArmsData[gSelectedArms].code == 21)
 			secondMove *= 7;
 

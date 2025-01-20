@@ -150,40 +150,30 @@ void ActBullet_Bubblin2(BULLET *bul)
 	{
 		case 0:
 			bul->act_no = 1;
+			int move = 0x900;
+			int secondMove = 0x180;
+			if (CheckFlagTrait(FlagTraits::INACCURATE_VELOCITY_MODIFIER)){
+				move *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "bubbler_velocity"));
+				secondMove *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "bubbler_inaccuracy"));
+			}
 
 			switch (bul->direct)
 			{
 				case 0:
-					bul->xm = -0x900;
-					bul->ym = Random(-0x180, 0x180);
-					if (gMC.equip & EQUIP_OVERCHARGE){
-						bul->xm = -0xAF8;
-						bul->ym = Random(-0x27C, 0x27C);
-					}
+					bul->xm = -move;
+					bul->ym = Random(-secondMove, secondMove);
 					break;
 				case 2:
-					bul->xm = 0x900;
-					bul->ym = Random(-0x180, 0x180);
-					if (gMC.equip & EQUIP_OVERCHARGE){
-						bul->xm = 0xAF8;
-						bul->ym = Random(-0x27C, 0x27C);
-					}
+					bul->xm = move;
+					bul->ym = Random(-secondMove, secondMove);
 					break;
 				case 1:
-					bul->ym = -0x900;
-					bul->xm = Random(-0x180, 0x180);
-					if (gMC.equip & EQUIP_OVERCHARGE){
-						bul->ym = -0xAF8;
-						bul->xm = Random(-0x27C, 0x27C);
-					}
+					bul->ym = -move;
+					bul->xm = Random(-secondMove, secondMove);
 					break;
 				case 3:
-					bul->ym = 0x900;
-					bul->xm = Random(-0x180, 0x180);
-					if (gMC.equip & EQUIP_OVERCHARGE){
-						bul->ym = 0xAF8;
-						bul->xm = Random(-0x27C, 0x27C);
-					}
+					bul->ym = move;
+					bul->xm = Random(-secondMove, secondMove);
 					break;
 			}
 

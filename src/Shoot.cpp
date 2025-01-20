@@ -728,7 +728,7 @@ void ShootBullet_FireBall(int level)
 	switch (level)
 	{
 		case 1:
-			limit = 2 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
+			limit = 2 + GetFlagTraitData<int>(FlagTraits::BULLET_LIMIT_BOOST, "fireball");
 			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
@@ -737,7 +737,7 @@ void ShootBullet_FireBall(int level)
 			break;
 
 		case 2:
-			limit = 3 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
+			limit = 3 + GetFlagTraitData<int>(FlagTraits::BULLET_LIMIT_BOOST, "fireball");
 			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
@@ -746,7 +746,7 @@ void ShootBullet_FireBall(int level)
 			break;
 
 		case 3:
-			limit = 5 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
+			limit = 5 + GetFlagTraitData<int>(FlagTraits::BULLET_LIMIT_BOOST, "fireball");
 			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)) limit *= 1.5;
 			if (CountArmsBullet(3) > limit)
 				return;
@@ -755,7 +755,7 @@ void ShootBullet_FireBall(int level)
 			break;
 		
 		case 4:
-			limit = 2 + (gMC.equip & EQUIP_OVERCHARGE ? 1 : 0);
+			limit = 2 + GetFlagTraitData<int>(FlagTraits::BULLET_LIMIT_BOOST, "fireball");
 			if (CheckFlagTrait(FlagTraits::WITCH_FIREBALL)) limit *= 1.5;
 			if (CountBulletNum(Bullets::FIREBALL_LVL_4) > limit)
 				return;
@@ -924,7 +924,7 @@ void ShootBullet_Machinegun1(int level)
 	int bul_no;
 	static int wait;
 
-	if (CountArmsBullet(4) > (gMC.equip & EQUIP_OVERCHARGE ? 8 : 4))
+	if (CountArmsBullet(4) > 4 + GetFlagTraitData<int>(FlagTraits::BULLET_LIMIT_BOOST, "machine_gun"))
 		return;
 
 	switch (level)
@@ -946,12 +946,14 @@ void ShootBullet_Machinegun1(int level)
 			break;
 	}
 
+	int firerate = 8 * std::max(0.0f, 1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "machine_gun"));
+
 	if (!(gKey & gKeyShot))
-		gMC.rensha = gMC.equip & EQUIP_OVERCHARGE ? 6 : 8;
+		gMC.rensha = firerate;
 
 	if (gKey & gKeyShot)
 	{
-		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 6 : 8))
+		if (++gMC.rensha < firerate)
 			return;
 
 		gMC.rensha = 0;
@@ -970,7 +972,7 @@ void ShootBullet_Machinegun1(int level)
 		}
 
 		int i = 1;
-		if (Random(0, 2) == 0 && gMC.equip & EQUIP_OVERCHARGE){
+		if (CheckFlagTrait(FlagTraits::EXTRA_BULLET_CHANCE) && Random(0, GetFlagTraitData<int>(FlagTraits::EXTRA_BULLET_CHANCE, "machine_gun")-1) == 0){
 			i = 2;
 		}
 
@@ -1093,12 +1095,14 @@ void ShootBullet_Machinegun2(int level)
 	int bul_no = Bullets::MACHINE_GUN_GATLING;
 	static int wait;
 
+	int firerate = 4 * std::max(0.0f, 1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "gatling_gun"));
+
 	if (!(gKey & gKeyShot))
-		gMC.rensha = (gMC.equip & EQUIP_OVERCHARGE ? 3 : 4);
+		gMC.rensha = firerate;
 
 	if (gKey & gKeyShot)
 	{
-		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 3 : 4))
+		if (++gMC.rensha < firerate)
 			return;
 
 		gMC.rensha = 0;
@@ -1117,7 +1121,7 @@ void ShootBullet_Machinegun2(int level)
 		}
 
 		int i = Random(1, std::round(level*2+1));
-		if (Random(0, 2) == 0 && gMC.equip & EQUIP_OVERCHARGE){
+		if (CheckFlagTrait(FlagTraits::EXTRA_BULLET_CHANCE) && Random(0, GetFlagTraitData<int>(FlagTraits::EXTRA_BULLET_CHANCE, "machine_gun")-1)){
 			i *= 1.5f;
 		}
 
@@ -2019,7 +2023,7 @@ void ShootBullet_Bubblin2(int level)
 {
 	static int wait;
 
-	if (CountArmsBullet(7) > (gMC.equip & EQUIP_OVERCHARGE ? 60 : 30))
+	if (CountArmsBullet(7) > 30 + GetFlagTraitData<int>(FlagTraits::BULLET_LIMIT_BOOST, "bubbler"))
 		return;
 	
 	if (level != 4)
@@ -2027,12 +2031,14 @@ void ShootBullet_Bubblin2(int level)
 	else
 		level = Bullets::BUBBLER_LVL_4;
 
+	int firerate = 4 * std::max(0.0f, 1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "bubbler"));
+
 	if (!(gKey & gKeyShot))
-		gMC.rensha = (gMC.equip & EQUIP_OVERCHARGE ? 3 : 4);
+		gMC.rensha = firerate;
 
 	if (gKey & gKeyShot)
 	{
-		if (++gMC.rensha < (gMC.equip & EQUIP_OVERCHARGE ? 3 : 4))
+		if (++gMC.rensha < firerate)
 			return;
 
 		gMC.rensha = 0;
@@ -2051,7 +2057,7 @@ void ShootBullet_Bubblin2(int level)
 		}
 
 		int i = 1;
-		if (Random(0, 2) == 0 && gMC.equip & EQUIP_OVERCHARGE){
+		if (CheckFlagTrait(FlagTraits::EXTRA_BULLET_CHANCE) && Random(0, GetFlagTraitData<int>(FlagTraits::EXTRA_BULLET_CHANCE, "bubbler")-1)){
 			i = 2;
 		}
 
