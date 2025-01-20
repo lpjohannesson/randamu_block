@@ -215,6 +215,8 @@ namespace FlagTraits {
 	inline constexpr const char* PRECISE_PLACEMENT         = "precise_placement";
 	inline constexpr const char* MANUAL_ROCKET_STOP        = "manual_rocket_stop";
 	inline constexpr const char* TIGHTER_TURNING           = "tighter_turning";
+	inline constexpr const char* MULTI_BLOCK_BREAKING      = "multi_block_breaking";
+	inline constexpr const char* OFFSET_NEMESIS            = "offset_nemesis";
 }
 
 namespace Bullets {

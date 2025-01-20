@@ -44,7 +44,7 @@ int JudgeHitBulletBlock(int x, int y, BULLET *bul)
 	if (hit && bul->bbits & 0x60 && InsideMap(x, y) && (GetAttribute(x, y) == 0x43 || (bul->code_bullet == Bullets::MINING_LASER || bul->code_bullet == Bullets::MINING_BOOM || bul->code_bullet == 34 || bul->code_bullet == 35 ||
 	 (CheckFlagTrait(FlagTraits::INVIDIA) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39)))))
 	{
-		if (gMC.equip & EQUIP_MULTIBREAK && (bul->code_bullet == 34 || bul->code_bullet == 35) && bul->life > 1){
+		if (CheckFlagTrait(FlagTraits::MULTI_BLOCK_BREAKING) && (bul->code_bullet == Bullets::NEMESIS_MAIN) && bul->life > 1){
 			bul->life--;
 			if (bul->life == 0){
 				bul->cond = 0;
