@@ -166,7 +166,7 @@ void DamageMyChar(int damage)
 		return;
 	}
 
-	if ((gMC.equip & EQUIP_PLATING || GetNPCFlag(Flags::SHIELD_OF_RESILIENCE)) && damage <= 3 && Random(0, 15) <= 4){
+	if (CheckFlagTrait(FlagTraits::LOW_DAMAGE_NULLIFY) && damage <= GetFlagTraitData<int>(FlagTraits::LOW_DAMAGE_NULLIFY, "threshold") && Random(0, GetFlagTraitData<int>(FlagTraits::LOW_DAMAGE_NULLIFY, "chance")-1) <= 0){
 		damage = 0;
 	}
 
