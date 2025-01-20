@@ -2,9 +2,6 @@
     "-16777216": {
         "dash_float": {}, "star_dash_vfx": {}
     },
-    "-262144": {
-        "propane_trail": {}, "buffed_snake": {}
-    },
     "703": {
         "mouse_teleport": {}
     },
@@ -49,6 +46,9 @@
     },
     "743": {
         "booster_2_0": {}, "can_boost": {"amount": 40}
+    },
+    "744": {
+        "propane_trail": {}, "buffed_snake": {}
     },
     "745": {
         "ko_prevention": {}
