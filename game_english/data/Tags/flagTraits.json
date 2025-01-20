@@ -69,7 +69,7 @@
         "jump_on_spikes": {}, "spike_damage_resist": {}
     },
     "750": {
-        "stomping": {}
+        "accelerate_fall": {}, "stomping": {}
     },
     "752": {
         "booster_2_0": {}, "can_boost": {"amount": 15}, "booster_fuel_boost": {"amount": 2.25}
@@ -129,7 +129,7 @@
         "super_dash": {}, "timestop": {}
     },
     "878": {
-        "explode_on_hit": {}, "stomping": {}
+        "accelerate_fall": {}, "explode_on_hit": {}, "stomping": {"explosive": true}
     },
     "879": {
         "spike_evading": {}, "manual_rocket_stop": {}, "tighter_turning": {"effect": 1}

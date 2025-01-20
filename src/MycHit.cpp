@@ -96,7 +96,7 @@ int JudgeHitMyCharBlock(int x, int y)
 				PutlittleStar();
 			}
 		else {
-			if (gMC.ym < -0x400 && !(gMC.equip & EQUIP_HEAVY_WEIGHT))
+			if (gMC.ym < -0x400 && !CheckFlagTrait(FlagTraits::ACCELERATE_FALL))
 				PlaySoundObject(23, SOUND_MODE_PLAY);
 		}
 		if (gMC.ym < 0)
@@ -126,7 +126,7 @@ int JudgeHitMyCharBlock(int x, int y)
 				PutlittleStar();
 		}
 		else {
-			if (gMC.ym > 0x400 && !(gMC.equip & EQUIP_HEAVY_WEIGHT))
+			if (gMC.ym > 0x400 && !CheckFlagTrait(FlagTraits::ACCELERATE_FALL))
 				PlaySoundObject(23, SOUND_MODE_PLAY);
 		}
 		if (gMC.ym > 0)
@@ -1023,7 +1023,7 @@ void HitMyCharNpChar(void)
 		}
 
 		if (hit != 0 && gNPC[i].bits & NPC_SHOOTABLE && CheckFlagTrait(FlagTraits::STOMPING) && (gMC.ym >= 200) && gKey & gKeyAbility){
-			if (GetNPCFlag(Flags::NUCLEAR_STOMPER)){
+			if (GetFlagTraitData<bool>(FlagTraits::STOMPING, "explosive")){
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
@@ -1048,7 +1048,7 @@ void HitMyCharNpChar(void)
 						hitTimer = 1;
 					}
 				}
-				if ((gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 0x100) && gKey & gKeyAbility){
+				if (CheckFlagTrait(FlagTraits::STOMPING) && (gMC.ym >= 0x100) && gKey & gKeyAbility){
 				}
 				else if ((gMC.dashDuration > 0) && IsDashEquipped()){
 				}
@@ -1074,7 +1074,7 @@ void HitMyCharNpChar(void)
 						hitTimer = 1;
 					}
 				}
-				if ((gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 0x100) && gKey & gKeyAbility){
+				if (CheckFlagTrait(FlagTraits::STOMPING) && (gMC.ym >= 0x100) && gKey & gKeyAbility){
 				}
 				else if ((gMC.dashDuration > 0 && IsDashEquipped())){
 				}
@@ -1303,7 +1303,7 @@ void HitMyCharBoss(void)
 					hitTimer = 1;
 				}
 			}
-			if ((gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 0x100) && gKey & gKeyAbility)
+			if (CheckFlagTrait(FlagTraits::STOMPING) && (gMC.ym >= 0x100) && gKey & gKeyAbility)
 			{
 			}
 			else if ((gMC.dashDuration > 0))
@@ -1330,7 +1330,7 @@ void HitMyCharBoss(void)
 					hitTimer = 1;
 				}
 			}
-			if ((gMC.equip & EQUIP_HEAVY_WEIGHT) && (gMC.ym >= 0x100) && gKey & gKeyAbility)
+			if (CheckFlagTrait(FlagTraits::STOMPING) && (gMC.ym >= 0x100) && gKey & gKeyAbility)
 			{
 			}
 			else if ((gMC.dashDuration > 0))

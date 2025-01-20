@@ -1280,10 +1280,10 @@ void ActMyChar_Normal(bool bKey)
 	if (gMC.ym > max_move / 6 && CheckForCooldown(gCooldowns, DASH_TIMER_ID) >= DashCooldown() / 2 && (GetNPCFlag(Flags::CAPE_OF_SHADOWS))){
 		gMC.ym = max_move / 6;
 	}
-	if (gMC.ym > max_move && !(gMC.equip & EQUIP_HEAVY_WEIGHT && gKey & gKeyAbility)){
+	if (gMC.ym > max_move && !(CheckFlagTrait(FlagTraits::ACCELERATE_FALL) && gKey & gKeyAbility)){
 		gMC.ym = max_move;
 	}
-	if ((gMC.equip & EQUIP_HEAVY_WEIGHT) && (bKey && gKey & gKeyAbility) && !(gMC.flag & 8)){
+	if (CheckFlagTrait(FlagTraits::ACCELERATE_FALL) && (bKey && gKey & gKeyAbility) && !(gMC.flag & 8)){
 		gMC.ym = max_move*1.75 * (gMC.flip ? -1 : 1);
 		if (gMC.ym > 0x100* (gMC.flip ? -1 : 1)){
 			gMC.visualDashDuration+=3;
