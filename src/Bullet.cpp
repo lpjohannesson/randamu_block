@@ -207,7 +207,7 @@ void SetBullet(int no, int x, int y, int dir)
 	gBul[i].view.bottom = gBulletTable[no].table.view.bottom * 0x200;
 	gBul[i].knockX = gBulletTable[no].table.knockX;
 	gBul[i].knockY = gBulletTable[no].table.knockY;
-	if (((no > 0 && no < 4) || no == 70) && gMC.equip & EQUIP_PROPANE_TANK){
+	if (((no > 0 && no < 4) || no == 70) && CheckFlagTrait(FlagTraits::SNAKE_EMPOWER)){
 		gBul[i].damage /= 2;
 	}
 	if (gBul[i].life_count != Bullets::SNAKE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_2 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_3){
@@ -248,7 +248,7 @@ BULLET* SetBullet(int no, int x, int y)
 	gBul[i].view.bottom = gBulletTable[no].table.view.bottom * 0x200;
 	gBul[i].knockX = gBulletTable[no].table.knockX;
 	gBul[i].knockY = gBulletTable[no].table.knockY;
-	if (((no > 0 && no < 4) || no == 70) && gMC.equip & EQUIP_PROPANE_TANK){
+	if (((no > 0 && no < 4) || no == 70) && CheckFlagTrait(FlagTraits::SNAKE_EMPOWER)){
 		gBul[i].damage /= 2;
 	}
 	if (gBul[i].life_count != Bullets::SNAKE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_1 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_2 && gBul[i].code_bullet != Bullets::FLOODTIDE_LVL_3){
