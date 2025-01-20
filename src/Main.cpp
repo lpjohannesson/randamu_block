@@ -181,6 +181,7 @@ void ReloadConfig(){
 	difficultyNames = ParseTag<std::string>("Tags/difficultyNames.json");
 	gimmickNames = ParseTag<std::string>("Tags/gimmickNames.json");
 	bossNPCsList = ParseTag<int>("Tags/bossNPCs.json");
+	equipVisuals = ParseTag<MYCHAR_EQUIP_DEFINITION>("Tags/equipVisuals.json");
 	stageGenerationOrder = ParseTag<std::string>("Tags/generationOrder.json");
 	json stageMetadataProto = ReadJSON("Tags/generationMetadata.json");
 	for (auto &[name, data]: stageMetadataProto.items()){

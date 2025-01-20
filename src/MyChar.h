@@ -91,6 +91,13 @@ struct MYCHAR_DEFINITION
 		blacklistedChestFlags, characterFlags, startingItems, startingWeapons)
 };
 
+struct MYCHAR_EQUIP_DEFINITION
+{
+	int flag; int accs_id;
+
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_EQUIP_DEFINITION, flag, accs_id)
+};
+
 struct MYCHAR
 {
 	unsigned char cond;
@@ -178,6 +185,8 @@ extern std::vector<int> gAvailableIDs;
 extern std::vector<Cooldown> gCooldowns;
 
 extern nlohmann::ordered_map<std::string, MYCHAR_DEFINITION> availableCharacters;
+
+extern std::vector<MYCHAR_EQUIP_DEFINITION> equipVisuals;
 
 extern MYCHAR gMC;
 

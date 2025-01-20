@@ -46,6 +46,8 @@ std::map<std::pair<short, short>, unsigned char> mapModifications;
 
 nlohmann::ordered_map<std::string, MYCHAR_DEFINITION> availableCharacters;
 
+std::vector<MYCHAR_EQUIP_DEFINITION> equipVisuals;
+
 int DashDuration(){
 	if (gMC.ameDashState) return 2000000;
 	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;
@@ -318,10 +320,6 @@ void ShowMyChar(bool bShow)
 
 void PutMyChar(int fx, int fy)
 {
-	const int accOrder[] = {EQUIP_WATER_THURST, EQUIP_PLATING, EQUIP_SPEED_SHOES, EQUIP_SUNGLASSES, EQUIP_FISHY, EQUIP_PROPANE_TANK, EQUIP_WINGS, EQUIP_SUPER_DASH, EQUIP_GRAVITY_FLIP, EQUIP_SKATES};
-	const int accRectNum[] = {6, 5, 2, 1, 4, 7, 3, 0, 8, 9};
-	const int accOrderFlag[] = {Flags::DIVING_SUIT, Flags::DISCORDIAN_VISOR, Flags::CAPE_OF_SHADOWS, Flags::SHIELD_OF_RESILIENCE, Flags::SACRED_AEGIS, Flags::HIGH_OCTANE_TANK, Flags::FLAMING_BOOSTER, Flags::SHIELD_OF_TIME};
-	const int accRectNumFlag[] = {11, 15, 12, 10, 13, 14, 16, 17};
 	if (IsASheep() && (gMC.cond & 0x80)){
 		Rect sheepRect = {48, 0, 64, 16};
 		if (gMC.direct == 2) sheepRect = {48, 16, 64, 32};
@@ -335,42 +333,22 @@ void PutMyChar(int fx, int fy)
 	rect.top += 32 * gMIMCurrentNum;
 	rect.bottom += 32 * gMIMCurrentNum;
 	PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &rect, color, SURFACE_ID_DASH_VISUAL);
-
-	for (int i = 0; i < ARRAY_SIZE(accOrder); i++)
+	for (const auto& equip : equipVisuals)
 	{
-		if (gMC.equip & accOrder[i])
+		if (GetNPCFlag(equip.flag))
 		{
 			bool skip = false;
 			for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_EQUIPS, "flags")){
 				for (const auto& flag : oof)
-					if (accOrder[i] == std::abs(flag)){
+					if (equip.flag == flag){
 						skip = true;
 						break;
 					}
 			}
 			if (skip) continue;
-			Rect accRect = gMC.direct == 0 ? rcLeft : rcRight;
-			accRect.top += 32 * accRectNum[i];
-			accRect.bottom += 32 * accRectNum[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, color, SURFACE_ID_MY_ACCESSORIES_DROWNED);
-		}
-	}
-	for (int i = 0; i < ARRAY_SIZE(accOrderFlag); i++)
-	{
-		if (GetNPCFlag(accOrderFlag[i]))
-		{
-			bool skip = false;
-			for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_EQUIPS, "flags")){
-				for (const auto& flag : oof)
-					if (accOrderFlag[i] == flag){
-						skip = true;
-						break;
-					}
-			}
-			if (skip) continue;
-			Rect accRect = gMC.direct == 0 ? rcLeft : rcRight;
-			accRect.top += 32 * accRectNumFlag[i];
-			accRect.bottom += 32 * accRectNumFlag[i];
+			Rect accRect = gMC.rect;
+			accRect.top += 32 * equip.accs_id;
+			accRect.bottom += 32 * equip.accs_id;
 			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, color, SURFACE_ID_MY_ACCESSORIES_DROWNED);
 		}
 	}
@@ -464,41 +442,22 @@ void PutMyChar(int fx, int fy)
 		SubpixelToScreenCoord(gMC.x - gMC.view.front - gMC.xm*(1+i*3))
 		 - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top - gMC.ym*(1+i*3)) - SubpixelToScreenCoord(fy), &rect, (SurfaceID)((int)SURFACE_ID_DASH_VISUAL), 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
 	auto hiddenItems = GetFlagTraitData(FlagTraits::HIDDEN_EQUIPS);
-	for (int i = 0; i < ARRAY_SIZE(accOrder); i++)
+	for (const auto& equip : equipVisuals)
 	{
-		if (gMC.equip & accOrder[i])
+		if (GetNPCFlag(equip.flag))
 		{
 			bool skip = false;
 			for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_EQUIPS, "flags")){
 				for (const auto& flag : oof)
-					if (accOrder[i] == std::abs(flag)){
+					if (equip.flag == flag){
 						skip = true;
 						break;
 					}
 			}
 			if (skip) continue;
 			Rect accRect = gMC.rect;
-			accRect.top += 32 * accRectNum[i];
-			accRect.bottom += 32 * accRectNum[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_ACCESSORIES_DASH, 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
-		}
-	}
-	for (int i = 0; i < ARRAY_SIZE(accOrderFlag); i++)
-	{
-		if (GetNPCFlag(accOrderFlag[i]))
-		{
-			bool skip = false;
-			for (const auto&[flag, oof]: GetActualFlagTraitData<std::vector<int>>(FlagTraits::HIDDEN_EQUIPS, "flags")){
-				for (const auto& flag : oof)
-					if (accOrderFlag[i] == flag){
-						skip = true;
-						break;
-					}
-			}
-			if (skip) continue;
-			Rect accRect = gMC.rect;
-			accRect.top += 32 * accRectNumFlag[i];
-			accRect.bottom += 32 * accRectNumFlag[i];
+			accRect.top += 32 * equip.accs_id;
+			accRect.bottom += 32 * equip.accs_id;
 			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_ACCESSORIES_DASH, 0.33f - 0.32f * (float(i) / (gMC.visualDashDuration / (float)4)));
 		}
 	}
@@ -518,23 +477,13 @@ void PutMyChar(int fx, int fy)
 #endif
 	PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &rect, SURFACE_ID_MY_CHAR);
 
-	for (int i = 0; i < ARRAY_SIZE(accOrder); i++)
+	for (const auto& equip : equipVisuals)
 	{
-		if (gMC.equip & accOrder[i])
+		if (GetNPCFlag(equip.flag))
 		{
 			Rect accRect = gMC.rect;
-			accRect.top += 32 * accRectNum[i];
-			accRect.bottom += 32 * accRectNum[i];
-			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_ACCESSORIES);
-		}
-	}
-	for (int i = 0; i < ARRAY_SIZE(accOrderFlag); i++)
-	{
-		if (GetNPCFlag(accOrderFlag[i]))
-		{
-			Rect accRect = gMC.rect;
-			accRect.top += 32 * accRectNumFlag[i];
-			accRect.bottom += 32 * accRectNumFlag[i];
+			accRect.top += 32 * equip.accs_id;
+			accRect.bottom += 32 * equip.accs_id;
 			PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &accRect, SURFACE_ID_MY_ACCESSORIES);
 		}
 	}
