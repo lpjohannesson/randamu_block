@@ -55,45 +55,23 @@ namespace Flags {
 	inline constexpr int LEVEL_BOSS_DEFEATED      = 555;
 
 	//items
-	inline constexpr int CHAOS_KEY                = 703;
-	inline constexpr int BATTERY_PACK             = 705;
-	inline constexpr int NICE_SKATES              = 708;
-	inline constexpr int GRAVITY_NECKLACE         = 710;
-
 	inline constexpr int LEAD_WEIGHT              = 711;
-	inline constexpr int NANO_QUIVER              = 712;
-	inline constexpr int OVERCLOCK                = 720;
 
 	inline constexpr int COPPER_BULWARK           = 724;
 	inline constexpr int SILVER_LOCKET            = 725;
 
 	inline constexpr int COOL_SUNGLASSES          = 737;
-	inline constexpr int MOMENTUM_THROTTLER       = 738;
-	inline constexpr int STEEL_PLATING            = 739;
 	inline constexpr int LITTLE_MAN               = 740;
 
 	inline constexpr int CREATION_ENERGIZER       = 741;
 	inline constexpr int DESTRUCTION_ENERGIZER    = 742;
-	inline constexpr int BOOSTER_2_0              = 743;
-	inline constexpr int PROPANE_TANK             = 744;
 	inline constexpr int CLAY_FIGURE_MEDAL        = 745;
-	inline constexpr int IRON_BOND                = 746;
-	inline constexpr int FROSTBITE_STOPWATCH      = 747;
-	inline constexpr int BALLOS_BURGER            = 748;
 	inline constexpr int ALIEN_MEDAL              = 749;
-	inline constexpr int HEAVY_WEIGHT             = 750;
 
 	inline constexpr int CURLY_UNDERWEAR          = 751;
-	inline constexpr int ENERGY_CANISTER          = 752;
-	inline constexpr int AUXILIARY_BOOSTER        = 753;
 	inline constexpr int WATER_THURSTERS          = 754;
-	inline constexpr int PAIR_OF_WINGS            = 755;
-	inline constexpr int SPEED_SHOES              = 756;
-	inline constexpr int WALL_HOOK                = 757;
-	inline constexpr int FISHY_TUBE               = 760;
 
 	inline constexpr int WHIMSICAL_STAR           = 851;
-	inline constexpr int TIMELINE_RING            = 860;
 
 	inline constexpr int ENERGY_CRYSTAL           = 861;
 	inline constexpr int SUPER_BOOSTER            = 862;
@@ -119,7 +97,6 @@ namespace Flags {
 
 	inline constexpr int WATER_GUN_EFFECT         = 881;
 
-	inline constexpr int NANITES_ABSORBER         = 882;
 	inline constexpr int MILITARY_ARMAMENT        = 883;
 
 	inline constexpr int STAR_SAVE_FLAG_BEGIN     = 950;
