@@ -401,9 +401,9 @@ void ShootBullet_PoleStar(int level)
 	{
 		++wait;
 
-		if (gMC.equip & EQUIP_TURBOCHARGE)
+		if (CheckFlagTrait(FlagTraits::MINING_PASSIVE_CHARGE))
 		{
-			if (wait > 120)
+			if (wait > GetFlagTraitData<int>(FlagTraits::MINING_PASSIVE_CHARGE, "nemesis"))
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
@@ -1071,9 +1071,9 @@ void ShootBullet_Machinegun1(int level)
 	{
 		++wait;
 
-		if (gMC.equip & EQUIP_TURBOCHARGE)
+		if (CheckFlagTrait(FlagTraits::WEAPON_RECHARGE_BOOST))
 		{
-			if (wait > 2)
+			if (wait > 6 / std::max(0.01f, GetFlagTraitData<float>(FlagTraits::WEAPON_RECHARGE_BOOST, "machine_gun")))
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
@@ -1217,9 +1217,13 @@ void ShootBullet_Machinegun2(int level)
 	{
 		++wait;
 
-		if (gMC.equip & EQUIP_TURBOCHARGE)
+		if (CheckFlagTrait(FlagTraits::WEAPON_RECHARGE_BOOST))
 		{
-			ChargeArmsEnergy(1);
+			if (wait > 5 / std::max(0.01f, GetFlagTraitData<float>(FlagTraits::WEAPON_RECHARGE_BOOST, "machine_gun")))
+			{
+				wait = 0;
+				ChargeArmsEnergy(1);
+			}
 		}
 		else
 		{
@@ -2113,9 +2117,9 @@ void ShootBullet_Bubblin2(int level)
 	{
 		++wait;
 
-		if (gMC.equip & EQUIP_TURBOCHARGE)
+		if (CheckFlagTrait(FlagTraits::WEAPON_RECHARGE_BOOST))
 		{
-			if (wait > 1)
+			if (wait > 2 / std::max(0.01f, GetFlagTraitData<float>(FlagTraits::WEAPON_RECHARGE_BOOST, "machine_gun")))
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
@@ -2375,9 +2379,9 @@ void ShootBullet_Nemesis(int level)
 	{
 		++wait;
 
-		if (gMC.equip & EQUIP_TURBOCHARGE)
+		if (CheckFlagTrait(FlagTraits::MINING_PASSIVE_CHARGE))
 		{
-			if (wait > 120)
+			if (wait > std::max(0, GetFlagTraitData<int>(FlagTraits::MINING_PASSIVE_CHARGE, "nemesis")))
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
@@ -2406,10 +2410,7 @@ void ShootBullet_Spur(int level)
 
 	if (gKey & gKeyShot)
 	{
-		if (gMC.equip & EQUIP_TURBOCHARGE)
-			AddExpMyChar(3);
-		else
-			AddExpMyChar(2);
+		AddExpMyChar(2*std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SPUR_CHARGE_BOOST, "modifier")));
 
 		if (++spur_charge / 2 % 2)
 		{

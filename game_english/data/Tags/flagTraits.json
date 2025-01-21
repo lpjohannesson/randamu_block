@@ -11,6 +11,9 @@
     "703": {
         "mouse_teleport": {}
     },
+    "704": {
+        "mining_passive_charge": {"polar_star": 120, "nemesis": 120}, "spur_charge_boost": {"modifier": 1.5}, "weapon_recharge_boost": {"machine_gun": 3, "gatling_gun": 5, "bubbler": 2}
+    },
     "705": {
         "bullet_life_boost": {"boost": 1.25}
     },
@@ -89,11 +92,11 @@
     "760": {
         "water_mob_friend": {}, "water_floating": {}
     },
-    "801": {
-        "exp_saving": {"modifier": 2}, "mining_charge_from_damage": {"amount": 1.5}
-    },
     "860": {
         "timestop": {}
+    },
+    "861": {
+        "exp_saving": {"modifier": 2}, "mining_charge_from_damage": {"amount": 1.5}, "mining_passive_charge": {"polar_star": 120, "nemesis": 120}, "spur_charge_boost": {"modifier": 1.5}, "weapon_recharge_boost": {"machine_gun": 3, "gatling_gun": 5, "bubbler": 2}
     },
     "862": {
         "booster_2_0": {}, "can_boost": {"amount": 90}, "dont_slow_on_boost_end": {}

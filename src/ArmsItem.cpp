@@ -370,8 +370,7 @@ bool SubItemData(long code)
 		case 3:  CutNPCFlag(125); break;
 		case 21: gMC.equip &= ~EQUIP_AIR_TANK; break;
 		case 45: gMC.equip &= ~EQUIP_MORE_AMMO; break;
-		case 20: gMC.equip &= ~EQUIP_TURBOCHARGE; break;
-		case 14: CutNPCFlag(Flags::ENERGY_CRYSTAL); gMC.equip &= ~EQUIP_TURBOCHARGE; gMC.equip &= ~EQUIP_MORE_AMMO; break;
+		case 14: CutNPCFlag(Flags::ENERGY_CRYSTAL); gMC.equip &= ~EQUIP_MORE_AMMO; break;
 	}
 
 	if (code > 100){

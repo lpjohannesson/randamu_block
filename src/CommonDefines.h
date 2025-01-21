@@ -205,6 +205,9 @@ namespace FlagTraits {
 	inline constexpr const char* MAPPING                       = "mapping";
 	inline constexpr const char* EXP_SAVING                    = "exp_saving";
 	inline constexpr const char* MINING_CHARGE_FROM_DAMAGE     = "mining_charge_from_damage";
+	inline constexpr const char* MINING_PASSIVE_CHARGE         = "mining_passive_charge";
+	inline constexpr const char* SPUR_CHARGE_BOOST             = "spur_charge_boost";
+	inline constexpr const char* WEAPON_RECHARGE_BOOST         = "weapon_recharge_boost";
 }
 
 namespace Bullets {
