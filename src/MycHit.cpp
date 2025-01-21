@@ -569,7 +569,7 @@ void HitMyCharMap(void)
 					break;
 				}
 				else {
-					if (gMC.air >= 1 && gMC.equip & EQUIP_AIR_TANK)
+					if (gMC.air >= 1 && CheckFlagTrait(FlagTraits::LAVA_PROTECTION))
 						gMC.flag |= JudgeHitMyCharWater(x + offx[i], y + offy[i]);
 					else 
 						gMC.flag |= JudgeHitMyCharDamageW(x + offx[i], y + offy[i]); break;

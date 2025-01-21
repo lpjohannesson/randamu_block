@@ -208,6 +208,10 @@ namespace FlagTraits {
 	inline constexpr const char* MINING_PASSIVE_CHARGE         = "mining_passive_charge";
 	inline constexpr const char* SPUR_CHARGE_BOOST             = "spur_charge_boost";
 	inline constexpr const char* WEAPON_RECHARGE_BOOST         = "weapon_recharge_boost";
+	inline constexpr const char* LAVA_PROTECTION               = "lava_protection";
+	inline constexpr const char* BREATH_EXTENSION              = "breath_extension";
+	inline constexpr const char* UNDERWATER_BUBBLE_VFX         = "underwater_bubble_vfx";
+	inline constexpr const char* DROWNING_SLOWDOWN             = "drowning_slowdown";
 }
 
 namespace Bullets {

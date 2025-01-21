@@ -20,6 +20,9 @@
     "708": {
         "ice_skates": {}, "no_slippery": {}
     },
+    "709": {
+        "lava_protection": {"amount": 160}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}
+    },
     "710": {
         "gravity_flip": {}
     },
@@ -102,7 +105,7 @@
         "booster_2_0": {}, "can_boost": {"amount": 90}, "dont_slow_on_boost_end": {}
     },
     "863": {
-        "water_mob_friend": {}, "water_floating": {}
+        "water_mob_friend": {}, "lava_protection": {"amount": 160}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}
     },
     "864": {
         "iframes_boost": {}, "ko_prevention": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}

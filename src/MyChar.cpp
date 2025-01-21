@@ -507,7 +507,7 @@ void PutMyChar(int fx, int fy)
 		{80, 96, 104, 120},
 	};
 	
-	if (gMC.equip & EQUIP_AIR_TANK && gMC.flag & 0x100)
+	if (CheckFlagTrait(FlagTraits::UNDERWATER_BUBBLE_VFX) && gMC.flag & 0x100)
 		PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x) - PixelToScreenCoord(12) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y) - PixelToScreenCoord(12) - SubpixelToScreenCoord(fy), &rcBubble[(gMC.bubble / 2) % 2], SURFACE_ID_CARET);
 	else if (gMC.unit == 1)
 		PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x) - PixelToScreenCoord(12) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y) - PixelToScreenCoord(12) - SubpixelToScreenCoord(fy), &rcBubble[(gMC.bubble / 2) % 2], SURFACE_ID_CARET);
@@ -1739,8 +1739,8 @@ void ActMyChar_Stream(bool bKey)
 void AirDeplete(){
 	int rate = 1;
 	if (!gMC.hell){
-		if (gMC.equip & EQUIP_AIR_TANK || GetNPCFlag(Flags::DIVING_SUIT)){
-			rate = 3;
+		if (CheckFlagTrait(FlagTraits::BREATH_EXTENSION)){
+			rate = std::max(1, GetFlagTraitData<int>(FlagTraits::BREATH_EXTENSION, "modifier"));
 		}
 	}
 	if (gCounter % rate == 0){
@@ -1754,7 +1754,7 @@ void AirProcess(void)
 		{
 			int limit = 1000;
 			if (gMC.hell){
-				limit = 160;
+				limit = std::max(0, GetFlagTraitData<int>(FlagTraits::LAVA_PROTECTION, "amount"));
 			}
 			int airBoost = 25;
 			if (gMC.difficulty >= DIFFICULTY_RESONANT && !gMC.hell){
@@ -1781,8 +1781,8 @@ void AirProcess(void)
 					gMC.drowningTimer = 60;
 					if (gMC.difficulty > DIFFICULTY_REINFORCED)
 						gMC.drowningTimer = 30;
-					if (gMC.equip & EQUIP_AIR_TANK || GetNPCFlag(Flags::DIVING_SUIT)){
-						gMC.drowningTimer *= 1.33;
+					if (CheckFlagTrait(FlagTraits::DROWNING_SLOWDOWN)){
+						gMC.drowningTimer *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::DROWNING_SLOWDOWN, "modifier"));
 					}
 					for (int a = 0; a < 6; ++a)
 					{
