@@ -89,6 +89,9 @@
     "753": {
         "double_jump": {}
     },
+    "755": {
+        "jump_boost": {"modifier": 1.25, "charge_modifier": 1.33}, "gliding": {"acceleration": 1.35, "max_speed": 1.75, "fall_slowdown": 2.8}
+    },
     "756": {
         "speed_boots": {"acceleration": 1, "speed_multiplier": 1.75, "particle_threshold": 1.5}
     },
@@ -117,7 +120,7 @@
         "energy_projectile_on_hit": {"chance": 3}
     },
     "866": {
-        "buffed_dash": {}, "double_jump": {}
+        "buffed_dash": {}, "double_jump": {}, "jump_boost": {"modifier": 1.40, "charge_modifier": 1}
     },
     "867": {
         "explode_on_hit": {}, "super_dash": {}

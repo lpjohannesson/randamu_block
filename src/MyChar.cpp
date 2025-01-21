@@ -582,11 +582,8 @@ void ActMyChar_Normal(bool bKey)
 	if ((gMC.flag & 0x100) && (gMC.equip & EQUIP_WATER_THURST)){
 		jump = gMC.physics_normal.jump*1.25;
 	} else {
-		if (gMC.equip & EQUIP_WINGS){
-			jump = 1600;
-		}
-		if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)){
-			jump = 1800;
+		if (CheckFlagTrait(FlagTraits::JUMP_BOOST)){
+			jump = gMC.physics_normal.jump*std::max(0.0f, GetFlagTraitData<float>(FlagTraits::JUMP_BOOST, "modifier"));
 		}
 	}
 	if (GetNPCFlag(Flags::DIVING_SUIT)){
@@ -911,9 +908,9 @@ void ActMyChar_Normal(bool bKey)
 			if (gKey & gKeyJump && GetNPCFlag(Flags::PROCGEN_CHARACTER) && gArmsData[gSelectedArms].code == 19 && gArmsData[gSelectedArms].num > 0){
 				dash2 *= 4;
 			}
-			if (bKey && gKey & gKeyAbility && gMC.equip & EQUIP_WINGS && gMC.ym > 0x080){
-				maximal_dash *= 1.75;
-				dashy *= 1.35;
+			if (bKey && gKey & gKeyAbility && CheckFlagTrait(FlagTraits::GLIDING) && gMC.ym > 0x080){
+				maximal_dash *= GetFlagTraitData<float>(FlagTraits::GLIDING, "max_speed");
+				dashy *= GetFlagTraitData<float>(FlagTraits::GLIDING, "acceleration");
 			}
 			if (GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)){
 				maximal_dash *= 2;
@@ -1132,8 +1129,8 @@ void ActMyChar_Normal(bool bKey)
 		}
 		if (gKey & gKeyUp && gMC.chargeActive) {
 			gravity2 *= 0.66;
-			if (gMC.equip & EQUIP_WINGS){
-				gravity2 *= 0.75;
+			if (CheckFlagTrait(FlagTraits::JUMP_BOOST)){
+				gravity2 *= 1.0f / std::max(0.0f, GetFlagTraitData<float>(FlagTraits::JUMP_BOOST, "charge_modifier"));
 			}
 		}
 		gMC.ym += gravity2;
@@ -1208,7 +1205,7 @@ void ActMyChar_Normal(bool bKey)
 		// Since there's no code, we have no idea what the original condition actually was.
 	}
 
-	if (bKey && gKey & gKeyAbility && gMC.equip & EQUIP_WINGS && gMC.ym > 0 && !(gMC.flag & 8 || gMC.flag & 0x10 || gMC.flag & 0x20)){
+	if (bKey && gKey & gKeyAbility && CheckFlagTrait(FlagTraits::GLIDING) && gMC.ym > 0 && !(gMC.flag & 8 || gMC.flag & 0x10 || gMC.flag & 0x20)){
 		SetCaret(gMC.x, gMC.y + 0x200*4, 13, 0);
 	}
 	if (gMC.ym > max_move * 0.75 && CheckFlagTrait(FlagTraits::CAT_FLOAT)){
@@ -1220,8 +1217,8 @@ void ActMyChar_Normal(bool bKey)
 	if (gMC.saraDash > 0 && gMC.ym * (gMC.flip ? -1 : 1) > max_move / 3 && gKey & gKeyJump){
 		gMC.ym = max_move / 3 * (gMC.flip ? -1 : 1);
 	}
-	if (bKey && gKey & gKeyAbility && gMC.equip & EQUIP_WINGS && gMC.ym  * (gMC.flip ? -1 : 1) > max_move / 2.8){
-		gMC.ym = max_move / 2.8 * (gMC.flip ? -1 : 1);
+	if (bKey && gKey & gKeyAbility && CheckFlagTrait(FlagTraits::GLIDING) && gMC.ym  * (gMC.flip ? -1 : 1) > max_move / GetFlagTraitData<float>(FlagTraits::GLIDING, "fall_slowdown")){
+		gMC.ym = max_move / GetFlagTraitData<float>(FlagTraits::GLIDING, "fall_slowdown") * (gMC.flip ? -1 : 1);
 	}
 	if (gMC.ym > max_move / 6 && CheckForCooldown(gCooldowns, DASH_TIMER_ID) >= DashCooldown() / 2 && (GetNPCFlag(Flags::CAPE_OF_SHADOWS))){
 		gMC.ym = max_move / 6;
@@ -1396,11 +1393,12 @@ void ActMyChar_Normal(bool bKey)
 		if (gMC.visualDashDuration < 0) gMC.visualDashDuration = 0;
 	}
 
-	if (bKey && gKey & gKeyAbility && gMC.equip & EQUIP_WINGS && gMC.ym * (gMC.flip ? -1 : 1) > 0x080){
-		if (gMC.xm > max_move*1.8)
-			gMC.xm = max_move*1.8;
-		if (gMC.xm < -max_move*1.8)
-			gMC.xm = -max_move*1.8;
+	if (bKey && gKey & gKeyAbility && CheckFlagTrait(FlagTraits::GLIDING) && gMC.ym * (gMC.flip ? -1 : 1) > 0x080){
+		float max_speed = GetFlagTraitData<float>(FlagTraits::GLIDING, "max_speed");
+		if (gMC.xm > max_move*max_speed)
+			gMC.xm = max_move*max_speed;
+		if (gMC.xm < -max_move*max_speed)
+			gMC.xm = -max_move*max_speed;
 		if (miningLaserCharge){
 			gMC.xm /= 2;
 		}
