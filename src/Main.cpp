@@ -9,6 +9,7 @@
 #include <ctime>
 #include <string>
 
+#include "ArmsItem.h"
 #include "bullets\All.h"
 #include "Backends/Misc.h"
 #include "Bitmap.h"
@@ -182,6 +183,12 @@ void ReloadConfig(){
 	gimmickNames = ParseTag<std::string>("Tags/gimmickNames.json");
 	bossNPCsList = ParseTag<int>("Tags/bossNPCs.json");
 	equipVisuals = ParseTag<MYCHAR_EQUIP_DEFINITION>("Tags/equipVisuals.json");
+
+	auto tempEquip = ParseMapTag<std::string, EQUIP_DEFINITION>("Tags/equipMap.json");
+	for (auto &[key, value]: tempEquip){
+		equipMap[std::stoi(key)] = value;
+	}
+
 	stageGenerationOrder = ParseTag<std::string>("Tags/generationOrder.json");
 	json stageMetadataProto = ReadJSON("Tags/generationMetadata.json");
 	for (auto &[name, data]: stageMetadataProto.items()){

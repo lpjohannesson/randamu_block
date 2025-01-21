@@ -514,7 +514,7 @@ void PutRankingObject(void)
 		PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(((i % 7) * 32 + offsetX) + (WINDOW_WIDTH / 2) - 112), PixelToScreenCoord(((i / 7) * 16 + offsetY) + (WINDOW_HEIGHT / 2) - 28), &rcItem, 
 			gRankings[selectedRank]["items"][i].get<ITEM>().code > 100 ? SURFACE_ID_ARMS_IMAGE : SURFACE_ID_ITEM_IMAGE);
 
-		if (equipMap.find(gRankings[selectedRank]["items"][i].get<ITEM>().code) != std::end(equipMap) && GetNPCFlagRank(equipMap.at(gRankings[selectedRank]["items"][i].get<ITEM>().code))){
+		if (equipMap.find(gRankings[selectedRank]["items"][i].get<ITEM>().code) != std::end(equipMap) && GetNPCFlagRank(equipMap.at(gRankings[selectedRank]["items"][i].get<ITEM>().code).flag) && !equipMap.at(gRankings[selectedRank]["items"][i].get<ITEM>().code).isPassive){
 			PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(((i % 7) * 32) + (WINDOW_WIDTH / 2) - 112 + (rcItem.right - rcItem.left) - (rcEquip.right - rcEquip.left)), PixelToScreenCoord(((i / 7) * 16) + (WINDOW_HEIGHT / 2) - 28), &rcEquip, SURFACE_ID_TEXT_BOX);
 		}
 	}

@@ -797,7 +797,7 @@ int ActualTextScriptProc(void)
 							break;
 						}
 						int equippedItems = std::count_if(std::begin(gItemData), std::end(gItemData), [](ITEM item)
-														  { return equipMap.find(item.code) != std::end(equipMap) && GetNPCFlag(equipMap.at(item.code)); });
+														  { return equipMap.find(item.code) != std::end(equipMap) && GetNPCFlag(equipMap.at(item.code).flag) && !equipMap.at(item.code).isPassive; });
 						if (equipMap.find(gItemData[gSelectedItem].code) != std::end(equipMap) && equippedItems >= itemLimit)
 						{
 							JumpTextScript(itemLimitEvent);

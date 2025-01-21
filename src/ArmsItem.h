@@ -76,7 +76,13 @@ extern bool gCampActive;
 /// X coordinate for the weapons HUD section. Set it to 32 for the forward weapon rotation "animation", 0 for the reverse weapon rotation "animation" and 16 to immobilise it
 extern int gArmsEnergyX;
 
-extern std::map<short, short> equipMap;
+struct EQUIP_DEFINITION {
+	int flag; bool isPassive = false;
+
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(EQUIP_DEFINITION, flag, isPassive)
+};
+
+extern std::map<int, EQUIP_DEFINITION> equipMap;
 
 
 
