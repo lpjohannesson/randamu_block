@@ -170,8 +170,8 @@ bool AddArmsData(long code, long max_num, long exp, long num, long level)
 
 	// Set weapon and ammo
 	gArmsData[i].code = code;
-	if ((code == 2 || code == 12) && gMC.equip & EQUIP_MORE_AMMO){
-		max_num *= 1.5;
+	if ((code == 2 || code == 12) && CheckFlagTrait(FlagTraits::MINING_STORAGE_BOOST)){
+		max_num *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::MINING_STORAGE_BOOST, "modifier"));
 	}
 	gArmsData[i].max_num += max_num;
 	gArmsData[i].num += num == 0 ? max_num : num;
@@ -367,9 +367,7 @@ bool SubItemData(long code)
 	}
 
 	switch (code){
-		case 3:  CutNPCFlag(125); break;
-		case 45: gMC.equip &= ~EQUIP_MORE_AMMO; break;
-		case 14: CutNPCFlag(Flags::ENERGY_CRYSTAL); gMC.equip &= ~EQUIP_MORE_AMMO; break;
+		case 14: CutNPCFlag(Flags::ENERGY_CRYSTAL); break;
 	}
 
 	if (code > 100){

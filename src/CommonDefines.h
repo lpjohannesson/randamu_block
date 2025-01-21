@@ -212,6 +212,7 @@ namespace FlagTraits {
 	inline constexpr const char* BREATH_EXTENSION              = "breath_extension";
 	inline constexpr const char* UNDERWATER_BUBBLE_VFX         = "underwater_bubble_vfx";
 	inline constexpr const char* DROWNING_SLOWDOWN             = "drowning_slowdown";
+	inline constexpr const char* MINING_STORAGE_BOOST          = "mining_storage_boost";
 }
 
 namespace Bullets {
