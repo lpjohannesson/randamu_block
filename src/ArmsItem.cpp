@@ -295,6 +295,10 @@ bool AddItemData(long code, int quantity, int level, int xp, int ammo)
 	gItemData[i].xp = xp;
 	gItemData[i].ammo = ammo;
 
+	if (equipMap.contains(gItemData[i].code) && equipMap[gItemData[i].code].isPassive){
+		SetNPCFlag(equipMap[gItemData[i].code].flag);
+	}
+
 	for (auto miracle : miracleList){
 		auto it = std::distance(miracleList.begin(), std::find(miracleList.begin(), miracleList.end(), miracle));
 		if (CheckItem(miracle.first) && CheckItem(miracle.second) && !CheckPermitStage(it+1)){
@@ -357,6 +361,11 @@ bool SubItemData(long code)
 
 	gItemData[i - 1].code = 0;
 	gSelectedItem = 0;
+
+	if (equipMap.contains(code) && equipMap[code].isPassive){
+		CutNPCFlag(equipMap[code].flag);
+	}
+
 	switch (code){
 		case 3:  CutNPCFlag(125); break;
 		case 21: gMC.equip &= ~EQUIP_AIR_TANK; break;
