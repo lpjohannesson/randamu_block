@@ -17,7 +17,6 @@
 // gMC.equip
 enum
 {
-	EQUIP_MAP = 2,
 	EQUIP_ARMS_BARRIER = 4,
 	EQUIP_TURBOCHARGE = 8,
 	EQUIP_AIR_TANK = 0x10,

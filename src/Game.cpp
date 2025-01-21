@@ -818,7 +818,7 @@ static int ModeAction(void)
 			}
 		}
 
-		if (gMC.equip & EQUIP_MAP && gKeyTrg & gKeyMap && IsMapping())
+		if (CheckFlagTrait(FlagTraits::MAPPING) && gKeyTrg & gKeyMap && IsMapping())
 		{
 			BackupSurface(SURFACE_ID_SCREEN_GRAB, &grcGame);
 

@@ -2,6 +2,9 @@
     "-16777216": {
         "dash_float": {}, "star_dash_vfx": {}
     },
+    "701": {
+        "mapping": {}
+    },
     "703": {
         "mouse_teleport": {}
     },
