@@ -5,6 +5,9 @@
     "701": {
         "mapping": {}
     },
+    "702": {
+        "exp_saving": {"modifier": 2}, "mining_charge_from_damage": {"amount": 1.5}
+    },
     "703": {
         "mouse_teleport": {}
     },
@@ -85,6 +88,9 @@
     },
     "760": {
         "water_mob_friend": {}, "water_floating": {}
+    },
+    "801": {
+        "exp_saving": {"modifier": 2}, "mining_charge_from_damage": {"amount": 1.5}
     },
     "860": {
         "timestop": {}

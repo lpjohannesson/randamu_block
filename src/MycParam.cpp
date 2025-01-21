@@ -320,14 +320,17 @@ void DamageMyChar(int damage)
 
 	// Lose experience
 	if (gArmsData[gSelectedArms].code != 18){
-	if (gMC.equip & EQUIP_ARMS_BARRIER){
-		gArmsData[gSelectedArms].exp -= damage*damageMod;
-		if (gArmsData[gSelectedArms].code == 2 || gArmsData[gSelectedArms].code == 12){
-			ChargeArmsEnergy(damage*1.5);
-		}
+	if (CheckFlagTrait(FlagTraits::EXP_SAVING)){
+		gArmsData[gSelectedArms].exp -= damage*
+			2/std::max(0.1f, GetFlagTraitData<float>(FlagTraits::EXP_SAVING, "modifier"))*
+			damageMod;
 	}
 	else
 		gArmsData[gSelectedArms].exp -= damage * 2 * damageMod;
+
+	if (CheckFlagTrait(FlagTraits::MINING_CHARGE_FROM_DAMAGE) && (gArmsData[gSelectedArms].code == 2 || gArmsData[gSelectedArms].code == 12)){
+		ChargeArmsEnergy(damage*std::max(0.0f, GetFlagTraitData<float>(FlagTraits::MINING_CHARGE_FROM_DAMAGE, "amount")));
+	}
 
 	while (gArmsData[gSelectedArms].exp < 0)
 	{

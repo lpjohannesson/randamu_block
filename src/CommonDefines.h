@@ -203,6 +203,8 @@ namespace FlagTraits {
 	inline constexpr const char* LOW_DAMAGE_NULLIFY            = "low_damage_nullify";
 	inline constexpr const char* WATER_FLOATING                = "water_floating";
 	inline constexpr const char* MAPPING                       = "mapping";
+	inline constexpr const char* EXP_SAVING                    = "exp_saving";
+	inline constexpr const char* MINING_CHARGE_FROM_DAMAGE     = "mining_charge_from_damage";
 }
 
 namespace Bullets {
