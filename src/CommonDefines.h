@@ -215,6 +215,11 @@ namespace FlagTraits {
 	inline constexpr const char* MINING_STORAGE_BOOST          = "mining_storage_boost";
 	inline constexpr const char* JUMP_BOOST                    = "jump_boost";
 	inline constexpr const char* GLIDING                       = "gliding";
+	inline constexpr const char* SWIM_BOOST                    = "swim_boost";
+	inline constexpr const char* CHARGED_SWIMS                 = "charged_swims";
+	inline constexpr const char* UNDERWATER_DASH               = "underwater_dash";
+	inline constexpr const char* ATTACK_DAMAGE_MODIFIER        = "attack_damage_modifier";
+	inline constexpr const char* UNIVERSAL_IFRAMES_MODIFIER    = "universal_iframes_modifier";
 }
 
 namespace Bullets {

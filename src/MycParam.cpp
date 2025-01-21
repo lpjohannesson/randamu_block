@@ -262,8 +262,8 @@ void DamageMyChar(int damage)
 	if (gMC.difficulty > DIFFICULTY_REINFORCED && gMC.flag & 0x100){
 		gMC.air -= damage * 25;
 	}
-	if (gMC.equip & EQUIP_SUNGLASSES){
-		gMC.shock /= 3;
+	if (CheckFlagTrait(FlagTraits::UNIVERSAL_IFRAMES_MODIFIER)){
+		gMC.shock *= GetFlagTraitData<float>(FlagTraits::UNIVERSAL_IFRAMES_MODIFIER, "modifier");
 	}
 	if (damage <= 1){
 		gMC.shock *= 0.66f;

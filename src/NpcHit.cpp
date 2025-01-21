@@ -736,10 +736,6 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		dmg *= 2;
 	}
 
-	if (GetNPCFlag(Flags::DISCORDIAN_VISOR)){ //discordian visor
-		dmg = round(dmg * 1.25f);
-	}
-
 	if (npc.targetingEffect > 0){
 		dmg *= 3;
 		npc.targetingEffect = 0;
@@ -756,8 +752,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		}
 	}
 
-	if (gMC.equip & EQUIP_SUNGLASSES){ //cool sunglasses
-		dmg *= 2;
+	if (CheckFlagTrait(FlagTraits::ATTACK_DAMAGE_MODIFIER)){
+		dmg *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::ATTACK_DAMAGE_MODIFIER, "modifier"));
 	}
 
 	if (GetNPCFlag(Flags::QUATE_CHARACTER)){ //quate

@@ -537,7 +537,7 @@ static bool amePressedBefore = false;
 static int ameKeyPressed;
 
 bool IsDashEquipped(){
-	return CheckFlagTrait(FlagTraits::SUPER_DASH) || CheckFlagTrait(FlagTraits::BUFFED_DASH) || CheckFlagTrait(FlagTraits::CAT_DASH) || (gMC.flag & 0x100 && gMC.equip & EQUIP_WATER_THURST)
+	return CheckFlagTrait(FlagTraits::SUPER_DASH) || CheckFlagTrait(FlagTraits::BUFFED_DASH) || CheckFlagTrait(FlagTraits::CAT_DASH) || (gMC.flag & 0x100 && CheckFlagTrait(FlagTraits::UNDERWATER_DASH))
 	|| (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9);
 }
 
@@ -579,8 +579,8 @@ void ActMyChar_Normal(bool bKey)
 		max_move = gMC.physics_normal.max_move;	// Normal conditions
 	if (GetNPCFlag(Flags::DIVING_SUIT))
 		max_move = gMC.physics_normal.max_move;
-	if ((gMC.flag & 0x100) && (gMC.equip & EQUIP_WATER_THURST)){
-		jump = gMC.physics_normal.jump*1.25;
+	if ((gMC.flag & 0x100) && CheckFlagTrait(FlagTraits::SWIM_BOOST)){
+		jump = gMC.physics_normal.jump*std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SWIM_BOOST, "modifier"));
 	} else {
 		if (CheckFlagTrait(FlagTraits::JUMP_BOOST)){
 			jump = gMC.physics_normal.jump*std::max(0.0f, GetFlagTraitData<float>(FlagTraits::JUMP_BOOST, "modifier"));
@@ -1510,7 +1510,7 @@ void ActMyChar_Normal(bool bKey)
 		if (!ChallengeEnabled("charge_jump")){
 			gMC.chargeCD = 0;
 		}
-		else if (!(gMC.flag & 8 || (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100))){
+		else if (!(gMC.flag & 8 || (CheckFlagTrait(FlagTraits::CHARGED_SWIMS) && gMC.flag & 0x100))){
 			gMC.chargeCD = 0;
 		} else if (!(gKey & gKeyUp) && gMC.chargeCD > 0){
 			gMC.chargeCD = 0;

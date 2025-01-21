@@ -173,11 +173,8 @@ void HitBossBullet(void)
 						}
 						continue;
 					}
-					if (GetNPCFlag(Flags::DISCORDIAN_VISOR)){
-						dmg = round(dmg * 1.25f);
-					}
-					if (gMC.equip & EQUIP_SUNGLASSES){
-						dmg *= 2;
+					if (CheckFlagTrait(FlagTraits::ATTACK_DAMAGE_MODIFIER)){
+						dmg *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::ATTACK_DAMAGE_MODIFIER, "modifier"));
 					}
 					if (GetNPCFlag(Flags::QUATE_CHARACTER)){
 						dmg *= float(Random(50, 175)) / 100.0f;

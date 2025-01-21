@@ -1,7 +1,4 @@
 {
-    "-16777216": {
-        "dash_float": {}, "star_dash_vfx": {}
-    },
     "701": {
         "mapping": {}
     },
@@ -45,7 +42,7 @@
         "buffed_dash": {}
     },
     "737": {
-        "lifesteal_modifier": {"amount": 0.67}
+        "lifesteal_modifier": {"amount": 0.67}, "attack_damage_multiplier": {"modifier": 2}, "dash_float": {}, "star_dash_vfx": {}, "universal_iframes_modifier": {"modifier": 0.33}
     },
     "738": {
         "manual_rocket_stop": {}, "tighter_turning": {"effect": 1}
@@ -88,6 +85,9 @@
     },
     "753": {
         "double_jump": {}
+    },
+    "754": {
+        "charged_swims": {}, "swim_boost": {"modifier": 1.25}, "underwater_dash": {}
     },
     "755": {
         "jump_boost": {"modifier": 1.25, "charge_modifier": 1.33}, "gliding": {"acceleration": 1.35, "max_speed": 1.75, "fall_slowdown": 2.8}
@@ -144,7 +144,7 @@
         "exploding_fireball": {}, "propane_trail": {}, "bullet_limit_boost": {"fireball": 1, "machine_gun": 4, "bubbler": 30}, "extra_bullet_chance": {"machine_gun": 3, "gatling_gun": 3, "bubbler": 3}, "firerate_boost": {"machine_gun": 0.25, "gatling_gun": 0.25, "bubbler": 0.25}, "inaccurate_velocity_multiplier": {"bubbler_velocity": 1.21875, "bubbler_inaccuracy": 1.65625, "machine_gun_velocity": 1.2, "machine_gun_inaccuracy": 1.5}
     },
     "874": {
-        "buffed_dash": {}
+        "buffed_dash": {}, "attack_damage_multiplier": {"modifier": 1.25}
     },
     "875": {
         "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}
