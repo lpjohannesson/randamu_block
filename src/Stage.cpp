@@ -2486,16 +2486,12 @@ void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArgument
 			SetNpChar(180, 0, 0, 0, 0, 2, NULL, 0x100);
 	}
 
-	if (GetNPCFlag(Flags::ALIEN_MEDAL))
-		SetNpChar(189, gMC.x, gMC.y + 0x2000, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::ALIEN_MEDAL);
-	if (GetNPCFlag(Flags::CLAY_FIGURE_MEDAL))
-		SetNpChar(190, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::CLAY_FIGURE_MEDAL);
-	if (GetNPCFlag(Flags::DESTRUCTION_ENERGIZER))
-		SetNpChar(192, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::DESTRUCTION_ENERGIZER);
-	if (GetNPCFlag(Flags::CREATION_ENERGIZER))
-		SetNpChar(193, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::CREATION_ENERGIZER);
-	if (GetNPCFlag(Flags::AMPHIBIAN_MEDAL))
-		SetNpChar(195, gMC.x, gMC.y + 0x2000, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, Flags::AMPHIBIAN_MEDAL);
+	for (const auto&[fl, npcIDs] : GetActualFlagTraitData<std::vector<int>>(FlagTraits::MEDAL_SPAWN, "ids")){
+		for (const auto& npcID: npcIDs){
+			if (CountNpCharCode(npcID) == 0)
+				SetNpChar(npcID, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, 0);
+		}
+	}
 }
 
 void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments){

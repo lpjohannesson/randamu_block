@@ -51,10 +51,10 @@
         "iframes_boost": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}
     },
     "741": {
-        "multi_block_breaking": {}, "offset_nemesis": {}, "ranged_block_place": {"distance": 5}, "precise_placement": {}
+        "multi_block_breaking": {}, "offset_nemesis": {}, "ranged_block_place": {"distance": 5}, "precise_placement": {}, "medal_spawn": {"ids": [193]}
     },
     "742": {
-        "multi_block_breaking": {}, "offset_nemesis": {}
+        "multi_block_breaking": {}, "offset_nemesis": {}, "medal_spawn": {"ids": [192]}
     },
     "743": {
         "booster_2_0": {}, "can_boost": {"amount": 40}
@@ -63,7 +63,7 @@
         "propane_trail": {}, "buffed_snake": {}
     },
     "745": {
-        "ko_prevention": {}
+        "ko_prevention": {}, "medal_spawn": {"ids": [190]}
     },
     "746": {
         "acid_immunity": {}, "lifesteal": {"amount_per_heart": 36}
@@ -75,7 +75,7 @@
         "explode_on_hit": {}
     },
     "749": {
-        "jump_on_spikes": {}, "spike_damage_resist": {}
+        "jump_on_spikes": {}, "spike_damage_resist": {}, "medal_spawn": {"ids": [189]}
     },
     "750": {
         "accelerate_fall": {}, "stomping": {}
@@ -138,7 +138,7 @@
         "ranged_block_place": {"distance": 5}, "precise_placement": {}
     },
     "872": {
-        "jump_on_spikes": {}, "spike_damage_resist": {}, "press_dmg_reduce": {}, "bullet_life_boost": {"boost": 1.33}
+        "jump_on_spikes": {}, "spike_damage_resist": {}, "press_dmg_reduce": {}, "bullet_life_boost": {"boost": 1.33}, "medal_spawn": {"ids": [195]}
     },
     "873": {
         "exploding_fireball": {}, "propane_trail": {}, "bullet_limit_boost": {"fireball": 1, "machine_gun": 4, "bubbler": 30}, "extra_bullet_chance": {"machine_gun": 3, "gatling_gun": 3, "bubbler": 3}, "firerate_boost": {"machine_gun": 0.25, "gatling_gun": 0.25, "bubbler": 0.25}, "inaccurate_velocity_multiplier": {"bubbler_velocity": 1.21875, "bubbler_inaccuracy": 1.65625, "machine_gun_velocity": 1.2, "machine_gun_inaccuracy": 1.5}
@@ -159,7 +159,7 @@
         "speed_boots": {"acceleration": 3, "speed_multiplier": 2, "particle_threshold": 1.5}, "spike_evading": {}, "manual_rocket_stop": {}, "tighter_turning": {"effect": 1}
     },
     "880": {
-        "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}
+        "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}, "medal_spawn": {"ids": [193]}
     },
     "882": {
         "nanites": {}

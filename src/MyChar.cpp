@@ -152,6 +152,29 @@ void InitMyChar(void)
 	gMC.no_splash_or_air_limit_underwater = 0;
 }
 
+DO_SOMETHING(
+	flagSetCallbacks.push_back([](int flag)->void{
+		for (const auto&[fl, npcIDs] : GetActualFlagTraitData<std::vector<int>>(FlagTraits::MEDAL_SPAWN, "ids")){
+			if (fl == flag){
+				for (const auto& npcID: npcIDs){
+					if (CountNpCharCode(npcID) == 0)
+						SetNpChar(npcID, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY, 0);
+				}
+			}
+		}
+	});
+	flagUnsetCallbacks.push_back([](int flag)->void{
+		for (const auto&[fl, npcIDs] : GetActualFlagTraitData<std::vector<int>>(FlagTraits::MEDAL_SPAWN, "ids")){
+			if (fl == flag){
+				for (const auto& npcID: npcIDs){
+					if (CountNpCharCode(npcID) > 0)
+						DeleteNpCharCode(npcID, false);
+				}
+			}
+		}
+	});
+)
+
 void AnimationMyChar(bool bKey)
 {
 	Rect rcLeft[13] = {

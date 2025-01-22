@@ -529,7 +529,7 @@ to place blocks under <NAM
 without falling.<NOD Nemesis can
 carve 2 block wide corridors and
 destroy blocks with mouse.<NOD<CLR
-Do you want to equip it?<YNJ0000<SNP0194:0091:0091:0000<E2+0020<E2+0021<FL+0871<MSG
+Do you want to equip it?<YNJ0000<E2+0020<E2+0021<FL+0871<MSG
 Equipped Universal Catalyst.<NOD<WAI0003<FRE<EVE5018
 #6019
 <MSG<TURWhen you take damage, the amount
@@ -568,7 +568,7 @@ to 5 and damage from presses to 9.
 Increases weapon range by 33%.<NOD
 Hold Ability key to strafe.<NOD<CLR
 Do you want to equip it?<YNJ0000<FL+0872<EQ+0128<FL+0705<MSG
-Equipped Amphibian Medal.<NOD<WAI0003<SNP0195:0091:0091:0000<FRE<EVE5024
+Equipped Amphibian Medal.<NOD<WAI0003<FRE<EVE5024
 #6025
 <FLJ0873:7025<ELJ
 <KEY<MSGOverloads Machine Gun and
@@ -629,7 +629,7 @@ they will survive with 1 HP.<NOD This
 doesn't work, if they are already
 on 1 HP.<NOD<CLR
 Do you want to equip it?<YNJ0000<E2+0017<FL+0745<MSG
-Equipped Clay Figure Medal.<NOD<SNP0190:0091:0091:0000<WAI0003<FRE<EVE5031
+Equipped Clay Figure Medal.<NOD<WAI0003<FRE<EVE5031
 
 #6032
 <FLJ0740:7032<ELJ
@@ -668,7 +668,7 @@ alien.<NOD Decreases damage from spike
 and allows to jump from them.
 This counts as use of double jump.<NOD<CLR
 Do you want to equip it?<YNJ0000<FL+0749<EQ+0128<MSG
-Equipped Alien Medal.<NOD<WAI0003<SNP0189:0091:0091:0000<FRE<EVE5036
+Equipped Alien Medal.<NOD<WAI0003<FRE<EVE5036
 #6037
 <FLJ0860:7037<ELJ
 <KEY<MSGThe replica of
@@ -780,7 +780,7 @@ Equipped Overclock.<NOD<WAI0003<FRE<EVE5049
 <FLJ0742:7050<ELJ
 <KEY<MSGAllows Nemesis to mine
 2 block tall or wide corridors.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0020<SNP0192:0091:0091:0000<FL+0742<MSG
+Do you want to equip it?<YNJ0000<E2+0020<FL+0742<MSG
 Equipped Destruction Energizer.<NOD<WAI0003<FRE<EVE5050
 
 #6051
@@ -791,7 +791,7 @@ certain area.<NOD It also accounts
 for <NAM's momentum and allows
 to place blocks under <NAM
 without falling.<NOD<CLR
-Do you want to equip it?<YNJ0000<SNP0193:0091:0091:0000<E2+0021<FL+0741<MSG
+Do you want to equip it?<YNJ0000<E2+0021<FL+0741<MSG
 Equipped Creation Energizer.<NOD<WAI0003<FRE<EVE5051
 
 #6052
@@ -958,7 +958,7 @@ Polar Star's placing area
 is able to chill enemies,<NOD if
 you are holding block-placing
 guns.<NOD<CLR
-Do you want to equip it?<YNJ0000<SNP0193:0091:0091:0000<E2+0021<FL+0880<EQ+0256<MSG
+Do you want to equip it?<YNJ0000<E2+0021<FL+0880<EQ+0256<MSG
 Equipped Freeze Star.<NOD<WAI0003<FRE<EVE5071
 
 #6072
@@ -1050,7 +1050,7 @@ Deequipped Frostbite Stopwatch.<NOD<WAI0003<FRE<EVE5022
 <KEY<MSGDo you want to remove it?<YNJ0000<EQ-0032<FL-0743<MSG
 Deequipped Booster v2.0.<NOD<WAI0003<FRE<EVE5023
 #7024
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0195<FL-0872<FL-0705<EQ-0128<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0872<FL-0705<EQ-0128<MSG
 Deequipped Amphibian Medal.<NOD<WAI0003<FRE<EVE5024
 #7025
 <KEY<MSGDo you want to remove it?<YNJ0000<E2-0019<FL-0873<MSG
@@ -1072,7 +1072,7 @@ Deequipped Momentum Throttler.<NOD<WAI0003<FRE<EVE5029
 Deequipped Wall Hook.<NOD<WAI0003<FRE<EVE5030
 
 #7031
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0190<E2-0017<FL-0745<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<E2-0017<FL-0745<MSG
 Deequipped Clay Figure Medal.<NOD<WAI0003<FRE<EVE5031
 
 #7032
@@ -1088,7 +1088,7 @@ Deequipped Copper Bulwark.<NOD<WAI0003<FRE<EVE5033
 Deequipped Curly's Underwear.<NOD<WAI0003<FRE<EVE5035
 
 #7036
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0189<FL-0749<EQ-0128<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0749<EQ-0128<MSG
 Deequipped Alien Medal.<NOD<WAI0003<FRE<EVE5036
 
 #7037
@@ -1140,11 +1140,11 @@ Deequipped Propane Tank.<NOD<WAI0003<FRE<EVE5048
 Deequipped Overclock.<NOD<WAI0003<FRE<EVE5049
 
 #7050
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0192<E2-0020<FL-0742<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<E2-0020<FL-0742<MSG
 Deequipped Destruction Energizer.<NOD<WAI0003<FRE<EVE5050
 
 #7051
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0193<E2-0021<FL-0741<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<E2-0021<FL-0741<MSG
 Deequipped Creation Energizer.<NOD<WAI0003<FRE<EVE5051
 
 #7052
@@ -1200,7 +1200,7 @@ Deequipped Nuclear Stomper.<NOD<WAI0003<FRE<EVE5069
 Deequipped Omniquick Sneakers.<NOD<WAI0003<FRE<EVE5070
 
 #7071
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0193<EQ-0256<E2-0021<FL-0880<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0256<E2-0021<FL-0880<MSG
 Deequipped Freeze Star.<NOD<WAI0003<FRE<EVE5071
 
 #7072
