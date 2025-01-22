@@ -421,8 +421,7 @@
 		"rising_water_ratio": 4
 	},
 	"allies": {
-		"little_man_amount": 1,
-		"little_man_boosted_amount": 2
+		
 	},
 	"boss": {
 		"room_size": [28, 10],

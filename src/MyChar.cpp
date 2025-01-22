@@ -175,6 +175,24 @@ DO_SOMETHING(
 	});
 )
 
+DO_SOMETHING(
+	flagSetCallbacks.push_back([](int flag)->void{
+		if (CheckFlagTrait(FlagTraits::LITTLE_MAN_SPAWN)) {
+			int amount = GetFlagTraitData<int>(FlagTraits::LITTLE_MAN_SPAWN, "amount");
+			for (int i = 0; i < amount; i++)
+				SetNpChar(180, 0, 0, 0, 0, 2, NULL, 0x100);
+		}
+	});
+	flagUnsetCallbacks.push_back([](int flag)->void{
+		for (const auto& fl: GetFlagTraitData(FlagTraits::LITTLE_MAN_SPAWN) | std::views::keys){
+			if (fl == flag){
+				if (CountNpCharCode(180) > 0)
+					DeleteNpCharCode(180, false);
+			}
+		}
+	});
+)
+
 void AnimationMyChar(bool bKey)
 {
 	Rect rcLeft[13] = {

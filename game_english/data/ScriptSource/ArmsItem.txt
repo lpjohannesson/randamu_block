@@ -463,7 +463,7 @@ follow your movements and commit
 murder using energy blasts.<NOD
 They also appear on
 any of your attacks.<NOD<CLR
-Do you want to equip it?<YNJ0000<SNP0180:0000:0000:0002<FL+0865<MSG
+Do you want to equip it?<YNJ0000<FL+0865<MSG
 Equipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 #6012
 <FLJ0866:7012<ELJ
@@ -638,7 +638,7 @@ follow you and commit
 murder.<NOD Stay in interact
 animation to make him
 target nearby enemies.<NOD<CLR
-Do you want to equip it?<YNJ0000<SNP0180:0000:0000:0002<FL+0740<MSG
+Do you want to equip it?<YNJ0000<FL+0740<MSG
 Equipped Little Man.<NOD<WAI0003<FRE<EVE5032
 #6033
 <FLJ0724:7033<ELJ
@@ -918,7 +918,7 @@ Curly Brace to aid <NAM.<NOD
 When Curly shoots, little man
 will shoot fireballs as
 support.<NOD<CLR
-Do you want to equip it?<YNJ0000<SNP0180:0000:0000:0002<FL+0740
+Do you want to equip it?<YNJ0000
 <FL+0751<FL+0877<SNP0320:0000:0000:0000<MSG
 Equipped Little Man's Underwear.<NOD<WAI0003<FRE<EVE5068
 
@@ -1020,7 +1020,7 @@ Deequipped Diving Suit.<NOD<WAI0003<FRE<EVE5009
 Deequipped Shield of Resilience.<NOD<WAI0003<FRE<EVE5010
 
 #7011
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0180<FL-0865<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0865<MSG
 Deequipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 
 #7012
@@ -1076,7 +1076,7 @@ Deequipped Wall Hook.<NOD<WAI0003<FRE<EVE5030
 Deequipped Clay Figure Medal.<NOD<WAI0003<FRE<EVE5031
 
 #7032
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0180<FL-0740<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0740<MSG
 Deequipped Little Man.<NOD<WAI0003<FRE<EVE5032
 
 #7033
@@ -1188,7 +1188,7 @@ Deequipped Flaming Booster.<NOD<WAI0003<FRE<EVE5066
 Deequipped Shield of Time.<NOD<WAI0003<FRE<EVE5067
 
 #7068
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<DNA0180<FL-0877<FL-0751<FL-0740<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<FL-0877<FL-0751<MSG
 Deequipped Little Man's Underwear.<NOD<WAI0003<FRE<EVE5068
 
 #7069

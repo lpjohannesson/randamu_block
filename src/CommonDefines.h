@@ -56,8 +56,6 @@ namespace Flags {
 
 	//items
 
-	inline constexpr int LITTLE_MAN               = 740;
-
 	inline constexpr int CURLY_UNDERWEAR          = 751;
 
 	inline constexpr int WHIMSICAL_STAR           = 851;
@@ -211,6 +209,7 @@ namespace FlagTraits {
 	inline constexpr const char* UNIVERSAL_IFRAMES_MODIFIER    = "universal_iframes_modifier";
 	inline constexpr const char* DASH_MODIFIER                 = "dash_modifier";
 	inline constexpr const char* MEDAL_SPAWN                   = "medal_spawn";
+	inline constexpr const char* LITTLE_MAN_SPAWN              = "little_man_spawn";
 }
 
 namespace Bullets {
