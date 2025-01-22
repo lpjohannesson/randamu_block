@@ -12,7 +12,6 @@
 
 #define DO_SOMETHING(FUNC) namespace { struct b__LINE__ { \
   b__LINE__(){FUNC} \
-  ~b__LINE__(){FUNC} \
 }; \
 	b__LINE__ code; \
 }
