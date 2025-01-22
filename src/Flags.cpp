@@ -15,6 +15,8 @@
 
 unsigned char gFlagNPC[1000];
 unsigned char gSkipFlag[8];
+std::vector<FlagSetCallback> flagSetCallbacks;
+std::vector<FlagUnsetCallback> flagUnsetCallbacks;
 
 // Flag initializers
 void InitFlags(void)
@@ -31,11 +33,15 @@ void InitSkipFlags(void)
 void SetNPCFlag(long a)
 {
 	SET_FLAG(gFlagNPC, a);
+	for (auto callback: flagSetCallbacks)
+		callback(a);
 }
 
 void CutNPCFlag(long a)
 {
 	UNSET_FLAG(gFlagNPC, a);
+	for (auto callback: flagUnsetCallbacks)
+		callback(a);
 }
 
 bool GetNPCFlag(long a)

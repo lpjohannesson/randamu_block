@@ -23,6 +23,11 @@ bool GetSkipFlag(long a);
 
 bool CheckFlagTrait(std::string trait);
 
+using FlagSetCallback = std::function<void(int)>;
+extern std::vector<FlagSetCallback> flagSetCallbacks;
+using FlagUnsetCallback = std::function<void(int)>;
+extern std::vector<FlagUnsetCallback> flagUnsetCallbacks;
+
 template<typename T> struct get_detail { static inline T _empty; };
 
 template <IsGenMetadata ArgType>
