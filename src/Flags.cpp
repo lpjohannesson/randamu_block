@@ -50,10 +50,7 @@ bool CheckFlagTrait(std::string trait)
 {
 	if (flagTraits.contains(trait)){
 		for (const auto &[flag, info]: flagTraits[trait]){
-			if (flag < 0){
-				if (gMC.equip & std::abs(flag))
-					return true;
-			} else if (GetNPCFlag(flag))
+			if (GetNPCFlag(flag))
 				return true;
 		}
 	}

@@ -18,7 +18,7 @@
     "lifeCapsuleValue": 2,
 
     "blacklistedChestFlags": [4801],
-    "characterFlags": [4096, 708, -1073741824],
+    "characterFlags": [4096, 708],
     "startingItems": [56],
     "startingWeapons": [{"id": 11, "maxAmmo": 5}]
 }
