@@ -751,6 +751,16 @@ int ActualTextScriptProc(void)
 						EquipItem(z, false);
 						gTS.p_read += 8;
 					}
+					else if (IS_COMMAND('E','Q','J'))
+					{
+						x = GetTextScriptNo(gTS.p_read + 4);
+						z = GetTextScriptNo(gTS.p_read + 9);
+
+						if (equipMap.contains(x) && GetNPCFlag(equipMap[x].flag))
+							JumpTextScript(z);
+						else
+							gTS.p_read += 13;
+					}
 					else if (IS_COMMAND('A','M','+'))
 					{
 						w = GetTextScriptNo(gTS.p_read + 4);

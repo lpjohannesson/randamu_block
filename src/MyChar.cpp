@@ -2082,11 +2082,17 @@ void PitMyChar(void)
 // TODO: rework into "automatic" item-flag setter
 void EquipItem(int flag, bool b)
 {
-	// if (b)
-	// 	gMC.equip |= flag;
-	// else
-	// 	gMC.equip &= ~flag;
-	// IncrementCooldown(gCooldowns, DASH_TIMER_ID, -9999);
+	if (b){
+		if (equipMap.contains(flag)){
+			SetNPCFlag(equipMap[flag].flag);
+		}
+	}
+	else {
+		if (equipMap.contains(flag)){
+			CutNPCFlag(equipMap[flag].flag);
+		}
+	}
+	IncrementCooldown(gCooldowns, DASH_TIMER_ID, -9999);
 }
 
 void ResetCheck(void)
