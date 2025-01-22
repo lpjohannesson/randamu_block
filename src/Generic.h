@@ -10,6 +10,13 @@
 #include <vector>
 #include <ranges>
 
+#define DO_SOMETHING(FUNC) namespace { struct b__LINE__ { \
+  b__LINE__(){FUNC} \
+  ~b__LINE__(){FUNC} \
+}; \
+	b__LINE__ code; \
+}
+
 void GetCompileDate(int *year, int *month, int *day);
 bool GetCompileVersion(int *v1, int *v2, int *v3, int *v4);
 std::string GetVersionName();
