@@ -55,21 +55,10 @@ namespace Flags {
 	inline constexpr int LEVEL_BOSS_DEFEATED      = 555;
 
 	//items
-	inline constexpr int LEAD_WEIGHT              = 711;
 
-	inline constexpr int COPPER_BULWARK           = 724;
-	inline constexpr int SILVER_LOCKET            = 725;
-
-	inline constexpr int COOL_SUNGLASSES          = 737;
 	inline constexpr int LITTLE_MAN               = 740;
 
-	inline constexpr int CREATION_ENERGIZER       = 741;
-	inline constexpr int DESTRUCTION_ENERGIZER    = 742;
-	inline constexpr int CLAY_FIGURE_MEDAL        = 745;
-	inline constexpr int ALIEN_MEDAL              = 749;
-
 	inline constexpr int CURLY_UNDERWEAR          = 751;
-	inline constexpr int WATER_THURSTERS          = 754;
 
 	inline constexpr int WHIMSICAL_STAR           = 851;
 
