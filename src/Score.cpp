@@ -82,13 +82,12 @@ void LoadRankings(){
 void SaveRankings(){
 	auto time = std::chrono::steady_clock::now();
 	json rank;
-	rank["version"] = 2;
+	rank["version"] = 3;
 	rank["score"] = gMC.score;
 	rank["difficulty"] = gMC.difficulty;
 	rank["life"] = gMC.life <= 0 ? 0 : gMC.life;
 	rank["max_life"] = gMC.max_life;
 	rank["mim"] = gMIMCurrentNum;
-	rank["equip"] = gMC.equip;
 
 	rank["flags"] = json::array();
 	for (int i = 0; i < 8000; i++){

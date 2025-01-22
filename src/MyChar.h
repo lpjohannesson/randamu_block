@@ -85,7 +85,6 @@ struct MYCHAR
 	bool up;
 	bool down;
 	int unit;
-	int equip;
 	int x;
 	int y;
 	int tgt_x;
@@ -186,7 +185,6 @@ void SetMyCharDirect(unsigned char dir);
 void ChangeMyUnit(unsigned char a);
 void PitMyChar(void);
 void EquipItem(int flag, bool b);
-void EquipItem2(int flag, bool b);
 void ResetCheck(void);
 void SetNoise(int no, int freq);
 void CutNoise(void);

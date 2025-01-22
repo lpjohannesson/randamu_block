@@ -751,18 +751,6 @@ int ActualTextScriptProc(void)
 						EquipItem(z, false);
 						gTS.p_read += 8;
 					}
-					else if (IS_COMMAND('E','2','+'))
-					{
-						z = GetTextScriptNo(gTS.p_read + 4);
-						EquipItem2(z, true);
-						gTS.p_read += 8;
-					}
-					else if (IS_COMMAND('E','2','-'))
-					{
-						z = GetTextScriptNo(gTS.p_read + 4);
-						EquipItem2(z, false);
-						gTS.p_read += 8;
-					}
 					else if (IS_COMMAND('A','M','+'))
 					{
 						w = GetTextScriptNo(gTS.p_read + 4);

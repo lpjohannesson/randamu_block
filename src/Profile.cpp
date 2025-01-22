@@ -92,7 +92,7 @@ bool SaveProfile(const char *name)
 	json profileJson = json::object();
 
 	// Set up profile
-	profileJson[PROFILE_VERSION] = 4;
+	profileJson[PROFILE_VERSION] = 5;
 	profileJson[PROFILE_STAGE] = gStageNo;
 	profileJson[PROFILE_X] = gMC.x;
 	profileJson[PROFILE_Y] = gMC.y;
@@ -102,7 +102,6 @@ bool SaveProfile(const char *name)
 	profileJson[PROFILE_STAR] = gMC.star;
 	profileJson[PROFILE_SELECT_ARM] = gSelectedArms;
 	profileJson[PROFILE_SELECT_ITEM] = gSelectedItem;
-	profileJson[PROFILE_EQUIPS] = gMC.equip;
 	profileJson[PROFILE_UNIT] = gMC.unit;
 	profileJson[PROFILE_COUNTER] = gCounter;
 	profileJson[PROFILE_A] = gMC.a;
@@ -237,7 +236,19 @@ bool LoadProfile(const char *name)
 		return false;
 
 	// Set character properties
-	gMC.equip = profileJson[PROFILE_EQUIPS].get<int>();
+
+	// Migrate passive items into flags
+	if (version < 5){
+		int equipData = profileJson[PROFILE_EQUIPS].get<int>();
+		if (equipData & 16)
+			SetNPCFlag(709);
+		if (equipData & 4)
+			SetNPCFlag(702);
+		if (equipData & 32768)
+			SetNPCFlag(706);
+		if (equipData & 8)
+			SetNPCFlag(704);
+	}
 	gMC.unit =  profileJson[PROFILE_UNIT].get<int>();
 	gMC.direct = profileJson[PROFILE_DIRECT].get<int>();
 	gMC.max_life = profileJson[PROFILE_MAX_HP].get<short>();

@@ -416,7 +416,7 @@ at refill stations.<WAI9999<END
 the shape of a fish.<NOD Empowers dash
 move, allowing it to go through
 enemies and spikes without damage.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0026<FL+0725<MSG
+Do you want to equip it?<YNJ0000<FL+0725<MSG
 Equipped Silver Locket.<NOD<WAI0003<FRE<EVE5004
 #6005
 <MSG<TURA sharp fang found at the
@@ -463,7 +463,7 @@ follow your movements and commit
 murder using energy blasts.<NOD
 They also appear on
 any of your attacks.<NOD<CLR
-Do you want to equip it?<YNJ0000<SNP0180:0000:0000:0002<FL+0865<E2+0029<MSG
+Do you want to equip it?<YNJ0000<SNP0180:0000:0000:0002<FL+0865<MSG
 Equipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 #6012
 <FLJ0866:7012<ELJ
@@ -483,7 +483,7 @@ dash with Dash key.<NOD
 Ramming enemies explodes them.<NOD
 Taking damage also spawns
 explosions.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0027<FL+0867<MSG
+Do you want to equip it?<YNJ0000<FL+0867<MSG
 Equipped Sacred Aegis.<NOD<WAI0003<FRE<EVE5013
 #6014
 <MSG<TURIncreases charge speed on MG and Spur,
@@ -503,7 +503,7 @@ on the ground.<NOD Push the jump
 button again in midair to
 fly even higher.<NOD Also removes
 low friction in icy stages.<NOD<CLR<CLR
-Do you want to equip it?<YNJ0000<EQ+2048<FL+0869<MSG
+Do you want to equip it?<YNJ0000<FL+0869<MSG
 Equipped Terra Boots.<NOD<WAI0003<FRE<EVE5016
 #6017
 <FLJ0870:7017<ELJ
@@ -517,7 +517,7 @@ Hearts will gravitate towards
 If player dies, badge will
 resurrect them and disappear
 from inventory.<NOD<CLR
-Do you want to equip it?<YNJ0000<FL+0870<EQ+0064<SNP0320:0000:0000:0000<MSG
+Do you want to equip it?<YNJ0000<FL+0870<SNP0320:0000:0000:0000<MSG
 Equipped Badge of Love.<NOD<WAI0003<FRE<EVE5017
 #6018
 <FLJ0871:7018<ELJ
@@ -529,7 +529,7 @@ to place blocks under <NAM
 without falling.<NOD Nemesis can
 carve 2 block wide corridors and
 destroy blocks with mouse.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0020<E2+0021<FL+0871<MSG
+Do you want to equip it?<YNJ0000<FL+0871<MSG
 Equipped Universal Catalyst.<NOD<WAI0003<FRE<EVE5018
 #6019
 <MSG<TURWhen you take damage, the amount
@@ -552,13 +552,13 @@ bullets will chill enemies.<NOD
 Chilling makes enemies
 act considerably slower 
 than usual.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+0256<FL+0747<MSG
+Do you want to equip it?<YNJ0000<FL+0747<MSG
 Equipped Frostbite Stopwatch.<NOD<WAI0003<FRE<EVE5022
 #6023
 <FLJ0743:7023<ELJ
 <KEY<MSGPush the jump button in midair and
 you can move in any direction.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+0032<FL+0743<MSG
+Do you want to equip it?<YNJ0000<FL+0743<MSG
 Equipped Booster v2.0.<NOD<WAI0003<FRE<EVE5023
 #6024
 <FLJ0872:7024<ELJ
@@ -567,7 +567,7 @@ frog.<NOD Decreases damage from spike
 to 5 and damage from presses to 9.
 Increases weapon range by 33%.<NOD
 Hold Ability key to strafe.<NOD<CLR
-Do you want to equip it?<YNJ0000<FL+0872<EQ+0128<FL+0705<MSG
+Do you want to equip it?<YNJ0000<FL+0872<FL+0705<MSG
 Equipped Amphibian Medal.<NOD<WAI0003<FRE<EVE5024
 #6025
 <FLJ0873:7025<ELJ
@@ -577,7 +577,7 @@ firerate, velocity and
 spread.<NOD Buffs Fireball
 by making it spawn
 flames and explode on enemy hits.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0019<FL+0873<MSG
+Do you want to equip it?<YNJ0000<FL+0873<MSG
 Equipped High-Octane Tank.<NOD<WAI0003<FRE<EVE5025
 #6026
 <FLJ0874:7026<ELJ
@@ -603,7 +603,7 @@ water without holding Ability
 Key.<NOD Makes <NAM buoyant
 and mutually invulnerable to
 jellies.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0025<FL+0760<MSG
+Do you want to equip it?<YNJ0000<FL+0760<MSG
 Equipped Fishy Tube.<NOD<WAI0003<FRE<EVE5028
 #6029
 <FLJ0738:7029<ELJ
@@ -611,7 +611,7 @@ Equipped Fishy Tube.<NOD<WAI0003<FRE<EVE5028
 direction changing while moving.<NOD
 Allows to stop Rocket Launcher
 by pressing Ability key.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0023<FL+0738<MSG
+Do you want to equip it?<YNJ0000<FL+0738<MSG
 Equipped Momentum Throttler.<NOD<WAI0003<FRE<EVE5029
 #6030
 <FLJ0757:7030<ELJ
@@ -619,7 +619,7 @@ Equipped Momentum Throttler.<NOD<WAI0003<FRE<EVE5029
 to bounce in opposite direction.<NOD
 Hold Ability key to stick to
 the wall.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+1024<FL+0757<MSG
+Do you want to equip it?<YNJ0000<FL+0757<MSG
 Equipped Wall Hook.<NOD<WAI0003<FRE<EVE5030
 #6031
 <FLJ0745:7031<ELJ
@@ -628,7 +628,7 @@ If <NAM is hit with fatal damage,
 they will survive with 1 HP.<NOD This
 doesn't work, if they are already
 on 1 HP.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0017<FL+0745<MSG
+Do you want to equip it?<YNJ0000<FL+0745<MSG
 Equipped Clay Figure Medal.<NOD<WAI0003<FRE<EVE5031
 
 #6032
@@ -648,7 +648,7 @@ Gives very aggressive
 dash with Dash key.<NOD
 Ramming enemies knocks <NAM
 back and gives i-frames.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0027<FL+0724<MSG
+Do you want to equip it?<YNJ0000<FL+0724<MSG
 Equipped Copper Bulwark.<NOD<WAI0003<FRE<EVE5033
 #6034
 <MSG<TURThe peak of reality-bending technology.
@@ -667,7 +667,7 @@ Equipped Curly's Underwear.<NOD<WAI0003<FRE<EVE5035
 alien.<NOD Decreases damage from spike
 and allows to jump from them.
 This counts as use of double jump.<NOD<CLR
-Do you want to equip it?<YNJ0000<FL+0749<EQ+0128<MSG
+Do you want to equip it?<YNJ0000<FL+0749<MSG
 Equipped Alien Medal.<NOD<WAI0003<FRE<EVE5036
 #6037
 <FLJ0860:7037<ELJ
@@ -699,7 +699,7 @@ trust their back to.<NOD Grants
 lifesteal via dropping hearts
 from damaging enemies.<NOD
 Removes damage from acidic water.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+0064<FL+0746<MSG
+Do you want to equip it?<YNJ0000<FL+0746<MSG
 Equipped Iron Bond.<NOD<WAI0003<FRE<EVE5039
 <WAI9999<END
 #6040
@@ -707,14 +707,14 @@ Equipped Iron Bond.<NOD<WAI0003<FRE<EVE5039
 <KEY<MSGSignificantly increases your
 movement speed and momentum
 on the ground.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+2048<FL+0756<MSG
+Do you want to equip it?<YNJ0000<FL+0756<MSG
 Equipped Speed Shoes.<NOD<WAI0003<FRE<EVE5040
 #6041
 <FLJ0755:7041<ELJ
 <KEY<MSGMakes <NAM's jumps faster and
 higher.<NOD Hold Ability key
 while falling to glide.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+4096<FL+0755<MSG
+Do you want to equip it?<YNJ0000<FL+0755<MSG
 Equipped Pair of Wings.<NOD<WAI0003<FRE<EVE5041
 #6042
 <FLJ0754:7042<ELJ
@@ -722,20 +722,20 @@ Equipped Pair of Wings.<NOD<WAI0003<FRE<EVE5041
 enables charged swims
 and allows to dash underwater
 with Dash key.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+8192<FL+0754<MSG
+Do you want to equip it?<YNJ0000<FL+0754<MSG
 Equipped Water Thrusters.<NOD<WAI0003<FRE<EVE5042
 #6043
 <FLJ0753:7043<ELJ
 <KEY<MSGAllows <NAM to jump
 second time in the air.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+0512<FL+0753<MSG
+Do you want to equip it?<YNJ0000<FL+0753<MSG
 Equipped Auxiliary Booster.<NOD<WAI0003<FRE<EVE5043
 #6044
 <FLJ0752:7044<ELJ
 <KEY<MSGIncreases boosting duration by
 2x and allows to boost even
 without booster, but for a bit.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+@384<FL+0752<MSG
+Do you want to equip it?<YNJ0000<FL+0752<MSG
 Equipped Energy Canister.<NOD<WAI0003<FRE<EVE5044
 #6045
 <MSG<TURA cartridge filled with blue
@@ -748,7 +748,7 @@ speed in air.<NOD
 Allows <NAM to kill enemies
 by falling on them,
 if holding Ability key.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+q536<FL+0750<MSG
+Do you want to equip it?<YNJ0000<FL+0750<MSG
 Equipped Heavy Weight.<NOD<WAI0003<FRE<EVE5046
 
 #6047
@@ -756,7 +756,7 @@ Equipped Heavy Weight.<NOD<WAI0003<FRE<EVE5046
 <KEY<MSGMakes <NAM explode violently
 on getting damage, damaging
 enemies around them.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+0001<FL+0748<MSG
+Do you want to equip it?<YNJ0000<FL+0748<MSG
 Equipped Ballos Burger.<NOD<WAI0003<FRE<EVE5047
 #6048
 <FLJ0744:7048<ELJ
@@ -766,7 +766,7 @@ Fireball with damaging trail.<NOD
 Grants autofire to Snake and
 splits it into two
 projectiles.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0018<FL+0744<MSG
+Do you want to equip it?<YNJ0000<FL+0744<MSG
 Equipped Propane Tank.<NOD<WAI0003<FRE<EVE5048
 #6049
 <FLJ0720:7049<ELJ
@@ -774,13 +774,13 @@ Equipped Propane Tank.<NOD<WAI0003<FRE<EVE5048
 Bubbler, increasing their
 firerate, velocity and
 spread.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0019<FL+0720<MSG
+Do you want to equip it?<YNJ0000<FL+0720<MSG
 Equipped Overclock.<NOD<WAI0003<FRE<EVE5049
 #6050
 <FLJ0742:7050<ELJ
 <KEY<MSGAllows Nemesis to mine
 2 block tall or wide corridors.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0020<FL+0742<MSG
+Do you want to equip it?<YNJ0000<FL+0742<MSG
 Equipped Destruction Energizer.<NOD<WAI0003<FRE<EVE5050
 
 #6051
@@ -791,7 +791,7 @@ certain area.<NOD It also accounts
 for <NAM's momentum and allows
 to place blocks under <NAM
 without falling.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0021<FL+0741<MSG
+Do you want to equip it?<YNJ0000<FL+0741<MSG
 Equipped Creation Energizer.<NOD<WAI0003<FRE<EVE5051
 
 #6052
@@ -802,7 +802,7 @@ Also nullifies damage below 4 with
 33% chance, but gives less
 invulnerability frames in that
 case.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0022<FL+0739<MSG
+Do you want to equip it?<YNJ0000<FL+0739<MSG
 Equipped Steel Plating.<NOD<WAI0003<FRE<EVE5052
 
 #6053
@@ -813,7 +813,7 @@ projectiles,<NOD but makes <NAM
 have 67% shorter invulnerability
 frames,<NOD also makes
 any dashing item stronger.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0024<FL+0737<MSG
+Do you want to equip it?<YNJ0000<FL+0737<MSG
 Equipped Cool Sunglasses.<NOD<WAI0003<FRE<EVE5053
 
 #6054
@@ -823,14 +823,14 @@ gravity with Ability key.<NOD
 This ability has 1 second
 cooldown, but instantly
 recharges on hitting any ground.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0028<FL+0710<MSG
+Do you want to equip it?<YNJ0000<FL+0710<MSG
 Equipped Gravity Necklace.<NOD<WAI0003<FRE<EVE5054
 
 #6055
 <FLJ0712:7055<ELJ
 <KEY<MSGDamaging enemies releases
 homing projectiles.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0029<FL+0712<MSG
+Do you want to equip it?<YNJ0000<FL+0712<MSG
 Equipped Nano Quiver.<NOD<WAI0003<FRE<EVE5055
 
 #6056
@@ -841,7 +841,7 @@ speed.<NOD Jumping at peak
 of speed is a lot stronger.<NOD
 Also removes low friction in icy
 stages.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0030<FL+0708<MSG
+Do you want to equip it?<YNJ0000<FL+0708<MSG
 Equipped Nice Skates.<NOD<WAI0003<FRE<EVE5056
 
 #6057
@@ -872,7 +872,7 @@ on all enemies on screen.<NOD
 This has 40 seconds cooldown.<NOD It 
 also makes bullets chill enemies
 with 25% chance.<NOD<CLR
-Will you equip it?<YNJ0000<EQ+0256<FL+0875<MSG
+Will you equip it?<YNJ0000<FL+0875<MSG
 Equipped the Winter Clock.<NOD<WAI0003<FRE<EVE5060
 
 #6066
@@ -929,7 +929,7 @@ significantly increases falling
 speed in air and allows <NAM to 
 explode enemies by
 falling on them.<NOD<CLR
-Do you want to equip it?<YNJ0000<EQ+q536<FL+0750<EQ+0001<FL+0878<MSG
+Do you want to equip it?<YNJ0000<FL+0750<FL+0878<MSG
 Equipped Nuclear Stomper.<NOD<WAI0003<FRE<EVE5069
 
 #6070
@@ -941,7 +941,7 @@ direction changing while moving.<NOD
 If <NAM is fast enough, spikes
 will not deal damage and jumps
 will reach higher.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0023<FL+0879<MSG
+Do you want to equip it?<YNJ0000<FL+0879<MSG
 Equipped Omniquick Sneakers.<NOD<WAI0003<FRE<EVE5070
 
 #6071
@@ -958,7 +958,7 @@ Polar Star's placing area
 is able to chill enemies,<NOD if
 you are holding block-placing
 guns.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0021<FL+0880<EQ+0256<MSG
+Do you want to equip it?<YNJ0000<FL+0880<MSG
 Equipped Freeze Star.<NOD<WAI0003<FRE<EVE5071
 
 #6072
@@ -993,7 +993,7 @@ normal.<NOD<CLRDealing damage creates
 homing projectiles,<NOD which also
 appear semi-frequently from
 nanite shielding.<NOD<CLR
-Do you want to equip it?<YNJ0000<E2+0029<FL+0883<MSG
+Do you want to equip it?<YNJ0000<FL+0883<MSG
 Equipped Military Armament.<NOD<WAI0003<FRE<EVE5073
 
 #7002
@@ -1005,10 +1005,10 @@ probably a more configuratory
 way to activate it...<NOD<FRE<EVE5003
 
 #7004
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0026<FL-0725<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0725<MSG
 Deequipped Silver Locket.<NOD<WAI0003<FRE<EVE5004
 #7008
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0032<FL-0862<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0862<MSG
 Deequipped Super Booster.<NOD<WAI0003<FRE<EVE5008
 
 #7009
@@ -1020,7 +1020,7 @@ Deequipped Diving Suit.<NOD<WAI0003<FRE<EVE5009
 Deequipped Shield of Resilience.<NOD<WAI0003<FRE<EVE5010
 
 #7011
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0180<E2-0029<FL-0865<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0180<FL-0865<MSG
 Deequipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 
 #7012
@@ -1028,51 +1028,51 @@ Deequipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 Deequipped Cape of Shadows.<NOD<WAI0003<FRE<EVE5012
 
 #7013
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0027<FL-0867<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0867<MSG
 Deequipped Sacred Aegis.<NOD<WAI0003<FRE<EVE5013
 
 #7016
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-2048<FL-0869<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0869<MSG
 Deequipped Terra Boots.<NOD<WAI0003<FRE<EVE5016
 
 #7017
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<FL-0870<EQ-0064<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<FL-0870<MSG
 Deequipped Badge of Love.<NOD<WAI0003<FRE<EVE5017
 
 #7018
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0194<E2-0021<E2-0022<FL-0871<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0871<MSG
 Deequipped Universal Catalyst.<NOD<WAI0003<FRE<EVE5018
 
 #7022
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0256<FL-0747<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0747<MSG
 Deequipped Frostbite Stopwatch.<NOD<WAI0003<FRE<EVE5022
 #7023
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0032<FL-0743<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0743<MSG
 Deequipped Booster v2.0.<NOD<WAI0003<FRE<EVE5023
 #7024
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0872<FL-0705<EQ-0128<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0872<FL-0705<MSG
 Deequipped Amphibian Medal.<NOD<WAI0003<FRE<EVE5024
 #7025
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0019<FL-0873<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0873<MSG
 Deequipped High-Octane Tank.<NOD<WAI0003<FRE<EVE5025
 #7026
 <KEY<MSGDo you want to remove it?<YNJ0000<FL-0703<FL-0874<MSG
 Deequipped Discordian Visor.<NOD<WAI0003<FRE<EVE5026
 
 #7028
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0025<FL-0760<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0760<MSG
 Deequipped Fishy Tube.<NOD<WAI0003<FRE<EVE5028
 
 #7029
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0023<FL-0738<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0738<MSG
 Deequipped Momentum Throttler.<NOD<WAI0003<FRE<EVE5029
 
 #7030
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-1024<FL-0757<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0757<MSG
 Deequipped Wall Hook.<NOD<WAI0003<FRE<EVE5030
 
 #7031
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0017<FL-0745<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0745<MSG
 Deequipped Clay Figure Medal.<NOD<WAI0003<FRE<EVE5031
 
 #7032
@@ -1080,7 +1080,7 @@ Deequipped Clay Figure Medal.<NOD<WAI0003<FRE<EVE5031
 Deequipped Little Man.<NOD<WAI0003<FRE<EVE5032
 
 #7033
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0027<FL-0724<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0724<MSG
 Deequipped Copper Bulwark.<NOD<WAI0003<FRE<EVE5033
 
 #7035
@@ -1088,7 +1088,7 @@ Deequipped Copper Bulwark.<NOD<WAI0003<FRE<EVE5033
 Deequipped Curly's Underwear.<NOD<WAI0003<FRE<EVE5035
 
 #7036
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0749<EQ-0128<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0749<MSG
 Deequipped Alien Medal.<NOD<WAI0003<FRE<EVE5036
 
 #7037
@@ -1100,71 +1100,71 @@ Deequipped Timeline Ring.<NOD<WAI0003<SR-<FRE<EVE5037
 Deequipped Whimsical Star.<NOD<WAI0003<SR-<FRE<EVE5038
 
 #7039
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0064<FL-0746<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0746<MSG
 Deequipped Iron Bond.<NOD<WAI0003<FRE<EVE5039
 
 #7040
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-2048<FL-0756<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0756<MSG
 Deequipped Speed Shoes.<NOD<WAI0003<FRE<EVE5040
 
 #7041
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-4096<FL-0755<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0755<MSG
 Deequipped Pair of Wings.<NOD<WAI0003<FRE<EVE5041
 
 #7042
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-8192<FL-0754<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0754<MSG
 Deequipped Water Thrusters.<NOD<WAI0003<FRE<EVE5042
 
 #7043
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0512<FL-0753<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0753<MSG
 Deequipped Auxiliary Booster.<NOD<WAI0003<FRE<EVE5043
 
 #7044
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-@384<FL-0752<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0752<MSG
 Deequipped Energy Canister.<NOD<WAI0003<FRE<EVE5044
 
 #7046
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-q536<FL-0750<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0750<MSG
 Deequipped Heavy Weight.<NOD<WAI0003<FRE<EVE5046
 
 #7047
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0001<FL-0748<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0748<MSG
 Deequipped Ballos Burger.<NOD<WAI0003<FRE<EVE5047
 
 #7048
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0018<FL-0744<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0744<MSG
 Deequipped Propane Tank.<NOD<WAI0003<FRE<EVE5048
 
 #7049
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0019<FL-0720<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0720<MSG
 Deequipped Overclock.<NOD<WAI0003<FRE<EVE5049
 
 #7050
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0020<FL-0742<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0742<MSG
 Deequipped Destruction Energizer.<NOD<WAI0003<FRE<EVE5050
 
 #7051
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0021<FL-0741<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0741<MSG
 Deequipped Creation Energizer.<NOD<WAI0003<FRE<EVE5051
 
 #7052
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0022<FL-0739<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0739<MSG
 Deequipped Steel Plating.<NOD<WAI0003<FRE<EVE5052
 
 #7053
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0024<FL-0737<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0737<MSG
 Deequipped Cool Sunglasses.<NOD<WAI0003<FRE<EVE5053
 
 #7054
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0028<FL-0710<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0710<MSG
 Deequipped Gravity Necklace.<NOD<WAI0003<FRE<EVE5054
 
 #7055
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0029<FL-0712<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0712<MSG
 Deequipped Nano Quiver.<NOD<WAI0003<FRE<EVE5055
 
 #7056
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0030<FL-0708<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0708<MSG
 Deequipped Nice Skates.<NOD<WAI0003<FRE<EVE5056
 
 #7058
@@ -1177,7 +1177,7 @@ Deequipped Lead Weight.<NOD<WAI0003<FRE<EVE5059
 
 #7060
 <KEY<MSGDo you want to remove it?<YNJ0000<FL-0875<MSG
-Deequipped Winter Clock.<NOD<WAI0003<EQ-0256<FRE<EVE5060
+Deequipped Winter Clock.<NOD<WAI0003<FRE<EVE5060
 
 #7066
 <KEY<MSGDo you want to remove it?<YNJ0000<FL-0868<MSG
@@ -1192,15 +1192,15 @@ Deequipped Shield of Time.<NOD<WAI0003<FRE<EVE5067
 Deequipped Little Man's Underwear.<NOD<WAI0003<FRE<EVE5068
 
 #7069
-<KEY<MSGDo you want to remove it?<YNJ0000<FL-0878<EQ-q536<FL-0750<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0878<FL-0750<MSG
 Deequipped Nuclear Stomper.<NOD<WAI0003<FRE<EVE5069
 
 #7070
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0023<FL-0879<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0879<MSG
 Deequipped Omniquick Sneakers.<NOD<WAI0003<FRE<EVE5070
 
 #7071
-<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0256<E2-0021<FL-0880<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0880<MSG
 Deequipped Freeze Star.<NOD<WAI0003<FRE<EVE5071
 
 #7072
@@ -1208,5 +1208,5 @@ Deequipped Freeze Star.<NOD<WAI0003<FRE<EVE5071
 Deequipped Nanites Absorber.<NOD<WAI0003<FRE<EVE5072
 
 #7073
-<KEY<MSGDo you want to remove it?<YNJ0000<E2-0029<FL-0883<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0883<MSG
 Deequipped Military Armament.<NOD<WAI0003<FRE<EVE5073
