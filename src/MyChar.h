@@ -14,14 +14,6 @@
 // TODO - When I add bitmask constants for gMC.flags...
 // 0x100 is a 'player is underwater' flag
 
-// gMC.equip
-enum
-{
-	EQUIP_SPEED_SHOES = 0x800,
-	EQUIP_WATER_THURST = 0x2000,
-	EQUIP_SUNGLASSES = 0x1000000
-};
-
 struct MYCHAR_PHYSICS
 {
 	int max_dash;

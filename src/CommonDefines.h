@@ -220,6 +220,7 @@ namespace FlagTraits {
 	inline constexpr const char* UNDERWATER_DASH               = "underwater_dash";
 	inline constexpr const char* ATTACK_DAMAGE_MODIFIER        = "attack_damage_modifier";
 	inline constexpr const char* UNIVERSAL_IFRAMES_MODIFIER    = "universal_iframes_modifier";
+	inline constexpr const char* DASH_MODIFIER                 = "dash_modifier";
 }
 
 namespace Bullets {

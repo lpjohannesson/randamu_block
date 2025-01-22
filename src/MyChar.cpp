@@ -48,42 +48,48 @@ nlohmann::ordered_map<std::string, MYCHAR_DEFINITION> availableCharacters;
 
 std::vector<MYCHAR_EQUIP_DEFINITION> equipVisuals;
 
+bool IsDashEquipped(){
+	return CheckFlagTrait(FlagTraits::SUPER_DASH) || CheckFlagTrait(FlagTraits::BUFFED_DASH) || CheckFlagTrait(FlagTraits::CAT_DASH) || (gMC.flag & 0x100 && CheckFlagTrait(FlagTraits::UNDERWATER_DASH))
+	|| (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9);
+}
+
 int DashDuration(){
 	if (gMC.ameDashState) return 2000000;
-	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;
-	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SUNGLASSES) return 44;
-	if (CheckFlagTrait(FlagTraits::SUPER_DASH)) return 14;
-	if (gMC.equip & EQUIP_SUNGLASSES) return 25;
-	if (IsDashEquipped()) return 19;
-	return 16;
+	float base = 16.0f;
+	for (const auto&[flag, modifier] : GetActualFlagTraitData<float>(FlagTraits::DASH_MODIFIER, "duration")){
+		base *= std::max(0.0f, modifier);
+	}
+	if (CheckFlagTrait(FlagTraits::UNDERWATER_DASH) && gMC.flag & 0x100)
+		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::UNDERWATER_DASH, "duration"));
+	return std::round(base);
 }
 
 float DashSpeed(){
-	if (gMC.ameDashState) return 2.75;
-	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 2.75f;
-	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) return 1.8;
-	if (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9) return 3;
-	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SPEED_SHOES && gMC.equip & EQUIP_SUNGLASSES) return 2.25;
-	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SUNGLASSES) return 2.6;
-	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SPEED_SHOES) return 2.35;
-	if (CheckFlagTrait(FlagTraits::SUPER_DASH)) return 2.25;
-	if (gMC.equip & EQUIP_SUNGLASSES) return 1.85;
-	if (gMC.equip & EQUIP_SPEED_SHOES) return 1.7;
-	if (IsDashEquipped()) return 1.6;
-	return 1.4;
+	float base = 1.4;
+	for (const auto&[flag, modifier] : GetActualFlagTraitData<float>(FlagTraits::DASH_MODIFIER, "speed")){
+		base *= std::max(0.0f, modifier);
+	}
+	if (gMC.ameDashState)
+		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::CAT_DASH, "speed"));
+	if (CheckFlagTrait(FlagTraits::UNDERWATER_DASH) && gMC.flag & 0x100)
+		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::UNDERWATER_DASH, "speed"));
+	if (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9)
+		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::BLADE_DASH, "speed"));
+	return base;
 }
 
 int DashCooldown(){
-	if (GetNPCFlag(Flags::DISCORDIAN_VISOR)) return 88;
-	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)) return 25;
-	if (gMC.equip & EQUIP_WATER_THURST && gMC.flag & 0x100) return 20;
-	if (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9) return 110;
-	if (CheckFlagTrait(FlagTraits::SUPER_DASH) && gMC.equip & EQUIP_SUNGLASSES) return 45;
-	if (CheckFlagTrait(FlagTraits::SUPER_DASH)) return 35;
-	if (gMC.equip & EQUIP_SUNGLASSES) return 50;
-	if (!CheckFlagTrait(FlagTraits::BUFFED_DASH) && CheckFlagTrait(FlagTraits::CAT_DASH)) return 120;
-	if (IsDashEquipped()) return 40;
-	return 45;
+	float base = 45;
+	for (const auto&[flag, modifier] : GetActualFlagTraitData<float>(FlagTraits::DASH_MODIFIER, "cooldown")){
+		base *= std::max(0.0f, modifier);
+	}
+	if (CheckFlagTrait(FlagTraits::UNDERWATER_DASH) && gMC.flag & 0x100)
+		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::UNDERWATER_DASH, "cooldown"));
+	if (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9)
+		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::BLADE_DASH, "cooldown"));
+	if (CheckFlagTrait(FlagTraits::CAT_DASH))
+		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::CAT_DASH, "cooldown"));
+	return std::round(base);
 }
 
 bool IsASheep(){
@@ -535,11 +541,6 @@ void PutMyChar(int fx, int fy)
 static int bloodTimer = 0;
 static bool amePressedBefore = false;
 static int ameKeyPressed;
-
-bool IsDashEquipped(){
-	return CheckFlagTrait(FlagTraits::SUPER_DASH) || CheckFlagTrait(FlagTraits::BUFFED_DASH) || CheckFlagTrait(FlagTraits::CAT_DASH) || (gMC.flag & 0x100 && CheckFlagTrait(FlagTraits::UNDERWATER_DASH))
-	|| (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9);
-}
 
 void ActMyChar_Normal(bool bKey)
 {
