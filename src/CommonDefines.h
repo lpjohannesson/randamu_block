@@ -61,7 +61,6 @@ namespace Flags {
 	inline constexpr int SHIELD_OF_RESILIENCE     = 864;
 	inline constexpr int AUGMENTED_MAN            = 865;
 	inline constexpr int CAPE_OF_SHADOWS          = 866;
-	inline constexpr int SACRED_AEGIS             = 867;
 	inline constexpr int TERRA_BOOTS              = 869;
 	inline constexpr int BADGE_OF_LOVE            = 870;
 

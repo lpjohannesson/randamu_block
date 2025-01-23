@@ -993,12 +993,12 @@ void HitMyCharNpChar(void)
 			if ((gMC.dashDuration > 0 && IsDashEquipped())){
 				if (CheckFlagTrait(FlagTraits::SUPER_DASH) && 
 				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), gNPC[i].code_char) != bonkableEnemies.end()){
-					if (GetNPCFlag(Flags::SACRED_AEGIS)){
+					if (GetFlagTraitData<bool>(FlagTraits::SUPER_DASH, "explode", false)){
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 					} else {
 						if (IntersectDamageCheck(gNPC[i], gMC.x, gMC.y))
-							DealDamage(gNPC[i], 30);
+							DealDamage(gNPC[i], GetFlagTraitData<int>(FlagTraits::SUPER_DASH, "damage"));
 						gMC.xm /= -4;
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
@@ -1251,12 +1251,12 @@ void HitMyCharBoss(void)
 		if (hit != 0){
 			if ((gMC.dashDuration > 0)){
 				if ((CheckFlagTrait(FlagTraits::SUPER_DASH)) && gBoss[b].bits & NPC_SHOOTABLE){
-					if (GetNPCFlag(Flags::SACRED_AEGIS)){
+					if (GetFlagTraitData<bool>(FlagTraits::SUPER_DASH, "explode", false)){
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 					} else {
 						if (IntersectDamageCheck(gBoss[b], gMC.x, gMC.y))
-							DealDamage(gBoss[b], 30);
+							DealDamage(gBoss[b], GetFlagTraitData<int>(FlagTraits::SUPER_DASH, "damage"));
 						gMC.xm /= -4;
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
