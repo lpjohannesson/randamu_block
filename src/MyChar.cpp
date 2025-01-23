@@ -182,12 +182,20 @@ DO_SOMETHING(
 			for (int i = 0; i < amount; i++)
 				SetNpChar(180, 0, 0, 0, 0, 2, NULL, 0x100);
 		}
+		if (CheckFlagTrait(FlagTraits::CURLY_SPAWN) && !GetNPCFlag(Flags::BADGE_OF_LOVE_REVIVE_PROC))
+			SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY);
 	});
 	flagUnsetCallbacks.push_back([](int flag)->void{
 		for (const auto& fl: GetFlagTraitData(FlagTraits::LITTLE_MAN_SPAWN) | std::views::keys){
 			if (fl == flag){
 				if (CountNpCharCode(180) > 0)
 					DeleteNpCharCode(180, false);
+			}
+		}
+		for (const auto& fl: GetFlagTraitData(FlagTraits::CURLY_SPAWN) | std::views::keys){
+			if (fl == flag){
+				if (CountNpCharCode(320) > 0)
+					DeleteNpCharCode(320, false);
 			}
 		}
 	});

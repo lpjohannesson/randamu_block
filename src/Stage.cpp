@@ -2475,7 +2475,7 @@ void SpawnPlayer(GenerationContext& genContext, GenerationArguments& genArgument
 }
 
 void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArguments){
-	if ((GetNPCFlag(Flags::CURLY_UNDERWEAR) || GetNPCFlag(Flags::EXCERPT_CHARACTER) || GetNPCFlag(Flags::BADGE_OF_LOVE) || GetNPCFlag(Flags::MAHIN_CHARACTER)) && !GetNPCFlag(Flags::BADGE_OF_LOVE_REVIVE_PROC))
+	if (CheckFlagTrait(FlagTraits::CURLY_SPAWN) && !GetNPCFlag(Flags::BADGE_OF_LOVE_REVIVE_PROC))
 		SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY);
 	if (CheckFlagTrait(FlagTraits::LITTLE_MAN_SPAWN))
 	{

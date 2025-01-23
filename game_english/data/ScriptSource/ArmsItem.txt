@@ -517,7 +517,7 @@ Hearts will gravitate towards
 If player dies, badge will
 resurrect them and disappear
 from inventory.<NOD<CLR
-Do you want to equip it?<YNJ0000<FL+0870<SNP0320:0000:0000:0000<MSG
+Do you want to equip it?<YNJ0000<FL+0870<MSG
 Equipped Badge of Love.<NOD<WAI0003<FRE<EVE5017
 #6018
 <FLJ0871:7018<ELJ
@@ -659,7 +659,7 @@ something...<WAI9999<END
 <KEY<MSGYellow-green panties with a cute
 little insignia...<NOD Summons
 Curly Brace to aid <NAM.<NOD<CLR
-Do you want to equip it?<YNJ0000<FL+0751<SNP0320:0000:0000:0000<MSG
+Do you want to equip it?<YNJ0000<FL+0751<MSG
 Equipped Curly's Underwear.<NOD<WAI0003<FRE<EVE5035
 #6036
 <FLJ0749:7036<ELJ
@@ -919,7 +919,7 @@ When Curly shoots, little man
 will shoot fireballs as
 support.<NOD<CLR
 Do you want to equip it?<YNJ0000
-<FL+0751<FL+0877<SNP0320:0000:0000:0000<MSG
+<FL+0751<FL+0877<MSG
 Equipped Little Man's Underwear.<NOD<WAI0003<FRE<EVE5068
 
 #6069
@@ -1036,7 +1036,7 @@ Deequipped Sacred Aegis.<NOD<WAI0003<FRE<EVE5013
 Deequipped Terra Boots.<NOD<WAI0003<FRE<EVE5016
 
 #7017
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<FL-0870<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0870<MSG
 Deequipped Badge of Love.<NOD<WAI0003<FRE<EVE5017
 
 #7018
@@ -1084,7 +1084,7 @@ Deequipped Little Man.<NOD<WAI0003<FRE<EVE5032
 Deequipped Copper Bulwark.<NOD<WAI0003<FRE<EVE5033
 
 #7035
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<FL-0751<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0751<MSG
 Deequipped Curly's Underwear.<NOD<WAI0003<FRE<EVE5035
 
 #7036
@@ -1188,7 +1188,7 @@ Deequipped Flaming Booster.<NOD<WAI0003<FRE<EVE5066
 Deequipped Shield of Time.<NOD<WAI0003<FRE<EVE5067
 
 #7068
-<KEY<MSGDo you want to remove it?<YNJ0000<DNA0320<DNA0321<FL-0877<FL-0751<MSG
+<KEY<MSGDo you want to remove it?<YNJ0000<FL-0877<FL-0751<MSG
 Deequipped Little Man's Underwear.<NOD<WAI0003<FRE<EVE5068
 
 #7069

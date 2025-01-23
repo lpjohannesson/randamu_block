@@ -173,9 +173,12 @@ void ActNpc321(NPCHAR *npc)
 
 	npc->ani_no = npc->pNpc->ani_no;
 
-	if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED && CountBulletNum(Bullets::NEMESIS_CURLY) < 2 && gKeyTrg & gKeyShot)
+	int bullet = GetFlagTraitData<int>(FlagTraits::CURLY_SPAWN, "bullet");
+	int bulletLimit = GetFlagTraitData<int>(FlagTraits::CURLY_SPAWN, "bullet_limit");
+
+	if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED && CountBulletNum(bullet) < bulletLimit && gKeyTrg & gKeyShot)
 	{
-		SetBullet(Bullets::NEMESIS_CURLY, npc->pNpc->x, npc->pNpc->y, direct);
+		SetBullet(bullet, npc->pNpc->x, npc->pNpc->y, direct);
 		SetCaret(npc->pNpc->x, npc->pNpc->y, 3, 0);
 		PlaySoundObject(117, SOUND_MODE_PLAY);
 		if (GetNPCFlag(Flags::LITTLE_MAN_UNDERWEAR)){

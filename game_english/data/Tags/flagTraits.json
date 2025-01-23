@@ -83,6 +83,9 @@
     "750": {
         "accelerate_fall": {}, "stomping": {}
     },
+    "751": {
+        "curly_spawn": {"bullet": 43, "bullet_limit": 2}
+    },
     "752": {
         "booster_2_0": {}, "can_boost": {"amount": 15}, "booster_fuel_boost": {"amount": 2.25}
     },
@@ -135,7 +138,7 @@
         "booster_0_8": {}, "can_boost": {"amount": 60}, "no_slippery": {}
     },
     "870": {
-        "acid_immunity": {}, "lifesteal": {"amount_per_heart": 36}
+        "acid_immunity": {}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "lifesteal": {"amount_per_heart": 36}
     },
     "871": {
         "multi_block_breaking": {}, "offset_nemesis": {}, "ranged_block_place": {"distance": 5}, "precise_placement": {}
@@ -156,7 +159,7 @@
         "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85}, "super_dash": {}, "timestop": {}
     },
     "877": {
-        "little_man_spawn": {"amount": 1}
+        "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "little_man_spawn": {"amount": 1}
     },
     "878": {
         "accelerate_fall": {}, "explode_on_hit": {}, "stomping": {"explosive": true}
@@ -187,7 +190,7 @@
         "blade_dash": {"speed": 1.85, "cooldown": 2.25}
     },
     "4150": {
-        "excerpt_allies": {}, "little_man_spawn": {"amount": 2}
+        "excerpt_allies": {}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "little_man_spawn": {"amount": 2}
     },
     "4200": {
         "buffed_machine_gun": {}, "low_hp_resist": {}
@@ -217,6 +220,6 @@
         "buffed_dash": {}, "cat_dash": {"speed": 1.7, "cooldown": 3}, "cat_float": {}, "sword_sheathing": {}
     },
     "7999": {
-        "amphibious": {}, "better_ducks": {}, "blade_dash": {"speed": 1.85, "cooldown": 2.25}, "buffed_machine_gun": {}, "controlled_rocket": {}, "chest_boost": {"base": 0.5}, "dash_float": {}, "dash_projectile_repel": {}, "dash_sprint": {}, "ducks": {}, "invidia": {}, "hook_flail": {}, "last_stand": {}, "level_4_weapons": {}, "little_man_spawn": {"amount": 2}, "low_hp_resist": {}, "sword_sheathing": {}, "witch_dash_vfx": {},  "witch_fireball": {}
+        "amphibious": {}, "better_ducks": {}, "blade_dash": {"speed": 1.85, "cooldown": 2.25}, "buffed_machine_gun": {}, "controlled_rocket": {}, "chest_boost": {"base": 0.5}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "dash_float": {}, "dash_projectile_repel": {}, "dash_sprint": {}, "ducks": {}, "invidia": {}, "hook_flail": {}, "last_stand": {}, "level_4_weapons": {}, "little_man_spawn": {"amount": 2}, "low_hp_resist": {}, "sword_sheathing": {}, "witch_dash_vfx": {},  "witch_fireball": {}
     }
 }
