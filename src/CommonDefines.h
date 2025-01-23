@@ -64,7 +64,6 @@ namespace Flags {
 
 	inline constexpr int UNIVERSAL_CATALYST       = 871;
 	inline constexpr int AMPHIBIAN_MEDAL          = 872;
-	inline constexpr int HIGH_OCTANE_TANK         = 873;
 	inline constexpr int DISCORDIAN_VISOR         = 874;
 	inline constexpr int WINTER_CLOCK             = 875;
 	inline constexpr int SHIELD_OF_TIME           = 876;

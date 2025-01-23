@@ -660,7 +660,7 @@ bool IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul){
 		return false;
 
 	if (npc.first.shock > 0 && (
-		(bul.first.code_bullet == Bullets::WHIMSICAL_STAR) || (bul.first.code_bullet == Bullets::MACHINE_GUN_LVL_4) || (GetNPCFlag(Flags::HIGH_OCTANE_TANK) && bul.first.code_bullet > Bullets::FIREBALL_LVL_1-1 && bul.first.code_bullet < Bullets::FIREBALL_LVL_3+1 && CountBulletNum(Bullets::EXPLOSION))))
+		(bul.first.code_bullet == Bullets::WHIMSICAL_STAR) || (bul.first.code_bullet == Bullets::MACHINE_GUN_LVL_4) || (CheckFlagTrait(FlagTraits::EXPLODING_FIREBALL) && bul.first.code_bullet > Bullets::FIREBALL_LVL_1-1 && bul.first.code_bullet < Bullets::FIREBALL_LVL_3+1 && CountBulletNum(Bullets::EXPLOSION))))
 		return false;
 	
 	if (!npc.first.isBoss){
