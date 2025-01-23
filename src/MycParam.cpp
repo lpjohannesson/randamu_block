@@ -193,8 +193,8 @@ void DamageMyChar(int damage)
 			SetCaret(gMC.x-0x1800, gMC.y+0x1800, 2, 2);
 	}
 
-	if (GetNPCFlag(Flags::SHIELD_OF_RESILIENCE) && damage > 1){
-		damage -= 1;
+	if (CheckFlagTrait(FlagTraits::FLAT_DAMAGE_REDUCTION) && damage > 1){
+		damage = std::max(1, damage - GetFlagTraitData<int>(FlagTraits::FLAT_DAMAGE_REDUCTION, "amount"));
 		PlaySoundObject(54, SOUND_MODE_PLAY);
 	}
 	if (CheckFlagTrait(FlagTraits::DUCK_HEALTH) && damage != 0){
