@@ -1209,3 +1209,19 @@ void RegisterMiscBullets(){
         [](BULLET* bul){ ActBullet_Explosion(bul, 3); }
     }});
 }
+
+DO_SOMETHING(
+	flagSetCallbacks.push_back([](int flag)->bool{
+		if (CheckFlagTrait(FlagTraits::WHIMSICAL_STAR))
+			SetBullet(Bullets::WHIMSICAL_STAR, gMC.x, gMC.y + 0x2500, 1);
+	});
+	flagUnsetCallbacks.push_back([](int flag)->bool{
+		for (const auto& fl: GetFlagTraitData(FlagTraits::WHIMSICAL_STAR) | std::views::keys){
+			if (fl == flag){
+				for (int i = 0; i < BULLET_MAX; ++i)
+					if (gBul[i].cond & 0x80 && (gBul[i].code_bullet) == Bullets::WHIMSICAL_STAR)
+						gBul[i].cond = 0;
+					}
+		}
+	});
+)

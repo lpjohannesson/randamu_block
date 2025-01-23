@@ -689,7 +689,7 @@ collects small pickups.<NOD
 Clicking switches star between
 following mouse's cursor
 and following player.<NOD<CLR
-Will you equip it?<YNJ0000<FL+0851<SR+<MSG
+Will you equip it?<YNJ0000<FL+0851<MSG
 Equipped the Whimsical Star.<NOD<WAI0003<FRE<EVE5038
 #6039
 <FLJ0746:7039<ELJ
@@ -1093,11 +1093,11 @@ Deequipped Alien Medal.<NOD<WAI0003<FRE<EVE5036
 
 #7037
 <KEY<MSGDo you want to remove it?<YNJ0000<FL-0860<MSG
-Deequipped Timeline Ring.<NOD<WAI0003<SR-<FRE<EVE5037
+Deequipped Timeline Ring.<NOD<WAI0003<FRE<EVE5037
 
 #7038
 <KEY<MSGDo you want to remove it?<YNJ0000<FL-0851<MSG
-Deequipped Whimsical Star.<NOD<WAI0003<SR-<FRE<EVE5038
+Deequipped Whimsical Star.<NOD<WAI0003<FRE<EVE5038
 
 #7039
 <KEY<MSGDo you want to remove it?<YNJ0000<FL-0746<MSG

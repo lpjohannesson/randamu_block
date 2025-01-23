@@ -3168,7 +3168,7 @@ bool TransferStage(int no, int w, int x, int y)
 		ResetQuake();
 		InitBossChar(gTMT[no].boss_no);
 		ResetFlash();
-		if (GetNPCFlag(Flags::WHIMSICAL_STAR))
+		if (CheckFlagTrait(FlagTraits::WHIMSICAL_STAR))
 			SetBullet(Bullets::WHIMSICAL_STAR, gMC.x, gMC.y + 0x2500, 1);
 		gNameFlag = true;
 		gNameTimer = 0;
@@ -3254,7 +3254,7 @@ bool TransferStage(int no, int w, int x, int y)
 		ResetQuake();
 		InitBossChar(gTMT[no].boss_no);
 		ResetFlash();
-		if (GetNPCFlag(Flags::WHIMSICAL_STAR))
+		if (CheckFlagTrait(FlagTraits::WHIMSICAL_STAR))
 			SetBullet(Bullets::WHIMSICAL_STAR, gMC.x, gMC.y + 0x2500, 1);
 		gStageNo = no;
 	}

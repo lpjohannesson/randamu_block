@@ -1472,17 +1472,6 @@ int ActualTextScriptProc(void)
 						if (!LoadProfile(NULL))
 							InitializeGame();
 					}
-					else if (IS_COMMAND('S','R','+')){
-						SetBullet(Bullets::WHIMSICAL_STAR, gMC.x, gMC.y + 0x2500, 1);
-						gTS.p_read += 4;
-					}
-					else if (IS_COMMAND('S', 'R', '-'))
-					{
-						for (i = 0; i < BULLET_MAX; ++i)
-							if (gBul[i].cond & 0x80 && (gBul[i].code_bullet) == Bullets::WHIMSICAL_STAR)
-								gBul[i].cond = 0;
-						gTS.p_read += 4;
-					}
 					else if (IS_COMMAND('F','A','C'))
 					{
 						z = GetTextScriptNo(gTS.p_read + 4);

@@ -107,6 +107,9 @@
     "760": {
         "water_mob_friend": {}, "water_floating": {}
     },
+    "851": {
+        "whimsical_star": {}
+    },
     "860": {
         "timestop": {}
     },

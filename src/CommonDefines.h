@@ -56,8 +56,6 @@ namespace Flags {
 
 	//items
 
-	inline constexpr int WHIMSICAL_STAR           = 851;
-
 	inline constexpr int ENERGY_CRYSTAL           = 861;
 	inline constexpr int SUPER_BOOSTER            = 862;
 	inline constexpr int DIVING_SUIT              = 863;
@@ -209,6 +207,7 @@ namespace FlagTraits {
 	inline constexpr const char* MEDAL_SPAWN                   = "medal_spawn";
 	inline constexpr const char* LITTLE_MAN_SPAWN              = "little_man_spawn";
 	inline constexpr const char* CURLY_SPAWN                   = "curly_spawn";
+	inline constexpr const char* WHIMSICAL_STAR                = "whimsical_star";
 }
 
 namespace Bullets {
