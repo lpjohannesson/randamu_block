@@ -3,6 +3,7 @@
 
 
 #include <any>
+#include <set>
 #include "CommonDefines.h"
 #include "Generic.h"
 #include "Main.h"
@@ -28,10 +29,17 @@ extern std::vector<FlagSetCallback> flagSetCallbacks;
 using FlagUnsetCallback = std::function<void(int)>;
 extern std::vector<FlagUnsetCallback> flagUnsetCallbacks;
 
-template<typename T> struct get_detail { static inline T _empty; };
+namespace rnddetail {
+	template<typename ArgType>
+	const ArgType& get(const ArgType val){
+		static std::set<ArgType> defaults;
+		auto result = defaults.insert(val);
+		return *result.first;
+	}
+}
 
 template <IsGenMetadata ArgType>
-inline const ArgType& GetFlagTraitData(std::string trait, std::string parameter){
+inline const ArgType& GetFlagTraitData(std::string trait, std::string parameter, const ArgType defaultValue = ArgType{}){
 	if (flagTraits.contains(trait)){
 		for (const auto &[flag, info]: flagTraits[trait]){
 			if (info.contains(parameter)){
@@ -40,7 +48,7 @@ inline const ArgType& GetFlagTraitData(std::string trait, std::string parameter)
 			}
 		}
 	}
-	return get_detail<ArgType>::_empty;
+	return rnddetail::get<ArgType>(defaultValue);
 }
 
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait);
