@@ -493,7 +493,7 @@ void ActNpcMainPress(NPCHAR *npc)
 			{
 				npc->bits &= ~NPC_SOLID_HARD;
 				npc->damage = 13;
-				if (CheckFlagTrait(FlagTraits::PRESS_DMG_REDUCE)) npc->damage = 9;
+				if (CheckFlagTrait(FlagTraits::PRESS_DMG_REDUCE)) npc->damage = GetFlagTraitData<int>(FlagTraits::PRESS_DMG_REDUCE, "amount");
 			}
 			else
 			{

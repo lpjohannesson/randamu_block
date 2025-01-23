@@ -1003,8 +1003,8 @@ void HitMyCharNpChar(void)
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
 						gMC.shock += 40;
-						if (GetNPCFlag(Flags::SHIELD_OF_TIME)){
-							gNPC[i].freeze = 320;
+						if (GetFlagTraitData<bool>(FlagTraits::SUPER_DASH, "freeze", false)){
+							gNPC[i].freeze = GetFlagTraitData<int>(FlagTraits::SUPER_DASH, "freeze_time");
 							IncrementCooldown(gCooldowns, DASH_TIMER_ID, 120);
 						}
 						if (gMC.ameDashState){

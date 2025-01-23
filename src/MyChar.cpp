@@ -845,7 +845,7 @@ void ActMyChar_Normal(bool bKey)
 					}
 				}
 
-				if(!(gKey & gKeyAbility && GetNPCFlag(Flags::AMPHIBIAN_MEDAL))){
+				if(!(gKey & gKeyAbility && CheckFlagTrait(FlagTraits::STRAFE))){
 					if (gKey & gKeyLeft){
 						gMC.direct = 0;
 					}
@@ -975,7 +975,7 @@ void ActMyChar_Normal(bool bKey)
 				}
 			}
 
-			if(!(gKey & gKeyAbility && GetNPCFlag(Flags::AMPHIBIAN_MEDAL))){
+			if(!(gKey & gKeyAbility && CheckFlagTrait(FlagTraits::STRAFE))){
 					if (gKey & gKeyLeft){
 						gMC.direct = 0;
 					}

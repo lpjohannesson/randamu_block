@@ -57,10 +57,8 @@ namespace Flags {
 	//items
 
 	inline constexpr int UNIVERSAL_CATALYST       = 871;
-	inline constexpr int AMPHIBIAN_MEDAL          = 872;
 	inline constexpr int DISCORDIAN_VISOR         = 874;
 	inline constexpr int WINTER_CLOCK             = 875;
-	inline constexpr int SHIELD_OF_TIME           = 876;
 	inline constexpr int LITTLE_MAN_UNDERWEAR     = 877;
 	inline constexpr int OMNIQUICK_SNEAKERS       = 879;
 	inline constexpr int FREEZE_STAR              = 880;
@@ -207,6 +205,7 @@ namespace FlagTraits {
 	inline constexpr const char* SAVING_AMMO_CHANCE            = "saving_ammo_chance";
 	inline constexpr const char* DASH_REFRESHES_JUMP           = "dash_refreshes_jump";
 	inline constexpr const char* GLIDING_AFTER_DASH            = "gliding_after_dash";
+	inline constexpr const char* STRAFE                        = "strafe";
 }
 
 namespace Bullets {
