@@ -283,7 +283,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 
 #ifdef FIX_BUGS
 			// I assume this is what was intended
-			if (npc->flag & 8 && (npc->count1 > 5 || (GetNPCFlag(Flags::AUGMENTED_MAN) && gKeyTrg & gKeyJump)))
+			if (npc->flag & 8 && (npc->count1 > 5 || (CheckFlagTrait(FlagTraits::CONTROLLED_LITTLE_MAN) && gKeyTrg & gKeyJump)))
 #else
 			if (npc->flag && 8 && npc->count1 > 10)
 #endif
