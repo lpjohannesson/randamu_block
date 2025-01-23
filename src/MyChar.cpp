@@ -611,7 +611,7 @@ void ActMyChar_Normal(bool bKey)
 		return;
 
 	physics = (gMC.flag & 0x100) ? &gMC.physics_underwater : &gMC.physics_normal;
-	if (GetNPCFlag(Flags::DIVING_SUIT)){
+	if (CheckFlagTrait(FlagTraits::UNHINDERED_DIVING)){
 		physics = &gMC.physics_normal;
 	}
 	
@@ -627,7 +627,7 @@ void ActMyChar_Normal(bool bKey)
 		max_move = gMC.physics_underwater.max_move;	// Underwater or in wind
 	else
 		max_move = gMC.physics_normal.max_move;	// Normal conditions
-	if (GetNPCFlag(Flags::DIVING_SUIT))
+	if (CheckFlagTrait(FlagTraits::UNHINDERED_DIVING))
 		max_move = gMC.physics_normal.max_move;
 	if ((gMC.flag & 0x100) && CheckFlagTrait(FlagTraits::SWIM_BOOST)){
 		jump = gMC.physics_normal.jump*std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SWIM_BOOST, "modifier"));
@@ -636,7 +636,7 @@ void ActMyChar_Normal(bool bKey)
 			jump = gMC.physics_normal.jump*std::max(0.0f, GetFlagTraitData<float>(FlagTraits::JUMP_BOOST, "modifier"));
 		}
 	}
-	if (GetNPCFlag(Flags::DIVING_SUIT)){
+	if (CheckFlagTrait(FlagTraits::UNLIMITED_SWIM)){
 		if (gMC.flag & 0x100)
 			gravity2 = 0;
 	}

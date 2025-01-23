@@ -120,7 +120,7 @@
         "booster_2_0": {}, "can_boost": {"amount": 90}, "dont_slow_on_boost_end": {}
     },
     "863": {
-        "water_mob_friend": {}, "lava_protection": {"amount": 160}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}
+        "water_mob_friend": {}, "lava_protection": {"amount": 160}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}, "unhindered_diving": {}, "unlimited_swimming": {}
     },
     "864": {
         "iframes_boost": {}, "ko_prevention": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}

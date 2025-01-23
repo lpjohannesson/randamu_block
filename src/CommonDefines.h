@@ -58,7 +58,6 @@ namespace Flags {
 
 	inline constexpr int ENERGY_CRYSTAL           = 861;
 	inline constexpr int SUPER_BOOSTER            = 862;
-	inline constexpr int DIVING_SUIT              = 863;
 	inline constexpr int SHIELD_OF_RESILIENCE     = 864;
 	inline constexpr int AUGMENTED_MAN            = 865;
 	inline constexpr int CAPE_OF_SHADOWS          = 866;
@@ -208,6 +207,8 @@ namespace FlagTraits {
 	inline constexpr const char* LITTLE_MAN_SPAWN              = "little_man_spawn";
 	inline constexpr const char* CURLY_SPAWN                   = "curly_spawn";
 	inline constexpr const char* WHIMSICAL_STAR                = "whimsical_star";
+	inline constexpr const char* UNHINDERED_DIVING             = "unhindered_diving";
+	inline constexpr const char* UNLIMITED_SWIM                = "unlimited_swim";
 }
 
 namespace Bullets {
