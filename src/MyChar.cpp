@@ -479,7 +479,7 @@ void PutMyChar(int fx, int fy)
 	rect.bottom += 32 * gMIMCurrentNum;
 
 	if (CheckFlagTrait(FlagTraits::RANGED_BLOCK_PLACE) && (gArmsData[gSelectedArms].code == 2 
-		|| (gArmsData[gSelectedArms].code == 12 && (GetNPCFlag(Flags::UNIVERSAL_CATALYST) || GetNPCFlag(Flags::FREEZE_STAR))))){
+		|| (gArmsData[gSelectedArms].code == 12 && (CheckFlagTrait(FlagTraits::RANGED_BLOCK_BREAK) || CheckFlagTrait(FlagTraits::MINING_FREEZE_AURA))))){
 		Rect limitRect = {160, 112, 176, 128};
 		int dist = GetFlagTraitData<int>(FlagTraits::RANGED_BLOCK_PLACE, "distance");
 		for (int x = 0; x < gMap.width; x++){
@@ -771,10 +771,11 @@ void ActMyChar_Normal(bool bKey)
 		}
 	}
 
-	if (GetNPCFlag(Flags::FREEZE_STAR) && (gArmsData[gSelectedArms].code == 2 || gArmsData[gSelectedArms].code == 12)){
+	if (CheckFlagTrait(FlagTraits::MINING_FREEZE_AURA) && (gArmsData[gSelectedArms].code == 2 || gArmsData[gSelectedArms].code == 12)){
 		for (int i = 0; i < NPC_MAX; i++){
-			if (Random(0, 10) == 0 && std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[i].code_char) == etherealEntities.end() && gNPC[i].damage > 0 && Distance(gMC.x, gMC.y, gNPC[i].x, gNPC[i].y) <= 88_pix){
-				gNPC[i].freeze += 10;
+			if (Random(0, 10) == 0 && std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[i].code_char) == etherealEntities.end() && gNPC[i].damage > 0 && 
+			Distance(gMC.x, gMC.y, gNPC[i].x, gNPC[i].y) <= GetFlagTraitData<int>(FlagTraits::MINING_FREEZE_AURA, "distance") * 1_pix){
+				gNPC[i].freeze += GetFlagTraitData<int>(FlagTraits::MINING_FREEZE_AURA, "rate");
 			}
 		}
 	}
@@ -956,9 +957,9 @@ void ActMyChar_Normal(bool bKey)
 				maximal_dash *= GetFlagTraitData<float>(FlagTraits::GLIDING, "max_speed");
 				dashy *= GetFlagTraitData<float>(FlagTraits::GLIDING, "acceleration");
 			}
-			if (GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)){
-				maximal_dash *= 2;
-				dashy *= 3;
+			if (CheckFlagTrait(FlagTraits::SPEED_BOOTS)){
+				maximal_dash *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SPEED_BOOTS, "air_speed_multiplier", 1.0f));
+				dashy *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SPEED_BOOTS, "air_acceleration", 1.0f));
 			}
 			if (gKey & gKeyLeft && gMC.xm > -maximal_dash){
 				if (gMC.xm > 0) gMC.xm -= dash2*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect");
@@ -1178,8 +1179,8 @@ void ActMyChar_Normal(bool bKey)
 			}
 		}
 		gMC.ym += gravity2;
-		if (GetNPCFlag(Flags::OMNIQUICK_SNEAKERS)){
-			gMC.ym -= 0.008f * abs(gMC.xm);
+		if (CheckFlagTrait(FlagTraits::VELOCITY_BASED_JUMP)){
+			gMC.ym -= GetFlagTraitData<float>(FlagTraits::VELOCITY_BASED_JUMP, "modifier") * abs(gMC.xm);
 		}
 	}
 	// Normal gravity
@@ -1320,7 +1321,7 @@ void ActMyChar_Normal(bool bKey)
 		}
 	}
 	if (gMC.dashDuration > 0 && gMC.dashDuration < DashDuration()){
-		if (!GetNPCFlag(Flags::DISCORDIAN_VISOR) || gBL.flag)
+		if (!CheckFlagTrait(FlagTraits::TELEPORT_DASH) || gBL.flag)
 		{
 			gMC.dashDuration++;
 			gMC.visualDashDuration++;
@@ -1377,7 +1378,7 @@ void ActMyChar_Normal(bool bKey)
 				}
 			}
 		} else {
-			int distance = 0x2000 * 6;
+			int distance = 0x2000 * GetFlagTraitData<float>(FlagTraits::TELEPORT_DASH, "distance");
 			if (gMC.direct == 0) distance *= -1;
 			while (GetAttribute(round((gMC.x + distance) / (0x2000 * 1.0f)), round((gMC.y) / (0x2000 * 1.0f))) == 65 ||
 			GetAttribute(round((gMC.x + distance) / (0x2000 * 1.0f)), round((gMC.y) / (0x2000 * 1.0f))) == 66){
@@ -1409,7 +1410,7 @@ void ActMyChar_Normal(bool bKey)
 			gMC.shock += 35;
 			NPCHAR* npc = FindNpCharHere(gMC.x, gMC.y);
 			if (npc != NULL)
-				DealDamage(*npc, 24);
+				DealDamage(*npc, GetFlagTraitData<float>(FlagTraits::TELEPORT_DASH, "damage"));
 			gMC.dashDuration = 0;
 			} else {
 				gMC.dashDuration = 0;
@@ -1989,28 +1990,28 @@ void ActMyChar(bool bKey)
 		}
 	}
 
-	if (gKeyTrg & gKeyAbility && (CheckFlagTrait(FlagTraits::TIMESTOP) || GetNPCFlag(Flags::WINTER_CLOCK)) && 
-			CheckForCooldown(gCooldowns, TIME_RING_ID) == -1 && 
-			CheckForCooldown(gCooldowns, TIME_STOP_ID) == -1){
+	if (gKeyTrg & gKeyAbility && (CheckFlagTrait(FlagTraits::TIMESTOP)) && CheckForCooldown(gCooldowns, TIME_STOP_ID) == -1){
 		SetFlash(gMC.x, gMC.y, 1, RGB(154, 209, 232) | (0x80 << 24));
-		if (CheckFlagTrait(FlagTraits::TIMESTOP)){
-			PlaySoundObject(101, SOUND_MODE_PLAY);
-			for (int i = 0; i < SE_MAX; i++)
-				ChangeSoundFrequency(i, 1200);
-			InitiateCooldown(gCooldowns, TIME_STOP_ID);
-			PlayOrganyaMusic();
-		} else if (GetNPCFlag(Flags::WINTER_CLOCK)){
-			PlaySoundObject(118, SOUND_MODE_PLAY);
-			for (int i = 0; i < NPC_MAX; i++){
-				if (gNPC[i].cond & 0x80 &&
-					gMC.x < gNPC[i].x + int(WINDOW_WIDTH/1.5f) * 1_pix && gMC.x > gNPC[i].x - int(WINDOW_WIDTH/1.5f) * 1_pix && gMC.y < gNPC[i].y + int(WINDOW_HEIGHT/1.5f) * 1_pix && gMC.y > gNPC[i].y - int(WINDOW_HEIGHT/1.5f) * 1_pix && gNPC[i].code_char != 4){
-						gNPC[i].freeze = 450;
-						SetDestroyNpChar(gNPC[i].x, gNPC[i].y, gNPC[i].view.back, 10);
-					}
-			}
-			InitiateCooldown(gCooldowns, TIME_RING_ID);
-		}
+		PlaySoundObject(101, SOUND_MODE_PLAY);
+		for (int i = 0; i < SE_MAX; i++)
+			ChangeSoundFrequency(i, 1200);
+		InitiateCooldown(gCooldowns, TIME_STOP_ID);
+		PlayOrganyaMusic();
 	}
+
+	if (gKeyTrg & gKeyAbility && CheckFlagTrait(FlagTraits::SCREEN_FREEZE) && CheckForCooldown(gCooldowns, TIME_RING_ID) == -1){
+		SetFlash(gMC.x, gMC.y, 1, RGB(154, 209, 232) | (0x80 << 24));
+		PlaySoundObject(118, SOUND_MODE_PLAY);
+		for (int i = 0; i < NPC_MAX; i++){
+			if (gNPC[i].cond & 0x80 &&
+				gMC.x < gNPC[i].x + int(WINDOW_WIDTH/1.5f) * 1_pix && gMC.x > gNPC[i].x - int(WINDOW_WIDTH/1.5f) * 1_pix && gMC.y < gNPC[i].y + int(WINDOW_HEIGHT/1.5f) * 1_pix && gMC.y > gNPC[i].y - int(WINDOW_HEIGHT/1.5f) * 1_pix && gNPC[i].code_char != 4){
+					gNPC[i].freeze = GetFlagTraitData<int>(FlagTraits::SCREEN_FREEZE, "amount");
+					SetDestroyNpChar(gNPC[i].x, gNPC[i].y, gNPC[i].view.back, 10);
+				}
+		}
+		InitiateCooldown(gCooldowns, TIME_RING_ID);
+	}
+
 
 	gMC.cond &= ~0x20;
 }

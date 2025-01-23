@@ -56,16 +56,7 @@ namespace Flags {
 
 	//items
 
-	inline constexpr int UNIVERSAL_CATALYST       = 871;
-	inline constexpr int DISCORDIAN_VISOR         = 874;
-	inline constexpr int WINTER_CLOCK             = 875;
-	inline constexpr int LITTLE_MAN_UNDERWEAR     = 877;
-	inline constexpr int OMNIQUICK_SNEAKERS       = 879;
-	inline constexpr int FREEZE_STAR              = 880;
-
 	inline constexpr int WATER_GUN_EFFECT         = 881;
-
-	inline constexpr int MILITARY_ARMAMENT        = 883;
 
 	inline constexpr int STAR_SAVE_FLAG_BEGIN     = 950;
 	inline constexpr int BADGE_OF_LOVE_REVIVE_PROC= 1070;
@@ -206,6 +197,12 @@ namespace FlagTraits {
 	inline constexpr const char* DASH_REFRESHES_JUMP           = "dash_refreshes_jump";
 	inline constexpr const char* GLIDING_AFTER_DASH            = "gliding_after_dash";
 	inline constexpr const char* STRAFE                        = "strafe";
+	inline constexpr const char* SCREEN_FREEZE                 = "screen_freeze";
+	inline constexpr const char* LITTLE_N_CURLY_TEAM_UP        = "little_n_curly_team_up";
+	inline constexpr const char* RANGED_BLOCK_BREAK            = "ranged_block_break";
+	inline constexpr const char* MINING_FREEZE_AURA            = "mining_freeze_aura";
+	inline constexpr const char* TELEPORT_DASH                 = "teleport_dash";
+	inline constexpr const char* VELOCITY_BASED_JUMP           = "velocity_based_jump";
 }
 
 namespace Bullets {

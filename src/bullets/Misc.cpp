@@ -466,8 +466,8 @@ void ActBullet_Nanites(BULLET *bul)
 			lol = 3;
 			speed = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 16 : 8);
 			
-			if (GetNPCFlag(Flags::MILITARY_ARMAMENT)){
-				short rate = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 5 : 40);
+			if (GetFlagTraitData<bool>(FlagTraits::NANITES, "projectiles", false)){
+				short rate = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? GetFlagTraitData<int>(FlagTraits::NANITES, "active_projectile_rate") : GetFlagTraitData<int>(FlagTraits::NANITES, "passive_projectile_rate"));
 				if (++bul->act_wait % rate == 0){
 					short amount = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 2 : 1);
 					for (int i = 0; i < amount; i++){

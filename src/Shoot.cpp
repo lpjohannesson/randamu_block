@@ -2258,7 +2258,7 @@ void ShootBullet_Nemesis(int level)
 	if (CountBulletNum(Bullets::NEMESIS_MAIN) > 1)
 		return;
 
-	if (gKeyTrg & gMouseClick && GetNPCFlag(Flags::UNIVERSAL_CATALYST))
+	if (gKeyTrg & gMouseClick && CheckFlagTrait(FlagTraits::RANGED_BLOCK_BREAK))
 	{
 		if (gBL.flag || !UseArmsEnergy(2))
 		{
@@ -2271,8 +2271,7 @@ void ShootBullet_Nemesis(int level)
 			GetFramePosition(&fx, &fy);
 			x = fx + ScreenToSubpixelCoord(gMouseX);
 			y = fy + ScreenToSubpixelCoord(gMouseY);
-			float dist = 5.5;
-			if (GetNPCFlag(Flags::UNIVERSAL_CATALYST)) dist = 7.5;
+			float dist = GetFlagTraitData<int>(FlagTraits::RANGED_BLOCK_BREAK, "distance") + 0.5;
 			if (Distance(gMC.x, gMC.y, x, y) > dist*0x2000 || GetTile(round(((float)x) / 0x2000), round(((float)y) / 0x2000)) != 1)
 			{
 				ChargeArmsEnergy(2);

@@ -181,13 +181,15 @@ void ActNpc321(NPCHAR *npc)
 		SetBullet(bullet, npc->pNpc->x, npc->pNpc->y, direct);
 		SetCaret(npc->pNpc->x, npc->pNpc->y, 3, 0);
 		PlaySoundObject(117, SOUND_MODE_PLAY);
-		if (GetNPCFlag(Flags::LITTLE_MAN_UNDERWEAR)){
+		if (CheckFlagTrait(FlagTraits::LITTLE_N_CURLY_TEAM_UP)){
+			int lm_bullet = GetFlagTraitData<int>(FlagTraits::LITTLE_N_CURLY_TEAM_UP, "bullet");
+			int lm_bulletLimit = GetFlagTraitData<int>(FlagTraits::LITTLE_N_CURLY_TEAM_UP, "bullet_limit");
 			for (int i = 0; i < NPC_MAX; i++){
 				if (!(gNPC[i].cond & 0x80))
 					continue;
 
-				if (gNPC[i].code_char == 180 && CountBulletNum(Bullets::FIREBALL_LVL_2) < 4){
-					SetBullet(Bullets::FIREBALL_LVL_2, gNPC[i].x, gNPC[i].y, direct);
+				if (gNPC[i].code_char == 180 && CountBulletNum(lm_bullet) < lm_bulletLimit){
+					SetBullet(lm_bullet, gNPC[i].x, gNPC[i].y, direct);
 					SetCaret(gNPC[i].x, gNPC[i].y, 3, 0);
 				}
 			}
