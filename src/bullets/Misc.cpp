@@ -1211,11 +1211,11 @@ void RegisterMiscBullets(){
 }
 
 DO_SOMETHING(
-	flagSetCallbacks.push_back([](int flag)->bool{
+	flagSetCallbacks.push_back([](int flag)->void{
 		if (CheckFlagTrait(FlagTraits::WHIMSICAL_STAR))
 			SetBullet(Bullets::WHIMSICAL_STAR, gMC.x, gMC.y + 0x2500, 1);
 	});
-	flagUnsetCallbacks.push_back([](int flag)->bool{
+	flagUnsetCallbacks.push_back([](int flag)->void{
 		for (const auto& fl: GetFlagTraitData(FlagTraits::WHIMSICAL_STAR) | std::views::keys){
 			if (fl == flag){
 				for (int i = 0; i < BULLET_MAX; ++i)
