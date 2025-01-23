@@ -98,7 +98,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 		npc->xm = 0;
 	if (npc->xm > 0 && npc->flag & 4)
 		npc->xm = 0;
-	if (GetNPCFlag(Flags::AUGMENTED_MAN)){
+	if (CheckFlagTrait(FlagTraits::CONTROLLED_LITTLE_MAN)){
 	if (gKey & gKeyLeft){
 		npc->xm -= 0x14 * 6;
 	}
@@ -224,7 +224,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 	if (gCurlyShoot_wait == 10)
 		npc->count2 = 10;
 
-	if ((gCurlyShoot_wait == 5 || ((gMC.cond & 1) && std::abs(npc->y - npc->tgt_y) >= 24_pix)) && npc->flag & 8 && (Random(0, 2) || (GetNPCFlag(Flags::AUGMENTED_MAN) && gKeyTrg & gKeyJump)))
+	if ((gCurlyShoot_wait == 5 || ((gMC.cond & 1) && std::abs(npc->y - npc->tgt_y) >= 24_pix)) && npc->flag & 8 && (Random(0, 2) || (CheckFlagTrait(FlagTraits::CONTROLLED_LITTLE_MAN) && gKeyTrg & gKeyJump)))
 	{
 		npc->count1 = 0;
 		npc->ym = -0x700;
@@ -236,8 +236,10 @@ void ActNpcLittleMan(NPCHAR *npc)
 		else
 			npc->act_no = 310;
 	}
-	if (++npc->exp % 9 == 0 && npc->xm != 0 && gCurlyShoot_x != 0 && gCurlyShoot_y != 0 && GetNPCFlag(Flags::AUGMENTED_MAN)){
-			BULLET *bul = SetBullet(Bullets::ENERGY_PROJECTILE, npc->x,  npc->y);
+	if (CheckFlagTrait(FlagTraits::SHOOTING_LITTLE_MAN) && 
+	++npc->exp % GetFlagTraitData<int>(FlagTraits::SHOOTING_LITTLE_MAN, "rate", 9) == 0 
+	&& npc->xm != 0 && gCurlyShoot_x != 0 && gCurlyShoot_y != 0){
+			BULLET *bul = SetBullet(GetFlagTraitData<int>(FlagTraits::SHOOTING_LITTLE_MAN, "bullet"), npc->x,  npc->y);
 						if (bul != NULL){
 						bul->tgt_x = gCurlyShoot_x + Random(-0x2000 * 3.5, 0x2000 * 3.5);
 						bul->tgt_y = gCurlyShoot_y + Random(-0x2000 * 3.5, 0x2000 * 3.5);
