@@ -1111,7 +1111,7 @@ void ActMyChar_Normal(bool bKey)
 			// Boost particles (and sound)
 			if (gKeyTrg & gKeyJump || gMC.boost_cnt % 3 == 1)
 			{
-				const int boostPart = GetNPCFlag(Flags::SUPER_BOOSTER) ? 19 : 7;
+				const int boostPart = CheckFlagTrait(FlagTraits::BOOSTER_DAMAGE) ? 19 : 7;
 				if (gMC.direct == 0){
 					SetCaret(gMC.x + (2 * 0x200), gMC.y + (2 * 0x200), boostPart, 2);
 				}
@@ -1130,7 +1130,7 @@ void ActMyChar_Normal(bool bKey)
 			// Boost particles (and sound)
 			if (gKeyTrg & gKeyJump || gMC.boost_cnt % 3 == 1)
 			{
-				const int boostPart = GetNPCFlag(Flags::SUPER_BOOSTER) ? 19 : 7;
+				const int boostPart = CheckFlagTrait(FlagTraits::BOOSTER_DAMAGE) ? 19 : 7;
 				SetCaret(gMC.x, gMC.y + (6 * 0x200), boostPart, 3);
 				PlaySoundObject(113, SOUND_MODE_PLAY);
 			}
@@ -1138,7 +1138,7 @@ void ActMyChar_Normal(bool bKey)
 		else if (gMC.boost_sw == 3 && (gKeyTrg & gKeyJump || gMC.boost_cnt % 3 == 1))
 		{
 			// Boost particles (and sound)
-			const int boostPart = GetNPCFlag(Flags::SUPER_BOOSTER) ? 19 : 7;
+			const int boostPart = CheckFlagTrait(FlagTraits::BOOSTER_DAMAGE) ? 19 : 7;
 			SetCaret(gMC.x, gMC.y - (6 * 0x200), boostPart, 1);
 			PlaySoundObject(113, SOUND_MODE_PLAY);
 		}

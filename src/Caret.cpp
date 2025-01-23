@@ -629,12 +629,10 @@ void ActCaret19(CARET *crt)
 	crt->rect = rcLeft[crt->ani_no];
 	crt->opacity -= 0.08f;
 
-	if (GetNPCFlag(Flags::SUPER_BOOSTER))
-	{
-		NPCHAR* npc = FindNpCharHere(crt->x, crt->y, 6, 6);
+	int range = GetFlagTraitData<int>(FlagTraits::BOOSTER_DAMAGE, "range");
+	NPCHAR* npc = FindNpCharHere(crt->x, crt->y, range, range);
 		if (npc != NULL)
-			DealDamage(*npc, 1);
-	}
+			DealDamage(*npc, GetFlagTraitData<int>(FlagTraits::BOOSTER_DAMAGE, "damage"));
 
 	switch (crt->direct)
 	{
