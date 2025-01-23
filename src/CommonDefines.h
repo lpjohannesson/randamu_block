@@ -57,7 +57,6 @@ namespace Flags {
 	//items
 
 	inline constexpr int CAPE_OF_SHADOWS          = 866;
-	inline constexpr int TERRA_BOOTS              = 869;
 
 	inline constexpr int UNIVERSAL_CATALYST       = 871;
 	inline constexpr int AMPHIBIAN_MEDAL          = 872;

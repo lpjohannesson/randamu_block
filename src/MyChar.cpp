@@ -712,9 +712,6 @@ void ActMyChar_Normal(bool bKey)
 		max_dash *= 1.25;
 		resist *= 1.25;
 	}
-	if (GetNPCFlag(Flags::TERRA_BOOTS)){
-		dash1 *= 1.2;
-	}
 	if (gMC.tileset == TYPE_ICE){
 		if (!CheckFlagTrait(FlagTraits::NO_SLIPPERY)){
 			resist /= 2;
@@ -824,9 +821,6 @@ void ActMyChar_Normal(bool bKey)
 			{
 				int maximal_dash = max_dash;
 				int dashy = dash1;
-				if (GetNPCFlag(Flags::TERRA_BOOTS)){
-					maximal_dash = 1535;
-				}
 				if (CheckFlagTrait(FlagTraits::ICE_SKATES) && gKey & gKeyAbility){
 					maximal_dash = 1500;
 				}

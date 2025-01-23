@@ -138,7 +138,7 @@
         "buffed_dash": {}, "dash_modifier": {"speed": 1.1, "duration": 1.15, "cooldown": 0.9}, "dash_flame_trail": {"rate": 3}, "propane_trail": {}, "buffed_snake": {}
     },
     "869": {
-        "booster_0_8": {}, "can_boost": {"amount": 60}, "no_slippery": {}
+        "booster_0_8": {}, "can_boost": {"amount": 60}, "speed_boots": {"acceleration": 1.1, "speed_multiplier": 1.9, "particle_threshold": 1.5}, "no_slippery": {}
     },
     "870": {
         "acid_immunity": {}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "revival_from_curly": {"mark_flag": 1070}, "lifesteal": {"amount_per_heart": 36}, "heart_magnet": {"distance": 64, "speed": 3}
