@@ -1277,7 +1277,7 @@ void HitMyCharBoss(void)
 		}
 
 		if (hit != 0 && gBoss[b].bits & NPC_SHOOTABLE && CheckFlagTrait(FlagTraits::STOMPING) && (gMC.ym >= 200) && gKey & gKeyAbility){
-			if (GetNPCFlag(Flags::NUCLEAR_STOMPER)){
+			if (GetFlagTraitData<bool>(FlagTraits::STOMPING, "explosive", false)){
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 				SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);

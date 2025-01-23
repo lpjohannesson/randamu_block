@@ -72,7 +72,6 @@ namespace Flags {
 	inline constexpr int WINTER_CLOCK             = 875;
 	inline constexpr int SHIELD_OF_TIME           = 876;
 	inline constexpr int LITTLE_MAN_UNDERWEAR     = 877;
-	inline constexpr int NUCLEAR_STOMPER          = 878;
 	inline constexpr int OMNIQUICK_SNEAKERS       = 879;
 	inline constexpr int FREEZE_STAR              = 880;
 
