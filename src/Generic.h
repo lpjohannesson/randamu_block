@@ -10,10 +10,13 @@
 #include <vector>
 #include <ranges>
 
-#define DO_SOMETHING(FUNC) namespace { struct b__LINE__ { \
-  b__LINE__(){FUNC} \
+#define CONCAT_(prefix, suffix) prefix##suffix
+#define CONCAT(prefix, suffix) CONCAT_(prefix, suffix)
+
+#define DO_SOMETHING(FUNC) namespace { struct CONCAT(b, __LINE__) { \
+  CONCAT(b, __LINE__)(){FUNC} \
 }; \
-	b__LINE__ code; \
+	CONCAT(b, __LINE__) CONCAT(code_b, __LINE__); \
 }
 
 void GetCompileDate(int *year, int *month, int *day);
