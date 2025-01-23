@@ -1264,8 +1264,8 @@ void ActMyChar_Normal(bool bKey)
 	if (bKey && gKey & gKeyAbility && CheckFlagTrait(FlagTraits::GLIDING) && gMC.ym  * (gMC.flip ? -1 : 1) > max_move / GetFlagTraitData<float>(FlagTraits::GLIDING, "fall_slowdown")){
 		gMC.ym = max_move / GetFlagTraitData<float>(FlagTraits::GLIDING, "fall_slowdown") * (gMC.flip ? -1 : 1);
 	}
-	if (gMC.ym > max_move / 6 && CheckForCooldown(gCooldowns, DASH_TIMER_ID) >= DashCooldown() / 2 && (GetNPCFlag(Flags::CAPE_OF_SHADOWS))){
-		gMC.ym = max_move / 6;
+	if (CheckFlagTrait(FlagTraits::GLIDING_AFTER_DASH) && gMC.ym > max_move * GetFlagTraitData<float>(FlagTraits::GLIDING_AFTER_DASH, "speed_multiplier") && CheckForCooldown(gCooldowns, DASH_TIMER_ID) >= DashCooldown() * GetFlagTraitData<float>(FlagTraits::GLIDING_AFTER_DASH, "duration")){
+		gMC.ym = max_move * GetFlagTraitData<float>(FlagTraits::GLIDING_AFTER_DASH, "speed_multiplier");
 	}
 	if (gMC.ym > max_move && !(CheckFlagTrait(FlagTraits::ACCELERATE_FALL) && gKey & gKeyAbility)){
 		gMC.ym = max_move;
@@ -1347,7 +1347,7 @@ void ActMyChar_Normal(bool bKey)
 						gMC.xm = 0x500;
 					}
 				}
-				if (GetNPCFlag(Flags::CAPE_OF_SHADOWS))
+				if (CheckFlagTrait(FlagTraits::DASH_REFRESHES_JUMP))
 				{
 					gMC.pogo = true;
 				}
@@ -1414,7 +1414,7 @@ void ActMyChar_Normal(bool bKey)
 			} else {
 				gMC.dashDuration = 0;
 			}
-			if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)){
+			if (CheckFlagTrait(FlagTraits::DASH_REFRESHES_JUMP)){
 				gMC.pogo = true;
 			}
 		}
@@ -1428,7 +1428,7 @@ void ActMyChar_Normal(bool bKey)
 		if (gMC.ameDashState){
 					gMC.ameDashState = false;
 		}
-		if (GetNPCFlag(Flags::CAPE_OF_SHADOWS)){
+		if (CheckFlagTrait(FlagTraits::DASH_REFRESHES_JUMP)){
 			gMC.pogo = true;
 		}
 	}
@@ -1489,9 +1489,7 @@ void ActMyChar_Normal(bool bKey)
 			SetCaret(gMC.x + 5*0x200, gMC.y, 15, 2);
 		}
 	}
-	if (GetNPCFlag(Flags::CAPE_OF_SHADOWS) && gMC.ym < -max_move*1.2){
-		gMC.ym = -max_move*1.2;
-	} else if (gMC.ym < -max_move)
+	if (gMC.ym < -max_move)
 		gMC.ym = -max_move;
 
 	// Water splashing

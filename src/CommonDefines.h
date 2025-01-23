@@ -56,8 +56,6 @@ namespace Flags {
 
 	//items
 
-	inline constexpr int CAPE_OF_SHADOWS          = 866;
-
 	inline constexpr int UNIVERSAL_CATALYST       = 871;
 	inline constexpr int AMPHIBIAN_MEDAL          = 872;
 	inline constexpr int DISCORDIAN_VISOR         = 874;
@@ -207,6 +205,8 @@ namespace FlagTraits {
 	inline constexpr const char* REVIVAL_FROM_CURLY            = "revival_from_curly";
 	inline constexpr const char* HEART_MAGNET                  = "heart_magnet";
 	inline constexpr const char* SAVING_AMMO_CHANCE            = "saving_ammo_chance";
+	inline constexpr const char* DASH_REFRESHES_JUMP           = "dash_refreshes_jump";
+	inline constexpr const char* GLIDING_AFTER_DASH            = "gliding_after_dash";
 }
 
 namespace Bullets {
