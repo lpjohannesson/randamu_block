@@ -114,7 +114,7 @@
         "timestop": {}
     },
     "861": {
-        "mining_charge_from_damage": {"amount": 1.5}, "mining_passive_charge": {"polar_star": 120, "nemesis": 120}, "spur_charge_boost": {"modifier": 1.5}, "weapon_recharge_boost": {"machine_gun": 3, "gatling_gun": 5, "bubbler": 2}, "mining_storage_boost": {"modifier": 1.5}
+        "mining_charge_from_damage": {"amount": 1.5}, "mining_passive_charge": {"polar_star": 120, "nemesis": 120}, "spur_charge_boost": {"modifier": 1.5}, "weapon_recharge_boost": {"machine_gun": 3, "gatling_gun": 5, "bubbler": 2}, "mining_storage_boost": {"modifier": 1.5}, "saving_ammo_chance": {"chance": 3}
     },
     "862": {
         "booster_damage": {"damage": 1, "range": 6}, "booster_2_0": {}, "can_boost": {"amount": 90}, "dont_slow_on_boost_end": {}

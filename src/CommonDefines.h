@@ -56,7 +56,6 @@ namespace Flags {
 
 	//items
 
-	inline constexpr int ENERGY_CRYSTAL           = 861;
 	inline constexpr int CAPE_OF_SHADOWS          = 866;
 	inline constexpr int TERRA_BOOTS              = 869;
 
@@ -208,6 +207,7 @@ namespace FlagTraits {
 	inline constexpr const char* BOOSTER_DAMAGE                = "booster_damage";
 	inline constexpr const char* REVIVAL_FROM_CURLY            = "revival_from_curly";
 	inline constexpr const char* HEART_MAGNET                  = "heart_magnet";
+	inline constexpr const char* SAVING_AMMO_CHANCE            = "saving_ammo_chance";
 }
 
 namespace Bullets {

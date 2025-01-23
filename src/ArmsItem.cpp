@@ -366,10 +366,6 @@ bool SubItemData(long code)
 		CutNPCFlag(equipMap[code].flag);
 	}
 
-	switch (code){
-		case 14: CutNPCFlag(Flags::ENERGY_CRYSTAL); break;
-	}
-
 	if (code > 100){
 		for (auto weapon: miracleWeaponryList){
 			auto it = std::distance(miracleWeaponryList.begin(), std::find(miracleWeaponryList.begin(), miracleWeaponryList.end(), weapon));
@@ -1089,7 +1085,7 @@ bool UseArmsEnergy(long num)
 	if (gArmsData[gSelectedArms].num < num)
 		return false;	// No ammo left
 
-	if (Random(0, 2) == 0 && GetNPCFlag(Flags::ENERGY_CRYSTAL)) return true;
+	if (CheckFlagTrait(FlagTraits::SAVING_AMMO_CHANCE) && Random(0, GetFlagTraitData<int>(FlagTraits::SAVING_AMMO_CHANCE, "chance")-1) == 0) return true;
 
 	gArmsData[gSelectedArms].num -= num;
 
