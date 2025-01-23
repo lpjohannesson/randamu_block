@@ -182,7 +182,7 @@ DO_SOMETHING(
 			for (int i = 0; i < amount; i++)
 				SetNpChar(180, 0, 0, 0, 0, 2, NULL, 0x100);
 		}
-		if (CheckFlagTrait(FlagTraits::CURLY_SPAWN) && !GetNPCFlag(Flags::BADGE_OF_LOVE_REVIVE_PROC))
+		if (CheckFlagTrait(FlagTraits::CURLY_SPAWN) && !GetNPCFlag(GetFlagTraitData<int>(FlagTraits::REVIVAL_FROM_CURLY, "mark_flag", Flags::BADGE_OF_LOVE_REVIVE_PROC)))
 			SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY);
 	});
 	flagUnsetCallbacks.push_back([](int flag)->void{

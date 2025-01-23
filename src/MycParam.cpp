@@ -358,7 +358,7 @@ void DamageMyChar(int damage)
 	}
 
 	// Tell player how much damage was taken
-	if (!(gMC.life <= 0 && GetNPCFlag(Flags::BADGE_OF_LOVE)) && !CheckFlagTrait(FlagTraits::DUCK_HEALTH))
+	if (!(gMC.life <= 0 && CheckFlagTrait(FlagTraits::REVIVAL_FROM_CURLY)) && !CheckFlagTrait(FlagTraits::DUCK_HEALTH))
 		SetValueView(&gMC.x, &gMC.y, -damage);
 
 	// Death
@@ -369,18 +369,23 @@ void DamageMyChar(int damage)
 }
 
 void Die(void){
-	if (GetNPCFlag(Flags::BADGE_OF_LOVE)){
+	if (CheckFlagTrait(FlagTraits::REVIVAL_FROM_CURLY)){
+		auto flag = *(GetTraitActiveFlags(FlagTraits::REVIVAL_FROM_CURLY).begin());
+		auto data = GetFlagTraitData(FlagTraits::REVIVAL_FROM_CURLY)[*(GetTraitActiveFlags(FlagTraits::REVIVAL_FROM_CURLY).begin())];
 		for (int i = 0; i < NPC_MAX; i++){
 			if (gNPC[i].cond & 0x80 && gNPC[i].code_char == 320 || gNPC[i].code_char == 321){
 				LoseNpChar(&gNPC[i], false);
 			}
 		}
-		SetNPCFlag(Flags::BADGE_OF_LOVE_REVIVE_PROC);
+		SetNPCFlag(std::get<int>(data["mark_flag"]));
 		gMC.life = gMC.max_life;
 		PlaySoundObject(71, SOUND_MODE_PLAY);
-		CutNPCFlag(Flags::BADGE_OF_LOVE);
-		SubItemData(17);
-		EquipItem(64, false);
+		CutNPCFlag(flag);
+		auto itemID = std::ranges::find_if(equipMap, [flag](std::pair<int, EQUIP_DEFINITION> p)->bool{
+			return p.second.flag == flag;
+		});
+		if (itemID != equipMap.end())
+			SubItemData((*itemID).first);
 		for (int i = 0; i < 100; i++)
 			SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
 	}

@@ -59,7 +59,6 @@ namespace Flags {
 	inline constexpr int ENERGY_CRYSTAL           = 861;
 	inline constexpr int CAPE_OF_SHADOWS          = 866;
 	inline constexpr int TERRA_BOOTS              = 869;
-	inline constexpr int BADGE_OF_LOVE            = 870;
 
 	inline constexpr int UNIVERSAL_CATALYST       = 871;
 	inline constexpr int AMPHIBIAN_MEDAL          = 872;
@@ -207,6 +206,8 @@ namespace FlagTraits {
 	inline constexpr const char* SHOOTING_LITTLE_MAN           = "shooting_little_man";
 	inline constexpr const char* FLAT_DAMAGE_REDUCTION         = "flat_damage_reduction";
 	inline constexpr const char* BOOSTER_DAMAGE                = "booster_damage";
+	inline constexpr const char* REVIVAL_FROM_CURLY            = "revival_from_curly";
+	inline constexpr const char* HEART_MAGNET                  = "heart_magnet";
 }
 
 namespace Bullets {
