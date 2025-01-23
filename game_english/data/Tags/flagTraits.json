@@ -135,7 +135,7 @@
         "explode_on_hit": {}, "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85}, "super_dash": {}
     },
     "868": {
-        "buffed_dash": {}, "dash_modifier": {"speed": 1.1, "duration": 1.15, "cooldown": 0.9}, "propane_trail": {}, "buffed_snake": {}
+        "buffed_dash": {}, "dash_modifier": {"speed": 1.1, "duration": 1.15, "cooldown": 0.9}, "dash_flame_trail": {"rate": 3}, "propane_trail": {}, "buffed_snake": {}
     },
     "869": {
         "booster_0_8": {}, "can_boost": {"amount": 60}, "no_slippery": {}

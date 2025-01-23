@@ -1330,7 +1330,7 @@ void ActMyChar_Normal(bool bKey)
 		{
 			gMC.dashDuration++;
 			gMC.visualDashDuration++;
-			if (GetNPCFlag(Flags::FLAMING_BOOSTER) && gMC.dashDuration % 3 == 0){
+			if (CheckFlagTrait(FlagTraits::DASH_FLAME_TRAIL) && gMC.dashDuration % GetFlagTraitData<int>(FlagTraits::DASH_FLAME_TRAIL, "rate", 3) == 0){
 				int xCoord, yCoord;
 				xCoord = gMC.x - 0x200 * 7;
 				yCoord = gMC.y - 0x200 * 7;

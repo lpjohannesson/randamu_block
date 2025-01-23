@@ -62,7 +62,6 @@ namespace Flags {
 	inline constexpr int AUGMENTED_MAN            = 865;
 	inline constexpr int CAPE_OF_SHADOWS          = 866;
 	inline constexpr int SACRED_AEGIS             = 867;
-	inline constexpr int FLAMING_BOOSTER          = 868;
 	inline constexpr int TERRA_BOOTS              = 869;
 	inline constexpr int BADGE_OF_LOVE            = 870;
 
@@ -209,6 +208,7 @@ namespace FlagTraits {
 	inline constexpr const char* WHIMSICAL_STAR                = "whimsical_star";
 	inline constexpr const char* UNHINDERED_DIVING             = "unhindered_diving";
 	inline constexpr const char* UNLIMITED_SWIM                = "unlimited_swim";
+	inline constexpr const char* DASH_FLAME_TRAIL              = "dash_flame_trail";
 }
 
 namespace Bullets {
