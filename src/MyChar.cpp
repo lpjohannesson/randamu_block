@@ -680,12 +680,6 @@ void ActMyChar_Normal(bool bKey)
 		gravity1 *= 2;
 		gravity2 *= 0.8;
 	}
-	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)){
-		dash1 *= 1.2;
-		dash2 *= 1.2;
-		max_dash *= 1.2;
-		resist *= 1.2;
-	}
 	if (GetNPCFlag(Flags::PUPPY_CHARACTER)){
 		dash1 *= 1.75;
 		dash2 *= 1.75;

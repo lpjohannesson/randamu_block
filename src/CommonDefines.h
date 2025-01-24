@@ -66,7 +66,6 @@ namespace Flags {
 	inline constexpr int MODERN_QUOTE_CHARACTER   = 2222;
 	inline constexpr int REFILL_SAVE_FLAG_BEGIN   = 2630;
 	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
-	inline constexpr int EXCERPT_CHARACTER        = 4150;
 	inline constexpr int QUATE_CHARACTER          = 4242;
 	inline constexpr int DUCKMAN_CHARACTER        = 4280;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
@@ -202,6 +201,8 @@ namespace FlagTraits {
 	inline constexpr const char* VELOCITY_BASED_JUMP           = "velocity_based_jump";
 	inline constexpr const char* INFINITE_MINING               = "infinite_mining";
 	inline constexpr const char* STAGE_COMPLETE_AMMO_BOOST     = "stage_complete_ammo_boost";
+	inline constexpr const char* EXPERIENCE_BOOST              = "experience_boost";
+	inline constexpr const char* TAKEN_DAMAGE_BOOST            = "taken_damage_boost";
 }
 
 namespace Bullets {

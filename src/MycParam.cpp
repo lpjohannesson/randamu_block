@@ -62,8 +62,9 @@ void AddScore(int x){
 
 void AddExpMyChar(int x)
 {
-	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)) x *= 2;
-	if (GetNPCFlag(Flags::MAHIN_CHARACTER)) x *= 1.5;
+	for (const auto&[flag, modifier] : GetActualFlagTraitData<float>(FlagTraits::EXPERIENCE_BOOST, "modifier")){
+		x *= std::max(0.0f, modifier);
+	}
 
 	int lv = gArmsData[gSelectedArms].level - 1;
 	int arms_code = gArmsData[gSelectedArms].code;
@@ -172,8 +173,8 @@ void DamageMyChar(int damage)
 
 	int oldDamage = damage;
 
-	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)){
-		damage *= 1.75;
+	for (const auto&[flag, modifier] : GetActualFlagTraitData<float>(FlagTraits::TAKEN_DAMAGE_BOOST, "modifier")){
+		damage *= std::max(0.0f, modifier);
 	}
 
 	if (CheckFlagTrait(FlagTraits::LOW_HP_RESIST) && gMC.life < gMC.max_life*0.5){

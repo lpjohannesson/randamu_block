@@ -1,0 +1,16 @@
+{
+    "name": "Excerpt",
+
+    "maxLife": 12,
+
+    "physics_diff": {
+        "dash1" : 1.2,
+		"dash2" : 1.2,
+		"max_dash" : 1.2,
+		"resist" : 1.2
+    },
+
+    "blacklistedChestFlags": [1301, 1501, 1601, 3201],
+    "characterFlags": [4150],
+    "startingItems": [43]
+}
