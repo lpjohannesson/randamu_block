@@ -694,13 +694,6 @@ void ActMyChar_Normal(bool bKey)
 		resist *= 1.75;
 		jump *= 1.25;
 	}
-	if (GetNPCFlag(Flags::SARA_CHARACTER)){
-		resist *= 1.09;
-		gravity1 *= 0.8;
-		gravity2 *= 0.8;
-		if (gKey & gKeyAbility)
-			max_dash *= 2;
-	}
 	if (GetNPCFlag(Flags::BRACKET_CHARACTER)){
 		dash1 *= 1.25;
 		dash2 *= 1.25;
@@ -724,6 +717,8 @@ void ActMyChar_Normal(bool bKey)
 		gravity1 *= 0.66;
 		gravity2 *= 0.66;
 	}
+	if (CheckFlagTrait(FlagTraits::DASH_SPRINT) && (gKey & gKeyAbility))
+		max_dash *= 2;
 	if (CheckFlagTrait(FlagTraits::AMPHIBIOUS))
 		gMC.no_splash_or_air_limit_underwater = 1;
 	bool miningLaserCharge = gKey & gKeyDown && gArmsData[gSelectedArms].code == 18 && gArmsData[gSelectedArms].exp > 0;

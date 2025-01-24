@@ -669,13 +669,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "SaraACSS")
-		{
-			SetNPCFlag(Flags::SARA_CHARACTER);
-			gMIMCurrentNum = 7;
-			gMC.life = 5;
-			gMC.max_life = 5;
-		}
 		if (character == "ColdWorkE")
 		{
 			SetNPCFlag(Flags::LILY_CHARACTER);

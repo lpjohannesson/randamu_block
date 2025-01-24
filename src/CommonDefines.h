@@ -68,7 +68,6 @@ namespace Flags {
 	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
 	inline constexpr int EXCERPT_CHARACTER        = 4150;
 	inline constexpr int QUATE_CHARACTER          = 4242;
-	inline constexpr int SARA_CHARACTER           = 4250;
 	inline constexpr int DUCKMAN_CHARACTER        = 4280;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
 	inline constexpr int LILY_CHARACTER           = 4350;

@@ -1,0 +1,17 @@
+{
+    "name": "Sara",
+
+    "maxLife": 5,
+
+    "physics_diff": {
+        "resist" : 1.09,
+		"gravity1" : 0.8,
+		"gravity2" : 0.8
+    },
+
+    "hurtSound": 57,
+    "deathSound": 35,
+
+    "blacklistedChestFlags": [],
+    "characterFlags": [4250]
+}
