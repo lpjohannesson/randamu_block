@@ -1,0 +1,15 @@
+{
+    "name": "Lily",
+
+    "maxLife": 6,
+
+    "hurtSound": 57,
+    "deathSound": 35,
+
+    "lifeCapsuleValue": 2,
+
+    "blacklistedChestFlags": [1501, 1901, 3101],
+    "characterFlags": [4350],
+    "startingItems": [51],
+    "startingWeapons": [{"id": 1, "maxAmmo": 0}, {"id": 5, "maxAmmo": 20}]
+}

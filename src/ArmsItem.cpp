@@ -170,8 +170,11 @@ bool AddArmsData(long code, long max_num, long exp, long num, long level)
 
 	// Set weapon and ammo
 	gArmsData[i].code = code;
-	if ((code == 2 || code == 12) && CheckFlagTrait(FlagTraits::MINING_STORAGE_BOOST)){
-		max_num *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::MINING_STORAGE_BOOST, "modifier"));
+	if ((code == 2 || code == 12)){
+		if (CheckFlagTrait(FlagTraits::MINING_STORAGE_BOOST))
+			max_num *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::MINING_STORAGE_BOOST, "modifier"));
+		if (CheckFlagTrait(FlagTraits::INFINITE_MINING))
+			max_num = 0;
 	}
 	gArmsData[i].max_num += max_num;
 	gArmsData[i].num += num == 0 ? max_num : num;

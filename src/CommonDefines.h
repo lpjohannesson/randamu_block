@@ -70,7 +70,6 @@ namespace Flags {
 	inline constexpr int QUATE_CHARACTER          = 4242;
 	inline constexpr int DUCKMAN_CHARACTER        = 4280;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
-	inline constexpr int LILY_CHARACTER           = 4350;
 	inline constexpr int MAXY_CHARACTER           = 4405;
 	inline constexpr int BRACKET_CHARACTER        = 4450;
 	inline constexpr int PUPPY_CHARACTER          = 4475;
@@ -201,6 +200,8 @@ namespace FlagTraits {
 	inline constexpr const char* MINING_FREEZE_AURA            = "mining_freeze_aura";
 	inline constexpr const char* TELEPORT_DASH                 = "teleport_dash";
 	inline constexpr const char* VELOCITY_BASED_JUMP           = "velocity_based_jump";
+	inline constexpr const char* INFINITE_MINING               = "infinite_mining";
+	inline constexpr const char* STAGE_COMPLETE_AMMO_BOOST     = "stage_complete_ammo_boost";
 }
 
 namespace Bullets {

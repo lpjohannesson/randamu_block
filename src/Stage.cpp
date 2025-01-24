@@ -602,9 +602,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::LILY_CHARACTER)){
-		items = {1501, 1901, 3101};
-	}
 	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)){
 		items = {1301, 1501, 1601, 3201};
 	}
@@ -669,13 +666,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "ColdWorkE")
-		{
-			SetNPCFlag(Flags::LILY_CHARACTER);
-			gMIMCurrentNum = 8;
-			gMC.life = 6;
-			gMC.max_life = 6;
-		}
 		if (character == "WTFEvilQu")
 		{
 			SetNPCFlag(Flags::EXCERPT_CHARACTER);
@@ -757,8 +747,7 @@ void SelectCharacter(std::string character) {
 		int lifeCapsuleValue = 3;
 		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
 			lifeCapsuleValue = 4;
-		if (GetNPCFlag(Flags::LILY_CHARACTER) || 
-		GetNPCFlag(Flags::AMY_CHARACTER))
+		if (GetNPCFlag(Flags::AMY_CHARACTER))
 			lifeCapsuleValue = 2;
 		
 		int lifeCapsuleAmount = LifeCapsuleLimit() / 1.5f * 0.75f;
@@ -2454,6 +2443,15 @@ void SpawnPlayer(GenerationContext& genContext, GenerationArguments& genArgument
 	genContext.initialPlayerPos.y *= 0x2000;
 	if (genContext.newStage)
 		SetNpChar(18, genContext.initialPlayerPos.x, genContext.initialPlayerPos.y, 0, 0, 0, NULL, 0x100, 22, 0x0000);
+	if (CheckFlagTrait(FlagTraits::STAGE_COMPLETE_AMMO_BOOST) && genContext.newStage && gMC.depth > 1){
+		auto weapons = GetFlagTraitData<std::vector<int>>(FlagTraits::STAGE_COMPLETE_AMMO_BOOST, "weapons");
+		auto ammos = GetFlagTraitData<std::vector<int>>(FlagTraits::STAGE_COMPLETE_AMMO_BOOST, "ammo");
+		if (weapons.size() == ammos.size()){
+			for (const auto&[weapon, ammo] : std::views::zip(weapons, ammos)){
+				AddArmsData(weapon, ammo);
+			}
+		}
+	}
 }
 
 void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArguments){
