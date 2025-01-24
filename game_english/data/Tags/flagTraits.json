@@ -202,7 +202,7 @@
         "dash_sprint": {}
     },
     "4280": {
-        "ducks": {}, "duck_health": {}
+        "ducks": {}, "duck_health": {}, "no_life_capsules": {}
     },
     "4300": {
         "buffed_dash": {}, "dash_modifier": {"speed": 1.1, "duration": 1.15, "cooldown": 0.9}, "double_jump": {}, "last_stand": {"speed_boost": 1.15}, "wall_jump": {}

@@ -1,0 +1,8 @@
+{
+    "name": "Duckman",
+
+    "maxLife": 4,
+
+    "blacklistedChestFlags": [],
+    "characterFlags": [4280]
+}

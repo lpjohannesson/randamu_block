@@ -66,7 +66,6 @@ namespace Flags {
 	inline constexpr int REFILL_SAVE_FLAG_BEGIN   = 2630;
 	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
 	inline constexpr int QUATE_CHARACTER          = 4242;
-	inline constexpr int DUCKMAN_CHARACTER        = 4280;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
 	inline constexpr int AMY_CHARACTER            = 5120;
 	inline constexpr int MAHIN_CHARACTER          = 7999;
@@ -201,6 +200,7 @@ namespace FlagTraits {
 	inline constexpr const char* TAKEN_DAMAGE_BOOST            = "taken_damage_boost";
 	inline constexpr const char* MAX_XSPEED_LIMIT              = "max_xspeed_limit";
 	inline constexpr const char* PUPPY_FRIEND                  = "puppy_friend";
+	inline constexpr const char* NO_LIFE_CAPSULES              = "life_capsules";
 }
 
 namespace Bullets {

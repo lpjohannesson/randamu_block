@@ -657,13 +657,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "LuigiGuy")
-		{
-			SetNPCFlag(Flags::DUCKMAN_CHARACTER);
-			gMIMCurrentNum = 13;
-			gMC.life = 4;
-			gMC.max_life = 4;
-		}
 		if (character == "Meme")
 		{
 			SetNPCFlag(Flags::QUATE_CHARACTER);
@@ -703,7 +696,7 @@ void SelectCharacter(std::string character) {
 			gMC.max_life = 6;
 		}
 	}
-	if (ChallengeEnabled("secondCampaign") && !GetNPCFlag(Flags::DUCKMAN_CHARACTER))
+	if (ChallengeEnabled("secondCampaign") && !CheckFlagTrait(FlagTraits::NO_LIFE_CAPSULES))
 	{
 		int lifeCapsuleValue = 3;
 		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
@@ -2112,7 +2105,7 @@ void CreateLifeCapsules(GenerationContext& genContext, GenerationArguments& genA
 	{
 		rooms = limit;
 	}
-	if (ChallengeEnabled("no_health") || GetNPCFlag(Flags::DUCKMAN_CHARACTER))
+	if (ChallengeEnabled("no_health") || CheckFlagTrait(FlagTraits::NO_LIFE_CAPSULES))
 	{
 		limit = 0;
 	}
