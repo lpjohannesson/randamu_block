@@ -489,10 +489,6 @@ int LifeCapsuleLimit()
 	{
 		limit = 26;
 	}
-	if (GetNPCFlag(Flags::HUNTER_CHARACTER))
-	{
-		limit = 30;
-	}
 
 	if (gMC.depth > genContext.doctorStage){
 		limit *= 1.5;
@@ -673,13 +669,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "Russia")
-		{
-			SetNPCFlag(Flags::HUNTER_CHARACTER);
-			gMIMCurrentNum = 6;
-			gMC.life = 10;
-			gMC.max_life = 10;
-		}
 		if (character == "SaraACSS")
 		{
 			SetNPCFlag(Flags::SARA_CHARACTER);
