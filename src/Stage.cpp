@@ -657,15 +657,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "Magician")
-		{
-			SetNPCFlag(Flags::MAXY_CHARACTER);
-			gMIMCurrentNum = 12;
-			gMC.hit.front = 0x200 * 4;
-			gMC.hit.back = 0x200 * 4;
-			gMC.life = 6;
-			gMC.max_life = 6;
-		}
 		if (character == "LuigiGuy")
 		{
 			SetNPCFlag(Flags::DUCKMAN_CHARACTER);

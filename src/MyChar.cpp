@@ -657,9 +657,6 @@ void ActMyChar_Normal(bool bKey)
 		jump *= jumpHeight;
 		max_move *= float(Random(20, 350)) / 100.0f;
 	}
-	if (GetNPCFlag(Flags::MAXY_CHARACTER)){
-		gravity2 *= 0.53;
-	}
 	if (GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		dash1 *= 1.5;
 		dash2 *= 1.5;

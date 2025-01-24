@@ -239,9 +239,6 @@ void DamageMyChar(int damage)
 	if (CheckFlagTrait(FlagTraits::DUCKS))
 		InitiateCooldown(gCooldowns, DUCK_TIMER_ID);
 	gMC.star = 0;
-	if (GetNPCFlag(Flags::MAXY_CHARACTER)){
-		gMC.shock = 70;
-	}
 	if (GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		gMC.shock = 200;
 	}

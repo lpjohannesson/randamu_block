@@ -1,0 +1,16 @@
+{
+    "name": "Maxy",
+
+    "maxLife": 6,
+
+    "physics_diff": {
+        "gravity2" : 0.53
+    },
+
+    "immunityFrames": 70,
+
+    "blacklistedChestFlags": [],
+    "characterFlags": [4405],
+    "startingItems": [4],
+    "startingWeapons": [{"id": 3, "maxAmmo": 0}]
+}
