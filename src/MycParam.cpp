@@ -203,8 +203,8 @@ void DamageMyChar(int damage)
 		else if (damage > 4) damage = 2;
 		else damage = 1;
 	}
-	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
-		damage *= float(Random(50, 175)) / 100.0f;
+	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){
+		damage *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_damage"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_damage"))) / 100.0f;
 	}
 
 	if (gMC.shock)
@@ -249,8 +249,8 @@ void DamageMyChar(int damage)
 			gMC.shock *= 0.75;
 		}
 	}
-	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
-		gMC.shock *= float(Random(40, 150)) / 100.0f;
+	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){
+		gMC.shock *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_shock"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_shock"))) / 100.0f;
 	}
 	if (gMC.difficulty > DIFFICULTY_REINFORCED){
 		gMC.shock *= 0.75;

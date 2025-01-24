@@ -251,7 +251,7 @@ void AnimationMyChar(bool bKey)
 		{
 			gMC.cond |= 4;
 			int aniDelay = 4;
-			if (GetNPCFlag(Flags::QUATE_CHARACTER)) aniDelay = Random(1, 6);
+			if (CheckFlagTrait(FlagTraits::ANIMATION_STUTTERING)) aniDelay = Random(1, 6);
 
 			if (++gMC.ani_wait > aniDelay)
 			{
@@ -268,7 +268,7 @@ void AnimationMyChar(bool bKey)
 		{
 			gMC.cond |= 4;
 			int aniDelay = 4;
-			if (GetNPCFlag(Flags::QUATE_CHARACTER)) aniDelay = Random(1, 6);
+			if (CheckFlagTrait(FlagTraits::ANIMATION_STUTTERING)) aniDelay = Random(1, 6);
 
 			if (++gMC.ani_wait > aniDelay)
 			{
@@ -646,16 +646,16 @@ void ActMyChar_Normal(bool bKey)
 		dash2 *= speedBoost;
 		max_dash *= speedBoost;
 	}
-	if (GetNPCFlag(Flags::QUATE_CHARACTER)){
-		float jumpHeight = float(Random(125, 300)) / 100.0f;
-		max_dash *= float(Random(30, 300)) / 100.0f;
-		gravity1 *= float(Random(70, 160)) / 100.0f;
+	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){
+		float jumpHeight = float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_jump"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_jump"))) / 100.0f;
+		max_dash *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_running"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_running"))) / 100.0f;
+		gravity1 *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_gravity"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_gravity"))) / 100.0f;
 		gravity2 /= jumpHeight * 3;
-		dash1 *= float(Random(10, 400)) / 100.0f;
-		dash2 *= float(Random(10, 400)) / 100.0f;
-		resist *= float(Random(0, 300)) / 100.0f;
+		dash1 *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_acceleration"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_acceleration"))) / 100.0f;
+		dash2 *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_acceleration"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_acceleration"))) / 100.0f;
+		resist *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_friction"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_friction"))) / 100.0f;
 		jump *= jumpHeight;
-		max_move *= float(Random(20, 350)) / 100.0f;
+		max_move *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_limit"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_limit"))) / 100.0f;
 	}
 	if (GetNPCFlag(Flags::MAHIN_CHARACTER)){
 		dash1 *= 1.5;

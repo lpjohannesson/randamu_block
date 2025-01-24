@@ -657,14 +657,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "Meme")
-		{
-			SetNPCFlag(Flags::QUATE_CHARACTER);
-			gMIMCurrentNum = 14;
-			int life = Random(2, 10, RandomCategories::SEEDED_PRIMARY);
-			gMC.life = life;
-			gMC.max_life = life;
-		}
 		if (character == "God")
 		{
 			SetNPCFlag(Flags::MAHIN_CHARACTER);
@@ -695,6 +687,11 @@ void SelectCharacter(std::string character) {
 			gMC.life = 6;
 			gMC.max_life = 6;
 		}
+	}
+	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){
+		int life = Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_start_life"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_start_life"), RandomCategories::SEEDED_PRIMARY);
+		gMC.life = life;
+		gMC.max_life = life;
 	}
 	if (ChallengeEnabled("secondCampaign") && !CheckFlagTrait(FlagTraits::NO_LIFE_CAPSULES))
 	{

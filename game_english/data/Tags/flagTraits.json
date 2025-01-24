@@ -198,6 +198,9 @@
     "4200": {
         "buffed_machine_gun": {}, "low_hp_resist": {}
     },
+    "4242": {
+        "total_randomness": {"min_dealt_damage": 50, "max_dealt_damage": 175, "min_exp": 40, "max_exp": 250, "min_damage": 50, "max_damage": 175, "min_shock": 50, "max_shock": 175, "min_acceleration": 10, "max_acceleration": 400, "min_friction": 0, "max_friction": 300, "min_gravity": 60, "max_gravity": 170, "min_jump": 125, "max_jump": 300, "min_running": 30, "max_running": 300, "min_limit": 20, "max_limit": 350, "min_start_life": 2, "max_start_life": 10}, "animation_stuttering": {}
+    },
     "4250": {
         "dash_sprint": {}
     },

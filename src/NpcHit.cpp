@@ -756,8 +756,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		dmg *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::ATTACK_DAMAGE_MODIFIER, "modifier"));
 	}
 
-	if (GetNPCFlag(Flags::QUATE_CHARACTER)){ //quate
-		dmg *= float(Random(50, 175)) / 100.0f;
+	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){ //quate
+		dmg *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_damage"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_damage"))) / 100.0f;
 	}
 
 	if (bul != NULL && !isEthereal){
