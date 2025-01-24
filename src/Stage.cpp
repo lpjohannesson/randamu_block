@@ -602,9 +602,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::EXCERPT_CHARACTER)){
-		items = {1301, 1501, 1601, 3201};
-	}
 	if (GetNPCFlag(Flags::BRACKET_CHARACTER)){
 		items = {2101, 4601};
 	}
