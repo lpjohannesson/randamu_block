@@ -602,9 +602,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::BRACKET_CHARACTER)){
-		items = {2101, 4601};
-	}
 	if (GetNPCFlag(Flags::PUPPY_CHARACTER)){
 		items = {3701, 3801, 1201};
 	}
@@ -663,13 +660,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "Jamark")
-		{
-			SetNPCFlag(Flags::BRACKET_CHARACTER);
-			gMIMCurrentNum = 10;
-			gMC.life = 6;
-			gMC.max_life = 6;
-		}
 		if (character == "Dog")
 		{
 			SetNPCFlag(Flags::PUPPY_CHARACTER);

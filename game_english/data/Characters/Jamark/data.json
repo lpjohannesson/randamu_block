@@ -1,0 +1,17 @@
+{
+    "name": "Bracket",
+
+    "maxLife": 6,
+
+    "physics_diff": {
+        "dash1" : 1.25,
+		"dash2" : 1.25,
+		"max_dash" : 1.25,
+		"resist" : 1.25
+    },
+
+    "blacklistedChestFlags": [2101, 4601],
+    "characterFlags": [4450],
+    "startingItems": [46],
+    "startingWeapons": [{"id": 8, "maxAmmo": 0}]
+}

@@ -70,7 +70,6 @@ namespace Flags {
 	inline constexpr int DUCKMAN_CHARACTER        = 4280;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
 	inline constexpr int MAXY_CHARACTER           = 4405;
-	inline constexpr int BRACKET_CHARACTER        = 4450;
 	inline constexpr int PUPPY_CHARACTER          = 4475;
 	inline constexpr int AMY_CHARACTER            = 5120;
 	inline constexpr int MAHIN_CHARACTER          = 7999;

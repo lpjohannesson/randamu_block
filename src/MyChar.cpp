@@ -688,12 +688,6 @@ void ActMyChar_Normal(bool bKey)
 		resist *= 1.75;
 		jump *= 1.25;
 	}
-	if (GetNPCFlag(Flags::BRACKET_CHARACTER)){
-		dash1 *= 1.25;
-		dash2 *= 1.25;
-		max_dash *= 1.25;
-		resist *= 1.25;
-	}
 	if (gMC.tileset == TYPE_ICE){
 		if (!CheckFlagTrait(FlagTraits::NO_SLIPPERY)){
 			resist /= 2;
