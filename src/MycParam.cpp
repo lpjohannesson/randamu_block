@@ -51,7 +51,7 @@ ARMS_LEVEL gArmsLevelTable[] =
 };
 
 void AddScore(int x){
-	if (GetNPCFlag(Flags::MAHIN_CHARACTER)) x /= 10;
+	if (CheckFlagTrait(FlagTraits::SCORE_MULTIPLIER)) x *= GetFlagTraitData<float>(FlagTraits::SCORE_MULTIPLIER, "amount");
 	switch(gMC.difficulty){
 		case DIFFICULTY_HARDENED: x *= 1.25; break;
 		case DIFFICULTY_REINFORCED: x *= 1.75; break;
@@ -223,8 +223,6 @@ void DamageMyChar(int damage)
 	}
 	else{
 		int sound = 16;
-		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
-			sound = 52;
 		if (GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 57;
 		if (GetNPCFlag(Flags::AMY_CHARACTER))
@@ -239,9 +237,6 @@ void DamageMyChar(int damage)
 	if (CheckFlagTrait(FlagTraits::DUCKS))
 		InitiateCooldown(gCooldowns, DUCK_TIMER_ID);
 	gMC.star = 0;
-	if (GetNPCFlag(Flags::MAHIN_CHARACTER)){
-		gMC.shock = 200;
-	}
 	if (CheckFlagTrait(FlagTraits::IFRAMES_BOOST)){
 		if (damage != 0){
 			gMC.shock *= 1.5;
@@ -391,8 +386,6 @@ void Die(void){
 		} else {
 		gMC.life = 0;
 		int sound = 17;
-		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
-			sound = 25;
 		if (GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 35;
 		if (GetNPCFlag(Flags::AMY_CHARACTER))

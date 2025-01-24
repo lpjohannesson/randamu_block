@@ -485,10 +485,6 @@ void msvc_srand_s2(uint32_t x)
 int LifeCapsuleLimit()
 {
 	int limit = 18;
-	if (GetNPCFlag(Flags::MAHIN_CHARACTER))
-	{
-		limit = 26;
-	}
 
 	if (gMC.depth > genContext.doctorStage){
 		limit *= 1.5;
@@ -598,10 +594,6 @@ static int chestDrops[] = {401, 501, 601, 701, 801, 901, 1001, 1101, 1201, 1301,
 std::vector<int> BlacklistedItems()
 {
 	std::vector<int> items = {};
-	if (GetNPCFlag(Flags::MAHIN_CHARACTER))
-	{
-		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
-	}
 	if (ChallengeEnabled("no_breaking") || ChallengeEnabled("no_placing"))
 	{
 		items.push_back(1901);
@@ -657,15 +649,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "God")
-		{
-			SetNPCFlag(Flags::MAHIN_CHARACTER);
-			gMC.star = 3;
-			gMIMCurrentNum = 15;
-			int life = 15;
-			gMC.life = life;
-			gMC.max_life = life;
-		}
 		if (character == "AmeManga")
 		{
 			SetNPCFlag(Flags::AMY_CHARACTER);
@@ -696,8 +679,6 @@ void SelectCharacter(std::string character) {
 	if (ChallengeEnabled("secondCampaign") && !CheckFlagTrait(FlagTraits::NO_LIFE_CAPSULES))
 	{
 		int lifeCapsuleValue = 3;
-		if (GetNPCFlag(Flags::MAHIN_CHARACTER))
-			lifeCapsuleValue = 4;
 		if (GetNPCFlag(Flags::AMY_CHARACTER))
 			lifeCapsuleValue = 2;
 		

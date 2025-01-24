@@ -657,18 +657,6 @@ void ActMyChar_Normal(bool bKey)
 		jump *= jumpHeight;
 		max_move *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_limit"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_limit"))) / 100.0f;
 	}
-	if (GetNPCFlag(Flags::MAHIN_CHARACTER)){
-		dash1 *= 1.5;
-		dash2 *= 1.5;
-		max_dash *= 1.5;
-		max_move *= 1.2;
-		resist *= 1.5;
-		jump *= 1.25;
-		gravity2 *= 0.85;
-		gravity1 *= 1.6;
-		if (gKey & gKeyAbility)
-			max_dash *= 2;
-	}
 	if (GetNPCFlag(Flags::PROCGEN_CHARACTER)){
 		jump *= 1.1;
 		dash1 *= 1.6;

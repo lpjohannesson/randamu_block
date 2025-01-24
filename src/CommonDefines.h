@@ -67,7 +67,6 @@ namespace Flags {
 	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
 	inline constexpr int AMY_CHARACTER            = 5120;
-	inline constexpr int MAHIN_CHARACTER          = 7999;
 
 	inline constexpr int MINING_LASER_MODE_BEGIN  = 6900;
 	
@@ -202,6 +201,7 @@ namespace FlagTraits {
 	inline constexpr const char* NO_LIFE_CAPSULES              = "life_capsules";
 	inline constexpr const char* TOTAL_RANDOMNESS              = "total_randomness";
 	inline constexpr const char* ANIMATION_STUTTERING          = "animation_stuttering";
+	inline constexpr const char* SCORE_MULTIPLIER              = "score_multiplier";
 }
 
 namespace Bullets {
