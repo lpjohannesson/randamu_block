@@ -70,7 +70,6 @@ namespace Flags {
 	inline constexpr int DUCKMAN_CHARACTER        = 4280;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
 	inline constexpr int MAXY_CHARACTER           = 4405;
-	inline constexpr int PUPPY_CHARACTER          = 4475;
 	inline constexpr int AMY_CHARACTER            = 5120;
 	inline constexpr int MAHIN_CHARACTER          = 7999;
 
@@ -202,6 +201,8 @@ namespace FlagTraits {
 	inline constexpr const char* STAGE_COMPLETE_AMMO_BOOST     = "stage_complete_ammo_boost";
 	inline constexpr const char* EXPERIENCE_BOOST              = "experience_boost";
 	inline constexpr const char* TAKEN_DAMAGE_BOOST            = "taken_damage_boost";
+	inline constexpr const char* MAX_XSPEED_LIMIT              = "max_xspeed_limit";
+	inline constexpr const char* PUPPY_FRIEND                  = "puppy_friend";
 }
 
 namespace Bullets {

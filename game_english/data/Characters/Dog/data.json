@@ -1,0 +1,22 @@
+{
+    "name": "Puppy",
+
+    "maxLife": 4,
+
+    "physics_diff": {
+        "dash1" : 1.75,
+		"dash2" : 1.75,
+		"max_dash" : 1.75,
+		"max_move" : 1.12,
+		"resist" : 1.75,
+		"jump" : 1.25
+    },
+
+    "hurtSound": 105,
+    "deathSound": 53,
+
+    "blacklistedChestFlags": [3701, 3801, 1201],
+    "characterFlags": [4475],
+    "startingItems": [],
+    "startingWeapons": []
+}

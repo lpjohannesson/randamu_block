@@ -578,7 +578,7 @@ void ActNpcPuppy(NPCHAR *npc)
 
 			break;
 	}
-	if (GetNPCFlag(Flags::PUPPY_CHARACTER)){
+	if (CheckFlagTrait(FlagTraits::PUPPY_FRIEND)){
 		npc->damage = 0;
 	}
 

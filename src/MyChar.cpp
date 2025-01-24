@@ -680,14 +680,6 @@ void ActMyChar_Normal(bool bKey)
 		gravity1 *= 2;
 		gravity2 *= 0.8;
 	}
-	if (GetNPCFlag(Flags::PUPPY_CHARACTER)){
-		dash1 *= 1.75;
-		dash2 *= 1.75;
-		max_dash *= 1.75;
-		max_move *= 1.12;
-		resist *= 1.75;
-		jump *= 1.25;
-	}
 	if (gMC.tileset == TYPE_ICE){
 		if (!CheckFlagTrait(FlagTraits::NO_SLIPPERY)){
 			resist /= 2;
@@ -1143,9 +1135,6 @@ void ActMyChar_Normal(bool bKey)
 	// Gravity while jump is held
 	else if (((gMC.flip && gMC.ym > (CheckFlagTrait(FlagTraits::WITCH_ASCENDING) ? 0x400 : 0)) || gMC.ym < (CheckFlagTrait(FlagTraits::WITCH_ASCENDING) ? 0x400 : 0)) && bKey && gKey & gKeyJump)
 	{
-		if (GetNPCFlag(Flags::PUPPY_CHARACTER) && abs(gMC.xm) >= max_move - 0x100){
-			gravity2 /= 1.5;
-		}
 		if (gMC.saraDash > 0 && abs(gMC.xm) > 900) gravity2 /= 3;
 		if (gKey & gKeyAbility && CheckFlagTrait(FlagTraits::ICE_SKATES) && abs(gMC.xm) >= max_dash + 275){
 			gravity2 /= 2;
@@ -1437,8 +1426,7 @@ void ActMyChar_Normal(bool bKey)
 			}
 		}
 		else {
-		float mod = 1.0f;
-		if (GetNPCFlag(Flags::PUPPY_CHARACTER)) mod = 1.75f;
+		float mod = GetFlagTraitData<float>(FlagTraits::MAX_XSPEED_LIMIT, "modifier", 1.0f);
 		if (gMC.xm > max_move*mod)
 			gMC.xm = max_move*mod;
 		if (gMC.xm < -max_move*mod)

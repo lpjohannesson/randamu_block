@@ -602,9 +602,6 @@ std::vector<int> BlacklistedItems()
 	{
 		items = {401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601};
 	}
-	if (GetNPCFlag(Flags::PUPPY_CHARACTER)){
-		items = {3701, 3801, 1201};
-	}
 	if (ChallengeEnabled("no_breaking") || ChallengeEnabled("no_placing"))
 	{
 		items.push_back(1901);
@@ -660,13 +657,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "Dog")
-		{
-			SetNPCFlag(Flags::PUPPY_CHARACTER);
-			gMIMCurrentNum = 11;
-			gMC.life = 4;
-			gMC.max_life = 4;
-		}
 		if (character == "Magician")
 		{
 			SetNPCFlag(Flags::MAXY_CHARACTER);

@@ -219,6 +219,9 @@
     "4450": {
         "hook_flail": {}
     },
+    "4475": {
+        "max_xspeed_limit": {"modifier": 1.75}, "puppy_friend": {}, "velocity_based_jump": {"modifier": 0.01}
+    },
     "5120": {
         "buffed_dash": {}, "cat_dash": {"speed": 1.7, "cooldown": 3}, "cat_float": {}, "sword_sheathing": {}
     },
