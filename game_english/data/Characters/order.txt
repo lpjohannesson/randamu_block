@@ -11,3 +11,5 @@ ColdWorkE
 WTFEvilQu
 Jamark
 Dog
+Magician
+LuigiGuy
