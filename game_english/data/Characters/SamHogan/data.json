@@ -1,0 +1,21 @@
+{
+    "name": "ProcGen",
+
+    "maxLife": 6,
+
+    "physics_diff": {
+        "jump" : 1.1,
+		"dash1" : 1.6,
+		"dash2" : 0.75,
+		"resist" : 0.5,
+		"gravity1" : 2,
+		"gravity2" : 0.8
+    },
+
+    "hurtSound": 54,
+
+    "blacklistedChestFlags": [],
+    "characterFlags": [1024],
+    "startingItems": [],
+    "startingWeapons": [{"id": 19, "maxAmmo": 200}]
+}

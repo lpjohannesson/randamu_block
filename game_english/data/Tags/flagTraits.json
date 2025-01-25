@@ -179,6 +179,9 @@
     "883": {
         "nanites": {"projectiles": true, "active_projectile_rate": 5, "passive_projectile_rate": 40}, "energy_projectile_on_hit": {"chance": 3}
     },
+    "1024": {
+        "walking_sound": {"id": 34}, "unwieldy_spark_flying": {"speed_boost": 4}
+    },
     "2048": {
         "level_4_weapons": {}
     },

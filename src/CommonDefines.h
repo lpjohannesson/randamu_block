@@ -61,7 +61,6 @@ namespace Flags {
 	inline constexpr int STAR_SAVE_FLAG_BEGIN     = 950;
 	inline constexpr int BADGE_OF_LOVE_REVIVE_PROC= 1070;
 
-	inline constexpr int PROCGEN_CHARACTER        = 1024;
 	inline constexpr int SERENITY_CHARACTER       = 2048;
 	inline constexpr int REFILL_SAVE_FLAG_BEGIN   = 2630;
 	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
@@ -201,6 +200,8 @@ namespace FlagTraits {
 	inline constexpr const char* TOTAL_RANDOMNESS              = "total_randomness";
 	inline constexpr const char* ANIMATION_STUTTERING          = "animation_stuttering";
 	inline constexpr const char* SCORE_MULTIPLIER              = "score_multiplier";
+	inline constexpr const char* WALKING_SOUND                 = "walking_sound";
+	inline constexpr const char* UNWIELDY_SPARK_FLYING         = "unwieldy_spark_flying";
 }
 
 namespace Bullets {

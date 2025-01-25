@@ -238,8 +238,7 @@ void AnimationMyChar(bool bKey)
 	if (gMC.cond & 2)
 		return;
 
-	int walkSound = 24;
-	if (GetNPCFlag(Flags::PROCGEN_CHARACTER)) walkSound = 34;
+	int walkSound = GetFlagTraitData<int>(FlagTraits::WALKING_SOUND, "id", 24);
 
 	if (gMC.flag & 8)
 	{
@@ -657,14 +656,6 @@ void ActMyChar_Normal(bool bKey)
 		jump *= jumpHeight;
 		max_move *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_limit"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_limit"))) / 100.0f;
 	}
-	if (GetNPCFlag(Flags::PROCGEN_CHARACTER)){
-		jump *= 1.1;
-		dash1 *= 1.6;
-		dash2 *= 0.75;
-		resist *= 0.5;
-		gravity1 *= 2;
-		gravity2 *= 0.8;
-	}
 	if (gMC.tileset == TYPE_ICE){
 		if (!CheckFlagTrait(FlagTraits::NO_SLIPPERY)){
 			resist /= 2;
@@ -905,8 +896,8 @@ void ActMyChar_Normal(bool bKey)
 			// Move left and right
 			int maximal_dash = max_dash;
 			int dashy = dash2;
-			if (gKey & gKeyJump && GetNPCFlag(Flags::PROCGEN_CHARACTER) && gArmsData[gSelectedArms].code == 19 && gArmsData[gSelectedArms].num > 0){
-				dash2 *= 4;
+			if (gKey & gKeyJump && CheckFlagTrait(FlagTraits::UNWIELDY_SPARK_FLYING) && gArmsData[gSelectedArms].code == 19 && gArmsData[gSelectedArms].num > 0){
+				dash2 *= GetFlagTraitData<float>(FlagTraits::UNWIELDY_SPARK_FLYING, "speed_boost");
 			}
 			if (bKey && gKey & gKeyAbility && CheckFlagTrait(FlagTraits::GLIDING) && gMC.ym > 0x080){
 				maximal_dash *= GetFlagTraitData<float>(FlagTraits::GLIDING, "max_speed");

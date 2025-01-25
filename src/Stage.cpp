@@ -649,13 +649,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "SamHogan")
-		{
-			SetNPCFlag(Flags::PROCGEN_CHARACTER);
-			gMIMCurrentNum = 17;
-			gMC.life = 6;
-			gMC.max_life = 6;
-		}
 		if (character == "LunarSha")
 		{
 			SetNPCFlag(Flags::SERENITY_CHARACTER);

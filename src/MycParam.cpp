@@ -225,8 +225,6 @@ void DamageMyChar(int damage)
 		int sound = 16;
 		if (GetNPCFlag(Flags::SERENITY_CHARACTER))
 			sound = 57;
-		if (GetNPCFlag(Flags::PROCGEN_CHARACTER))
-			sound = 54;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 	}
 	gMC.cond &= ~1;
