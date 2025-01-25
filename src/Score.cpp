@@ -77,7 +77,7 @@ void LoadRankings(){
 	}
 
 	gRankings = ReadJSON(gModulePath + "/rankings.json", mode::encryptedGlobal);
-	for (auto rank: gRankings){
+	for (auto& rank: gRankings){
 		if (rank["version"] < 3)
 			rank["character"] = CharacterCode(rank["mim"].get<int>());
 	}

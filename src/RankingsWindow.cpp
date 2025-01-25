@@ -594,6 +594,8 @@ int RankingLoop(void)
 	path_tileset += (char)tile;
 	ReloadBitmap_File(path_tileset.c_str(), SURFACE_ID_LEVEL_TILESET);
 
+	InitMyCharSprite(gRankings[selectedRank]["character"].get<std::string>());
+
 	// Load the inventory script
 	LoadTextScript2("ArmsItem.tsc");
 
@@ -706,9 +708,6 @@ int RankingLoop(void)
 				PlaySoundObject(4, SOUND_MODE_PLAY);
 				return enum_ESCRETURN_continue;
 			}
-		}
-		if (oldRank != selectedRank){
-			InitMyCharSprite(gRankings[selectedRank]["character"].get<std::string>());
 		}
 
 		switch (TextScriptProc())

@@ -305,6 +305,7 @@ bool LoadGenericData(void)
 	MakeSurface_Generic(320, 240, SURFACE_ID_LEVEL_SPRITESET_1, false);
 	MakeSurface_Generic(320, 240, SURFACE_ID_LEVEL_SPRITESET_2, false);
 	MakeSurface_Generic(320, 32 * (MAX_STRIP - 1), SURFACE_ID_CREDIT_CAST, false);
+	MakeSurface_Generic(200, 32, SURFACE_ID_MY_CHAR, false);
 
 	pt_size = 0;
 
