@@ -3591,37 +3591,37 @@ std::string CharacterCode(int id){
 		return "KingTable";
 	case 3:
 		return "FluffMimi";
-	case 4:
-		return "Sakamoto";
-	case 5:
-		return "Raymundo";
-	case 6:
-		return "Upntscale";
-	case 7:
-		return "Russia";
-	case 8:
-		return "SaraACSS";
-	case 9:
-		return "ColdWorkE";
-	case 10:
-		return "WTFEvilQu";
-	case 11:
-		return "Jamark";
-	case 12:
-		return "Dog";
-	case 13:
-		return "Magician";
-	case 14:
-		return "LuigiGuy";
-	case 15:
-		return "Meme";
-	case 16:
-		return "God";
-	case 17:
-		return "AmeManga";
-	case 18:
-		return "SamHogan";
 	case 19:
+		return "Sakamoto";
+	case 4:
+		return "Raymundo";
+	case 5:
+		return "Upntscale";
+	case 6:
+		return "Russia";
+	case 7:
+		return "SaraACSS";
+	case 8:
+		return "ColdWorkE";
+	case 9:
+		return "WTFEvilQu";
+	case 10:
+		return "Jamark";
+	case 11:
+		return "Dog";
+	case 12:
+		return "Magician";
+	case 13:
+		return "LuigiGuy";
+	case 14:
+		return "Meme";
+	case 15:
+		return "God";
+	case 16:
+		return "AmeManga";
+	case 17:
+		return "SamHogan";
+	case 18:
 		return "LunarSha";
 	default:
 		return "";
