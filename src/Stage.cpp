@@ -3583,6 +3583,8 @@ void PutMappingName(void){
 std::string CharacterCode(int id){
 	switch (id)
 	{
+	case 0:
+		return "Quote";
 	case 1:
 		return "CurlyBrac";
 	case 2:

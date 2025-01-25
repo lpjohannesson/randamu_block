@@ -376,11 +376,7 @@ static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
 	{0, 16, 16, 32},
 	{32, 16, 48, 32},
 	};
-	if (gMIMCurrentNum > 0)
-	for (int i = 0; i < 4; i++){
-		rcMyChar[i].top += 32 * gMIMCurrentNum;
-		rcMyChar[i].bottom += 32 * gMIMCurrentNum;
-	}
+	InitMyCharSprite(gJConfig.value("character", "Quote"));
 
 	unsigned int anime = 0;
 
@@ -588,15 +584,7 @@ static int EnterOptionsMenuWithAlternates(OptionsMenu *options_menu, size_t sele
 	{0, 16, 16, 32},
 	{32, 16, 48, 32},
 	};
-	for (int i = 0; i <= MAX_CHARACTERS; i++){
-		if (gJConfig.value("character", "") == CharacterCode(i)){
-			character = characterOrder[i];
-		}
-	}
-	for (int i = 0; i < 4; i++){
-		rcMyChar[i].top += 32 * character;
-		rcMyChar[i].bottom += 32 * character;
-	}
+	InitMyCharSprite(gJConfig.value("character", "Quote"));
 
 	unsigned int anime = 0;
 

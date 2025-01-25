@@ -903,9 +903,6 @@ void ActNpc111(NPCHAR *npc)
 	else
 		npc->rect = rcRight[npc->ani_no];
 
-	npc->rect.top += 32 * gMIMCurrentNum;
-	npc->rect.bottom += 32 * gMIMCurrentNum;
-
 	if (npc->act_no == 4)
 	{
 		npc->rect.bottom = npc->rect.top + (npc->act_wait / 4);
@@ -975,9 +972,6 @@ void ActNpc112(NPCHAR *npc)
 		npc->rect = rcLeft[npc->ani_no];
 	else
 		npc->rect = rcRight[npc->ani_no];
-
-	npc->rect.top += 32 * gMIMCurrentNum;
-	npc->rect.bottom += 32 * gMIMCurrentNum;
 
 	if (npc->act_no == 1)
 	{

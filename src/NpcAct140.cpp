@@ -1331,9 +1331,6 @@ void ActNpc150(NPCHAR *npc)
 	else
 		npc->rect = rcRight[npc->ani_no];
 
-	npc->rect.top += 32 * gMIMCurrentNum;
-	npc->rect.bottom += 32 * gMIMCurrentNum;
-
 	if (npc->act_no == 21)
 	{
 		npc->rect.bottom = npc->rect.top + (npc->act_wait / 4);

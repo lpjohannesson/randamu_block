@@ -16,6 +16,7 @@
 #include "RankingsWindow.h"
 #include "ResourceCode.h"
 #include "Score.h"
+#include "Stage.h"
 #include "TextScr.h"
 
 #define GET_FLAG(x, i) ((x)[(i) / 8] & (1 << ((i) % 8)))
@@ -76,6 +77,10 @@ void LoadRankings(){
 	}
 
 	gRankings = ReadJSON(gModulePath + "/rankings.json", mode::encryptedGlobal);
+	for (auto rank: gRankings){
+		if (rank["version"] < 3)
+			rank["character"] = CharacterCode(rank["mim"].get<int>());
+	}
 	WriteGameLog("Rankings loaded in ", since(timing).count(), " ms.");
 }
 

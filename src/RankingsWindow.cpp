@@ -413,11 +413,6 @@ void PutRankingObject(void)
 	{0, 16, 16, 32},
 	{32, 16, 48, 32},
 	};
-	if (gRankings[selectedRank]["mim"] > 0)
-	for (int i = 0; i < 4; i++){
-		rcMyChar[i].top += 32 * gRankings[selectedRank]["mim"].get<int>();
-		rcMyChar[i].bottom += 32 * gRankings[selectedRank]["mim"].get<int>();
-	}
 
 	// Draw weapons
 	for (i = 0; i < ARMS_MAX; ++i)
@@ -643,6 +638,8 @@ int RankingLoop(void)
 		if (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)
 			MoveRankingCursor();
 
+		int oldRank = selectedRank;
+
 		if (gKey & gKeyAbility)
 		{
 			const int scrolling = 10;
@@ -709,6 +706,9 @@ int RankingLoop(void)
 				PlaySoundObject(4, SOUND_MODE_PLAY);
 				return enum_ESCRETURN_continue;
 			}
+		}
+		if (oldRank != selectedRank){
+			InitMyCharSprite(gRankings[selectedRank]["character"].get<std::string>());
 		}
 
 		switch (TextScriptProc())

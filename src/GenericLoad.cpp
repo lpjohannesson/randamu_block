@@ -231,8 +231,6 @@ bool LoadGenericData(void)
 	bError = false;
 	if (!MakeSurface_File("Npc/NpcMiza", SURFACE_ID_PIXEL))
 		bError = true;
-	if (!MakeSurface_File("MyChar", SURFACE_ID_MY_CHAR))
-		bError = true;
 	if (!MakeSurface_File("MyChar", SURFACE_ID_MY_CHAR_2))
 		bError = true;
 	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_ACCESSORIES))

@@ -57,7 +57,6 @@ const Rect gRect_line = {0, 0, 216, 16};
 static unsigned long nod_color;
 #endif
 
-unsigned int gMIMCurrentNum = 0;
 int lastInteractedEntityID = -1;
 
 // Initialize and end tsc
@@ -1526,11 +1525,6 @@ int ActualTextScriptProc(void)
 								return enum_ESCRETURN_restart;
 						}
 
-						gTS.p_read += 8;
-					}
-					else if (IS_COMMAND('M','I','M'))
-					{
-						gMIMCurrentNum = GetTextScriptNo(gTS.p_read + 4);
 						gTS.p_read += 8;
 					}
 					else if (IS_COMMAND('P','H','Y'))

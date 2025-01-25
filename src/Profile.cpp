@@ -250,8 +250,8 @@ bool LoadProfile(const char *name)
 		if (equipData & 8)
 			SetNPCFlag(704);
 		// Migrate character data
-		static std::vector<std::string> characterDefs = {"Quote", "CurlyBrac", "KingTable", "FluffMimi", "Raymundo", "Upntscale", "Russia", "SaraACSS", "ColdWorkE", "WTFEvilQu", "Jamark", "Dog", "Magician", "LuigiGuy", "Meme", "God", "AmeManga", "SamHogan", "LunarSha", "Sakamoto"};
-		profileJson[PROFILE_CHARACTER] = characterDefs[profileJson[PROFILE_MIM].get<unsigned int>()];
+
+		profileJson[PROFILE_CHARACTER] = CharacterCode(profileJson[PROFILE_MIM].get<unsigned int>());
 	}
 	gMC.unit =  profileJson[PROFILE_UNIT].get<int>();
 	gMC.direct = profileJson[PROFILE_DIRECT].get<int>();

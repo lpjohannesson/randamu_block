@@ -32,7 +32,7 @@ struct MYCHAR_DEFINITION
 {
 	std::string name;
 	std::string codeName;
-	std::string spritesheet = "MyChar.png";
+	std::string spritesheet = "MyChar";
 	
 	struct MYCHAR_PHYSICS_DIFF
 	{
@@ -174,6 +174,7 @@ void InitMyChar(void);
 void AnimationMyChar(bool bKey);
 void ShowMyChar(bool bShow);
 void PutMyChar(int fx, int fy);
+void InitMyCharSprite(std::string characterName);
 void ActMyChar_Normal(bool bKey);
 bool IsDashEquipped();
 bool IsASheep();

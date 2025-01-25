@@ -1893,8 +1893,6 @@ void ActNpc355(NPCHAR *npc)
 
 	npc->rect = rc[npc->ani_no];
 	if (npc->direct == 0 || npc->direct == 2){
-		npc->rect.top += 32 * gMIMCurrentNum;
-		npc->rect.bottom += 32 * gMIMCurrentNum;
 	} else {
 		if (CheckFlagTrait(FlagTraits::EXCERPT_ALLIES)){
 			npc->rect.top -= 32;

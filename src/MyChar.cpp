@@ -128,8 +128,6 @@ void InitMyChar(void)
 	gMC.difficulty = gJConfig.value("difficulty", 0);
 	mapModifications.clear();
 
-	gMIMCurrentNum = 0;
-
 	// This is initialized with the values the game uses in vanilla
 	gMC.physics_normal.max_dash = 0x32C;
 	gMC.physics_normal.max_move = 0x5FF;
@@ -372,6 +370,10 @@ void ShowMyChar(bool bShow)
 		gMC.cond |= 2;
 }
 
+void InitMyCharSprite(std::string characterName){
+	MakeSurface_File(GetResourcePath("Characters/" + characterName + "/" + availableCharacters[characterName].spritesheet).c_str(), SURFACE_ID_MY_CHAR);
+}
+
 void PutMyChar(int fx, int fy)
 {
 	if (IsASheep() && (gMC.cond & 0x80)){
@@ -384,8 +386,6 @@ void PutMyChar(int fx, int fy)
 	Rect rcRight = {0, 16, 16, 32};
 	int color = 0xaca6ff;
 	Rect rect = gMC.direct == 0 ? rcLeft : rcRight;
-	rect.top += 32 * gMIMCurrentNum;
-	rect.bottom += 32 * gMIMCurrentNum;
 	PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &rect, color, SURFACE_ID_DASH_VISUAL);
 	for (const auto& equip : equipVisuals)
 	{
@@ -474,8 +474,6 @@ void PutMyChar(int fx, int fy)
 			SURFACE_ID_ARMS);
 
 	Rect rect = gMC.rect;
-	rect.top += 32 * gMIMCurrentNum;
-	rect.bottom += 32 * gMIMCurrentNum;
 
 	if (CheckFlagTrait(FlagTraits::RANGED_BLOCK_PLACE) && (gArmsData[gSelectedArms].code == 2 
 		|| (gArmsData[gSelectedArms].code == 12 && (CheckFlagTrait(FlagTraits::RANGED_BLOCK_BREAK) || CheckFlagTrait(FlagTraits::MINING_FREEZE_AURA))))){
@@ -525,10 +523,6 @@ void PutMyChar(int fx, int fy)
 
 	// Draw player
 	rect = gMC.rect;
-	rect.top += 32 * gMIMCurrentNum;
-	rect.bottom += 32 * gMIMCurrentNum;
-#ifndef ENABLE_MIM_DISABLE_EQUIP_40_GRAPHICS
-#endif
 	PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &rect, SURFACE_ID_MY_CHAR);
 
 	for (const auto& equip : equipVisuals)
