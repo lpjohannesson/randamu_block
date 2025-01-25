@@ -649,13 +649,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "AmeManga")
-		{
-			SetNPCFlag(Flags::AMY_CHARACTER);
-			gMIMCurrentNum = 16;
-			gMC.life = 4;
-			gMC.max_life = 4;
-		}
 		if (character == "SamHogan")
 		{
 			SetNPCFlag(Flags::PROCGEN_CHARACTER);
@@ -679,8 +672,6 @@ void SelectCharacter(std::string character) {
 	if (ChallengeEnabled("secondCampaign") && !CheckFlagTrait(FlagTraits::NO_LIFE_CAPSULES))
 	{
 		int lifeCapsuleValue = 3;
-		if (GetNPCFlag(Flags::AMY_CHARACTER))
-			lifeCapsuleValue = 2;
 		
 		int lifeCapsuleAmount = LifeCapsuleLimit() / 1.5f * 0.75f;
 		if (ChallengeEnabled("fast_run"))

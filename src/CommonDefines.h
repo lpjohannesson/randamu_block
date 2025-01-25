@@ -66,7 +66,6 @@ namespace Flags {
 	inline constexpr int REFILL_SAVE_FLAG_BEGIN   = 2630;
 	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
-	inline constexpr int AMY_CHARACTER            = 5120;
 
 	inline constexpr int MINING_LASER_MODE_BEGIN  = 6900;
 	

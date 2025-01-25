@@ -1,0 +1,15 @@
+{
+    "name": "Ame",
+
+    "maxLife": 4,
+
+    "hurtSound": 50,
+    "deathSound": 53,
+
+    "lifeCapsuleValue": 2,
+
+    "blacklistedChestFlags": [],
+    "characterFlags": [5120],
+    "startingItems": [],
+    "startingWeapons": [{"id": 17, "maxAmmo": 0}]
+}
