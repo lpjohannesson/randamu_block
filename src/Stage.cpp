@@ -649,13 +649,6 @@ void LogSeed(unsigned long seed){
 void SelectCharacter(std::string character) {
 	if (character != "")
 	{
-		if (character == "LunarSha")
-		{
-			SetNPCFlag(Flags::SERENITY_CHARACTER);
-			gMIMCurrentNum = 18;
-			gMC.life = 6;
-			gMC.max_life = 6;
-		}
 	}
 	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){
 		int life = Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_start_life"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_start_life"), RandomCategories::SEEDED_PRIMARY);

@@ -1,0 +1,12 @@
+{
+    "name": "Serenity",
+
+    "maxLife": 6,
+
+    "hurtSound": 57,
+    "deathSound": 35,
+
+    "blacklistedChestFlags": [],
+    "characterFlags": [2048],
+    "startingItems": []
+}

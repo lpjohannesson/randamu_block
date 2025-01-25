@@ -61,7 +61,6 @@ namespace Flags {
 	inline constexpr int STAR_SAVE_FLAG_BEGIN     = 950;
 	inline constexpr int BADGE_OF_LOVE_REVIVE_PROC= 1070;
 
-	inline constexpr int SERENITY_CHARACTER       = 2048;
 	inline constexpr int REFILL_SAVE_FLAG_BEGIN   = 2630;
 	inline constexpr int REFILL_SAVE_FLAG_END     = 2699;
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
