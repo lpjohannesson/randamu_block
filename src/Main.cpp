@@ -250,6 +250,7 @@ void ReloadConfig(){
 	}
 	for (auto characterDefPath: characterDefPaths) {
 		 json characterDef = ReadJSON(("Characters" / characterDefPath / "data.json").string());
+		 characterDef["codeName"] = characterDefPath;
 		 availableCharacters[characterDefPath.string()] = characterDef;
 	}
 

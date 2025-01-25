@@ -77,6 +77,7 @@ bool IsProfile(void)
 #define PROFILE_GEN_CHESTS   "zzz_chestInfo"
 #define PROFILE_AVAILABLE_IDS   "zzz_chestPool"
 #define PROFILE_COOLDOWNS "cooldowns"
+#define PROFILE_CHARACTER "character"
 
 bool SaveProfile(const char *name)
 {
@@ -133,7 +134,6 @@ bool SaveProfile(const char *name)
 		}
 	}
 
-	profileJson[PROFILE_MIM] = gMIMCurrentNum;
 	profileJson[PROFILE_MIRACLE] = gMC.miracle;
 	profileJson[PROFILE_GEN_MIRACLE] = gMC.miracleGenerated;
 	profileJson[PROFILE_MIRACLE_DEPTH] = gMC.miracleDepth;
@@ -148,6 +148,7 @@ bool SaveProfile(const char *name)
 	profileJson[PROFILE_MAP_MODS] = saveMapMods;
 	profileJson[PROFILE_GEN_CHESTS] = gMC.generatedChests;
 	profileJson[PROFILE_AVAILABLE_IDS] = gAvailableIDs;
+	profileJson[PROFILE_CHARACTER] = gMC.characterData.codeName;
 	SaveRNG(profileJson);
 	WriteJSON(path, profileJson, mode::normal, 3);
 	WriteGameLog("Profile saved in ", since(timing).count(), " ms");
@@ -237,8 +238,8 @@ bool LoadProfile(const char *name)
 
 	// Set character properties
 
-	// Migrate passive items into flags
 	if (version < 5){
+		// Migrate passive items into flags
 		int equipData = profileJson[PROFILE_EQUIPS].get<int>();
 		if (equipData & 16)
 			SetNPCFlag(709);
@@ -248,6 +249,9 @@ bool LoadProfile(const char *name)
 			SetNPCFlag(706);
 		if (equipData & 8)
 			SetNPCFlag(704);
+		// Migrate character data
+		static std::vector<std::string> characterDefs = {"Quote", "CurlyBrac", "KingTable", "FluffMimi", "Raymundo", "Upntscale", "Russia", "SaraACSS", "ColdWorkE", "WTFEvilQu", "Jamark", "Dog", "Magician", "LuigiGuy", "Meme", "God", "AmeManga", "SamHogan", "LunarSha", "Sakamoto"};
+		profileJson[PROFILE_CHARACTER] = characterDefs[profileJson[PROFILE_MIM].get<unsigned int>()];
 	}
 	gMC.unit =  profileJson[PROFILE_UNIT].get<int>();
 	gMC.direct = profileJson[PROFILE_DIRECT].get<int>();
@@ -265,10 +269,10 @@ bool LoadProfile(const char *name)
 	gMC.rect_arms.top = (gArmsData[gSelectedArms].code / 10) * 32;
 	gMC.rect_arms.bottom = gMC.rect_arms.top + 16;
 	
-	gMIMCurrentNum = profileJson[PROFILE_MIM].get<unsigned int>();
 	gMC.physics_normal = profileJson[PROFILE_PHYSICS].get<MYCHAR_PHYSICS>();
 	gMC.physics_underwater = profileJson[PROFILE_PHYSICS_UNDERWATER].get<MYCHAR_PHYSICS>();
 	gMC.no_splash_or_air_limit_underwater = profileJson[PROFILE_NO_WATER].get<int>();
+	gMC.characterData = availableCharacters[profileJson[PROFILE_CHARACTER].get<std::string>()];
 
 	// Reset stuff
 	ClearFade();

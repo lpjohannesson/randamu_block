@@ -87,7 +87,7 @@ void SaveRankings(){
 	rank["difficulty"] = gMC.difficulty;
 	rank["life"] = gMC.life <= 0 ? 0 : gMC.life;
 	rank["max_life"] = gMC.max_life;
-	rank["mim"] = gMIMCurrentNum;
+	rank["character"] = gMC.characterData.codeName;
 
 	rank["flags"] = json::array();
 	for (int i = 0; i < 8000; i++){

@@ -31,6 +31,7 @@ struct MYCHAR_PHYSICS
 struct MYCHAR_DEFINITION
 {
 	std::string name;
+	std::string codeName;
 	std::string spritesheet = "MyChar.png";
 	
 	struct MYCHAR_PHYSICS_DIFF
@@ -65,7 +66,7 @@ struct MYCHAR_DEFINITION
 
 	std::vector<WEAPON> startingWeapons{{3, 0}};
 
-	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, spritesheet, physics_diff, maxLife,
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, codeName, spritesheet, physics_diff, maxLife,
 		hurtSound, deathSound, immunityFrames, lifeCapsuleLimit, lifeCapsuleValue,
 		blacklistedChestFlags, characterFlags, startingItems, startingWeapons)
 };
@@ -155,6 +156,7 @@ struct MYCHAR
 	bool ameDashState;
 	int difficulty;
 	int freeze;
+	MYCHAR_DEFINITION characterData;
 };
 
 extern std::map<std::pair<short, short>, unsigned char> mapModifications;
