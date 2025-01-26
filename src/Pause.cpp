@@ -1272,7 +1272,19 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 	StartTextScript(900 + selectedChar);
 	ChangeMusic(MUS_SELECT);
 
-	int characterAmount = availableCharacters.size();
+	const int characterAmount = availableCharacters.size();
+	const int lineLength = std::max(characterAmount / 5, 4); 
+	MakeSurface_Generic(characterAmount*16, 16, SURFACE_ID_MY_CHAR_2, false);
+	Rect fullCharRect = {0, 0, characterAmount*16, 16};
+	CortBox2(&fullCharRect, 0, (SurfaceID)SURFACE_ID_MY_CHAR_2);
+	int i = -1;
+	Rect charRect = {0, 0, 16, 16};
+	for (const auto&name: availableCharacters | std::views::keys){
+		i++;
+		InitMyCharSprite(name);
+		
+		Surface2Surface(i*16, 0, &charRect, SURFACE_ID_MY_CHAR_2, SURFACE_ID_MY_CHAR);
+	}
 
 	for (;;)
 	{
@@ -1288,23 +1300,23 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 
 		if (gKeyTrg & gKeyLeft){
 			if (--selectedChar < 0)
-				selectedChar = MAX_CHARACTERS;
+				selectedChar = characterAmount-1;
 			bChange = true;
 		}
 		if (gKeyTrg & gKeyRight){
-			if (++selectedChar > MAX_CHARACTERS)
+			if (++selectedChar > characterAmount-1)
 				selectedChar = 0;
 			bChange = true;
 		}
 		if (gKeyTrg & gKeyUp){
-			selectedChar -= 4;
+			selectedChar -= lineLength;
 			if (selectedChar < 0)
-				selectedChar = MAX_CHARACTERS;
+				selectedChar = characterAmount-1;
 			bChange = true;
 		}
 		if (gKeyTrg & gKeyDown){
-			selectedChar += 4;
-			if (selectedChar > MAX_CHARACTERS)
+			selectedChar += lineLength;
+			if (selectedChar > characterAmount-1)
 				selectedChar = 0;
 			bChange = true;
 		}
@@ -1319,13 +1331,13 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 			StartTextScript(950 + selectedChar);
 		}
 
-		for (int i = 0; i <= MAX_CHARACTERS; i++){
+		for (int i = 0; i < characterAmount; i++){
 			Rect rcChar = {0, 0, 16, 16};
-			rcChar.top += characterOrder[i] * 32;
-			rcChar.bottom = rcChar.top + 16;
-			PutBitmap3(&rcView, PixelToScreenCoord(WINDOW_WIDTH / 2 - 40 + (i % 4)*20), PixelToScreenCoord(y + 25 + (i / 4)*17), &rcChar, SURFACE_ID_MY_CHAR);
+			rcChar.left += i*16;
+			rcChar.right += i*16;
+			PutBitmap3(&rcView, PixelToScreenCoord(WINDOW_WIDTH / 2 - 40 + (i % lineLength)*20), PixelToScreenCoord(y + 25 + (i / lineLength)*17), &rcChar, SURFACE_ID_MY_CHAR_2);
 		}
-		PutBitmap3(&rcView, PixelToScreenCoord(WINDOW_WIDTH / 2 - 42 + (selectedChar % 4)*20), PixelToScreenCoord(y + 23 + (selectedChar / 4)*17), &rcSelect, SURFACE_ID_TEXT_BOX);
+		PutBitmap3(&rcView, PixelToScreenCoord(WINDOW_WIDTH / 2 - 42 + (selectedChar % lineLength)*20), PixelToScreenCoord(y + 23 + (selectedChar / lineLength)*17), &rcSelect, SURFACE_ID_TEXT_BOX);
 		PutText(0, 2, GetCSE2Message("select_ok_tip"), RGB(0xFF, 0xFF, 0xFF));
 		PutText(0, 16, GetCSE2Message("select_cancel_tip"), RGB(0xFF, 0xFF, 0xFF));
 		PutText(0, 30, GetCSE2Message("select_arrows_tip"), RGB(0xFF, 0xFF, 0xFF));
@@ -1357,6 +1369,7 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 			break;
 		}
 	}
+	ReleaseSurface(SURFACE_ID_MY_CHAR_2);
 
 	return Callback_PickDifficulty(parent_menu, this_option);
 
