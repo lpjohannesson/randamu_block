@@ -263,6 +263,7 @@ bool LoadProfile(const char *name)
 	gMC.lifeBr = profileJson[PROFILE_HP].get<int>();
 	gMC.a = profileJson[PROFILE_A].get<short>();
 	gMC.score = profileJson[PROFILE_SCORE].get<int>();
+	gMC.characterData = availableCharacters[profileJson[PROFILE_CHARACTER].get<std::string>()];
 
 	gMC.rect_arms.left = (gArmsData[gSelectedArms].code % 10) * 24;
 	gMC.rect_arms.right = gMC.rect_arms.left + 24;
