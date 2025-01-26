@@ -187,6 +187,7 @@ void SetFramePosition(int fx, int fy)
 
 void SetFrameMyChar(void)
 {
+	InitMyCharSprite(gMC.characterData.codeName);
 	int mc_x, mc_y;
 	short map_w, map_l;
 

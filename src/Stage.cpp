@@ -484,7 +484,7 @@ void msvc_srand_s2(uint32_t x)
 
 int LifeCapsuleLimit()
 {
-	int limit = 18;
+	int limit = gMC.characterData.lifeCapsuleLimit;
 
 	if (gMC.depth > genContext.doctorStage){
 		limit *= 1.5;
@@ -594,6 +594,9 @@ static int chestDrops[] = {401, 501, 601, 701, 801, 901, 1001, 1101, 1201, 1301,
 std::vector<int> BlacklistedItems()
 {
 	std::vector<int> items = {};
+	for (auto flagID: gMC.characterData.blacklistedChestFlags){
+		items.push_back(flagID);
+	}
 	if (ChallengeEnabled("no_breaking") || ChallengeEnabled("no_placing"))
 	{
 		items.push_back(1901);
@@ -647,8 +650,20 @@ void LogSeed(unsigned long seed){
 }
 
 void SelectCharacter(std::string character) {
-	if (character != "")
-	{
+	gMC.characterData = availableCharacters[character];
+	for (auto flag: gMC.characterData.characterFlags)
+		SetNPCFlag(flag);
+	gMC.life = gMC.max_life = gMC.characterData.maxLife;
+	AddItemData(2);
+	for (auto item: gMC.characterData.startingItems){
+		AddItemData(item);
+		if (equipMap.contains(item))
+			SetNPCFlag(equipMap[item].flag);
+	}
+	AddArmsData(2, 100);
+	AddArmsData(12, 100);
+	for (auto arms: gMC.characterData.startingWeapons){
+		AddArmsData(arms.id, arms.maxAmmo);
 	}
 	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){
 		int life = Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_start_life"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_start_life"), RandomCategories::SEEDED_PRIMARY);
@@ -657,7 +672,7 @@ void SelectCharacter(std::string character) {
 	}
 	if (ChallengeEnabled("secondCampaign") && !CheckFlagTrait(FlagTraits::NO_LIFE_CAPSULES))
 	{
-		int lifeCapsuleValue = 3;
+		int lifeCapsuleValue = gMC.characterData.lifeCapsuleValue;
 		
 		int lifeCapsuleAmount = LifeCapsuleLimit() / 1.5f * 0.75f;
 		if (ChallengeEnabled("fast_run"))
@@ -2983,8 +2998,8 @@ bool TransferStage(int no, int w, int x, int y)
 		LogSeed(genContext.seed);
 
 		SelectCharacter(gDaily ?
-					 CharacterCode(genContext.seed % MAX_CHARACTERS) :
-					 gJConfig.value("character", ""));
+					(*(availableCharacters.cbegin()+(genContext.seed % (availableCharacters.size()+1)))).first :
+					 gJConfig.value("character", "Quote"));
 		
 		std::vector<int> blacklist = BlacklistedItems();
 		gAvailableIDs.clear();
@@ -3480,20 +3495,7 @@ void ReCallMusic(void)
 
 std::string CharacterName()
 {
-	for (auto names : characterNames)
-	{
-		if (names.first != "default")
-		{
-			std::string_view flagNumStr = names.first;
-			int flagNum;
-			std::from_chars(flagNumStr.data(), flagNumStr.data() + flagNumStr.size(), flagNum);
-			if (GetNPCFlag(flagNum))
-			{
-				return names.second;
-			}
-		}
-	}
-	return characterNames["default"];
+	return gMC.characterData.name;
 }
 
 std::string TilesetName(){

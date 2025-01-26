@@ -608,13 +608,13 @@ void ActMyChar_Normal(bool bKey)
 		physics = &gMC.physics_normal;
 	}
 	
-	max_dash = physics->max_dash;
-	gravity1 = physics->gravity1;
-	gravity2 = physics->gravity2;
-	dash1 = physics->dash1;
-	dash2 = physics->dash2;
-	resist = physics->resist;
-	jump = physics->jump;
+	max_dash = physics->max_dash * gMC.characterData.physics_diff.max_dash;
+	gravity1 = physics->gravity1 * gMC.characterData.physics_diff.gravity1;
+	gravity2 = physics->gravity2 * gMC.characterData.physics_diff.gravity2;
+	dash1 = physics->dash1 * gMC.characterData.physics_diff.dash1;
+	dash2 = physics->dash2 * gMC.characterData.physics_diff.dash2;
+	resist = physics->resist * gMC.characterData.physics_diff.resist;
+	jump = physics->jump * gMC.characterData.physics_diff.jump;
 	// Limit speed
 	if (gMC.flag & 0x100 && !(gMC.flag & (0x8000 | 0x4000 | 0x2000 | 0x1000)))
 		max_move = gMC.physics_underwater.max_move;	// Underwater or in wind

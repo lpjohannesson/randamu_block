@@ -222,11 +222,11 @@ void DamageMyChar(int damage)
 		PlaySoundObject(31, SOUND_MODE_PLAY);
 	}
 	else{
-		int sound = 16;
+		int sound = gMC.characterData.hurtSound;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 	}
 	gMC.cond &= ~1;
-	gMC.shock = 128;
+	gMC.shock = gMC.characterData.immunityFrames;
 	gMC.regenCount = 0;
 	if (CheckFlagTrait(FlagTraits::DUCKS))
 		InitiateCooldown(gCooldowns, DUCK_TIMER_ID);
@@ -379,7 +379,7 @@ void Die(void){
 			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		} else {
 		gMC.life = 0;
-		int sound = 17;
+		int sound = gMC.characterData.deathSound;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 		gMC.cond = 0;
 		SetDestroyNpChar(gMC.x, gMC.y, 0x1400, 0x40);
@@ -426,7 +426,7 @@ void AddLifeMyChar(int x)
 			gMC.life = 0;
 			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		} else {
-		int sound = 17;
+		int sound = gMC.characterData.deathSound;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);
 		gMC.cond = 0;
 		SetDestroyNpChar(gMC.x, gMC.y, 0x1400, 0x40);
