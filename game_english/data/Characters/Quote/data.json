@@ -1,3 +1,6 @@
 {
-    "name": "Quote"
+    "name": "Quote",
+
+    "description1": "Standard character. Stars with default tools and Fireball.",
+    "description2": "No additional info."
 }

@@ -4,5 +4,8 @@
     "maxLife": 4,
 
     "blacklistedChestFlags": [],
-    "characterFlags": [4280]
+    "characterFlags": [4280],
+
+    "description1": "Always surrounded by his ducks that protect him and shoot ducklings.",
+    "description2": "Taking damage takes from one to three ducks away depending on damage. Getting hit with 0 ducks results in death."
 }

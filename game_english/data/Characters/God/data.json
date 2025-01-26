@@ -24,5 +24,8 @@
     "blacklistedChestFlags": [401, 501, 601, 701, 801, 901, 1301, 1501, 1601, 1901, 3101, 3201, 3701, 4601, 4801, 5501, 5601],
     "characterFlags": [7999],
     "startingItems": [4, 43, 51, 23, 56],
-    "startingWeapons": [{"id": 4, "maxAmmo": 100}, {"id": 7, "maxAmmo": 0}, {"id": 16, "maxAmmo": 0}, {"id": 9, "maxAmmo": 0}, {"id": 8, "maxAmmo": 0}, {"id": 13, "maxAmmo": 0}, {"id": 5, "maxAmmo": 20}, {"id": 19, "maxAmmo": 200}, {"id": 11, "maxAmmo": 5}, {"id": 17, "maxAmmo": 0}]
+    "startingWeapons": [{"id": 4, "maxAmmo": 100}, {"id": 7, "maxAmmo": 0}, {"id": 16, "maxAmmo": 0}, {"id": 9, "maxAmmo": 0}, {"id": 8, "maxAmmo": 0}, {"id": 13, "maxAmmo": 0}, {"id": 5, "maxAmmo": 20}, {"id": 19, "maxAmmo": 200}, {"id": 11, "maxAmmo": 5}, {"id": 17, "maxAmmo": 0}],
+
+    "description1": "The god of exploring yourself, has every tool to destroy, but gets less score.",
+    "description2": "His moveset includes dashing, boosting, double jumping, hooking, destroying rows of blocks, gliding and many more."
 }

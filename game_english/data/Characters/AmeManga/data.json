@@ -11,5 +11,8 @@
     "blacklistedChestFlags": [],
     "characterFlags": [5120],
     "startingItems": [],
-    "startingWeapons": [{"id": 17, "maxAmmo": 0}]
+    "startingWeapons": [{"id": 17, "maxAmmo": 0}],
+
+    "description1": "Cat agility allows her to charge up swords and lunge forward on pressing dash button.",
+    "description2": "Hold any sword for 3.5 seconds without using to charge it. Her fragility and inexperience leaves her with 33% less HP."
 }

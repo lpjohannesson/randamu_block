@@ -19,5 +19,8 @@
     "blacklistedChestFlags": [601, 1301, 1401, 3701],
     "characterFlags": [4300],
     "startingItems": [],
-    "startingWeapons": [{"id": 7, "maxAmmo": 100}]
+    "startingWeapons": [{"id": 7, "maxAmmo": 100}],
+
+    "description1": "Has incredible jump height and mobility tricks, but low health. She gets Bubbler.",
+    "description2": "Can also survive fatal hit once per stage. She has 3 HP and gets 2 HP from life capsules."
 }

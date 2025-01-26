@@ -20,5 +20,8 @@
     "blacklistedChestFlags": [4801],
     "characterFlags": [4096, 708],
     "startingItems": [56],
-    "startingWeapons": [{"id": 11, "maxAmmo": 5}]
+    "startingWeapons": [{"id": 11, "maxAmmo": 5}],
+
+    "description1": "Starts with shotgun, ice skates and desire to find treasures.",
+    "description2": "Sue has very low HP but can run through spikes with enough horizontal velocity."
 }

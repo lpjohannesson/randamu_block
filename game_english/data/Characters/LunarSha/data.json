@@ -1,5 +1,6 @@
 {
     "name": "Serenity",
+    "fullName": "Serenity Horton",
 
     "maxLife": 6,
 
@@ -8,5 +9,8 @@
 
     "blacklistedChestFlags": [],
     "characterFlags": [2048],
-    "startingItems": []
+    "startingItems": [],
+
+    "description1": "The adventurer and weapon specialist, she can upgrade her weapons to level 4.",
+    "description2": "Level 4 weapons have stronger effects or more projectiles from each shot."
 }

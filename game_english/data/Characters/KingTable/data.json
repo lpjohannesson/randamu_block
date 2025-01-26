@@ -17,5 +17,8 @@
     "blacklistedChestFlags": [2801, 3701, 3801, 4601, 4701],
     "characterFlags": [4100],
     "startingItems": [],
-    "startingWeapons": [{"id": 9, "maxAmmo": 0}, {"id": 8, "maxAmmo": 0}, {"id": 15, "maxAmmo": 0}]
+    "startingWeapons": [{"id": 9, "maxAmmo": 0}, {"id": 8, "maxAmmo": 0}, {"id": 15, "maxAmmo": 0}],
+
+    "description1": "Can use a multitude of melee weapons, including his Blade. Jumps very high.",
+    "description2": "Use Dash key while holding Blade to dash-slash."
 }

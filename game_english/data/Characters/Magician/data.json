@@ -1,5 +1,6 @@
 {
     "name": "Maxy",
+    "fullName": "Magician",
 
     "maxLife": 6,
 
@@ -12,5 +13,8 @@
     "blacklistedChestFlags": [],
     "characterFlags": [4405],
     "startingItems": [4],
-    "startingWeapons": [{"id": 3, "maxAmmo": 0}]
+    "startingWeapons": [{"id": 3, "maxAmmo": 0}],
+
+    "description1": "Has smaller hitbox, extra strong Fireball, dash and floaty jump, but less i-frames.",
+    "description2": "Press Dash key to dash. This dash removes projectiles. Fireballs have higher speed and explode into flames."
 }

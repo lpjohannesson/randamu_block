@@ -17,5 +17,8 @@
     "blacklistedChestFlags": [],
     "characterFlags": [1024],
     "startingItems": [],
-    "startingWeapons": [{"id": 19, "maxAmmo": 200}]
+    "startingWeapons": [{"id": 19, "maxAmmo": 200}],
+
+    "description1": "The robot that moves on wheel, spreads sparks and can fly by holding Jump.",
+    "description2": "ProcGen's wheel makes it hard to turn around, unless using flight. Flight also shoots sparks and scales with level."
 }

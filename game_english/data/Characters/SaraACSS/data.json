@@ -13,5 +13,8 @@
     "deathSound": 35,
 
     "blacklistedChestFlags": [],
-    "characterFlags": [4250]
+    "characterFlags": [4250],
+
+    "description1": "Holding Ability allows her to move and jump very quickly with even dodging damage.",
+    "description2": "Ignoring damage has 8 seconds cooldown. Gliding also grants double jump and increased jump height."
 }

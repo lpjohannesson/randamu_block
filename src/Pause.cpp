@@ -100,6 +100,9 @@ json gConfigCopy;
 int mode = 0;
 char characterOrder[] = {0, 1, 2, 3, 19, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
 
+// inspired by word wrap from L.B on Stack Overflow
+auto WordWrap = ctre::search_all<"(.{1,44})(?:\\s|$)">;
+
 static std::string GetKeyName(int key)
 {
 	switch (key)
@@ -1110,9 +1113,6 @@ static int Callback_PickDifficulty(OptionsMenu *parent_menu, size_t this_option)
 
 std::string resourceDesc;
 
-// inspired by word wrap from L.B on Stack Overflow
-auto WordWrap = ctre::search_all<"(.{1,44})(?:\\s|$)">;
-
 static int Callback_Resources(OptionsMenu *parent_menu, size_t this_option, CallbackAction action){
 	int scroll = 0;
 	(void)parent_menu;
@@ -1263,13 +1263,11 @@ static int Callback_Resources(OptionsMenu *parent_menu, size_t this_option, Call
 static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 	
 	(void)parent_menu;
-	LoadTextScript2("StageSelect.tsc");
 	InitBack("bkChtulhu", 7);
 	Rect rcView = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
 	Rect rcSelect = {214, 134, 234, 154};
 	int selectedChar = 0;
 
-	StartTextScript(900 + selectedChar);
 	ChangeMusic(MUS_SELECT);
 
 	const int characterAmount = availableCharacters.size();
@@ -1288,6 +1286,8 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 
 	for (;;)
 	{
+		std::string characterDesc, characterName;
+		auto selectedCharDefinition = (*(availableCharacters.cbegin()+selectedChar)).second;
 		GetTrg();
 
 		PutBack(0, 0);
@@ -1297,6 +1297,7 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 		PutText(WINDOW_WIDTH / 2 - 45, y, GetCSE2Message("character_select"), RGB(0xFF, 0xFF, 0xFF));
 
 		bool bChange = false;
+		static bool altDesc = false;
 
 		if (gKeyTrg & gKeyLeft){
 			if (--selectedChar < 0)
@@ -1323,13 +1324,24 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 
 		if (bChange){
 			PlaySoundObject(SND_SWITCH_WEAPON, SOUND_MODE_PLAY);
-			StartTextScript(900 + selectedChar);
 			bChange = false;
+			altDesc = false;
 		}
 
 		if (gKeyTrg & gKeyCancel){
-			StartTextScript(950 + selectedChar);
+			altDesc = true;
 		}
+
+		characterName = std::format("- {} -", selectedCharDefinition.fullName.empty() ? selectedCharDefinition.name : selectedCharDefinition.fullName);
+		if (characterName.length() < 44){
+			int amount = (44 - characterName.length())/2;
+			std::stringstream finalStr;
+			for (int i = 0; i < amount; i++) finalStr << ' ';
+			finalStr << characterName;
+			for (int i = 0; i < amount; i++) finalStr << ' ';
+			characterName = finalStr.str();
+		}
+		characterDesc = altDesc ? selectedCharDefinition.description2 : selectedCharDefinition.description1;
 
 		for (int i = 0; i < characterAmount; i++){
 			Rect rcChar = {0, 0, 16, 16};
@@ -1342,23 +1354,33 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 		PutText(0, 16, GetCSE2Message("select_cancel_tip"), RGB(0xFF, 0xFF, 0xFF));
 		PutText(0, 30, GetCSE2Message("select_arrows_tip"), RGB(0xFF, 0xFF, 0xFF));
 
+		Rect rcFrame1 = {0, 0, 244, 8};
+		Rect rcFrame2 = {0, 8, 244, 16};
+		Rect rcFrame3 = {0, 16, 244, 24};
+		int i;
+		PutBitmap3(&rcView, PixelToScreenCoord((WINDOW_WIDTH / 2) - 122), PixelToScreenCoord(WINDOW_HEIGHT - 66), &rcFrame1, SURFACE_ID_TEXT_BOX);
+		for (i = 1; i < 7; ++i)
+			PutBitmap3(&rcView, PixelToScreenCoord((WINDOW_WIDTH / 2) - 122), PixelToScreenCoord((i * 8) + WINDOW_HEIGHT - 66), &rcFrame2, SURFACE_ID_TEXT_BOX);
+		PutBitmap3(&rcView, PixelToScreenCoord((WINDOW_WIDTH / 2) - 122), PixelToScreenCoord((i * 8) + WINDOW_HEIGHT - 66), &rcFrame3, SURFACE_ID_TEXT_BOX);
+
+		int baseY = 0;
+
+		if (!altDesc){
+			PutText((WINDOW_WIDTH / 2 - 108), WINDOW_HEIGHT - 56 + baseY, characterName, RGB(0xFF, 0xFF, 0xFF));
+			baseY += 16;
+		}
+
+		for (auto& part: WordWrap(characterDesc)){
+			PutText((WINDOW_WIDTH / 2 - 108), WINDOW_HEIGHT - 56 + baseY, part.str(), RGB(0xFF, 0xFF, 0xFF));
+			baseY += 16;
+		}
+
 		if (gKeyTrg & gKeyOk){
 			gConfigCopy["character"] = CharacterCode(selectedChar);
 			PlaySoundObject(18, SOUND_MODE_PLAY);
 			StartFadeOut(4);
 			break;
 		}
-
-		switch (TextScriptProc())
-		{
-			case enum_ESCRETURN_exit:
-				return enum_ESCRETURN_exit;	// Quit game
-
-			case enum_ESCRETURN_restart:
-				return enum_ESCRETURN_restart;	// Go to game intro
-		}
-
-		PutTextScript();
 
 		PutFramePerSecound();
 

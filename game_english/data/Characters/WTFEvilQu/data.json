@@ -12,5 +12,8 @@
 
     "blacklistedChestFlags": [1301, 1501, 1601, 3201],
     "characterFlags": [4150],
-    "startingItems": [43]
+    "startingItems": [43],
+
+    "description1": "Evil spirit with ton of allies and double jump. Gets more XP but takes more damage.",
+    "description2": "The XP is multiplied by 2x, damage is multiplied by 1.5x."
 }

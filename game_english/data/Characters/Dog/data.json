@@ -18,5 +18,8 @@
     "blacklistedChestFlags": [3701, 3801, 1201],
     "characterFlags": [4475],
     "startingItems": [],
-    "startingWeapons": []
+    "startingWeapons": [],
+
+    "description1": "Moves at incredible speed but only has Polar Star and Nemesis at start.",
+    "description2": "Puppy NPCs are friendly to Puppy PC."
 }

@@ -32,6 +32,7 @@ struct MYCHAR_DEFINITION
 {
 	std::string name;
 	std::string codeName;
+	std::string fullName;
 	std::string spritesheet = "MyChar";
 	
 	struct MYCHAR_PHYSICS_DIFF
@@ -66,9 +67,12 @@ struct MYCHAR_DEFINITION
 
 	std::vector<WEAPON> startingWeapons{{3, 0}};
 
-	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, codeName, spritesheet, physics_diff, maxLife,
+	std::string description1;
+	std::string description2;
+
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, codeName, fullName, spritesheet, physics_diff, maxLife,
 		hurtSound, deathSound, immunityFrames, lifeCapsuleLimit, lifeCapsuleValue,
-		blacklistedChestFlags, characterFlags, startingItems, startingWeapons)
+		blacklistedChestFlags, characterFlags, startingItems, startingWeapons, description1, description2)
 };
 
 struct MYCHAR_EQUIP_DEFINITION

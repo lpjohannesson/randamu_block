@@ -11,5 +11,8 @@
     "blacklistedChestFlags": [1501, 1901, 3101],
     "characterFlags": [4350],
     "startingItems": [51],
-    "startingWeapons": [{"id": 1, "maxAmmo": 0}, {"id": 5, "maxAmmo": 20}]
+    "startingWeapons": [{"id": 1, "maxAmmo": 0}, {"id": 5, "maxAmmo": 20}],
+
+    "description1": "Can build and destroy without limits, can control missile launcher. Also has Snake.",
+    "description2": "Hold Ability key to control Rocket Launcher with arrows. She also gets 2 HP from pickups."
 }

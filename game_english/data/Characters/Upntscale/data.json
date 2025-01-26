@@ -1,5 +1,6 @@
 {
     "name": "Quote",
+    "fullName": "Modern Quote",
 
     "maxLife": 10,
 
@@ -8,5 +9,8 @@
     "blacklistedChestFlags": [801, 3701],
     "characterFlags": [2222, 725, 743],
     "startingItems": [23, 4],
-    "startingWeapons": [{"id": 13, "maxAmmo": 0}]
+    "startingWeapons": [{"id": 13, "maxAmmo": 0}],
+
+    "description1": "Gets 10 HP, Booster and Spur from start. Ideal for speed playthroughs.",
+    "description2": "Press Dash key to dash."
 }

@@ -2,5 +2,8 @@
     "name": "Quate",
 
     "characterFlags": [4242],
-    "startingItems": []
+    "startingItems": [],
+
+    "description1": "Empowered by community memes, randomizes every aspect of gameplay.",
+    "description2": "Things that are randomized: projectile damage, physics, animation speed, taking damage, XP drops and i-frames."
 }

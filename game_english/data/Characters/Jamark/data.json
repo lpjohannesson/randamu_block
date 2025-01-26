@@ -13,5 +13,8 @@
     "blacklistedChestFlags": [2101, 4601],
     "characterFlags": [4450],
     "startingItems": [46],
-    "startingWeapons": [{"id": 8, "maxAmmo": 0}]
+    "startingWeapons": [{"id": 8, "maxAmmo": 0}],
+
+    "description1": "Can use hook to grapple to objects, can fall quickly with Ability key.",
+    "description2": "Hookshot has many properties of Energy Whip, including damage."
 }

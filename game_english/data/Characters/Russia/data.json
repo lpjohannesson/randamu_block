@@ -14,5 +14,8 @@
     "blacklistedChestFlags": [],
     "characterFlags": [3333],
     "startingItems": [],
-    "startingWeapons": [{"id": 16, "maxAmmo": 0}]
+    "startingWeapons": [{"id": 16, "maxAmmo": 0}],
+
+    "description1": "Wields powerful piercing rifle and can get food from kills, but needs to eat.",
+    "description2": "Hunger depletes 1 HP per 7.5 seconds until you die. Food drops from any shootable object."
 }
