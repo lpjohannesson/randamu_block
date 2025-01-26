@@ -2034,7 +2034,6 @@ void PitMyChar(void)
 	gMC.y += 2 * 0x10 * 0x200;	// Shove player two tiles down. I wonder what this was meant for?
 }
 
-// TODO: rework into "automatic" item-flag setter
 void EquipItem(int flag, bool b)
 {
 	if (b){

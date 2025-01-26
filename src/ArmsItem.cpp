@@ -364,10 +364,8 @@ bool SubItemData(long code)
 
 	gItemData[i - 1].code = 0;
 	gSelectedItem = 0;
-
-	if (equipMap.contains(code) && equipMap[code].isPassive){
-		CutNPCFlag(equipMap[code].flag);
-	}
+	
+	CutNPCFlag(equipMap[code].flag);
 
 	if (code > 100){
 		for (auto weapon: miracleWeaponryList){
