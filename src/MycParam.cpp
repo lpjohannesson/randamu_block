@@ -362,7 +362,7 @@ void Die(void){
 				LoseNpChar(&gNPC[i], false);
 			}
 		}
-		SetNPCFlag(std::get<int>(data["mark_flag"]));
+		SetNPCFlag(GetMetadata<int>(data["mark_flag"]));
 		gMC.life = gMC.max_life;
 		PlaySoundObject(71, SOUND_MODE_PLAY);
 		CutNPCFlag(flag);

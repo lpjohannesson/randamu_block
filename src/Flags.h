@@ -39,12 +39,12 @@ namespace rnddetail {
 }
 
 template <IsGenMetadata ArgType>
-inline const ArgType& GetFlagTraitData(std::string trait, std::string parameter, const ArgType defaultValue = ArgType{}){
+inline const ArgType GetFlagTraitData(std::string trait, std::string parameter, const ArgType defaultValue = ArgType{}){
 	if (flagTraits.contains(trait)){
 		for (const auto &[flag, info]: flagTraits[trait]){
 			if (info.contains(parameter)){
 				if (GetNPCFlag(flag))
-					return std::get<ArgType>(info.at(parameter));
+					return GetMetadata<ArgType>(info.at(parameter));
 			}
 		}
 	}
@@ -65,6 +65,6 @@ inline auto GetActualFlagTraitData(std::string trait, std::string parameter){
 	auto mapView = MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [parameter](int flag, GenerationArguments value)->bool{
 		return GetNPCFlag(flag) && value.contains(parameter);
 	});
-    return std::views::zip(mapView | std::views::keys, mapView | std::views::values | std::views::values | std::views::transform([](auto&& arg)->ArgType{ return std::get<ArgType>(arg);}));
+    return std::views::zip(mapView | std::views::keys, mapView | std::views::values | std::views::values | std::views::transform([](auto&& arg)->ArgType{ return GetMetadata<ArgType>(arg);}));
 }
 #endif // __FLAGS_H__

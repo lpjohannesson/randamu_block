@@ -1213,149 +1213,149 @@ bool LoadMapAssets(){
 
 void CreateRectangles(GenerationContext& genContext, GenerationArguments& genArguments)
 {
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["reduction_min"]), std::get<int>(genArguments["reduction_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["reduction_min"]), GetMetadata<int>(genArguments["reduction_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["ruiny_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["ruiny_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms /= std::get<int>(genArguments["ruiny_reduction"]);
+			rooms /= GetMetadata<int>(genArguments["ruiny_reduction"]);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["dungeon_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["dungeon_tileset"])))
 	{
-		rooms *= std::get<int>(genArguments["dungeon_boost"]);
+		rooms *= GetMetadata<int>(genArguments["dungeon_boost"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["artificial_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["artificial_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["artificial_min"]), std::get<int>(genArguments["artificial_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["artificial_min"]), GetMetadata<int>(genArguments["artificial_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["dried_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["dried_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["dried_min"]), std::get<int>(genArguments["dried_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["dried_min"]), GetMetadata<int>(genArguments["dried_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["otherworldy_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["otherworldy_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["otherworldy_min"]), std::get<int>(genArguments["otherworldy_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["otherworldy_min"]), GetMetadata<int>(genArguments["otherworldy_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["laboratory_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["laboratory_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["laboratory_min"]), std::get<int>(genArguments["laboratory_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["laboratory_min"]), GetMetadata<int>(genArguments["laboratory_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
 	rooms /= genContext.crampiness;
 	for (int l = 0; l < rooms; l++)
 	{
-		auto w_stats = std::get<std::vector<int>>(genArguments["width"]);
-		auto h_stats = std::get<std::vector<int>>(genArguments["height"]);
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["dungeon_tileset"])))
+		auto w_stats = GetMetadata<std::vector<int>>(genArguments["width"]);
+		auto h_stats = GetMetadata<std::vector<int>>(genArguments["height"]);
+		if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["dungeon_tileset"])))
 		{
-			w_stats = std::get<std::vector<int>>(genArguments["dungeon_width"]);
-			h_stats = std::get<std::vector<int>>(genArguments["dungeon_height"]);
+			w_stats = GetMetadata<std::vector<int>>(genArguments["dungeon_width"]);
+			h_stats = GetMetadata<std::vector<int>>(genArguments["dungeon_height"]);
 		}
 		int w = Random(w_stats[0], w_stats[1], RandomCategories::SEEDED_PRIMARY);
 		int h = Random(h_stats[0], h_stats[1], RandomCategories::SEEDED_PRIMARY);
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["open_tilesets"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["open_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				w *= std::get<float>(genArguments["open_boost"]);
-				h *= std::get<float>(genArguments["open_boost"]);
+				w *= GetMetadata<float>(genArguments["open_boost"]);
+				h *= GetMetadata<float>(genArguments["open_boost"]);
 			}
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_gimmick"])))
 		{
-			w *= std::get<float>(genArguments["closed_gimmick_boost"]);
-			h *= std::get<float>(genArguments["closed_gimmick_boost"]);
+			w *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
+			h *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_gimmick"])))
 		{
-			w *= std::get<float>(genArguments["open_gimmick_boost"]);
-			h *= std::get<float>(genArguments["open_gimmick_boost"]);
+			w *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
+			h *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
 		}
 		PaintRectangle(0, Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY), Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY), w, h);
 	}
 }
 
 void CreateCircles(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["maze_tileset"])))
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["maze_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["maze_min"]), std::get<int>(genArguments["maze_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["maze_min"]), GetMetadata<int>(genArguments["maze_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["sandy_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["sandy_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["sandy_min"]), std::get<int>(genArguments["sandy_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["sandy_min"]), GetMetadata<int>(genArguments["sandy_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["contained_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["contained_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["contained_min"]), std::get<int>(genArguments["contained_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["contained_min"]), GetMetadata<int>(genArguments["contained_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
 			rooms = 0;
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["rounded_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["rounded_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["rounded_min"]), std::get<int>(genArguments["rounded_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["rounded_min"]), GetMetadata<int>(genArguments["rounded_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["arcadia_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["arcadia_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["arcadia_min"]), std::get<int>(genArguments["arcadia_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["arcadia_min"]), GetMetadata<int>(genArguments["arcadia_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
 	rooms /= genContext.crampiness;
 	for (int l = 0; l < rooms; l++)
 	{
-		auto radius = std::get<std::vector<int>>(genArguments["radius"]);
+		auto radius = GetMetadata<std::vector<int>>(genArguments["radius"]);
 		int r = Random(radius[0], radius[1], RandomCategories::SEEDED_PRIMARY);
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_in_sky"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_in_sky"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				r *= std::get<float>(genArguments["radius_mod_in_sky"]);
+				r *= GetMetadata<float>(genArguments["radius_mod_in_sky"]);
 			}
 		}
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_with_boost"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_with_boost"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				r *= std::get<float>(genArguments["radius_boost"]);
+				r *= GetMetadata<float>(genArguments["radius_boost"]);
 			}
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_gimmick"])))
 		{
-			r *= std::get<float>(genArguments["closed_gimmick_boost"]);
+			r *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_gimmick"])))
 		{
-			r *= std::get<float>(genArguments["open_gimmick_boost"]);
+			r *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
 		}
 		PaintEllipse(0, Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY), Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY), r);
 	}
 }
 
 void CreateMediumRooms(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["maze_tileset"])))
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["maze_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["maze_min"]), std::get<int>(genArguments["maze_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["maze_min"]), GetMetadata<int>(genArguments["maze_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["sandy_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["sandy_tileset"])))
 	{
-		rooms *= std::get<float>(genArguments["sandy_modifier"]);
+		rooms *= GetMetadata<float>(genArguments["sandy_modifier"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
 			rooms = 0;
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["grassy_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["grassy_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["grassy_min"]), std::get<int>(genArguments["grassy_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["grassy_min"]), GetMetadata<int>(genArguments["grassy_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["natural_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["natural_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["natural_min"]), std::get<int>(genArguments["natural_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["natural_min"]), GetMetadata<int>(genArguments["natural_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["arcadia_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["arcadia_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["arcadia_min"]), std::get<int>(genArguments["arcadia_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["arcadia_min"]), GetMetadata<int>(genArguments["arcadia_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["contained_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["contained_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["contained_min"]), std::get<int>(genArguments["contained_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["contained_min"]), GetMetadata<int>(genArguments["contained_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
 	rooms /= genContext.crampiness;
 	for (int l = 0; l < rooms; l++)
@@ -1366,68 +1366,68 @@ void CreateMediumRooms(GenerationContext& genContext, GenerationArguments& genAr
 			x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 		} while (!IsEmpty(x, y));
-		auto w_stats = std::get<std::vector<int>>(genArguments["width"]);
-		auto h_stats = std::get<std::vector<int>>(genArguments["height"]);
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["wide_tilesets"])){
+		auto w_stats = GetMetadata<std::vector<int>>(genArguments["width"]);
+		auto h_stats = GetMetadata<std::vector<int>>(genArguments["height"]);
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["wide_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				w_stats = std::get<std::vector<int>>(genArguments["wide_width"]);
-				h_stats = std::get<std::vector<int>>(genArguments["wide_height"]);
+				w_stats = GetMetadata<std::vector<int>>(genArguments["wide_width"]);
+				h_stats = GetMetadata<std::vector<int>>(genArguments["wide_height"]);
 			}
 		}
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["unsafe_tilesets"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["unsafe_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				w_stats = std::get<std::vector<int>>(genArguments["unsafe_width"]);
-				h_stats = std::get<std::vector<int>>(genArguments["unsafe_height"]);
+				w_stats = GetMetadata<std::vector<int>>(genArguments["unsafe_width"]);
+				h_stats = GetMetadata<std::vector<int>>(genArguments["unsafe_height"]);
 			}
 		}
 		int w = Random(w_stats[0], w_stats[1], RandomCategories::SEEDED_PRIMARY);
 		int h = Random(h_stats[0], h_stats[1], RandomCategories::SEEDED_PRIMARY);
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_gimmick"])))
 		{
-			w *= std::get<float>(genArguments["closed_gimmick_boost"]);
-			h *= std::get<float>(genArguments["closed_gimmick_boost"]);
+			w *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
+			h *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_gimmick"])))
 		{
-			w *= std::get<float>(genArguments["open_gimmick_boost"]);
-			h *= std::get<float>(genArguments["open_gimmick_boost"]);
+			w *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
+			h *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
 		}
 		PaintRectangle(0, x, y, w, h);
-		auto aRooms = std::get<std::vector<int>>(genArguments["micro_rooms"]);
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["micro_tilesets_boost"])){
+		auto aRooms = GetMetadata<std::vector<int>>(genArguments["micro_rooms"]);
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["micro_tilesets_boost"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				aRooms = std::get<std::vector<int>>(genArguments["micro_boost"]);
+				aRooms = GetMetadata<std::vector<int>>(genArguments["micro_boost"]);
 			}
 		}
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["micro_tileset_sky"])))
+		if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["micro_tileset_sky"])))
 		{
-			aRooms = std::get<std::vector<int>>(genArguments["micro_sky_boost"]);
+			aRooms = GetMetadata<std::vector<int>>(genArguments["micro_sky_boost"]);
 		}
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["micro_tileset_arcadia"])))
+		if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["micro_tileset_arcadia"])))
 		{
-			aRooms = std::get<std::vector<int>>(genArguments["micro_arcadia_boost"]);
+			aRooms = GetMetadata<std::vector<int>>(genArguments["micro_arcadia_boost"]);
 		}
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["micro_tileset_eggs"])))
+		if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["micro_tileset_eggs"])))
 		{
-			aRooms = std::get<std::vector<int>>(genArguments["micro_eggs_boost"]);
+			aRooms = GetMetadata<std::vector<int>>(genArguments["micro_eggs_boost"]);
 		}
 		int addRooms = Random(aRooms[0], aRooms[1], RandomCategories::SEEDED_PRIMARY);
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_micro_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_micro_gimmick"])))
 		{
-			addRooms *= std::get<float>(genArguments["closed_micro_gimmick_boost"]);
+			addRooms *= GetMetadata<float>(genArguments["closed_micro_gimmick_boost"]);
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_micro_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_micro_gimmick"])))
 		{
-			addRooms *= std::get<float>(genArguments["open_micro_gimmick_boost"]);
+			addRooms *= GetMetadata<float>(genArguments["open_micro_gimmick_boost"]);
 		}
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["micro_blacklist_tilesets"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["micro_blacklist_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset))
 				addRooms = 0;
 		}
 		for (int ll = 0; ll < addRooms; ll++)
 		{
-			auto mw_stats = std::get<std::vector<int>>(genArguments["micro_width"]);
-			auto mh_stats = std::get<std::vector<int>>(genArguments["micro_height"]);
+			auto mw_stats = GetMetadata<std::vector<int>>(genArguments["micro_width"]);
+			auto mh_stats = GetMetadata<std::vector<int>>(genArguments["micro_height"]);
 			PaintRectangle(1, Random(x, x + w, RandomCategories::SEEDED_PRIMARY), Random(y, y + h, RandomCategories::SEEDED_PRIMARY), 
 				Random(mw_stats[0], mw_stats[1], RandomCategories::SEEDED_PRIMARY), Random(mh_stats[0], mh_stats[1], RandomCategories::SEEDED_PRIMARY));
 		}
@@ -1435,32 +1435,32 @@ void CreateMediumRooms(GenerationContext& genContext, GenerationArguments& genAr
 }
 
 void CreateBigRooms(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["sandy_tileset"])))
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["sandy_tileset"])))
 	{
-		rooms *= std::get<float>(genArguments["sandy_modifier"]);
+		rooms *= GetMetadata<float>(genArguments["sandy_modifier"]);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["maze_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["maze_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["maze_min"]), std::get<int>(genArguments["maze_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["maze_min"]), GetMetadata<int>(genArguments["maze_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["grassy_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["grassy_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["grassy_min"]), std::get<int>(genArguments["grassy_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["grassy_min"]), GetMetadata<int>(genArguments["grassy_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["wider_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["wider_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["wider_min"]), std::get<int>(genArguments["wider_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["wider_min"]), GetMetadata<int>(genArguments["wider_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["castle_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["castle_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["castle_min"]), std::get<int>(genArguments["castle_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["castle_min"]), GetMetadata<int>(genArguments["castle_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["natural_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["natural_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["natural_min"]), std::get<int>(genArguments["natural_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["natural_min"]), GetMetadata<int>(genArguments["natural_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
 			rooms = 0;
 	}
@@ -1469,70 +1469,70 @@ void CreateBigRooms(GenerationContext& genContext, GenerationArguments& genArgum
 	{
 		int x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 		int y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
-		auto w_stats = std::get<std::vector<int>>(genArguments["width"]);
-		auto h_stats = std::get<std::vector<int>>(genArguments["height"]);
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["wide_tilesets"])){
+		auto w_stats = GetMetadata<std::vector<int>>(genArguments["width"]);
+		auto h_stats = GetMetadata<std::vector<int>>(genArguments["height"]);
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["wide_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				w_stats = std::get<std::vector<int>>(genArguments["wide_width"]);
-				h_stats = std::get<std::vector<int>>(genArguments["wide_height"]);
+				w_stats = GetMetadata<std::vector<int>>(genArguments["wide_width"]);
+				h_stats = GetMetadata<std::vector<int>>(genArguments["wide_height"]);
 			}
 		}
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["unsafe_tilesets"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["unsafe_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				w_stats = std::get<std::vector<int>>(genArguments["unsafe_width"]);
-				h_stats = std::get<std::vector<int>>(genArguments["unsafe_height"]);
+				w_stats = GetMetadata<std::vector<int>>(genArguments["unsafe_width"]);
+				h_stats = GetMetadata<std::vector<int>>(genArguments["unsafe_height"]);
 			}
 		}
 		int w = Random(w_stats[0], w_stats[1], RandomCategories::SEEDED_PRIMARY);
 		int h = Random(h_stats[0], h_stats[1], RandomCategories::SEEDED_PRIMARY);
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_gimmick"])))
 		{
-			w *= std::get<float>(genArguments["closed_gimmick_boost"]);
-			h *= std::get<float>(genArguments["closed_gimmick_boost"]);
+			w *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
+			h *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_gimmick"])))
 		{
-			w *= std::get<float>(genArguments["open_gimmick_boost"]);
-			h *= std::get<float>(genArguments["open_gimmick_boost"]);
+			w *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
+			h *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
 		}
 		PaintRectangle(0, x, y, w, h);
-		auto aRooms = std::get<std::vector<int>>(genArguments["micro_rooms"]);
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["micro_tilesets_boost"])){
+		auto aRooms = GetMetadata<std::vector<int>>(genArguments["micro_rooms"]);
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["micro_tilesets_boost"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				aRooms = std::get<std::vector<int>>(genArguments["micro_boost"]);
+				aRooms = GetMetadata<std::vector<int>>(genArguments["micro_boost"]);
 			}
 		}
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["micro_tilesets_sky"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["micro_tilesets_sky"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				aRooms = std::get<std::vector<int>>(genArguments["micro_boost_sky"]);
+				aRooms = GetMetadata<std::vector<int>>(genArguments["micro_boost_sky"]);
 			}
 		}
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["micro_tilesets_unsafe"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["micro_tilesets_unsafe"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				aRooms = std::get<std::vector<int>>(genArguments["micro_boost_unsafe"]);
+				aRooms = GetMetadata<std::vector<int>>(genArguments["micro_boost_unsafe"]);
 			}
 		}
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["micro_tileset_eggs"])))
+		if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["micro_tileset_eggs"])))
 		{
-			aRooms = std::get<std::vector<int>>(genArguments["micro_eggs_boost"]);
+			aRooms = GetMetadata<std::vector<int>>(genArguments["micro_eggs_boost"]);
 		}
 		int addRooms = Random(aRooms[0], aRooms[1], RandomCategories::SEEDED_PRIMARY);
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_micro_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_micro_gimmick"])))
 		{
-			addRooms *= std::get<float>(genArguments["closed_micro_gimmick_boost"]);
+			addRooms *= GetMetadata<float>(genArguments["closed_micro_gimmick_boost"]);
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_micro_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_micro_gimmick"])))
 		{
-			addRooms *= std::get<float>(genArguments["open_micro_gimmick_boost"]);
+			addRooms *= GetMetadata<float>(genArguments["open_micro_gimmick_boost"]);
 		}
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["micro_blacklist_tilesets"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["micro_blacklist_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset))
 				addRooms = 0;
 		}
 		for (int ll = 0; ll < addRooms; ll++)
 		{
-			auto mw_stats = std::get<std::vector<int>>(genArguments["micro_width"]);
-			auto mh_stats = std::get<std::vector<int>>(genArguments["micro_height"]);
+			auto mw_stats = GetMetadata<std::vector<int>>(genArguments["micro_width"]);
+			auto mh_stats = GetMetadata<std::vector<int>>(genArguments["micro_height"]);
 			PaintRectangle(1, Random(x, x + w, RandomCategories::SEEDED_PRIMARY), Random(y, y + h, RandomCategories::SEEDED_PRIMARY), 
 				Random(mw_stats[0], mw_stats[1], RandomCategories::SEEDED_PRIMARY), Random(mh_stats[0], mh_stats[1], RandomCategories::SEEDED_PRIMARY));
 		}
@@ -1540,44 +1540,44 @@ void CreateBigRooms(GenerationContext& genContext, GenerationArguments& genArgum
 }
 
 void CreateCorridors(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["constrained_tilesets"])){
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["constrained_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["constrained_min"]), std::get<int>(genArguments["constrained_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["constrained_min"]), GetMetadata<int>(genArguments["constrained_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tight_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tight_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms *= std::get<float>(genArguments["tight_modifier"]);
+			rooms *= GetMetadata<float>(genArguments["tight_modifier"]);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["dungeon_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["dungeon_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["dungeon_min"]), std::get<int>(genArguments["dungeon_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["dungeon_min"]), GetMetadata<int>(genArguments["dungeon_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["grassy_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["grassy_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["grassy_min"]), std::get<int>(genArguments["grassy_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["grassy_min"]), GetMetadata<int>(genArguments["grassy_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["artificial_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["artificial_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
-			rooms = Random(std::get<int>(genArguments["artificial_min"]), std::get<int>(genArguments["artificial_max"]), RandomCategories::SEEDED_PRIMARY);
+			rooms = Random(GetMetadata<int>(genArguments["artificial_min"]), GetMetadata<int>(genArguments["artificial_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["maze_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["maze_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["maze_min"]), std::get<int>(genArguments["maze_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["maze_min"]), GetMetadata<int>(genArguments["maze_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["arcadia_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["arcadia_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["arcadia_min"]), std::get<int>(genArguments["arcadia_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["arcadia_min"]), GetMetadata<int>(genArguments["arcadia_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["frigid_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["frigid_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["frigid_min"]), std::get<int>(genArguments["frigid_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["frigid_min"]), GetMetadata<int>(genArguments["frigid_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["laboratory_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["laboratory_tileset"])))
 	{
-		rooms = Random(std::get<int>(genArguments["laboratory_min"]), std::get<int>(genArguments["laboratory_max"]), RandomCategories::SEEDED_PRIMARY);
+		rooms = Random(GetMetadata<int>(genArguments["laboratory_min"]), GetMetadata<int>(genArguments["laboratory_max"]), RandomCategories::SEEDED_PRIMARY);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset))
 			rooms = 0;
 	}
@@ -1590,30 +1590,30 @@ void CreateCorridors(GenerationContext& genContext, GenerationArguments& genArgu
 			x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 		} while (!IsEmpty(x, y));
-		auto w_stats = std::get<std::vector<int>>(genArguments["width"]);
-		auto h_stats = std::get<std::vector<int>>(genArguments["height"]);
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["small_tilesets"])){
+		auto w_stats = GetMetadata<std::vector<int>>(genArguments["width"]);
+		auto h_stats = GetMetadata<std::vector<int>>(genArguments["height"]);
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["small_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				w_stats = std::get<std::vector<int>>(genArguments["small_width"]);
-				h_stats = std::get<std::vector<int>>(genArguments["small_height"]);
+				w_stats = GetMetadata<std::vector<int>>(genArguments["small_width"]);
+				h_stats = GetMetadata<std::vector<int>>(genArguments["small_height"]);
 			}
 		}
 		int w = Random(w_stats[0], w_stats[1], RandomCategories::SEEDED_PRIMARY);
 		int h = Random(h_stats[0], h_stats[1], RandomCategories::SEEDED_PRIMARY);
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_gimmick"])))
 		{
-			w *= std::get<float>(genArguments["closed_gimmick_boost"]);
-			h *= std::get<float>(genArguments["closed_gimmick_boost"]);
+			w *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
+			h *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_gimmick"])))
 		{
-			w *= std::get<float>(genArguments["open_gimmick_boost"]);
-			h *= std::get<float>(genArguments["open_gimmick_boost"]);
+			w *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
+			h *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
 		}
-		for (auto tileset: std::get<std::vector<std::string>>(genArguments["sky_tilesets"])){
+		for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["sky_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				w *= std::get<float>(genArguments["sky_modifier"]);
-				h *= std::get<float>(genArguments["sky_modifier"]);
+				w *= GetMetadata<float>(genArguments["sky_modifier"]);
+				h *= GetMetadata<float>(genArguments["sky_modifier"]);
 			}
 		}
 		PaintRectangle(0, x, y, w, h);
@@ -1621,8 +1621,8 @@ void CreateCorridors(GenerationContext& genContext, GenerationArguments& genArgu
 }
 
 void CreateSandPatches(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset"]))){
-		int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset"]))){
+		int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
 		rooms /= genContext.crampiness;
 		for (int l = 0; l < rooms; l++)
 		{
@@ -1632,22 +1632,22 @@ void CreateSandPatches(GenerationContext& genContext, GenerationArguments& genAr
 				x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 				y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 			} while (IsEmpty(x, y));
-			int w = std::get<int>(genArguments["width"]);
-			int h = std::get<int>(genArguments["height"]);
-			if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_gimmick"])))
+			int w = GetMetadata<int>(genArguments["width"]);
+			int h = GetMetadata<int>(genArguments["height"]);
+			if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_gimmick"])))
 			{
-				w *= std::get<float>(genArguments["closed_gimmick_boost"]);
-				h *= std::get<float>(genArguments["closed_gimmick_boost"]);
+				w *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
+				h *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
 			}
-			if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_gimmick"])))
+			if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_gimmick"])))
 			{
-				w *= std::get<float>(genArguments["open_gimmick_boost"]);
-				h *= std::get<float>(genArguments["open_gimmick_boost"]);
+				w *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
+				h *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
 			}
 			std::vector<bool> patch = GeneratePatch(w, h, 
-				std::get<float>(genArguments["patch_fill_ratio"]), 
-				std::get<int>(genArguments["patch_clustering"]), 
-				std::get<bool>(genArguments["patch_force_fill_rate"]));
+				GetMetadata<float>(genArguments["patch_fill_ratio"]), 
+				GetMetadata<int>(genArguments["patch_clustering"]), 
+				GetMetadata<bool>(genArguments["patch_force_fill_rate"]));
 
 			int pWidth = w - 2;
 
@@ -1693,9 +1693,9 @@ void CreateSandPatches(GenerationContext& genContext, GenerationArguments& genAr
 }
 
 void CreateMazes(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset"]))){
-		int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-			if (gMC.depth > genContext.doctorStage) rooms *= std::get<int>(genArguments["second_campaign_scaling"]);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset"]))){
+		int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+			if (gMC.depth > genContext.doctorStage) rooms *= GetMetadata<int>(genArguments["second_campaign_scaling"]);
 		rooms /= genContext.crampiness;
 		for (int l = 0; l < rooms; l++)
 		{
@@ -1707,15 +1707,15 @@ void CreateMazes(GenerationContext& genContext, GenerationArguments& genArgument
 				x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 				y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 			} while (IsEmpty(x, y));
-			auto lin = std::get<std::vector<int>>(genArguments["lines"]);
+			auto lin = GetMetadata<std::vector<int>>(genArguments["lines"]);
 			int lines = Random(lin[0], lin[1], RandomCategories::SEEDED_PRIMARY);
-			if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["closed_gimmick"])))
+			if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["closed_gimmick"])))
 			{
-				lines *= std::get<float>(genArguments["closed_gimmick_boost"]);
+				lines *= GetMetadata<float>(genArguments["closed_gimmick_boost"]);
 			}
-			if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["open_gimmick"])))
+			if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["open_gimmick"])))
 			{
-				lines *= std::get<float>(genArguments["open_gimmick_boost"]);
+				lines *= GetMetadata<float>(genArguments["open_gimmick_boost"]);
 			}
 			for (int m = 0; m < lines; m++)
 			{
@@ -1727,7 +1727,7 @@ void CreateMazes(GenerationContext& genContext, GenerationArguments& genArgument
 						(dir == 1 && (dir1 == 1 || dir1 == 3)) ||
 						(dir == 3 && (dir1 == 1 || dir1 == 3)));
 				dir = dir1;
-				auto length = std::get<std::vector<int>>(genArguments["length"]);
+				auto length = GetMetadata<std::vector<int>>(genArguments["length"]);
 				int lineLength = Random(length[0], length[1], RandomCategories::SEEDED_PRIMARY);
 				switch (dir)
 				{
@@ -1754,8 +1754,8 @@ void CreateMazes(GenerationContext& genContext, GenerationArguments& genArgument
 }
 
 void CreateDungeonTunnels(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset"]))){
-		int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset"]))){
+		int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
 		rooms /= genContext.crampiness;
 		for (int i = 0; i < rooms; i++)
 		{
@@ -1823,7 +1823,7 @@ void CreateDungeonTunnels(GenerationContext& genContext, GenerationArguments& ge
 }
 
 void CreateSkyBorders(GenerationContext& genContext, GenerationArguments& genArguments){
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets"])){
 		if (genContext.tileset == GetTileset(tileset)){
 			for (int i = 0; i < gMap.width; i++)
 			{
@@ -1904,7 +1904,7 @@ void PolishStage(GenerationContext& genContext, GenerationArguments& genArgument
 	std::vector<int> visited(gMap.width*gMap.length);
 	for (int t = 0; t < gMap.width * gMap.length; t++){
 		int count = fluidcounting(visited, XCoord(t), YCoord(t), false);
-		if (count > 0 && count <= std::get<int>(genArguments["too_small_space_threshold"])){
+		if (count > 0 && count <= GetMetadata<int>(genArguments["too_small_space_threshold"])){
 			fluidfilling(XCoord(t), YCoord(t), false);
 		}
 	}
@@ -1912,7 +1912,7 @@ void PolishStage(GenerationContext& genContext, GenerationArguments& genArgument
 	visited.resize(gMap.width*gMap.length);
 	for (int t = 0; t < gMap.width * gMap.length; t++){
 		int count = fluidcounting(visited, XCoord(t), YCoord(t), true);
-		if (count > 0 && count <= std::get<int>(genArguments["too_small_solid_threshold"])){
+		if (count > 0 && count <= GetMetadata<int>(genArguments["too_small_solid_threshold"])){
 			fluidfilling(XCoord(t), YCoord(t), true);
 		}
 	}
@@ -1939,33 +1939,33 @@ void PolishStage(GenerationContext& genContext, GenerationArguments& genArgument
 
 void CreateSpikes(GenerationContext& genContext, GenerationArguments& genArguments){
 	gMC.hell = false;
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY) 
-		+ std::get<int>(genArguments["scaling"]) * gMC.depth;
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY) 
+		+ GetMetadata<int>(genArguments["scaling"]) * gMC.depth;
 	double spikeMod = 1;
 	if (ChallengeValueReal("spike_modifier") != -1)
 	{
 		spikeMod = ChallengeValueReal("spike_modifier");
 	}
 	if (gMC.difficulty > DIFFICULTY_BASIC){
-		spikeMod *= std::get<float>(genArguments["difficulty_scaling"]);
+		spikeMod *= GetMetadata<float>(genArguments["difficulty_scaling"]);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["village_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["village_tileset"])))
 	{
-		rooms *= std::get<float>(genArguments["village_scaling"]);
+		rooms *= GetMetadata<float>(genArguments["village_scaling"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["sky_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["sky_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset))
-				rooms *= std::get<float>(genArguments["sky_scaling"]);
+				rooms *= GetMetadata<float>(genArguments["sky_scaling"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["hell_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["hell_tilesets"])){
 			if (genContext.tileset == GetTileset(tileset)){
-				rooms *= std::get<float>(genArguments["hell_scaling"]);
+				rooms *= GetMetadata<float>(genArguments["hell_scaling"]);
 				gMC.hell = true;
 			}
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["final_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["final_tileset"])))
 	{
-		rooms *= std::get<float>(genArguments["final_scaling"]);
+		rooms *= GetMetadata<float>(genArguments["final_scaling"]);
 		gMC.hell = true;
 	}
 	rooms *= spikeMod;
@@ -1985,29 +1985,29 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 	int limit, rooms;
 	if (CheckItemSpace())
 	{
-		rooms = std::get<int>(genArguments["amount"]);
+		rooms = GetMetadata<int>(genArguments["amount"]);
 		if (CheckFlagTrait(FlagTraits::CHEST_BOOST))
 		{
 			rooms *= GetFlagTraitData<float>(FlagTraits::CHEST_BOOST, "base");
 		}
 		limit = ChallengeValue("chest_limit");
-		if (limit != -1 && (limit <= rooms || limit > std::get<int>(genArguments["amount"])))
+		if (limit != -1 && (limit <= rooms || limit > GetMetadata<int>(genArguments["amount"])))
 		{
 			rooms = limit;
 		}
-		if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["vault_gimmick"])))
+		if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["vault_gimmick"])))
 		{
-			rooms += std::get<int>(genArguments["vault_boost"]);
+			rooms += GetMetadata<int>(genArguments["vault_boost"]);
 		}
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["dungeon_tileset"])))
+		if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["dungeon_tileset"])))
 		{
-			rooms += std::get<int>(genArguments["dungeon_boost"]);
+			rooms += GetMetadata<int>(genArguments["dungeon_boost"]);
 		}
 		if (CheckFlagTrait(FlagTraits::CHEST_BOOST))
 		{
 			rooms += GetFlagTraitData<int>(FlagTraits::CHEST_BOOST, "amount");
 		}
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["blacklist_tileset"])))
+		if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["blacklist_tileset"])))
 		{
 			rooms = 0;
 		}
@@ -2061,17 +2061,17 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 }
 
 void CreateLifeCapsules(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_NPCS);
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_NPCS);
 	int limit = ChallengeValue("health_limit");
-	if (genContext.gimmick == GetGimmick(std::get<std::string>(genArguments["gimmick"])))
+	if (genContext.gimmick == GetGimmick(GetMetadata<std::string>(genArguments["gimmick"])))
 	{
-		rooms = std::get<int>(genArguments["max"]);
+		rooms = GetMetadata<int>(genArguments["max"]);
 	}
 	if (limit == -1)
 	{
 		limit = rooms;
 	}
-	if (limit > std::get<int>(genArguments["max"]))
+	if (limit > GetMetadata<int>(genArguments["max"]))
 	{
 		rooms = limit;
 	}
@@ -2079,7 +2079,7 @@ void CreateLifeCapsules(GenerationContext& genContext, GenerationArguments& genA
 	{
 		limit = 0;
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["blacklist_tileset"]))){
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["blacklist_tileset"]))){
 		rooms = 0;
 	}
 	for (int l = 0; l < rooms; l++)
@@ -2111,7 +2111,7 @@ void CreateLifeCapsules(GenerationContext& genContext, GenerationArguments& genA
 }
 
 void CreateRefills(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = std::get<int>(genArguments["amount"]);
+	int rooms = GetMetadata<int>(genArguments["amount"]);
 	int limit = rooms;
 	ModifyWithChallengeValue(&limit, "refill_limit");
 	if (rooms >= limit)
@@ -2119,8 +2119,8 @@ void CreateRefills(GenerationContext& genContext, GenerationArguments& genArgume
 		rooms = limit;
 	}
 	if (gMC.difficulty > DIFFICULTY_BASIC)
-		rooms = std::max(1, rooms - std::get<int>(genArguments["difficulty_reduction"])*gMC.difficulty);
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
+		rooms = std::max(1, rooms - GetMetadata<int>(genArguments["difficulty_reduction"])*gMC.difficulty);
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset)){
 			rooms = 0;
 		}
@@ -2158,13 +2158,13 @@ void CreateSavePoint(GenerationContext& genContext, GenerationArguments& genArgu
 			tries = 0;
 			if (ChallengeEnabled("stage_debug")){
 				WriteGameLog("It looks like save point generation doesn't work at distance of ", 
-					std::get<int>(genArguments["spawn_distance"]) + distanceBonus - 1,
+					GetMetadata<int>(genArguments["spawn_distance"]) + distanceBonus - 1,
 					", trying at distance of ",
-					std::get<int>(genArguments["spawn_distance"]) + distanceBonus);
+					GetMetadata<int>(genArguments["spawn_distance"]) + distanceBonus);
 			}
 		}
 	} while (!(HasSurface(x, y) && GetNpCharHere(x, y) == -1 &&
-			Distance(x, y, doorX, doorY) < std::get<int>(genArguments["spawn_distance"]) + distanceBonus));
+			Distance(x, y, doorX, doorY) < GetMetadata<int>(genArguments["spawn_distance"]) + distanceBonus));
 	if (!ChallengeEnabled("timer"))
 	{
 		SetNpChar(16, x * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0, 16, 0x2000);
@@ -2173,22 +2173,22 @@ void CreateSavePoint(GenerationContext& genContext, GenerationArguments& genArgu
 }
 
 void GenerateWater(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	int maxHeight = gMap.length * std::get<float>(genArguments["max_height_ratio"]);
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["rising_water_tileset"])))
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	int maxHeight = gMap.length * GetMetadata<float>(genArguments["max_height_ratio"]);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["rising_water_tileset"])))
 	{
 		rooms = 0;
-		SetNpChar(191, 0, gMap.length * std::get<float>(genArguments["max_height_ratio"]) * 0x2000, 0, 0, 0, NULL, 0x100);
+		SetNpChar(191, 0, gMap.length * GetMetadata<float>(genArguments["max_height_ratio"]) * 0x2000, 0, 0, 0, NULL, 0x100);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["additional_water_tileset"])))
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["additional_water_tileset"])))
 	{
-		rooms += std::get<int>(genArguments["additional_water_boost"]);
+		rooms += GetMetadata<int>(genArguments["additional_water_boost"]);
 	}
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["pure_water_tileset"]))){
-		rooms = std::get<int>(genArguments["pure_water_amount"]);
-		maxHeight *= std::get<float>(genArguments["pure_water_max_height_ratio"]);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["pure_water_tileset"]))){
+		rooms = GetMetadata<int>(genArguments["pure_water_amount"]);
+		maxHeight *= GetMetadata<float>(genArguments["pure_water_max_height_ratio"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset)){
 			rooms = 0;
 		}
@@ -2239,18 +2239,18 @@ void GenerateWater(GenerationContext& genContext, GenerationArguments& genArgume
 				waterAmount++;
 			}
 		}
-		if (waterAmount > std::get<int>(genArguments["jellyfish_water_amount_requirement"]))
+		if (waterAmount > GetMetadata<int>(genArguments["jellyfish_water_amount_requirement"]))
 		{
-			for (auto tileset: std::get<std::vector<std::string>>(genArguments["hell_tilesets"])){
+			for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["hell_tilesets"])){
 				if (genContext.tileset == GetTileset(tileset)){
 					return;
 				}
 			}
-			rooms = Random(waterAmount / std::get<int>(genArguments["min_jellyfish_ratio"]), 
-				waterAmount / std::get<int>(genArguments["max_jellyfish_ratio"]), RandomCategories::SEEDED_PRIMARY);
-			for (auto tileset: std::get<std::vector<std::string>>(genArguments["acid_water_tilesets"])){
+			rooms = Random(waterAmount / GetMetadata<int>(genArguments["min_jellyfish_ratio"]), 
+				waterAmount / GetMetadata<int>(genArguments["max_jellyfish_ratio"]), RandomCategories::SEEDED_PRIMARY);
+			for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["acid_water_tilesets"])){
 				if (genContext.tileset == GetTileset(tileset)){
-					rooms *= std::get<float>(genArguments["acid_jellyfish_ratio"]);
+					rooms *= GetMetadata<float>(genArguments["acid_jellyfish_ratio"]);
 				}
 			}
 			rooms *= genContext.npcCount;
@@ -2264,13 +2264,13 @@ void GenerateWater(GenerationContext& genContext, GenerationArguments& genArgume
 				} while (GetTile(x, y) != 30);
 				SetNpChar(95, x * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0x100);
 			}
-			if (gMC.max_life >= std::get<int>(genArguments["min_kulala_life"]))
+			if (gMC.max_life >= GetMetadata<int>(genArguments["min_kulala_life"]))
 			{
-				rooms = Random(waterAmount / std::get<int>(genArguments["min_kulala_ratio"]), 
-				waterAmount / std::get<int>(genArguments["max_kulala_ratio"]), RandomCategories::SEEDED_NPCS);
-				for (auto tileset: std::get<std::vector<std::string>>(genArguments["acid_water_tilesets"])){
+				rooms = Random(waterAmount / GetMetadata<int>(genArguments["min_kulala_ratio"]), 
+				waterAmount / GetMetadata<int>(genArguments["max_kulala_ratio"]), RandomCategories::SEEDED_NPCS);
+				for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["acid_water_tilesets"])){
 					if (genContext.tileset == GetTileset(tileset)){
-						rooms *= std::get<float>(genArguments["acid_jellyfish_ratio"]);
+						rooms *= GetMetadata<float>(genArguments["acid_jellyfish_ratio"]);
 					}
 				}
 				rooms *= genContext.npcCount;
@@ -2290,13 +2290,13 @@ void GenerateWater(GenerationContext& genContext, GenerationArguments& genArgume
 }
 
 void CreateHouses(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset"]))){
-		int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset"]))){
+		int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
 		for (int i = 0; i < rooms; i++)
 		{
 			int x, y;
-			auto w_stats = std::get<std::vector<int>>(genArguments["width"]);
-			auto h_stats = std::get<std::vector<int>>(genArguments["height"]);
+			auto w_stats = GetMetadata<std::vector<int>>(genArguments["width"]);
+			auto h_stats = GetMetadata<std::vector<int>>(genArguments["height"]);
 			int w = Random(w_stats[0], w_stats[1], RandomCategories::SEEDED_PRIMARY);
 			int h = Random(h_stats[0], h_stats[1], RandomCategories::SEEDED_PRIMARY);
 			x = Random(2, gMap.width - w - 1, RandomCategories::SEEDED_PRIMARY);
@@ -2310,8 +2310,8 @@ void CreateHouses(GenerationContext& genContext, GenerationArguments& genArgumen
 }
 
 void CreateClouds(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset"]))){
-		int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset"]))){
+		int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
 		for (int i = 0; i < rooms; i++)
 		{
 			int x, y;
@@ -2335,13 +2335,13 @@ void CreateClouds(GenerationContext& genContext, GenerationArguments& genArgumen
 }
 
 void CreateSpaceCells(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset"]))){
-		int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset"]))){
+		int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
 		for (int i = 0; i < rooms; i++)
 		{
 			int x, y;
-			auto w_stats = std::get<std::vector<int>>(genArguments["width"]);
-			auto h_stats = std::get<std::vector<int>>(genArguments["height"]);
+			auto w_stats = GetMetadata<std::vector<int>>(genArguments["width"]);
+			auto h_stats = GetMetadata<std::vector<int>>(genArguments["height"]);
 			int w = Random(w_stats[0], w_stats[1], RandomCategories::SEEDED_PRIMARY);
 			int h = Random(h_stats[0], h_stats[1], RandomCategories::SEEDED_PRIMARY);
 			do
@@ -2361,7 +2361,7 @@ void SpawnPlayer(GenerationContext& genContext, GenerationArguments& genArgument
 	do
 	{
 		genContext.initialPlayerPos.x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
-		genContext.initialPlayerPos.y = Random(0, gMap.length / (genContext.tileset == GetTileset(std::get<std::string>(genArguments["rising_water_tileset"])) ? std::get<int>(genArguments["rising_water_ratio"]) : 1), RandomCategories::SEEDED_PRIMARY);
+		genContext.initialPlayerPos.y = Random(0, gMap.length / (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["rising_water_tileset"])) ? GetMetadata<int>(genArguments["rising_water_ratio"]) : 1), RandomCategories::SEEDED_PRIMARY);
 	} while (!HasSurface(genContext.initialPlayerPos.x, genContext.initialPlayerPos.y));
 	genContext.initialPlayerPos.x *= 0x2000;
 	genContext.initialPlayerPos.y *= 0x2000;
@@ -2401,9 +2401,9 @@ void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments
 		if (gMC.depth > 1 && gMC.depth % genContext.bossRate == 0)
 		{
 			int x, y, x1, y1;
-			auto params = std::get<std::vector<int>>(genArguments["room_size"]);
+			auto params = GetMetadata<std::vector<int>>(genArguments["room_size"]);
 			if (gMC.difficulty > DIFFICULTY_REINFORCED){
-				params = std::get<std::vector<int>>(genArguments["room_size_hardmode"]);
+				params = GetMetadata<std::vector<int>>(genArguments["room_size_hardmode"]);
 			}
 			int w = params[0];
 			int h = params[1];
@@ -2411,7 +2411,7 @@ void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments
 			{
 				x = Random(3, gMap.width - w - 1, RandomCategories::SEEDED_NPCS);
 				y = Random(3, gMap.length - h - 1, RandomCategories::SEEDED_NPCS);
-			} while (Distance(genContext.initialPlayerPos.x / 0x2000, genContext.initialPlayerPos.y / 0x2000, x, y) < std::get<int>(genArguments["spawn_distance"]));
+			} while (Distance(genContext.initialPlayerPos.x / 0x2000, genContext.initialPlayerPos.y / 0x2000, x, y) < GetMetadata<int>(genArguments["spawn_distance"]));
 			if (!ChallengeEnabled("no_breaking"))
 				PaintRectangle(41, x - 1, y - 1, w + 2, h + 2);
 			PaintRectangle(68, x, y, w, h);
@@ -2430,12 +2430,12 @@ void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments
 }
 
 void CreateChains(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset_with_boost"])))
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset_with_boost"])))
 	{
-		rooms *= std::get<int>(genArguments["boost_amount"]);
+		rooms *= GetMetadata<int>(genArguments["boost_amount"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["blacklist_tilesets"])){
 		if (genContext.tileset == GetTileset(tileset)){
 			rooms = 0;
 		}
@@ -2459,14 +2459,14 @@ void CreateChains(GenerationContext& genContext, GenerationArguments& genArgumen
 }
 
 void CreateCeilings(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset_with_boost"])))
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset_with_boost"])))
 	{
-		rooms *= std::get<int>(genArguments["boost_amount"]);
+		rooms *= GetMetadata<int>(genArguments["boost_amount"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
 		if (genContext.tileset == GetTileset(tileset)){
-			rooms *= std::get<float>(genArguments["reduction_amount"]);
+			rooms *= GetMetadata<float>(genArguments["reduction_amount"]);
 		}
 	}
 	for (int l = 0; l < rooms; l++)
@@ -2491,14 +2491,14 @@ void CreateCeilings(GenerationContext& genContext, GenerationArguments& genArgum
 }
 
 void CreatePlatforms(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset_with_boost"])))
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset_with_boost"])))
 	{
-		rooms *= std::get<int>(genArguments["boost_amount"]);
+		rooms *= GetMetadata<int>(genArguments["boost_amount"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
 		if (genContext.tileset == GetTileset(tileset)){
-			rooms *= std::get<float>(genArguments["reduction_amount"]);
+			rooms *= GetMetadata<float>(genArguments["reduction_amount"]);
 		}
 	}
 
@@ -2535,14 +2535,14 @@ void CreatePlatforms(GenerationContext& genContext, GenerationArguments& genArgu
 }
 
 void CreateWalls(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
-	if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset_with_boost"])))
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset_with_boost"])))
 	{
-		rooms *= std::get<int>(genArguments["boost_amount"]);
+		rooms *= GetMetadata<int>(genArguments["boost_amount"]);
 	}
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
 		if (genContext.tileset == GetTileset(tileset)){
-			rooms *= std::get<float>(genArguments["reduction_amount"]);
+			rooms *= GetMetadata<float>(genArguments["reduction_amount"]);
 		}
 	}
 	for (int l = 0; l < rooms; l++)
@@ -2553,17 +2553,17 @@ void CreateWalls(GenerationContext& genContext, GenerationArguments& genArgument
 			x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 		} while (!IsEmpty(x, y));
-		auto radius = std::get<std::vector<int>>(genArguments["radius"]);
+		auto radius = GetMetadata<std::vector<int>>(genArguments["radius"]);
 		int r = Random(radius[0], radius[1], RandomCategories::SEEDED_PRIMARY);
 		ReplaceEllipse(0, 68, x, y, r);
 	}
 }
 
 void CreateAlternateTiles(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min1"]), std::get<int>(genArguments["max1"]), RandomCategories::SEEDED_PRIMARY);
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
+	int rooms = Random(GetMetadata<int>(genArguments["min1"]), GetMetadata<int>(genArguments["max1"]), RandomCategories::SEEDED_PRIMARY);
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
 		if (genContext.tileset == GetTileset(tileset)){
-			rooms *= std::get<float>(genArguments["reduction_amount"]);
+			rooms *= GetMetadata<float>(genArguments["reduction_amount"]);
 		}
 	}
 	for (int l = 0; l < rooms; l++)
@@ -2574,15 +2574,15 @@ void CreateAlternateTiles(GenerationContext& genContext, GenerationArguments& ge
 			x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 		} while (IsEmpty(x, y));
-		auto params = std::get<std::vector<int>>(genArguments["radius1"]);
+		auto params = GetMetadata<std::vector<int>>(genArguments["radius1"]);
 		int r = Random(params[0], params[1], RandomCategories::SEEDED_PRIMARY);
 		ReplaceEllipse(1, 69, x, y, r);
 	}
 
-	rooms = Random(std::get<int>(genArguments["min2"]), std::get<int>(genArguments["max2"]), RandomCategories::SEEDED_PRIMARY);
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
+	rooms = Random(GetMetadata<int>(genArguments["min2"]), GetMetadata<int>(genArguments["max2"]), RandomCategories::SEEDED_PRIMARY);
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
 		if (genContext.tileset == GetTileset(tileset)){
-			rooms *= std::get<float>(genArguments["reduction_amount"]);
+			rooms *= GetMetadata<float>(genArguments["reduction_amount"]);
 		}
 	}
 	for (int l = 0; l < rooms; l++)
@@ -2593,8 +2593,8 @@ void CreateAlternateTiles(GenerationContext& genContext, GenerationArguments& ge
 			x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 		} while (IsEmpty(x, y));
-		auto width = std::get<std::vector<int>>(genArguments["width2"]);
-		auto height = std::get<std::vector<int>>(genArguments["height2"]);
+		auto width = GetMetadata<std::vector<int>>(genArguments["width2"]);
+		auto height = GetMetadata<std::vector<int>>(genArguments["height2"]);
 		int w = Random(width[0], width[1], RandomCategories::SEEDED_PRIMARY);
 		int h = Random(height[0], height[1], RandomCategories::SEEDED_PRIMARY);
 		ReplaceRectangle(32, 34, x, y, w, h);
@@ -2603,10 +2603,10 @@ void CreateAlternateTiles(GenerationContext& genContext, GenerationArguments& ge
 		ReplaceRectangle(49, 51, x, y, w, h);
 	}
 
-	rooms = Random(std::get<int>(genArguments["min3"]), std::get<int>(genArguments["max3"]), RandomCategories::SEEDED_PRIMARY);
-	for (auto tileset: std::get<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
+	rooms = Random(GetMetadata<int>(genArguments["min3"]), GetMetadata<int>(genArguments["max3"]), RandomCategories::SEEDED_PRIMARY);
+	for (auto tileset: GetMetadata<std::vector<std::string>>(genArguments["tilesets_with_reduction"])){
 		if (genContext.tileset == GetTileset(tileset)){
-			rooms *= std::get<float>(genArguments["reduction_amount"]);
+			rooms *= GetMetadata<float>(genArguments["reduction_amount"]);
 		}
 	}
 	for (int l = 0; l < rooms; l++)
@@ -2617,7 +2617,7 @@ void CreateAlternateTiles(GenerationContext& genContext, GenerationArguments& ge
 			x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 		} while (IsEmpty(x, y));
-		auto params = std::get<std::vector<int>>(genArguments["radius3"]);
+		auto params = GetMetadata<std::vector<int>>(genArguments["radius3"]);
 		int r = Random(params[0], params[1], RandomCategories::SEEDED_PRIMARY);
 		ReplaceEllipse(1, 70, x, y, r);
 		ReplaceEllipse(69, 70, x, y, r);
@@ -2625,7 +2625,7 @@ void CreateAlternateTiles(GenerationContext& genContext, GenerationArguments& ge
 }
 
 void CreateDecos(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = Random(std::get<int>(genArguments["min"]), std::get<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
+	int rooms = Random(GetMetadata<int>(genArguments["min"]), GetMetadata<int>(genArguments["max"]), RandomCategories::SEEDED_PRIMARY);
 	for (int l = 0; l < rooms; l++)
 	{
 		int x, y;
@@ -2634,11 +2634,11 @@ void CreateDecos(GenerationContext& genContext, GenerationArguments& genArgument
 			x = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			y = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
 		} while (!(HasSurface(x, y)));
-		auto params = std::get<std::vector<int>>(genArguments["deco_list"]);
+		auto params = GetMetadata<std::vector<int>>(genArguments["deco_list"]);
 		int roll = params[Random(0, params.size()-1, RandomCategories::SEEDED_PRIMARY)];
 		ChangeMap(x, y, roll);
-		if (genContext.tileset == GetTileset(std::get<std::string>(genArguments["tileset_with_bubbles"])) 
-			&& Random(0, std::get<int>(genArguments["bubbles_ratio"]), RandomCategories::SEEDED_PRIMARY) == 0)
+		if (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["tileset_with_bubbles"])) 
+			&& Random(0, GetMetadata<int>(genArguments["bubbles_ratio"]), RandomCategories::SEEDED_PRIMARY) == 0)
 		{
 			SetNpChar(281, x * 0x2000, y * 0x2000, 0, 0, 0, NULL, 0x100);
 		}
@@ -2646,7 +2646,7 @@ void CreateDecos(GenerationContext& genContext, GenerationArguments& genArgument
 }
 
 void CreateTutorialSign(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (gMC.depth < std::get<int>(genArguments["cutoff"]))
+	if (gMC.depth < GetMetadata<int>(genArguments["cutoff"]))
 	{
 		int x1, y1;
 		do
@@ -2655,7 +2655,7 @@ void CreateTutorialSign(GenerationContext& genContext, GenerationArguments& genA
 			{
 				x1 = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 				y1 = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
-			} while (Distance(x1, y1, genContext.initialPlayerPos.x / 0x2000, genContext.initialPlayerPos.y / 0x2000) > std::get<int>(genArguments["spawn_distance"]));
+			} while (Distance(x1, y1, genContext.initialPlayerPos.x / 0x2000, genContext.initialPlayerPos.y / 0x2000) > GetMetadata<int>(genArguments["spawn_distance"]));
 		} while (!(HasSurface(x1, y1) && (GetNpCharHere(x1, y1) != 17) && (GetNpCharHere(x1, y1) != 16) && (GetNpCharHere(x1, y1) != 32)) || IntersectCheck(genContext.bossRect, x1, y1 + 1));
 		SetNpChar(37, x1 * 0x2000, y1 * 0x2000, 0, 0, 0, NULL, 0, 
 			genContext.legacyRNG ? 69 : 70 + gMC.depth, NPC_INTERACTABLE);
@@ -2702,7 +2702,7 @@ void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArgum
 }
 
 void HandleMiracles(GenerationContext& genContext, GenerationArguments& genArguments){
-	auto miracleRatio = std::get<int>(genArguments["miracle_ratio"]);
+	auto miracleRatio = GetMetadata<int>(genArguments["miracle_ratio"]);
 	if (gMC.depth == gMC.miracleGenerated * miracleRatio + 1 && (gMC.depth != 1))
 	{
 		int doorX, doorY;
@@ -2744,9 +2744,9 @@ void HandleHell(GenerationContext& genContext, GenerationArguments& genArguments
 }
 
 void CreateStars(GenerationContext& genContext, GenerationArguments& genArguments){
-	int rooms = std::get<int>(genArguments["star_count"]);
+	int rooms = GetMetadata<int>(genArguments["star_count"]);
 	if (gMC.hell)
-		rooms += std::get<int>(genArguments["hell_boost"]);
+		rooms += GetMetadata<int>(genArguments["hell_boost"]);
 	for (int l = 0; l < rooms; l++)
 	{
 		int x, y;
@@ -2757,7 +2757,7 @@ void CreateStars(GenerationContext& genContext, GenerationArguments& genArgument
 		{
 			x1 = Random(0, gMap.width, RandomCategories::SEEDED_NPCS);
 			y1 = Random(0, gMap.length, RandomCategories::SEEDED_NPCS);
-			if (Distance(x, y, x1, y1) > std::get<int>(genArguments["distance"]))
+			if (Distance(x, y, x1, y1) > GetMetadata<int>(genArguments["distance"]))
 			{
 				x = x1;
 				y = y1;
@@ -2910,7 +2910,7 @@ void ProcessIndividualNPCSpawning(const std::string& name){
 
 void ProcessNPCSpawning(GenerationContext& genContext, GenerationArguments& genArguments){
 	for (auto &[name, spawnInfo]: npcSpawning){
-		if ((spawnInfo.standardOrder) != (genContext.tileset == GetTileset(std::get<std::string>(genArguments["blacklist_tileset"]))))
+		if ((spawnInfo.standardOrder) != (genContext.tileset == GetTileset(GetMetadata<std::string>(genArguments["blacklist_tileset"]))))
 			ProcessIndividualNPCSpawning(name);
 	}
 }

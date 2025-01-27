@@ -9,7 +9,7 @@
 
 struct GenerationContext;
 
-using GenerationMetadata = std::variant<int, float, bool, std::string, std::vector<int>, std::vector<float>, std::vector<std::string>>;
+using GenerationMetadata = std::variant<float, std::string, std::vector<float>, std::vector<std::string>>;
 using GenerationArguments = std::map<std::string, GenerationMetadata>;
 using GenerationFunction = std::function<void(GenerationContext&, GenerationArguments&)>;
 
@@ -25,12 +25,41 @@ template <class TAlternative, class... Ts>
 inline constexpr bool is_alternative_v<TAlternative, std::variant<Ts...>> =
     (... or std::is_same_v<TAlternative, Ts>);
 
+template <typename T>
+concept Vector = requires {
+    requires std::same_as<std::decay_t<T>,
+                          std::vector<typename std::decay_t<T>::value_type> >; 
+};
+
 }  // namespace detail
 
+using PossibleGenerationMetadata = std::variant<int, float, bool, std::string, std::vector<int>, std::vector<float>, std::vector<std::string>>;
+
+
 template <class TAlternative>
-concept IsGenMetadata = requires(GenerationMetadata var) {
+concept IsGenMetadata = requires(PossibleGenerationMetadata var) {
   requires detail::is_alternative_v<TAlternative,
                                     decltype(detail::to_variant(var))>;
 };
+
+template <typename T>
+inline T GetMetadata(GenerationMetadata value){
+  return std::get<T>(value);
+}
+
+template<>
+inline int GetMetadata<int>(GenerationMetadata value){
+  return std::get<float>(value);
+}
+
+template<>
+inline bool GetMetadata<bool>(GenerationMetadata value){
+  return std::get<float>(value);
+}
+
+template<>
+inline std::vector<int> GetMetadata<std::vector<int>>(GenerationMetadata value){
+  return std::ranges::to<std::vector<int>>(std::get<std::vector<float>>(value) | std::views::transform([](float f)->int{return f;}));
+}
 
 #endif // __STAGEGEN_H__

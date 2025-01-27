@@ -133,19 +133,15 @@ void PutFramePerSecound(int x, int y)
 
 void from_json(const json &j, GenerationMetadata &gm)
 {
-    if (j.is_number_integer()){
-		gm = j.get<int>();
-	} else if (j.is_number_float()){
+    if (j.is_number()){
 		gm = j.get<float>();
 	} else if (j.is_boolean()){
-		gm = j.get<bool>();
+		gm = static_cast<float>(j.get<bool>());
 	} else if (j.is_string()){
 		gm = j.get<std::string>();
 	} else if (j.is_array()){
 		auto first_value = j[0];
-		if (first_value.is_number_integer())
-			gm = j.get<std::vector<int>>();
-		else if (first_value.is_number_float())
+		if (first_value.is_number())
 			gm = j.get<std::vector<float>>();
 		else if (first_value.is_string())
 			gm = j.get<std::vector<std::string>>();
