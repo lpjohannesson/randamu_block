@@ -734,15 +734,16 @@ void ActMyChar_Normal(bool bKey)
 		gMC.boost_sw = 0;
 		gMC.pogo = true;
 		gMC.chargeActive = false;
+		int boostFuel;
 		for (const auto&[_, amount]: GetActualFlagTraitData<int>(FlagTraits::CAN_BOOST, "amount")){
-			if (amount > gMC.boost_cnt) gMC.boost_cnt = amount;
+			if (amount > boostFuel) boostFuel = amount;
 		}
 		float boostAmount = 1;
 		for (const auto&[_, amount]: GetActualFlagTraitData<float>(FlagTraits::BOOSTER_FUEL_BOOST, "amount")){
 			auto activeFlags = GetTraitActiveFlags(FlagTraits::BOOSTER_FUEL_BOOST);
 			if (std::ranges::find(activeFlags, amount) == activeFlags.end()) boostAmount *= amount;
 		}
-		gMC.boost_cnt *= boostAmount;
+		gMC.boost_cnt = boostAmount*boostFuel;
 		if (CheckFlagTrait(FlagTraits::GRAVITY_FLIP))
 			ClearCooldown(gCooldowns, GRAVITY_FLIP_ID);
 
