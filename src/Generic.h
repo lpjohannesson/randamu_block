@@ -50,7 +50,7 @@ std::map<K, V> MapIterate(std::map<K, V>& map, Pred&& predicate = std::forward<P
 	std::map<K, V> projectedMap = map;
 	std::erase_if(projectedMap, [predicate](const auto& item){
 		const auto&[key, value] = item;
-		return predicate(key, value);
+		return !predicate(key, value);
 	});
 	return projectedMap;
 }
