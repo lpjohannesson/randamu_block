@@ -45,6 +45,7 @@ std::vector<Cooldown> gCooldowns = {};
 std::map<std::pair<short, short>, unsigned char> mapModifications;
 
 nlohmann::ordered_map<std::string, MYCHAR_DEFINITION> availableCharacters;
+std::vector<std::string> characterCodenames;
 
 std::vector<MYCHAR_EQUIP_DEFINITION> equipVisuals;
 

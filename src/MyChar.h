@@ -30,9 +30,9 @@ struct MYCHAR_PHYSICS
 
 struct MYCHAR_DEFINITION
 {
-	std::string name;
-	std::string codeName;
-	std::string fullName;
+	std::string name = "";
+	std::string codeName = "";
+	std::string fullName = "";
 	std::string spritesheet = "MyChar";
 	
 	struct MYCHAR_PHYSICS_DIFF
@@ -67,8 +67,8 @@ struct MYCHAR_DEFINITION
 
 	std::vector<WEAPON> startingWeapons{{3, 0}};
 
-	std::string description1;
-	std::string description2;
+	std::string description1 = "";
+	std::string description2 = "";
 
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, codeName, fullName, spritesheet, physics_diff, maxLife,
 		hurtSound, deathSound, immunityFrames, lifeCapsuleLimit, lifeCapsuleValue,
@@ -169,6 +169,7 @@ extern std::vector<int> gAvailableIDs;
 extern std::vector<Cooldown> gCooldowns;
 
 extern nlohmann::ordered_map<std::string, MYCHAR_DEFINITION> availableCharacters;
+extern std::vector<std::string> characterCodenames;
 
 extern std::vector<MYCHAR_EQUIP_DEFINITION> equipVisuals;
 

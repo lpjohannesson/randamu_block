@@ -1376,7 +1376,7 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 		}
 
 		if (gKeyTrg & gKeyOk){
-			gConfigCopy["character"] = CharacterCode(selectedChar);
+			gConfigCopy["character"] = characterCodenames[selectedChar];
 			PlaySoundObject(18, SOUND_MODE_PLAY);
 			StartFadeOut(4);
 			break;

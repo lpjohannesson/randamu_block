@@ -246,8 +246,11 @@ void ReloadConfig(){
 	}
 	for (auto characterDefPath: characterDefPaths) {
 		 json characterDef = ReadJSON(("Characters" / characterDefPath / "data.json").string());
-		 characterDef["codeName"] = characterDefPath;
+		 characterDef["codeName"] = characterDefPath.string();
+		 characterCodenames.push_back(characterDefPath.string());
 		 availableCharacters[characterDefPath.string()] = characterDef;
+		 if (availableCharacters[characterDefPath.string()].fullName.empty())
+		 	availableCharacters[characterDefPath.string()].fullName = availableCharacters[characterDefPath.string()].name;
 	}
 
 	characterNames = ParseMapTag("Tags/characterNames.json");
