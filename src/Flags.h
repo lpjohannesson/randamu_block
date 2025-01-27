@@ -62,9 +62,13 @@ inline auto GetTraitActiveFlags(std::string trait){
 
 template<IsGenMetadata ArgType>
 inline auto GetActualFlagTraitData(std::string trait, std::string parameter){
-	auto mapView = MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [parameter](int flag, GenerationArguments value)->bool{
+	std::map<int, GenerationArguments> mapView = MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [parameter](int flag, GenerationArguments value)->bool{
 		return GetNPCFlag(flag) && value.contains(parameter);
 	});
-    return std::views::zip(mapView | std::views::keys, mapView | std::views::values | std::views::values | std::views::transform([](auto&& arg)->ArgType{ return GetMetadata<ArgType>(arg);}));
+	std::map<int, ArgType> flagDataMap;
+	for (auto&[key, value]: mapView){
+		flagDataMap.insert(std::pair{key, GetMetadata<ArgType>(value[parameter])});
+	}
+    return flagDataMap;
 }
 #endif // __FLAGS_H__

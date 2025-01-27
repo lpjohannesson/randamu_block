@@ -1,7 +1,7 @@
 #ifndef __GENERIC_H__
 #define __GENERIC_H__
 
-
+#include <algorithm>
 #include "CommonDefines.h"
 #include "cstdint"
 #include <map>
@@ -45,16 +45,14 @@ namespace _MapIterate_detail {
 	}
 }
 
-template<typename K, typename V, typename Predicate = decltype(_MapIterate_detail::predicate<K, V>)>
-auto MapIterate(std::map<K, V>& map, Predicate&& predicate){
-	auto transform = [&](const K& key)
-    {
-        return std::views::zip(std::views::repeat(key), _MapIterate_detail::lookup(map, key));
-    };
-
-    return std::views::filter(std::views::zip(std::views::keys(map), std::views::values(map)), [predicate](auto&& pair) -> bool {
-		return predicate(std::get<0>(pair), std::get<1>(pair));
-	}) | std::views::keys | std::views::transform(transform) | std::views::join;
+template<typename K, typename V, typename Pred = decltype(_MapIterate_detail::predicate<K, V>)>
+std::map<K, V> MapIterate(std::map<K, V>& map, Pred&& predicate = std::forward<Pred&&>(_MapIterate_detail::predicate<K, V>)){
+	std::map<K, V> projectedMap = map;
+	std::erase_if(projectedMap, [predicate](const auto& item){
+		const auto&[key, value] = item;
+		return predicate(key, value);
+	});
+	return projectedMap;
 }
 
 #endif // __GENERIC_H__
