@@ -253,7 +253,6 @@ void ReloadConfig(){
 		 	availableCharacters[characterDefPath.string()].fullName = availableCharacters[characterDefPath.string()].name;
 	}
 
-	characterNames = ParseMapTag("Tags/characterNames.json");
 	stageNames = ParseMapTag("Tags/stageNames.json");
 	for (const auto &[key, _] : stageNames)
 	{
