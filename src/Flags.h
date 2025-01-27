@@ -57,7 +57,8 @@ inline auto GetTraitActiveFlags(std::string trait){
     auto mapView = MapIterate<int, GenerationArguments>(GetFlagTraitData(trait), [](int flag, GenerationArguments value)->bool{
 		return GetNPCFlag(flag);
 	});
-    return mapView | std::views::keys;
+	auto keyView = mapView | std::views::keys;
+    return std::vector<int>{keyView.begin(), keyView.end()};
 }
 
 template<IsGenMetadata ArgType>
