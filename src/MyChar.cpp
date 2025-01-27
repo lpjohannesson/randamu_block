@@ -772,7 +772,7 @@ void ActMyChar_Normal(bool bKey)
 				}
 				if (gKey & gKeyLeft && gMC.xm > -maximal_dash){
 					if (gMC.xm > 0){
-						gMC.xm -= dashy*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect");
+						gMC.xm -= dashy*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect", 1);
 					}
 					gMC.xm -= dashy;
 					if (gMC.saraDash > 0 && gMC.xm > -500){
@@ -903,14 +903,14 @@ void ActMyChar_Normal(bool bKey)
 				dashy *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SPEED_BOOTS, "air_acceleration", 1.0f));
 			}
 			if (gKey & gKeyLeft && gMC.xm > -maximal_dash){
-				if (gMC.xm > 0) gMC.xm -= dash2*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect");
+				if (gMC.xm > 0) gMC.xm -= dash2*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect", 1);
 				gMC.xm -= dash2;
 				if (gMC.saraDash > 0 && gMC.xm > -500){
 					gMC.xm = -500;
 				}
 			}
 			if (gKey & gKeyRight && gMC.xm < maximal_dash){
-				if (gMC.xm < 0) gMC.xm += dash2*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect");
+				if (gMC.xm < 0) gMC.xm += dash2*GetFlagTraitData<int>(FlagTraits::TIGHTER_TURNING, "effect", 1);
 				gMC.xm += dash2;
 				if (gMC.saraDash > 0 && gMC.xm < 500){
 					gMC.xm = 500;

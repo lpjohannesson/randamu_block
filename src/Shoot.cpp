@@ -946,7 +946,7 @@ void ShootBullet_Machinegun1(int level)
 			break;
 	}
 
-	int firerate = 8 * std::max(0.0f, 1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "machine_gun"));
+	int firerate = 8 * (1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "machine_gun", 0.0f));
 
 	if (!(gKey & gKeyShot))
 		gMC.rensha = firerate;
@@ -1095,7 +1095,7 @@ void ShootBullet_Machinegun2(int level)
 	int bul_no = Bullets::MACHINE_GUN_GATLING;
 	static int wait;
 
-	int firerate = 4 * std::max(0.0f, 1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "gatling_gun"));
+	int firerate = 4 * (1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "gatling_gun", 0.0f));
 
 	if (!(gKey & gKeyShot))
 		gMC.rensha = firerate;
@@ -2035,7 +2035,7 @@ void ShootBullet_Bubblin2(int level)
 	else
 		level = Bullets::BUBBLER_LVL_4;
 
-	int firerate = 4 * std::max(0.0f, 1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "bubbler"));
+	int firerate = 4 * (1.0f - GetFlagTraitData<float>(FlagTraits::FIRERATE_BOOST, "bubbler", 0.0f));
 
 	if (!(gKey & gKeyShot))
 		gMC.rensha = firerate;
@@ -2409,7 +2409,7 @@ void ShootBullet_Spur(int level)
 
 	if (gKey & gKeyShot)
 	{
-		AddExpMyChar(2*std::max(0.0f, GetFlagTraitData<float>(FlagTraits::SPUR_CHARGE_BOOST, "modifier")));
+		AddExpMyChar(2*GetFlagTraitData<float>(FlagTraits::SPUR_CHARGE_BOOST, "modifier", 1.0f));
 
 		if (++spur_charge / 2 % 2)
 		{
