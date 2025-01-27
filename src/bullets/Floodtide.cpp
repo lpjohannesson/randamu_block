@@ -146,7 +146,7 @@ void ActBullet_Floodtide(BULLET *bul, int level)
 				}
 			} else {
 				IncrementCooldown(gCooldowns, FLOODTIDE_ATTACK_ID, -1);
-				std::remove_if(gCooldowns.begin(), gCooldowns.end(), [](Cooldown c){
+				std::erase_if(gCooldowns, [](Cooldown c){
 					return c.id == FLOODTIDE_ATTACK_ID && c.duration <= 0;
 				});
 			}
