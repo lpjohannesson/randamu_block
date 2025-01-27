@@ -16,6 +16,7 @@ extern json gJConfig;
 extern std::map<std::string, std::string> messageBank;
 extern std::vector<std::string> difficultyNames;
 extern std::vector<std::string> gimmickNames;
+extern std::map<std::string, std::string> stageNames;
 extern std::vector<std::string> stageSymbols;
 extern std::vector<std::string> stageGenerationOrder;
 extern std::map<std::string, GenerationArguments> stageGenerationMetadata;
