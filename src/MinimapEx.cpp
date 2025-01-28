@@ -519,20 +519,20 @@ int MiniMapExLoop(void)
         //     }
         // }
 		
-		if(map_x - gMap.width / 2 < 0){
-			map_x = gMap.width / 2;
+		if(map_x - gMap.width * 4/12 < 0){
+			map_x = gMap.width * 4/12;
 		}
 		
-		if(map_x + gMap.width / 2 >= gMap.width){
-			map_x = gMap.width - gMap.width / 2;
+		if(map_x >= gMap.width - gMap.width * 4/12){
+			map_x = gMap.width - gMap.width * 4/12;
 		}
 
-		if(map_y - gMap.length * 5 / 10 < 0){
-			map_y = gMap.length * 5 / 10;
+		if(map_y < gMap.length * 4/8){
+			map_y = gMap.length * 4/8;
 		}
 		
-		if(map_y >= gMap.length ){
-			map_y = gMap.length;
+		if(map_y >= gMap.length * 11/10){
+			map_y = gMap.length * 11/10;
 		}
 
 		PutBitmap4(&grcGame, 0, 0, &grcGame, SURFACE_ID_SCREEN_GRAB);
