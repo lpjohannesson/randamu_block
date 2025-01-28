@@ -652,9 +652,13 @@ void HitMyCharMap(void)
 int JudgeHitMyCharNPC(NPCHAR *npc)
 {
 	int hit = 0;
-	int mod = 1;
+	float mod = 1;
 	if (CheckFlagTrait(FlagTraits::WITCH_HITBOX) && npc->damage){
 		mod = 3;
+	}
+	if (gMC.dashDuration > 0 && IsDashEquipped() && CheckFlagTrait(FlagTraits::SUPER_DASH) && 
+				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), npc->code_char) != bonkableEnemies.end()){
+		mod /= 2;
 	}
 
 	if (gMC.y - gMC.hit.top < npc->y + npc->hit.bottom / mod - (3 * 0x200)
@@ -721,10 +725,14 @@ int JudgeHitMyCharNPC(NPCHAR *npc)
 unsigned char JudgeHitMyCharNPC3(NPCHAR *npc)
 {
 	int size = 2 * 0x200;
-	int mod = 1;
+	float mod = 1;
 	if (CheckFlagTrait(FlagTraits::WITCH_HITBOX) && npc->damage){
 		size = 0x200;
 		mod = 3;
+	}
+	if (gMC.dashDuration > 0 && IsDashEquipped() && CheckFlagTrait(FlagTraits::SUPER_DASH) && 
+				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), npc->code_char) != bonkableEnemies.end()){
+		mod /= 2;
 	}
 
 	if (npc->direct == 0)
@@ -751,9 +759,13 @@ int JudgeHitMyCharNPC4(NPCHAR *npc)
 {
 	// TODO: comment this
 	int hit = 0;
-	int mod = 1;
+	float mod = 1;
 	if (CheckFlagTrait(FlagTraits::WITCH_HITBOX) && npc->damage){
 		mod = 3;
+	}
+	if (gMC.dashDuration > 0 && IsDashEquipped() && CheckFlagTrait(FlagTraits::SUPER_DASH) && 
+				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), npc->code_char) != bonkableEnemies.end()){
+		mod /= 2;
 	}
 
 	float fy1;
@@ -997,12 +1009,12 @@ void HitMyCharNpChar(void)
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 					} else {
-						if (IntersectDamageCheck(gNPC[i], gMC.x, gMC.y))
+						if (IntersectDamageCheck(gNPC[i], gMC.x, gMC.y, 8_pix, 8_pix))
 							DealDamage(gNPC[i], GetFlagTraitData<int>(FlagTraits::SUPER_DASH, "damage"));
 						gMC.xm /= -4;
 						gMC.dashLock = -1;
 						gMC.dashDuration = 0;
-						gMC.shock += 40;
+						gMC.shock += 60;
 						if (GetFlagTraitData<bool>(FlagTraits::SUPER_DASH, "freeze", false)){
 							gNPC[i].freeze = GetFlagTraitData<int>(FlagTraits::SUPER_DASH, "freeze_time");
 							IncrementCooldown(gCooldowns, DASH_TIMER_ID, 120);
