@@ -971,7 +971,7 @@ void ActMyChar_Normal(bool bKey)
 					(gMC.flag & 0x100)
 					|| (CheckFlagTrait(FlagTraits::JUMP_ON_SPIKES) && gMC.pogo && GetAttribute(round(((float)gMC.x) / 0x2000), round(((float)gMC.y + 0x200 * 15) / 0x2000)) == 66)
 					|| (CheckFlagTrait(FlagTraits::WALL_JUMP) && (GetAttribute(round(((float)gMC.x) / 0x2000) + 1, round(((float)gMC.y) / 0x2000)) == 65)
-					|| GetAttribute(round(((float)gMC.x) / 0x2000) - 1, round(((float)gMC.y) / 0x2000)) == 65)
+					|| (CheckFlagTrait(FlagTraits::WALL_JUMP) && GetAttribute(round(((float)gMC.x) / 0x2000) - 1, round(((float)gMC.y) / 0x2000)) == 65))
 					 || ((CheckFlagTrait(FlagTraits::DOUBLE_JUMP) || gMC.saraDash) && gMC.pogo)))
 		{
 			if (gMC.flag & 0x2000)
