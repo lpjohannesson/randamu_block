@@ -133,7 +133,7 @@ struct MYCHAR
 	bool hell;
 	bool outerWallInit;
 	char tileset;
-	unsigned long seed;
+	uint64_t seed;
 	bool randomSeed;
 	int regenCount;
 	float regenCounter;

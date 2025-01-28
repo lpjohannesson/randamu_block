@@ -29,7 +29,7 @@ uint32_t msvc_rand(uint32_t boundary)
 	return pcg32_boundedrand(boundary);
 }
 
-uint32_t msvc_rand(uint64_t boundary)
+uint64_t msvc_rand64(uint64_t boundary)
 {
 	return pcg32_boundedrand64(boundary);
 }

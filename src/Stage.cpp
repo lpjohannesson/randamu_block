@@ -691,15 +691,15 @@ void SelectCharacter(std::string character) {
 
 GenerationContext genContext;
 
-unsigned long GetDailySeed(){
-	unsigned long seed = time(0);
+uint64_t GetDailySeed(){
+	uint64_t seed = time(0);
 	seed -= seed % (60*60*24);
 	seed += std::numeric_limits<int>::max();
 	return seed;
 }
 
-unsigned long GenerateSeed(){
-	unsigned long seed;
+uint64_t GenerateSeed(){
+	uint64_t seed;
 	if (gDaily){
 		seed = GetDailySeed();
 		gMC.randomSeed = false;
@@ -708,55 +708,34 @@ unsigned long GenerateSeed(){
 	}
 	else if (IsKeyFile("seed.txt"))
 	{
-		FILE *fp;
-		std::string path;
-
-		// Open seed
-		path = gModulePath + "/seed.txt";
-
-		fp = fopen(path.c_str(), "rb");
-		if (fp == NULL)
-			seed = time(0);
-		else
-		{
-			// Read data
-			fread(&seed, 1, 1, fp);
-			if (seed >= '0' && seed <= '9')
-			{
-				// read as number
-				fseek(fp, 0, SEEK_SET);
-				fscanf(fp, "%lu", &seed);
-			}
-			else
-			{
-				// read as letters
-				fseek(fp, 0, SEEK_SET);
-				// fread(&seed, sizeof(unsigned long), 1, fp);
-				char letteredSeed[12];
-				if (fgets(letteredSeed, 10, fp) != NULL)
-				{
-					seed = 0;
-					int seedLen = strlen(letteredSeed);
-					for (int i = 0; i < seedLen; i++)
-					{
-						seed += (letteredSeed[i] - '0') * (pow(10, (seedLen - i - 1)));
+		seed = time(0);
+		std::fstream seedFile{gModulePath + "/seed.txt"};
+		if (seedFile){
+			std::string seedTxt;
+			std::getline(seedFile, seedTxt);
+			if (!seedTxt.empty()){
+				seed = 0;
+				int tier = 0;
+				for (auto ch: seedTxt | std::views::reverse){
+					uint64_t inc = (ch - '0') * static_cast<uint64_t>(std::pow(10, tier));
+					uint64_t test;
+					if (__builtin_add_overflow(seed, inc, &test)){
+						break;
+					} else{
+						seed = test;
+						tier++;
 					}
-					int l = 0;
-				}
-				else
-				{
-					seed = time(0);
 				}
 			}
-			fclose(fp);
-			gMC.randomSeed = false;
-			playerHighScore = 0;
-			LoadScore(seed);
 		}
+		seedFile.close();
+		gMC.randomSeed = false;
+		playerHighScore = 0;
+		LoadScore(seed);
 	}
 	else
 	{
-		seed = Random(0, std::numeric_limits<unsigned int>::max()-2);
+		seed = Random64(0, std::numeric_limits<uint64_t>::max()-2);
 		playerHighScore = 0;
 		LoadScore(0);
 		if (aprilFools)

@@ -84,6 +84,12 @@ int Random(int min, int max, RandomCategories::RandomCategories category)
 	}
 }
 
+uint64_t Random64(uint64_t min, uint64_t max)
+{
+	const uint64_t range = max - min + 1;
+	return msvc_rand64(range) + min;
+}
+
 void PutNumber4(int x, int y, int value, bool bZero)
 {
 	// Define rects
@@ -290,6 +296,62 @@ void PutNumber10(int x, int y, size_t value, bool bZero)
 		// Draw digit
 		if ((bZero) || sw != 0)
 			PutBitmap3_NoFlip(&rcClient, PixelToScreenCoord(x + 8 * offset), PixelToScreenCoord(y), &rect[a], SURFACE_ID_TEXT_BOX);
+
+		// Go to next digit
+		++offset;
+	}
+}
+
+void PutNumber19(int x, int y, size_t value, bool bZero)
+{
+	// Define rects
+	Rect rcClient = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
+
+	Rect rect[10] = {
+		{0, 56, 8, 64},
+		{8, 56, 16, 64},
+		{16, 56, 24, 64},
+		{24, 56, 32, 64},
+		{32, 56, 40, 64},
+		{40, 56, 48, 64},
+		{48, 56, 56, 64},
+		{56, 56, 64, 64},
+		{64, 56, 72, 64},
+		{72, 56, 80, 64},
+	};
+
+	// Digits
+	double tbl[20];
+	for (int i : std::views::iota(0, 20)){
+		tbl[i] = std::pow(10, 19 - i);
+	}
+
+	int a;
+	int sw;
+	int offset;
+
+	// Limit value
+	if (value > std::numeric_limits<uint64_t>::max()-1)
+		value = std::numeric_limits<uint64_t>::max()-1;
+
+	// Go through number and draw digits
+	offset = 0;
+	sw = 0;
+	while (offset < 20)
+	{
+		// Get the digit that this is
+		a = 0;
+
+		while (value >= tbl[offset])
+		{
+			value -= tbl[offset];
+			++a;
+			++sw;
+		}
+
+		// Draw digit
+		if ((bZero) || sw != 0)
+			PutBitmap3(&grcFull, PixelToScreenCoord(x + 4 * offset), PixelToScreenCoord(y), &rect[a], 0.5f, SURFACE_ID_TEXT_BOX);
 
 		// Go to next digit
 		++offset;
@@ -700,7 +762,7 @@ static int ModeAction(void)
 		GetCompileVersion(&v1, &v2, &v3, &v4);
 		if (gbExtendedInfo)
 		{
-			sprintf(buffer1, "%s v%d.%d.%d.%d%s -- Seed: %u -- X: %.4g, Y: %.4g -- HP: %d/%d - %d/%d", gWindowTitle.c_str(), v1, v2, v3, v4, IsBeta() ? " (beta)" : "", gMC.seed, gMC.x / 8192.0F, gMC.y / 8192.0F, gMC.life, gMC.max_life, gKey, gKeyTrg);
+			sprintf(buffer1, "%s v%d.%d.%d.%d%s -- Seed: %llu -- X: %.4g, Y: %.4g -- HP: %d/%d - %d/%d", gWindowTitle.c_str(), v1, v2, v3, v4, IsBeta() ? " (beta)" : "", gMC.seed, gMC.x / 8192.0F, gMC.y / 8192.0F, gMC.life, gMC.max_life, gKey, gKeyTrg);
 		} else {
 			sprintf(buffer1, "%s v%d.%d.%d.%d%s", gWindowTitle.c_str(), v1, v2, v3, v4, IsBeta() ? " (beta)" : "");
 		}

@@ -26,9 +26,9 @@ extern unsigned int gLevelID;
 
 extern json gRankings;
 
-std::string ScoreFilePath(unsigned long seed);
-bool SaveScore(unsigned long seed);
-bool LoadScore(unsigned long seed);
+std::string ScoreFilePath(uint64_t seed);
+bool SaveScore(uint64_t seed);
+bool LoadScore(uint64_t seed);
 void SaveRankings();
 void LoadRankings();
 void SaveRankingsFile();

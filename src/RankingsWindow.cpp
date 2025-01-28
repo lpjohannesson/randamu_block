@@ -731,8 +731,8 @@ int RankingLoop(void)
 		PutTextScript();
 		PutFramePerSecound();
 		int baseY = 48;
-			PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(WINDOW_WIDTH - 88), PixelToScreenCoord(WINDOW_HEIGHT - baseY), &rcSeed, SURFACE_ID_TEXT_BOX);
-			PutNumber10(WINDOW_WIDTH - 88, WINDOW_HEIGHT - baseY + 8, gRankings[selectedRank]["seed"], true);
+			PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(WINDOW_WIDTH - 28), PixelToScreenCoord(WINDOW_HEIGHT - baseY), &rcSeed, SURFACE_ID_TEXT_BOX);
+			PutNumber19(WINDOW_WIDTH - 88, WINDOW_HEIGHT - baseY + 8, gRankings[selectedRank]["seed"], false);
 		
 		PutText(WINDOW_WIDTH - 90, 40, GetCSE2Message("rankings_scroll_right"), RGB(0xFF, 0xFF, 0xFF));
 		PutText(WINDOW_WIDTH - 90, 54, GetCSE2Message("rankings_scroll_left"), RGB(0xFF, 0xFF, 0xFF));

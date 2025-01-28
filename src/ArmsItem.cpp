@@ -1017,8 +1017,8 @@ int CampLoop(void)
 				PutTimeCounter(WINDOW_WIDTH - 80, WINDOW_HEIGHT - baseY + 48, &lol);
 		}
 		if (!gMC.randomSeed){
-			PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(WINDOW_WIDTH - 91), PixelToScreenCoord(WINDOW_HEIGHT - baseY), &rcSeed, SURFACE_ID_TEXT_BOX);
-			PutNumber10(WINDOW_WIDTH - 91, WINDOW_HEIGHT - baseY + 8, gMC.seed, true);
+			PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(WINDOW_WIDTH - 28), PixelToScreenCoord(WINDOW_HEIGHT - baseY), &rcSeed, SURFACE_ID_TEXT_BOX);
+			PutNumber19(WINDOW_WIDTH - 91, WINDOW_HEIGHT - baseY + 8, gMC.seed, false);
 		}
 		PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(WINDOW_WIDTH - 91), PixelToScreenCoord(WINDOW_HEIGHT - baseY + 24), &rcHighScore, SURFACE_ID_TEXT_BOX);
 		PutNumber10(WINDOW_WIDTH - 91, WINDOW_HEIGHT - baseY + 32, playerHighScore, true);

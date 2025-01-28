@@ -7,6 +7,7 @@
 #include "new_rng/pcg_basic.h"
 
 uint32_t msvc_rand(uint32_t boundary);
+uint64_t msvc_rand64(uint64_t boundary);
 void msvc_srand(uint32_t seed);
 long msvc_rand2(void);
 void msvc_srand2(unsigned long seed);

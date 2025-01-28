@@ -107,7 +107,7 @@ enum {
 };
 
 struct GenerationContext {
-	unsigned long seed;
+	uint64_t seed;
 	int depth;
 	char tileset;
 	int gimmick;
@@ -270,6 +270,6 @@ bool IsItSecondCampaign();
 void PutMappingName(void);
 char GetGimmick(std::string id);
 char GetTileset(std::string id);
-unsigned long GetDailySeed();
+std::uint64_t GetDailySeed();
 
 #endif // __STAGE_H__

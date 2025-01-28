@@ -437,7 +437,7 @@ void RenderBackend_BlitScaled(RenderBackend_Surface *source_surface, const Rende
 	SDL_Rect source_rect;
 	RectToSDLRect(rect, &source_rect);
 
-	SDL_Rect destination_rect = {(int)x, (int)y, source_rect.w * scale, source_rect.h * scale};
+	SDL_Rect destination_rect = {(int)x, (int)y, std::round(source_rect.w * scale), std::round(source_rect.h * scale)};
 
 	// Blit the texture
 	if (SDL_SetTextureBlendMode(source_surface->texture, SDL_BLENDMODE_BLEND) < 0)

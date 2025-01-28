@@ -156,11 +156,13 @@ extern bool gContinue;
 extern int gGameMode;
 
 int Random(int min, int max, RandomCategories::RandomCategories category = RandomCategories::NORMAL);
+uint64_t Random64(uint64_t min, uint64_t max);
 void PutNumber4(int x, int y, int value, bool bZero);
 void PutNumber5(int x, int y, int value, bool bZero);
 //added by kait
 void PutNumber9(int x, int y, size_t value, bool bZero);
 void PutNumber10(int x, int y, size_t value, bool bZero);
+void PutNumber19(int x, int y, size_t value, bool bZero);
 
 bool TimeStopActive(int npc_id = 0);
 

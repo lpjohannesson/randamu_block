@@ -447,7 +447,7 @@ set_target_properties(Randamu PROPERTIES
 set_target_properties(Randamu PROPERTIES
 	CXX_STANDARD 23
 	CXX_STANDARD_REQUIRED ON
-	CXX_EXTENSIONS OFF
+	CXX_EXTENSIONS ON
 )
 
 # Name debug builds "Randamu_debug", to distinguish them

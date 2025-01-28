@@ -35,7 +35,7 @@ const char* const gDefaultScoreName = "highscore";
 const char* const gDefaultScoreExt = ".dat";
 const char* const gScoreCode = "modfest28";
 
-bool SaveScore(unsigned long seed)
+bool SaveScore(std::uint64_t seed)
 {
 	FILE* fp;
 	SCOREDATA scoredata;
@@ -123,11 +123,11 @@ void SaveRankingsFile(){
 	WriteJSON(gModulePath + "/rankings.json", gRankings);
 }
 
-std::string ScoreFilePath(unsigned long seed){
+std::string ScoreFilePath(std::uint64_t seed){
 	return gScorePath + "/" + std::to_string(seed) + gDefaultScoreExt;
 }
 
-bool LoadScore(unsigned long seed)
+bool LoadScore(std::uint64_t seed)
 {
 	FILE* fp;
 	SCOREDATA scoredata;

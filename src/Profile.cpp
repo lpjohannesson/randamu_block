@@ -228,7 +228,7 @@ bool LoadProfile(const char *name)
 	auto pChst = profileJson[PROFILE_GEN_CHESTS].get<std::vector<int>>();
 	std::copy(pChst.begin(), pChst.end(), gMC.generatedChests);
 	gAvailableIDs = profileJson[PROFILE_AVAILABLE_IDS].get<std::vector<int>>();
-	gMC.seed = profileJson[PROFILE_SEED].get<int>();
+	gMC.seed = profileJson[PROFILE_SEED].get<std::uint64_t>();
 	gMC.randomSeed = false;
 	LoadRNG(profileJson);
 	gMC.x = profileJson[PROFILE_X].get<int>();

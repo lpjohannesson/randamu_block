@@ -485,7 +485,7 @@ static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
 		PutText(2, 2, buffer1, RGB(0xFF, 0xFF, 0xFF));
 		sprintf(buffer7, "%s: %s", GetCSE2Message("debug_compile_time").c_str(), __DATE__);
 		PutText(2, 15, buffer7, RGB(0xFF, 0xFF, 0xFF));
-		sprintf(buffer2, "%s: %lu", GetCSE2Message("debug_seed").c_str(), gMC.seed);
+		sprintf(buffer2, "%s: %llu", GetCSE2Message("debug_seed").c_str(), gMC.seed);
 		PutText(2, 29, buffer2, RGB(0xFF, 0xFF, 0xFF));
 		sprintf(buffer3, "%s: %d", GetCSE2Message("debug_score").c_str(), gMC.score);
 		PutText(2, 43, buffer3, RGB(0xFF, 0xFF, 0xFF));
