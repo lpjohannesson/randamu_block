@@ -349,11 +349,12 @@ enemies.<NOD Same blasts will
 also occasionally spawn
 on your own attacks.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1011<IT-0032<IT-0055<IT+0011<MM-Created =Augmented Man=!<WAI0135<NOD<CLO<RMU<END
 #0605
-<PRI<MSG<GIT1012Cape of Shadows allows
-you to dash with Ability key
-and grants higher jump height
-and double jump.<NOD Has ability to
-chain double jumps and dashes.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1012<IT-0004<IT-0041<IT+0012<MM-Created =Cape of Shadows=!<WAI0135<NOD<CLO<RMU<END
+<PRI<MSG<GIT1012Cape of Shadows gives
+double jumping<NOD and empowers
+dashing to go through
+spikes and enemies without damage.<NOD
+Has ability to chain 
+double jumps and dashes.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1012<IT-0004<IT-0041<IT+0012<MM-Created =Cape of Shadows=!<WAI0135<NOD<CLO<RMU<END
 #0606
 <PRI<MSG<GIT1013Sacred Aegis grants
 super powerful dash which explodes
@@ -424,9 +425,10 @@ Fireball leave a damaging trail.<NOD
 The same trail appears when you
 dash with Dash key.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1066<IT-0004<IT-0048<IT+0066<MM-Created =Flaming Booster=!<WAI0135<NOD<CLO<RMU<END
 #0616
-<PRI<MSG<GIT1067Shield of Time gives
-<NAM an aggressive dash with
-Dash key.<NOD This dash freezes enemy
+<PRI<MSG<GIT1067Shield of Time empowers
+<NAM's dashing with
+aggression and chilling power.<NOD
+This dash freezes enemy
 it hits but makes cooldown
 longer.<NOD Ability key grants
 the usual time-stop.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1067<IT-0033<IT-0037<IT+0067<MM-Created =Shield of Time=!<WAI0135<NOD<CLO<RMU<END

@@ -468,18 +468,19 @@ Equipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 #6012
 <EQJ0012:7012<ELJ
 <KEY<MSGMakes <NAM jump higher and
-faster.<NOD Allows quick dashing
-with Dash key.<NOD Grants
-double jumps which are recharged
-when using dash.<NOD<CLR
+faster.<NODEmpowers dash
+move, allowing it to go through
+enemies and spikes without damage.<NOD
+Grants double jumps which are 
+recharged when using dash.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0012<MSG
 Equipped Cape of Shadows.<NOD<WAI0003<FRE<EVE5012
 #6013
 <EQJ0013:7013<ELJ
 <KEY<MSGThe huge shield
 made from electrum and
-steel.<NOD Gives very aggressive
-dash with Dash key.<NOD
+steel.<NODEmpowers dashing
+with aggression and power.<NOD
 Ramming enemies explodes them.<NOD
 Taking damage also spawns
 explosions.<NOD<CLR
@@ -644,8 +645,8 @@ Equipped Little Man.<NOD<WAI0003<FRE<EVE5032
 <EQJ0033:7033<ELJ
 <KEY<MSGA small shield made
 from waxed copper alloy.<NOD 
-Gives very aggressive
-dash with Dash key.<NOD
+Empowers dashing with
+aggression and power.<NOD
 Ramming enemies knocks <NAM
 back and gives i-frames.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0033<MSG
@@ -719,9 +720,10 @@ Equipped Pair of Wings.<NOD<WAI0003<FRE<EVE5041
 #6042
 <EQJ0042:7042<ELJ
 <KEY<MSGMakes <NAM swim stronger,
-enables charged swims
-and allows to dash underwater
-with Dash key.<NOD<CLR
+and enables charged swims.<NOD
+When underwater, empowers dashing,<NOD
+allowing it to go through
+enemies and spikes without damage.<CLR
 Do you want to equip it?<YNJ0000<EQ+0042<MSG
 Equipped Water Thrusters.<NOD<WAI0003<FRE<EVE5042
 #6043
@@ -811,8 +813,9 @@ Equipped Steel Plating.<NOD<WAI0003<FRE<EVE5052
 deal 2x more damage with
 projectiles,<NOD but makes <NAM
 have 67% shorter invulnerability
-frames,<NOD also makes
-any dashing item stronger.<NOD<CLR
+frames.<NODMakes dashing go
+significantly further and faster
+and removes gravity during it.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0053<MSG
 Equipped Cool Sunglasses.<NOD<WAI0003<FRE<EVE5053
 
@@ -895,8 +898,8 @@ Equipped Flaming Booster.<NOD<WAI0003<FRE<EVE5066
 <KEY<MSGA small shield made
 from aluminum, known to
 belong to Hero of Time.<NOD 
-Gives very aggressive
-dash with Dash key.<NOD
+Empowers dashing with
+aggression and power.<NOD
 Ramming enemies knocks <NAM
 back, gives i-frames<NOD and
 makes enemy deeply frozen, but
