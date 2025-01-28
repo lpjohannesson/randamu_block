@@ -71,6 +71,19 @@ uint32_t pcg32_random()
     return pcg32_random_r(&pcg32_global);
 }
 
+uint64_t pcg32_random64_r(pcg32_random_t* rng)
+{
+    uint64_t value = pcg32_random_r(rng);
+    value <<= 32;
+    value |= pcg32_random_r(rng);
+    return value;
+}
+
+uint64_t pcg32_random64()
+{
+    return pcg32_random64_r(&pcg32_global);
+}
+
 
 // pcg32_boundedrand(bound):
 // pcg32_boundedrand_r(rng, bound):
@@ -114,3 +127,19 @@ uint32_t pcg32_boundedrand(uint32_t bound)
     return pcg32_boundedrand_r(&pcg32_global, bound);
 }
 
+
+uint64_t pcg32_boundedrand64_r(pcg32_random_t* rng, uint64_t bound)
+{
+    uint64_t threshold = -bound % bound;
+
+    for (;;) {
+        uint64_t r = pcg32_random64_r(rng);
+        if (r >= threshold)
+            return r % bound;
+    }
+}
+
+uint64_t pcg32_boundedrand64(uint64_t bound)
+{
+    return pcg32_boundedrand64_r(&pcg32_global, bound);
+}
