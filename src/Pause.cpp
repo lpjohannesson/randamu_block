@@ -510,48 +510,7 @@ static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
 		PutText((WINDOW_WIDTH / 2) - ((options_menu->title.size() * 5) / 2), y, options_menu->title, RGB(0xFF, 0xFF, 0xFF));
 
 		if (gbExtendedInfo){
-		char buffer1[50], buffer2[50], buffer3[50], buffer4[100], buffer5[50], buffer6[50], buffer7[80], buffer8[60], buffer9[60],
-			buffer10[60], buffer11[60];
-		std::string buffer12;
-		int v1, v2, v3, v4;
-		GetCompileVersion(&v1, &v2, &v3, &v4);
-		buffer12 = GetCSE2FormattedMessage("title_version_name", GetVersionName());
-		sprintf(buffer1, "%s: %d.%d.%d.%d %s", GetCSE2Message("debug_version").c_str(), v1, v2, v3, v4, buffer12.data());
-		PutText(2, 2, buffer1, RGB(0xFF, 0xFF, 0xFF));
-		sprintf(buffer7, "%s: %s", GetCSE2Message("debug_compile_time").c_str(), __DATE__);
-		PutText(2, 15, buffer7, RGB(0xFF, 0xFF, 0xFF));
-		sprintf(buffer2, "%s: %llu", GetCSE2Message("debug_seed").c_str(), gMC.seed);
-		PutText(2, 29, buffer2, RGB(0xFF, 0xFF, 0xFF));
-		sprintf(buffer3, "%s: %d", GetCSE2Message("debug_score").c_str(), gMC.score);
-		PutText(2, 43, buffer3, RGB(0xFF, 0xFF, 0xFF));
-		sprintf(buffer3, "%s: %u", GetCSE2Message("debug_highscore").c_str(), playerHighScore);
-		PutText(2, 57, buffer3, RGB(0xFF, 0xFF, 0xFF));
-		std::string tilesetName = TilesetName();
-		sprintf(buffer4, "%s: %s", GetCSE2Message("debug_tileset").c_str(), tilesetName.c_str());
-		PutText(2, 71, buffer4, RGB(0xFF, 0xFF, 0xFF));
-		sprintf(buffer5, "%s: %d", GetCSE2Message("debug_stars").c_str(), gMC.a);
-		PutText(2, 85, buffer5, RGB(0xFF, 0xFF, 0xFF));
-		int yy = 99;
-		if (!ChallengeEnabled("one_hit")){
-			sprintf(buffer6, (CharacterName() + (GetCSE2Message("debug_hp") + (std::string)": %d/%d")).c_str(), gMC.life, gMC.max_life);
-			PutText(2, yy, buffer6, RGB(0xFF, 0xFF, 0xFF));
-			yy += 14;
-		}
-		sprintf(buffer10, "%s:", GetCSE2Message("debug_fps").c_str());
-		PutText(2, yy, buffer10, RGB(0xFF, 0xFF, 0xFF));
-		PutFramePerSecound(10, yy+2);
-		yy += 14;
-		std::string gimmickName = GimmickName();
-		sprintf(buffer11, "%s: %s", GetCSE2Message("debug_gimmick").c_str(), gimmickName.c_str());
-		PutText(2, yy, buffer11, RGB(0xFF, 0xFF, 0xFF));
-		yy += 14;
-		std::string difficultyName = difficultyNames[gMC.difficulty];
-		sprintf(buffer11, "%s: %s", GetCSE2Message("debug_difficulty").c_str(), difficultyName.c_str());
-		PutText(2, yy, buffer11, RGB(0xFF, 0xFF, 0xFF));
-		sprintf(buffer8, "%s: %.4f, %.4f", GetCSE2Message("debug_coords").c_str(), (float)gMC.x / 0x2000, (float)gMC.y / 0x2000);
-		PutText(2, WINDOW_HEIGHT - 29, buffer8, RGB(0xFF, 0xFF, 0xFF));
-		sprintf(buffer9, "%s: %d, %d", GetCSE2Message("debug_speed").c_str(), gMC.xm, gMC.ym);
-		PutText(2, WINDOW_HEIGHT - 15, buffer9, RGB(0xFF, 0xFF, 0xFF));
+		PutDebugInfo();
 		int fieldY = 2;
 		PutText(WINDOW_WIDTH - 100, fieldY, GetCSE2Message("debug_config") + std::string{":"}, RGB(0xFF, 0xFF, 0xFF));
 		for (auto it : gJConfig.items())
@@ -724,23 +683,18 @@ static int EnterOptionsMenuWithAlternates(OptionsMenu *options_menu, size_t sele
 		// Draw title
 		PutText((WINDOW_WIDTH / 2) - ((options_menu->title.size() * 5) / 2), y, options_menu->title, RGB(0xFF, 0xFF, 0xFF));
 
-		char buffer1[50], buffer2[50], buffer3[50];
-		std::string buffer4, buffer5;
 		int v1, v2, v3, v4;
 		GetCompileVersion(&v1, &v2, &v3, &v4);
-		sprintf(buffer1, "%s: %d.%d.%d.%d", GetCSE2Message("debug_version").c_str(), v1, v2, v3, v4);
-		sprintf(buffer2, "%s: %u", GetCSE2Message("debug_highscore").c_str(), playerHighScore);
-		sprintf(buffer3, "%s: %d/%d", GetCSE2Message("title_games").c_str(), wins, gRankings.size());
-		buffer4 = GetCSE2FormattedMessage("title_alternate_tip", 
+		PutText(2, WINDOW_HEIGHT - 28, 
+			std::format("{}: {}.{}.{}.{}", GetCSE2Message("debug_version"), v1, v2, v3, v4), RGB(0xFF, 0xFF, 0xFF));
+		PutText(2, WINDOW_HEIGHT - 15, GetCSE2FormattedMessage("title_version_name", GetVersionName()), RGB(0xFF, 0xFF, 0xFF));
+		PutText(2, 2, 
+			std::format("{}: {}", GetCSE2Message("debug_highscore"), playerHighScore), RGB(0xFF, 0xFF, 0xFF));
+		PutText(2, 15, 
+			std::format("{}: {}/{}", GetCSE2Message("title_games"), wins, gRankings.size()), RGB(0xFF, 0xFF, 0xFF));
+		PutText(titleX + 2, 2, GetCSE2FormattedMessage("title_alternate_tip", 
 			GetKeyName(bindings[controls[13].binding_index].keyboard),
-			GetKeyName(bindings[controls[13].binding_index].controller));
-		buffer5 = GetCSE2FormattedMessage("title_version_name", GetVersionName());
-		PutText(2, WINDOW_HEIGHT - 28, buffer1, RGB(0xFF, 0xFF, 0xFF));
-		PutText(2, WINDOW_HEIGHT - 15, buffer5.data(), RGB(0xFF, 0xFF, 0xFF));
-		PutText(2, 2, buffer2, RGB(0xFF, 0xFF, 0xFF));
-		PutText(2, 15, buffer3, RGB(0xFF, 0xFF, 0xFF));
-		PutText(titleX + 2, 2, buffer4.data(), RGB(0xFF, 0xFF, 0xFF));
-
+			GetKeyName(bindings[controls[13].binding_index].controller)), RGB(0xFF, 0xFF, 0xFF));
 
 		// Draw subtitle
 		if (!options_menu->subtitle.empty())

@@ -90,6 +90,44 @@ uint64_t Random64(uint64_t min, uint64_t max)
 	return msvc_rand64(range) + min;
 }
 
+void PutDebugInfo(){
+	int v1, v2, v3, v4;
+	GetCompileVersion(&v1, &v2, &v3, &v4);
+	PutText(2, 2, 
+		std::format("{}: {}.{}.{}.{} {}", GetCSE2Message("debug_version"), v1, v2, v3, v4, GetCSE2FormattedMessage("title_version_name", GetVersionName())), RGB(0xFF, 0xFF, 0xFF));
+	PutText(2, 15, 
+		std::format("{}: {}", GetCSE2Message("debug_compile_time"), __DATE__), RGB(0xFF, 0xFF, 0xFF));
+	PutText(2, 29, 
+		std::format("{}: {}", GetCSE2Message("debug_seed"), gMC.seed), RGB(0xFF, 0xFF, 0xFF));
+	PutText(2, 43, 
+		std::format("{}: {}", GetCSE2Message("debug_score"), gMC.score), RGB(0xFF, 0xFF, 0xFF));
+	PutText(2, 57, 
+		std::format("{}: {}", GetCSE2Message("debug_highscore"), playerHighScore), RGB(0xFF, 0xFF, 0xFF));
+	PutText(2, 71, 
+		std::format("{}: {}", GetCSE2Message("debug_tileset"), TilesetName()), RGB(0xFF, 0xFF, 0xFF));
+	PutText(2, 85, 
+		std::format("{}: {}", GetCSE2Message("debug_stars"), gMC.a), RGB(0xFF, 0xFF, 0xFF));
+	int yy = 99;
+	if (!ChallengeEnabled("one_hit")){
+		PutText(2, yy, 
+			std::format("{}{}: {}/{}", CharacterName(), GetCSE2Message("debug_hp"), gMC.life, gMC.max_life), RGB(0xFF, 0xFF, 0xFF));
+		yy += 14;
+	}
+	PutText(2, yy, std::format("{}:", GetCSE2Message("debug_fps")), RGB(0xFF, 0xFF, 0xFF));
+	PutFramePerSecound(10, yy+2);
+	yy += 14;
+	PutText(2, yy, 
+		std::format("{}: {}", GetCSE2Message("debug_gimmick"), GimmickName()), RGB(0xFF, 0xFF, 0xFF));
+	yy += 14;
+	std::string difficultyName = difficultyNames[gMC.difficulty];
+	PutText(2, yy, 
+		std::format("{}: {}", GetCSE2Message("debug_difficulty"), difficultyName), RGB(0xFF, 0xFF, 0xFF));
+	PutText(2, WINDOW_HEIGHT - 29, 
+		std::format("{}: {:.4f}, {:.4f}", GetCSE2Message("debug_coords"), (float)gMC.x / 0x2000, (float)gMC.y / 0x2000), RGB(0xFF, 0xFF, 0xFF));
+	PutText(2, WINDOW_HEIGHT - 15, 
+		std::format("{}: {}, {}", GetCSE2Message("debug_speed"), gMC.xm, gMC.ym), RGB(0xFF, 0xFF, 0xFF));
+}
+
 void PutNumber4(int x, int y, int value, bool bZero)
 {
 	// Define rects

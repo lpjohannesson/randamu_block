@@ -164,6 +164,8 @@ void PutNumber9(int x, int y, size_t value, bool bZero);
 void PutNumber10(int x, int y, size_t value, bool bZero);
 void PutNumber19(int x, int y, size_t value, bool bZero);
 
+void PutDebugInfo();
+
 bool TimeStopActive(int npc_id = 0);
 
 bool Game(void);
