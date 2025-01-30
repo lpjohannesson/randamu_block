@@ -1793,7 +1793,7 @@ static int Callback_Character(OptionsMenu *parent_menu, size_t this_option, Call
 	return return_value;
 }
 
-static int Callback_Character2(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+static int Callback_CharacterTitle(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
 {
 	(void)parent_menu;
 	gConfigCopy = json(gJConfig);
@@ -2682,7 +2682,7 @@ static int Callback_Configuration(OptionsMenu *parent_menu, size_t this_option, 
 	return return_value;
 }
 
-static int Callback_Configuration2(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+static int Callback_ConfigurationTitle(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
 {
 	(void)parent_menu;
 
@@ -2785,7 +2785,7 @@ static int Callback_Options(OptionsMenu *parent_menu, size_t this_option, Callba
 	return return_value;
 }
 
-static int Callback_Options2(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+static int Callback_OptionsTitle(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
 {
 	(void)parent_menu;
 
@@ -3116,7 +3116,7 @@ static int Callback_Reset(OptionsMenu *parent_menu, size_t this_option, Callback
 	return return_value;
 }
 
-static int Callback_Reset2(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+static int Callback_ResetTitle(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
 {
 	(void)parent_menu;
 
@@ -3202,7 +3202,7 @@ static int Callback_Save(OptionsMenu *parent_menu, size_t this_option, CallbackA
 	return return_value;
 }
 
-static int Callback_Save2(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+static int Callback_LoadSaveTitle(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
 {
 	(void)parent_menu;
 
@@ -3236,7 +3236,7 @@ static int Callback_Rankings(OptionsMenu *parent_menu, size_t this_option, Callb
 	return return_value;
 }
 
-static int Callback_Rankings2(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+static int Callback_RankingsTitle(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
 {
 	(void)parent_menu;
 
@@ -3297,7 +3297,7 @@ static int Callback_Quit(OptionsMenu *parent_menu, size_t this_option, CallbackA
 	return return_value;
 }
 
-static int Callback_Quit2(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+static int Callback_QuitTitle(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
 {
 	(void)parent_menu;
 
@@ -3375,15 +3375,15 @@ int Call_Title(void)
 {
 	mode = 1;
 	Option options[] = {
-		{{"title_character", "title_new_game"}, {Callback_Character2, Callback_Reset2}, NULL, "", 0, false},
-		{{"title_load_game"}, {Callback_Save2, NULL}, NULL, "", 0, !(IsProfile() && !ChallengeEnabled("timer"))},
+		{{"title_character", "title_new_game"}, {Callback_CharacterTitle, Callback_ResetTitle}, NULL, "", 0, false},
+		{{"title_load_game"}, {Callback_LoadSaveTitle, NULL}, NULL, "", 0, !(IsProfile() && !ChallengeEnabled("timer"))},
 		{{"title_new_daily"}, {Callback_StartDaily, NULL}, NULL, "", 0, 
 			fs::exists(ScoreFilePath(GetDailySeed()))},
-		{{"title_options", "title_config"}, {Callback_Options2, Callback_Configuration2}, NULL, "", 0, false},
-		{{"title_rankings"}, {Callback_Rankings2, NULL}, NULL, "", 0, gRankings.size() == 0},
+		{{"title_options", "title_config"}, {Callback_OptionsTitle, Callback_ConfigurationTitle}, NULL, "", 0, false},
+		{{"title_rankings"}, {Callback_RankingsTitle, NULL}, NULL, "", 0, gRankings.size() == 0},
 		{{"title_resources"}, {Callback_Resources, NULL}, NULL, "", 0, false},
 		{{IsBeta() ? "title_issues" : "title_updates"}, {IsBeta() ? Callback_IssueTracker : Callback_ModPage, NULL}, NULL, "", 0, false},
-		{{"title_exit"}, {Callback_Quit2, NULL}, NULL, "", 0, false}
+		{{"title_exit"}, {Callback_QuitTitle, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
