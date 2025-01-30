@@ -106,6 +106,31 @@ struct Option
 	bool disabled;
 };
 
+struct FunctionHolder
+{
+	static int Callback_Yes(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+	{
+		(void)parent_menu;
+		(void)this_option;
+
+		if (action != ACTION_OK)
+			return CALLBACK_CONTINUE;
+
+		return 1;	// Yes
+	}
+
+	static int Callback_No(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
+	{
+		(void)parent_menu;
+		(void)this_option;
+
+		if (action != ACTION_OK)
+			return CALLBACK_CONTINUE;
+
+		return 0;	// No
+	}
+};
+
 static bool restart_required;
 json gConfigCopy;
 int mode = 0;
@@ -765,31 +790,6 @@ static int EnterOptionsMenuWithAlternates(OptionsMenu *options_menu, size_t sele
 
 static int PromptAreYouSure2(void)
 {
-	struct FunctionHolder
-	{
-		static int Callback_Yes(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 1;	// Yes
-		}
-
-		static int Callback_No(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 0;	// No
-		}
-	};
-
 	Option options[] = {
 		{{"title_yes", ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
 		{{"title_no", ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
@@ -814,31 +814,6 @@ static int PromptAreYouSure2(void)
 
 static int PromptAreYouSure3(void)
 {
-	struct FunctionHolder
-	{
-		static int Callback_Yes(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 1;	// Yes
-		}
-
-		static int Callback_No(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 0;	// No
-		}
-	};
-
 	Option options[] = {
 		{{"title_yes", ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
 		{{"title_no", ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
@@ -863,31 +838,6 @@ static int PromptAreYouSure3(void)
 
 static int PromptAreYouSure4(void)
 {
-	struct FunctionHolder
-	{
-		static int Callback_Yes(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 1;	// Yes
-		}
-
-		static int Callback_No(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 0;	// No
-		}
-	};
-
 	Option options[] = {
 		{{"title_yes", ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
 		{{"title_no", ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
@@ -2841,31 +2791,6 @@ static int Callback_OptionsTitle(OptionsMenu *parent_menu, size_t this_option, C
 
 static int PromptAreYouSure(void)
 {
-	struct FunctionHolder
-	{
-		static int Callback_Yes(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 1;	// Yes
-		}
-
-		static int Callback_No(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 0;	// No
-		}
-	};
-
 	Option options[] = {
 		{{"title_yes"}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
 		{{"title_no"}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
@@ -2890,30 +2815,7 @@ static int PromptAreYouSure(void)
 
 static int PromptSaves(void)
 {
-	struct FunctionHolder
-	{
-		static int Callback_Yes(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 1;	// Yes
-		}
-
-		static int Callback_No(OptionsMenu *parent_menu, size_t this_option, CallbackAction action)
-		{
-			(void)parent_menu;
-			(void)this_option;
-
-			if (action != ACTION_OK)
-				return CALLBACK_CONTINUE;
-
-			return 0;	// No
-		}
-	};
+	
 
 	Option options[] = {
 		{{"title_yes"}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
