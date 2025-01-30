@@ -86,8 +86,11 @@ void ModifyWithChallengeValueReal(double *value, std::string option){
 }
 
 inline std::string NO_TEXT_FOUND = "!!!NO TEXT FOUND!!!";
+inline std::string strmpty{};
 
 std::string& GetCSE2Message(std::string_view key){
+	if (key.empty())
+		return strmpty;
 	auto message = messageBank.find(key.data());
 	if (message != messageBank.end()) return message->second;
 	else return NO_TEXT_FOUND;

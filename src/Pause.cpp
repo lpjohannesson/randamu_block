@@ -74,7 +74,7 @@ struct OptionsMenu
 	OptionsMenu() = default;
 
 	OptionsMenu(std::string_view title, std::string_view subtitle, std::span<Option> options, int x_offset, bool submenu): 
-		title(title), subtitle(subtitle), x_offset(x_offset), submenu(submenu) {
+		title(GetCSE2Message(title)), subtitle(GetCSE2Message(subtitle)), x_offset(x_offset), submenu(submenu) {
 			this->options.assign(options.begin(), options.end());
 	}
 };
@@ -86,12 +86,19 @@ struct CallbackVariants {
 	OptionCallback alt_callback;
 };
 
+struct OptionName {
+	std::string normal_name;
+	std::string alternative_name;
+
+	OptionName() = default;
+
+	OptionName(std::string_view normal_key, std::string_view alternative_key = ""): 
+		normal_name(GetCSE2Message(normal_key)), alternative_name(GetCSE2Message(alternative_key)) {}
+}; 
+
 struct Option
 {
-	struct {
-		std::string normal_name;
-		std::string alternative_name;
-	} name;
+	OptionName name;
 	CallbackVariants callback;
 	void *user_data;
 	std::string value_string;
@@ -784,13 +791,13 @@ static int PromptAreYouSure2(void)
 	};
 
 	Option options[] = {
-		{{GetCSE2Message("title_yes"), ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_no"), ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
+		{{"title_yes", ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
+		{{"title_no", ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("title_you_sure"),
-		GetCSE2Message("title_warning_2"),
+		"title_you_sure",
+		"title_warning_2",
 		options,
 		-10,
 		true
@@ -833,13 +840,13 @@ static int PromptAreYouSure3(void)
 	};
 
 	Option options[] = {
-		{{GetCSE2Message("title_yes"), ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_no"), ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
+		{{"title_yes", ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
+		{{"title_no", ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("title_you_sure"),
-		GetCSE2Message("title_warning_3"),
+		"title_you_sure",
+		"title_warning_3",
 		options,
 		-10,
 		true
@@ -882,13 +889,13 @@ static int PromptAreYouSure4(void)
 	};
 
 	Option options[] = {
-		{{GetCSE2Message("title_yes"), ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_no"), ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
+		{{"title_yes", ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
+		{{"title_no", ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("title_start_daily"),
-		GetCSE2Message("title_warning_daily"),
+		"title_start_daily",
+		"title_warning_daily",
 		options,
 		-10,
 		true
@@ -1430,7 +1437,7 @@ static int Callback_ControlsKeyboard(OptionsMenu *parent_menu, size_t this_optio
 	}
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("keyboard_title"),
+		"keyboard_title",
 		"",
 		options,
 		-60,
@@ -1541,7 +1548,7 @@ static int Callback_ControlsController(OptionsMenu *parent_menu, size_t this_opt
 	}
 
 	OptionsMenu options_menu = {
-		Backend_IsConsole() ? GetCSE2Message("controls_title") : GetCSE2Message("gamepad_title"),
+		Backend_IsConsole() ? "controls_title" : "gamepad_title",
 		"",
 		options,
 		-70,
@@ -2632,32 +2639,32 @@ static int Callback_Configuration(OptionsMenu *parent_menu, size_t this_option, 
 	gConfigCopy = json(gJConfig);
 
 	Option options_pc[] = {
-		{{GetCSE2Message("config_new_game")}, {Callback_Character, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_music")}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_darkness")}, {Callback_Darkness, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_charge_jump")}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_adv_arms")}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_pitch_random")}, {Callback_PitchRandomizer, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_exp")}, {Callback_NoExp, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_one_damage")}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_relativistic")}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_random_size_maps")}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_secondCampaign")}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_map")}, {Callback_NoMap, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_improve_map")}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_fast_run")}, {Callback_FastRun, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_full_clear")}, {Callback_FullClear, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_placing")}, {Callback_NoPlacing, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_breaking")}, {Callback_NoBreaking, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_spike_kill")}, {Callback_SpikeKill, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_1_hp")}, {Callback_OneHit, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_timer")}, {Callback_Timer, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_life")}, {Callback_NoHealth, NULL}, NULL, "", 0, false},
+		{{"config_new_game"}, {Callback_Character, NULL}, NULL, "", 0, false},
+		{{"config_no_music"}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{"config_darkness"}, {Callback_Darkness, NULL}, NULL, "", 0, false},
+		{{"config_charge_jump"}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
+		{{"config_adv_arms"}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
+		{{"config_pitch_random"}, {Callback_PitchRandomizer, NULL}, NULL, "", 0, false},
+		{{"config_no_exp"}, {Callback_NoExp, NULL}, NULL, "", 0, false},
+		{{"config_one_damage"}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
+		{{"config_relativistic"}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
+		{{"config_random_size_maps"}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
+		{{"config_secondCampaign"}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
+		{{"config_no_map"}, {Callback_NoMap, NULL}, NULL, "", 0, false},
+		{{"config_improve_map"}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
+		{{"config_fast_run"}, {Callback_FastRun, NULL}, NULL, "", 0, false},
+		{{"config_full_clear"}, {Callback_FullClear, NULL}, NULL, "", 0, false},
+		{{"config_no_placing"}, {Callback_NoPlacing, NULL}, NULL, "", 0, false},
+		{{"config_no_breaking"}, {Callback_NoBreaking, NULL}, NULL, "", 0, false},
+		{{"config_spike_kill"}, {Callback_SpikeKill, NULL}, NULL, "", 0, false},
+		{{"config_1_hp"}, {Callback_OneHit, NULL}, NULL, "", 0, false},
+		{{"config_timer"}, {Callback_Timer, NULL}, NULL, "", 0, false},
+		{{"config_no_life"}, {Callback_NoHealth, NULL}, NULL, "", 0, false},
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("config_title"),
-		restart_required ? GetCSE2Message("options_reset") : "",
+		"config_title",
+		restart_required ? "options_reset" : "",
 		options_pc,
 		-70,
 		true
@@ -2685,26 +2692,26 @@ static int Callback_Configuration2(OptionsMenu *parent_menu, size_t this_option,
 	gConfigCopy = json(gJConfig);
 
 	Option options_pc[] = {
-		{{GetCSE2Message("config_new_game")}, {Callback_Character, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_darkness")}, {Callback_Darkness, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_charge_jump")}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_adv_arms")}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_pitch_random")}, {Callback_PitchRandomizer, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_exp")}, {Callback_NoExp, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_one_damage")}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_relativistic")}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_random_size_maps")}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_secondCampaign")}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_map")}, {Callback_NoMap, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_improve_map")}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_fast_run")}, {Callback_FastRun, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_full_clear")}, {Callback_FullClear, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_placing")}, {Callback_NoPlacing, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_breaking")}, {Callback_NoBreaking, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_spike_kill")}, {Callback_SpikeKill, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_1_hp")}, {Callback_OneHit, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_timer")}, {Callback_Timer, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_life")}, {Callback_NoHealth, NULL}, NULL, "", 0, false},
+		{{"config_new_game"}, {Callback_Character, NULL}, NULL, "", 0, false},
+		{{"config_darkness"}, {Callback_Darkness, NULL}, NULL, "", 0, false},
+		{{"config_charge_jump"}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
+		{{"config_adv_arms"}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
+		{{"config_pitch_random"}, {Callback_PitchRandomizer, NULL}, NULL, "", 0, false},
+		{{"config_no_exp"}, {Callback_NoExp, NULL}, NULL, "", 0, false},
+		{{"config_one_damage"}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
+		{{"config_relativistic"}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
+		{{"config_random_size_maps"}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
+		{{"config_secondCampaign"}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
+		{{"config_no_map"}, {Callback_NoMap, NULL}, NULL, "", 0, false},
+		{{"config_improve_map"}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
+		{{"config_fast_run"}, {Callback_FastRun, NULL}, NULL, "", 0, false},
+		{{"config_full_clear"}, {Callback_FullClear, NULL}, NULL, "", 0, false},
+		{{"config_no_placing"}, {Callback_NoPlacing, NULL}, NULL, "", 0, false},
+		{{"config_no_breaking"}, {Callback_NoBreaking, NULL}, NULL, "", 0, false},
+		{{"config_spike_kill"}, {Callback_SpikeKill, NULL}, NULL, "", 0, false},
+		{{"config_1_hp"}, {Callback_OneHit, NULL}, NULL, "", 0, false},
+		{{"config_timer"}, {Callback_Timer, NULL}, NULL, "", 0, false},
+		{{"config_no_life"}, {Callback_NoHealth, NULL}, NULL, "", 0, false},
 	};
 
 	OptionsMenu options_menu = {
@@ -2742,20 +2749,20 @@ static int Callback_Options(OptionsMenu *parent_menu, size_t this_option, Callba
 	gConfigCopy = json(gJConfig);
 
 	Option options[] = {
-		{{GetCSE2Message("options_keyboard")}, {Callback_ControlsKeyboard, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_gamepad")}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_framerate")}, {Callback_Framerate, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_vsync")}, {Callback_Vsync, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_resolution")}, {Callback_Resolution, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_scrolling")}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug")}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("config_no_music")}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_legacyUI")}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
+		{{"options_keyboard"}, {Callback_ControlsKeyboard, NULL}, NULL, "", 0, false},
+		{{"options_gamepad"}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
+		{{"options_framerate"}, {Callback_Framerate, NULL}, &conf, "", 0, false},
+		{{"options_vsync"}, {Callback_Vsync, NULL}, &conf, "", 0, false},
+		{{"options_resolution"}, {Callback_Resolution, NULL}, &conf, "", 0, false},
+		{{"options_scrolling"}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
+		{{"options_debug"}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
+		{{"config_no_music"}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{"config_legacyUI"}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("options_title"),
-		restart_required ? GetCSE2Message("options_restart") : "",
+		"options_title",
+		restart_required ? "options_restart" : "",
 		options,
 		-70,
 		true
@@ -2792,20 +2799,20 @@ static int Callback_Options2(OptionsMenu *parent_menu, size_t this_option, Callb
 	gConfigCopy = json(gJConfig);
 
 	Option options[] = {
-		{{GetCSE2Message("options_keyboard")}, {Callback_ControlsKeyboard, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_gamepad")}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_framerate")}, {Callback_Framerate, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_vsync")}, {Callback_Vsync, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_resolution")}, {Callback_Resolution, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_scrolling")}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug")}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("config_no_music")}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_legacyUI")}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
+		{{"options_keyboard"}, {Callback_ControlsKeyboard, NULL}, NULL, "", 0, false},
+		{{"options_gamepad"}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
+		{{"options_framerate"}, {Callback_Framerate, NULL}, &conf, "", 0, false},
+		{{"options_vsync"}, {Callback_Vsync, NULL}, &conf, "", 0, false},
+		{{"options_resolution"}, {Callback_Resolution, NULL}, &conf, "", 0, false},
+		{{"options_scrolling"}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
+		{{"options_debug"}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
+		{{"config_no_music"}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{"config_legacyUI"}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 	};
 
 	OptionsMenu options_menu = {
 		"",
-		restart_required ? GetCSE2Message("options_restart") : "",
+		restart_required ? "options_restart" : "",
 		options,
 		-70,
 		true
@@ -2860,13 +2867,13 @@ static int PromptAreYouSure(void)
 	};
 
 	Option options[] = {
-		{{GetCSE2Message("title_yes")}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_no")}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
+		{{"title_yes"}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
+		{{"title_no"}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("title_you_sure"),
-		GetCSE2Message("title_warning_1"),
+		"title_you_sure",
+		"title_warning_1",
 		options,
 		-10,
 		true
@@ -2909,13 +2916,13 @@ static int PromptSaves(void)
 	};
 
 	Option options[] = {
-		{{GetCSE2Message("title_yes")}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_no")}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
+		{{"title_yes"}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
+		{{"title_no"}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("title_load_confirm"),
-		GetCSE2Message("title_warning_2"),
+		"title_load_confirm",
+		"title_warning_2",
 		options,
 		-10,
 		true
@@ -3318,19 +3325,19 @@ int Call_Pause(void)
 {
 	mode = 0;
 	Option options[] = {
-		{{GetCSE2Message("title_resume")}, {Callback_Resume, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_reset")}, {Callback_Reset, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_reload")}, {Callback_Save, NULL}, NULL, "", 0, !(gMC.cond != 0 && !gBL.flag && gStageNo == gGeneratedStage && IsProfile() && !ChallengeEnabled("timer"))},
-		{{GetCSE2Message("title_config")}, {Callback_Configuration, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_options")}, {Callback_Options, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_tutorial")}, {Callback_Tutorial, NULL}, NULL, "", 0, gTS.mode != 0},
-		{{GetCSE2Message("title_rankings")}, {Callback_Rankings, NULL}, NULL, "", 0, gRankings.size() == 0},
-		{{GetCSE2Message("title_updates")}, {Callback_ModPage, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_quit")}, {Callback_Quit, NULL}, NULL, "", 0, false}
+		{{"title_resume"}, {Callback_Resume, NULL}, NULL, "", 0, false},
+		{{"title_reset"}, {Callback_Reset, NULL}, NULL, "", 0, false},
+		{{"title_reload"}, {Callback_Save, NULL}, NULL, "", 0, !(gMC.cond != 0 && !gBL.flag && gStageNo == gGeneratedStage && IsProfile() && !ChallengeEnabled("timer"))},
+		{{"title_config"}, {Callback_Configuration, NULL}, NULL, "", 0, false},
+		{{"title_options"}, {Callback_Options, NULL}, NULL, "", 0, false},
+		{{"title_tutorial"}, {Callback_Tutorial, NULL}, NULL, "", 0, gTS.mode != 0},
+		{{"title_rankings"}, {Callback_Rankings, NULL}, NULL, "", 0, gRankings.size() == 0},
+		{{"title_updates"}, {Callback_ModPage, NULL}, NULL, "", 0, false},
+		{{"title_quit"}, {Callback_Quit, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
-		GetCSE2Message("title_paused"),
+		"title_paused",
 		"",
 		options,
 		-14,
@@ -3368,15 +3375,15 @@ int Call_Title(void)
 {
 	mode = 1;
 	Option options[] = {
-		{{GetCSE2Message("title_character"), GetCSE2Message("title_new_game")}, {Callback_Character2, Callback_Reset2}, NULL, "", 0, false},
-		{{GetCSE2Message("title_load_game")}, {Callback_Save2, NULL}, NULL, "", 0, !(IsProfile() && !ChallengeEnabled("timer"))},
-		{{GetCSE2Message("title_new_daily")}, {Callback_StartDaily, NULL}, NULL, "", 0, 
+		{{"title_character", "title_new_game"}, {Callback_Character2, Callback_Reset2}, NULL, "", 0, false},
+		{{"title_load_game"}, {Callback_Save2, NULL}, NULL, "", 0, !(IsProfile() && !ChallengeEnabled("timer"))},
+		{{"title_new_daily"}, {Callback_StartDaily, NULL}, NULL, "", 0, 
 			fs::exists(ScoreFilePath(GetDailySeed()))},
-		{{GetCSE2Message("title_options"), GetCSE2Message("title_config")}, {Callback_Options2, Callback_Configuration2}, NULL, "", 0, false},
-		{{GetCSE2Message("title_rankings")}, {Callback_Rankings2, NULL}, NULL, "", 0, gRankings.size() == 0},
-		{{GetCSE2Message("title_resources")}, {Callback_Resources, NULL}, NULL, "", 0, false},
-		{{IsBeta() ? GetCSE2Message("title_issues") : GetCSE2Message("title_updates")}, {IsBeta() ? Callback_IssueTracker : Callback_ModPage, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_exit")}, {Callback_Quit2, NULL}, NULL, "", 0, false}
+		{{"title_options", "title_config"}, {Callback_Options2, Callback_Configuration2}, NULL, "", 0, false},
+		{{"title_rankings"}, {Callback_Rankings2, NULL}, NULL, "", 0, gRankings.size() == 0},
+		{{"title_resources"}, {Callback_Resources, NULL}, NULL, "", 0, false},
+		{{IsBeta() ? "title_issues" : "title_updates"}, {IsBeta() ? Callback_IssueTracker : Callback_ModPage, NULL}, NULL, "", 0, false},
+		{{"title_exit"}, {Callback_Quit2, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
