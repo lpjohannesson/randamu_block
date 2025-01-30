@@ -61,23 +61,7 @@ typedef enum CallbackAction
 	ACTION_RIGHT
 } CallbackAction;
 
-struct Option;
-
-struct OptionsMenu
-{
-	std::string title;
-	std::string subtitle;
-	std::vector<Option> options;
-	int x_offset;
-	bool submenu;
-
-	OptionsMenu() = default;
-
-	OptionsMenu(std::string_view title, std::string_view subtitle, std::span<Option> options, int x_offset, bool submenu): 
-		title(GetCSE2Message(title)), subtitle(GetCSE2Message(subtitle)), x_offset(x_offset), submenu(submenu) {
-			this->options.assign(options.begin(), options.end());
-	}
-};
+struct OptionsMenu;
 
 using OptionCallback = std::function<int(OptionsMenu*,size_t,CallbackAction)>;
 
@@ -94,7 +78,7 @@ struct OptionName {
 
 	OptionName(std::string_view normal_key, std::string_view alternative_key = ""): 
 		normal_name(GetCSE2Message(normal_key)), alternative_name(GetCSE2Message(alternative_key)) {}
-}; 
+};
 
 struct Option
 {
@@ -104,6 +88,22 @@ struct Option
 	std::string value_string;
 	long value;
 	bool disabled;
+};
+
+struct OptionsMenu
+{
+	std::string title;
+	std::string subtitle;
+	std::vector<Option> options;
+	int x_offset;
+	bool submenu;
+
+	OptionsMenu() = default;
+
+	OptionsMenu(std::string_view title, std::string_view subtitle, std::span<Option> options, int x_offset, bool submenu): 
+		title(GetCSE2Message(title)), subtitle(GetCSE2Message(subtitle)), x_offset(x_offset), submenu(submenu) {
+			this->options.assign(options.begin(), options.end());
+	}
 };
 
 struct FunctionHolder
