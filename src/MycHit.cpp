@@ -984,13 +984,6 @@ void HitMyCharNpChar(void)
 			// PlaySoundObject(20, SOUND_MODE_PLAY);
 			gMC.flag |= 0x100;
 		}
-		if (hit != 0 && gNPC[i].code_char == 299 && (gMC.flag & 0x100))
-		{
-			// PlaySoundObject(20, SOUND_MODE_PLAY);
-			SetNPCFlag(Flags::WATER_GUN_EFFECT);
-		} else if (!(gMC.flag & 0x100)){
-			CutNPCFlag(Flags::WATER_GUN_EFFECT);
-		}
 
 		if (hit != 0 && gNPC[i].code_char == 270){
 			gMC.air += 25;

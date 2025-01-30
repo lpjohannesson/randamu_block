@@ -1803,8 +1803,11 @@ void ActNpc299(NPCHAR *npc)
 		}
 	}
 
-	if (JudgeHitMyCharNPC3(npc) == 0 && GetNPCFlag(Flags::WATER_GUN_EFFECT))
+	if (JudgeHitMyCharNPC3(npc) && !GetNPCFlag(Flags::WATER_GUN_EFFECT)){
+		SetNPCFlag(Flags::WATER_GUN_EFFECT);
+	} else {
 		CutNPCFlag(Flags::WATER_GUN_EFFECT);
+	}
 
 	npc->rect = rc[npc->ani_no];
 }
