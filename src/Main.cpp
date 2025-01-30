@@ -85,10 +85,12 @@ void ModifyWithChallengeValueReal(double *value, std::string option){
 	}
 }
 
-std::string GetCSE2Message(const std::string& key){
-	auto message = messageBank.find(key);
+inline std::string NO_TEXT_FOUND = "!!!NO TEXT FOUND!!!";
+
+std::string& GetCSE2Message(std::string_view key){
+	auto message = messageBank.find(key.data());
 	if (message != messageBank.end()) return message->second;
-	else return "!!!NO TEXT FOUND!!!";
+	else return NO_TEXT_FOUND;
 }
 
 // Framerate stuff

@@ -43,7 +43,7 @@ int ChallengeValue(std::string option);
 void ModifyWithChallengeValue(int *value, std::string option);
 double ChallengeValueReal(std::string option);
 void ModifyWithChallengeValueReal(double *value, std::string option);
-std::string GetCSE2Message(const std::string& key);
+std::string& GetCSE2Message(std::string_view key);
 
 template <class... Args>
 std::string GetCSE2FormattedMessage(const std::string& key, Args&&... args){
