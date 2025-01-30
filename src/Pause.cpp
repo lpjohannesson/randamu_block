@@ -61,21 +61,22 @@ typedef enum CallbackAction
 	ACTION_RIGHT
 } CallbackAction;
 
-struct OptionNames {
-	std::string normal_name;
-	std::string alternative_name;
-};
-
 struct Option;
 
 struct OptionsMenu
 {
 	std::string title;
 	std::string subtitle;
-	struct Option *options;
-	size_t total_options;
+	std::vector<Option> options;
 	int x_offset;
 	bool submenu;
+
+	OptionsMenu() = default;
+
+	OptionsMenu(std::string_view title, std::string_view subtitle, std::span<Option> options, int x_offset, bool submenu): 
+		title(title), subtitle(subtitle), x_offset(x_offset), submenu(submenu) {
+			this->options.assign(options.begin(), options.end());
+	}
 };
 
 using OptionCallback = std::function<int(OptionsMenu*,size_t,CallbackAction)>;
@@ -87,7 +88,10 @@ struct CallbackVariants {
 
 struct Option
 {
-	OptionNames name;
+	struct {
+		std::string normal_name;
+		std::string alternative_name;
+	} name;
 	CallbackVariants callback;
 	void *user_data;
 	std::string value_string;
@@ -98,7 +102,6 @@ struct Option
 static bool restart_required;
 json gConfigCopy;
 int mode = 0;
-char characterOrder[] = {0, 1, 2, 3, 19, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
 
 // inspired by word wrap from L.B on Stack Overflow
 auto WordWrap = ctre::search_all<"(.{1,44})(?:\\s|$)">;
@@ -386,7 +389,7 @@ static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
 	int return_value;
 
 	// Initialise options
-	for (size_t i = 0; i < options_menu->total_options; ++i)
+	for (size_t i = 0; i < options_menu->options.size(); ++i)
 		options_menu->options[i].callback.main_callback(options_menu, i, ACTION_INIT);
 
 	for (;;)
@@ -414,25 +417,25 @@ static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
 			const size_t old_selection = selected_option;
 
 			if (gKeyTrg & gKeyDown)
-				if (selected_option++ == options_menu->total_options - 1)
+				if (selected_option++ == options_menu->options.size() - 1)
 					selected_option = 0;
 
 			if (gKeyTrg & gKeyUp)
 				if (selected_option-- == 0)
-					selected_option = options_menu->total_options - 1;
+					selected_option = options_menu->options.size() - 1;
 
 			// Update the menu-scrolling, if there are more options than can be fit on the screen
 			if (selected_option < old_selection)
 				scroll = MAX(0, MIN(scroll, (int)selected_option - 1));
 
 			if (selected_option > old_selection)
-				scroll = MIN(MAX(0, (int)options_menu->total_options - MAX_OPTIONS), MAX(scroll, (int)selected_option - (MAX_OPTIONS - 2)));
+				scroll = MIN(MAX(0, (int)options_menu->options.size() - MAX_OPTIONS), MAX(scroll, (int)selected_option - (MAX_OPTIONS - 2)));
 
 			PlaySoundObject(1, SOUND_MODE_PLAY);
 		}
 
 		// Run option callbacks
-		for (size_t i = 0; i < options_menu->total_options; ++i)
+		for (size_t i = 0; i < options_menu->options.size(); ++i)
 		{
 			if (!options_menu->options[i].disabled)
 			{
@@ -467,7 +470,7 @@ static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
 		PutBitmap4(&rcView, 0, 0, &rcView, SURFACE_ID_SCREEN_GRAB);
 		PutBitmap3(&rcView, 0, 0, &rcView, SURFACE_ID_BLACK_OVERLAY);
 
-		const size_t visible_options = MIN(MAX_OPTIONS, options_menu->total_options);
+		const size_t visible_options = MIN(MAX_OPTIONS, options_menu->options.size());
 
 		int y = (WINDOW_HEIGHT / 2) - ((visible_options * 18) / 2) - (40 / 2);
 
@@ -567,7 +570,7 @@ static int EnterOptionsMenu(OptionsMenu *options_menu, size_t selected_option)
 	}
 
 	// Deinitialise options
-	for (size_t i = 0; i < options_menu->total_options; ++i)
+	for (size_t i = 0; i < options_menu->options.size(); ++i)
 		options_menu->options[i].callback.main_callback(options_menu, i, ACTION_DEINIT);
 
 	return return_value;
@@ -599,7 +602,7 @@ static int EnterOptionsMenuWithAlternates(OptionsMenu *options_menu, size_t sele
 	int return_value;
 
 	// Initialise options
-	for (size_t i = 0; i < options_menu->total_options; ++i)
+	for (size_t i = 0; i < options_menu->options.size(); ++i)
 		options_menu->options[i].callback.main_callback(options_menu, i, ACTION_INIT);
 
 	for (;;)
@@ -627,25 +630,25 @@ static int EnterOptionsMenuWithAlternates(OptionsMenu *options_menu, size_t sele
 			const size_t old_selection = selected_option;
 
 			if (gKeyTrg & gKeyDown)
-				if (selected_option++ == options_menu->total_options - 1)
+				if (selected_option++ == options_menu->options.size() - 1)
 					selected_option = 0;
 
 			if (gKeyTrg & gKeyUp)
 				if (selected_option-- == 0)
-					selected_option = options_menu->total_options - 1;
+					selected_option = options_menu->options.size() - 1;
 
 			// Update the menu-scrolling, if there are more options than can be fit on the screen
 			if (selected_option < old_selection)
 				scroll = MAX(0, MIN(scroll, (int)selected_option - 1));
 
 			if (selected_option > old_selection)
-				scroll = MIN(MAX(0, (int)options_menu->total_options - MAX_OPTIONS), MAX(scroll, (int)selected_option - (MAX_OPTIONS - 2)));
+				scroll = MIN(MAX(0, (int)options_menu->options.size() - MAX_OPTIONS), MAX(scroll, (int)selected_option - (MAX_OPTIONS - 2)));
 
 			PlaySoundObject(1, SOUND_MODE_PLAY);
 		}
 
 		// Run option callbacks
-		for (size_t i = 0; i < options_menu->total_options; ++i)
+		for (size_t i = 0; i < options_menu->options.size(); ++i)
 		{
 			if (!options_menu->options[i].disabled)
 			{
@@ -679,7 +682,7 @@ static int EnterOptionsMenuWithAlternates(OptionsMenu *options_menu, size_t sele
 		if (++anime >= 40)
 			anime = 0;
 
-		const size_t visible_options = MIN(MAX_OPTIONS, options_menu->total_options);
+		const size_t visible_options = MIN(MAX_OPTIONS, options_menu->options.size());
 
 		int y = (WINDOW_HEIGHT / 2) - ((visible_options * 18) / 2) - (40 / 2) + 30;
 		CortBox(&grcFull, RGB(0x05, 0x05, 0x10));
@@ -747,7 +750,7 @@ static int EnterOptionsMenuWithAlternates(OptionsMenu *options_menu, size_t sele
 	}
 
 	// Deinitialise options
-	for (size_t i = 0; i < options_menu->total_options; ++i)
+	for (size_t i = 0; i < options_menu->options.size(); ++i)
 		options_menu->options[i].callback.main_callback(options_menu, i, ACTION_DEINIT);
 
 	return return_value;
@@ -789,7 +792,6 @@ static int PromptAreYouSure2(void)
 		GetCSE2Message("title_you_sure"),
 		GetCSE2Message("title_warning_2"),
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-10,
 		true
 	};
@@ -839,7 +841,6 @@ static int PromptAreYouSure3(void)
 		GetCSE2Message("title_you_sure"),
 		GetCSE2Message("title_warning_3"),
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-10,
 		true
 	};
@@ -889,7 +890,6 @@ static int PromptAreYouSure4(void)
 		GetCSE2Message("title_start_daily"),
 		GetCSE2Message("title_warning_daily"),
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-10,
 		true
 	};
@@ -959,7 +959,7 @@ static int Callback_ControlsKeyboard_Rebind(OptionsMenu *parent_menu, size_t thi
 						std::string key_name = GetKeyName(scancode);
 
 						// If another control in the same group uses this key, swap them
-						for (size_t other_option = 0; other_option < parent_menu->total_options; ++other_option)
+						for (size_t other_option = 0; other_option < parent_menu->options.size(); ++other_option)
 						{
 							if (other_option != this_option && controls[other_option].groups & controls[this_option].groups && bindings[controls[other_option].binding_index].keyboard == scancode)
 							{
@@ -1007,9 +1007,7 @@ static int Callback_ControlsKeyboard_Rebind(OptionsMenu *parent_menu, size_t thi
 	return CALLBACK_CONTINUE;
 }
 
-static int Callback_PickDifficulty(OptionsMenu *parent_menu, size_t this_option){
-	
-	(void)parent_menu;
+static int Callback_PickDifficulty(){
 	LoadTextScript2("StageSelect.tsc");
 	InitBack("bkChtulhu", 7);
 	Rect rcView = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
@@ -1260,9 +1258,7 @@ static int Callback_Resources(OptionsMenu *parent_menu, size_t this_option, Call
 	return return_value;
 }
 
-static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
-	
-	(void)parent_menu;
+static int Callback_PickCharacter(){
 	InitBack("bkChtulhu", 7);
 	Rect rcView = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
 	Rect rcSelect = {214, 134, 234, 154};
@@ -1393,7 +1389,7 @@ static int Callback_PickCharacter(OptionsMenu *parent_menu, size_t this_option){
 	}
 	ReleaseSurface(SURFACE_ID_MY_CHAR_2);
 
-	return Callback_PickDifficulty(parent_menu, this_option);
+	return Callback_PickDifficulty();
 
 	// SetOrganyaFadeout();
 
@@ -1437,7 +1433,6 @@ static int Callback_ControlsKeyboard(OptionsMenu *parent_menu, size_t this_optio
 		GetCSE2Message("keyboard_title"),
 		"",
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-60,
 		true
 	};
@@ -1475,7 +1470,7 @@ static int Callback_ControlsController_Rebind(OptionsMenu *parent_menu, size_t t
 					if (!old_state.bButton[button] && gJoystickState.bButton[button])
 					{
 						// If another control in the same group uses this button, swap them
-						for (size_t other_option = 0; other_option < parent_menu->total_options; ++other_option)
+						for (size_t other_option = 0; other_option < parent_menu->options.size(); ++other_option)
 						{
 							if (other_option != this_option && controls[other_option].groups & controls[this_option].groups && bindings[controls[other_option].binding_index].controller == button)
 							{
@@ -1549,7 +1544,6 @@ static int Callback_ControlsController(OptionsMenu *parent_menu, size_t this_opt
 		Backend_IsConsole() ? GetCSE2Message("controls_title") : GetCSE2Message("gamepad_title"),
 		"",
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-70,
 		true
 	};
@@ -1785,7 +1779,7 @@ static int Callback_Character(OptionsMenu *parent_menu, size_t this_option, Call
 			DeleteSave();
 			restart_required = false;
 			gGameMode = 3;
-			return_value = Callback_PickCharacter(parent_menu, this_option);	// Restart game
+			return_value = Callback_PickCharacter();	// Restart game
 			break;
 	}
 
@@ -1800,7 +1794,7 @@ static int Callback_Character2(OptionsMenu *parent_menu, size_t this_option, Cal
 	if (action != ACTION_OK)
 		return CALLBACK_CONTINUE;
 	restart_required = false;
-	int return_value = Callback_PickCharacter(parent_menu, this_option);	// Restart game
+	int return_value = Callback_PickCharacter();	// Restart game
 	WriteJSON(gModulePath + "/config.json", gConfigCopy, mode::normal, 3);
 	ReloadConfig();
 	LoadInterface(ChallengeEnabled("legacyUI"));
@@ -2638,34 +2632,33 @@ static int Callback_Configuration(OptionsMenu *parent_menu, size_t this_option, 
 	gConfigCopy = json(gJConfig);
 
 	Option options_pc[] = {
-		{{GetCSE2Message("config_new_game"), ""}, {Callback_Character, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_darkness"), ""}, {Callback_Darkness, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_charge_jump"), ""}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_adv_arms"), ""}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_pitch_random"), ""}, {Callback_PitchRandomizer, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_exp"), ""}, {Callback_NoExp, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_one_damage"), ""}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_relativistic"), ""}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_random_size_maps"), ""}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_secondCampaign"), ""}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_map"), ""}, {Callback_NoMap, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_improve_map"), ""}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_fast_run"), ""}, {Callback_FastRun, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_full_clear"), ""}, {Callback_FullClear, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_placing"), ""}, {Callback_NoPlacing, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_breaking"), ""}, {Callback_NoBreaking, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_spike_kill"), ""}, {Callback_SpikeKill, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_1_hp"), ""}, {Callback_OneHit, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_timer"), ""}, {Callback_Timer, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_life"), ""}, {Callback_NoHealth, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_new_game")}, {Callback_Character, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_music")}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_darkness")}, {Callback_Darkness, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_charge_jump")}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_adv_arms")}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_pitch_random")}, {Callback_PitchRandomizer, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_exp")}, {Callback_NoExp, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_one_damage")}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_relativistic")}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_random_size_maps")}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_secondCampaign")}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_map")}, {Callback_NoMap, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_improve_map")}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_fast_run")}, {Callback_FastRun, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_full_clear")}, {Callback_FullClear, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_placing")}, {Callback_NoPlacing, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_breaking")}, {Callback_NoBreaking, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_spike_kill")}, {Callback_SpikeKill, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_1_hp")}, {Callback_OneHit, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_timer")}, {Callback_Timer, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_life")}, {Callback_NoHealth, NULL}, NULL, "", 0, false},
 	};
 
 	OptionsMenu options_menu = {
 		GetCSE2Message("config_title"),
 		restart_required ? GetCSE2Message("options_reset") : "",
 		options_pc,
-		(sizeof(options_pc) / sizeof(options_pc[0])),
 		-70,
 		true
 	};
@@ -2692,33 +2685,32 @@ static int Callback_Configuration2(OptionsMenu *parent_menu, size_t this_option,
 	gConfigCopy = json(gJConfig);
 
 	Option options_pc[] = {
-		{{GetCSE2Message("config_new_game"), ""}, {Callback_Character, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_darkness"), ""}, {Callback_Darkness, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_charge_jump"), ""}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_adv_arms"), ""}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_pitch_random"), ""}, {Callback_PitchRandomizer, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_exp"), ""}, {Callback_NoExp, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_one_damage"), ""}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_relativistic"), ""}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_random_size_maps"), ""}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_secondCampaign"), ""}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_map"), ""}, {Callback_NoMap, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_improve_map"), ""}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_fast_run"), ""}, {Callback_FastRun, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_full_clear"), ""}, {Callback_FullClear, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_placing"), ""}, {Callback_NoPlacing, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_breaking"), ""}, {Callback_NoBreaking, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_spike_kill"), ""}, {Callback_SpikeKill, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_1_hp"), ""}, {Callback_OneHit, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_timer"), ""}, {Callback_Timer, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_no_life"), ""}, {Callback_NoHealth, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_new_game")}, {Callback_Character, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_darkness")}, {Callback_Darkness, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_charge_jump")}, {Callback_ChargeJump, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_adv_arms")}, {Callback_AdvancedArms, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_pitch_random")}, {Callback_PitchRandomizer, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_exp")}, {Callback_NoExp, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_one_damage")}, {Callback_OneDamage, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_relativistic")}, {Callback_RelativisticMode, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_random_size_maps")}, {Callback_RandomSizeMaps, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_secondCampaign")}, {Callback_SecondCampaign, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_map")}, {Callback_NoMap, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_improve_map")}, {Callback_MapImprovement, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_fast_run")}, {Callback_FastRun, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_full_clear")}, {Callback_FullClear, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_placing")}, {Callback_NoPlacing, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_breaking")}, {Callback_NoBreaking, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_spike_kill")}, {Callback_SpikeKill, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_1_hp")}, {Callback_OneHit, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_timer")}, {Callback_Timer, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_no_life")}, {Callback_NoHealth, NULL}, NULL, "", 0, false},
 	};
 
 	OptionsMenu options_menu = {
 		"",
 		"",
 		options_pc,
-		(sizeof(options_pc) / sizeof(options_pc[0])),
 		-70,
 		true
 	};
@@ -2749,35 +2741,23 @@ static int Callback_Options(OptionsMenu *parent_menu, size_t this_option, Callba
 		DefaultConfigData(&conf);
 	gConfigCopy = json(gJConfig);
 
-	bool is_console = Backend_IsConsole();
-
-	Option options_console[] = {
-		{{GetCSE2Message("options_controls"), ""}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_framerate"), ""}, {Callback_Framerate, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_scrolling"), ""}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
-	};
-
-	Option options_pc[] = {
-		{{GetCSE2Message("options_keyboard"), ""}, {Callback_ControlsKeyboard, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_gamepad"), ""}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_framerate"), ""}, {Callback_Framerate, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_vsync"), ""}, {Callback_Vsync, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_resolution"), ""}, {Callback_Resolution, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_scrolling"), ""}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
+	Option options[] = {
+		{{GetCSE2Message("options_keyboard")}, {Callback_ControlsKeyboard, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("options_gamepad")}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("options_framerate")}, {Callback_Framerate, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("options_vsync")}, {Callback_Vsync, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("options_resolution")}, {Callback_Resolution, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("options_scrolling")}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("options_debug")}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("config_no_music")}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_legacyUI")}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 	};
 
 	OptionsMenu options_menu = {
 		GetCSE2Message("options_title"),
 		restart_required ? GetCSE2Message("options_restart") : "",
-		is_console ? options_console : options_pc,
-		is_console ? (sizeof(options_console) / sizeof(options_console[0])) : (sizeof(options_pc) / sizeof(options_pc[0])),
-		is_console ? -60 : -70,
+		options,
+		-70,
 		true
 	};
 
@@ -2811,35 +2791,23 @@ static int Callback_Options2(OptionsMenu *parent_menu, size_t this_option, Callb
 		DefaultConfigData(&conf);
 	gConfigCopy = json(gJConfig);
 
-	bool is_console = Backend_IsConsole();
-
-	Option options_console[] = {
-		{{GetCSE2Message("options_controls"), ""}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_framerate"), ""}, {Callback_Framerate, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_scrolling"), ""}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
-	};
-
-	Option options_pc[] = {
-		{{GetCSE2Message("options_keyboard"), ""}, {Callback_ControlsKeyboard, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_gamepad"), ""}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("options_framerate"), ""}, {Callback_Framerate, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_vsync"), ""}, {Callback_Vsync, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_resolution"), ""}, {Callback_Resolution, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_scrolling"), ""}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("options_debug"), ""}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
-		{{GetCSE2Message("config_no_music"), ""}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("config_legacyUI"), ""}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
+	Option options[] = {
+		{{GetCSE2Message("options_keyboard")}, {Callback_ControlsKeyboard, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("options_gamepad")}, {Callback_ControlsController, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("options_framerate")}, {Callback_Framerate, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("options_vsync")}, {Callback_Vsync, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("options_resolution")}, {Callback_Resolution, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("options_scrolling")}, {Callback_SmoothScrolling, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("options_debug")}, {Callback_ExtendedInfo, NULL}, &conf, "", 0, false},
+		{{GetCSE2Message("config_no_music")}, {Callback_NoMusic, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("config_legacyUI")}, {Callback_LegacyUI, NULL}, NULL, "", 0, aprilFools},
 	};
 
 	OptionsMenu options_menu = {
 		"",
 		restart_required ? GetCSE2Message("options_restart") : "",
-		is_console ? options_console : options_pc,
-		is_console ? (sizeof(options_console) / sizeof(options_console[0])) : (sizeof(options_pc) / sizeof(options_pc[0])),
-		is_console ? -60 : -70,
+		options,
+		-70,
 		true
 	};
 
@@ -2892,15 +2860,14 @@ static int PromptAreYouSure(void)
 	};
 
 	Option options[] = {
-		{{GetCSE2Message("title_yes"), ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_no"), ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
+		{{GetCSE2Message("title_yes")}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_no")}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
 		GetCSE2Message("title_you_sure"),
 		GetCSE2Message("title_warning_1"),
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-10,
 		true
 	};
@@ -2942,15 +2909,14 @@ static int PromptSaves(void)
 	};
 
 	Option options[] = {
-		{{GetCSE2Message("title_yes"), ""}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_no"), ""}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
+		{{GetCSE2Message("title_yes")}, {FunctionHolder::Callback_Yes, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_no")}, {FunctionHolder::Callback_No, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
 		GetCSE2Message("title_load_confirm"),
 		GetCSE2Message("title_warning_2"),
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-10,
 		true
 	};
@@ -3352,22 +3318,21 @@ int Call_Pause(void)
 {
 	mode = 0;
 	Option options[] = {
-		{{GetCSE2Message("title_resume"), ""}, {Callback_Resume, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_reset"), ""}, {Callback_Reset, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_reload"), ""}, {Callback_Save, NULL}, NULL, "", 0, !(gMC.cond != 0 && !gBL.flag && gStageNo == gGeneratedStage && IsProfile() && !ChallengeEnabled("timer"))},
-		{{GetCSE2Message("title_config"), ""}, {Callback_Configuration, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_options"), ""}, {Callback_Options, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_tutorial"), ""}, {Callback_Tutorial, NULL}, NULL, "", 0, gTS.mode != 0},
-		{{GetCSE2Message("title_rankings"), ""}, {Callback_Rankings, NULL}, NULL, "", 0, gRankings.size() == 0},
-		{{GetCSE2Message("title_updates"), ""}, {Callback_ModPage, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_quit"), ""}, {Callback_Quit, NULL}, NULL, "", 0, false}
+		{{GetCSE2Message("title_resume")}, {Callback_Resume, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_reset")}, {Callback_Reset, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_reload")}, {Callback_Save, NULL}, NULL, "", 0, !(gMC.cond != 0 && !gBL.flag && gStageNo == gGeneratedStage && IsProfile() && !ChallengeEnabled("timer"))},
+		{{GetCSE2Message("title_config")}, {Callback_Configuration, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_options")}, {Callback_Options, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_tutorial")}, {Callback_Tutorial, NULL}, NULL, "", 0, gTS.mode != 0},
+		{{GetCSE2Message("title_rankings")}, {Callback_Rankings, NULL}, NULL, "", 0, gRankings.size() == 0},
+		{{GetCSE2Message("title_updates")}, {Callback_ModPage, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_quit")}, {Callback_Quit, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
 		GetCSE2Message("title_paused"),
 		"",
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-14,
 		false
 	};
@@ -3404,21 +3369,20 @@ int Call_Title(void)
 	mode = 1;
 	Option options[] = {
 		{{GetCSE2Message("title_character"), GetCSE2Message("title_new_game")}, {Callback_Character2, Callback_Reset2}, NULL, "", 0, false},
-		{{GetCSE2Message("title_load_game"), ""}, {Callback_Save2, NULL}, NULL, "", 0, !(IsProfile() && !ChallengeEnabled("timer"))},
-		{{GetCSE2Message("title_new_daily"), ""}, {Callback_StartDaily, NULL}, NULL, "", 0, 
+		{{GetCSE2Message("title_load_game")}, {Callback_Save2, NULL}, NULL, "", 0, !(IsProfile() && !ChallengeEnabled("timer"))},
+		{{GetCSE2Message("title_new_daily")}, {Callback_StartDaily, NULL}, NULL, "", 0, 
 			fs::exists(ScoreFilePath(GetDailySeed()))},
 		{{GetCSE2Message("title_options"), GetCSE2Message("title_config")}, {Callback_Options2, Callback_Configuration2}, NULL, "", 0, false},
-		{{GetCSE2Message("title_rankings"), ""}, {Callback_Rankings2, NULL}, NULL, "", 0, gRankings.size() == 0},
-		{{GetCSE2Message("title_resources"), ""}, {Callback_Resources, NULL}, NULL, "", 0, false},
-		{{IsBeta() ? GetCSE2Message("title_issues") : GetCSE2Message("title_updates"), ""}, {IsBeta() ? Callback_IssueTracker : Callback_ModPage, NULL}, NULL, "", 0, false},
-		{{GetCSE2Message("title_exit"), ""}, {Callback_Quit2, NULL}, NULL, "", 0, false}
+		{{GetCSE2Message("title_rankings")}, {Callback_Rankings2, NULL}, NULL, "", 0, gRankings.size() == 0},
+		{{GetCSE2Message("title_resources")}, {Callback_Resources, NULL}, NULL, "", 0, false},
+		{{IsBeta() ? GetCSE2Message("title_issues") : GetCSE2Message("title_updates")}, {IsBeta() ? Callback_IssueTracker : Callback_ModPage, NULL}, NULL, "", 0, false},
+		{{GetCSE2Message("title_exit")}, {Callback_Quit2, NULL}, NULL, "", 0, false}
 	};
 
 	OptionsMenu options_menu = {
 		"",
 		"",
 		options,
-		sizeof(options) / sizeof(options[0]),
 		-14,
 		false
 	};
