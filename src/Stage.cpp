@@ -2644,9 +2644,11 @@ void CreateTutorialSign(GenerationContext& genContext, GenerationArguments& genA
 void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArguments){
 	if ((gMC.depth == 1 || (gMC.depth % genContext.bossRate != 0)))
 	{
+		int tries;
 		// create a door to next randomized stage
 		do
 		{
+			if (++tries > 250) break;
 			doorX = Random(0, gMap.width, RandomCategories::SEEDED_NPCS);
 			doorY = Random(0, gMap.length, RandomCategories::SEEDED_NPCS);
 		} while (!(HasSurface(doorX, doorY) && IsEmpty(doorX, doorY - 1) && GetNpCharHere(doorX, doorY) == -1));
@@ -2661,14 +2663,24 @@ void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArgum
 		if (gMC.depth == shadowDepth){
 			SetNPCFlag(Flags::LAST_LEVEL_CH2_DOOR);
 		}
+		if (tries >= 250){
+			ChangeMap(doorX, doorY - 1, 0);
+			ChangeMap(doorX, doorY, 0);
+		}
 		SetNpChar(18, doorX * 0x2000, doorY * 0x2000, 0, 0, 0, NULL, 0, ChallengeEnabled("full_clear") ? 116 : 99, NPC_INTERACTABLE);
 	}
 	if (gMC.depth > genContext.doctorStage && gMC.depth % genContext.bossRate == 0){
+		int tries;
 		do
 		{
+			if (++tries > 250) break;
 			doorX = Random(0, gMap.width, RandomCategories::SEEDED_NPCS);
 			doorY = Random(0, gMap.length, RandomCategories::SEEDED_NPCS);
 		} while (!(HasSurface(doorX, doorY) && IsEmpty(doorX, doorY - 1) && GetNpCharHere(doorX, doorY) == -1));
+		if (tries >= 250){
+			ChangeMap(doorX, doorY - 1, 0);
+			ChangeMap(doorX, doorY, 0);
+		}
 		int mapBossID = Random(0, 5);
 		for (int i = 0; i < 6; i++){
 			CutNPCFlag(Flags::CH2_BOSS_DOOR_BEGIN + i);
