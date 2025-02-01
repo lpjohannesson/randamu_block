@@ -15,6 +15,17 @@
 using json = nlohmann::basic_json<>;
 using ordered_json = nlohmann::ordered_json;
 
+struct JsonPatch {
+    std::string filePath;
+    size_t priority = 0;
+    std::string type = "patch";
+    json patch;
+
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(JsonPatch, filePath, priority, type, patch)
+};
+
+extern std::vector<std::pair<std::string, JsonPatch>> jsonPatches;
+
 enum class mode {
     encrypted, normal,
     encryptedGlobal, normalGlobal
@@ -24,16 +35,11 @@ template<typename T>
 concept IsJson = std::derived_from<T, json>;
 
 template <IsJson JsonType = json>
-void UpdateJSON(JsonType& j, const JsonType& overrideJ, int resourceID){
-    if (overrideJ.contains("override")){
-        JsonType overrideContent = overrideJ["override"];
-        for (auto &[name, data]: overrideContent.items()){
-            if (j.contains(name))
-                j[name] = data;
-        }
-    } else {
-        if (availableResources[resourceID].name != "Default")
-            j = overrideJ;
+void UpdateJSON(JsonType& j, const JsonPatch& patch){
+    if (patch.type == "patch"){
+        j = j.patch(patch.patch);
+    } else if (patch.type == "merge"){
+        j.merge_patch(patch.patch);
     }
 }
 
@@ -47,23 +53,23 @@ JsonType ReadJSON(const std::string &path, mode m){
         switch (m)
         {
         case mode::normal:
-            i = std::ifstream(GetResourcePath(0, path));
+            i = std::ifstream(GetResourcePath(path));
             i >> j;
-            for (int rID : std::views::iota(1, (int)(availableResources.size()))){
-                std::ifstream overrideI = std::ifstream(GetResourcePath(rID, path));
-                JsonType overrideJ;
-                overrideI >> overrideJ;
-                UpdateJSON<JsonType>(j, overrideJ, rID);
+            for (auto& [fileName, patch] : jsonPatches | std::views::filter([path](const std::pair<std::string, JsonPatch>& p){
+                return p.second.filePath == path;
+            })){
+                WriteGameLog("Applying ", fileName, " patch to ", path);
+                UpdateJSON<JsonType>(j, patch);
             }
             break;
         case mode::encrypted:
-            i2.open(GetResourcePath(0, path).c_str());
+            i2.open(GetResourcePath(path).c_str());
             i2 >> j;
-            for (int rID : std::views::iota(1, (int)(availableResources.size()))){
-                igzstream overrideI = igzstream(GetResourcePath(rID, path).c_str());
-                JsonType overrideJ;
-                overrideI >> overrideJ;
-                UpdateJSON<JsonType>(j, overrideJ, rID);
+            for (auto& [fileName, patch] : jsonPatches | std::views::filter([path](const std::pair<std::string, JsonPatch>& p){
+                return p.second.filePath == path;
+            })){
+                WriteGameLog("Applying ", fileName, " patch to ", path);
+                UpdateJSON<JsonType>(j, patch);
             }
             break;
         case mode::normalGlobal:

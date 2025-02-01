@@ -164,6 +164,28 @@ void ReloadConfig(){
 	gJConfig["superHotMode"] = gJConfig.value("superHotMode", false);
 	gJConfig["randomSizeMode"] = gJConfig.value("randomSizeMode", false);
 
+	jsonPatches.clear();
+	for (auto resource : availableResources){
+		fs::path jsonPatchesPath = resource.path / "Changes";
+		if (fs::exists(jsonPatchesPath)){
+			fs::recursive_directory_iterator begin(jsonPatchesPath);
+			fs::recursive_directory_iterator end;
+			for (auto& path : begin){
+				if (fs::is_regular_file(path) && path.path().string().ends_with(".json")){
+					auto pathPatch = ReadJSON(path.path().string(), mode::normalGlobal);
+					if (std::find_if(jsonPatches.begin(), jsonPatches.end(), [path](const std::pair<std::string, JsonPatch>& a)->bool{return a.first == path.path().string();}) == jsonPatches.end())
+						jsonPatches.push_back({fs::relative(path, jsonPatchesPath).string(), pathPatch});
+				}
+			}
+		}
+	}
+	std::sort(jsonPatches.begin(), jsonPatches.end(), [](const std::pair<std::string, JsonPatch>& patch1, const std::pair<std::string, JsonPatch>& patch2){
+		return patch1.first < patch2.first;
+	});
+	std::stable_sort(jsonPatches.begin(), jsonPatches.end(), [](const std::pair<std::string, JsonPatch>& patch1, const std::pair<std::string, JsonPatch>& patch2){
+		return patch1.second.priority > patch2.second.priority;
+	});
+
 	difficultyNames = ParseTag<std::string>("Tags/difficultyNames.json");
 	gimmickNames = ParseTag<std::string>("Tags/gimmickNames.json");
 	equipVisuals = ParseTag<MYCHAR_EQUIP_DEFINITION>("Tags/equipVisuals.json");
