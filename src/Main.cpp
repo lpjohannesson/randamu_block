@@ -166,7 +166,6 @@ void ReloadConfig(){
 
 	difficultyNames = ParseTag<std::string>("Tags/difficultyNames.json");
 	gimmickNames = ParseTag<std::string>("Tags/gimmickNames.json");
-	bossNPCsList = ParseTag<int>("Tags/bossNPCs.json");
 	equipVisuals = ParseTag<MYCHAR_EQUIP_DEFINITION>("Tags/equipVisuals.json");
 
 	auto tempEquip = ParseMapTag<std::string, EQUIP_DEFINITION>("Tags/equipMap.json");
@@ -249,6 +248,9 @@ void ReloadConfig(){
 	}
 	LoadTraits("Tags/flagTraits.json", flagTraits);
 	LoadTraits("Tags/npcTraits.json", npcTraits);
+
+	bossNPCsList = GetGenericTraitData(npcTraits, NPCTraits::BOSS) | std::views::keys | std::ranges::to<std::vector>();
+
 	messageBank = ParseMapTag("Tags/messages.json");
 
 	if (ChallengeEnabled("speedrunMetadata")){

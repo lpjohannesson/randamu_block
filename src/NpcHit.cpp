@@ -585,7 +585,7 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 			AddScore(600);  break;	
 	}
 
-	if (std::find(bossNPCsList.begin(), bossNPCsList.end(), npc->code_char) != bossNPCsList.end())
+	if (CheckNPCTrait(npc, NPCTraits::BOSS))
 	{
 		SetNpChar(18, npc->x, npc->y - 8 + 0x200, 0, 0, 0, NULL, 0, 99, 0x2000);
 		AddScore(7500);  StartBossLife2();
@@ -912,7 +912,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			}
 			PlaySoundObject(npc.hit_voice, SOUND_MODE_PLAY);
 			npc.shock = 16;
-			if (gBL.flag == false && std::find(bossNPCsList.begin(), bossNPCsList.end(), npc.code_char) != bossNPCsList.end())
+			if (gBL.flag == false && CheckNPCTrait(&npc, NPCTraits::BOSS))
 				StartBossLife(npc.code_event);
 			if (isSword)
 			{
@@ -967,7 +967,7 @@ void HitNpCharBullet(void)
 						genContext.bossRect.right, genContext.bossRect.bottom};
 
 		if (gMC.depth > 1 && gMC.depth % genContext.bossRate == 0){
-				if (std::find(bossNPCsList.begin(), bossNPCsList.end(), gNPC[n].code_char) != bossNPCsList.end())
+				if (CheckNPCTrait(&gNPC[n], NPCTraits::BOSS))
 					if(IntersectCheck(necessaryRect, gNPC[n].x / 16_pix, gNPC[n].y / 16_pix)){
 						if ((gBL.flag == false && !GetNPCFlag(Flags::LEVEL_BOSS_DEFEATED) && !IntersectCheck(necessaryRect, gMC.x / 16_pix, gMC.y / 16_pix)) || gMusicNo == 52){
 							SetCaret(gNPC[n].x - gNPC[n].rect.left / 2, gNPC[n].y + gNPC[n].rect.bottom / 2, 2, 2);

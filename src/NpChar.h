@@ -113,6 +113,8 @@ inline const ArgType GetNPCTraitData(NPCHAR* npc, std::string trait, std::string
 	return GetGenericTraitData<ArgType>(&npcTraits, trait, parameter, [npc](int npcID){return npc->code_char == npcID;}, defaultValue);
 }
 
+std::map<int, GenerationArguments>& GetNPCTraitData(std::string trait);
+
 template <IsGenMetadata ArgType>
 inline const ArgType GetNPCTraitData(int npcCodeChar, std::string trait, std::string parameter, const ArgType defaultValue = ArgType{}){
 	return GetGenericTraitData<ArgType>(&npcTraits, trait, parameter, [npcCodeChar](int npcID){return npcCodeChar == npcID;}, defaultValue);
