@@ -380,13 +380,7 @@ const NPCFUNCTION gpNpcFuncTbl[] = {
 };
 
 NPC_TABLE *gNpcTable;
-std::vector<int> bonkableEnemies;
-std::vector<int> lifeImmuneEnemies;
-std::vector<int> lifestealEnemies;
 std::vector<int> waterBullets;
-std::vector<int> knockImmuneEnemies;
-std::vector<int> etherealEntities;
-std::vector<int> aquaticEntities;
 std::map<std::string, NPC_SPAWN_CONFIG> npcSpawning;
 
 template<typename ValueType>
@@ -403,13 +397,7 @@ void InterpretSpawnConfig(ValueType& value, json& config, ValueType required_val
 
 void LoadNPCTags(){
 	bool bError = false;
-		bonkableEnemies = ParseTag<int>("Tags/bonkableEnemies.json");
-		lifeImmuneEnemies = ParseTag<int>("Tags/lifeIncreaseImmune.json");
 		waterBullets = ParseTag<int>("Tags/waterBullets.json");
-		knockImmuneEnemies = ParseTag<int>("Tags/knockbackImmune.json");
-		etherealEntities = ParseTag<int>("Tags/etherealEntities.json");
-		aquaticEntities = ParseTag<int>("Tags/aquaticEntities.json");
-		lifestealEnemies = ParseTag<int>("Tags/lifestealEntities.json");
 
 		json npcSpawningProto = ReadJSON("Tags/npcSpawning.json");
 		for (auto &[key, val] : npcSpawningProto.items())

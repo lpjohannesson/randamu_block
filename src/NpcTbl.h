@@ -64,13 +64,7 @@ struct NPC_SPAWN_CONFIG
 };
 
 extern NPC_TABLE *gNpcTable;
-extern std::vector<int> bonkableEnemies;
-extern std::vector<int> lifeImmuneEnemies;
-extern std::vector<int> lifestealEnemies;
 extern std::vector<int> waterBullets;
-extern std::vector<int> knockImmuneEnemies;
-extern std::vector<int> etherealEntities;
-extern std::vector<int> aquaticEntities;
 extern std::map<std::string, NPC_SPAWN_CONFIG> npcSpawning;
 
 void LoadNPCTags();

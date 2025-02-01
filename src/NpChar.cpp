@@ -29,6 +29,7 @@
 
 std::map<int, std::map<int, int>> static_iframes;
 std::map<int, std::map<int, int>> local_iframes;
+TraitStorage npcTraits;
 
 NPCHAR gNPC[NPC_MAX];
 int gCurlyShoot_wait;
@@ -45,7 +46,7 @@ NPCHAR* GetClosest(int x, int y, int maxDistance){
 	maxDistance /= 1_pix;
 	float actualMaxDist = maxDistance*maxDistance + maxDistance*maxDistance;
     for (int i = 0; i < NPC_MAX; i++){
-        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE && gNPC[i].code_char != 100 && std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[i].code_char) == etherealEntities.end()))) continue;
+        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE && gNPC[i].code_char != 100 && !CheckNPCTrait(&gNPC[i], NPCTraits::ETHEREAL)))) continue;
         float distx = (gNPC[i].x - x) / 1_pix;
         float disty = (gNPC[i].y - y) / 1_pix;
 		float dist = (distx*distx + disty*disty);
@@ -77,7 +78,7 @@ static void SetUniqueParameter(NPCHAR *npc)
 		case DIFFICULTY_REINFORCED: lifeMod = 1.33f; break;
 		case DIFFICULTY_RESONANT: lifeMod = 1.33f; break;
 	}
-	if (std::find(lifeImmuneEnemies.begin(), lifeImmuneEnemies.end(), code) == lifeImmuneEnemies.end())
+	if (!CheckNPCTrait(npc, NPCTraits::IMMUNE_TO_LIFE_MODIFIERS))
 		npc->life *= lifeMod;
 	npc->hit.front = gNpcTable[code].hit.front * 0x200;
 	npc->hit.back = gNpcTable[code].hit.back * 0x200;
@@ -1116,4 +1117,8 @@ int CountAliveNpChar(void)
 			++count;
 
 	return count;
+}
+
+bool CheckNPCTrait(NPCHAR* npc, std::string trait){
+	return CheckGenericTrait(npcTraits, trait, [npc](int npcID){return npc->code_char == npcID;});
 }

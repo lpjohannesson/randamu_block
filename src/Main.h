@@ -21,7 +21,6 @@ extern std::vector<std::string> stageSymbols;
 extern std::vector<std::string> stageGenerationOrder;
 extern std::map<std::string, GenerationArguments> stageGenerationMetadata;
 extern std::vector<std::int32_t> bossNPCsList;
-extern std::map<int, int> timeStopCoefficients;
 extern std::map<std::string, std::map<int, GenerationArguments>> flagTraits;
 
 void from_json(const json& j, GenerationMetadata& gm);

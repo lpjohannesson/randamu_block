@@ -657,7 +657,7 @@ int JudgeHitMyCharNPC(NPCHAR *npc)
 		mod = 3;
 	}
 	if (gMC.dashDuration > 0 && IsDashEquipped() && CheckFlagTrait(FlagTraits::SUPER_DASH) && 
-				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), npc->code_char) != bonkableEnemies.end()){
+				CheckNPCTrait(npc, NPCTraits::BONKABLE)){
 		mod /= 2;
 	}
 
@@ -731,7 +731,7 @@ unsigned char JudgeHitMyCharNPC3(NPCHAR *npc)
 		mod = 3;
 	}
 	if (gMC.dashDuration > 0 && IsDashEquipped() && CheckFlagTrait(FlagTraits::SUPER_DASH) && 
-				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), npc->code_char) != bonkableEnemies.end()){
+				CheckNPCTrait(npc, NPCTraits::BONKABLE)){
 		mod /= 2;
 	}
 
@@ -764,7 +764,7 @@ int JudgeHitMyCharNPC4(NPCHAR *npc)
 		mod = 3;
 	}
 	if (gMC.dashDuration > 0 && IsDashEquipped() && CheckFlagTrait(FlagTraits::SUPER_DASH) && 
-				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), npc->code_char) != bonkableEnemies.end()){
+				CheckNPCTrait(npc, NPCTraits::BONKABLE)){
 		mod /= 2;
 	}
 
@@ -913,7 +913,7 @@ void HitMyCharNpChar(void)
 			hit = JudgeHitMyCharNPC3(&gNPC[i]);
 		}
 
-		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[i].code_char) != aquaticEntities.end()) && CheckFlagTrait(FlagTraits::WATER_MOB_FRIEND)){
+		if (CheckNPCTrait(&gNPC[i], NPCTraits::AQUATIC) && CheckFlagTrait(FlagTraits::WATER_MOB_FRIEND)){
 			hit = 0;
 		}
 
@@ -996,8 +996,7 @@ void HitMyCharNpChar(void)
 
 		if (hit != 0){
 			if ((gMC.dashDuration > 0 && IsDashEquipped())){
-				if (CheckFlagTrait(FlagTraits::SUPER_DASH) && 
-				std::find(bonkableEnemies.begin(), bonkableEnemies.end(), gNPC[i].code_char) != bonkableEnemies.end()){
+				if (CheckFlagTrait(FlagTraits::SUPER_DASH) && CheckNPCTrait(&(gNPC[i]), NPCTraits::BONKABLE)){
 					if (GetFlagTraitData<bool>(FlagTraits::SUPER_DASH, "explode", false)){
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);
 						SetBullet(Bullets::EXPLOSION, gMC.x,  gMC.y, 0);

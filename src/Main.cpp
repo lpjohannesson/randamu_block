@@ -25,6 +25,7 @@
 #include "KeyControl.h"
 #include "Log.h"
 #include "MyChar.h"
+#include "NpChar.h"
 #include "Organya.h"
 #include "Random.h"
 #include "Resource.h"
@@ -48,7 +49,6 @@ std::vector<std::string> stageSymbols;
 std::vector<std::string> stageGenerationOrder;
 std::vector<std::int32_t> bossNPCsList;
 std::map<std::string, GenerationArguments> stageGenerationMetadata;
-std::map<int, int> timeStopCoefficients;
 std::map<std::string, std::map<int, GenerationArguments>> flagTraits;
 
 CONFIG_BINDING bindings[BINDING_TOTAL];
@@ -247,11 +247,8 @@ void ReloadConfig(){
 	{
 		stageSymbols.push_back(key);
 	}
-	auto tempTSC = ParseMapTag<std::string, int>("Tags/timeStopCoefficients.json");
-	for (const auto &[key, value]: tempTSC){
-		timeStopCoefficients[std::stoi(key)] = value;
-	}
 	LoadTraits("Tags/flagTraits.json", flagTraits);
+	LoadTraits("Tags/npcTraits.json", npcTraits);
 	messageBank = ParseMapTag("Tags/messages.json");
 
 	if (ChallengeEnabled("speedrunMetadata")){

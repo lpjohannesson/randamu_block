@@ -1346,7 +1346,7 @@ NPCHAR* GetTarget(int x, int y){
     float shortestdist = 0.0;
     int npc = -1;
     for (int i = 0; i < NPC_MAX; i++){
-        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE) && std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[i].code_char) == etherealEntities.end())) continue;
+        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE) && !CheckNPCTrait(&gNPC[i], NPCTraits::ETHEREAL))) continue;
         float distx = gNPC[i].x - x;
         float disty = gNPC[i].y - y;
         if (npc < 0 || (distx*distx + disty*disty) < shortestdist){

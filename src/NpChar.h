@@ -4,6 +4,7 @@
 #include "CommonDefines.h"
 #include "Draw.h"
 #include "Game.h"
+#include "Traits.h"
 #include <map>
 
 #define NPC_MAX 0x1000
@@ -103,6 +104,19 @@ struct NPCHAR
 
 extern std::map<int, std::map<int, int>> static_iframes;
 extern std::map<int, std::map<int, int>> local_iframes;
+extern TraitStorage npcTraits;
+
+bool CheckNPCTrait(NPCHAR* npc, std::string trait);
+
+template <IsGenMetadata ArgType>
+inline const ArgType GetNPCTraitData(NPCHAR* npc, std::string trait, std::string parameter, const ArgType defaultValue = ArgType{}){
+	return GetGenericTraitData<ArgType>(&npcTraits, trait, parameter, [](int npcID){return npc->code_char == npcID;}, defaultValue);
+}
+
+template <IsGenMetadata ArgType>
+inline const ArgType GetNPCTraitData(int npcCodeChar, std::string trait, std::string parameter, const ArgType defaultValue = ArgType{}){
+	return GetGenericTraitData<ArgType>(&npcTraits, trait, parameter, [npcCodeChar](int npcID){return npcCodeChar == npcID;}, defaultValue);
+}
 
 struct EVENT
 {

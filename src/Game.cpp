@@ -699,10 +699,8 @@ bool TimeStopActive(int npc_id){
 	int timeCoefficient = 1;
 	bool stopTime = false;
 
-	if (npc_id != 0 && timeStopCoefficients.contains(npc_id)){
-		timeCoefficient = timeStopCoefficients[npc_id];
-	} else {
-		timeCoefficient = 25;
+	if (npc_id != 0){
+		timeCoefficient = GetNPCTraitData(npc_id, NPCTraits::TIME_DILATION, "modifier", 25);
 	}
 
 	if (CheckForCooldown(gCooldowns, TIME_STOP_ID) > 0){

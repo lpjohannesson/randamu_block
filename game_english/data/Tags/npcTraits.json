@@ -1,0 +1,173 @@
+{
+    "6": {
+        "bonkable": {}, "living": {}
+    },
+    "24": {
+        "bonkable": {}, "living": {}
+    },
+    "26": {
+        "bonkable": {}, "living": {}
+    },
+    "28": {
+        "bonkable": {}, "living": {}
+    },
+    "30": {
+        "ethereal": {}, "immune_to_knockback": {}
+    },
+    "35": {
+        "bonkable": {}, "immune_to_knockback": {}, "living": {}
+    },
+    "36": {
+        "boss": {}
+    },
+    "38": {
+        "ethereal": {}
+    },
+    "44": {
+        "bonkable": {}, "boss": {}, "living": {}
+    },
+    "49": {
+        "bonkable": {}, "living": {}
+    },
+    "57": {
+        "bonkable": {}, "living": {}
+    },
+    "71": {
+        "immune_to_life_modifiers": {}
+    },
+    "94": {
+        "aquatic": {}, "bonkable": {}, "living": {}
+    },
+    "95": {
+        "aquatic": {}, "living": {}
+    },
+    "100": {
+        "time_dilation": {"modifier": 1}
+    },
+    "104": {
+        "bonkable": {}, "living": {}
+    },
+    "111": {
+        "bonkable": {}, "living": {}
+    },
+    "114": {
+        "bonkable": {}, "immune_to_knockback": {}, "living": {}
+    },
+    "140": {
+        "bonkable": {}, "living": {}
+    },
+    "142": {
+        "bonkable": {}
+    },
+    "147": {
+        "bonkable": {}, "living": {}
+    },
+    "155": {
+        "bonkable": {}, "living": {}
+    },
+    "156": {
+        "immune_to_life_modifiers": {}
+    },
+    "158": {
+        "bonkable": {}
+    },
+    "173": {
+        "bonkable": {}, "living": {}
+    },
+    "176": {
+        "bonkable": {}, "immune_to_knockback": {}, "living": {}
+    },
+    "180": {
+        "time_dilation": {"modifier": 1}
+    },
+    "187": {
+        "bonkable": {}, "immune_to_knockback": {}, "living": {}
+    },
+    "188": {
+        "immune_to_knockback": {}
+    },
+    "189": {
+        "time_dilation": {"modifier": 1}
+    },
+    "190": {
+        "time_dilation": {"modifier": 1}
+    },
+    "192": {
+        "time_dilation": {"modifier": 1}
+    },
+    "193": {
+        "time_dilation": {"modifier": 1}
+    },
+    "200": {
+        "bonkable": {}, "living": {}
+    },
+    "206": {
+        "bonkable": {}, "living": {}
+    },
+    "238": {
+        "bonkable": {}, "immune_to_knockback": {}, "living": {}
+    },
+    "239": {
+        "immune_to_knockback": {}, "immune_to_life_modifiers": {}
+    },
+    "241": {
+        "bonkable": {}
+    },
+    "246": {
+        "bonkable": {}, "immune_to_knockback": {}
+    },
+    "247": {
+        "bonkable": {}, "living": {}
+    },
+    "263": {
+        "bonkable": {}, "immune_to_life_modifiers": {}, "living": {}
+    },
+    "267": {
+        "bonkable": {}, "immune_to_life_modifiers": {}, "living": {}
+    },
+    "268": {
+        "bonkable": {}, "boss": {}, "living": {}
+    },
+    "276": {
+        "bonkable": {}, "boss": {}, "living": {}
+    },
+    "283": {
+        "bonkable": {}, "living": {}
+    },
+    "284": {
+        "bonkable": {}, "boss": {}, "living": {}
+    },
+    "295": {
+        "immune_to_knockback": {}
+    },
+    "309": {
+        "bonkable": {}, "living": {}
+    },
+    "311": {
+        "bonkable": {}, "living": {}
+    },
+    "317": {
+        "bonkable": {}, "boss": {}, "living": {}
+    },
+    "320": {
+        "time_dilation": {"modifier": 1}
+    },
+    "321": {
+        "time_dilation": {"modifier": 1}
+    },
+    "322": {
+        "bonkable": {}, "immune_to_life_modifiers": {}, "immune_to_knockback": {}
+    },
+    "323": {
+        "bonkable": {}, "living": {}
+    },
+    "330": {
+        "bonkable": {}, "living": {}
+    },
+    "340": {
+        "bonkable": {}, "immune_to_life_modifiers": {}, "living": {}
+    },
+    "342": {
+        "immune_to_life_modifiers": {}
+    }
+}

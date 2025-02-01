@@ -690,8 +690,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			return false;
 	}
 
-	bool isEthereal = std::find(etherealEntities.begin(), etherealEntities.end(), npc.code_char) != etherealEntities.end();
-	bool isBoss = std::find(bossNPCsList.begin(), bossNPCsList.end(), npc.code_char) != bossNPCsList.end();
+	bool isEthereal = CheckNPCTrait(&npc, NPCTraits::ETHEREAL);
+	bool isBoss = CheckNPCTrait(&npc, NPCTraits::BOSS);
 	if (isEthereal) dmg = 0;
 
 	if (CheckFlagTrait(FlagTraits::CHILL) && Random(1, GetFlagTraitData<int>(FlagTraits::CHILL, "chance")-1) == 1 && npc.damage > 0){
@@ -788,7 +788,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 			}
 		}
 
-		if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end() &&
+		if (!CheckNPCTrait(&npc, NPCTraits::IMMUNE_TO_KNOCKBACK) &&
 				(CheckFlagTrait(FlagTraits::KNOCKBACK) || bul->code_bullet == Bullets::MOVING_MISSILE)){
 			npc.knockx = bul->xm * bul->knockX * npc.knockEffect;
 			npc.knocky = bul->ym * bul->knockY * npc.knockEffect;
@@ -819,7 +819,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	if (ChallengeEnabled("oneDamage") && dmg > 0) //one damage option
 		dmg = 1;
 
-	if (CheckFlagTrait(FlagTraits::LIFESTEAL) && std::find(lifestealEnemies.begin(), lifestealEnemies.end(), npc.code_char) != lifestealEnemies.end()){
+	if (CheckFlagTrait(FlagTraits::LIFESTEAL) && CheckNPCTrait(&npc, NPCTraits::LIVING)){
 		float modifier = 1;
 		for (const auto& [flag, value]: GetActualFlagTraitData<float>(FlagTraits::LIFESTEAL_MODIFIER, "amount"))
 			modifier *= value;
@@ -920,7 +920,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 					SetBullet(Bullets::BLADE_SLASH_FAKE, npc.x, npc.y, 0);
 				else
 					SetBullet(Bullets::BLADE_SLASH_FAKE, npc.x, npc.y, 2);
-				if (std::find(knockImmuneEnemies.begin(), knockImmuneEnemies.end(), npc.code_char) == knockImmuneEnemies.end()){
+				if (!CheckNPCTrait(&npc, NPCTraits::IMMUNE_TO_KNOCKBACK)){
 					if (bul->direct == 0)
 						npc.knockx = -Random(0x300, 0x5F0);
 					else
@@ -959,7 +959,7 @@ void HitNpCharBullet(void)
 		if (gNPC[n].bits & NPC_SHOOTABLE && gNPC[n].bits & NPC_INTERACTABLE)
 			continue;
 
-		if ((std::find(aquaticEntities.begin(), aquaticEntities.end(), gNPC[n].code_char) != aquaticEntities.end()) && CheckFlagTrait(FlagTraits::WATER_MOB_FRIEND)){
+		if (CheckNPCTrait(&gNPC[n], NPCTraits::AQUATIC)  && CheckFlagTrait(FlagTraits::WATER_MOB_FRIEND)){
 			continue;
 		}
 
@@ -1036,7 +1036,7 @@ void HitNpCharBullet(void)
 					gBul[b].life = 0;
 					continue;
 				}
-				if (std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[n].code_char) == etherealEntities.end())
+				if (!CheckNPCTrait(&(gNPC[n]), NPCTraits::ETHEREAL))
 					--gBul[b].life;
 			}
 		}

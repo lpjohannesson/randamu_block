@@ -203,6 +203,17 @@ namespace FlagTraits {
 	inline constexpr const char* UNWIELDY_SPARK_FLYING         = "unwieldy_spark_flying";
 }
 
+namespace NPCTraits {
+	inline constexpr const char* BONKABLE                      = "bonkable";
+	inline constexpr const char* AQUATIC                       = "aquatic";
+	inline constexpr const char* ETHEREAL                      = "ethereal";
+	inline constexpr const char* LIVING                        = "living";
+	inline constexpr const char* IMMUNE_TO_LIFE_MODIFIERS      = "immune_to_life_modifiers";
+	inline constexpr const char* BOSS                          = "boss";
+	inline constexpr const char* IMMUNE_TO_KNOCKBACK           = "immune_to_knockback";
+	inline constexpr const char* TIME_DILATION                 = "time_dilation";
+}
+
 namespace Bullets {
 	inline constexpr int NOTHING                      = 0;
 

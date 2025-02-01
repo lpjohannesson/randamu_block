@@ -714,7 +714,7 @@ void ActMyChar_Normal(bool bKey)
 
 	if (CheckFlagTrait(FlagTraits::MINING_FREEZE_AURA) && (gArmsData[gSelectedArms].code == 2 || gArmsData[gSelectedArms].code == 12)){
 		for (int i = 0; i < NPC_MAX; i++){
-			if (Random(0, 10) == 0 && std::find(etherealEntities.begin(), etherealEntities.end(), gNPC[i].code_char) == etherealEntities.end() && gNPC[i].damage > 0 && 
+			if (Random(0, 10) == 0 && !CheckNPCTrait(&(gNPC[i]), NPCTraits::ETHEREAL) && gNPC[i].damage > 0 && 
 			Distance(gMC.x, gMC.y, gNPC[i].x, gNPC[i].y) <= GetFlagTraitData<int>(FlagTraits::MINING_FREEZE_AURA, "distance") * 1_pix){
 				gNPC[i].freeze += GetFlagTraitData<int>(FlagTraits::MINING_FREEZE_AURA, "rate");
 			}
