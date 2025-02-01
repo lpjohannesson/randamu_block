@@ -227,6 +227,8 @@ add_executable(Randamu WIN32
 	"src/Tags.h"
 	"src/TextScr.cpp"
 	"src/TextScr.h"
+	"src/Traits.cpp"
+	"src/Traits.h"
 	"src/Triangle.cpp"
 	"src/Triangle.h"
 	"src/ValueView.cpp"

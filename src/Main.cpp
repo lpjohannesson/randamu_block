@@ -32,6 +32,7 @@
 #include "Score.h"
 #include "Sound.h"
 #include "Tags.h"
+#include "Traits.h"
 #include "Triangle.h"
 
 bool bFullscreen;
@@ -134,23 +135,6 @@ void PutFramePerSecound(int x, int y)
 {
 		const unsigned long fps = CountFramePerSecound();
 		PutNumber4(x, y, fps, false);
-}
-
-void from_json(const json &j, GenerationMetadata &gm)
-{
-    if (j.is_number()){
-		gm = j.get<float>();
-	} else if (j.is_boolean()){
-		gm = static_cast<float>(j.get<bool>());
-	} else if (j.is_string()){
-		gm = j.get<std::string>();
-	} else if (j.is_array()){
-		auto first_value = j[0];
-		if (first_value.is_number())
-			gm = j.get<std::vector<float>>();
-		else if (first_value.is_string())
-			gm = j.get<std::vector<std::string>>();
-	}
 }
 
 std::string GivePointerString(const void* p){
@@ -267,18 +251,7 @@ void ReloadConfig(){
 	for (const auto &[key, value]: tempTSC){
 		timeStopCoefficients[std::stoi(key)] = value;
 	}
-	json protoTraits = ReadJSON("Tags/flagTraits.json");
-	for (auto &[flag, traits]: protoTraits.items()){
-		for (auto &[traitName, traitData]: traits.items()){
-			flagTraits.try_emplace(traitName, std::map<int, GenerationArguments>{});
-			auto traitInfo = traitData;
-			GenerationArguments metadataMap;
-			for (auto &[n, d]: traitInfo.items()){
-				from_json(d, metadataMap[n]);
-			}
-			flagTraits[traitName].try_emplace(std::stoi(flag), metadataMap);
-		}
-	}
+	LoadTraits("Tags/flagTraits.json", flagTraits);
 	messageBank = ParseMapTag("Tags/messages.json");
 
 	if (ChallengeEnabled("speedrunMetadata")){

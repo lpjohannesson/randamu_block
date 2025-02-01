@@ -54,22 +54,11 @@ bool GetNPCFlag(long a)
 
 bool CheckFlagTrait(std::string trait)
 {
-	if (flagTraits.contains(trait)){
-		for (const auto &[flag, info]: flagTraits[trait]){
-			if (GetNPCFlag(flag))
-				return true;
-		}
-	}
-	return false;
+	return CheckGenericTrait(flagTraits, trait, [](int flag){return GetNPCFlag(flag);});
 }
 
-std::map<int, GenerationArguments> emptydata;
-
 std::map<int, GenerationArguments>& GetFlagTraitData(std::string trait){
-	if (flagTraits.contains(trait)){
-		return flagTraits[trait];
-	}
-	return emptydata;
+	return GetGenericTraitData(flagTraits, trait);
 }
 
 // Skip flags
