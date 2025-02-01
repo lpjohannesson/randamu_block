@@ -110,7 +110,7 @@ bool CheckNPCTrait(NPCHAR* npc, std::string trait);
 
 template <IsGenMetadata ArgType>
 inline const ArgType GetNPCTraitData(NPCHAR* npc, std::string trait, std::string parameter, const ArgType defaultValue = ArgType{}){
-	return GetGenericTraitData<ArgType>(&npcTraits, trait, parameter, [](int npcID){return npc->code_char == npcID;}, defaultValue);
+	return GetGenericTraitData<ArgType>(&npcTraits, trait, parameter, [npc](int npcID){return npc->code_char == npcID;}, defaultValue);
 }
 
 template <IsGenMetadata ArgType>
