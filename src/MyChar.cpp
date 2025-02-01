@@ -735,7 +735,7 @@ void ActMyChar_Normal(bool bKey)
 		gMC.boost_sw = 0;
 		gMC.pogo = true;
 		gMC.chargeActive = false;
-		int boostFuel;
+		int boostFuel = 0;
 		for (const auto&[_, amount]: GetActualFlagTraitData<int>(FlagTraits::CAN_BOOST, "amount")){
 			if (amount > boostFuel) boostFuel = amount;
 		}
