@@ -468,14 +468,14 @@ void RenderBackend_BlitEx(RenderBackend_Surface *source_surface, const RenderBac
 	if (SDL_SetRenderTarget(renderer, destination_surface->texture) < 0)
 		Backend_PrintError("Couldn't set current rendering target: %s", SDL_GetError());
 
-	if (SDL_SetTextureAlphaMod(source_surface->texture, 255) < 0)
-		Backend_PrintError("Couldn't set opacity: %s", SDL_GetError());
-
 	if (SDL_SetTextureAlphaMod(source_surface->texture, 255 * opacity) < 0)
 		Backend_PrintError("Couldn't set opacity: %s", SDL_GetError());
 
 	if (SDL_RenderCopyEx(renderer, source_surface->texture, &source_rect, &destination_rect, angle, &center, SDL_FLIP_NONE) < 0)
 		Backend_PrintError("Couldn't copy part of texture to rendering target: %s", SDL_GetError());
+
+	if (SDL_SetTextureAlphaMod(source_surface->texture, 255) < 0)
+		Backend_PrintError("Couldn't set opacity: %s", SDL_GetError());
 }
 
 void RenderBackend_Blit(RenderBackend_Surface *source_surface, const RenderBackend_Rect *rect, RenderBackend_Surface *destination_surface, long x, long y, bool alpha_blend, float opacity, bool flip)
