@@ -1219,7 +1219,7 @@ void ShootBullet_Machinegun2(int level)
 
 		if (CheckFlagTrait(FlagTraits::WEAPON_RECHARGE_BOOST))
 		{
-			if (wait > 5 / std::max(0.01f, GetFlagTraitData<float>(FlagTraits::WEAPON_RECHARGE_BOOST, "machine_gun")))
+			if (wait > 5 / std::max(0.01f, GetFlagTraitData<float>(FlagTraits::WEAPON_RECHARGE_BOOST, "gatling_gun")))
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
@@ -2119,7 +2119,7 @@ void ShootBullet_Bubblin2(int level)
 
 		if (CheckFlagTrait(FlagTraits::WEAPON_RECHARGE_BOOST))
 		{
-			if (wait > 2 / std::max(0.01f, GetFlagTraitData<float>(FlagTraits::WEAPON_RECHARGE_BOOST, "machine_gun")))
+			if (wait > 2 / std::max(0.01f, GetFlagTraitData<float>(FlagTraits::WEAPON_RECHARGE_BOOST, "bubbler")))
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
