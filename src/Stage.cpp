@@ -1967,7 +1967,7 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 		rooms = GetMetadata<int>(genArguments["amount"]);
 		if (CheckFlagTrait(FlagTraits::CHEST_BOOST))
 		{
-			rooms *= GetFlagTraitData<float>(FlagTraits::CHEST_BOOST, "base");
+			rooms *= GetFlagTraitData<float>(FlagTraits::CHEST_BOOST, "base", 1.0f);
 		}
 		limit = ChallengeValue("chest_limit");
 		if (limit != -1 && (limit <= rooms || limit > GetMetadata<int>(genArguments["amount"])))
