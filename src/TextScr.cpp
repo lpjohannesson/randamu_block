@@ -700,6 +700,13 @@ int ActualTextScriptProc(void)
 						FullArmsEnergy();
 						gTS.p_read += 4;
 					}
+					else if (IS_COMMAND('W','E','+'))
+					{
+						y = GetTextScriptNo(gTS.p_read + 4);
+						z = GetTextScriptNo(gTS.p_read + 9);
+						ChargeArmsEnergy(y, z);
+						gTS.p_read += 13;
+					}
 					else if (IS_COMMAND('I','T','+'))
 					{
 						x = GetTextScriptNo(gTS.p_read + 4);

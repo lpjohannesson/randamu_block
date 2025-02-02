@@ -135,6 +135,7 @@ bool UseArmsEnergy(long num);
 
 /// Add num ammo to the currently selected weapon (capped at the maximum ammunition). Returns true
 bool ChargeArmsEnergy(long num);
+bool ChargeArmsEnergy(int id, long num);
 
 /// Set every weapons ammunition to its maximum ammunition
 void FullArmsEnergy(void);

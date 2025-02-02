@@ -1096,6 +1096,20 @@ bool UseArmsEnergy(long num)
 	return true;	// Was able to spend ammo
 }
 
+bool ChargeArmsEnergy(int id, long num)
+{
+	for (int i = 0; i < ARMS_MAX; ++i)
+		if (gArmsData[i].code == id){
+		gArmsData[i].num += num;
+		// Cap the ammo to the maximum ammunition
+		if (gArmsData[i].num > gArmsData[i].max_num)
+			gArmsData[i].num = gArmsData[i].max_num;
+		break;
+	}
+
+	return true;	// Always successfull
+}
+
 bool ChargeArmsEnergy(long num)
 {
 	gArmsData[gSelectedArms].num += num;
