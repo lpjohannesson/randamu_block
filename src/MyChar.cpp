@@ -387,7 +387,7 @@ void PutMyChar(int fx, int fy)
 	Rect rcRight = {0, 16, 16, 32};
 	int color = 0xaca6ff;
 	Rect rect = gMC.direct == 0 ? rcLeft : rcRight;
-	PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &rect, color, SURFACE_ID_DASH_VISUAL);
+	PutBitmap3_Flip(&grcGame, SubpixelToScreenCoord(gMC.x - gMC.view.front) - SubpixelToScreenCoord(fx), SubpixelToScreenCoord(gMC.y - gMC.view.top) - SubpixelToScreenCoord(fy), &rect, color, SURFACE_ID_MY_CHAR);
 	for (const auto& equip : equipVisuals)
 	{
 		if (GetNPCFlag(equip.flag))
