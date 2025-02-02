@@ -2644,7 +2644,7 @@ void CreateTutorialSign(GenerationContext& genContext, GenerationArguments& genA
 void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArguments){
 	if ((gMC.depth == 1 || (gMC.depth % genContext.bossRate != 0)))
 	{
-		int tries;
+		int tries = 0;
 		// create a door to next randomized stage
 		do
 		{
