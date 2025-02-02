@@ -254,8 +254,18 @@ bool TradeArms(long code1, long code2, long max_num)
 	// Initialize new weapon replacing old one, but adding the maximum ammunition to that of the old weapon.
 	gArmsData[i].level = 1;
 	gArmsData[i].code = code2;
-	gArmsData[i].max_num += max_num;
-	gArmsData[i].num += max_num;
+	if (max_num == 0 && code1 == code2 && (code2 == 2 || code2 == 12)){
+		max_num = gArmsData[i].max_num;
+		if (CheckFlagTrait(FlagTraits::MINING_STORAGE_BOOST))
+			max_num *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::MINING_STORAGE_BOOST, "modifier"));
+		if (CheckFlagTrait(FlagTraits::INFINITE_MINING))
+			max_num = 0;
+		gArmsData[i].max_num = max_num;
+		gArmsData[i].num = max_num;
+	} else {
+		gArmsData[i].max_num += max_num;
+		gArmsData[i].num += max_num;
+	}
 	gArmsData[i].exp = 0;
 
 	return true;
