@@ -394,14 +394,9 @@ int JudgeHitMyCharDamage(int x, int y)
 	return hit;
 }
 
-// TODO: sue shouldn't be able to avoid lava
 int JudgeHitMyCharDamageW(int x, int y)
 {
 	int hit = 0;
-
-	if (abs(gMC.xm) > 1250 && CheckFlagTrait(FlagTraits::SPIKE_EVADING)) return hit;
-
-	if (gMC.dashDuration > 0 && IsDashEquipped()) return hit;
 
 	if (gMC.x - 0x800 < (x * 0x10 + 4) * 0x200
 		&& gMC.x + 0x800 > (x * 0x10 - 4) * 0x200
