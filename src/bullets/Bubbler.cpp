@@ -153,8 +153,8 @@ void ActBullet_Bubblin2(BULLET *bul)
 			int move = 0x900;
 			int secondMove = 0x180;
 			if (CheckFlagTrait(FlagTraits::INACCURATE_VELOCITY_MODIFIER)){
-				move *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "bubbler_velocity"));
-				secondMove *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "bubbler_inaccuracy"));
+				move *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "bubbler_velocity"), 1.0f);
+				secondMove *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "bubbler_inaccuracy"), 1.0f);
 			}
 
 			switch (bul->direct)
