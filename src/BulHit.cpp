@@ -41,8 +41,8 @@ int JudgeHitBulletBlock(int x, int y, BULLET *bul)
 	if (bul->x - bul->blockXL < ((x * 16) + 8) * 1_pix && bul->x + bul->blockXL > ((x * 16) - 8) * 1_pix && bul->y - bul->blockYL < ((y * 16) + 8) * 1_pix && bul->y + bul->blockYL > ((y * 16) - 8) * 1_pix)
 		hit |= 0x200;
 
-	if (hit && bul->bbits & 0x60 && InsideMap(x, y) && (GetAttribute(x, y) == 0x43 || (bul->code_bullet == Bullets::MINING_LASER || bul->code_bullet == Bullets::MINING_BOOM || bul->code_bullet == 34 || bul->code_bullet == 35 ||
-	 (CheckFlagTrait(FlagTraits::INVIDIA) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39)))))
+	if (hit && bul->bbits & 0x60 && InsideMap(x, y) && (GetAttribute(x, y) == 0x43 || ((bul->code_bullet == Bullets::MINING_LASER || bul->code_bullet == Bullets::MINING_BOOM || bul->code_bullet == 34 || bul->code_bullet == 35 ||
+	 (CheckFlagTrait(FlagTraits::INVIDIA) && (bul->code_bullet == 37 || bul->code_bullet == 38 || bul->code_bullet == 39))) && GetTile(x, y) != 64)))
 	{
 		if (CheckFlagTrait(FlagTraits::MULTI_BLOCK_BREAKING) && (bul->code_bullet == Bullets::NEMESIS_MAIN) && bul->life > 1){
 			bul->life--;

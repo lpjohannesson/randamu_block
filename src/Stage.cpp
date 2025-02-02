@@ -2888,7 +2888,7 @@ void ProcessIndividualNPCSpawning(const std::string& name){
 					if (spawnInfo.destroyTile)
 					{
 						y += 1;
-						ChangeMap(x, y, 0);
+						ChangeMap(x, y, 64);
 					}
 					if (spawnInfo.direct != -1)
 						direction = spawnInfo.direct;
