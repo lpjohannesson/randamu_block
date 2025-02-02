@@ -1927,10 +1927,8 @@ void ActNpcGraviController(NPCHAR *npc)
 	switch (npc->act_no)
 	{
 		case 0:
-			if (npc->direct == 2)
-				npc->act_no = 2;
-			else
-				npc->ani_no = 1;
+			npc->act_no = 2;
+			break;
 
 			// Fallthrough
 		case 1:
