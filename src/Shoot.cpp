@@ -403,7 +403,7 @@ void ShootBullet_PoleStar(int level)
 
 		if (CheckFlagTrait(FlagTraits::MINING_PASSIVE_CHARGE))
 		{
-			if (wait > GetFlagTraitData<int>(FlagTraits::MINING_PASSIVE_CHARGE, "nemesis"))
+			if (wait > GetFlagTraitData<int>(FlagTraits::MINING_PASSIVE_CHARGE, "polar_star"))
 			{
 				wait = 0;
 				ChargeArmsEnergy(1);
