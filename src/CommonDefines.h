@@ -171,12 +171,16 @@ namespace FlagTraits {
 	/// @since 1.45
 	inline constexpr const char* LEVEL_4_WEAPONS               = "level_4_weapons";
 
-	/// @brief Increases player's immunity frames and prevents knockback from taking damage.
+	/// @brief Increases player's immunity frames.
 	/// @note When taking 1 damage, the immunity frames will be actually decreased.
-	/// @todo Add modifiers for the thing.
-	/// @todo Split into #IFRAMES_BOOST and KNOCKBACK_IMMUNE.
+	/// @param[in] modifier       The modifier for immunity frames.
+	/// @param[in] modifier_light The modifier for immunity frames received for taking 1 damage.
 	/// @since 1.45
 	inline constexpr const char* IFRAMES_BOOST                 = "iframes_boost";
+
+	/// @brief Prevents knockback from taking damage.
+	/// @since 1.45
+	inline constexpr const char* NO_KNOCKBACK                  = "no_knockback";
 
 	/// @brief Saves player from one hit kills by setting their HP to 1 when taking too much damage.
 	/// @note This will not save the player, if they are already at 1 HP.

@@ -48,7 +48,7 @@
         "manual_rocket_stop": {}, "tighter_turning": {"effect": 1}
     },
     "739": {
-        "iframes_boost": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}
+        "iframes_boost": {"modifier": 1.5, "modifier_light": 0.75}, "no_knockback": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}
     },
     "740": {
         "little_man_spawn": {"amount": 1}
@@ -123,7 +123,7 @@
         "water_mob_friend": {}, "lava_protection": {"amount": 160}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}, "unhindered_diving": {}, "unlimited_swimming": {}
     },
     "864": {
-        "iframes_boost": {}, "flat_damage_reduction": {"amount": 1}, "ko_prevention": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}
+        "iframes_boost": {"modifier": 1.5, "modifier_light": 0.75}, "no_knockback": {}, "flat_damage_reduction": {"amount": 1}, "ko_prevention": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}
     },
     "865": {
         "controlled_little_man": {}, "energy_projectile_on_hit": {"chance": 3}, "little_man_spawn": {"amount": 1}, "shooting_little_man": {"bullet": 47, "rate": 9}

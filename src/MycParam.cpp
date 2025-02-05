@@ -233,9 +233,9 @@ void DamageMyChar(int damage)
 	gMC.star = 0;
 	if (CheckFlagTrait(FlagTraits::IFRAMES_BOOST)){
 		if (damage != 0){
-			gMC.shock *= 1.5;
+			gMC.shock *= GetFlagTraitData<float>(FlagTraits::IFRAMES_BOOST, "modifier");
 		} else {
-			gMC.shock *= 0.75;
+			gMC.shock *= GetFlagTraitData<float>(FlagTraits::IFRAMES_BOOST, "modifier_light");
 		}
 	}
 	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){
@@ -271,7 +271,7 @@ void DamageMyChar(int damage)
 	}
 	else
 	{
-		if (!CheckFlagTrait(FlagTraits::IFRAMES_BOOST))
+		if (!CheckFlagTrait(FlagTraits::NO_KNOCKBACK))
 			gMC.ym = -0x400 * (gMC.flip ? -1 : 1);
 	}
 	bool clayMedalProc = false;
