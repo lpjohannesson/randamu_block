@@ -741,11 +741,6 @@ namespace FlagTraits {
 	/// @since 1.45
 	inline constexpr const char* VELOCITY_BASED_JUMP           = "velocity_based_jump";
 
-	/// @brief Makes mining weapons not consume any ammunition.
-	/// @todo Merge with #MINING_STORAGE_BOOST.
-	/// @since 1.45
-	inline constexpr const char* INFINITE_MINING               = "infinite_mining";
-
 	/// @brief Adds additional ammo to specific weapons at beginning of new stage.
 	/// @warning The parameters have to have same length for this trait to work.
 	/// @param[in] weapons The IDs for weapons for their max ammunition to be increased.
