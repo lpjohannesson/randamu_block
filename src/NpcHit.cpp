@@ -757,7 +757,7 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 	}
 
 	if (CheckFlagTrait(FlagTraits::TOTAL_RANDOMNESS)){ //quate
-		dmg *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_damage"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_damage"))) / 100.0f;
+		dmg *= float(Random(GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "min_dealt_damage"), GetFlagTraitData<int>(FlagTraits::TOTAL_RANDOMNESS, "max_dealt_damage"))) / 100.0f;
 	}
 
 	if (bul != NULL && !isEthereal){
