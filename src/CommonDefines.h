@@ -117,7 +117,7 @@ namespace FlagTraits {
 	inline constexpr const char* WITCH_FIREBALL                = "witch_fireball";
 
 	/// @brief Prompts Fireball projectiles to spew smaller flames when travelling.
-	/// @todo Add parameter for firerate.
+	/// @param[in] rate The delay between each flame in frames.
 	/// @since 1.45
 	inline constexpr const char* PROPANE_TRAIL                 = "propane_trail";
 

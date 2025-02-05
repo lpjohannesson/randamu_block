@@ -108,7 +108,7 @@ void ActBullet_FireBall(BULLET *bul, int level)
 	}
 	else
 	{
-		if (bul->count1 % 7 == 0 && CheckFlagTrait(FlagTraits::PROPANE_TRAIL)){
+		if (CheckFlagTrait(FlagTraits::PROPANE_TRAIL) && bul->count1 % GetFlagTraitData<int>(FlagTraits::PROPANE_TRAIL, "rate") == 0){
 			int xCoord, yCoord;
 			xCoord = bul->x - 0x200 * 5;
 			yCoord = bul->y - 0x200 * 5;
