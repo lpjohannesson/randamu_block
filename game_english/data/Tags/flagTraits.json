@@ -211,7 +211,7 @@
         "ducks": {}, "duck_health": {}, "no_life_capsules": {}
     },
     "4300": {
-        "buffed_dash": {}, "dash_modifier": {"speed": 1.1, "duration": 1.15, "cooldown": 0.9}, "double_jump": {}, "last_stand": {"speed_boost": 1.15}, "wall_jump": {}
+        "buffed_dash": {}, "dash_modifier": {"speed": 1.1, "duration": 1.15, "cooldown": 0.9}, "double_jump": {}, "last_stand": {"flag_mark": 4301, "speed_boost": 1.15}, "wall_jump": {}
     },
     "4350": {
         "controlled_rocket": {}, "mining_storage_boost": {"modifier": 0}, "stage_complete_ammo_boost": {"weapons": [5], "ammo": [2]}
@@ -232,6 +232,6 @@
         "buffed_dash": {}, "cat_dash": {"speed": 1.7, "cooldown": 3}, "cat_float": {}, "dash_float": {}, "sword_sheathing": {}
     },
     "7999": {
-        "amphibious": {}, "better_ducks": {}, "blade_dash": {"speed": 1.85, "cooldown": 2.25}, "buffed_machine_gun": {}, "controlled_rocket": {}, "chest_boost": {"base": 0.5}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "dash_float": {}, "dash_projectile_repel": {}, "dash_sprint": {}, "ducks": {}, "experience_boost": {"modifier": 1.5}, "mining_storage_boost": {"modifier": 0}, "invidia": {}, "hook_flail": {}, "last_stand": {}, "level_4_weapons": {}, "little_man_spawn": {"amount": 2}, "low_hp_resist": {}, "stage_complete_ammo_boost": {"weapons": [5], "ammo": [2]}, "sword_sheathing": {}, "witch_dash_vfx": {},  "witch_fireball": {}, "score_multiplier": {"amount": 0.1}
+        "amphibious": {}, "better_ducks": {}, "blade_dash": {"speed": 1.85, "cooldown": 2.25}, "buffed_machine_gun": {}, "controlled_rocket": {}, "chest_boost": {"base": 0.5}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "dash_float": {}, "dash_projectile_repel": {}, "dash_sprint": {}, "ducks": {}, "experience_boost": {"modifier": 1.5}, "mining_storage_boost": {"modifier": 0}, "invidia": {}, "hook_flail": {}, "last_stand": {"flag_mark": 4301}, "level_4_weapons": {}, "little_man_spawn": {"amount": 2}, "low_hp_resist": {}, "stage_complete_ammo_boost": {"weapons": [5], "ammo": [2]}, "sword_sheathing": {}, "witch_dash_vfx": {},  "witch_fireball": {}, "score_multiplier": {"amount": 0.1}
     }
 }

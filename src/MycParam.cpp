@@ -374,7 +374,7 @@ void Die(void){
 		for (int i = 0; i < 100; i++)
 			SetCaret(gMC.x + 0x200 * 8, gMC.y, 11, 0);
 	}
-	else if (CheckFlagTrait(FlagTraits::LAST_STAND) && !GetNPCFlag(Flags::TOROKO_BLEEDING_OUT)){
+	else if (CheckFlagTrait(FlagTraits::LAST_STAND) && !GetNPCFlag(GetFlagTraitData<int>(FlagTraits::LAST_STAND, "flag_mark", Flags::TOROKO_BLEEDING_OUT))){
 			gMC.life = 0;
 			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
 		} else {
@@ -422,9 +422,9 @@ void AddLifeMyChar(int x)
 	gMC.lifeBr = gMC.life;
 	if (gMC.life <= 0)
 	{
-		if (CheckFlagTrait(FlagTraits::LAST_STAND) && !GetNPCFlag(Flags::TOROKO_BLEEDING_OUT)){
+		if (CheckFlagTrait(FlagTraits::LAST_STAND) && !GetNPCFlag(GetFlagTraitData<int>(FlagTraits::LAST_STAND, "flag_mark", Flags::TOROKO_BLEEDING_OUT))){
 			gMC.life = 0;
-			SetNPCFlag(Flags::TOROKO_BLEEDING_OUT);
+			SetNPCFlag(GetFlagTraitData<int>(FlagTraits::LAST_STAND, "flag_mark", Flags::TOROKO_BLEEDING_OUT));
 		} else {
 		int sound = gMC.characterData.deathSound;
 		PlaySoundObject(sound, SOUND_MODE_PLAY);

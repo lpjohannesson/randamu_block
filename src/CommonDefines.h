@@ -194,7 +194,7 @@ namespace FlagTraits {
 	/// @brief Allows player to survive one fatal hit per generated stage and stay at 0 HP.
 	/// @note While at 0 HP, the player's momentum is increased.
 	/// @param[in] speed_boost The modifier applied to player's speed, when they are at 0 HP.
-	/// @todo Add parameter for last stand tracker flag.
+	/// @param[in] flag_mark   The flag used to mark the usage of this trait. *Defaults to 4301.*
 	/// @since 1.45
 	inline constexpr const char* LAST_STAND                    = "last_stand";
 
