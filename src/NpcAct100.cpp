@@ -289,8 +289,8 @@ void ActNpcTPFrog(NPCHAR *npc)
 			do
 			{
 				tries--;
-				x = gMC.x + Random(-75_pix, 75_pix);
-				y = gMC.y + Random(-80_pix, -40_pix);
+				x = npc->x + Random(-64_pix, 64_pix);
+				y = npc->y + Random(-64_pix, 64_pix);
 				if (tries <= 0)
 					break;
 			} while (GetAttribute(x / 0x2000, y / 0x2000) == 65);
