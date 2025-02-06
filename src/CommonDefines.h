@@ -141,7 +141,7 @@ namespace FlagTraits {
 	inline constexpr const char* SUPER_DASH                    = "super_dash";
 
 	/// @brief Makes player invulnerable to spikes once certain velocity is reached.
-	/// @todo Add parameters for velocity threshold.
+	/// @param[in] threshold The horizontal threshold for spike evading in subpixels.
 	/// @since 1.45
 	inline constexpr const char* SPIKE_EVADING                 = "spike_evading";
 

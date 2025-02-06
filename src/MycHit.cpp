@@ -381,7 +381,7 @@ int JudgeHitMyCharDamage(int x, int y)
 {
 	int hit = 0;
 
-	if (abs(gMC.xm) > 1250 && CheckFlagTrait(FlagTraits::SPIKE_EVADING)) return hit;
+	if (CheckFlagTrait(FlagTraits::SPIKE_EVADING) && abs(gMC.xm) > GetFlagTraitData<int>(FlagTraits::SPIKE_EVADING, "threshold")) return hit;
 
 	if (gMC.dashDuration > 0 && IsDashEquipped()) return hit;
 

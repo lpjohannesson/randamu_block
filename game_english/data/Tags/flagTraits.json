@@ -168,7 +168,7 @@
         "accelerate_fall": {}, "explode_on_hit": {}, "stomping": {"explosive": true}
     },
     "879": {
-        "speed_boots": {"air_acceleration": 3, "air_speed_multiplier": 2, "acceleration": 3, "speed_multiplier": 2, "particle_threshold": 1.5}, "spike_evading": {}, "manual_rocket_stop": {}, "tighter_turning": {"effect": 1}, "velocity_based_jump": {"modifier": 0.008}
+        "speed_boots": {"air_acceleration": 3, "air_speed_multiplier": 2, "acceleration": 3, "speed_multiplier": 2, "particle_threshold": 1.5}, "spike_evading": {"threshold": 1250}, "manual_rocket_stop": {}, "tighter_turning": {"effect": 1}, "velocity_based_jump": {"modifier": 0.008}
     },
     "880": {
         "ranged_block_place": {"distance": 5}, "precise_placement": {}, "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}, "medal_spawn": {"ids": [193]}, "mining_freeze_aura": {"distance": 88, "rate": 10}
@@ -189,7 +189,7 @@
         "hunger_system": {}
     },
     "4096": {
-        "spike_evading": {}, "chest_boost": {"amount": 2}, 
+        "spike_evading": {"threshold": 1250}, "chest_boost": {"amount": 2}, 
         "hidden_equips": {"flags": [-1073741824]}
     },
     "4100": {
