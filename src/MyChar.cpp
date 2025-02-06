@@ -937,7 +937,7 @@ void ActMyChar_Normal(bool bKey)
 			else if (gMC.boost_sw == 2)
 				gMC.ym /= 2;
 		}
-		if (CheckFlagTrait(FlagTraits::CAN_BOOST) && CheckFlagTrait(FlagTraits::BOOSTER_2_0) && gMC.boost_sw != 0 && (gMC.boost_cnt == 0) && !CheckFlagTrait(FlagTraits::DONT_SLOW_ON_BOOST_END))
+		if (CheckFlagTrait(FlagTraits::CAN_BOOST) && CheckFlagTrait(FlagTraits::BOOSTER_2_0) && gMC.boost_sw != 0 && (gMC.boost_cnt == 0) && !GetFlagTraitData<bool>(FlagTraits::BOOSTER_2_0, "no_slowdown", false))
 		{
 			if (gMC.boost_sw == 1)
 				gMC.xm /= 2;
@@ -1310,9 +1310,6 @@ void ActMyChar_Normal(bool bKey)
 				}
 				if (CheckFlagTrait(FlagTraits::DASH_FLOAT))
 				{
-					gMC.ym = 0;
-				}
-				if (gMC.ameDashState){
 					gMC.ym = 0;
 				}
 			}

@@ -281,8 +281,7 @@ namespace FlagTraits {
 	inline constexpr const char* DASH_FLOAT                    = "dash_float";
 
 	/// @brief Makes dashing ability go extremely fast in one direction until hitting the wall, like a fierce cat leap.
-	/// @remark This trait's dash is \ref #BUFFED_DASH "empowered" (but does 3 more damage) and \ref #DASH_FLOAT "doesn't have gravity".
-	/// @todo Remove gravity ignoring part of it.
+	/// @remark This trait's dash is \ref #BUFFED_DASH "empowered" (but does 3 more damage).
 	/// @param[in] speed    The speed multiplier for cat leaping dash.
 	/// @param[in] cooldown The cooldown multiplier for cat leaping dash.
 	/// @since 1.45
@@ -321,6 +320,7 @@ namespace FlagTraits {
 	inline constexpr const char* BOOSTER_0_8                   = "booster_0_8";
 
 	/// @brief Sets boosting method to Booster 2.0 (instant high speed in four cardinal directions)
+	/// @param[in] no_slowdown A boolean toggle on whenever to preserve momentum on ending boosting or not.
 	/// @see #CAN_BOOST
 	/// @since 1.45
 	inline constexpr const char* BOOSTER_2_0                   = "booster_2_0";
@@ -377,11 +377,6 @@ namespace FlagTraits {
 	/// @param[in] amount The modifier for booster fuel.
 	/// @since 1.45
 	inline constexpr const char* BOOSTER_FUEL_BOOST            = "booster_fuel_boost";
-
-	/// @brief Preserves momentum on ending Booster 2.0-style boosting.
-	/// @todo Merge with #BOOSTER_2_0.
-	/// @since 1.45
-	inline constexpr const char* DONT_SLOW_ON_BOOST_END        = "dont_slow_on_boost_end";
 
 	/// @brief Provides immunity to harmful water in certain stages.
 	/// @since 1.45

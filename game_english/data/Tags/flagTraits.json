@@ -117,7 +117,7 @@
         "mining_charge_from_damage": {"amount": 1.5}, "mining_passive_charge": {"polar_star": 120, "nemesis": 120}, "spur_charge_boost": {"modifier": 1.5}, "weapon_recharge_boost": {"machine_gun": 3, "gatling_gun": 5, "bubbler": 2}, "mining_storage_boost": {"modifier": 1.5}, "saving_ammo_chance": {"chance": 3}
     },
     "862": {
-        "booster_damage": {"damage": 1, "range": 6}, "booster_2_0": {}, "can_boost": {"amount": 90}, "dont_slow_on_boost_end": {}
+        "booster_damage": {"damage": 1, "range": 6}, "booster_2_0": {"no_slowdown": true}, "can_boost": {"amount": 90}
     },
     "863": {
         "water_mob_friend": {}, "lava_protection": {"amount": 160}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}, "unhindered_diving": {}, "unlimited_swimming": {}
@@ -229,7 +229,7 @@
         "max_xspeed_limit": {"modifier": 1.75}, "puppy_friend": {}, "velocity_based_jump": {"modifier": 0.01}
     },
     "5120": {
-        "buffed_dash": {}, "cat_dash": {"speed": 1.7, "cooldown": 3}, "cat_float": {}, "sword_sheathing": {}
+        "buffed_dash": {}, "cat_dash": {"speed": 1.7, "cooldown": 3}, "cat_float": {}, "dash_float": {}, "sword_sheathing": {}
     },
     "7999": {
         "amphibious": {}, "better_ducks": {}, "blade_dash": {"speed": 1.85, "cooldown": 2.25}, "buffed_machine_gun": {}, "controlled_rocket": {}, "chest_boost": {"base": 0.5}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "dash_float": {}, "dash_projectile_repel": {}, "dash_sprint": {}, "ducks": {}, "experience_boost": {"modifier": 1.5}, "mining_storage_boost": {"modifier": 0}, "invidia": {}, "hook_flail": {}, "last_stand": {}, "level_4_weapons": {}, "little_man_spawn": {"amount": 2}, "low_hp_resist": {}, "stage_complete_ammo_boost": {"weapons": [5], "ammo": [2]}, "sword_sheathing": {}, "witch_dash_vfx": {},  "witch_fireball": {}, "score_multiplier": {"amount": 0.1}
