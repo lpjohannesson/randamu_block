@@ -233,8 +233,6 @@ bool LoadGenericData(void)
 		bError = true;
 	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_ACCESSORIES))
 		bError = true;
-	if (!MakeSurface_File("MyChar", SURFACE_ID_DASH_VISUAL))
-		bError = true;
 	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_ACCESSORIES_DROWNED))
 		bError = true;
 	if (!MakeSurface_File("MyAccs", SURFACE_ID_MY_ACCESSORIES_DASH))
@@ -304,6 +302,7 @@ bool LoadGenericData(void)
 	MakeSurface_Generic(320, 240, SURFACE_ID_LEVEL_SPRITESET_2, false);
 	MakeSurface_Generic(320, 32 * (MAX_STRIP - 1), SURFACE_ID_CREDIT_CAST, false);
 	MakeSurface_Generic(200, 32, SURFACE_ID_MY_CHAR, false);
+	MakeSurface_Generic(200, 32, SURFACE_ID_DASH_VISUAL, false);
 
 	pt_size = 0;
 

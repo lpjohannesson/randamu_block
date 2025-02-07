@@ -373,6 +373,7 @@ void ShowMyChar(bool bShow)
 
 void InitMyCharSprite(std::string characterName){
 	ReloadBitmap_File(GetResourcePath("Characters/" + characterName + "/" + availableCharacters[characterName].spritesheet).c_str(), SURFACE_ID_MY_CHAR);
+	ReloadBitmap_File(GetResourcePath("Characters/" + characterName + "/" + availableCharacters[characterName].spritesheet).c_str(), SURFACE_ID_DASH_VISUAL);
 }
 
 void PutMyChar(int fx, int fy)
