@@ -660,8 +660,10 @@ void SelectCharacter(std::string character) {
 		if (equipMap.contains(item))
 			SetNPCFlag(equipMap[item].flag);
 	}
-	AddArmsData(2, 100);
-	AddArmsData(12, 100);
+	if (gMC.characterData.startWithPolarStar)
+		AddArmsData(2, 100);
+	if (gMC.characterData.startWithNemesis)
+		AddArmsData(12, 100);
 	for (auto arms: gMC.characterData.startingWeapons){
 		AddArmsData(arms.id, arms.maxAmmo);
 	}

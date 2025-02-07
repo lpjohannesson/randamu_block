@@ -18,6 +18,8 @@
     "characterFlags": [4400],
     "startingItems": [],
     "startingWeapons": [{"id": 13, "maxAmmo": 0}],
+    "startWithPolarStar": false,
+    "startWithNemesis": false,
     
     "description1": "Can ascend infinitely high and destroy stuff with Invidia, but has no Polar Star.",
     "description2": "She also has 12 HP at start."

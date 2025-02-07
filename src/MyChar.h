@@ -66,13 +66,16 @@ struct MYCHAR_DEFINITION
 	};
 
 	std::vector<WEAPON> startingWeapons{{3, 0}};
+	bool startWithPolarStar = true;
+	bool startWithNemesis = true;
 
 	std::string description1 = "";
 	std::string description2 = "";
 
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, codeName, fullName, spritesheet, physics_diff, maxLife,
 		hurtSound, deathSound, immunityFrames, lifeCapsuleLimit, lifeCapsuleValue,
-		blacklistedChestFlags, characterFlags, startingItems, startingWeapons, description1, description2)
+		blacklistedChestFlags, characterFlags, startingItems, startingWeapons, startWithPolarStar, startWithNemesis,
+		description1, description2)
 };
 
 struct MYCHAR_EQUIP_DEFINITION
