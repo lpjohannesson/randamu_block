@@ -2,6 +2,7 @@
 
 #include <cstddef>
 
+#include "Caret.h"
 #include "Draw.h"
 #include "Flash.h"
 #include "Frame.h"
@@ -634,110 +635,50 @@ void ActNpc063(NPCHAR *npc)
 // First Cave Critter
 void ActNpc064(NPCHAR *npc)
 {
-	Rect rcLeft[3] = {
-		{0, 0, 16, 16},
-		{16, 0, 32, 16},
-		{32, 0, 48, 16},
-	};
-
-	Rect rcRight[3] = {
-		{0, 16, 16, 32},
-		{16, 16, 32, 32},
-		{32, 16, 48, 32},
-	};
-
+	std::array<Rect, 5> rcLeft = {{
+		{16, 8, 32, 16},
+		{0, 40, 16, 48},
+		{48, 56, 64, 64},
+		{80, 72, 96, 80},
+		{144, 40, 160, 48},
+	}};
 	switch (npc->act_no)
 	{
 		case 0: // Initialize
-			npc->y += 3 * 0x200;
+			npc->ani_no = Random(0, rcLeft.size()-1);
 			npc->act_no = 1;
 			// Fallthrough
 		case 1: // Waiting
-			// Look at player
-			if (npc->x > gMC.x)
-				npc->direct = 0;
-			else
-				npc->direct = 2;
-
-			if (npc->tgt_x < 100)
-				++npc->tgt_x;
-
-			// Open eyes near player
-			if (npc->act_wait >= 8 && npc->x - (112 * 0x200) < gMC.x && npc->x + (112 * 0x200) > gMC.x && npc->y - (80 * 0x200) < gMC.y && npc->y + (80 * 0x200) > gMC.y)
-			{
-				npc->ani_no = 1;
-			}
-			else
-			{
-				if (npc->act_wait < 8)
-					++npc->act_wait;
-
-				npc->ani_no = 0;
-			}
-
-			// Jump if attacked
-			if (npc->shock)
-			{
+			if (!(npc->flag & 8)){
 				npc->act_no = 2;
-				npc->ani_no = 0;
-				npc->act_wait = 0;
-			}
-
-			// Jump if player is nearby
-			if (npc->act_wait >= 8 && npc->tgt_x >= 100 && npc->x - (64 * 0x200) < gMC.x && npc->x + (64 * 0x200) > gMC.x && npc->y - (80 * 0x200) < gMC.y && npc->y + (48 * 0x200) > gMC.y)
-			{
-				npc->act_no = 2;
-				npc->ani_no = 0;
-				npc->act_wait = 0;
 			}
 			break;
-
-		case 2: // Going to jump
-			if (++npc->act_wait > 8)
-			{
-				// Set jump state
-				npc->act_no = 3;
-				npc->ani_no = 2;
-
-				// Jump
-				npc->ym = -0x5FF;
-				PlaySoundObject(30, SOUND_MODE_PLAY);
-
-				// Jump in facing direction
-				if (npc->direct == 0)
-					npc->xm = -0x100;
-				else
-					npc->xm = 0x100;
-			}
-			break;
-
-		case 3: // Jumping
+		case 2: // Jumping
 			// Land
 			if (npc->flag & 8)
 			{
-				npc->xm = 0;
-				npc->act_wait = 0;
-				npc->ani_no = 0;
 				npc->act_no = 1;
-				PlaySoundObject(23, SOUND_MODE_PLAY);
+				PlaySoundObject(70, SOUND_MODE_PLAY);
+				SetDestroyNpChar(npc->x, npc->y, npc->view.back, 4);
 			}
 			break;
 	}
-
 	// Gravity
-	npc->ym += 0x40;
+	npc->ym += 0x60;
 	if (npc->ym > 0x5FF)
 		npc->ym = 0x5FF;
+
+	if (!(npc->flag & 8) && gMC.y > npc->y)
+		npc->damage = 7;
+	else
+		npc->damage = 0;
 
 	// Move
 	npc->x += npc->xm;
 	npc->y += npc->ym;
 
 	// Set framerect
-	if (npc->direct == 0)
-		npc->rect = rcLeft[npc->ani_no];
-	else
-		npc->rect = rcRight[npc->ani_no];
+	npc->rect = rcLeft.at(npc->ani_no);
 }
 
 // First Cave Bat

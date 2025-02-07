@@ -393,22 +393,6 @@ void DestroyBlock(int x, int y)
 		if (gArmsData[a].num > gArmsData[a].max_num)
 			gArmsData[a].num = gArmsData[a].max_num;
 	}
-	if (gMC.gimmick == GIMMICK_FRAGILE){
-		if (InsideMap(x, y - 1) && GetAttribute(x, y - 1) == 65 && GetAttribute(x, y) == 0){
-			int tile = GetTile(x, y - 1);
-			ChangeMap(x, y-1, 0);
-			int y1 = y - 1;
-			while (GetAttribute(x, y1+1) == 0 && y1 < (gMap.length-1)){
-				y1++;
-			}
-			ChangeMapS(x, y1, tile);
-			if ((gMC.x > x * 0x2000 && gMC.y > y * 0x2000 && gMC.y < (y1 + 1)*0x2000 && gMC.x < (x+1)*0x2000) ||
-				(gMC.x > (x-1) * 0x2000 && gMC.y > y * 0x2000 && gMC.y < (y1 + 1)*0x2000 && gMC.x < x*0x2000)){
-				DamageMyChar(5);
-				if (gMC.life <= 0) gMC.deathReason = DeathReason::FALLING_BLOCK;
-			}
-		}
-	}
 	for (int t = 0; t < gMap.width * gMap.length; t++)
 	{
 		if (gMap.data[t] == 66)
@@ -505,7 +489,7 @@ void DestroyBlock(int x, int y)
 		}
 	}
 	int width = gMap.width;
-	int NEIGHBOURS8[] = {-width - 1, -width, -width + 1, -1, +1, +width - 1, +width, +width + 1};
+	std::pair<int, int> NEIGHBOURS8[8] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}};
 	bool surrounded;
 	int N3[][2] = {{0, -1}, {1, 0}, {-1, 0}};
 	int x1, y1;
@@ -561,6 +545,16 @@ void DestroyBlock(int x, int y)
 			EditMapS(t, 13);
 		}
 	}
+	if (gMC.gimmick == GIMMICK_FRAGILE){
+		for (auto point: NEIGHBOURS8){
+			if (!IsEmpty(x + point.first, y + point.second) && InsideMap(x + point.first, y + point.second) && Random(0, 6) == 0){
+				DestroyBlock(x + point.first, y + point.second);
+				if (Random(0, 3) == 0){
+					SetNpChar(64, (x + point.first)*16_pix, (y + point.second)*16_pix, 0, 0, 0, NULL, 0x200);
+				}
+			}
+		}
+	}	
 }
 
 bool IsItDark(){
