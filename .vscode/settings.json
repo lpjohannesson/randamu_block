@@ -10,6 +10,12 @@
         "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
         "CMAKE_TOOLCHAIN_FILE": "D:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
     },
+    "githubIssues.queries": [
+        {
+            "label": "Randamu actual issues",
+            "query": "is:open repo:DoukutsuRandamu/IssueTracker"
+        }
+    ],
     "cmake.generator": "MinGW Makefiles",
     "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
