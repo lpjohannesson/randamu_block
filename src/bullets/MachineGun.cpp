@@ -72,8 +72,8 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 		}
 		secondMove = 0xFF;
 		if (CheckFlagTrait(FlagTraits::INACCURATE_VELOCITY_MODIFIER)){
-			move *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "machine_gun_velocity"), 1.0f);
-			secondMove *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "machine_gun_inaccuracy"), 1.0f);
+			move *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "machine_gun_velocity", 1.0f));
+			secondMove *= std::max(1.0f, GetFlagTraitData<float>(FlagTraits::INACCURATE_VELOCITY_MODIFIER, "machine_gun_inaccuracy", 1.0f));
 		}
 		if (gArmsData[gSelectedArms].code == 21)
 			secondMove *= 7;
