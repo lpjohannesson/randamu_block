@@ -631,16 +631,19 @@ bool IntersectDamageCheck(NPCHAR &npc, int x, int y, int xl, int yl)
 void SpawnQuiverProjectile(NPCHAR &npc)
 {
 	int x, y;
-		do
-		{
-			x = Random(std::max(0, npc.x - 50_pix), std::min(npc.x + 50_pix, gMap.width*16_pix));
-			y = Random(std::max(0, npc.y - 50_pix), std::min(npc.y + 50_pix, gMap.length*16_pix));
-		} while (Distance(npc.x, npc.y, x, y) < 8_pix);
-		BULLET *quiverProj = SetBullet(Bullets::ENERGY_PROJECTILE, x, y);
-		if (quiverProj != NULL){
-			quiverProj->tgt_x = npc.x;
-			quiverProj->tgt_y = npc.y;
-		}
+	int rangeX = std::min(npc.x + 50_pix, gMap.width*16_pix) - std::max(0, npc.x - 50_pix);
+	int rangeY = std::min(npc.y + 50_pix, gMap.length*16_pix) - std::max(0, npc.y - 50_pix);
+	float dist = std::sqrt(rangeX*rangeX + rangeY*rangeY);
+	do
+	{
+		x = Random(std::max(0, npc.x - 50_pix), std::min(npc.x + 50_pix, gMap.width*16_pix));
+		y = Random(std::max(0, npc.y - 50_pix), std::min(npc.y + 50_pix, gMap.length*16_pix));
+	} while (Distance(npc.x, npc.y, x, y) < std::min(8_pix, static_cast<int>(dist)));
+	BULLET *quiverProj = SetBullet(Bullets::ENERGY_PROJECTILE, x, y);
+	if (quiverProj != NULL){
+		quiverProj->tgt_x = npc.x;
+		quiverProj->tgt_y = npc.y;
+	}
 }
 
 bool IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul){
