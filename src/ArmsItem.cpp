@@ -776,6 +776,7 @@ void PutCampObject(void)
 	PutBitmap3_NoFlip(&rcView, PixelToScreenCoord((WINDOW_WIDTH / 2) - 122), PixelToScreenCoord(((WINDOW_HEIGHT / 2) - 120) + ((i + 1) * 8)), &rcBoxBottom, SURFACE_ID_TEXT_BOX);
 
 	PutMyScore(-2);
+	PutCooldownList(gCooldowns);
 
 	// Move titles
 	if (gCampTitleY > (WINDOW_HEIGHT / 2) - 104)
