@@ -82,26 +82,6 @@ To set the value, put it as ""name": value" in config.json (it's created automat
 - 'randomSizeMode': enables/disables the ability for generated levels to have variable size, not just 118x118.
 - 'sheepCharacter': enables/disables the character being permanently a sheep.
 - 'character': defines what custom character to use.
-Character codes:
-- CurlyBrac - Curly Brace
-- KingTable - King
-- FluffMimi - Toroko
-- Sakamoto - Sue
-- Raymundo - Misery
-- Upntscale - Lethrys Quote
-- Russia - Hunter
-- SaraACSS - Sara
-- ColdWorkE - Lily
-- WTFEvilQu - Excerpt
-- Jamark - Bracket
-- Dog - Puppy
-- Magician - Magician
-- LuigiGuy - Duckman
-- Meme - Quate
-- God - Mahin
-- AmeManga - Ame
-- SamHogan - ProcGen
-- LunarSha - Serenity
 
 Credits:
 - Cave Story: Daisuke "Pixel" Amaya
@@ -118,6 +98,7 @@ Credits:
 - Word wrapping: L. B from Stack Overflow and Compile-Time Regular Expressions
 - Crossovers: 2dbro and Cybryll/Kim Tyranto
 - Translation help: Fluffy-Fuwafuwa
+- Testers: Fluff8836, graceltelgt, rapidgame7, CyonOfGaia, denpamoo, yellow, hina, Descharges, bbaster, musaticsgilbert 
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
