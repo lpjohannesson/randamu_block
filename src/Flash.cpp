@@ -20,10 +20,10 @@ unsigned long gFlashColor;
 
 void InitFlash(void)
 {
-	gFlashColor = GetCortBoxColor(0xFFFFFFFF);
+	gFlashColor = GetCortBoxColor(0xFFFFFF | (0x80 << 24));
 }
 
-void SetFlash(int x, int y, int mode, int color)
+void SetFlash(int x, int y, int mode, unsigned int color)
 {
 	flash.act_no = 0;
 	flash.flag = true;
@@ -162,5 +162,5 @@ void PutFlash(void)
 void ResetFlash(void)
 {
 	flash.flag = false;
-	gFlashColor = 0xFFFFFFFF;
+	gFlashColor = 0xFFFFFF | (0x80 << 24);
 }
