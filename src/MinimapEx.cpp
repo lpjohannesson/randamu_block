@@ -361,6 +361,31 @@ int WriteMiniMap(int x, int y){
 	return enum_ESCRETURN_continue;
 }
 
+void PrepareMappingName(void){
+	Rect rc_note = {0, 160, 16, 176};
+	Rect rc_background = {0, 0, 180, 18};
+	rc_note.left += (gMC.tileset - (gMC.tileset > 64 ? 56 : 49)) * 16;
+	rc_note.right = rc_note.left + 16;
+	if (gMC.tileset > 'F'){
+		rc_note.left = (gMC.tileset - 71)*16;
+		rc_note.right = rc_note.left + 16;
+		rc_note.top += 16;
+		rc_note.bottom += 16;
+	}
+	CortBox2(&rc_background, 0, SURFACE_ID_MAPPING_NAME);
+
+	char music_name[100];
+	if (GimmickName() != gimmickNames[0])
+		sprintf(music_name, "%s %s", GimmickName().c_str(), TilesetName().c_str());
+	else
+		sprintf(music_name, "%s", TilesetName().c_str());
+
+	Surface2Surface(0, 0, &rc_background, SURFACE_ID_MAPPING_NAME, SURFACE_ID_BLACK_OVERLAY);
+
+	PutText2(24, 1, music_name, RGB(0xff,0xff,0xfe), (SurfaceID)SURFACE_ID_MAPPING_NAME);
+	Surface2Surface(4, 0, &rc_note, SURFACE_ID_MAPPING_NAME, SURFACE_ID_TEXT_BOX);
+}
+
 int MiniMapExLoop(void)
 {
 	int f;
@@ -371,7 +396,9 @@ int MiniMapExLoop(void)
 	int my_y;
 	unsigned char my_wait;
 	Rect my_rect = {220, 111, 223, 114};
+	Rect rcMapName = {0, 0, 180, 18};
 	Rect rcMapCaret = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
+	PrepareMappingName();
 
 	my_x = ((gMC.x / 0x2000));
 	my_y = ((gMC.y / 0x2000));
@@ -553,6 +580,8 @@ int MiniMapExLoop(void)
 		// 	// 	}
 		// 	// }
 		// }
+		PrepareMappingName();
+		PutBitmap3(&grcGame, PixelToScreenCoord(WINDOW_WIDTH / 2 - 60), PixelToScreenCoord(WINDOW_HEIGHT / 2 + 20), &rcMapName, 0.8f, SURFACE_ID_MAPPING_NAME);
 		PutMyScore(-12);
 			
 		PutFramePerSecound();

@@ -303,6 +303,7 @@ bool LoadGenericData(void)
 	MakeSurface_Generic(320, 32 * (MAX_STRIP - 1), SURFACE_ID_CREDIT_CAST, false);
 	MakeSurface_Generic(200, 32, SURFACE_ID_MY_CHAR, false);
 	MakeSurface_Generic(200, 32, SURFACE_ID_DASH_VISUAL, false);
+	MakeSurface_Generic(180, 18, SURFACE_ID_MAPPING_NAME, false);
 
 	pt_size = 0;
 
