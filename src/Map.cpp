@@ -293,7 +293,6 @@ void DeleteMapPartsS(int x, int y)
 {
 	*(gMap.data + x + (y * gMap.width)) = 0;
 	mapModifications.insert_or_assign({x, y}, 0);
-	// *(gMC.mapMods + x + (y * gMap.width)) = 0;
 }
 
 void ShiftMapParts(int x, int y)
@@ -320,7 +319,6 @@ bool EditMapS(int t, unsigned char no)
 {
     gMap.data[t] = no;
 	mapModifications.insert_or_assign({XCoord(t), YCoord(t)}, no);
-	// gMC.mapMods[t] = no;
 
 	return true;
 }
@@ -329,7 +327,6 @@ bool ChangeMapS(int x, int y, unsigned char no)
 {
     if (InsideMap(x, y)){
         gMap.data[x + (y * gMap.width)] = no;
-		// gMC.mapMods[x + (y * gMap.width)] = no;
 		mapModifications.insert_or_assign({x, y}, no);
 	}
 
@@ -351,7 +348,6 @@ bool ReplaceMapS(int x, int y, unsigned char old_no, unsigned char new_no)
     if (InsideMap(x, y)){
 		if (gMap.data[x + (y * gMap.width)] == old_no){
 			gMap.data[x + (y * gMap.width)] = new_no;
-			// gMC.mapMods[x + (y * gMap.width)] = new_no;
 			mapModifications.insert_or_assign({x, y}, new_no);
 		}
 	}

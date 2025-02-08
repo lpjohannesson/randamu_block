@@ -218,7 +218,6 @@ struct MYCHAR
 	bool lethalMomentum;
 	int lifeCapsuleLimit;
 	int noMoreLifeCapsules;
-	unsigned char mapMods[118*118];
 	int generatedChests[50];
 	int chaosAnim;
 	int saraDash;
