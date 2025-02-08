@@ -1,7 +1,5 @@
 +0100
 !0066
-[Credits are placeholder]0000-0032
-[Illustrations and such will come in later updates]0000
 -0320
 [- Cave Story by -]0000-0016
 [  Studio Pixel   ]0000-0064
@@ -10,7 +8,8 @@
 [    - Spriters -   ]0000-0016
 [      AsperDev]0000-0020
 [ Taiki/Interextellar]0000-0020
-[       Tert]0000-0064
+[       Tert]0000-0020
+[       lolkit]0000-0064
 [   - ORGmakers - ]0000-0016
 [    Cory Welch]0000-0020
 [      2dbro]0000-0020
@@ -19,7 +18,11 @@
 [      Zenix]0000-0020
 [      txin]0000-0020
 [     mLurker]0000-0020
-[      Hina]0000-0064
+[    zeroflafi]0000-0020
+[ Dredged Crusader]0000-0020
+[      yellow]0000-0020
+[   AquaDoesStuff]0000-0020
+[     Raymundo]0000-0064
 [ - Misc Contrubutions -]0000-0016
 [       ZarroTsu  ]0000-0020
 [       Raymundo  ]0000-0020
@@ -28,7 +31,8 @@
 [        Onyx     ]0000-0020
 [       Jamark    ]0000-0020
 [     datagoblin  ]0000-0020
-[       Kaitlyn  ]0000-0064
+[       Strultz   ]0000-0020
+[       autumn    ]0000-0064
 [ - Used Libraries -]0000-0016
 [      gzstream ]0000-0020
 [    nlohmann/json]0000-0020
@@ -42,6 +46,7 @@
 [     periwinkle]0000-0020
 [      AndyAML]0000-0020
 [    theluigiguy]0000-0020
+[   Auburn Arcana]0000-0020
 [      Drathy]0000-0064
 [ - Ideas and Support -]0000-0016
 [        ikuyo]0000-0020
@@ -59,8 +64,10 @@
 [   EnlightenedOne]0000-0020
 [   HaydenStudios]0000-0020
 [        Ryla]0000-0020
+[        hina]0000-0020
+[       Fluff8836]000-0020
 [     And more!]0000-0064
--0200
+-0180
 [Doukutsu Randamu ~ The End]0000
 -0280
 ~
