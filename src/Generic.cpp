@@ -42,9 +42,9 @@ void GetCompileDate(int *year, int *month, int *day)
 bool GetCompileVersion(int *v1, int *v2, int *v3, int *v4)
 {
 	*v1 = 1;
-	*v2 = 44;
-	*v3 = 2;
-	*v4 = 2;
+	*v2 = 45;
+	*v3 = 0;
+	*v4 = 1;
 	return true;
 }
 
@@ -64,11 +64,11 @@ bool RemoveFromArray(int* array, int value, size_t array_size){
 }
 
 std::string GetVersionName(){
-	return "Fixes and Tweaxes TWO";
+	return "1.45, beta 1";
 }
 
 bool IsBeta(){
-	return false;
+	return true;
 }
 
 void DeleteSave(void)
