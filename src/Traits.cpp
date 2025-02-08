@@ -2,7 +2,7 @@
 
 #include <vector>
 
-inline void from_json(const json &j, GenerationMetadata &gm) {
+void from_json(const json &j, GenerationMetadata &gm) {
     if (j.is_number()){
 		gm = j.get<float>();
 	} else if (j.is_boolean()){
