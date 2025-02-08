@@ -10,11 +10,14 @@
 
 void ActBullet_EnergyFlail(BULLET *bul, int level)
 {
+	bul->centerX = -0.5;
+	bul->centerY = -0.5;
 	if (bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN)
 		bul->local_iframes = 4;
 	else 
 		bul->iframes = 15;
 
+	if (level == 3) bul->iframes /= 1.5;
 	if (level == 4) bul->iframes /= 4;
 
 	if (CheckFlagTrait(FlagTraits::HOOK_FLAIL))
@@ -24,14 +27,17 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 		if ((++bul->count1 > bul->life_count) && bul->act_no == 1)
 		{
 			bul->act_no = 2;
+			bul->life = 100;
 		}
 		if (bul->flag & 0xF && bul->act_no == 1){
 			bul->act_no = 3;
+			bul->life = 100;
 		}
 	}
 	else if ((++bul->count1 > bul->life_count || bul->flag & 0xF) && bul->act_no == 1)
 	{
 		bul->act_no = 2;
+		bul->life = 100;
 		if (bul->code_bullet != Bullets::ENERGY_FLAIL_LVL_4_SPAWN)
 			bul->damage /= 4;
 	}
@@ -49,7 +55,6 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 			deg += Random(-1, 1);
 		int speed = 7;
 		if (level == 3){
-			speed = 5.75;
 			bul->life_count *= 2;
 		}
 		if (level == 4){
@@ -93,6 +98,7 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 			else
 				bul->iframes = 6;
 
+			if (level == 3) bul->iframes /= 1.5;
 			if (level == 4) bul->iframes /= 3;
 			
 			if ((!(gKey & gKeyShot && !((level == 4 || bul->code_bullet == Bullets::ENERGY_FLAIL_LVL_4_SPAWN))) || CheckFlagTrait(FlagTraits::HOOK_FLAIL))  && (bul->x > gMC.x - 0x200*8 && bul->x < gMC.x + 0x200*8 &&
@@ -147,6 +153,12 @@ void ActBullet_EnergyFlail(BULLET *bul, int level)
 					bully->tgt_y = bul->y;
 					bully->damage = 4;
 				}
+			}
+			if (level == 3 && bul->life < 100 && bul->act_no == 1){
+				float speed = 0.0089 * (bul->life);
+				bul->xm = bul->xm * speed;
+				bul->ym = bul->ym * speed;
+				bul->damage = gBulletTable[bul->code_bullet].table.damage + (100 - bul->life)/5;
 			}
 			bul->x += bul->xm;
 			bul->y += bul->ym;
@@ -214,7 +226,7 @@ void RegisterEnergyFlail(){
         [](BULLET* bul){ ActBullet_EnergyFlail(bul, 2); }
     }});
     gBulletTable.insert({Bullets::ENERGY_FLAIL_LVL_3, {
-        {10, 100, 35, 105, 12, 12, 6, 6, {4, 4, 4, 4}, 0.33, 0.33},
+        {8, 100, 35, 105, 14, 14, 6, 6, {4, 4, 4, 4}, 0.33, 0.33},
         [](BULLET* bul){ ActBullet_EnergyFlail(bul, 3); }
     }});
     gBulletTable.insert({Bullets::ENERGY_FLAIL_LVL_4, {
