@@ -33,7 +33,7 @@
 NPCHAR gBoss[BOSS_MAX];
 
 std::map<int, std::function<bool(std::pair<NPCHAR&, int>, std::pair<BULLET&, int>)>> bossCanBulletDmgFuncs = {
-	{0, [](std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul){return false;}},
+	{0, [](std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul){return true;}},
 	{1, Omega_IsAbleToDamage}
 };
 
@@ -141,7 +141,9 @@ void HitBossBullet(void)
 			if (!IsAbleToDamage({gBoss[bos_], NPC_MAX + bos_}, {gBul[bul], bul}))
 				continue;
 
-			if (!bossCanBulletDmgFuncs[gBoss[bos_].code_char]({gBoss[bos_], NPC_MAX + bos_}, {gBul[bul], bul}))
+			int funcID = bossCanBulletDmgFuncs.contains(gBoss[bos_].code_char) ? gBoss[bos_].code_char : 0;
+
+			if (!bossCanBulletDmgFuncs[funcID]({gBoss[bos_], NPC_MAX + bos_}, {gBul[bul], bul}))
 				continue;
 
 			// Check if bullet touches boss
