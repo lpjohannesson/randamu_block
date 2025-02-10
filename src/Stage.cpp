@@ -657,8 +657,7 @@ void SelectCharacter(std::string character) {
 	AddItemData(2);
 	for (auto item: gMC.characterData.startingItems){
 		AddItemData(item);
-		if (equipMap.contains(item))
-			SetNPCFlag(equipMap[item].flag);
+		EquipItem(item, true);
 	}
 	if (gMC.characterData.startWithPolarStar)
 		AddArmsData(2, 100);
