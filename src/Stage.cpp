@@ -632,7 +632,7 @@ void Shuffle(T& cont, RandomCategories::RandomCategories rng)
 	}
 }
 
-void LogSeed(unsigned long seed){
+static void LogSeed(uint64_t seed){
 	std::string path = gModulePath + "/last_seed.txt";
 	FILE *fp;
 
@@ -644,7 +644,7 @@ void LogSeed(unsigned long seed){
 		fprintf(fp, "Last seed used at ");
 		int v1, v2, v3, v4;
 		GetCompileVersion(&v1, &v2, &v3, &v4);
-		fprintf(fp, "%.24s: %lu, version: %d.%d.%d.%d\n", ctime(&_t), seed, v1, v2, v3, v4);
+		fprintf(fp, "%.24s: %llu, version: %d.%d.%d.%d\n", ctime(&_t), seed, v1, v2, v3, v4);
 		fclose(fp);
 	}
 }
