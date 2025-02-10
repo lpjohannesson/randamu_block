@@ -360,59 +360,54 @@ void ActNpc123(NPCHAR *npc)
 	npc->rect = rect[npc->direct];
 }
 
-// Sunstone
-void ActNpc124(NPCHAR *npc)
+// Nanites trail
+void ActNpcNanitesTrail(NPCHAR *npc)
 {
-	Rect rect[2] = {
-		{160, 0, 192, 32},
-		{192, 0, 224, 32},
+	Rect rect[] = {
+		{192, 144, 208, 160},
+		{208, 144, 224, 160},
+		{224, 144, 240, 160},
+		{240, 144, 256, 160},
+
+		{192, 160, 208, 176},
+		{208, 160, 224, 176},
+		{224, 160, 240, 176},
+		{240, 160, 256, 176},
+
+		{192, 176, 208, 192},
+		{208, 176, 224, 192},
+		{224, 176, 240, 192},
+		{240, 176, 256, 192},
+
+		{192, 192, 208, 208},
+		{208, 192, 224, 208},
+		{224, 192, 240, 208},
+		{240, 192, 256, 208},
+
+		{192, 208, 208, 224},
+		{208, 208, 224, 224},
+		{224, 208, 240, 224},
+		{240, 208, 256, 224},
+
+		{192, 224, 208, 240},
+		{208, 224, 224, 240},
+		{224, 224, 240, 240},
+		{240, 224, 256, 240},
 	};
 
-	switch (npc->act_no)
+	if (++npc->ani_wait > 5)
 	{
-		case 0:
-			npc->act_no = 1;
-			npc->x += 8 * 0x200;
-			npc->y += 8 * 0x200;
-			// Fallthrough
-		case 1:
-			npc->bits &= ~NPC_IGNORE_SOLIDITY;
-			npc->ani_no = 0;
-			break;
+		npc->ani_wait = 0;
 
-		case 10:
-			npc->act_no = 11;
-			npc->ani_no = 1;
-			npc->act_wait = 0;
-			npc->bits |= NPC_IGNORE_SOLIDITY;
-			// Fallthrough
-		case 11:
-			switch (npc->direct)
-			{
-				case 0:
-					npc->x -= 0x80;
-					break;
-
-				case 1:
-					npc->y -= 0x80;
-					break;
-
-				case 2:
-					npc->x += 0x80;
-					break;
-
-				case 3:
-					npc->y += 0x80;
-					break;
-			}
-			if (++npc->act_wait % 8 == 0)
-				PlaySoundObject(26, SOUND_MODE_PLAY);
-
-			SetQuake(20);
-			break;
+		if (++npc->ani_no > 2)
+		{
+			npc->cond = 0;
+			return;
+		}
 	}
+	npc->opacity -= 0.015f;
 
-	npc->rect = rect[npc->ani_no];
+	npc->rect = rect[((npc->direct + npc->ani_no) * 4) + npc->ym];
 }
 
 // Hidden item

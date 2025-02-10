@@ -458,13 +458,13 @@ void ActBullet_Nanites(BULLET *bul)
 		bul->act_no = 1;
 
 		bul->count1 = 0;
-		bul->count2 = 60;
+		bul->count2 = 68;
 	}
 	else
 	{
 		if (CheckForCooldown(gCooldowns, NANITES_CD_ID) == -1){
-			lol = 3;
-			speed = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 16 : 8);
+			lol = 0;
+			speed = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? 24 : 16);
 			
 			if (GetFlagTraitData<bool>(FlagTraits::NANITES, "projectiles", false)){
 				short rate = (CheckForCooldown(gCooldowns, NANITES_TIME_ID) > 0 ? GetFlagTraitData<int>(FlagTraits::NANITES, "active_projectile_rate") : GetFlagTraitData<int>(FlagTraits::NANITES, "passive_projectile_rate"));
@@ -481,11 +481,22 @@ void ActBullet_Nanites(BULLET *bul)
 				}
 			}
 		} else {
-			lol = 0;
-			speed = 20;
+			lol = 3;
+			speed = 8;
 		}
 		bul->count1 += speed;
-		SetNpChar(129, bul->x, bul->y, 0, 0, bul->ani_no + lol, NULL, 0x100);
+
+		if (++bul->ani_wait > 2)
+		{
+			bul->ani_wait = 0;
+
+			if (++bul->ani_no > 3)
+			{
+				bul->ani_no = 0;
+			}
+
+			SetNpChar(124, bul->x, bul->y, 0, bul->ani_no, lol, NULL, 0x800 + bul->ani_no*20);
+		}
 
 		deg = bul->count1 / 4;
 
@@ -497,15 +508,6 @@ void ActBullet_Nanites(BULLET *bul)
 		// if ((bul->count1 / 2 % 2) == 0)
 		// 	bul->ym = (bul->tgt_y - bul->y) / 2;
 	}
-
-	if (++bul->ani_wait > 0)
-	{
-		bul->ani_wait = 0;
-		++bul->ani_no;
-	}
-
-	if (bul->ani_no > 2)
-		bul->ani_no = 0;
 
 	// bul->x += bul->xm;
 	// bul->y += bul->ym;

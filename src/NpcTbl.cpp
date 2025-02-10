@@ -140,7 +140,7 @@ const NPCFUNCTION gpNpcFuncTbl[] = {
 	ActNpc121,
 	ActNpc122,
 	ActNpc123,
-	ActNpc124,
+	ActNpcNanitesTrail,
 	ActNpc125,
 	ActNpcPuppy,
 	ActNpc127,

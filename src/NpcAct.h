@@ -129,7 +129,7 @@ void ActNpc120(NPCHAR *npc);
 void ActNpc121(NPCHAR *npc);
 void ActNpc122(NPCHAR *npc);
 void ActNpc123(NPCHAR *npc);
-void ActNpc124(NPCHAR *npc);
+void ActNpcNanitesTrail(NPCHAR *npc);
 void ActNpc125(NPCHAR *npc);
 void ActNpcPuppy(NPCHAR *npc);
 void ActNpc127(NPCHAR *npc);
