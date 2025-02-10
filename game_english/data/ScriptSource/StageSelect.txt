@@ -77,8 +77,8 @@ The Miracle Upgrade to Snake<WAI9999<END
 the game was meant to play.<WAI9999<END
 #2001
 <MSG<TURSlightly more challenge than usual: more
-monsters with higher HP, more spikes, less
-refills and equip limit.<WAI9999<END
+monsters with higher HP, more spikes,
+less refills and equip limit.<WAI9999<END
 #2002
 <MSG<TURIncluding changes from Hardened, this
 difficulty overhauls mob AI to make them
