@@ -26,5 +26,5 @@
     "startingWeapons": [{"id": 4, "maxAmmo": 100}],
 
     "description1": "Has higher toughness and health but less speed. Starts with Machine Gun.",
-    "description2": "Her immunity time is increased by 1 second, and life capsules give 4 HP instead of 3. She also gets 9 HP and Air Tank at start."
+    "description2": "Her immunity time is increased by 1 second, and life capsules give 4 HP. She also gets 9 HP and Air Tank at start."
 }

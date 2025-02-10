@@ -16,5 +16,5 @@
     "startingWeapons": [{"id": 8, "maxAmmo": 0}],
 
     "description1": "Can use hook to grapple to objects, can fall quickly with Ability key.",
-    "description2": "Hookshot has many properties of Energy Whip, including damage."
+    "description2": "Hookshot has many properties of Energy Flail, including damage."
 }
