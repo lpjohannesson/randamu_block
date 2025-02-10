@@ -741,9 +741,9 @@ void ActMyChar_Normal(bool bKey)
 			if (amount > boostFuel) boostFuel = amount;
 		}
 		float boostAmount = 1;
-		for (const auto&[_, amount]: GetActualFlagTraitData<float>(FlagTraits::BOOSTER_FUEL_BOOST, "amount")){
+		for (const auto&[flag, amount]: GetActualFlagTraitData<float>(FlagTraits::BOOSTER_FUEL_BOOST, "amount")){
 			auto activeFlags = GetTraitActiveFlags(FlagTraits::BOOSTER_FUEL_BOOST);
-			if (std::ranges::find(activeFlags, amount) == activeFlags.end()) boostAmount *= amount;
+			if (std::ranges::find(activeFlags, flag) == activeFlags.end()) boostAmount *= amount;
 		}
 		gMC.boost_cnt = boostAmount*boostFuel;
 		if (CheckFlagTrait(FlagTraits::GRAVITY_FLIP))
