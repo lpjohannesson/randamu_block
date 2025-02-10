@@ -581,7 +581,7 @@ int MiniMapExLoop(void)
 		// 	// }
 		// }
 		PrepareMappingName();
-		PutBitmap3(&grcGame, PixelToScreenCoord(WINDOW_WIDTH / 2 - 60), PixelToScreenCoord(WINDOW_HEIGHT / 2 + 20), &rcMapName, 0.8f, SURFACE_ID_MAPPING_NAME);
+		PutBitmap3(&grcGame, PixelToScreenCoord(WINDOW_WIDTH - 180), PixelToScreenCoord(WINDOW_HEIGHT - 17), &rcMapName, 0.8f, SURFACE_ID_MAPPING_NAME);
 		PutMyScore(-12);
 			
 		PutFramePerSecound();

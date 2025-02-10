@@ -510,7 +510,7 @@ void PutBitmap3(const Rect *rcView, int x, int y, const Rect *rect, float scale,
 	if (rcWork.right <= rcWork.left || rcWork.bottom <= rcWork.top)
 		return;
 
-	RenderBackend_BlitScaled(surf[surf_no], &rcWork, framebuffer, x * mag * scale, y * mag * scale, scale);
+	RenderBackend_BlitScaled(surf[surf_no], &rcWork, framebuffer, x, y, scale);
 }
 
 void PutBitmap3_Flip(const Rect *rcView, int x, int y, const Rect *rect, int color, SurfaceID surf_no) // Transparency
