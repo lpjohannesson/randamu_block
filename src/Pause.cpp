@@ -136,7 +136,7 @@ json gConfigCopy;
 int mode = 0;
 
 // inspired by word wrap from L.B on Stack Overflow
-auto WordWrap = ctre::search_all<"(.{1,44})(?:\\s|$)">;
+auto WordWrap = ctre::search_all<"(.{1,42})(?:\\s|$)">;
 
 static std::string GetKeyName(int key)
 {
