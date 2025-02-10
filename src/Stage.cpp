@@ -2360,9 +2360,9 @@ void SpawnPlayer(GenerationContext& genContext, GenerationArguments& genArgument
 }
 
 void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArguments){
-	if (CheckFlagTrait(FlagTraits::CURLY_SPAWN) && !GetNPCFlag(GetFlagTraitData<int>(FlagTraits::REVIVAL_FROM_CURLY, "mark_flag", Flags::BADGE_OF_LOVE_REVIVE_PROC)))
+	if (CheckFlagTrait(FlagTraits::CURLY_SPAWN) && !GetNPCFlag(GetFlagTraitData<int>(FlagTraits::REVIVAL_FROM_CURLY, "mark_flag", Flags::BADGE_OF_LOVE_REVIVE_PROC)) && CountNpCharCode(320) == 0)
 		SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY);
-	if (CheckFlagTrait(FlagTraits::LITTLE_MAN_SPAWN))
+	if (CheckFlagTrait(FlagTraits::LITTLE_MAN_SPAWN) && CountNpCharCode(180) == 0)
 	{
 		int amount = GetFlagTraitData<int>(FlagTraits::LITTLE_MAN_SPAWN, "amount");
 		for (int i = 0; i < amount; i++)
