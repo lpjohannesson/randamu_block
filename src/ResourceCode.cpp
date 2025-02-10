@@ -20,6 +20,7 @@ std::string gWindowTitle;
 std::string initModulePath;
 int gSpriteScale;
 int gGeneratedStage;
+std::pair<int, int> gFontData;
 
 void InitResources(char *argv[]){
 	if (initModulePath.empty()){
@@ -87,7 +88,8 @@ void InitResources(char *argv[]){
 					infoJson.value("isJapanese", false),
 					infoJson.value("windowTitle", "Doukutsu Randamu"),
 					infoJson.value("resolution", 1),
-					infoJson.value("generatedStageID", 13)
+					infoJson.value("generatedStageID", 13),
+					{infoJson.value("fontWidth", 14), infoJson.value("fontHeight", 14)}
 				};
 				availableResources.push_back(resource);
 			}
@@ -103,6 +105,7 @@ void InitResources(char *argv[]){
 	gWindowTitle = availableResources[0].titleOverride;
 	gSpriteScale = availableResources[0].spriteScale;
 	gGeneratedStage = availableResources[0].generatedStage;
+	gFontData = availableResources[0].fontData;
 
 	ReloadConfig();
 }

@@ -19,6 +19,7 @@ struct ResourceCode {
     std::string titleOverride;
     int spriteScale;
     int generatedStage;
+    std::pair<int, int> fontData;
 };
 
 extern std::vector<ResourceCode> availableResources;
@@ -29,6 +30,7 @@ extern bool gJapanese;
 extern std::string gWindowTitle;
 extern int gSpriteScale;
 extern int gGeneratedStage;
+extern std::pair<int, int> gFontData;
 
 void InitResources(char *argv[]);
 FILE* GetResource(std::string_view relativePath);

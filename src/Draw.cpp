@@ -910,21 +910,7 @@ int PixelToScreenCoord(int coord)
 
 void InitTextObject()
 {
-	std::string path = "Font/font";
-
-	// Get font size
-	unsigned int width, height;
-
-	if (gJapanese){
-			height = 9 * mag;
-			width = 9 * mag;
-	}
-	else {
-			height = 14 * mag;
-			width = 14 * mag;
-	}
-
-	font = LoadFont(path.c_str(), width, height);
+	font = LoadFont("Font/font", gFontData.first, gFontData.second);
 }
 
 void PutText(int x, int y, const std::string& text, unsigned long color, bool shift_jis)
