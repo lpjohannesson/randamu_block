@@ -58,7 +58,7 @@ void InitResources(char *argv[]){
 		fs::create_directories(resourcesPath);
 	}
 
-    availableResources.push_back({"Default", gDataPath, "", false, "Doukutsu Randamu", 1, 13});
+    availableResources.push_back({"Default", gDataPath, "", false, "Doukutsu Randamu", 1, 13, {14, 14}});
 
 	json resourcesList;
 	if (!fs::exists(resourcesPath / "list.json")){
@@ -89,7 +89,7 @@ void InitResources(char *argv[]){
 					infoJson.value("windowTitle", "Doukutsu Randamu"),
 					infoJson.value("resolution", 1),
 					infoJson.value("generatedStageID", 13),
-					{infoJson.value("fontWidth", 14), infoJson.value("fontHeight", 14)}
+					{infoJson.value<int>("fontWidth", 14), infoJson.value<int>("fontHeight", 14)}
 				};
 				availableResources.push_back(resource);
 			}

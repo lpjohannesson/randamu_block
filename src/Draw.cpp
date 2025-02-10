@@ -910,7 +910,7 @@ int PixelToScreenCoord(int coord)
 
 void InitTextObject()
 {
-	font = LoadFont("Font/font", gFontData.first, gFontData.second);
+	font = LoadFont("Font/font", gFontData.first * mag, gFontData.second * mag);
 }
 
 void PutText(int x, int y, const std::string& text, unsigned long color, bool shift_jis)
