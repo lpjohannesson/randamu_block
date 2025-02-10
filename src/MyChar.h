@@ -136,10 +136,10 @@ struct MYCHAR_DEFINITION
 
 	/// @brief The character's primary description on character selection screen.
 	/// @since 1.45 
-	std::string description1 = "";
+	std::string description1 = "No info.";
 	/// @brief The character's secondary description on character selection screen.
 	/// @since 1.45
-	std::string description2 = "";
+	std::string description2 = "No additional info.";
 
 	/// @internal
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(MYCHAR_DEFINITION, name, codeName, fullName, spritesheet, physics_diff, maxLife,
