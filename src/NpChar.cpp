@@ -59,7 +59,22 @@ NPCHAR* GetClosest(int x, int y, int maxDistance){
 		}
     }
     if (npc == -1){
-		return NULL;
+		for (int i = 0; i < BOSS_MAX; i++){
+			if (!((gBoss[i].cond & 0x80) && (gBoss[i].bits & NPC_SHOOTABLE && !CheckNPCTrait(&gBoss[i], NPCTraits::ETHEREAL)))) continue;
+			float distx = (gBoss[i].x - x) / 1_pix;
+			float disty = (gBoss[i].y - y) / 1_pix;
+			float dist = (distx*distx + disty*disty);
+			if (dist < actualMaxDist){
+				if (npc < 0 || (dist < shortestdist)){
+					npc = i;
+					shortestdist = dist;
+				}
+			}
+		}
+		if (npc == -1){
+			return NULL;
+		}
+		else return &gBoss[npc];
 	}
     else return &gNPC[npc];
 }
