@@ -804,6 +804,9 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		if (bul->code_bullet > Bullets::FIREBALL_LVL_1-1 && bul->code_bullet < Bullets::FIREBALL_LVL_3+1 && !CountBulletNum(Bullets::EXPLOSION) && CheckFlagTrait(FlagTraits::EXPLODING_FIREBALL)){
 			SetBullet(Bullets::EXPLOSION, bul->x, bul->y, 0);
 		}
+		if (bul->code_bullet == Bullets::BOOSTERAMA_PROJECTILE){
+			SetBullet(Bullets::BOOSTERAMA_EXPLOSION, bul->x, bul->y, 0);
+		}
 
 		if (bul->code_bullet == Bullets::FRONTIER_BUSTER_LVL_1 && Random(0, 3) == 0)
 			SpawnQuiverProjectile(npc);
@@ -944,6 +947,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		if (npc.bits & NPC_SHOW_DAMAGE)
 			npc.damage_view -= dmg;
 		starTarget = &npc;
+
+		gBoosteramaShoot = &npc;
 	}
 	
 	return true;

@@ -104,6 +104,9 @@
     "757": {
         "wall_jump": {}, "wall_sticky": {}
     },
+    "758": {
+        "boosterama_spawn": {"amount": 1}
+    },
     "760": {
         "water_mob_friend": {}, "water_floating": {}
     },
@@ -196,7 +199,7 @@
         "blade_dash": {"speed": 1.85, "cooldown": 2.25}
     },
     "4150": {
-        "excerpt_allies": {}, "experience_boost": {"modifier": 2}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "little_man_spawn": {"amount": 2}, "taken_damage_boost": {"modifier": 1.75}
+        "excerpt_allies": {}, "experience_boost": {"modifier": 2}, "boosterama_spawn": {"amount": 1}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "little_man_spawn": {"amount": 2}, "taken_damage_boost": {"modifier": 1.75}
     },
     "4200": {
         "buffed_machine_gun": {}, "low_hp_resist": {}

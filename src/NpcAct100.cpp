@@ -1005,98 +1005,319 @@ void ActNpc113(NPCHAR *npc)
 		{288, 16, 304, 32},
 	};
 
+	bool bonked = false;
+
 	switch (npc->act_no)
 	{
 		case 0:
+			gBoosteramaShoot = NULL;
+			npc->ym = -0x100;
 			npc->act_no = 1;
-			npc->ani_no = 0;
-			npc->ani_wait = 0;
-			// Fallthrough
-		case 1:
-			if (Random(0, 120) == 10)
+
+			if (npc->direct == 0)
 			{
-				npc->act_no = 2;
-				npc->act_wait = 0;
-				npc->ani_no = 1;
+				npc->xm = -0x2FF;
 			}
+			else
+			{
+				npc->xm = 0x2FF;
+			}
+
+			break;
+
+		case 1:
+			if (npc->x > npc->tgt_x)
+			{
+				npc->xm -= 0x50;
+			}
+			else
+			{
+				npc->xm += 0x50;
+			}
+
+			npc->direct = gMC.direct;
+
+			if (npc->flag & 1){
+				npc->xm = 0x300;
+				bonked = true;
+			}
+
+			if (npc->flag & 4){
+				npc->xm = -0x300;
+				bonked = true;
+			}
+
+			if (npc->xm > 0x3A0)
+				npc->xm = 0x3A0;
+			if (npc->xm < -0x3A0)
+				npc->xm = -0x3A0;
+
+			if (npc->y < npc->tgt_y)
+				npc->ym += 4;
+			else
+				npc->ym -= 4;
+
+			if (bonked){
+				if (npc->y < npc->tgt_y)
+					npc->ym += 0x90;
+				else
+					npc->ym -= 0x90;
+			}
+
+			if (npc->flag & 2)
+				npc->ym = 0x150;
+
+			if (npc->flag & 8)
+				npc->ym = -0x150;
+
+			if (npc->ym > 0x200)
+				npc->ym = 0x200;
+			if (npc->ym < -0x200)
+				npc->ym = -0x200;
 
 			break;
 
 		case 2:
-			if (++npc->act_wait > 8)
+			if (npc->x > gBoosteramaShoot->x + gBoosteramaShoot->xm * 3)
 			{
-				npc->act_no = 1;
-				npc->ani_no = 0;
+				npc->direct = 0;
+				npc->xm -= 0x90;
 			}
-
-			break;
-
-		case 3:
-			npc->act_no = 4;
-			npc->ani_no = 2;
-			npc->ani_wait = 0;
-			// Fallthrough
-		case 4:
-			if (++npc->ani_wait > 4)
-			{
-				npc->ani_wait = 0;
-				++npc->ani_no;
-			}
-
-			if (npc->ani_no > 5)
-				npc->ani_no = 2;
-
-			if (npc->direct == 0)
-				npc->x -= 1 * 0x200;
 			else
-				npc->x += 1 * 0x200;
-
-			break;
-
-		case 5:
-			npc->ani_no = 6;
-			break;
-
-		case 30:
-			npc->act_no = 31;
-			npc->ani_no = 0;
-			npc->ani_wait = 0;
-			npc->hit.bottom = 16 * 0x200;
-			npc->x -= 16 * 0x200;
-			npc->y += 8 * 0x200;
-			PlaySoundObject(29, SOUND_MODE_PLAY);
-			// Fallthrough
-		case 31:
-			if (++npc->act_wait == 64)
 			{
-				npc->act_no = 32;
-				npc->act_wait = 0;
+				npc->direct = 2;
+				npc->xm += 0x90;
 			}
 
-			break;
-
-		case 32:
-			if (++npc->act_wait > 20)
-			{
-				npc->act_no = 33;
-				npc->ani_no = 1;
-				npc->hit.bottom = 8 * 0x200;
+			if (npc->flag & 1){
+				npc->xm = 0x300;
+				bonked = true;
 			}
 
-			break;
+			if (npc->flag & 4){
+				npc->xm = -0x300;
+				bonked = true;
+			}
 
-		case 33:
+			if (npc->xm > 0x300)
+				npc->xm = 0x300;
+			if (npc->xm < -0x300)
+				npc->xm = -0x300;
+
+			if (npc->y < gBoosteramaShoot->y + gBoosteramaShoot->ym * 3)
+				npc->ym += 32;
+			else
+				npc->ym -= 32;
+
+			if (npc->flag & 2)
+				npc->ym = 0x250;
+
 			if (npc->flag & 8)
-			{
-				npc->act_no = 34;
-				npc->act_wait = 0;
-				npc->ani_no = 0;
+				npc->ym = -0x250;
+
+			if (bonked){
+				if (npc->y < gBoosteramaShoot->y + gBoosteramaShoot->ym * 3)
+					npc->ym += 0x90;
+				else
+					npc->ym -= 0x90;
+			}
+
+			if (npc->ym > 0x300)
+				npc->ym = 0x300;
+			if (npc->ym < -0x300)
+				npc->ym = -0x300;
+
+			if (gBoosteramaShoot == NULL || !(gBoosteramaShoot->cond & 0x80)){
+				npc->act_no = 1;
+				gBoosteramaShoot = NULL;
+			} else {
+				int direction = -1;
+				if (std::abs(npc->y - (gBoosteramaShoot->y + gBoosteramaShoot->ym*3)) < 24_pix){
+					if (npc->x > gBoosteramaShoot->x + gBoosteramaShoot->xm*3)
+						direction = 0;
+					else
+						direction = 2;
+				} else {
+					if (npc->y > gBoosteramaShoot->y + gBoosteramaShoot->ym*3)
+						direction = 1;
+					else
+						direction = 3;
+				}
+
+				if (++npc->count1 % 25 == 0){
+					PlaySoundObject(37, SOUND_MODE_PLAY);
+					int bul_no = Bullets::BOOSTERAMA_PROJECTILE;
+					if (direction == 1)
+					{
+						if (npc->direct == 0)
+						{
+							SetBullet(bul_no, npc->x - (1 * 0x200), npc->y - (6 * 0x200), 1);
+							SetCaret(npc->x - (1 * 0x200), npc->y - (6 * 0x200), 3, 0);
+						}
+						else
+						{
+							SetBullet(bul_no, npc->x + (1 * 0x200), npc->y - (6 * 0x200), 1);
+							SetCaret(npc->x + (1 * 0x200), npc->y - (6 * 0x200), 3, 0);
+						}
+					}
+					else if (direction == 3)
+					{
+						if (npc->direct == 0)
+						{
+							SetBullet(bul_no, npc->x - (1 * 0x200), npc->y + (6 * 0x200), 3);
+							SetCaret(npc->x - (1 * 0x200), npc->y + (6 * 0x200), 3, 0);
+						}
+						else
+						{
+							SetBullet(bul_no, npc->x + (1 * 0x200), npc->y + (6 * 0x200), 3);
+							SetCaret(npc->x + (1 * 0x200), npc->y + (6 * 0x200), 3, 0);
+						}
+					}
+					else
+					{
+						if (direction == 0)
+						{
+							SetBullet(bul_no, npc->x - (8 * 0x200), npc->y + (3 * 0x200), 0);
+							SetCaret(npc->x - (8 * 0x200), npc->y + (3 * 0x200), 3, 0);
+						}
+						else if (direction == 2)
+						{
+							SetBullet(bul_no, npc->x + (8 * 0x200), npc->y + (3 * 0x200), 2);
+							SetCaret(npc->x + (8 * 0x200), npc->y + (3 * 0x200), 3, 0);
+						}
+					}
+				}
 			}
 
 			break;
 	}
 
-	npc->ym += 0x40;
+	if (gBoosteramaShoot != NULL && npc->act_no == 1){
+		npc->tgt_x = gBoosteramaShoot->x;
+		npc->tgt_y = gBoosteramaShoot->y;
+		npc->act_no = 2;
+	} else {
+		npc->tgt_x = gMC.x + gMC.xm*30;
+		npc->tgt_y = gMC.y - 16_pix;
+		npc->act_no = 1;
+		NPCHAR* passiveTarget;
+		if ((passiveTarget = GetClosest(npc->x, npc->y, 84_pix)) != NULL && (passiveTarget->damage > 0 || CheckNPCTrait(passiveTarget, NPCTraits::BONKABLE))){
+			gBoosteramaShoot = passiveTarget;
+		}
+	}
+
+	if (Distance(gMC.x, gMC.y, npc->x, npc->y) > (npc->act_no == 1 ? 128_pix : 200_pix)){
+		npc->x = gMC.x;
+		npc->y = gMC.y;
+		SetNpChar(4, gMC.y, gMC.y, 0, 0, 0, NULL, 0x100);
+		gBoosteramaShoot = NULL;
+	}
+
+	if (Random(0, 80) == 10 && npc->exp == 0){
+		npc->exp = 1;
+		npc->ani_no = 1;
+	}
+	if (npc->exp == 1){
+		if (++npc->ani_wait > 8)
+		{
+			npc->exp = 0;
+			npc->ani_no = 0;
+			npc->ani_wait = 0;
+		}
+	}
+
+	// switch (npc->act_no)
+	// {
+	// 	case 0:
+	// 		npc->act_no = 1;
+	// 		npc->ani_no = 0;
+	// 		npc->ani_wait = 0;
+	// 		// Fallthrough
+	// 	case 1:
+	// 		if (Random(0, 120) == 10)
+	// 		{
+	// 			npc->act_no = 2;
+	// 			npc->act_wait = 0;
+	// 			npc->ani_no = 1;
+	// 		}
+
+	// 		break;
+
+	// 	case 2:
+	// 		if (++npc->act_wait > 8)
+	// 		{
+	// 			npc->act_no = 1;
+	// 			npc->ani_no = 0;
+	// 		}
+
+	// 		break;
+
+	// 	case 3:
+	// 		npc->act_no = 4;
+	// 		npc->ani_no = 2;
+	// 		npc->ani_wait = 0;
+	// 		// Fallthrough
+	// 	case 4:
+	// 		if (++npc->ani_wait > 4)
+	// 		{
+	// 			npc->ani_wait = 0;
+	// 			++npc->ani_no;
+	// 		}
+
+	// 		if (npc->ani_no > 5)
+	// 			npc->ani_no = 2;
+
+	// 		if (npc->direct == 0)
+	// 			npc->x -= 1 * 0x200;
+	// 		else
+	// 			npc->x += 1 * 0x200;
+
+	// 		break;
+
+	// 	case 5:
+	// 		npc->ani_no = 6;
+	// 		break;
+
+	// 	case 30:
+	// 		npc->act_no = 31;
+	// 		npc->ani_no = 0;
+	// 		npc->ani_wait = 0;
+	// 		npc->hit.bottom = 16 * 0x200;
+	// 		npc->x -= 16 * 0x200;
+	// 		npc->y += 8 * 0x200;
+	// 		PlaySoundObject(29, SOUND_MODE_PLAY);
+	// 		// Fallthrough
+	// 	case 31:
+	// 		if (++npc->act_wait == 64)
+	// 		{
+	// 			npc->act_no = 32;
+	// 			npc->act_wait = 0;
+	// 		}
+
+	// 		break;
+
+	// 	case 32:
+	// 		if (++npc->act_wait > 20)
+	// 		{
+	// 			npc->act_no = 33;
+	// 			npc->ani_no = 1;
+	// 			npc->hit.bottom = 8 * 0x200;
+	// 		}
+
+	// 		break;
+
+	// 	case 33:
+	// 		if (npc->flag & 8)
+	// 		{
+	// 			npc->act_no = 34;
+	// 			npc->act_wait = 0;
+	// 			npc->ani_no = 0;
+	// 		}
+
+	// 		break;
+	// }
+
+	npc->x += npc->xm;
 	npc->y += npc->ym;
 
 	if (npc->direct == 0)
@@ -1104,13 +1325,11 @@ void ActNpc113(NPCHAR *npc)
 	else
 		npc->rect = rcRight[npc->ani_no];
 
-	if (npc->act_no == 31)
-	{
-		npc->rect.bottom = npc->rect.top + (npc->act_wait / 4);
-
-		if (npc->act_wait / 2 % 2)
-			++npc->rect.left;
-	}
+	
+	SetCaret(npc->x - npc->hit.front * 3 / 2 + 1, npc->y, 7, 0);
+	SetCaret(npc->x, npc->y - npc->hit.top * 3 / 2 + 1, 7, 1);
+	SetCaret(npc->x + npc->hit.back * 3 / 2 - 1, npc->y, 7, 2);
+	SetCaret(npc->x, npc->y + npc->hit.bottom * 3 / 2 - 2, 7, 3);
 }
 
 // Press

@@ -589,7 +589,7 @@ void LoadRNG(json& profileJson)
 	}
 }
 
-static int chestDrops[] = {401, 501, 601, 701, 801, 901, 1001, 1101, 1201, 1301, 1401, 1501, 1601, 1701, 1801, 1901, 2001, 2101, 2201, 2301, 2401, 2501, 2601, 2701, 2801, 2901, 3001, 3101, 3201, 3301, 3401, 3501, 3601, 3701, 3801, 3901, 4001, 4501, 4601, 4701, 4801, 4901, 5001, 5101, 5301, 5401, 5501, 5601, 5701, 5801};
+static int chestDrops[] = {401, 501, 601, 701, 801, 901, 1001, 1101, 1201, 1301, 1401, 1501, 1601, 1701, 1801, 1901, 2001, 2101, 2201, 2301, 2401, 2501, 2601, 2701, 2801, 2901, 3001, 3101, 3201, 3301, 3401, 3501, 3601, 3701, 3801, 3901, 4001, 4501, 4601, 4701, 4801, 4901, 5001, 5101, 5301, 5401, 5501, 5601, 5701, 5801, 5901};
 
 std::vector<int> BlacklistedItems()
 {
@@ -2366,6 +2366,12 @@ void SpawnAllies(GenerationContext& genContext, GenerationArguments& genArgument
 		int amount = GetFlagTraitData<int>(FlagTraits::LITTLE_MAN_SPAWN, "amount");
 		for (int i = 0; i < amount; i++)
 			SetNpChar(180, 0, 0, 0, 0, 2, NULL, 0x100);
+	}
+	if (CheckFlagTrait(FlagTraits::BOOSTERAMA_SPAWN) && CountNpCharCode(113) == 0)
+	{
+		int amount = GetFlagTraitData<int>(FlagTraits::BOOSTERAMA_SPAWN, "amount");
+		for (int i = 0; i < amount; i++)
+			SetNpChar(113, gMC.x, gMC.y, 0, 0, 2, NULL, 0x100);
 	}
 
 	for (const auto&[fl, npcIDs] : GetActualFlagTraitData<std::vector<int>>(FlagTraits::MEDAL_SPAWN, "ids")){

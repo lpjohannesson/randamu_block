@@ -35,6 +35,7 @@ NPCHAR gNPC[NPC_MAX];
 int gCurlyShoot_wait;
 int gCurlyShoot_x;
 int gCurlyShoot_y;
+NPCHAR* gBoosteramaShoot;
 int gSuperXpos;
 int gSuperYpos;
 

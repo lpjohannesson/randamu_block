@@ -32,6 +32,9 @@ static void Vanish(BULLET *bul)
 	bul->cond = 0;
 	if (bul->code_bullet != 36)
 		SetCaret(bul->x, bul->y, 2, 2);
+	if (bul->code_bullet == Bullets::BOOSTERAMA_PROJECTILE){
+		SetBullet(Bullets::BOOSTERAMA_EXPLOSION, bul->x, bul->y, 0);
+	}
 }
 
 int JudgeHitBulletBlock(int x, int y, BULLET *bul)

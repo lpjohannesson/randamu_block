@@ -3,9 +3,9 @@
 #include "..\Bullet.h"
 #include "..\Caret.h"
 
-void ActBullet_Nemesis(BULLET *bul)
+void ActBullet_Nemesis(BULLET *bul, int type)
 {
-	if (++bul->count1 > bul->life_count)
+	if (++bul->count1 > bul->life_count && type != 2)
 	{
 		bul->cond = 0;
 		SetCaret(bul->x, bul->y, 3, 0);
@@ -31,6 +31,11 @@ void ActBullet_Nemesis(BULLET *bul)
 			case 3:
 				bul->ym = 0x1000;
 				break;
+		}
+		if (type == 2){
+			bul->xm /= 1.5;
+			bul->ym /= 1.5;
+			bul->local_iframes = 8;
 		}
 	}
 	else
@@ -96,15 +101,22 @@ void ActBullet_Nemesis(BULLET *bul)
 			bul->rect = rcD[bul->ani_no];
 			break;
 	}
+
+	bul->rect.left += (type - 1) * 128;
+	bul->rect.right += (type - 1) * 128;
 }
 
 void RegisterNemesis(){
     gBulletTable.insert({Bullets::NEMESIS_MAIN, {
         {3, 3, 22, 32, 4, 4, 3, 3, {8, 8, 8, 8}, 0.65, 0.65},
-        ActBullet_Nemesis
+        [](BULLET* bul){ ActBullet_Nemesis(bul, 1); }
     }});
     gBulletTable.insert({Bullets::NEMESIS_CURLY, {
         {8, 1, 17, 32, 4, 4, 3, 3, {8, 8, 24, 8}, 0.75, 0.75},
-        ActBullet_Nemesis
+        [](BULLET* bul){ ActBullet_Nemesis(bul, 1); }
+    }});
+	gBulletTable.insert({Bullets::BOOSTERAMA_PROJECTILE, {
+        {2, 127, 32, 32, 4, 4, 3, 3, {8, 8, 24, 8}, 0.75, 0.75},
+        [](BULLET* bul){ ActBullet_Nemesis(bul, 2); }
     }});
 }

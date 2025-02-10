@@ -279,6 +279,8 @@ known to portend the future.<WAI9999<END
 <MSG<TUR<EQJ0072:5172Nanites Absorber<WAI9999<END
 #5073
 <MSG<TUR<EQJ0073:5173Military Armament<WAI9999<END
+#5074
+<MSG<TUR<EQJ0074:5174Remote Controller<WAI9999<END
 
 #5104
 <MSG<TURSilver Locket (Equipped)<WAI9999<END
@@ -386,6 +388,8 @@ known to portend the future.<WAI9999<END
 <MSG<TURNanites Absorber (Equipped)<WAI9999<END
 #5173
 <MSG<TURMilitary Armament (Equipped)<WAI9999<END
+#5174
+<MSG<TURRemote Controller (Equipped)<WAI9999<END
 #5500
 <MSG<TURCan't equip more than 10 items.<WAI9999<END
 #5501
@@ -999,6 +1003,19 @@ nanite shielding.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0073<MSG
 Equipped Military Armament.<NOD<WAI0003<FRE<EVE5073
 
+#6074
+<EQJ0074:7074<ELJ
+<KEY<MSGA slick remote with
+big red button, made by Jerald
+Booster.<NOD Summons a
+powerful Boosterama robot,
+that shoots rockets at enemies.<NOD
+Boosterama will fly and hunt
+both enemies you attack and
+enemies in close proximity.<NOD<CLR
+Do you want to equip it?<YNJ0000<EQ+0074<MSG
+Equipped Remote Controller.<NOD<WAI0003<FRE<EVE5074
+
 #7002
 <MLP<END
 #7003
@@ -1213,3 +1230,7 @@ Deequipped Nanites Absorber.<NOD<WAI0003<FRE<EVE5072
 #7073
 <KEY<MSGDo you want to remove it?<YNJ0000<EQ-0073<MSG
 Deequipped Military Armament.<NOD<WAI0003<FRE<EVE5073
+
+#7074
+<KEY<MSGDo you want to remove it?<YNJ0000<EQ-0074<MSG
+Deequipped Remote Controller.<NOD<WAI0003<FRE<EVE5074

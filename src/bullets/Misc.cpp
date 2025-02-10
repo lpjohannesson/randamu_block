@@ -1210,6 +1210,10 @@ void RegisterMiscBullets(){
         {1, 100, 100, 20, 16, 16, 0, 0, {0, 0, 0, 0}, 0, 0},
         [](BULLET* bul){ ActBullet_Explosion(bul, 3); }
     }});
+	gBulletTable.insert({Bullets::BOOSTERAMA_EXPLOSION, {
+        {1, 100, 100, 20, 16, 16, 0, 0, {0, 0, 0, 0}, 0, 0},
+        [](BULLET* bul){ ActBullet_Explosion(bul, 1); }
+    }});
 }
 
 DO_SOMETHING(

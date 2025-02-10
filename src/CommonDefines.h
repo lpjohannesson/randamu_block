@@ -628,6 +628,12 @@ namespace FlagTraits {
 	/// @since 1.45
 	inline constexpr const char* CURLY_SPAWN                   = "curly_spawn";
 
+	/// @brief Spawns Boosterama ally at beginning of each stage.
+	/// @note The Boosteramas will be automatically spawned or despawned when flag with this trait will have its state changed.
+	/// @param[in] amount The amount of Boosteramas that will spawn.
+	/// @since 1.45
+	inline constexpr const char* BOOSTERAMA_SPAWN              = "boosterama_spawn";
+
 	/// @brief Spawns special star bullet, that spins around player and latches onto things, at beginning of each stage.
 	/// @note The star bullet will be automatically spawned or despawned when flag with this trait will have its state changed.
 	/// @since 1.45
@@ -892,6 +898,8 @@ namespace Bullets {
 
 	inline constexpr int NEMESIS_MAIN                 = 34;
 	inline constexpr int NEMESIS_CURLY                = 43;
+	inline constexpr int BOOSTERAMA_PROJECTILE        = 63;
+	inline constexpr int BOOSTERAMA_EXPLOSION         = 66;
 
 	inline constexpr int ENERGY_FLAIL_LVL_1           = 49;
 	inline constexpr int ENERGY_FLAIL_LVL_2           = 50;
