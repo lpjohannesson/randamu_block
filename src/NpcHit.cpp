@@ -648,11 +648,11 @@ void SpawnQuiverProjectile(NPCHAR &npc)
 
 bool IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> bul){
 	if (bul.first.iframes > 0 && static_iframes[npc.second].contains(bul.first.code_bullet)){
-		if (static_iframes[npc.second][bul.first.code_bullet] != 0)
+		if (static_iframes[(npc.first.isBoss ? NPC_MAX : 0) + npc.second][bul.first.code_bullet] != 0)
 			return false;
 	}
 	if (bul.first.local_iframes > 0 && local_iframes[npc.second].contains(bul.second)){
-		if (local_iframes[npc.second][bul.second] != 0)
+		if (local_iframes[(npc.first.isBoss ? NPC_MAX : 0) + npc.second][bul.second] != 0)
 			return false;
 	}
 

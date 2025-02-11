@@ -770,8 +770,8 @@ void ActNpChar(void)
 			if (static_iframes.contains(i) && static_iframes[i].size() > 0){
 				static_iframes[i].clear();
 			}
-			if (local_iframes.contains(i) && static_iframes[i].size() > 0){
-				static_iframes[i].clear();
+			if (local_iframes.contains(i) && local_iframes[i].size() > 0){
+				local_iframes[i].clear();
 			}
 		}
 	}
