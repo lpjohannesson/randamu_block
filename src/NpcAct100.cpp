@@ -1206,7 +1206,7 @@ void ActNpc113(NPCHAR *npc)
 		}
 	}
 
-	if (Distance(gMC.x, gMC.y, npc->x, npc->y) > (npc->act_no == 1 ? 128_pix : 200_pix)){
+	if (Distance(gMC.x, gMC.y, npc->x, npc->y) > (npc->act_no == 1 ? 128_pix : 256_pix)){
 		npc->x = gMC.x;
 		npc->y = gMC.y;
 		SetNpChar(4, gMC.y, gMC.y, 0, 0, 0, NULL, 0x100);
