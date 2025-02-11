@@ -206,6 +206,10 @@ void HitBossBullet(void)
 						SetBullet(Bullets::EXPLOSION, gBul[bul].x, gBul[bul].y, 0);
 					}
 
+					if (gBul[bul].code_bullet == Bullets::BOOSTERAMA_PROJECTILE){
+						SetBullet(Bullets::BOOSTERAMA_EXPLOSION, gBul[bul].x, gBul[bul].y, 0);
+					}
+
 					if (CheckFlagTrait(FlagTraits::ENERGY_PROJECTILE_ON_HIT) && Random(0, GetFlagTraitData<int>(FlagTraits::ENERGY_PROJECTILE_ON_HIT, "chance")-1) == 0 && dmg != 0 && (gBul[bul].code_bullet != Bullets::ENERGY_PROJECTILE && gBul[bul].code_bullet != Bullets::FIREBALL_FLAME))
 					{
 						SpawnQuiverProjectile(gBoss[bos]);
