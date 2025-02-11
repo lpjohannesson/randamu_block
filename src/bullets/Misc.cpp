@@ -1218,7 +1218,7 @@ void RegisterMiscBullets(){
 
 DO_SOMETHING(
 	flagSetCallbacks.push_back([](int flag)->void{
-		if (CheckFlagTrait(FlagTraits::WHIMSICAL_STAR))
+		if (CheckFlagTrait(FlagTraits::WHIMSICAL_STAR) && CountBulletNum(Bullets::WHIMSICAL_STAR) == 0)
 			SetBullet(Bullets::WHIMSICAL_STAR, gMC.x, gMC.y + 0x2500, 1);
 	});
 	flagUnsetCallbacks.push_back([](int flag)->void{
