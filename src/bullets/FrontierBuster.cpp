@@ -175,11 +175,13 @@ void ActBullet_FrontierBuster2(BULLET *bul)
 
 void ActBullet_HomingFrontierBuster(BULLET *bul)
 {
-	if (++bul->count1 > bul->life_count)
-	{
-		bul->cond = 0;
-		SetCaret(bul->x, bul->y, 3, 0);
-		return;
+	if (bul->npc == NULL){
+		if (++bul->count1 > bul->life_count)
+		{
+			bul->cond = 0;
+			SetCaret(bul->x, bul->y, 3, 0);
+			return;
+		}
 	}
 
 	bul->npc = GetClosest(bul->x, bul->y, 60_pix);
@@ -191,16 +193,16 @@ void ActBullet_HomingFrontierBuster(BULLET *bul)
 		switch (bul->direct)
 		{
 		case 0:
-			bul->xm = -0x1000;
+			bul->xm = -0xB00;
 			break;
 		case 1:
-			bul->ym = -0x1000;
+			bul->ym = -0xB00;
 			break;
 		case 2:
-			bul->xm = 0x1000;
+			bul->xm = 0xB00;
 			break;
 		case 3:
-			bul->ym = 0x1000;
+			bul->ym = 0xB00;
 			break;
 		}
 	} else {
@@ -214,13 +216,14 @@ void ActBullet_HomingFrontierBuster(BULLET *bul)
 	bul->x += bul->xm;
 	bul->y += bul->ym;
 
-	SetCaret(bul->x, bul->y, 3, 0);
-	SetCaret(bul->x, bul->y, 2, 2);
-	for (int i = 0; i < 3; i++)
-		SetCaret(bul->x + Random(-bul->view.front, bul->view.back),
-						bul->y + Random(-bul->view.top, bul->view.bottom), 13, 0);
+	++bul->ani_no;
+	if (bul->ani_no > 2)
+		bul->ani_no = 0;
+
+	SetNpChar(129, bul->x, bul->y, 0, 0, bul->ani_no + 6, NULL, 0x800 + bul->ani_no*20);
 }
 
+/// @todo When shot quickly enough, this can be used as actual photoviscerator, dedicate a new weapon for that. 
 void ActBullet_HomingFrontierBuster2(BULLET *bul)
 {
 	if (bul->npc == NULL){
@@ -233,7 +236,7 @@ void ActBullet_HomingFrontierBuster2(BULLET *bul)
 	}
 
 	bul->npc = GetClosest(bul->x, bul->y, 55_pix);
-	bul->local_iframes = 15;
+	bul->local_iframes = 5;
 	int inaccuracy = 0x260;
 
 	if (bul->act_no == 0){
@@ -265,15 +268,17 @@ void ActBullet_HomingFrontierBuster2(BULLET *bul)
 			bul->ym = GetSin(deg) * 8;
 			bul->xm = GetCos(deg) * 8;
 			bul->bbits = 4;
-		} else {
-			bul->bbits = 32;
 		}
 	}
 
 	bul->x += bul->xm;
 	bul->y += bul->ym;
 
-	SetCaret(bul->x, bul->y, 2, 2);
+	++bul->ani_no;
+	if (bul->ani_no > 2)
+		bul->ani_no = 0;
+
+	SetNpChar(129, bul->x, bul->y, 0, 0, bul->ani_no + 6, NULL, 0x800 + bul->ani_no*10);
 }
 
 void RegisterFrontierBuster(){
@@ -290,12 +295,12 @@ void RegisterFrontierBuster(){
         [](BULLET* bul){ ActBullet_FrontierBuster1(bul, 3); }
     }});
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_4, {
-        {2, 15, 40, 32, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1},
+        {1, 100, 60, 45, 10, 10, 1, 1, {12, 12, 12, 12}, 0.1, 0.1},
         ActBullet_HomingFrontierBuster2
     }});
 
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_1_HOMING, {
-        {10, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1},
+        {12, 1, 100, 32, 10, 10, 4, 4, {12, 12, 12, 12}, 0.1, 0.1},
         ActBullet_HomingFrontierBuster
     }});
 }
