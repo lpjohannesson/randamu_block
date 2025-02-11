@@ -69,7 +69,7 @@
         "ko_prevention": {}, "medal_spawn": {"ids": [190]}
     },
     "746": {
-        "acid_immunity": {}, "lifesteal": {"amount_per_heart": 36}
+        "acid_immunity": {}, "lifesteal": {"amount_per_heart": 48}
     },
     "747": {
         "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}
@@ -144,7 +144,7 @@
         "booster_0_8": {}, "can_boost": {"amount": 60}, "speed_boots": {"acceleration": 1.1, "speed_multiplier": 1.9, "particle_threshold": 1.5}, "no_slippery": {}
     },
     "870": {
-        "acid_immunity": {}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "revival_from_curly": {"mark_flag": 1070}, "lifesteal": {"amount_per_heart": 36}, "heart_magnet": {"distance": 64, "speed": 3}
+        "acid_immunity": {}, "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "revival_from_curly": {"mark_flag": 1070}, "lifesteal": {"amount_per_heart": 48}, "heart_magnet": {"distance": 64, "speed": 3}
     },
     "871": {
         "multi_block_breaking": {}, "offset_nemesis": {}, "ranged_block_place": {"distance": 7}, "ranged_block_break": {"distance": 7},"precise_placement": {}
