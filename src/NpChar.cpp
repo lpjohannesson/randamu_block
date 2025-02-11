@@ -1136,5 +1136,7 @@ int CountAliveNpChar(void)
 }
 
 bool CheckNPCTrait(NPCHAR* npc, std::string trait){
-	return CheckGenericTrait(npcTraits, trait, [npc](int npcID){return npc->code_char == npcID;});
+	return CheckGenericTrait(npcTraits, trait, [npc](int npcID){
+		return (npc->isBoss ? 1000 : 0) + npc->code_char == npcID;
+	});
 }
