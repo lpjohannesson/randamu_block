@@ -46,10 +46,10 @@ NPCHAR* GetClosest(int x, int y, int maxDistance){
     int npc = -1;
 	maxDistance /= 1_pix;
 	float actualMaxDist = maxDistance*maxDistance + maxDistance*maxDistance;
-    for (int i = 0; i < NPC_MAX; i++){
-        if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE && gNPC[i].code_char != 100 && !CheckNPCTrait(&gNPC[i], NPCTraits::ETHEREAL)))) continue;
-        float distx = (gNPC[i].x - x) / 1_pix;
-        float disty = (gNPC[i].y - y) / 1_pix;
+    for (int i = 0; i < BOSS_MAX; i++){
+        if (!((gBoss[i].cond & 0x80) && (gBoss[i].bits & NPC_SHOOTABLE && gBoss[i].code_char != 100 && !CheckNPCTrait(&gBoss[i], NPCTraits::ETHEREAL)))) continue;
+        float distx = (gBoss[i].x - x) / 1_pix;
+        float disty = (gBoss[i].y - y) / 1_pix;
 		float dist = (distx*distx + disty*disty);
 		if (dist < actualMaxDist){
 			if (npc < 0 || (dist < shortestdist)){
@@ -59,10 +59,10 @@ NPCHAR* GetClosest(int x, int y, int maxDistance){
 		}
     }
     if (npc == -1){
-		for (int i = 0; i < BOSS_MAX; i++){
-			if (!((gBoss[i].cond & 0x80) && (gBoss[i].bits & NPC_SHOOTABLE && !CheckNPCTrait(&gBoss[i], NPCTraits::ETHEREAL)))) continue;
-			float distx = (gBoss[i].x - x) / 1_pix;
-			float disty = (gBoss[i].y - y) / 1_pix;
+		for (int i = 0; i < NPC_MAX; i++){
+			if (!((gNPC[i].cond & 0x80) && (gNPC[i].bits & NPC_SHOOTABLE && !CheckNPCTrait(&gNPC[i], NPCTraits::ETHEREAL)))) continue;
+			float distx = (gNPC[i].x - x) / 1_pix;
+			float disty = (gNPC[i].y - y) / 1_pix;
 			float dist = (distx*distx + disty*disty);
 			if (dist < actualMaxDist){
 				if (npc < 0 || (dist < shortestdist)){
@@ -74,9 +74,9 @@ NPCHAR* GetClosest(int x, int y, int maxDistance){
 		if (npc == -1){
 			return NULL;
 		}
-		else return &gBoss[npc];
+		else return &gNPC[npc];
 	}
-    else return &gNPC[npc];
+    else return &gBoss[npc];
 }
 
 static void SetUniqueParameter(NPCHAR *npc)
