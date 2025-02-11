@@ -2701,7 +2701,11 @@ void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArgum
 
 void HandleMiracles(GenerationContext& genContext, GenerationArguments& genArguments){
 	auto miracleRatio = GetMetadata<int>(genArguments["miracle_ratio"]);
-	if (gMC.depth == gMC.miracleGenerated * miracleRatio + 1 && (gMC.depth != 1))
+	int shadowDepth = 9 + genContext.doctorStage;
+	if (ChallengeEnabled("fast_run")){
+		shadowDepth = 5 + genContext.doctorStage;
+	}
+	if ((gMC.depth == gMC.miracleGenerated * miracleRatio + 1 || gMC.depth == shadowDepth) && (gMC.depth != 1))
 	{
 		int doorX, doorY;
 		do
