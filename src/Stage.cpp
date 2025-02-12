@@ -1,6 +1,7 @@
 #include "Stage.h"
 
 #include <charconv>
+#include <chrono>
 #include <string_view>
 #include <cmath>
 #include <cstdio>
@@ -14,6 +15,9 @@
 #include <set>
 #include <vector>
 #include <array>
+
+#include <ctre.hpp>
+#include <unicode-db.hpp>
 
 #include "Back.h"
 #include "Boss.h"
@@ -716,16 +720,15 @@ uint64_t GenerateSeed(){
 			std::getline(seedFile, seedTxt);
 			if (!seedTxt.empty()){
 				seed = 0;
-				int tier = 0;
-				for (auto ch: seedTxt | std::views::reverse){
-					uint64_t inc = (ch - '0') * static_cast<uint64_t>(std::pow(10, tier));
-					uint64_t test;
-					if (__builtin_add_overflow(seed, inc, &test)){
-						break;
-					} else{
-						seed = test;
-						tier++;
+				if (ctre::match<"[0-9]+">(seedTxt).size() == seedTxt.size()){
+					seed = std::strtoull(seedTxt.c_str(), NULL, 10);
+					if (errno == ERANGE){
+						errno = 0;
+						seed = Random64(0, std::numeric_limits<uint64_t>::max()-2);
+						WriteGameLog("Set seed exceeded 64-bit limit, using random one: ", seed);
 					}
+				} else {
+					seed = std::hash<std::string>()(seedTxt);
 				}
 			}
 		}
