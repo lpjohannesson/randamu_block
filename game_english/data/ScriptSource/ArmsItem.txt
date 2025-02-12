@@ -729,7 +729,8 @@ Equipped Pair of Wings.<NOD<WAI0003<FRE<EVE5041
 and enables charged swims.<NOD
 When underwater, empowers dashing,<NOD
 allowing it to go through
-enemies and spikes without damage.<CLR
+enemies and spikes
+without damage.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0042<MSG
 Equipped Water Thrusters.<NOD<WAI0003<FRE<EVE5042
 #6043
