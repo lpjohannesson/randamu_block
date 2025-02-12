@@ -1782,7 +1782,7 @@ void AirProcess(void)
 				}
 				if (gMC.life <= 0){
 					// Drown
-					gMC.deathReason = 0;
+					gMC.deathReason = DeathReason::DROWNING;
 					StartTextScript(41);
 
 					gMC.cond &= ~0x80;

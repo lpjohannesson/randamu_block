@@ -520,23 +520,25 @@ void PutRankingObject(void)
 	if (++anime >= 40)
 			anime = 0;
 
-		if (gRankings[selectedRank]["life"].get<int>() != 0 && !GetNPCFlagRank(Flags::DOCTOR_PHASE_2_DONE)){
+		int deathReason = 0;
+		if (gRankings[selectedRank].contains("death"))
+			deathReason = gRankings[selectedRank]["death"].get<int>();
+
+		if (deathReason == DeathReason::DROWNING){
 			anime = 0;
 			PutBitmap3_Flip(&rcView, PixelToScreenCoord(12), PixelToScreenCoord(65), &rcMyChar[anime / 10 % 4], 0xaca6ff, SURFACE_ID_MY_CHAR);
 		}
 		else
 			PutBitmap3(&rcView, PixelToScreenCoord(12), PixelToScreenCoord(65), &rcMyChar[anime / 10 % 4], SURFACE_ID_MY_CHAR);
 
-		if (gRankings[selectedRank]["life"].get<int>() == 0){
-			if (gRankings[selectedRank].contains("death")){
-				int reason = gRankings[selectedRank]["death"].get<int>();
-				Rect death;
-				death.left = (reason % 13)*24;
-				death.right = death.left+24;
-				death.top = (reason / 13)*24;
-				death.bottom = death.top+24;
-				PutBitmap3(&rcView, PixelToScreenCoord(48), PixelToScreenCoord(62), &death, SURFACE_ID_DEATH);
-			}
+		/// @todo Any more of these and I will need to decide, what should count as death in UI.
+		if (gRankings[selectedRank]["life"].get<int>() == 0 || deathReason == DeathReason::FALLING_OUT){
+			Rect death;
+			death.left = (deathReason % 13)*24;
+			death.right = death.left+24;
+			death.top = (deathReason / 13)*24;
+			death.bottom = death.top+24;
+			PutBitmap3(&rcView, PixelToScreenCoord(48), PixelToScreenCoord(62), &death, SURFACE_ID_DEATH);
 		}
 
 		int tiles[] = {

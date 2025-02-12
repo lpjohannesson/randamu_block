@@ -1458,6 +1458,12 @@ int ActualTextScriptProc(void)
 						SaveProfile(NULL);
 						gTS.p_read += 4;
 					}
+					else if (IS_COMMAND('D','E','R'))
+					{
+						z = GetTextScriptNo(gTS.p_read + 4);
+						gMC.deathReason = z;
+						gTS.p_read += 8;
+					}
 					else if (IS_COMMAND('R','L','C'))
 					{
 						for (int i = 0; i < NPC_MAX; ++i){
