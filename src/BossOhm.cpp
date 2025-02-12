@@ -141,11 +141,11 @@ bool Omega_IsAbleToDamage(std::pair<NPCHAR&, int> npc, std::pair<BULLET&, int> b
 
 void ActBossChar_Omega(void)
 {
-	int mouthOpenTiming = 90;
-	int mouthOpenTiming2 = 150;
+	int mouthOpenTiming = 65;
+	int mouthOpenTiming2 = 125;
 	if (gMC.difficulty > DIFFICULTY_HARDENED){
-		mouthOpenTiming = 45;
-		mouthOpenTiming2 = 101;
+		mouthOpenTiming = 30;
+		mouthOpenTiming2 = 80;
 	}
 	switch (gBoss[0].act_no)
 	{

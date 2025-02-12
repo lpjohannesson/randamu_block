@@ -884,7 +884,7 @@ void ActNpc048(NPCHAR *npc)
 		npc->bits |= NPC_INVULNERABLE;
 	}
 
-	npc->ym += 12;
+	npc->ym += 20;
 	npc->y += npc->ym;
 	npc->x += npc->xm;
 
