@@ -724,8 +724,8 @@ uint64_t GenerateSeed(){
 					seed = std::strtoull(seedTxt.c_str(), NULL, 10);
 					if (errno == ERANGE){
 						errno = 0;
-						seed = Random64(0, std::numeric_limits<uint64_t>::max()-2);
-						WriteGameLog("Set seed exceeded 64-bit limit, using random one: ", seed);
+						seed = std::hash<std::string>()(seedTxt);
+						WriteGameLog("Set seed exceeded 64-bit limit, using hashing to produce this: ", seed);
 					}
 				} else {
 					seed = std::hash<std::string>()(seedTxt);
