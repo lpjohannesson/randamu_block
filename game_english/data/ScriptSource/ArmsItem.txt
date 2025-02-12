@@ -472,8 +472,10 @@ Equipped Augmented Man.<NOD<WAI0003<FRE<EVE5011
 #6012
 <EQJ0012:7012<ELJ
 <KEY<MSGMakes <NAM jump higher and
-faster.<NODEmpowers dash
-move, allowing it to go through
+faster.<NOD Hold Ability key
+while falling to glide.<NOD
+Empowers dash move, allowing
+it to go through
 enemies and spikes without damage.<NOD
 Grants double jumps which are 
 recharged when using dash.<NOD<CLR

@@ -350,8 +350,8 @@ also occasionally spawn
 on your own attacks.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1011<IT-0032<IT-0055<IT+0011<MM-Created =Augmented Man=!<WAI0135<NOD<CLO<RMU<END
 #0605
 <PRI<MSG<GIT1012Cape of Shadows gives
-double jumping<NOD and empowers
-dashing to go through
+double jumping and gliding<NOD
+and empowers dashing to go through
 spikes and enemies without damage.<NOD
 Has ability to chain 
 double jumps and dashes.<NOD<CLRCraft it?<YNJ0311<CLR<GIT0000.<WAI0020.<WAI0020.<WAI0020.<WAI0060<CLR<CMU0010<GIT1012<IT-0004<IT-0041<IT+0012<MM-Created =Cape of Shadows=!<WAI0135<NOD<CLO<RMU<END
