@@ -654,6 +654,7 @@ static void LogSeed(uint64_t seed){
 }
 
 void SelectCharacter(std::string character) {
+	gJConfig["character"] = character;
 	gMC.characterData = availableCharacters[character];
 	for (auto flag: gMC.characterData.characterFlags)
 		SetNPCFlag(flag);
