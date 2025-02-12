@@ -251,6 +251,8 @@ bool LoadGenericData(void)
 		bError = true;
 	if (!MakeSurface_File("Arms", SURFACE_ID_ARMS))
 		bError = true;
+	if (!MakeSurface_File("MyChar", SURFACE_ID_MY_CHAR))
+		bError = true;
 	if (!MakeSurface_File("StageImage", SURFACE_ID_STAGE_ITEM))
 		bError = true;
 	if (!MakeSurface_File("Cooldowns", SURFACE_ID_COOLDOWNS))
@@ -301,7 +303,6 @@ bool LoadGenericData(void)
 	MakeSurface_Generic(320, 240, SURFACE_ID_LEVEL_SPRITESET_1, false);
 	MakeSurface_Generic(320, 240, SURFACE_ID_LEVEL_SPRITESET_2, false);
 	MakeSurface_Generic(320, 32 * (MAX_STRIP - 1), SURFACE_ID_CREDIT_CAST, false);
-	MakeSurface_Generic(200, 32, SURFACE_ID_MY_CHAR, false);
 	MakeSurface_Generic(200, 32, SURFACE_ID_DASH_VISUAL, false);
 	MakeSurface_Generic(180, 18, SURFACE_ID_MAPPING_NAME, false);
 
