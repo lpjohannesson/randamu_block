@@ -1,6 +1,6 @@
 +0100
 !0066
--0320
+-0240
 [- Cave Story by -]0000-0016
 [  Studio Pixel   ]0000-0064
 [- Creator and Coder -]0000-0016
@@ -65,7 +65,7 @@
 [   HaydenStudios]0000-0020
 [        Ryla]0000-0020
 [        hina]0000-0020
-[       Fluff8836]000-0020
+[       Fluff8836]0000-0020
 [     And more!]0000-0064
 -0180
 [Doukutsu Randamu ~ The End]0000
