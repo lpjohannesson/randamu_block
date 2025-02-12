@@ -110,18 +110,6 @@ int WriteMiniMap(int x, int y){
 				    Surface2Surface(mini_x*6, mini_y*6, &rcLevel[0], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
                 // if (b == 68)
                 //      Surface2Surface(mini_x * 6, mini_y * 6, &rcLevel[2], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
-                if (b == 43)
-                     Surface2Surface(mini_x * 6, mini_y * 6, &rcLevel[12], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
-                if (b == 44)
-                     Surface2Surface(mini_x * 6, mini_y * 6, &rcLevel[13], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
-                if (b == 45)
-                     Surface2Surface(mini_x * 6, mini_y * 6, &rcLevel[14], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
-                if (b == 72)
-                     Surface2Surface(mini_x * 6, mini_y * 6, &rcLevel[20], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
-                if (b == 73)
-                     Surface2Surface(mini_x * 6, mini_y * 6, &rcLevel[21], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
-                if (b == 74)
-                     Surface2Surface(mini_x * 6, mini_y * 6, &rcLevel[22], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
                 if (b == 57)
                      Surface2Surface(mini_x * 6, mini_y * 6, &rcLevel[23], SURFACE_ID_MAP, SURFACE_ID_TEXT_BOX, 0.5f);
             }
