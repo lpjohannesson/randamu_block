@@ -21,7 +21,7 @@
         "ice_skates": {}, "no_slippery": {}
     },
     "709": {
-        "lava_protection": {"amount": 160}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}
+        "lava_protection": {"amount": 480}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}
     },
     "710": {
         "gravity_flip": {}
@@ -123,7 +123,7 @@
         "booster_damage": {"damage": 1, "range": 6}, "booster_2_0": {"no_slowdown": true}, "can_boost": {"amount": 90}
     },
     "863": {
-        "water_mob_friend": {}, "lava_protection": {"amount": 160}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}, "unhindered_diving": {}, "unlimited_swimming": {}
+        "water_mob_friend": {}, "lava_protection": {"amount": 480}, "breath_extension": {"modifier": 3}, "drowning_slowdown": {"modifier": 1.33}, "underwater_bubble_vfx": {}, "unhindered_diving": {}, "unlimited_swimming": {}
     },
     "864": {
         "iframes_boost": {"modifier": 1.5, "modifier_light": 0.75}, "no_knockback": {}, "flat_damage_reduction": {"amount": 1}, "ko_prevention": {}, "low_damage_nullify": {"threshold": 3, "chance": 4}
