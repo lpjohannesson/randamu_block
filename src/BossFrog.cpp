@@ -275,7 +275,7 @@ void ActBossChar_Frog(void)
 			{
 				boss->act_no = BALFROG_MIDAIR;
 				boss->ani_no = BALFROG_SPRITE_JUMPING;
-				boss->ym = -5 * 0x200 * fmax(1.0, abs((gMC.x - boss->x)) / 135.0_pix);
+				boss->ym = -5 * 0x200 * fmin(2.15, fmax(1.0, abs((gMC.x - boss->x)) / 135.0_pix));
 				if (boss->life < Balfrog_HealthValue() / 2){
 					boss->ym /= 2;
 				}
