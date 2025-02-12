@@ -748,13 +748,16 @@ void ActMyChar_Normal(bool bKey)
 		gMC.pogo = true;
 		gMC.chargeActive = false;
 		int boostFuel = 0;
-		for (const auto&[_, amount]: GetActualFlagTraitData<int>(FlagTraits::CAN_BOOST, "amount")){
-			if (amount > boostFuel) boostFuel = amount;
+		int boosterFlag = 0;
+		for (const auto&[flag, amount]: GetActualFlagTraitData<int>(FlagTraits::CAN_BOOST, "amount")){
+			if (amount > boostFuel) {
+				boostFuel = amount;
+				boosterFlag = flag;
+			}
 		}
 		float boostAmount = 1;
 		for (const auto&[flag, amount]: GetActualFlagTraitData<float>(FlagTraits::BOOSTER_FUEL_BOOST, "amount")){
-			auto activeFlags = GetTraitActiveFlags(FlagTraits::BOOSTER_FUEL_BOOST);
-			if (std::ranges::find(activeFlags, flag) == activeFlags.end()) boostAmount *= amount;
+			if (boosterFlag != flag) boostAmount *= amount;
 		}
 		gMC.boost_cnt = boostAmount*boostFuel;
 		if (CheckFlagTrait(FlagTraits::GRAVITY_FLIP))
