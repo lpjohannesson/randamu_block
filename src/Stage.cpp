@@ -2082,7 +2082,7 @@ void CreateLifeCapsules(GenerationContext& genContext, GenerationArguments& genA
 				{
 					int eventNumber = Flags::CAPSULE_SAVE_FLAG_BEGIN;
 					if (Random(0, 3, RandomCategories::SEEDED_NPCS) == 0 && gMC.difficulty > DIFFICULTY_BASIC){
-						eventNumber = Flags::CAPSULE_SAVE_FLAG_BEGIN + 2;
+						eventNumber = Flags::CAPSULE_SAVE_FLAG_BEGIN + 1;
 					}
 					SetNpChar_EventFlag(32, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, eventNumber, Flags::CAPSULE_SAVE_FLAG_BEGIN + l);
 					PaintLine(41, x2 - 2, y2 + 1, x2 + 1, y2 + 1);

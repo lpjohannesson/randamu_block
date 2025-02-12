@@ -692,6 +692,11 @@ int ActualTextScriptProc(void)
 					else if (IS_COMMAND('M','L','+'))
 					{
 						z = GetTextScriptNo(gTS.p_read + 4);
+						if (z <= 0){
+							int finalValue = std::max(1, gMC.characterData.lifeCapsuleValue + z);
+							z = finalValue;
+							gNumberTextScript[1] = z;
+						}
 						AddMaxLifeMyChar(z);
 						gTS.p_read += 8;
 					}
@@ -1503,9 +1508,15 @@ int ActualTextScriptProc(void)
 					}
 					else if (IS_COMMAND('N','A','M'))
 					{
-						// This supports up to four different values, but only one is actually used (a second is used erroneously)
 						SetNameTextScript();
 						gTS.p_read += 4;
+					}
+					else if (IS_COMMAND('N','U','M'))
+					{
+						// This supports up to four different values, but only one is actually used (a second is used erroneously)
+						z = GetTextScriptNo(gTS.p_read + 4);
+						SetNumberTextScript(z);
+						gTS.p_read += 8;
 					}
 					else if (IS_COMMAND('C','R','E'))
 					{
