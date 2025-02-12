@@ -890,11 +890,12 @@ Equipped the Winter Clock.<NOD<WAI0003<FRE<EVE5060
 flammable gas ready to go
 in any moment.<NOD Enhances
 Fireball with damaging trail.<NOD
-Allows you to dash with Dash
-key<NOD and creates a fire
-trail while doing so.<NOD
-Grants autofire to Snake and
-splits it into two
+Empowers dash move, allowing
+it to go through
+enemies and spikes without damage.<NOD
+Dashing also creates fire
+trails.<NOD Grants autofire to
+Snake and splits it into two
 projectiles.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0066<MSG
 Equipped Flaming Booster.<NOD<WAI0003<FRE<EVE5066
