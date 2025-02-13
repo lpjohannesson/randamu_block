@@ -3286,6 +3286,8 @@ static const struct
 	{"Resource/ORG/invisible wing", "", MUSIC_TYPE_ORGANYA, true}, //frontdoors (second camp)
 	{"Resource/ORG/Gesticulation", "", MUSIC_TYPE_ORGANYA, true}, //marsh (second camp)
 	{"Resource/ORG/Normality", "", MUSIC_TYPE_ORGANYA, true}, //plantation (second camp)
+	{"Resource/ORG/hidef", "", MUSIC_TYPE_ORGANYA, true},
+	{"Resource/ORG/Frank_Zappa_-_Black_Napkins_Remix", "", MUSIC_TYPE_ORGANYA, true},
 };
 
 std::vector<std::string> fileExtension = {"ogg", "mp3", "org"}; 
@@ -3294,7 +3296,7 @@ void ChangeMusic(MusicID no)
 {
 	if (no == (MusicID)6)
 	{
-		int musicIDs[] = {1, 2, 4, 5, 6, 8, 9, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 33, 45, 46, 49, 69, 70, 71, 73, 74, 75};
+		int musicIDs[] = {1, 2, 4, 5, 6, 8, 9, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 33, 45, 46, 49, 69, 70, 71, 73, 74, 75, 100, 101};
 		bool secondCamp = (gMC.depth >= genContext.doctorStage);
 		MusicID id = (MusicID)musicIDs[Random(0, ARRAY_SIZE(musicIDs) - 1, RandomCategories::SEEDED_PRIMARY)];
 		no = id;
