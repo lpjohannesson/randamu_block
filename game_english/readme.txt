@@ -86,7 +86,7 @@ To set the value, put it as ""name": value" in config.json (it's created automat
 Credits:
 - Cave Story: Daisuke "Pixel" Amaya
 - Based on: CSE2 Enhanced by Clownacy and GabrielTFS
-- Music: Cory Welch, Tinned Duck, 2dbro, Zenix, txin, mLurker, Alula, Safusaka, zeroflafi, Dredged Crusader, AquaDoesStuff, yellow, Raymundo
+- Music: Cory Welch, Tinned Duck, 2dbro, Zenix, txin, mLurker, Alula, Safusaka, zeroflafi, Dredged Crusader, AquaDoesStuff, yellow, Raymundo, Nadav
 - Used sprites: ZarroTsu, AsperDev, Tert, Taiki, MintyFresh, Raymundo, lolkit
 - Coding help: Autumn Hazel, Strultz
 - Bracket OC: Jamark

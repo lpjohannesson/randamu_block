@@ -3288,6 +3288,9 @@ static const struct
 	{"Resource/ORG/Normality", "", MUSIC_TYPE_ORGANYA, true}, //plantation (second camp)
 	{"Resource/ORG/hidef", "", MUSIC_TYPE_ORGANYA, true},
 	{"Resource/ORG/Frank_Zappa_-_Black_Napkins_Remix", "", MUSIC_TYPE_ORGANYA, true},
+	{"Resource/ORG/CannonballMMZ3", "", MUSIC_TYPE_ORGANYA, true}, //reinforced map bosses
+	{"Resource/ORG/Megalomania 10percent slower", "", MUSIC_TYPE_ORGANYA, true}, //reinforced doctor phase 1
+	{"Resource/ORG/Haze", "", MUSIC_TYPE_ORGANYA, true}, //reinforced doctor phase 2
 };
 
 std::vector<std::string> fileExtension = {"ogg", "mp3", "org"}; 
@@ -3383,6 +3386,17 @@ void ChangeMusic(MusicID no)
 		case TYPE_SHADOW:
 			no = MUS_SHADOW_BGM;
 			break;
+		}
+	}
+
+	if (gMC.difficulty > DIFFICULTY_HARDENED){
+		switch (no){
+			case MUS_BOSS_2:
+				no = MUS_REINFORCED_BOSS_2; break;
+			case MUS_DOCTOR_P1:
+				no = MUS_REINFORCED_DOCTOR_P1; break;
+			case MUS_DOCTOR_P2:
+				no = MUS_REINFORCED_DOCTOR_P2; break;
 		}
 	}
 
