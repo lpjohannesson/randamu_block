@@ -290,7 +290,7 @@ void ActBossChar_Omega(void)
 			{
 				int shotYm = -0x900;
 				if (gMC.difficulty > DIFFICULTY_HARDENED)
-					shotYm = -0x450;
+					shotYm = -0x600;
 				if (Random(0, 9) < 8)
 					SetNpChar(48, gBoss[0].x, gBoss[0].y - (23 * 0x200), Random(-0x300, 0x300), shotYm, 0, NULL, 0x100);
 				else
