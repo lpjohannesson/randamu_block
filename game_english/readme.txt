@@ -88,7 +88,7 @@ Credits:
 - Based on: CSE2 Enhanced by Clownacy and GabrielTFS
 - Music: Cory Welch, Tinned Duck, 2dbro, Zenix, txin, mLurker, Alula, Safusaka, zeroflafi, Dredged Crusader, AquaDoesStuff, yellow, Raymundo, Nadav
 - Used sprites: ZarroTsu, AsperDev, Tert, Taiki, MintyFresh, Raymundo, lolkit
-- Coding help: Autumn Hazel, Strultz
+- Coding help: Autumn Hazel, Strultz, mmozeiko
 - Bracket OC: Jamark
 - Improved Map System: Ikuyo and Onyx
 - Monogram font: datagoblin
@@ -102,6 +102,151 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.45 (Allied and Supported) (February 14th 2025):
+Highlights:
+- Added new item, Remote Controller:
+	* this item summons unique Boosterama, a robotic Prof. Booster that hunts enemies around you
+	* Boosterama shoots enemies with unique Booster-themed projectiles, that explode on contact with terrain or enemies
+	* Excerpt gets Boosterama as innate
+- Reworked Fragile gimmick:
+	* now sometimes causes chain reactions during breaking blocks
+	* some blocks during chain reaction may turn into rubble entites, that damage you on falling
+	* this can currently cause infinite loops in some scenarios
+- Made flag-specific game logic data-driven:
+	* the tag file is `flagTraits.json`
+	* this tag contains associative array with flags as keys and lists of traits as values
+	* traits define, what should happen or what should be possible, when this flag is active
+	* this is basically EC (entity-component) system, but with flags
+	* every trait and its parameters are described in new documentation page: https://doukutsurandamu.github.io/namespace_flag_traits.html
+	* there is a lot of possible regressions and inconsistencies connected to this big refactor, so make sure to report all of them
+- Added data-driven custom playable characters:
+	* every character is defined in its own folder, that includes definition JSON and character's spritesheet
+	* character definition's parameters are described in new documentation: https://doukutsurandamu.github.io/struct_m_y_c_h_a_r___d_e_f_i_n_i_t_i_o_n.html
+	* character order can be defined with `order.txt`, with possibility of automatic arrangement
+	* many character-specific properties and quirks are defined with new flag trait system
+	* <MIM command is removed due to no longer being needed
+	* character select screen descriptions have been transferred from `StageSelect` script to character definitions
+	* removed `characterNames` tag due no longer being needed
+- Revamped JSON patching:
+	* replacing JSON tags directly now works as with other files, removing `override` functionality
+	* the patches instead are grabbed from `Changes` folder in each resource pack
+	* patches are applied in alphabetical order and can have a priority to load before other patches
+	* patches can be either JSON Patch or JSON Merge Patch format
+- Unified occassional NPC properties tags into data-driven NPC traits:
+	* `aquaticEntities`, `bonkableEnemies`, `bossNPCs`, `etherealEntities`, `knockbackImmune`, `lifeIncreaseImmune`, `lifestealEntities` and `timeStopCoefficients` tags have been removed as a result
+	* NPC traits are also reloaded during every config full reload instead of NPC table loading phase
+	* the format is the same as flag traits: NPC IDs as keys and their traits as values
+	* the documentation is yet to be done:tm:
+- Added `equipVisuals` tag:
+	* this tag defines the order of overworld-visible equips and with what flag they should be visible
+	* `accs_id` refers to members of grid on MyAccs spritesheet
+- Added 2 new random stage music tracks.
+- Added Reinforced difficulty replacements for second campaign's boss theme and Doctor's boss themes.
+
+Balance changes:
+- Reworked Energy Flail lv3:
+	* reduced base damage from 10 to 8
+	* increased hitbox from 24x24 to 28x28
+	* increased base speed from 5.75 to 7
+	* decreased iframes by 1.5x
+	* now slows down and gets more damage upon contacting an enemy, effectively stitching to them
+- Buffed Frontier Buster:
+	* increased lvl1 damage from 2 to 4
+	* increased lvl1 homing shot damage from 7 to 12 and made it not decay while homing
+	* increased lvl2 damage scaling from 3.5 to 5
+	* increased lvl3 damage from 1 to 2
+	* increased lvl4 lifespan from 40 to 60 frames
+	* increased lvl4 hit count from 15 to 100
+	* decreased lvl4 local immunity frames from 15 to 5
+	* lvl4 now keeps wall-piercing after homing into enemy and defeating it
+	* decreased lvl1 use speed from 7 to 6
+	* increased probability of lvl1 homing shot from 12.5% to 16.6%
+	* decreased lvl2 use speed from 35 to 25
+	* increased probability of lvl3 charged shot from 3.33% to 4%
+	* added new visuals for homing shots
+- Buffed Copper Bulwark:
+	* significantly increased the effective hitbox while bonking
+	* decreased damage from 30 to 25
+	* increased iframes from 40 to 60
+- Increased damage requirement for Iron Bond's lifesteal from 36 to 48.
+- Added gliding ability to Cape of Shadows.
+- Removed the ability to dash or sprint through lava without taking damage.
+- Added ability for certain homing things to target map bosses.
+- Dashing ability modifiers, like Cool Sunglasses and Speed Shoes, can now stack more consistently:
+	* most of base dashes have been slightly nerfed as a result
+- Changed Omega fight:
+	* his projectiles now fall a lot sooner
+	* shortened attack cycle to make phase 1 actually work as intended
+- Teleporting frogs no longer attempt to teleport next to the player.
+
+Quality of life:
+- Polar Star and Nemesis are now restocked rather than re-acquired, keeping their positions in weapon rotation.
+- Added cooldown list display into the inventory.
+- Reduced the intensity of flashes.
+- Added the level name into Improved Map System's layout.
+- Added pulsing glowing effect for tutorial signs to be more noticeable.
+- Added outlines to Shadowspec Crags enemies to make them more noticeable.
+- Changed contents of tutorial:
+	* reduced its "length" from 9 to 6 entries
+	* reshuffled and compressed some of existing information
+	* added information about dash, charged jump and swimming
+	* removed information about water types, other characters and stronger enemies
+- Reduced clutter on Improved Map System and added some aspermental assets to it.
+- Added crafting terminal into penultimate depth.
+
+Misc changes:
+- Updated GCC version to 14.2.0 and C++ standard version to C++23.
+	* now can generate up to 64-bit limit
+	* seed number visual has been shrunken down to account for new limit
+	* `seed.txt` reading has been expanded to hash its contents, if applicable, enabling signficantly larger phrases and numbers to be used
+	* thanks https://github.com/mmozeiko for showing, how to generate 64-bit numbers with 32-bit PCG
+- Resprited overworld gun sprites.
+- Resprited some items with aspermental sprites.
+- Updated in-game credits.
+- Added testers section into readme's credits, that describes everyone who reported a bug into issue tracker.
+- "Trap" entities, like flamethrowers, now function as proper solid tile, allowing entities to stand on them and blocking bullets.
+- Stage polishing world generation step now erases spaces, that are too small, to make world less spongy.
+- Overhauled equipping code:
+	* the new tag, `equipMap`, controls what flags should be activated when equipping the item
+	* `<EQ+` now "equips" the specified item, with taking item ID's as argument
+	* `<EQ-` now "unequips" items
+	* some items are considered passive, meaning their flags are set when item enters the inventory
+	* new command, `<EQJ`, checks if specified item ID is equipped and goes to specified event, if successful
+	* previous `equip` value has been removed from player data, with older saves and rankings being migrated to new format
+	* removed `<E2+` and `<E2-`
+- Reworked Nanites Absorber visuals to use custom sprites instead of reusing fireball trails.
+- Made charged jump animation slower.
+- Resource overloads now can specify font size via `fontWidth` and `fontHeight` variables in their definition.
+- Tweaked some character descriptions to not overflow and be updated for current state of the game.
+- Refactored life capsules:
+	* TSC is reduced to 2 events: one for normal capsules and one for nerfed ones
+	* life capsule gives health according to current character's life capsule value
+- Nerfed capsule reduces life gain by 1 instead of reducing it to flat 2.
+- Added death reason icons for drowning and falling out of the stage (fixes #131).
+	* this is only applied to new runs
+	
+Bugfixes:
+- Fixed lag with water gun's bubble effect tracking.
+- Fixed air tank's lava immunity time being significantly larger than intended.
+- Tutorial signs no longer spawn on top of life capsules.
+- Fixed some inconsistencies with map's boundaries.
+- Made world generation be less impacted by where player saved.
+- Fixed slight overflow for Hardened description.
+- Fixed few issues regarding immunity frames:
+	* fixed attacks ignoring iframes, if target is map boss
+	* fixed local iframes not being properly reset on enemy's death
+- Made life capsule value randomization seeded.
+- Rocket Launcher missile now properly uses immunity frames and guides the player through solid objects.
+- Nano Quiver projectile spawning now properly accounts for edges of map (fixes #45 and truly fixes #66).
+- Added a fail safe for exit door generation getting stuck (fixes #105).
+- Relaxed Improved Map System's scrolling limits (fixes #117).
+- Updated few dashing item descriptions to account for default dash (fixes #118).
+- Fixed the alignment of crafting options being off center (fixes #119).
+- Miracle crafting now updates more consistently (fixes #120).
+- Tutorial sign no longer spawns on top of teleporters in second campaign (fixes #127).
+- Fixed a longstanding issue of Curly not properly blacklisting Air Tank chest (fixes #134).
+- Limited Balfrog's max jump height to prevent him going into the ceiling (fixes #135).
+
 1.44.2.2 (August 16th 2024):
 - Fixed Floodtide lvl2's swing counter not resetting properly.
 - Fixed Doctor shock effect's visual duration not representing the actual duration of the effect.
