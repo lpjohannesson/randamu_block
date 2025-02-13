@@ -102,7 +102,8 @@ Look them on your map system.<NOD<END
 reacts to blocks broken and
 placed.<NOD<CLRTraps and enemies can
 be blocked by walls, and water
-will flow into available space.<NOD<END
+will flow into available space.<NOD<CLRYou can swim in the water by
+pressing Jump.<NOD<END
 
 #0073
 <PRI<MSG<TUR<FAC0006Several new movement
@@ -152,7 +153,8 @@ Look them on your map system.<NOD<CLR<FAC0005The world around you
 reacts to blocks broken and
 placed.<NOD<CLRTraps and enemies can
 be blocked by walls, and water
-will flow into available space.<NOD<CLR<FAC0006Several new movement
+will flow into available space.<NOD<CLRYou can swim in the water by
+pressing Jump.<NOD<CLR<FAC0006Several new movement
 options are helpful for the
 adventure.<NOD<CLRDashing (on Left Shift)
 will make your character rush
