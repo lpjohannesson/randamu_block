@@ -2852,7 +2852,7 @@ static int Callback_ModPage(OptionsMenu *parent_menu, size_t this_option, Callba
 	std::string itchVersion;
 	int v1, v2, v3, v4;
 	GetCompileVersion(&v1, &v2, &v3, &v4);
-	currentVersion = std::to_string(v1) + "." + std::to_string(v2) + "." + std::to_string(v3);
+	currentVersion = std::to_string(v1) + "." + std::to_string(v2) + "." + std::to_string(v3) + "." + std::to_string(v4);
 	int wait = 0;
 
 	// Draw title
