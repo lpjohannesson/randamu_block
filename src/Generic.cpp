@@ -68,7 +68,7 @@ std::string GetVersionName(){
 }
 
 bool IsBeta(){
-	return true;
+	return false;
 }
 
 void DeleteSave(void)
