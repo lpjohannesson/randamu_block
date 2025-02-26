@@ -33,6 +33,7 @@ enum KeyBind
 	KEY_ESCAPE =    0x00008000,
 	//Pause key
 	KEY_PAUSE =     0x00010000,
+	///@todo Introduce a way to bind specific traits to specific keys
 	//Ability key
 	KEY_ABILITY = 0x00020000,
 	//Dashing key
