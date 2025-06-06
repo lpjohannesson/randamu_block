@@ -3,6 +3,7 @@
 
 # Exclude the (recommended) CMake build directory
 /build
+/.cache
 
 /.vscode/c_cpp_properties.json
 /.vscode/cmake-kits.json
