@@ -544,7 +544,7 @@ void DestroyBlock(int x, int y)
 	}
 	if (gMC.gimmick == GIMMICK_FRAGILE){
 		for (auto point: NEIGHBOURS8){
-			if (!IsEmpty(x + point.first, y + point.second) && InsideMap(x + point.first, y + point.second) && Random(0, 6) == 0){
+			if (IsSolid(x + point.first, y + point.second) && InsideMap(x + point.first, y + point.second) && Random(0, 6) == 0){
 				DestroyBlock(x + point.first, y + point.second);
 				if (Random(0, 3) == 0){
 					SetNpChar(64, (x + point.first)*16_pix, (y + point.second)*16_pix, 0, 0, 0, NULL, 0x200);
