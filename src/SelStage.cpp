@@ -9,7 +9,6 @@
 #include "KeyControl.h"
 #include "MyChar.h"
 #include "Game.h"
-#include "Log.h"
 #include "Main.h"
 #include "Pause.h"
 #include "Sound.h"

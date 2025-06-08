@@ -3,7 +3,6 @@
 
 
 #include "cstdint"
-#include "CommonDefines.h"
 
 #define MAX_CHARACTERS 19
 

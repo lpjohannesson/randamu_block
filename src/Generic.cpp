@@ -7,7 +7,6 @@
 
 #include "ResourceCode.h"
 
-#include "Main.h"
 
 void GetCompileDate(int *year, int *month, int *day)
 {

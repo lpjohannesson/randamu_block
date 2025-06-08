@@ -11,8 +11,6 @@
 #include "Map.h"
 #include "MyChar.h"
 #include "NpChar.h"
-#include "NpcHit.h"
-#include "NpcTbl.h"
 #include "Sound.h"
 #include "Stage.h"
 #include "Triangle.h"

@@ -2,8 +2,6 @@
 #define __RANKINGSWINDOW_H__
 
 
-#include "ArmsItem.h"
-#include "CommonDefines.h"
 
 extern int selectedRank;
 

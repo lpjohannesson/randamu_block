@@ -4,7 +4,6 @@
 #include <cstddef>
 
 #include "Boss.h"
-#include "BossLife.h"
 #include "Bullet.h"
 #include "Caret.h"
 #include "Frame.h"

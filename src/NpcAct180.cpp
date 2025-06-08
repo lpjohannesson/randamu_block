@@ -16,7 +16,6 @@
 #include "Sound.h"
 #include "Stage.h"
 #include "Triangle.h"
-#include "TextScr.h"
 
 // Curly AI
 void ActNpcLittleMan(NPCHAR *npc)

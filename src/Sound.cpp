@@ -21,10 +21,8 @@ equivalents.
 #ifdef EXTRA_SOUND_FORMATS
 #include "ExtraSoundFormats.h"
 #endif
-#include "Main.h"
 #include "Organya.h"
 #include "PixTone.h"
-#include "Resource.h"
 #include "ResourceCode.h"
 
 bool audio_backend_initialised;

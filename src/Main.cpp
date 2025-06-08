@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <map>
-#include <set>
 #include <cstddef>
 #include <cstdlib>
 #include <cstring>
@@ -28,7 +27,6 @@
 #include "NpChar.h"
 #include "Organya.h"
 #include "Random.h"
-#include "Resource.h"
 #include "ResourceCode.h"
 #include "Score.h"
 #include "Sound.h"

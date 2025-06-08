@@ -1,6 +1,5 @@
 #include "Stage.h"
 
-#include <charconv>
 #include <chrono>
 #include <string_view>
 #include <cmath>
@@ -10,7 +9,6 @@
 #include <cstring>
 #include <ctime>
 #include <algorithm>
-#include <iostream>
 #include <string>
 #include <set>
 #include <vector>
@@ -19,11 +17,11 @@
 #include <ctre.hpp>
 #include <unicode-db.hpp>
 
+#include "ArmsItem.h"
 #include "Back.h"
 #include "Boss.h"
 #include "Bullet.h"
 #include "Caret.h"
-#include "Cooldown.h"
 #include "Draw.h"
 #include "File.h"
 #include "Flash.h"
@@ -43,7 +41,6 @@
 #include "NpChar.h"
 #include "NpcTbl.h"
 #include "Organya.h"
-#include "Profile.h"
 #include "Random.h"
 #include "ResourceCode.h"
 #ifdef EXTRA_SOUND_FORMATS

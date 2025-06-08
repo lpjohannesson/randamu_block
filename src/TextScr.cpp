@@ -12,7 +12,6 @@
 #include "ArmsItem.h"
 #include "Boss.h"
 #include "BossLife.h"
-#include "Bullet.h"
 #include "Draw.h"
 #include "Ending.h"
 #include "Escape.h"

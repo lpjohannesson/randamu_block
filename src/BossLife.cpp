@@ -4,6 +4,7 @@
 #include "Boss.h"
 #include "Draw.h"
 #include "Game.h"
+#include "MyChar.h"
 #include "Map.h"
 #include "Stage.h"
 #include "NpChar.h"

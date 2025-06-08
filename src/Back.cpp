@@ -8,7 +8,6 @@
 #include "Draw.h"
 #include "File.h"
 #include "Game.h"
-#include "Main.h"
 #include "Map.h"
 #include "ResourceCode.h"
 

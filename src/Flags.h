@@ -2,11 +2,7 @@
 #define __FLAGS_H__
 
 
-#include <any>
-#include <set>
-#include "CommonDefines.h"
 #include "Main.h"
-#include "MyChar.h"
 #include "StageGen.h"
 #include "Traits.h"
 

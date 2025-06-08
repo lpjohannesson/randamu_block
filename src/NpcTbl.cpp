@@ -7,8 +7,6 @@
 
 #include "File.h"
 #include "Generic.h"
-#include "Log.h"
-#include "Main.h"
 #include "NpcAct.h"
 #include "ResourceCode.h"
 #include "Stage.h"

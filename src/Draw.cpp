@@ -10,11 +10,9 @@
 #include "Ending.h"
 #include "Font.h"
 #include "Generic.h"
-#include "Log.h"
 #include "Main.h"
 #include "MapName.h"
 #include "MyChar.h"
-#include "Resource.h"
 #include "ResourceCode.h"
 #include "TextScr.h"
 

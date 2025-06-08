@@ -2,7 +2,6 @@
 
 #include <cstddef>
 
-#include "BossLife.h"
 #include "Bullet.h"
 #include "Caret.h"
 #include "Game.h"

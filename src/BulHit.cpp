@@ -1,18 +1,14 @@
 #include "BulHit.h"
 
-#include <cstddef>
 
 #include "CommonDefines.h"
 
 #include "BossLife.h"
 #include "Bullet.h"
-#include "ArmsItem.h"
 #include "Caret.h"
 #include "Game.h"
 #include "Flags.h"
 #include "Map.h"
-#include "MyChar.h"
-#include "NpChar.h"
 #include "ResourceCode.h"
 #include "Sound.h"
 #include "Stage.h"

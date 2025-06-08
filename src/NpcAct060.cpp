@@ -2,7 +2,6 @@
 
 #include <cstddef>
 
-#include "Caret.h"
 #include "Draw.h"
 #include "Flash.h"
 #include "Frame.h"

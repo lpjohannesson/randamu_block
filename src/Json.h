@@ -7,7 +7,6 @@
 #include "cpp/gstream.hpp"
 #include "nlohmann/json.hpp"
 
-#include "Generic.h"
 #include "Log.h"
 #include "Backends/Misc.h"
 #include "ResourceCode.h"

@@ -2,11 +2,7 @@
 #define __PROFILE_H__
 
 
-#include <cstdint>
 
-#include "ArmsItem.h"
-#include "MyChar.h"
-#include "SelStage.h"
 
 extern const char* const gDefaultName;
 extern const char* const gProfileCode;

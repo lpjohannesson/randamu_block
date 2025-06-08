@@ -1,11 +1,8 @@
 #include "Flags.h"
 
-#include <algorithm>
 #include <cstring>
-#include <string_view>
 
 #include "Main.h"
-#include "MyChar.h"
 
 // Macros for setting, un-setting and getting flags
 // Each flag is stored in a bit, so we can use the exact same macros we'd use for bits

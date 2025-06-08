@@ -12,7 +12,6 @@
 #include "Flags.h"
 #include "Frame.h"
 #include "Game.h"
-#include "Generic.h"
 #include "KeyControl.h"
 #include "Map.h"
 #include "MyChar.h"

@@ -12,7 +12,6 @@
 #include "Generic.h"
 #include "KeyControl.h"
 #include "Main.h"
-#include "MycParam.h"
 #ifdef EXTRA_SOUND_FORMATS
 #include "ExtraSoundFormats.h"
 #endif

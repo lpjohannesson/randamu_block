@@ -6,7 +6,6 @@
 #include "Backends/Misc.h"
 #include "Config.h"
 #include "File.h"
-#include "Main.h"
 #include "ResourceCode.h"
 
 const char* const gConfigName = "ConfigCSE2E.dat";

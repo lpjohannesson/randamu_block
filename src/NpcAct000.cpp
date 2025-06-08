@@ -6,7 +6,6 @@
 #include "Caret.h"
 #include "Frame.h"
 #include "Game.h"
-#include "Map.h"
 #include "MyChar.h"
 #include "NpChar.h"
 #include "Sound.h"

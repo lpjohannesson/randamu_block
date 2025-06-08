@@ -17,7 +17,6 @@
 #include "NpChar.h"
 #include "NpcHit.h"
 #include "ResourceCode.h"
-#include "Score.h"
 #include "Stage.h"
 #include "Sound.h"
 #include "TextScr.h"

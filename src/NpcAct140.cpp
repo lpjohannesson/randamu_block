@@ -2,7 +2,6 @@
 
 #include <cstddef>
 
-#include "Bullet.h"
 #include "Caret.h"
 #include "Frame.h"
 #include "Flash.h"
@@ -11,10 +10,8 @@
 #include "MyChar.h"
 #include "NpChar.h"
 #include "NpcHit.h"
-#include <vector>
 #include "Sound.h"
 #include "Stage.h"
-#include "TextScr.h"
 #include "Triangle.h"
 
 // Toroko (frenzied)

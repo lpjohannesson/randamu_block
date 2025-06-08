@@ -4,14 +4,12 @@
 #include <cstdio>
 #include <cstring>
 #include <string>
-#include <sstream>
 
 #include "Backends/Misc.h"
 #include "ArmsItem.h"
 #include "BossLife.h"
 #include "Cooldown.h"
 #include "Fade.h"
-#include "File.h"
 #include "Flags.h"
 #include "Frame.h"
 #include "Game.h"
@@ -19,16 +17,13 @@
 #include "Json.h"
 #include "Log.h"
 #include "Main.h"
-#include "Map.h"
 #include "MiniMap.h"
 #include "MyChar.h"
 #include "NpChar.h"
 #include "ResourceCode.h"
 #include "SelStage.h"
-#include "Score.h"
 #include "Stage.h"
 #include "Star.h"
-#include "TextScr.h"
 #include "ValueView.h"
 
 const char* const gDefaultName = "Profile.json";

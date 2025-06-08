@@ -2,7 +2,6 @@
 #define __PIXTONE_H__
 
 
-#include "CommonDefines.h"
 
 struct PIXTONEPARAMETER2
 {

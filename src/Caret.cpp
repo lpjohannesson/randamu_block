@@ -2,13 +2,10 @@
 
 #include <cstring>
 
-#include "Bullet.h"
 #include "Draw.h"
 #include "Flags.h"
 #include "Frame.h"
-#include "MyChar.h"
 #include "NpcHit.h"
-#include "TextScr.h"
 #include "Game.h"
 #include "Triangle.h"
 

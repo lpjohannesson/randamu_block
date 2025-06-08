@@ -12,7 +12,6 @@
 #include "NpChar.h"
 #include "Sound.h"
 #include "Stage.h"
-#include "TextScr.h"
 #include "Triangle.h"
 
 // Grate

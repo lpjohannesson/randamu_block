@@ -4,7 +4,6 @@
 
 #include "Back.h"
 #include "Boss.h"
-#include "BossLife.h"
 #include "Bullet.h"
 #include "Flags.h"
 #include "Frame.h"

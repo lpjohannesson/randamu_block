@@ -2,7 +2,6 @@
 #include <cstdio>
 #include <cstring>
 #include <string>
-#include <iostream>
 
 #include "ArmsItem.h"
 #include "File.h"
@@ -17,7 +16,6 @@
 #include "ResourceCode.h"
 #include "Score.h"
 #include "Stage.h"
-#include "TextScr.h"
 
 #define GET_FLAG(x, i) ((x)[(i) / 8] & (1 << ((i) % 8)))
 

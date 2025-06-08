@@ -14,7 +14,6 @@
 #include "Sound.h"
 #include "Stage.h"
 #include "Triangle.h"
-#include "TextScr.h"
 
 // Ballos
 void ActNpc340(NPCHAR *npc)

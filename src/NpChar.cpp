@@ -8,7 +8,6 @@
 
 #include "ArmsItem.h"
 #include "Boss.h"
-#include "Bullet.h"
 #include "Caret.h"
 #include "Draw.h"
 #include "File.h"
@@ -17,7 +16,6 @@
 #include "Main.h"
 #include "Map.h"
 #include "MyChar.h"
-#include "MycHit.h"
 #include "NpcHit.h"
 #include "NpcTbl.h"
 #include "ResourceCode.h"

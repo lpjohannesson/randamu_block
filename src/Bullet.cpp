@@ -8,24 +8,11 @@
 #include <functional>
 #include <map>
 
-#include "ArmsItem.h"
-#include "Boss.h"
-#include "BossLife.h"
 #include "Draw.h"
-#include "Caret.h"
 #include "Game.h"
 #include "Flags.h"
-#include "Frame.h"
 #include "Main.h"
-#include "Map.h"
-#include "KeyControl.h"
 #include "MyChar.h"
-#include "MycParam.h"
-#include "NpChar.h"
-#include "Sound.h"
-#include "Stage.h"
-#include "Triangle.h"
-#include "TextScr.h"
 
 BULLET gBul[BULLET_MAX];
 

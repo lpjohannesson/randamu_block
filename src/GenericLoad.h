@@ -2,9 +2,7 @@
 #define __GENERICLOAD_H__
 
 
-#include "CommonDefines.h"
 
-#include "PixTone.h"
 
 bool LoadInterface(bool legacy, bool start = false);
 bool LoadGenericData(void);

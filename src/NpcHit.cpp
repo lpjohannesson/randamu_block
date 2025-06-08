@@ -8,7 +8,6 @@
 #include "Caret.h"
 #include "Flags.h"
 #include "Game.h"
-#include "Log.h"
 #include "Main.h"
 #include "Map.h"
 #include "MyChar.h"

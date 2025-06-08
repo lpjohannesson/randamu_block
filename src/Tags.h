@@ -6,7 +6,6 @@
 #include <vector>
 #include <map>
 #include "Json.h"
-#include "ResourceCode.h"
 
 template<typename T = std::string>
 std::vector<T> ParseTag(const std::string& path){

@@ -3,9 +3,6 @@
 #include <algorithm>
 #include <filesystem>
 #include <cstddef>
-#include "Config.h"
-#include "Draw.h"
-#include "Font.h"
 #include "Log.h"
 #include "Backends/Misc.h"
 #include "Json.h"

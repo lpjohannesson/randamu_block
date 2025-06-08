@@ -12,7 +12,6 @@
 #include "Game.h"
 #include "Main.h"
 #include "Map.h"
-#include "MapName.h"
 #include "MyChar.h"
 #include "MycParam.h"
 #include "NpChar.h"

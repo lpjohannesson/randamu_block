@@ -1,12 +1,8 @@
 #ifndef __GENERIC_H__
 #define __GENERIC_H__
 
-#include <algorithm>
-#include "CommonDefines.h"
-#include "cstdint"
 #include <map>
 #include <string>
-#include <tuple>
 #include <vector>
 #include <ranges>
 

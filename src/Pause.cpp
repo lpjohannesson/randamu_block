@@ -1,9 +1,7 @@
 
 #include "Pause.h"
 
-#include <map>
 #include <functional>
-#include <iostream>
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
@@ -26,7 +24,6 @@
 #include "Game.h"
 #include "Fade.h"
 #include "KeyControl.h"
-#include "Log.h"
 #include "Main.h"
 #include "MyChar.h"
 #include "Organya.h"

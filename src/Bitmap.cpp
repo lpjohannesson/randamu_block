@@ -11,7 +11,6 @@
 #define STBI_NO_STDIO
 #include "../external/stb_image.h"
 
-#include "CommonDefines.h"
 
 #include "File.h"
 

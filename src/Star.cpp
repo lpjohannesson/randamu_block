@@ -10,7 +10,6 @@
 #include "Game.h"
 #include "Map.h"
 #include "MyChar.h"
-#include "Sound.h"
 
 STAR star[3];
 
