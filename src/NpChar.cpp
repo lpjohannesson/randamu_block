@@ -9,6 +9,7 @@
 #include "ArmsItem.h"
 #include "Boss.h"
 #include "Caret.h"
+#include "CommonDefines.h"
 #include "Draw.h"
 #include "File.h"
 #include "Flags.h"
@@ -1094,7 +1095,7 @@ NPCHAR* FindNpCharHere(int x, int y, int xl, int yl)
 	int i;
 
 	for (i = 0; i < NPC_MAX; ++i)
-		if ((gNPC[i].cond & 0x80) && IntersectDamageCheck(gNPC[i], x, y, xl, yl))
+		if ((gNPC[i].cond & 0x80) && IntersectDamageCheck(gNPC[i], x, y, xl, yl) && !CheckNPCTrait(&gNPC[i], NPCTraits::INANIMATE))
 			return &gNPC[i];
 
 	for (i = 0; i < BOSS_MAX; ++i)

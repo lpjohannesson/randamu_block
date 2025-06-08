@@ -817,6 +817,7 @@ namespace NPCTraits {
 	inline constexpr const char* BOSS                          = "boss";
 	inline constexpr const char* IMMUNE_TO_KNOCKBACK           = "immune_to_knockback";
 	inline constexpr const char* TIME_DILATION                 = "time_dilation";
+	inline constexpr const char* INANIMATE                     = "inanimate";
 }
 
 namespace Bullets {

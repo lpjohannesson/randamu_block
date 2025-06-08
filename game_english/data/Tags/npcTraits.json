@@ -42,7 +42,7 @@
         "aquatic": {}, "living": {}
     },
     "100": {
-        "time_dilation": {"modifier": 1}
+        "inanimate": {}, "time_dilation": {"modifier": 1}
     },
     "104": {
         "bonkable": {}, "living": {}
