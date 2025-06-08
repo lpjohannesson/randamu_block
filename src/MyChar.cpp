@@ -1940,26 +1940,28 @@ void ActMyChar(bool bKey)
 		}
 	}
 
-	if (gKeyTrg & gKeyAbility && (CheckFlagTrait(FlagTraits::TIMESTOP)) && CheckForCooldown(gCooldowns, TIME_STOP_ID) == -1){
-		SetFlash(gMC.x, gMC.y, 1, RGB(154, 209, 232) | (0x80 << 24));
-		PlaySoundObject(101, SOUND_MODE_PLAY);
-		for (int i = 0; i < SE_MAX; i++)
-			ChangeSoundFrequency(i, 1200);
-		InitiateCooldown(gCooldowns, TIME_STOP_ID);
-		PlayOrganyaMusic();
-	}
-
-	if (gKeyTrg & gKeyAbility && CheckFlagTrait(FlagTraits::SCREEN_FREEZE) && CheckForCooldown(gCooldowns, TIME_RING_ID) == -1){
-		SetFlash(gMC.x, gMC.y, 1, RGB(154, 209, 232) | (0x80 << 24));
-		PlaySoundObject(118, SOUND_MODE_PLAY);
-		for (int i = 0; i < NPC_MAX; i++){
-			if (gNPC[i].cond & 0x80 &&
-				gMC.x < gNPC[i].x + int(WINDOW_WIDTH/1.5f) * 1_pix && gMC.x > gNPC[i].x - int(WINDOW_WIDTH/1.5f) * 1_pix && gMC.y < gNPC[i].y + int(WINDOW_HEIGHT/1.5f) * 1_pix && gMC.y > gNPC[i].y - int(WINDOW_HEIGHT/1.5f) * 1_pix && gNPC[i].code_char != 4){
-					gNPC[i].freeze = GetFlagTraitData<int>(FlagTraits::SCREEN_FREEZE, "amount");
-					SetDestroyNpChar(gNPC[i].x, gNPC[i].y, gNPC[i].view.back, 10);
-				}
+	if (gKeyTrg & gKeyAbility && (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)){
+		if ((CheckFlagTrait(FlagTraits::TIMESTOP)) && CheckForCooldown(gCooldowns, TIME_STOP_ID) == -1){
+			SetFlash(gMC.x, gMC.y, 1, RGB(154, 209, 232) | (0x80 << 24));
+			PlaySoundObject(101, SOUND_MODE_PLAY);
+			for (int i = 0; i < SE_MAX; i++)
+				ChangeSoundFrequency(i, 1200);
+			InitiateCooldown(gCooldowns, TIME_STOP_ID);
+			PlayOrganyaMusic();
 		}
-		InitiateCooldown(gCooldowns, TIME_RING_ID);
+
+		if (CheckFlagTrait(FlagTraits::SCREEN_FREEZE) && CheckForCooldown(gCooldowns, TIME_RING_ID) == -1){
+			SetFlash(gMC.x, gMC.y, 1, RGB(154, 209, 232) | (0x80 << 24));
+			PlaySoundObject(118, SOUND_MODE_PLAY);
+			for (int i = 0; i < NPC_MAX; i++){
+				if (gNPC[i].cond & 0x80 &&
+					gMC.x < gNPC[i].x + int(WINDOW_WIDTH/1.5f) * 1_pix && gMC.x > gNPC[i].x - int(WINDOW_WIDTH/1.5f) * 1_pix && gMC.y < gNPC[i].y + int(WINDOW_HEIGHT/1.5f) * 1_pix && gMC.y > gNPC[i].y - int(WINDOW_HEIGHT/1.5f) * 1_pix && gNPC[i].code_char != 4){
+						gNPC[i].freeze = GetFlagTraitData<int>(FlagTraits::SCREEN_FREEZE, "amount");
+						SetDestroyNpChar(gNPC[i].x, gNPC[i].y, gNPC[i].view.back, 10);
+					}
+			}
+			InitiateCooldown(gCooldowns, TIME_RING_ID);
+		}
 	}
 
 
