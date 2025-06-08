@@ -2342,7 +2342,7 @@ void ShootBullet_Nemesis(int level)
 				if (gMC.direct == 0)
 				{
 					if (CheckFlagTrait(FlagTraits::OFFSET_NEMESIS))
-						SetBullet(bul_no, gMC.x - (16 * 0x200), gMC.y + (-6 * 0x200), 0);
+						SetBullet(bul_no, gMC.x - (16 * 0x200), gMC.y + ((3 + GetFlagTraitData<int>(FlagTraits::OFFSET_NEMESIS, "amount")) * 0x200), 0);
 					else
 						SetBullet(bul_no, gMC.x - (16 * 0x200), gMC.y + (3 * 0x200), 0);
 					SetCaret(gMC.x - (16 * 0x200), gMC.y + (3 * 0x200), 3, 0);
@@ -2350,7 +2350,7 @@ void ShootBullet_Nemesis(int level)
 				else
 				{
 					if (CheckFlagTrait(FlagTraits::OFFSET_NEMESIS))
-						SetBullet(bul_no, gMC.x + (16 * 0x200), gMC.y + (-6 * 0x200), 2);
+						SetBullet(bul_no, gMC.x + (16 * 0x200), gMC.y + ((3 + GetFlagTraitData<int>(FlagTraits::OFFSET_NEMESIS, "amount")) * 0x200), 2);
 					else
 						SetBullet(bul_no, gMC.x + (16 * 0x200), gMC.y + (3 * 0x200), 2);
 					SetCaret(gMC.x + (16 * 0x200), gMC.y + (3 * 0x200), 3, 0);

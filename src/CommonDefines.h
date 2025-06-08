@@ -448,9 +448,9 @@ namespace FlagTraits {
 	/// @since 1.45
 	inline constexpr const char* MULTI_BLOCK_BREAKING          = "multi_block_breaking";
 
-	/// @brief Moves Nemesis bullet's initial position upwards.
+	/// @brief Moves Nemesis bullet's initial position at Y-axis.
 	/// @remark Synergizes with #MULTI_BLOCK_BREAKING to allow breaking 2-block-wide corridors.
-	/// @todo Add parameters for exact value.
+	/// @param[in] amount The offset in pixels, negative goes upwards and positive goes downwards.
 	/// @since 1.45
 	inline constexpr const char* OFFSET_NEMESIS                = "offset_nemesis";
 
