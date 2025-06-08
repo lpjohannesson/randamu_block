@@ -503,7 +503,7 @@ namespace FlagTraits {
 	inline constexpr const char* LOW_DAMAGE_NULLIFY            = "low_damage_nullify";
 
 	/// @brief Makes player rise out of water instead of sinking, when not holding the Ability key.
-	/// @todo Add parameter for rising speed modifier.
+	/// @param[in] rising_speed The modifier for rising momentum.
 	/// @since 1.45
 	inline constexpr const char* WATER_FLOATING                = "water_floating";
 

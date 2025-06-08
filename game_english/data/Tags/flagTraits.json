@@ -108,7 +108,7 @@
         "boosterama_spawn": {"amount": 1}
     },
     "760": {
-        "water_mob_friend": {}, "water_floating": {}
+        "water_mob_friend": {}, "water_floating": {"rising_speed": 2}
     },
     "851": {
         "whimsical_star": {}

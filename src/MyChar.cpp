@@ -1138,7 +1138,7 @@ void ActMyChar_Normal(bool bKey)
 	else
 	{
 		if (CheckFlagTrait(FlagTraits::WATER_FLOATING) && !(bKey && gKey & gKeyAbility) && gMC.flag & 0x100){
-			gMC.ym -= gravity1*2;
+			gMC.ym -= gravity1*GetFlagTraitData<float>(FlagTraits::WATER_FLOATING, "rising_speed");
 		}
 		else{
 			gMC.ym += gravity1;
