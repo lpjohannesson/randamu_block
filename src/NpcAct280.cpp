@@ -1803,7 +1803,7 @@ void ActNpc299(NPCHAR *npc)
 		}
 	}
 
-	if (JudgeHitMyCharNPC3(npc) && !GetNPCFlag(Flags::WATER_GUN_EFFECT)){
+	if (JudgeHitMyCharNPC3(npc)){
 		SetNPCFlag(Flags::WATER_GUN_EFFECT);
 	} else {
 		CutNPCFlag(Flags::WATER_GUN_EFFECT);

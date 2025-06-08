@@ -1858,7 +1858,7 @@ void ActMyChar(bool bKey)
 		SetBullet(Bullets::NANITES_VFX, gMC.x, gMC.y);
 	}
 
-	if ((gMC.tileset == 'A' || gMC.tileset == '9' || gMC.tileset == 'E') && (gMC.flag & 0x100 && !GetNPCFlag(Flags::WATER_GUN_EFFECT)) && !CheckFlagTrait(FlagTraits::ACID_IMMUNITY))
+	if ((gMC.tileset == 'A' || gMC.tileset == '9' || gMC.tileset == 'E') && (gMC.flag & 0x100 || GetNPCFlag(Flags::WATER_GUN_EFFECT)) && !CheckFlagTrait(FlagTraits::ACID_IMMUNITY))
 	{
 		if (++gMC.regenCount % 6 == 0)
 		{
