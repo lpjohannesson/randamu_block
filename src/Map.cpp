@@ -197,6 +197,11 @@ bool IsEmpty(int x, int y){
     return GetTile(x, y) == 0 || GetAttribute(x + y * gMap.width) == 0;
 }
 
+bool IsSolid(int x, int y){
+	if (!InsideMap(x, y)) return false;
+    return (GetAttribute(x + y * gMap.width) >= 0x41 && GetAttribute(x + y * gMap.width) != 0x60);
+}
+
 bool HasSurface(int x, int y){
 	if (!InsideMap(x, y)) return false;
     return IsEmpty(x, y) == true && (GetTile(x, y+1) == 1 || GetAttribute(x + (y+1) * gMap.width) == 65);

@@ -32,6 +32,7 @@ int Distance(int x1, int y1, int x2, int y2);
 void FluidFall(int x, int y, char old_no, char new_no);
 void FluidFallS(int x, int y, char old_no, char new_no);
 bool IsEmpty(int x, int y);
+bool IsSolid(int x, int y);
 bool HasSurface(int x, int y);
 bool HasCeiling(int x, int y);
 bool HasWall(int x, int y);

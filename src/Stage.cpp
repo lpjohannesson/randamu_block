@@ -2675,8 +2675,12 @@ void CreateExitDoor(GenerationContext& genContext, GenerationArguments& genArgum
 			SetNPCFlag(Flags::LAST_LEVEL_CH2_DOOR);
 		}
 		if (tries >= 250){
-			ChangeMap(doorX, doorY - 1, 0);
-			ChangeMap(doorX, doorY, 0);
+			if (IsSolid(doorX, doorY))
+				ChangeMap(doorX, doorY - 1, 0);
+			if (IsSolid(doorX, doorY))
+				ChangeMap(doorX, doorY, 0);
+			if (!IsSolid(doorX, doorY))
+				ChangeMap(doorX, doorY+1, 1);
 		}
 		SetNpChar(18, doorX * 0x2000, doorY * 0x2000, 0, 0, 0, NULL, 0, ChallengeEnabled("full_clear") ? 116 : 99, NPC_INTERACTABLE);
 	}
