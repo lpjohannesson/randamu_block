@@ -1,4 +1,5 @@
 #include "ArmsItem.h"
+#include <functional>
 #include <iterator>
 #include <algorithm>
 
@@ -25,6 +26,7 @@
 #include "Sound.h"
 #include "Stage.h"
 #include "TextScr.h"
+#include "Traits.h"
 
 ARMS gArmsData[ARMS_MAX];
 ITEM gItemData[ITEM_MAX];
@@ -135,6 +137,19 @@ std::vector<int> miracleWeaponryList = {
 	4,
 	//frontier buster
 	1
+};
+
+void UnequipMiningStorageBoost(){
+	for (auto& arm: gArmsData){
+		if (arm.code == 2 || arm.code == 12){
+			arm.max_num /= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::MINING_STORAGE_BOOST, "modifier"));
+			arm.num = std::min(arm.num, arm.max_num);
+		}
+	}
+}
+
+std::map<std::string, std::function<void()>> unequipFuncs = {
+	{FlagTraits::MINING_STORAGE_BOOST, UnequipMiningStorageBoost}
 };
 
 bool AddArmsData(long code, long max_num, long exp, long num, long level)
@@ -370,6 +385,14 @@ bool SubItemData(long code)
 
 	gItemData[i - 1].code = 0;
 	gSelectedItem = 0;
+
+	for (auto [discardedTrait, unequipFunc] : unequipFuncs){
+		if (CheckGenericTrait(flagTraits, discardedTrait, [code](int flag) -> bool {
+			return equipMap[code].flag == flag;
+		})){
+			unequipFunc();
+		}
+	}
 	
 	CutNPCFlag(equipMap[code].flag);
 
