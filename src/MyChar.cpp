@@ -163,8 +163,7 @@ DO_SOMETHING(
 		for (const auto&[fl, npcIDs] : GetActualFlagTraitData<std::vector<int>>(FlagTraits::MEDAL_SPAWN, "ids")){
 			if (fl == flag){
 				for (const auto& npcID: npcIDs){
-					if (CountNpCharCode(npcID) > 0)
-						DeleteNpCharCode(npcID, false);
+					DeleteNpCharCode(npcID, false);
 				}
 			}
 		}

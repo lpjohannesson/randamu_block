@@ -36,9 +36,9 @@ void SetNPCFlag(long a)
 
 void CutNPCFlag(long a)
 {
-	UNSET_FLAG(gFlagNPC, a);
 	for (auto callback: flagUnsetCallbacks)
 		callback(a);
+	UNSET_FLAG(gFlagNPC, a);
 }
 
 bool GetNPCFlag(long a)
