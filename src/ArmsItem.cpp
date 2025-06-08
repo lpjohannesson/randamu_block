@@ -388,13 +388,11 @@ bool SubItemData(long code)
 
 	for (auto [discardedTrait, unequipFunc] : unequipFuncs){
 		if (CheckGenericTrait(flagTraits, discardedTrait, [code](int flag) -> bool {
-			return equipMap[code].flag == flag;
+			return equipMap.contains(code) && equipMap[code].flag == flag;
 		})){
 			unequipFunc();
 		}
 	}
-	
-	CutNPCFlag(equipMap[code].flag);
 
 	if (code > 100){
 		for (auto weapon: miracleWeaponryList){
@@ -407,6 +405,9 @@ bool SubItemData(long code)
 				}
 			}
 		}
+	} else {
+		if (equipMap.contains(code))
+			CutNPCFlag(equipMap[code].flag);
 	}
 
 	for (auto miracle : miracleList){
