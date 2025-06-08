@@ -398,6 +398,8 @@ int JudgeHitMyCharDamageW(int x, int y)
 {
 	int hit = 0;
 
+	if (gMC.dashDuration > 0 && IsDashEquipped() && CheckFlagTrait(FlagTraits::UNDERWATER_DASH)) return hit;
+
 	if (gMC.x - 0x800 < (x * 0x10 + 4) * 0x200
 		&& gMC.x + 0x800 > (x * 0x10 - 4) * 0x200
 		&& gMC.y - 0x800 < (y * 0x10 + 3) * 0x200
