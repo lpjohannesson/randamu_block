@@ -10,7 +10,7 @@ last_seed.txt - Tracks every new seed and version on which the seed is used
 rankings.json - GZIP-encrypted data for last runs (deaths or wins)
 game.log - Records various information during gameplay, such as time it takes to generate the stage.
 
-seed.txt (needs to be created) - Custom Seed file, accepts numbers up to (2^32-1) or up to 9 ASCII letters.
+seed.txt (needs to be created) - Custom Seed file, accepts any phrases or numbers up to 2^63-1.
 
 highscore.dat - Highscore (appears after run ends, either by dying or defeating the Doctor)
 For custom seeds the highscores are recorded in score folder, with files named after seed.
