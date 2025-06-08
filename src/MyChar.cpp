@@ -860,13 +860,7 @@ void ActMyChar_Normal(bool bKey)
 			if (CheckFlagTrait(FlagTraits::CAN_BOOST) && gKeyTrg & gKeyJump &&
 			 (gMC.boost_cnt != 0) && !(gMC.flag & 0x100) && (!gMC.pogo || !CheckFlagTrait(FlagTraits::DOUBLE_JUMP)))
 			{
-				if (CheckFlagTrait(FlagTraits::BOOSTER_0_8))
-				{
-					gMC.boost_sw = 1;
-
-					if (gMC.ym > 0x30)
-						gMC.ym /= 2;
-				} else if (CheckFlagTrait(FlagTraits::BOOSTER_2_0))
+				if (CheckFlagTrait(FlagTraits::BOOSTER_2_0))
 				{
 					if (gKey & gKeyUp)
 					{
@@ -898,6 +892,12 @@ void ActMyChar_Normal(bool bKey)
 						gMC.xm = 0;
 						gMC.ym = -0x5FF;
 					}
+				} else if (CheckFlagTrait(FlagTraits::BOOSTER_0_8))
+				{
+					gMC.boost_sw = 1;
+
+					if (gMC.ym > 0x30)
+						gMC.ym /= 2;
 				}
 			}
 
