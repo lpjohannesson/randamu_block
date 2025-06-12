@@ -210,19 +210,19 @@ void ActBullet_Frontia2(BULLET *bul, int level)
 
 void RegisterSnake(){
     gBulletTable.insert({Bullets::SNAKE_LVL_1, {
-        {4, 1, 9, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 0.25, 0.25},
+        {4, 1, 12, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 0.25, 0.25},
         ActBullet_Frontia1
     }});
     gBulletTable.insert({Bullets::SNAKE_LVL_2, {
-        {5, 2, 12, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 0.25, 0.25},
+        {6, 2, 15, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 0.25, 0.25},
         [](BULLET* bul){ ActBullet_Frontia2(bul, 2); }
     }});
     gBulletTable.insert({Bullets::SNAKE_LVL_3, {
-        {6, 3, 15, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 0.25, 0.25},
+        {8, 3, 18, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 0.25, 0.25},
         [](BULLET* bul){ ActBullet_Frontia2(bul, 3); }
     }});
     gBulletTable.insert({Bullets::SNAKE_LVL_4, {
-        {6, 4, 19, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 1, 1},
+        {8, 4, 22, 36, 5, 5, 2, 2, {8, 8, 8, 8}, 1, 1},
         [](BULLET* bul){ ActBullet_Frontia2(bul, 4); }
     }});
 
