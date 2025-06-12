@@ -132,7 +132,7 @@
         "controlled_little_man": {}, "energy_projectile_on_hit": {"chance": 3}, "little_man_spawn": {"amount": 1}, "shooting_little_man": {"bullet": 47, "rate": 9}
     },
     "866": {
-        "buffed_dash": {}, "dash_modifier": {"speed": 1.2, "duration": 1, "cooldown": 0.67}, "dash_refreshes_jump": {}, "double_jump": {}, "jump_boost": {"modifier": 1.40, "charge_modifier": 1}, "gliding_after_dash": {"duration": 0.5, "speed_multiplier": 0.17}, "gliding": {"acceleration": 1.35, "max_speed": 1.75, "fall_slowdown": 2.8}
+        "buffed_dash": {}, "dash_modifier": {"speed": 1.2, "duration": 1, "cooldown": 0.67, "dodge_cooldown": 3}, "dash_refreshes_jump": {}, "double_jump": {}, "jump_boost": {"modifier": 1.40, "charge_modifier": 1}, "gliding_after_dash": {"duration": 0.5, "speed_multiplier": 0.17}, "gliding": {"acceleration": 1.35, "max_speed": 1.75, "fall_slowdown": 2.8}
     },
     "867": {
         "explode_on_hit": {}, "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85, "dodge_visual": false}, "super_dash": {"explode": true}
