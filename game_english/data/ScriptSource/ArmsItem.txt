@@ -419,7 +419,9 @@ at refill stations.<WAI9999<END
 <KEY<MSGA silver locket in
 the shape of a fish.<NOD Empowers dash
 move, allowing it to go through
-enemies and spikes without damage.<NOD<CLR
+enemies and spikes without damage.<NOD
+This ability has a moderate
+cooldown.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0004<MSG
 Equipped Silver Locket.<NOD<WAI0003<FRE<EVE5004
 #6005
@@ -477,8 +479,10 @@ while falling to glide.<NOD
 Empowers dash move, allowing
 it to go through
 enemies and spikes without damage.<NOD
-Grants double jumps which are 
-recharged when using dash.<NOD<CLR
+This ability has a moderate
+cooldown.<NOD Grants double 
+jumps which are recharged
+when using dash.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0012<MSG
 Equipped Cape of Shadows.<NOD<WAI0003<FRE<EVE5012
 #6013
@@ -488,8 +492,9 @@ made from electrum and
 steel.<NODEmpowers dashing
 with aggression and power.<NOD
 Ramming enemies explodes them.<NOD
-Taking damage also spawns
-explosions.<NOD<CLR
+This ability has a moderate
+cooldown.<NOD Taking damage 
+also spawns explosions.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0013<MSG
 Equipped Sacred Aegis.<NOD<WAI0003<FRE<EVE5013
 #6014
@@ -654,7 +659,9 @@ from waxed copper alloy.<NOD
 Empowers dashing with
 aggression and power.<NOD
 Ramming enemies knocks <NAM
-back and gives i-frames.<NOD<CLR
+back and gives i-frames.<NOD
+This ability has a moderate
+cooldown.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0033<MSG
 Equipped Copper Bulwark.<NOD<WAI0003<FRE<EVE5033
 #6034
@@ -894,7 +901,8 @@ Fireball with damaging trail.<NOD
 Empowers dash move, allowing
 it to go through
 enemies and spikes without damage.<NOD
-Dashing also creates fire
+This ability has a moderate
+cooldown.<NOD Dashing also creates fire
 trails.<NOD Grants autofire to
 Snake and splits it into two
 projectiles.<NOD<CLR
@@ -912,8 +920,9 @@ Ramming enemies knocks <NAM
 back, gives i-frames<NOD and
 makes enemy deeply frozen, but
 makes dash cooldown longer.<NOD
-It also allows you to stop
-time for a brief moment
+This ability has a moderate
+cooldown.<NOD It also allows you 
+to stop time for a brief moment
 with Ability key.<NOD
 This has 40 seconds cooldown.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0067<MSG

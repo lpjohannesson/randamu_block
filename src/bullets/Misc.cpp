@@ -520,6 +520,36 @@ void ActBullet_Nanites(BULLET *bul)
 	bul->rect = {0,0,0,0};
 }
 
+void ActBullet_DashDodge(BULLET *bul)
+{
+	if (gMC.dashDuration <= 0){
+		bul->cond = 0;
+		return;
+	}
+
+	if (bul->act_no == 0)
+	{
+		bul->ani_no = 0;
+		bul->act_no = 1;
+	}
+	else
+	{
+		if (++bul->ani_wait > 1)
+		{
+			bul->ani_wait = 0;
+
+			if (++bul->ani_no > 3)
+			{
+				bul->ani_no = 0;
+			}
+			SetNpChar(124, gMC.x + (gMC.direct == 0 ? -1 : 1) * 4_pix, gMC.y - 6_pix, 0, bul->ani_no, 0, NULL, 0x800 + bul->ani_no*20);
+			SetNpChar(124, gMC.x + (gMC.direct == 0 ? -1 : 1) * 4_pix, gMC.y + 6_pix, 0, bul->ani_no, 0, NULL, 0x800 + bul->ani_no*20);
+		}
+	}
+		
+	bul->rect = {0,0,0,0};
+}
+
 void ActBullet_EnergyShot(BULLET *bul)
 {
 	if (++bul->count1 > bul->life_count)
@@ -1181,6 +1211,10 @@ void RegisterMiscBullets(){
     gBulletTable.insert({Bullets::NANITES_VFX, {
         {-1, 2, 100, 12, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
         ActBullet_Nanites
+    }});
+	gBulletTable.insert({Bullets::DASHDODGE_VFX, {
+        {-1, 2, 100, 12, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+        ActBullet_DashDodge
     }});
     gBulletTable.insert({Bullets::ENERGY_PROJECTILE, {
         {2, 1, 30, 36, 4, 4, 2, 2, {8, 8, 8, 8}, 0, 0},

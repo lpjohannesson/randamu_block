@@ -927,6 +927,7 @@ namespace Bullets {
 	inline constexpr int BLADE_SLASH_FAKE             = 79;
 	inline constexpr int MANNAN_ATTACK_VFX            = 94;
 	inline constexpr int NANITES_VFX                  = 86;
+	inline constexpr int DASHDODGE_VFX                = 96;
 }
 
 #endif // __COMMONDEFINES_H__

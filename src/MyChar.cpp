@@ -47,8 +47,8 @@ std::vector<std::string> characterCodenames;
 std::vector<MYCHAR_EQUIP_DEFINITION> equipVisuals;
 
 bool IsDashEquipped(){
-	return CheckFlagTrait(FlagTraits::SUPER_DASH) || CheckFlagTrait(FlagTraits::BUFFED_DASH) || CheckFlagTrait(FlagTraits::CAT_DASH) || (gMC.flag & 0x100 && CheckFlagTrait(FlagTraits::UNDERWATER_DASH))
-	|| (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9);
+	return (CheckFlagTrait(FlagTraits::SUPER_DASH) || CheckFlagTrait(FlagTraits::BUFFED_DASH) || CheckFlagTrait(FlagTraits::CAT_DASH) || (gMC.flag & 0x100 && CheckFlagTrait(FlagTraits::UNDERWATER_DASH))
+	|| (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9)) && CheckForCooldown(gCooldowns, DASHDODGE_TIMER_ID) == -1;
 }
 
 int DashDuration(){
@@ -1241,6 +1241,10 @@ void ActMyChar_Normal(bool bKey)
 		if (CheckFlagTrait(FlagTraits::CAT_DASH)){
 			gMC.ameDashState = true;
 		}
+		if (IsDashEquipped() && GetFlagTraitData<bool>(FlagTraits::DASH_MODIFIER, "dodge_visual", true)){
+			PlaySoundObject(165);
+			SetBullet(Bullets::DASHDODGE_VFX, gMC.x, gMC.y, DashCooldown() + 5);
+		}
 		if (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9)
 		{
 			int bul_no;
@@ -1288,8 +1292,10 @@ void ActMyChar_Normal(bool bKey)
 				gMC.dashLock = -1;
 				gMC.dashDuration = 0;
 				gMC.xm /= 2;
-				if (IsDashEquipped())
+				if (IsDashEquipped()){
 					gMC.shock += 10;
+					InitiateCooldown(gCooldowns, DASHDODGE_TIMER_ID);
+				}
 				if (gMC.ameDashState){
 					gMC.ameDashState = false;
 					if (gMC.flag & 1){
@@ -1371,8 +1377,10 @@ void ActMyChar_Normal(bool bKey)
 		gMC.dashLock = -1;
 		gMC.dashDuration = 0;
 		gMC.xm /= 2;
-		if (IsDashEquipped())
+		if (IsDashEquipped()){
 			gMC.shock += 10;
+			InitiateCooldown(gCooldowns, DASHDODGE_TIMER_ID);
+		}
 		if (gMC.ameDashState){
 					gMC.ameDashState = false;
 		}

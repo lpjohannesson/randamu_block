@@ -3,6 +3,7 @@
 #include "ArmsItem.h"
 #include "Caret.h"
 #include "Cooldown.h"
+#include "CommonDefines.h"
 #include "Draw.h"
 #include "Flags.h"
 #include "Flash.h"
@@ -102,7 +103,7 @@ bool DoCooldownCountdown(Cooldown& cd){
         case FLOODTIDE_ATTACK_ID:
             return false;
 
-        case DASH_TIMER_ID:
+        case DASH_TIMER_ID: case DASHDODGE_TIMER_ID:
             return gMC.dashDuration <= 0;
 
         case SHEATHING_TIMER_ID:
@@ -291,6 +292,8 @@ int CooldownDuration(int id){
             return CooldownDuration(SHEATHING_TIMER_ID)*2;
         case DOCTOR_SHOCK_ID:
             return 500;
+        case DASHDODGE_TIMER_ID:
+            return CooldownDuration(DASH_TIMER_ID)*GetFlagTraitData(FlagTraits::DASH_MODIFIER, "dodge_cooldown", 4.0f);
     }
     return 0;
 }

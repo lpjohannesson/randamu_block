@@ -36,7 +36,7 @@
         "bullet_limit_boost": {"fireball": 1, "machine_gun": 4, "bubbler": 30}, "extra_bullet_chance": {"machine_gun": 3, "gatling_gun": 3, "bubbler": 3}, "firerate_boost": {"machine_gun": 0.25, "gatling_gun": 0.25, "bubbler": 0.25}, "inaccurate_velocity_multiplier": {"bubbler_velocity": 1.21875, "bubbler_inaccuracy": 1.65625, "machine_gun_velocity": 1.2, "machine_gun_inaccuracy": 1.5}
     },
     "724": {
-        "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85}, "super_dash": {"damage": 25}
+        "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85, "dodge_visual": false, "dodge_cooldown": 5}, "super_dash": {"damage": 25}
     },
     "725": {
         "buffed_dash": {}, "dash_modifier": {"speed": 1.1, "duration": 1.15, "cooldown": 0.9}
@@ -135,7 +135,7 @@
         "buffed_dash": {}, "dash_modifier": {"speed": 1.2, "duration": 1, "cooldown": 0.67}, "dash_refreshes_jump": {}, "double_jump": {}, "jump_boost": {"modifier": 1.40, "charge_modifier": 1}, "gliding_after_dash": {"duration": 0.5, "speed_multiplier": 0.17}, "gliding": {"acceleration": 1.35, "max_speed": 1.75, "fall_slowdown": 2.8}
     },
     "867": {
-        "explode_on_hit": {}, "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85}, "super_dash": {"explode": true}
+        "explode_on_hit": {}, "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85, "dodge_visual": false}, "super_dash": {"explode": true}
     },
     "868": {
         "buffed_dash": {}, "dash_modifier": {"speed": 1.1, "duration": 1.15, "cooldown": 0.9}, "dash_flame_trail": {"rate": 3}, "propane_trail": {"rate": 7}, "buffed_snake": {}
@@ -162,7 +162,7 @@
         "chill": {"chance": 4, "cap": 80, "rate": 15, "resist_npcs": [263, 267], "resist_rate": 5}, "screen_freeze": {"amount": 450}
     },
     "876": {
-        "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85}, "super_dash": {"damage": 25, "freeze": true, "freezeTime": 320}, "timestop": {}
+        "dash_modifier": {"speed": 1.5, "duration": 1.1, "cooldown": 0.85, "dodge_visual": false, "dodge_cooldown": 4}, "super_dash": {"damage": 25, "freeze": true, "freezeTime": 320}, "timestop": {}
     },
     "877": {
         "curly_spawn": {"bullet": 43, "bullet_limit": 2}, "little_man_spawn": {"amount": 1}, "little_n_curly_team_up": {"bullet": 8, "bullet_limit": 4}

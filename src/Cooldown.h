@@ -27,6 +27,7 @@ const int SHEATHING_TIMER_ID = 11;
 const int FLOODTIDE_BOOST_ID = 12;
 const int HELLSWEEP_BOOST_ID = 13;
 const int DOCTOR_SHOCK_ID = 14;
+const int DASHDODGE_TIMER_ID = 15;
 
 void InitiateCooldown(std::vector<Cooldown>& list, int id);
 void InitiateCooldown(std::vector<Cooldown>& list, int id, int duration);

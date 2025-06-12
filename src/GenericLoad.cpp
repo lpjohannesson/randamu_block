@@ -117,7 +117,8 @@ static const struct
 	{152, "PixTone/152.pxt", SOUND_TYPE_PIXTONE},
 	{153, "PixTone/153.pxt", SOUND_TYPE_PIXTONE},
 	{154, "PixTone/154.pxt", SOUND_TYPE_PIXTONE},
-	{155, "PixTone/155.pxt", SOUND_TYPE_PIXTONE}
+	{155, "PixTone/155.pxt", SOUND_TYPE_PIXTONE},
+	{165, "PixTone/156.pxt", SOUND_TYPE_PIXTONE}
 };
 
 // Original decompiled from `PTone103.exe` - has since been modified
