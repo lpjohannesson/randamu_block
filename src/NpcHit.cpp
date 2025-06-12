@@ -948,6 +948,8 @@ bool DealDamage(NPCHAR &npc, int dmg, BULLET* bul)
 		starTarget = &npc;
 
 		gBoosteramaShoot = &npc;
+
+		gCurlyShoot = &npc;
 	}
 	
 	return true;

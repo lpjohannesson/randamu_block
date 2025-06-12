@@ -1,3 +1,4 @@
+#include "CommonDefines.h"
 #include "NpcAct.h"
 
 #include <cstddef>
@@ -20,8 +21,8 @@
 // Curly AI
 void ActNpcLittleMan(NPCHAR *npc)
 {
-	int xx, yy;
 	auto coords = MyCharCoords();
+	bool bonked = false;
 
 	Rect rcLeft[11] = {
 		{0, 96, 16, 112},
@@ -29,12 +30,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 		{0, 96, 16, 112},
 		{32, 96, 48, 112},
 		{0, 96, 16, 112},
-		{48, 96, 64, 112},
-		{64, 96, 80, 112},
-		{48, 96, 64, 112},
-		{80, 96, 96, 112},
-		{48, 96, 64, 112},
-		{144, 96, 160, 112},
+		{48, 96, 64, 112}
 	};
 
 	Rect rcRight[11] = {
@@ -43,60 +39,23 @@ void ActNpcLittleMan(NPCHAR *npc)
 		{0, 112, 16, 128},
 		{32, 112, 48, 128},
 		{0, 112, 16, 128},
-		{48, 112, 64, 128},
-		{64, 112, 80, 128},
-		{48, 112, 64, 128},
-		{80, 112, 96, 128},
-		{48, 112, 64, 128},
-		{144, 112, 160, 128},
+		{48, 112, 64, 128}
 	};
 
-	NPCHAR* targetNPC = GetClosest(npc->x, npc->y);
-	if (targetNPC != NULL && targetNPC->code_char != 69 && targetNPC->code_char != 156 && Distance(targetNPC->x, targetNPC->y, npc->x, npc->y) < 6 * 0x2000){
-		gCurlyShoot_x = targetNPC->x;
-		gCurlyShoot_y = targetNPC->y;
+	if (gCurlyShoot != NULL && npc->act_no == 1){
+		npc->tgt_x = gCurlyShoot->x;
+		npc->tgt_y = gCurlyShoot->y;
+		npc->act_no = 2;
 	} else {
-		gCurlyShoot_x = 0;
-		gCurlyShoot_y = 0;
-	}
-
-	if (npc->y < coords.second - (10 * 0x10 * 0x200))
-	{
-		if (npc->y < 16 * 0x10 * 0x200)
-		{
-			npc->tgt_x = 320 * 0x10 * 0x200;
-			npc->tgt_y = npc->y;
-		}
-		else
-		{
-			npc->tgt_x = 0;
-			npc->tgt_y = npc->y;
-		}
-	}
-	else
-	{
-		if (gCurlyShoot_wait != 0)
-		{
-			npc->tgt_x = gCurlyShoot_x;
-			npc->tgt_y = gCurlyShoot_y;
-		}
-		else
-		{
-			npc->tgt_x = gMC.x;
-			npc->tgt_y = gMC.y;
-			if (gMC.cond & 1){
-				if (targetNPC != NULL && targetNPC->code_char != 69 && targetNPC->code_char != 156 && Distance(targetNPC->x, targetNPC->y, coords.first, coords.second) < 12 * 0x2000){
-					npc->tgt_x = targetNPC->x;
-					npc->tgt_y = targetNPC->y;
-				}
-			}
+		npc->tgt_x = gMC.x + gMC.xm*30;
+		npc->tgt_y = gMC.y + gMC.ym*10;
+		npc->count2 = 1;
+		NPCHAR* passiveTarget;
+		if ((passiveTarget = GetClosest(npc->x, npc->y, 84_pix)) != NULL && (passiveTarget->damage > 0 || CheckNPCTrait(passiveTarget, NPCTraits::BONKABLE)) && !CheckNPCTrait(passiveTarget, NPCTraits::INANIMATE)){
+			gCurlyShoot = passiveTarget;
 		}
 	}
 
-	if (npc->xm < 0 && npc->flag & 1)
-		npc->xm = 0;
-	if (npc->xm > 0 && npc->flag & 4)
-		npc->xm = 0;
 	if (CheckFlagTrait(FlagTraits::CONTROLLED_LITTLE_MAN)){
 	if (gKey & gKeyLeft){
 		npc->xm -= 0x14 * 6;
@@ -106,257 +65,157 @@ void ActNpcLittleMan(NPCHAR *npc)
 	}
 	}
 
+	int acceleration;
+
 	switch (npc->act_no)
 	{
 		case 0:
-			npc->act_no = 20;
-			//Fallthrough
-		case 20:
 			npc->x = coords.first;
 			npc->y = coords.second;
-			npc->act_no = 100;
+			npc->act_no = 1;
 			npc->ani_no = 0;
+			gCurlyShoot = NULL;
 			SetNpChar(183, 0, 0, 0, 0, 0, npc, 0x100);
 
 			break;
-
-		case 40:
-			npc->act_no = 41;
-			npc->act_wait = 0;
-			npc->ani_no = 10;
-			// Fallthrough
-		case 41:
-			if (++npc->act_wait == 250)
+		case 1:
+			acceleration = 0x50;
+			if (!(npc->flag & 8))
+				acceleration /= 4;
+			if (npc->x > npc->tgt_x)
 			{
-				npc->bits &= ~NPC_INTERACTABLE;
-				npc->ani_no = 0;
+				npc->xm -= acceleration;
+			}
+			else
+			{
+				npc->xm += acceleration;
 			}
 
-			if (npc->act_wait > 400)
-			{
-				npc->act_no = 100;
-				npc->ani_no = 0;
-				SetNpChar(183, 0, 0, 0, 0, 0, npc, 0x100);
+			npc->direct = gMC.direct;
 
-				if (GetNPCFlag(563))
-					SetNpChar(182, 0, 0, 0, 0, 0, npc, 0x100);
-				else
-					SetNpChar(181, 0, 0, 0, 0, 0, npc, 0x100);
+			if (npc->flag & 1){
+				bonked = true;
+			}
+
+			if (npc->flag & 4){
+				bonked = true;
+			}
+
+			npc->ym += 0x20;
+
+			if (npc->xm > 0x3A0)
+				npc->xm = 0x3A0;
+			if (npc->xm < -0x3A0)
+				npc->xm = -0x3A0;
+
+			if (bonked && npc->flag & 8){
+				npc->ym = -0x500;
+				npc->xm = 0;
+				bonked = false;
+				PlaySoundObject(15);
 			}
 
 			break;
 
-		case 100:
-			npc->ani_no = 0;
-			npc->xm = (npc->xm * 3) / 4;
-			npc->count1 = 0;
-
-			if (npc->x > npc->tgt_x + (8 * 0x200))
+		case 2:
+			int acceleration = 0x70;
+			if (npc->x > gCurlyShoot->x + gCurlyShoot->xm * 3)
 			{
-				npc->act_no = 200;
-				npc->ani_no = 1;
+				npc->xm -= acceleration;
 				npc->direct = 0;
-				npc->act_wait = Random(10, 30);
 			}
-			else if (npc->x < npc->tgt_x - (8 * 0x200)) 
+			else
 			{
-				npc->act_no = 300;
-				npc->ani_no = 1;
-				npc->direct = 2;
-				npc->act_wait = Random(10, 30);
+				npc->xm += acceleration;
+				npc->direct = 1;
 			}
 
-			break;
+			if (npc->flag & 1){
+				bonked = true;
+			}
 
-		case 200:
-			npc->xm -= 0x28;
-			npc->direct = 0;
+			if (npc->flag & 4){
+				bonked = true;
+			}
 
-			if (npc->flag & 1)
-				++npc->count1;
-			else
-				npc->count1 = 0;
+			npc->ym += 0xA;
+			if (npc->y < gCurlyShoot->y)
+				npc->ym += 0x50;
 
-			break;
+			if (npc->xm > 0x5FF)
+				npc->xm = 0x5FF;
+			if (npc->xm < -0x5FF)
+				npc->xm = -0x5FF;
 
-		case 210:
-			npc->xm -= 0x28;
-			npc->direct = 0;
+			if ((bonked || Distance(npc->x, npc->y, gCurlyShoot->x, gCurlyShoot->y) < 0x4000) && npc->flag & 8){
+				npc->ym = -0x550;
+				npc->xm = 0;
+				bonked = false;
+				PlaySoundObject(15);
+			}
 
-			if (npc->flag & 8)
-				npc->act_no = 100;
-
-			break;
-
-		case 300:
-			npc->xm += 0x28;
-			npc->direct = 2;
-
-			if (npc->flag & 4)
-				++npc->count1;
-			else
-				npc->count1 = 0;
-
-			break;
-
-		case 310:
-			npc->xm += 0x28;
-			npc->direct = 2;
-
-			if (npc->flag & 8)
-				npc->act_no = 100;
+			if (gCurlyShoot == NULL || !(gCurlyShoot->cond & 0x80)){
+				npc->act_no = 1;
+				gCurlyShoot = NULL;
+			}
 
 			break;
 	}
 
-	int tpDistance = 10 * 16_pix;
+	int tpDistance = (gCurlyShoot != NULL ? 13 : 8) * 16_pix;
 
 	if (Distance(npc->x, npc->y, coords.first, coords.second) > tpDistance){
 		npc->x = coords.first;
 		npc->y = coords.second;
 		SetNpChar(4, coords.first, coords.second, 0, 0, 0, NULL, 0x100);
+		gCurlyShoot = NULL;
+		npc->act_no = 1;
 	}
 
-	if (gCurlyShoot_wait != 0)
-		--gCurlyShoot_wait;
-
-	if (gCurlyShoot_wait == 10)
-		npc->count2 = 10;
-
-	if ((gCurlyShoot_wait == 5 || ((gMC.cond & 1) && std::abs(npc->y - npc->tgt_y) >= 24_pix)) && npc->flag & 8 && (Random(0, 2) || (CheckFlagTrait(FlagTraits::CONTROLLED_LITTLE_MAN) && gKeyTrg & gKeyJump)))
+	if (npc->flag & 8 && (std::abs(npc->y - npc->tgt_y) >= 24_pix || (CheckFlagTrait(FlagTraits::CONTROLLED_LITTLE_MAN) && gKeyTrg & gKeyJump)))
 	{
-		npc->count1 = 0;
-		npc->ym = -0x700;
+		npc->ym = -0x600;
 		npc->ani_no = 1;
-		gCurlyShoot_wait = 20;
-
-		if (npc->x > npc->tgt_x)
-			npc->act_no = 210;
-		else
-			npc->act_no = 310;
+		PlaySoundObject(15);
 	}
+
 	if (CheckFlagTrait(FlagTraits::SHOOTING_LITTLE_MAN) && 
-	++npc->exp % GetFlagTraitData<int>(FlagTraits::SHOOTING_LITTLE_MAN, "rate", 9) == 0 
-	&& npc->xm != 0 && gCurlyShoot_x != 0 && gCurlyShoot_y != 0){
-			BULLET *bul = SetBullet(GetFlagTraitData<int>(FlagTraits::SHOOTING_LITTLE_MAN, "bullet"), npc->x,  npc->y);
-						if (bul != NULL){
-						bul->tgt_x = gCurlyShoot_x + Random(-0x2000 * 3.5, 0x2000 * 3.5);
-						bul->tgt_y = gCurlyShoot_y + Random(-0x2000 * 3.5, 0x2000 * 3.5);
-						}
+	npc->exp % GetFlagTraitData<int>(FlagTraits::SHOOTING_LITTLE_MAN, "rate", 9) == 0 
+	&& npc->xm != 0 && gCurlyShoot != NULL){
+		BULLET *bul = SetBullet(GetFlagTraitData<int>(FlagTraits::SHOOTING_LITTLE_MAN, "bullet"), npc->x,  npc->y);
+		if (bul != NULL){
+			bul->tgt_x = gCurlyShoot->x + Random(-0x2000 * 3.5, 0x2000 * 3.5);
+			bul->tgt_y = gCurlyShoot->y + Random(-0x2000 * 3.5, 0x2000 * 3.5);
+		}
 	}
 
-	xx = npc->x - npc->tgt_x;
-	yy = npc->y - npc->tgt_y;
-
-	if (xx < 0)
-		xx *= -1;
-
-	if (npc->act_no == 100)
-	{
-		if (xx + (2 * 0x200) < yy)
-			npc->ani_no = 5;
-		else
-			npc->ani_no = 0;
-	}
-
-	if (npc->act_no == 210 || npc->act_no == 310)
-	{
-		if (xx + (2 * 0x200) < yy)
-			npc->ani_no = 6;
-		else
-			npc->ani_no = 1;
-	}
-
-	if (npc->act_no == 200 || npc->act_no == 300)
+	if (npc->flag & 8)
 	{
 		++npc->ani_wait;
 
-		if (xx + (2 * 0x200) < yy)
-			npc->ani_no = 6 + (npc->ani_wait / 4 % 4);
-		else
-			npc->ani_no = 1 + (npc->ani_wait / 4 % 4);
+		npc->ani_no = 1 + (npc->ani_wait / 4 % 4);
+	} else {
+		npc->ani_no = 0;
+	}
 
-		if (npc->act_wait)
-		{
-			--npc->act_wait;
-
-#ifdef FIX_BUGS
-			// I assume this is what was intended
-			if (npc->flag & 8 && (npc->count1 > 5 || (CheckFlagTrait(FlagTraits::CONTROLLED_LITTLE_MAN) && gKeyTrg & gKeyJump)))
-#else
-			if (npc->flag && 8 && npc->count1 > 10)
-#endif
-			{
-				npc->count1 = 0;
-				npc->ym = -0x780;
-				npc->act_no += 10;
-				npc->ani_no = 1;
-				PlaySoundObject(15, SOUND_MODE_PLAY);
+	if (++npc->exp % 15 == 0){
+		if (npc->exp % 45 == 0 && gCurlyShoot != NULL)
+			SetNpChar(333, gCurlyShoot->x, gCurlyShoot->y, 0, 0, 3, NULL, 0x100);
+		NPCHAR* target = FindNpCharHere(npc->x + npc->xm, npc->y + npc->ym, 12_pix, 12_pix);
+		if (target != NULL){
+			if (target->code_char != 69 && target->code_char != 156){
+				DealDamage(*target, 6);
+				npc->ym = -0x480;
+				npc->xm = 0;
 			}
 		}
-		else
-		{
-			npc->act_no = 100;
-			npc->ani_no = 0;
-		}
 	}
-
-	if (npc->act_no >= 100 && npc->act_no < 500)
-	{
-		if (npc->x < coords.first - (40 * 0x200) || npc->x > coords.first + (40 * 0x200))
-		{
-#ifdef FIX_BUGS
-			if (npc->flag & 5)
-#else
-			if (npc->flag && 5)
-#endif
-				npc->ym += 0x10;
-			else
-				npc->ym += 0x33;
-		}
-		else
-		{
-			npc->ym += 0x33;
-		}
-	}
-
-	if (npc->exp % 4 == 0){
-		if (gMC.cond & 1 && npc->exp % 40 == 0)
-			SetNpChar(333, npc->tgt_x, npc->tgt_y, 0, 0, 3, NULL, 0x100);
-		NPCHAR* target = FindNpCharHere(npc->x, npc->y, 6_pix, 6_pix);
-		if (target != NULL){
-			if (target->code_char != 69 && target->code_char != 156)
-				DealDamage(*target, gMC.cond & 1 ? 5 : 2);
-		}
-	}
-
-	if (npc->xm > 0x300)
-		npc->xm = 0x300;
-	if (npc->xm < -0x300)
-		npc->xm = -0x300;
 
 	if (npc->ym > 0x5FF)
 		npc->ym = 0x5FF;
 
 	npc->x += npc->xm;
 	npc->y += npc->ym;
-
-	if (npc->act_no >= 100 && !(npc->flag & 8))
-	{
-		switch (npc->ani_no)
-		{
-			case 1000:
-				break;
-
-			default:
-				if (xx + (2 * 0x200) < yy)
-					npc->ani_no = 6;
-				else
-					npc->ani_no = 1;
-
-				break;
-		}
-	}
 
 	if (npc->direct == 0)
 		npc->rect = rcLeft[npc->ani_no];

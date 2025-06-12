@@ -1,4 +1,10 @@
 {
+    "0": {
+        "inanimate": {}
+    },
+    "1": {
+        "inanimate": {}
+    },
     "6": {
         "bonkable": {}, "living": {}
     },
@@ -12,7 +18,7 @@
         "bonkable": {}, "living": {}
     },
     "30": {
-        "ethereal": {}, "immune_to_knockback": {}
+        "ethereal": {}, "immune_to_knockback": {}, "inanimate": {}
     },
     "35": {
         "bonkable": {}, "immune_to_knockback": {}, "living": {}
@@ -71,6 +77,9 @@
     "158": {
         "bonkable": {}
     },
+    "170": {
+        "inanimate": {}
+    },
     "173": {
         "bonkable": {}, "living": {}
     },
@@ -100,6 +109,9 @@
     },
     "200": {
         "bonkable": {}, "living": {}
+    },
+    "202": {
+        "inanimate": {}
     },
     "206": {
         "bonkable": {}, "living": {}
