@@ -773,7 +773,7 @@ void ActNpcSemiHomingProjectile(NPCHAR *npc)
 	}
 	
 	if (++npc->act_wait > 40){
-		npc->damage = 5;
+		npc->damage = 8;
 		npc->bits &= ~NPC_IGNORE_SOLIDITY;
 		if (npc->x > gMC.x)
 			npc->xm -= 0x40;
