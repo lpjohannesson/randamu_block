@@ -6,6 +6,7 @@
 #include <cstring>
 #include <cmath>
 #include <string>
+#include <vector>
 
 #include "ArmsItem.h"
 #include "BossLife.h"
@@ -194,7 +195,7 @@ bool IsEmpty(int x, int y){
 }
 
 bool IsSolid(int x, int y){
-	if (!InsideMap(x, y)) return false;
+	if (!InsideMap(x, y)) return true;
     return (GetAttribute(x + y * gMap.width) >= 0x41 && GetAttribute(x + y * gMap.width) != 0x60);
 }
 
@@ -219,6 +220,26 @@ int XCoord(int cell){
 
 int YCoord(int cell){
 	return cell / gMap.width;
+}
+
+bool IsObstructed(int x1, int y1, int x2, int y2){
+	int m_new = 2 * (y2 - y1);
+    int slope_error_new = m_new - (x2 - x1);
+    for (int x = x1 / 1_pix, y = y1 / 1_pix; x <= x2 / 1_pix; x += 1_pix) {
+        if (IsSolid(x / 16, y / 16))
+			return true;
+
+        // Add slope to increment angle formed
+        slope_error_new += m_new;
+
+        // Slope error reached limit, time to
+        // increment y and update slope error.
+        if (slope_error_new >= 0) {
+            y++;
+            slope_error_new -= 2 * (x2 - x1);
+        }
+    }
+	return false;
 }
 
 bool LoadAttributeData(const char *path_atrb)

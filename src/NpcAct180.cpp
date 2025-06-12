@@ -49,9 +49,9 @@ void ActNpcLittleMan(NPCHAR *npc)
 	} else {
 		npc->tgt_x = gMC.x + gMC.xm*30;
 		npc->tgt_y = gMC.y + gMC.ym*10;
-		npc->count2 = 1;
+		npc->act_no = 1;
 		NPCHAR* passiveTarget;
-		if ((passiveTarget = GetClosest(npc->x, npc->y, 84_pix)) != NULL && (passiveTarget->damage > 0 || CheckNPCTrait(passiveTarget, NPCTraits::BONKABLE)) && !CheckNPCTrait(passiveTarget, NPCTraits::INANIMATE)){
+		if ((passiveTarget = GetClosest(npc->x, npc->y, 84_pix)) != NULL && !IsObstructed(npc->x, npc->y, passiveTarget->x, passiveTarget->y) && (passiveTarget->damage > 0 || CheckNPCTrait(passiveTarget, NPCTraits::BONKABLE)) && !CheckNPCTrait(passiveTarget, NPCTraits::INANIMATE)){
 			gCurlyShoot = passiveTarget;
 		}
 	}
@@ -154,7 +154,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 				PlaySoundObject(15);
 			}
 
-			if (gCurlyShoot == NULL || !(gCurlyShoot->cond & 0x80)){
+			if (gCurlyShoot == NULL || IsObstructed(npc->x, npc->y, gCurlyShoot->x, gCurlyShoot->y) || !(gCurlyShoot->cond & 0x80)){
 				npc->act_no = 1;
 				gCurlyShoot = NULL;
 			}

@@ -38,6 +38,7 @@ bool HasCeiling(int x, int y);
 bool HasWall(int x, int y);
 int YCoord(int cell);
 int XCoord(int cell);
+bool IsObstructed(int x1, int y1, int x2, int y2);
 
 bool LoadAttributeData(const char *path_atrb);
 void EndMapData(void);
