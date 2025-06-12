@@ -39,9 +39,9 @@ void ActNpc340(NPCHAR *npc)
 			SetNpChar(341, npc->x, npc->y - (16 * 0x200), 0, 0, 0, npc, 0x100);
 			switch (gMC.difficulty)
 			{
-			case DIFFICULTY_REINFORCED:
-				npc->life = 1400;
-				break;
+				case DIFFICULTY_REINFORCED: case DIFFICULTY_RESONANT:
+					npc->life = 2100;
+					break;
 			}
 			break;
 
@@ -154,13 +154,11 @@ void ActNpc340(NPCHAR *npc)
 			npc->ani_wait = 0;
 			npc->ym = 0;
 			npc->damage = 15;
-			if (gMC.difficulty > DIFFICULTY_HARDENED){
 			for (int deg = 0; deg < 0x100; deg += 0x8 * 4)
 			{
 				int xm = GetCos(deg) * 3;
 				int ym = GetSin(deg) * 3;
 				SetNpChar(266, npc->x, npc->y, xm, ym, 1, NULL, 0x100);
-			}
 			}
 
 			if (gMC.x < npc->x)
@@ -172,9 +170,9 @@ void ActNpc340(NPCHAR *npc)
 			// Fallthrough
 		case 211:
 			if (npc->direct == 0)
-				npc->xm = -0x800;
+				npc->xm = -0x900;
 			else
-				npc->xm = 0x800;
+				npc->xm = 0x900;
 
 			if (++npc->act_wait / 2 % 2)
 				npc->ani_no = 6;
@@ -199,6 +197,10 @@ void ActNpc340(NPCHAR *npc)
 				SetQuake2(10);
 				PlaySoundObject(26, SOUND_MODE_PLAY);
 				SetNpChar(332, npc->x - (12 * 0x200), npc->y + (12 * 0x200), 0, 0, 0, NULL, 0x100);
+			}
+
+			if (npc->act_wait % 6 == 0 && gMC.difficulty > DIFFICULTY_HARDENED){
+				SetNpChar(209, npc->x, npc->y, 0, 0, 0, NULL, 0x100);
 			}
 
 			if (npc->count1 < 4 && gMC.x > npc->x - (16 * 0x200) && gMC.x < npc->x + (16 * 0x200))
@@ -230,17 +232,15 @@ void ActNpc340(NPCHAR *npc)
 			npc->damage = 15;
 			npc->direct = 0;
 			PlaySoundObject(25, SOUND_MODE_PLAY);
-			if (gMC.difficulty > DIFFICULTY_HARDENED){
 			for (int deg = 0; deg < 0x100; deg += 0x8 * 4)
 			{
 				int xm = GetCos(deg) * 3;
 				int ym = GetSin(deg) * 3;
 				SetNpChar(266, npc->x, npc->y, xm, ym, 1, NULL, 0x100);
 			}
-			}
 			// Fallthrough
 		case 221:
-			npc->ym = -0x800;
+			npc->ym = -0x900;
 
 			if (++npc->act_wait / 2 % 2)
 				npc->ani_no = 8;
@@ -265,6 +265,10 @@ void ActNpc340(NPCHAR *npc)
 				SetNpChar(332, npc->x + (12 * 0x200), npc->y - (12 * 0x200), 0, 0, 2, NULL, 0x100);
 				SetQuake2(10);
 				PlaySoundObject(26, SOUND_MODE_PLAY);
+			}
+
+			if (npc->act_wait % 8 == 0 && gMC.difficulty > DIFFICULTY_HARDENED){
+				SetNpChar(209, npc->x, npc->y, 0, 0, 0, NULL, 0x100);
 			}
 
 			if (npc->count1 < 4 && gMC.y > npc->y - (16 * 0x200) && gMC.y < npc->y + (16 * 0x200))
@@ -296,17 +300,15 @@ void ActNpc340(NPCHAR *npc)
 			npc->damage = 15;
 			npc->direct = 2;
 			PlaySoundObject(25, SOUND_MODE_PLAY);
-			if (gMC.difficulty > DIFFICULTY_HARDENED){
 			for (int deg = 0; deg < 0x100; deg += 0x8 * 6)
 			{
 				int xm = GetCos(deg) * 2.5;
 				int ym = GetSin(deg) * 2.5;
 				SetNpChar(266, npc->x, npc->y, xm, ym, 1, NULL, 0x100);
 			}
-			}
 			// Fallthrough
 		case 231:
-			npc->ym = 0x800;
+			npc->ym = 0x900;
 
 			if (++npc->act_wait / 2 % 2)
 				npc->ani_no = 8;
@@ -334,6 +336,10 @@ void ActNpc340(NPCHAR *npc)
 				SetNpChar(332, npc->x + (12 * 0x200), npc->y + (12 * 0x200), 0, 0, 2, NULL, 0x100);
 				SetQuake2(10);
 				PlaySoundObject(26, SOUND_MODE_PLAY);
+			}
+
+			if (npc->act_wait % 8 == 0 && gMC.difficulty > DIFFICULTY_HARDENED){
+				SetNpChar(209, npc->x, npc->y, 0, 0, 0, NULL, 0x100);
 			}
 
 			if (npc->count1 < 4 && gMC.y > npc->y - (16 * 0x200) && gMC.y < npc->y + (16 * 0x200))

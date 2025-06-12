@@ -944,8 +944,9 @@ void ActNpc333(NPCHAR *npc)
 			else
 				npc->ani_no = 1;
 
-			if (npc->direct == 0 && npc->act_wait == 20)
-				SetNpChar(146, npc->tgt_x, npc->tgt_y, 0, 0, 0, NULL, 0x100);
+			if (npc->direct == 0 && npc->act_wait == 20){
+				SetNpChar(218, npc->tgt_x, npc->tgt_y - (gMC.difficulty > DIFFICULTY_HARDENED ? 150_pix : 200_pix), gMC.xm / 2, 0x700, 0, NULL, 0x100);
+			}
 
 			if (npc->act_wait > 40)
 				npc->cond = 0;
