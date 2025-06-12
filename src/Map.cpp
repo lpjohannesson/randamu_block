@@ -223,21 +223,40 @@ int YCoord(int cell){
 }
 
 bool IsObstructed(int x1, int y1, int x2, int y2){
-	int m_new = 2 * (y2 - y1);
-    int slope_error_new = m_new - (x2 - x1);
-    for (int x = x1 / 1_pix, y = y1 / 1_pix; x <= x2 / 1_pix; x += 1_pix) {
-        if (IsSolid(x / 16, y / 16))
+	// Calculate dx and dy
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+
+    int step;
+
+    // If dx > dy we will take step as dx
+    // else we will take step as dy to draw the complete
+    // line
+    if (abs(dx) > abs(dy))
+        step = abs(dx);
+    else
+        step = abs(dy);
+
+    // Calculate x-increment and y-increment for each step
+    float x_incr = (float)dx / step;
+    float y_incr = (float)dy / step;
+
+    // Take the initial points as x and y
+    float x = x1;
+    float y = y1;
+
+	auto lineRound = [](float n){
+		if (n - (int)n < 0.5)
+        	return (int)n;
+    	return (int)(n + 1);
+	};
+
+    for (int i = 0; i < step; i++) {
+        if (IsSolid(lineRound(x / 16_pix), (lineRound(y / 16_pix))))
 			return true;
-
-        // Add slope to increment angle formed
-        slope_error_new += m_new;
-
-        // Slope error reached limit, time to
-        // increment y and update slope error.
-        if (slope_error_new >= 0) {
-            y++;
-            slope_error_new -= 2 * (x2 - x1);
-        }
+        x += x_incr;
+        y += y_incr;
+        // delay(10);
     }
 	return false;
 }
