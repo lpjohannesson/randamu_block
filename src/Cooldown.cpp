@@ -84,7 +84,7 @@ void PutCooldownList(std::vector<Cooldown>& list){
     for (auto& cooldown: list){
         Rect rcCooldownIcon = {((1 + cooldown.id) % 16) * 16, 0 + ((1 + cooldown.id) / 16)*16, 16 + ((1 + cooldown.id) % 16)*16, 16 + ((1 + cooldown.id) / 16)*16};
         float cooldownDuration = (((float)cooldown.duration)/((float)CooldownDuration(cooldown.id)));
-        if (IsCooldownReversed){
+        if (IsCooldownReversed(cooldown)){
             cooldownDuration = 1.0f - cooldownDuration;
         }
         Rect rcCooldownDuration = {0, 0 + (int)(16.0f*cooldownDuration), 16, 16};
