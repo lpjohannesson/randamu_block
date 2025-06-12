@@ -1672,14 +1672,16 @@ void ActNpcLaserGaudi(NPCHAR *npc)
 			npc->count1 = npc->x - gMC.x;
 			npc->count2 = npc->y - gMC.y;
 
-			if (npc->act_wait != 0)
-			{
-				--npc->act_wait;
-			}
-			else
-			{
-				npc->act_no = 2;
-				npc->ani_no = 18;
+			if (!IsObstructed(npc->x, npc->y, gMC.x, gMC.y)){
+				if (npc->act_wait != 0)
+				{
+					--npc->act_wait;
+				}
+				else
+				{
+					npc->act_no = 2;
+					npc->ani_no = 18;
+				}
 			}
 
 			break;
