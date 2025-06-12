@@ -1204,9 +1204,9 @@ void ActNpc339(NPCHAR *npc)
 	{
 		case 0:
 			npc->act_no = 1;
-			npc->act_wait = Random(0, 40);
+			npc->act_wait = Random(0, 50);
 			if (gMC.difficulty > DIFFICULTY_HARDENED){
-				npc->act_wait = Random(0, 150);
+				npc->act_wait = Random(0, 100);
 			}
 			// Fallthrough
 		case 1:

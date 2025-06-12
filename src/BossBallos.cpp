@@ -18,9 +18,9 @@
 int Ballos1_HealthValue(){
 	switch (gMC.difficulty){
 		default:
-			return 800;
-		case DIFFICULTY_REINFORCED:
-			return 900;
+			return 1200;
+		case DIFFICULTY_REINFORCED: case DIFFICULTY_RESONANT:
+			return 1000;
 	}
 }
 
@@ -28,7 +28,7 @@ int Ballos2_HealthValue(){
 	switch (gMC.difficulty){
 		default:
 			return 1600;
-		case DIFFICULTY_REINFORCED:
+		case DIFFICULTY_REINFORCED: case DIFFICULTY_RESONANT:
 			return 2300;
 	}
 }
@@ -238,7 +238,7 @@ void ActBossChar_Ballos(void)
 		case 101:
 			++npc->act_wait;
 
-			if (npc->act_wait > 30)
+			if (npc->act_wait > 50)
 				npc->act_no = 102;
 
 			break;
@@ -260,7 +260,7 @@ void ActBossChar_Ballos(void)
 				PlaySoundObject(44, SOUND_MODE_PLAY);
 
 				if (gMC.y > npc->y + (48 * 0x200) && gMC.x < npc->x + (24 * 0x200) && gMC.x > npc->x - (24 * 0x200))
-					DamageMyChar(16);
+					DamageMyChar(24);
 
 				for (i = 0; i < 0x10; ++i)
 				{
@@ -299,7 +299,7 @@ void ActBossChar_Ballos(void)
 
 			if (npc->count1 % 3 == 0)
 				npc->act_wait = 120;
-			else if (gMC.difficulty < DIFFICULTY_REINFORCED)
+			else
 				npc->act_wait = 40;
 			// Fallthrough
 		case 203:
@@ -311,22 +311,22 @@ void ActBossChar_Ballos(void)
 				npc->ym = -0xC00;
 
 				if (npc->x < gMC.x)
-					npc->xm = 0x200;
+					npc->xm = 0x300;
 				else
-					npc->xm = -0x200;
+					npc->xm = -0x300;
 			}
 
 			break;
 
 		case 204:
 			if (npc->x < 80 * 0x200)
-				npc->xm = 0x200;
+				npc->xm = 0x350;
 			if (npc->x > 544 * 0x200)
-				npc->xm = -0x200;
+				npc->xm = -0x350;
 
 			npc->ym += 0x55;
 			if (gMC.difficulty > DIFFICULTY_HARDENED){
-				npc->ym -= 0x21;
+				npc->ym -= 0x10;
 			}
 			if (npc->ym > 0xC00)
 				npc->ym = 0xC00;
@@ -342,15 +342,29 @@ void ActBossChar_Ballos(void)
 				npc->act_wait = 0;
 
 				if (gMC.y > npc->y + (56 * 0x200))
-					DamageMyChar(16);
+					DamageMyChar(24);
 
 				if (gMC.flag & 8)
 					gMC.ym = -0x200;
+				
+				if (Random(0, 2) == 0){
+					for (int i = 0; i < Random(125, 275); i++){
+						SetNpChar(38, 2 * 16_pix + Random(2, 8) * 1_pix, 15 * 16_pix + Random(-32, 32)*1_pix, Random(0x100, 0xBB0), 0, 0, NULL, 0x100);
+					}
+				} else {
+					for (int i = 0; i < Random(125, 275); i++){
+						SetNpChar(38, 38 * 16_pix - Random(2, 8) * 1_pix, 15 * 16_pix + Random(-32, 32)*1_pix, -Random(0x100, 0xBB0), 0, 0, NULL, 0x100);
+					}
+				}
+
+				if (gMC.difficulty > DIFFICULTY_HARDENED){
+					int deg = GetArktan(gMC.x - (gMC.x + gMC.xm), gMC.y - 2 * 16_pix);
+					SetNpChar(218, gMC.x, 2 * 16_pix, GetCos(deg-16), 0xA0, 0, NULL, 0x100);
+					SetNpChar(218, gMC.x, 2 * 16_pix, GetCos(deg+16), 0xA0, 0, NULL, 0x100);
+				}
 
 				SetQuake2(30);
 				PlaySoundObject(26, SOUND_MODE_PLAY);
-				SetNpChar(332, npc->x - (12 * 0x200), npc->y + (52 * 0x200), 0, 0, 0, NULL, 0x100);
-				SetNpChar(332, npc->x + (12 * 0x200), npc->y + (52 * 0x200), 0, 0, 2, NULL, 0x100);
 				PlaySoundObject(44, SOUND_MODE_PLAY);
 
 				for (i = 0; i < 0x10; ++i)
