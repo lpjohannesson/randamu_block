@@ -47,7 +47,7 @@ void ActNpcLittleMan(NPCHAR *npc)
 		npc->tgt_y = gCurlyShoot->y;
 		npc->act_no = 2;
 	} else {
-		npc->tgt_x = gMC.x + gMC.xm*30;
+		npc->tgt_x = gMC.x + gMC.xm*30 + Random(-6_pix, 6_pix);
 		npc->tgt_y = gMC.y + gMC.ym*10;
 		npc->act_no = 1;
 		NPCHAR* passiveTarget;
