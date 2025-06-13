@@ -18,7 +18,7 @@ int Ironhead_HealthValue(){
 	switch (gMC.difficulty){
 		default:
 			return 1000;
-		case DIFFICULTY_REINFORCED:
+		case DIFFICULTY_REINFORCED: case DIFFICULTY_RESONANT:
 			return 1100;
 	}
 }
