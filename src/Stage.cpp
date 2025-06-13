@@ -2412,10 +2412,14 @@ void CreateBoss(GenerationContext& genContext, GenerationArguments& genArguments
 			y1 = y + h - 2;
 			int bossID;
 			bossID = bossNPCsList[Random(0, bossNPCsList.size()-1, RandomCategories::SEEDED_NPCS)];
-			if (!GetNPCFlag(Flags::LEVEL_BOSS_DEFEATED))
-				SetNpChar(bossID, x1 * 0x2000, y1 * 0x2000 + (bossID == 44 ? 0x200 * 8 : 0), 0, 0, gMC.direct, NULL, 0x100, 7000,
-						NPC_SOLID_SOFT | NPC_SHOOTABLE | NPC_SHOW_DAMAGE, Flags::LEVEL_BOSS_DEFEATED);
-			else
+			if (!GetNPCFlag(Flags::LEVEL_BOSS_DEFEATED)){
+				auto boss = CreateNpChar(bossID, x1 * 0x2000, y1 * 0x2000 + (bossID == 44 ? 0x200 * 8 : 0), 0, 0, gMC.direct, NULL, 0x100);
+				boss->code_event = 7000;
+				boss->bits |= NPC_SOLID_SOFT | NPC_SHOOTABLE | NPC_SHOW_DAMAGE;
+				boss->code_flag = Flags::LEVEL_BOSS_DEFEATED;
+				if (gMC.depth >= genContext.bossRate*2)
+					boss->life *= 1.33f;
+			} else
 				SetNpChar(18, x1 * 0x2000, y1 * 0x2000, 0, 0, 0, NULL, 0, 99, NPC_INTERACTABLE);
 		}
 	}
