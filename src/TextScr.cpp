@@ -792,16 +792,12 @@ int ActualTextScriptProc(void)
 						switch (gMC.difficulty)
 						{
 						case DIFFICULTY_HARDENED:
-							itemLimit = 10;
+							itemLimit = 12;
 							itemLimitEvent = 5500;
 							break;
-						case DIFFICULTY_REINFORCED:
-							itemLimit = 7;
+						case DIFFICULTY_REINFORCED: case DIFFICULTY_RESONANT:
+							itemLimit = 8;
 							itemLimitEvent = 5501;
-							break;
-						case DIFFICULTY_RESONANT:
-							itemLimit = 5;
-							itemLimitEvent = 5502;
 							break;
 						}
 						int equippedItems = std::count_if(std::begin(gItemData), std::end(gItemData), [](ITEM item)
