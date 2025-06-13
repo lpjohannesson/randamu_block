@@ -191,7 +191,7 @@ void ActNpcDoctorP1(NPCHAR *npc)
 	int maxLife = npc->life;
 	switch (gMC.difficulty)
 	{
-	case DIFFICULTY_REINFORCED:
+	case DIFFICULTY_REINFORCED: case DIFFICULTY_RESONANT:
 		maxLife = 1000;
 		break;
 	}
@@ -617,7 +617,7 @@ void ActNpcDoctorP2(NPCHAR *npc)
 	int maxLife = npc->life;
 	switch (gMC.difficulty)
 	{
-	case DIFFICULTY_REINFORCED:
+	case DIFFICULTY_REINFORCED: case DIFFICULTY_RESONANT:
 		maxLife = 1150;
 		break;
 	}
