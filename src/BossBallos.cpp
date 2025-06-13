@@ -27,9 +27,9 @@ int Ballos1_HealthValue(){
 int Ballos2_HealthValue(){
 	switch (gMC.difficulty){
 		default:
-			return 1600;
+			return 1800;
 		case DIFFICULTY_REINFORCED: case DIFFICULTY_RESONANT:
-			return 2300;
+			return 2750;
 	}
 }
 
@@ -740,7 +740,7 @@ void ActBossChar_Ballos(void)
 			npc->act_wait = 0;
 			int butes = 8;
 			if (gMC.difficulty > DIFFICULTY_HARDENED){
-				butes = 14;
+				butes = 12;
 			}
 
 			for (int deg = 0; deg < 0x100; deg += 0x8 * 2)

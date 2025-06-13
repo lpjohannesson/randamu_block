@@ -642,10 +642,7 @@ void ActNpc342(NPCHAR *npc)
 
 	int limit = 900;
 	if (gMC.difficulty > DIFFICULTY_HARDENED){
-		limit = 850;
-	}
-	if (gMC.difficulty > DIFFICULTY_REINFORCED){
-		limit = 800;
+		limit = 825;
 	}
 
 	unsigned char deg;
@@ -863,14 +860,16 @@ void ActNpc342(NPCHAR *npc)
 					SetNpChar(4, npc->x + (8 * 0x200), npc->y + 0x1800, 0, 0, 0, NULL, 0x100);
 					SetNpChar(4, npc->x - (8 * 0x200), npc->y + 0x1800, 0, 0, 0, NULL, 0x100);
 					if (gMC.difficulty > DIFFICULTY_HARDENED && npc->life > limit){
-						SetNpChar(333, gMC.x, 355 * 0x200, 0, 0, 0, NULL, 0x100);
+						SetNpChar(333, gMC.x, 200 * 0x200, 0, 0, 0, NULL, 0x100);
 					}
 					if (npc->life > limit){
-						int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
-						deg += (unsigned char)Random(-20, 20);
-						int ym = GetSin(deg) * 5;
-						int xm = GetCos(deg) * 5;
-						SetNpChar(266, npc->x, npc->y, xm, ym, 0, NULL, 0x100);
+						for (int i = 0; i < gMC.difficulty+1; i++){
+							int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
+							deg += (unsigned char)Random(-40, 40);
+							int ym = GetSin(deg) * 4;
+							int xm = GetCos(deg) * 4;
+							SetNpChar(266, npc->x, npc->y, xm, ym, 0, NULL, 0x100);
+						}
 					}
 					PlaySoundObject(26, SOUND_MODE_PLAY);
 				}
@@ -882,11 +881,13 @@ void ActNpc342(NPCHAR *npc)
 					SetNpChar(4, npc->x - (12 * 0x200), npc->y + (8 * 0x200), 0, 0, 0, NULL, 0x100);
 					SetNpChar(4, npc->x - (12 * 0x200), npc->y - (8 * 0x200), 0, 0, 0, NULL, 0x100);
 					if (npc->life > limit){
-						int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
-						deg += (unsigned char)Random(-20, 20);
-						int ym = GetSin(deg) * 5;
-						int xm = GetCos(deg) * 5;
-						SetNpChar(266, npc->x, npc->y, xm, ym, 0, NULL, 0x100);
+						for (int i = 0; i < (gMC.difficulty+1)*1.5; i++){
+							int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
+							deg += (unsigned char)Random(-20, 20);
+							int ym = GetSin(deg) * 3;
+							int xm = GetCos(deg) * 3;
+							SetNpChar(266, npc->x, npc->y, xm, ym, 0, NULL, 0x100);
+						}
 					}
 					PlaySoundObject(26, SOUND_MODE_PLAY);
 				}
@@ -899,11 +900,13 @@ void ActNpc342(NPCHAR *npc)
 					SetNpChar(4, npc->x - (8 * 0x200), npc->y - (12 * 0x200), 0, 0, 0, NULL, 0x100);
 					SetNpChar(345, npc->x - (8 * 0x200), npc->y - (12 * 0x200), 0, 0, 0, NULL, 0x100);
 					if (npc->life > limit){
-						int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
-						deg += (unsigned char)Random(-20, 20);
-						int ym = GetSin(deg) * 5;
-						int xm = GetCos(deg) * 5;
-						SetNpChar(266, npc->x, npc->y, xm, ym, 0, NULL, 0x100);
+						for (int i = 0; i < gMC.difficulty+1; i++){
+							int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
+							deg += (unsigned char)Random(-40, 40);
+							int ym = GetSin(deg) * 4;
+							int xm = GetCos(deg) * 4;
+							SetNpChar(266, npc->x, npc->y, xm, ym, 0, NULL, 0x100);
+						}
 					}
 					PlaySoundObject(26, SOUND_MODE_PLAY);
 				}
@@ -915,14 +918,16 @@ void ActNpc342(NPCHAR *npc)
 					SetNpChar(4, npc->x + (12 * 0x200), npc->y + (8 * 0x200), 0, 0, 0, NULL, 0x100);
 					SetNpChar(4, npc->x + (12 * 0x200), npc->y - (8 * 0x200), 0, 0, 0, NULL, 0x100);
 					if (gMC.difficulty > DIFFICULTY_HARDENED && npc->life > limit){
-						SetNpChar(333, gMC.x, 355 * 0x200, 0, 0, 0, NULL, 0x100);
+						SetNpChar(333, gMC.x, 200 * 0x200, 0, 0, 0, NULL, 0x100);
 					}
 					if (npc->life > limit){
-						int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
-						deg += (unsigned char)Random(-20, 20);
-						int ym = GetSin(deg) * 5;
-						int xm = GetCos(deg) * 5;
-						SetNpChar(266, npc->x, npc->y, xm, ym, 0, NULL, 0x100);
+						for (int i = 0; i < (gMC.difficulty+1)*1.5; i++){
+							int deg = GetArktan(npc->x - gMC.x, npc->y - gMC.y);
+							deg += (unsigned char)Random(-20, 20);
+							int ym = GetSin(deg) * 3;
+							int xm = GetCos(deg) * 3;
+							SetNpChar(266, npc->x, npc->y, xm, ym, 0, NULL, 0x100);
+						}
 					}
 					PlaySoundObject(26, SOUND_MODE_PLAY);
 				}
@@ -1301,7 +1306,7 @@ void ActNpc348(NPCHAR *npc)
 			{
 				npc->act_no = 10;
 				npc->ani_no = 0;
-				npc->damage = 2;
+				npc->damage = 5;
 			}
 
 			break;
