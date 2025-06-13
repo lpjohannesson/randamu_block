@@ -102,6 +102,85 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.45.1 (Harder Loyalty) (June 13th 2025):
+Highlights:
+- Reworked Little Man's AI:
+	* now uses Remote Controller's targeting code
+	* changed the movement pattern: instead of weasling around, now chases enemies, jumps up walls and pogoes targets
+	* now gets distracted by less objects
+	* changed the base damage from 1 to 6
+	* removed mechanic with player interact state
+- Reworked/nerfed empowered dashes:
+	* now has a cooldown, during which player can no longer dodge damage during dashing
+	* added a new visual and sound for empowered dash
+	* this also affects some other dash abilities, like Sacred Aegis
+- Increased the difficulty/variety of Ballos fight:
+	* Phase 1:
+		~ increased HP from 1000/1400 to 1600/2100
+		~ increased his movement speed by 12.5%
+		~ changed red projectile blast to be present in all difficulties
+		~ added semi-homing projectile trail to Reinforced fight
+		~ reworked lightning attack to instead summon giant plasma orbs, that are influenced by your movement
+	* Phase 2:
+		~ increased HP from 800/900 to 1200/1000
+		~ now does fire burst attacks, that can come from one of walls, instead of bone shockwaves after each jump
+		~ now spawns very slow energy balls from ceiling after jumping in Reinforced
+		~ reduced jump height and removed instant jumps in Reinforced
+		~ increased horizontal velocity by 50%
+		~ increased stomping damage from 16 to 24
+		~ changed devil spawning rate from 0-40/0-140 to 0-50/0-100
+	* Phase 3/4:
+		~ the amount of red blasts now scales with difficulty and switches between wide spread and big bursts depending on eye position
+		~ now spawns plasma balls instead of lightnings in Reinforced, like phase 1
+		~ increased eye health from 100/150/200 to 100/175
+	* Phase 4: 
+		~ increased HP from 1600/2300 to 1800/2750
+		~ reduced amount of butes by 25% in Reinforced
+		~ increased spike damage from 2 to 5
+
+Balance changes:
+- Buffed Snake:
+	* increased the lifespan by 3 frames on all levels
+	* increased damage from 4/5/6/6 to 4/6/8/8
+- Buffed the damage of various endgame entities:
+	* teleporting frog: 5 -> 7
+	* gaudi shurikens: 4 -> 6
+	* dragon spheres: 10 -> 15
+	* semi-homing projectiles: 5 -> 8
+- Changed item equip limit from 10(Hardened)/7(Reinforced)/5(Resonant) to 12(Hardened)/8(Reinforced/Resonant).
+- Second bosses in first campaign now have 33% more health.
+
+Misc:
+- Boosterama and Little Man no longer attempt to reach targets, that are behind walls.
+- Laser Gaudi no longer shoots, if the path is obstructed by walls.
+- Updated readme's info on seeds (satisfies #140).
+- Resonant now makes darkness effect even darker.
+- Grass no longer heals in Resonant.
+- Added chest mimics into Resonant:
+	* 50% of chests are mimics
+	* they appear as chests at first, but transform into critters and wake up when player comes close
+	* their stats scale with progression, gaining 1/2 damage and 8 health per depth
+	* defeating them grants normal chest loot
+- Removed ability to jump from spikes for Alien Medal and its upgrades.
+
+Bugfixes:
+- Fixed cooldown deplete rendering being in reverse this whole time.
+- Fixed Doctor and second campaign bosses not having increased health in Resonant.
+- Added Remote Controller to legacy spritesheet (fixes #142).
+- Fixed certain flag unset callbacks not applying properly (fixes #143).
+- Fallback door space cleanup process now properly cleans up space for it and adds a platform for door to sit on (fixes #144, #163 and #164).
+- Removed Sandy Chamber's leftover entities (fixes #145).
+- Battery Pack is now properly configured as passive item (fixes #146).
+- Fixed Energy Crystal multiplying the building ammo count further, than intended (fixes #147).
+- Pseudo-solid NPCs no longer push you beyond top of the stage (fixes #148).
+- Fixed damage multiplier trait not being present in the game due to typo in files (fixes #149).
+- Made fragile gimmick only seek solid blocks to prevent some infinite recursion (fixes #151).
+- Booster 2.0 gameplay now takes priority over Booster 0.8 (fixes #154).
+- Fixed inventory manipulations causing equip data corruption (fixes #156).
+- Fixed UNDERWATER_DASH trait not being able to dodge spikes, when dashing (fixes #161).
+- Tweaked some niche interactions with acidic water effect and water gun (fixes #162).
+- Time stop ability can no longer be activated when player is not in control (fixes #165).
+
 1.45 (Allied and Supported) (February 14th 2025):
 Highlights:
 - Added new item, Remote Controller:

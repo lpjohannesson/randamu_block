@@ -42,8 +42,8 @@ bool GetCompileVersion(int *v1, int *v2, int *v3, int *v4)
 {
 	*v1 = 1;
 	*v2 = 45;
-	*v3 = 0;
-	*v4 = 5;
+	*v3 = 1;
+	*v4 = 1;
 	return true;
 }
 
@@ -63,7 +63,7 @@ bool RemoveFromArray(int* array, int value, size_t array_size){
 }
 
 std::string GetVersionName(){
-	return "Allied and Supported";
+	return "Harder Loyalty";
 }
 
 bool IsBeta(){
