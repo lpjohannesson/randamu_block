@@ -1189,6 +1189,7 @@ void DetermineHitReason(int npcID){
 		case 176: case 202: gMC.deathReason = DeathReason::CORE_BASE; break;
 		case 187: case 188: case 209: gMC.deathReason = DeathReason::METAL_FUZZ; break;
 		case 200: case 218: gMC.deathReason = DeathReason::DRAGONS; break;
+		case 203: gMC.deathReason = DeathReason::MIMIC; break;
 		case 247: case 248: case 249: case 250: case 251: case 252: gMC.deathReason = DeathReason::DARK_MISERY; break;
 		case 267: gMC.deathReason = DeathReason::DOCTOR_P2; break;
 		case 276: case 277: gMC.deathReason = DeathReason::RED_DEMON; break;

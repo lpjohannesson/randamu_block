@@ -6,6 +6,7 @@
 #include "Caret.h"
 #include "Frame.h"
 #include "Game.h"
+#include "Main.h"
 #include "MyChar.h"
 #include "NpChar.h"
 #include "Sound.h"
@@ -207,37 +208,42 @@ void ActNpcFlameProjectile(NPCHAR *npc)
 // Critter (destroyed Egg Corridor)
 void ActNpc203(NPCHAR *npc)
 {
+	Rect rcChest[3] = {
+		{240, 0, 256, 16},
+		{256, 0, 272, 16},
+		{272, 0, 288, 16},
+	};
+
 	Rect rcLeft[3] = {
-		{0, 80, 16, 96},
-		{16, 80, 32, 96},
-		{32, 80, 48, 96},
+		{320, 0, 336, 16},
+		{336, 0, 352, 16},
+		{352, 0, 368, 16}
 	};
 
 	Rect rcRight[3] = {
-		{0, 96, 16, 112},
-		{16, 96, 32, 112},
-		{32, 96, 48, 112},
+		{320, 16, 336, 32},
+		{336, 16, 352, 32},
+		{352, 16, 368, 32},
 	};
 
 	switch (npc->act_no)
 	{
 		case 0:
-			npc->y += 3 * 0x200;
-			npc->act_no = 1;
-			// Fallthrough
+			npc->act_no = 11;
+			break;
 		case 1:
 			if (npc->x > gMC.x)
 				npc->direct = 0;
 			else
 				npc->direct = 2;
 
-			if (npc->act_wait >= 8 && npc->x - (112 * 0x200) < gMC.x && npc->x + (112 * 0x200) > gMC.x && npc->y - (80 * 0x200) < gMC.y && npc->y + (80 * 0x200) > gMC.y)
+			if (npc->act_wait >= 3 && npc->x - (112 * 0x200) < gMC.x && npc->x + (112 * 0x200) > gMC.x && npc->y - (80 * 0x200) < gMC.y && npc->y + (80 * 0x200) > gMC.y)
 			{
 				npc->ani_no = 1;
 			}
 			else
 			{
-				if (npc->act_wait < 8)
+				if (npc->act_wait < 4)
 					++npc->act_wait;
 
 				npc->ani_no = 0;
@@ -250,7 +256,7 @@ void ActNpc203(NPCHAR *npc)
 				npc->act_wait = 0;
 			}
 
-			if (npc->act_wait >= 8 && npc->x - (48 * 0x200) < gMC.x && npc->x + (48 * 0x200) > gMC.x && npc->y - (80 * 0x200) < gMC.y && npc->y + (48 * 0x200) > gMC.y)
+			if (npc->act_wait >= 3 && npc->x - (96 * 0x200) < gMC.x && npc->x + (96 * 0x200) > gMC.x && npc->y - (128 * 0x200) < gMC.y && npc->y + (80 * 0x200) > gMC.y)
 			{
 				npc->act_no = 2;
 				npc->ani_no = 0;
@@ -264,15 +270,15 @@ void ActNpc203(NPCHAR *npc)
 			{
 				npc->act_no = 3;
 				npc->ani_no = 2;
-				npc->ym = -0x5FF;
+				npc->ym = -0x6FF;
 
 				if (!(gMC.cond & 2))
 					PlaySoundObject(30, SOUND_MODE_PLAY);
 
 				if (npc->direct == 0)
-					npc->xm = -0x100;
+					npc->xm = -0x400;
 				else
-					npc->xm = 0x100;
+					npc->xm = 0x400;
 			}
 
 			break;
@@ -290,19 +296,65 @@ void ActNpc203(NPCHAR *npc)
 			}
 
 			break;
+		case 11:
+			npc->ani_no = 0;
+
+			if (Random(0, 30) == 0)
+				npc->act_no = 12;
+
+			break;
+
+		case 12:
+			if (++npc->ani_wait > 3)
+			{
+				npc->ani_wait = 0;
+				++npc->ani_no;
+			}
+
+			if (npc->ani_no > 2)
+			{
+				npc->ani_no = 0;
+				npc->act_no = 11;
+			}
+
+			break;
 	}
 
-	npc->ym += 0x40;
+	if (npc->act_no > 10 || npc->y - 32_pix < gMC.y)
+		npc->ym += 0x60;
 	if (npc->ym > 0x5FF)
 		npc->ym = 0x5FF;
 
 	npc->x += npc->xm;
 	npc->y += npc->ym;
 
-	if (npc->direct == 0)
-		npc->rect = rcLeft[npc->ani_no];
-	else
-		npc->rect = rcRight[npc->ani_no];
+	if (npc->act_no > 10){
+		npc->rect = rcChest[npc->ani_no];
+		if (npc->x - (24 * 0x200) < gMC.x && npc->x + (24 * 0x200) > gMC.x && npc->y - (16 * 0x200) < gMC.y && npc->y + (12 * 0x200) > gMC.y)
+		{
+			npc->act_no = 1;
+			npc->ani_no = 0;
+			npc->act_wait = -20;
+			
+			int depth = gMC.depth;
+			if (ChallengeEnabled("secondCampaign"))
+				depth += genContext.bossRate*2.5;
+			npc->damage = 3 + depth / 2;
+			npc->bits |= NPC_SHOOTABLE;
+			npc->life = 10 + depth * 8;
+			if (npc->x > gMC.x)
+				npc->direct = 0;
+			else
+				npc->direct = 2;
+			PlaySoundObject(102);
+			SetDestroyNpChar(npc->x, npc->y, 16_pix, 10);
+		}
+	} else {
+		if (npc->direct == 0)
+			npc->rect = rcLeft[npc->ani_no];
+		else
+			npc->rect = rcRight[npc->ani_no];
+	}
 }
 
 // Falling spike (small)

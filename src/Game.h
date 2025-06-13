@@ -138,7 +138,8 @@ enum DeathReason {
 	DARK_TOROKO,
 	BALLOS,
 	DROWNING,
-	FALLING_OUT
+	FALLING_OUT,
+	MIMIC
 };
 }
 

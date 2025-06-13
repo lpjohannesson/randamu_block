@@ -2021,8 +2021,13 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 					x2 = Random(0, gMap.width, RandomCategories::SEEDED_CHESTS);
 					y2 = Random(0, gMap.length, RandomCategories::SEEDED_CHESTS);
 				} while (!(HasSurface(x2, y2) && GetNpCharHere(x2, y2) == -1));
-				if (!GetNPCFlag(dropID))
-					SetNpChar(15, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 200 + tscEvent, 0x2000);
+				if (!GetNPCFlag(dropID)){
+					if (l % 2 == 0 && gMC.difficulty >= DIFFICULTY_RESONANT){
+						SetNpChar(203, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 200 + tscEvent, NPC_EVENT_WHEN_KILLED);
+					} else {
+						SetNpChar(15, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 200 + tscEvent, 0x2000);
+					}
+				}
 				else
 					SetNpChar(21, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 200 + tscEvent, 0x2000);
 				SetNPCFlag(dropID - 1);
