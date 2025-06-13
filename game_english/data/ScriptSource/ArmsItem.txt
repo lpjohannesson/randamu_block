@@ -674,9 +674,8 @@ Equipped Curly's Underwear.<NOD<WAI0003<FRE<EVE5035
 #6036
 <EQJ0036:7036<ELJ
 <KEY<MSGEngraved with the silhouette of an
-alien.<NOD Decreases damage from spike
-and allows to jump from them.
-This counts as use of double jump.<NOD<CLR
+alien.<NOD Decreases damage from
+spikes to 5.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0036<MSG
 Equipped Alien Medal.<NOD<WAI0003<FRE<EVE5036
 #6037

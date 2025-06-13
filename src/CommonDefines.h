@@ -397,8 +397,8 @@ namespace FlagTraits {
 	/// @brief Allows player to jump on spikes to avoid them.
 	/// @remark This trait's jump will count as usage of @ref #DOUBLE_JUMP "double jump".
 	/// @note The jump velocity will be lower, when activating this trait.
-	/// @todo Add parameter for jump velocity modifier.
 	/// @since 1.45
+	/// @deprecated 1.45.1
 	inline constexpr const char* JUMP_ON_SPIKES                = "jump_on_spikes";
 
 	/// @brief Removes the mechanic with spikes scaling their damage with player's health.
