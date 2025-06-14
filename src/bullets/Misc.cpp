@@ -370,28 +370,8 @@ void ActBullet_Duck(BULLET *bul)
 {
 	if (bul->act_no == 0)
 	{
-		bul->ani_no = Random(0, 2);
+		bul->ani_no = 0;
 		bul->act_no = 1;
-
-		switch (bul->direct)
-		{
-			case 0:
-				bul->xm = Random(-0x800, -0x200);
-				bul->ym = Random(-0x200, -0x80);
-				break;
-			case 1:
-				bul->ym = Random(-0x800, -0x200);
-				bul->xm = Random(-0x200, -0x202);
-				break;
-			case 2:
-				bul->xm = Random(0x200, 0x800);
-				bul->ym = Random(-0x200, -0x80);
-				break;
-			case 3:
-				bul->ym = Random(0x100, 0x500);
-				bul->xm = Random(-0x200, -0x202);
-				break;
-		}
 	}
 	else
 	{
@@ -411,11 +391,14 @@ void ActBullet_Duck(BULLET *bul)
 			bul->ani_no = 0;
 	}
 
+	if (bul->xm > 0)
+		bul->direct = 1;
+	else
+	 	bul->direct = 0;
+
 	Rect rcs[][2] = {
-		{{30, 147, 42, 157}, {30, 162, 42, 172}},
-		{{66, 147, 76, 159}, {51, 147, 61, 159}},
-		{{78, 147, 90, 157}, {78, 162, 90, 172}},
-		{{50, 161, 60, 173}, {65, 161, 75, 173}}
+		{{29, 146, 43, 158}, {29, 161, 43, 174}},
+		{{77, 146, 91, 158}, {77, 161, 91, 174}}
 	};
 
 	bul->rect = rcs[bul->direct][bul->ani_no];

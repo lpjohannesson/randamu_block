@@ -10,6 +10,7 @@
 #include "Game.h"
 #include "Map.h"
 #include "MyChar.h"
+#include "Triangle.h"
 
 STAR star[3];
 
@@ -93,7 +94,7 @@ void ActStar(void)
 
 		star[i].x += star[i].xm;
 		star[i].y += star[i].ym;
-		if (starTarget == NULL){
+		if (starTarget == NULL || !(starTarget->cond & 0x80)){
 			NPCHAR* character = GetClosest(star[i].x, star[i].y);
 			if (character != NULL && Distance(character->x, character->y, star[i].x, star[i].y) < 0x2000 * 6.0f){
 				starTarget = character;
@@ -105,15 +106,11 @@ void ActStar(void)
 		if (starTarget != NULL){
 			if (starTarget->cond & 0x80 && Distance(starTarget->x, starTarget->y, star[i].x, star[i].y) < 0x2000 * 6.0f && i <= starCount){
 				if (--star[i].act_no <= 0){
-					int dir = 0;
-					if (starTarget->x > star[i].x)
-						dir = 2;
-					else if (starTarget->y > star[i].y)
-						dir = 3;
-					else if (starTarget->y < star[i].y)
-						dir = 1;
-					SetBullet(Bullets::DUCK, star[i].x, star[i].y, dir);
-					star[i].act_no = Random(5, 25);
+					int deg = GetArktan(star[i].x - starTarget->x, star[i].y - starTarget->y);
+					auto duck = SetBullet(Bullets::DUCK, star[i].x, star[i].y);
+					duck->xm = GetCos(deg - Random(-16, 16)) * Random(1, 6);
+					duck->ym = GetSin(deg - Random(-16, 16)) * Random(1, 6);
+					star[i].act_no = Random(5, 15);
 					if (CheckFlagTrait(FlagTraits::BETTER_DUCKS)) star[i].act_no *= 2;
 				}
 			} else {
