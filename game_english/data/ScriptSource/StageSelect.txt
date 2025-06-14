@@ -92,12 +92,12 @@ gimmicks and tweaks to gameplay.<WAI9999<END
 amount of items.<WAI9999<END
 #2051
 <MSG<TURScore increase: +25%. Can't equip more
-than 10 items. Life capsules have a chance
+than 12 items. Life capsules have a chance
 to spawn with less value.<WAI9999<END
 #2052
 <MSG<TURScore increase: +75%. Can't equip more
-than 7 items.<WAI9999<END
+than 8 items.<WAI9999<END
 #2053
 <MSG<TURScore increase: +150%. Can't equip more
-than 5 items. Water is more dangerous
-and there is less experience.<WAI9999<END
+than 8 items. Level gimmicks are
+harder and there is less experience.<WAI9999<END
