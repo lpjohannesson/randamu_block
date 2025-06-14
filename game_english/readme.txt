@@ -102,6 +102,14 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.45.1.2 (June 14th 2025):
+- Updated difficulty descriptions in Select Character screen.
+- Fixed grass healing only happening in Resonant (instead of not happening in Resonant).
+- Fixed Toroko having 9 health instead of 3.
+- Buffed ducks:
+	* no longer invisible
+	* now shoot in more traditional directions, albeit inaccurately and with random speeds
+	* reduced shoot cooldown from 5-25 to 5-15 frames
 1.45.1 (Harder Loyalty) (June 13th 2025):
 Highlights:
 - Reworked Little Man's AI:
