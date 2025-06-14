@@ -1,7 +1,7 @@
 {
     "name": "Toroko",
 
-    "maxLife": 9,
+    "maxLife": 3,
 
     "physics_diff": {
         "jump" : 1.5,
