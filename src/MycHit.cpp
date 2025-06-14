@@ -937,7 +937,7 @@ void HitMyCharNpChar(void)
 		}
 
 		if (hit != 0 && gNPC[i].code_char == 30){
-			if (gMC.difficulty >= DIFFICULTY_RESONANT){
+			if (gMC.difficulty < DIFFICULTY_RESONANT){
 				if (++grassTimer > 100){
 					grassTimer = 0;
 					AddLifeMyChar(1);
