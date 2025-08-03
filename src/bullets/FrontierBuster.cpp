@@ -13,7 +13,7 @@ void ActBullet_FrontierBuster1(BULLET *bul, int level)
 	if (level == 3){
 		baseSpeed *= 0.85;
 		inaccuracy *= 3.5f;
-		bul->iframes = 3;
+		bul->local_iframes = 3;
 	}
 
 	if (++bul->count1 > bul->life_count)
@@ -291,7 +291,7 @@ void RegisterFrontierBuster(){
         ActBullet_FrontierBuster2
     }});
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_3, {
-        {2, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
+        {4, 100, 30, 36, 8, 16, 4, 2, {8, 8, 8, 8}, 0.8, 1},
         [](BULLET* bul){ ActBullet_FrontierBuster1(bul, 3); }
     }});
     gBulletTable.insert({Bullets::FRONTIER_BUSTER_LVL_4, {
