@@ -3183,7 +3183,7 @@ int Call_Pause(void)
 		{{"title_reload"}, {Callback_Save, NULL}, NULL, "", 0, !(gMC.cond != 0 && !gBL.flag && gStageNo == gGeneratedStage && IsProfile() && !ChallengeEnabled("timer"))},
 		{{"title_config"}, {Callback_Configuration, NULL}, NULL, "", 0, false},
 		{{"title_options"}, {Callback_Options, NULL}, NULL, "", 0, false},
-		{{"title_tutorial"}, {Callback_Tutorial, NULL}, NULL, "", 0, gTS.mode != 0},
+		{{"title_tutorial"}, {Callback_Tutorial, NULL}, NULL, "", 0, gTS.mode != 0 || gBL.flag},
 		{{"title_rankings"}, {Callback_Rankings, NULL}, NULL, "", 0, gRankings.size() == 0},
 		{{"title_updates"}, {Callback_ModPage, NULL}, NULL, "", 0, false},
 		{{"title_quit"}, {Callback_Quit, NULL}, NULL, "", 0, false}
