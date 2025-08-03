@@ -1,4 +1,5 @@
 #include "ArmsItem.h"
+#include <cstdint>
 #include <iterator>
 #include <algorithm>
 
@@ -729,8 +730,13 @@ int RankingLoop(void)
 		PutTextScript();
 		PutFramePerSecound();
 		int baseY = 48;
-			PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(WINDOW_WIDTH - 28), PixelToScreenCoord(WINDOW_HEIGHT - baseY), &rcSeed, SURFACE_ID_TEXT_BOX);
-			PutNumber19(WINDOW_WIDTH - 88, WINDOW_HEIGHT - baseY + 8, gRankings[selectedRank]["seed"], false);
+		uint64_t seedNumber;
+		if (gRankings[selectedRank]["version"] < 4)
+			seedNumber = gRankings[selectedRank]["seed"];
+		else
+			seedNumber = std::stoull(gRankings[selectedRank]["seed"].get<std::string>());
+		PutBitmap3_NoFlip(&rcView, PixelToScreenCoord(WINDOW_WIDTH - 28), PixelToScreenCoord(WINDOW_HEIGHT - baseY), &rcSeed, SURFACE_ID_TEXT_BOX);
+		PutNumber19(WINDOW_WIDTH - 88, WINDOW_HEIGHT - baseY + 8, seedNumber, false);
 		
 		PutText(WINDOW_WIDTH - 90, 40, GetCSE2Message("rankings_scroll_right"), RGB(0xFF, 0xFF, 0xFF));
 		PutText(WINDOW_WIDTH - 90, 54, GetCSE2Message("rankings_scroll_left"), RGB(0xFF, 0xFF, 0xFF));

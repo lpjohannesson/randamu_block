@@ -85,7 +85,7 @@ void LoadRankings(){
 void SaveRankings(){
 	auto time = std::chrono::steady_clock::now();
 	json rank;
-	rank["version"] = 3;
+	rank["version"] = 4;
 	rank["score"] = gMC.score;
 	rank["difficulty"] = gMC.difficulty;
 	rank["life"] = gMC.life <= 0 ? 0 : gMC.life;
@@ -102,7 +102,7 @@ void SaveRankings(){
 	rank["time"] = gCounter;
 	rank["arms"] = gArmsData;
 	rank["tileset"] = gMC.tileset;
-	rank["seed"] = gMC.seed;
+	rank["seed"] = std::to_string(gMC.seed);
 	rank["fast_run"] = ChallengeEnabled("fast_run");
 	rank["second_camp_start"] = ChallengeEnabled("secondCampaign");
 	rank["death"] = gMC.deathReason;

@@ -1,6 +1,7 @@
 #include "Game.h"
 
 #include <cstddef>
+#include <cstdint>
 #include <string>
 
 #include "Backends/Misc.h"
@@ -359,14 +360,14 @@ void PutNumber19(int x, int y, size_t value, bool bZero)
 	};
 
 	// Digits
-	double tbl[20];
+	uint64_t tbl[20];
 	for (int i : std::views::iota(0, 20)){
-		tbl[i] = std::pow(10, 19 - i);
+		tbl[i] = std::pow(10ULL, 19ULL - i);
 	}
 
-	int a;
-	int sw;
-	int offset;
+	std::uint64_t a;
+	std::uint64_t sw;
+	std::uint64_t offset;
 
 	// Limit value
 	if (value > std::numeric_limits<uint64_t>::max()-1)

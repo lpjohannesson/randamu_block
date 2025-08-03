@@ -88,7 +88,7 @@ bool SaveProfile(const char *name)
 	json profileJson = json::object();
 
 	// Set up profile
-	profileJson[PROFILE_VERSION] = 5;
+	profileJson[PROFILE_VERSION] = 6;
 	profileJson[PROFILE_STAGE] = gStageNo;
 	profileJson[PROFILE_X] = gMC.x;
 	profileJson[PROFILE_Y] = gMC.y;
@@ -103,7 +103,7 @@ bool SaveProfile(const char *name)
 	profileJson[PROFILE_A] = gMC.a;
 	profileJson[PROFILE_DEPTH] = gMC.depth;
 	profileJson[PROFILE_LIMIT] = gMC.lifeCapsuleLimit;
-	profileJson[PROFILE_SEED] = gMC.seed;
+	profileJson[PROFILE_SEED] = std::to_string(gMC.seed);
 	profileJson[PROFILE_SCORE] = gMC.score;
 	profileJson[PROFILE_ARMS] = gArmsData;
 	profileJson[PROFILE_ITEMS] = gItemData;
@@ -223,7 +223,10 @@ bool LoadProfile(const char *name)
 	auto pChst = profileJson[PROFILE_GEN_CHESTS].get<std::vector<int>>();
 	std::copy(pChst.begin(), pChst.end(), gMC.generatedChests);
 	gAvailableIDs = profileJson[PROFILE_AVAILABLE_IDS].get<std::vector<int>>();
-	gMC.seed = profileJson[PROFILE_SEED].get<std::uint64_t>();
+	if (version < 6)
+		gMC.seed = profileJson[PROFILE_SEED].get<std::uint64_t>();
+	else
+		gMC.seed = std::stoull(profileJson[PROFILE_SEED].get<std::string>());
 	gMC.randomSeed = false;
 	LoadRNG(profileJson);
 	gMC.x = profileJson[PROFILE_X].get<int>();
