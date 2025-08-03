@@ -341,7 +341,8 @@ void ActNpc203(NPCHAR *npc)
 				depth += genContext.bossRate*2.5;
 			npc->damage = 3 + depth / 2;
 			npc->bits |= NPC_SHOOTABLE;
-			npc->life = 10 + depth * 8;
+			npc->bits &= ~NPC_INVULNERABLE;
+			npc->life = 12 + depth * 10;
 			if (npc->x > gMC.x)
 				npc->direct = 0;
 			else

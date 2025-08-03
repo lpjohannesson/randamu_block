@@ -2024,7 +2024,7 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 				} while (!(HasSurface(x2, y2) && GetNpCharHere(x2, y2) == -1));
 				if (!GetNPCFlag(dropID)){
 					if (l % 2 == 0 && gMC.difficulty >= DIFFICULTY_RESONANT){
-						SetNpChar(203, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 0, 0, Flags::MIMIC_CONVERSION_TRIGGER + 200 + tscEvent);
+						SetNpChar(203, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 0, NPC_INVULNERABLE | NPC_SOLID_SOFT | NPC_BOUNCY | NPC_SHOW_DAMAGE, Flags::MIMIC_CONVERSION_TRIGGER + 200 + tscEvent);
 					} else {
 						SetNpChar(15, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 200 + tscEvent, 0x2000);
 					}
