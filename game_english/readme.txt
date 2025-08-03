@@ -102,6 +102,47 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.45.2 (Harder Loyalty Patch) (August 4th 2025):
+Balance changes:
+- Buffed Spur:
+	* removed damage nullify on first hit for both tail and base, but increased static immunity frames from 2/1 to 10/5
+	* the beams now last significantly longer
+	* increased main bullet's base damage from 4/8/12 to 4/9/13
+	* decreased trail bullet's base damage from 3/6/11 to 2/3/5
+	* increased charge time from 60/90/260 frames to 70/100/275 frames
+- Buffed Machine Gun:
+	* decreased bullet speed by 1.5x, but increased range by 1.5x (distance stays the same)
+	* bullets can now actually hit things more consistently!
+- Buffed Gatling Gun:
+	* same speed reduction as Machine Gun
+	* increased amount of bullets from 1-3/1-5/1-7 to 1-6/2-11/3-16
+- buffed frontier buster lvl3:
+	* increased damage from 2 to 4
+	* made bullet's immunity frames local
+- Buffed Destruction Catalyst:
+	* now makes Nemesis's hitbox bigger and make it deal more damage, but gives it local immunity frames
+- Reduced Nuclear Stomper's DPS by half
+
+Misc:
+- Increased version of save files and rankings by 1.
+- Improved an Improved Map System's frame (satisfies #174).
+- Tweaked mimics:
+	* now drop a chest instead of triggering item collect event (fixes #175 and #177)
+	* now can be detected by shooting their invulnerable body from distance
+	* increased their HP to compensate
+
+Bugfixes:
+- Fixed non-functional custom immunity frames on map bosses.
+- Refactored spawning code for allies to fix ally despawning (fixes #167).
+- Added mimics into Improved Map System (fixes #168).
+- Fixed TSC thing for Sandy Chamber yet again (fixes #169).
+- Fixed Ballos's phase 1 rework messing up Reinforced's Mecha Sue fight (fixes #170).
+- Capped dashing speed at 7.85 pixels/frame cap (fixes #171).
+- Added a hard cap for save point failsafe (fixes #172).
+- Fixed seeds being incorrectly shown and saved (fixes #173). This is not retroactive.
+- Tutorial menu option can no longer be viewed during boss fights (fixes #176).
+- Removed the floor from run ending cutscenes (fixes #178).
+
 1.45.1.2 (June 14th 2025):
 - Updated difficulty descriptions in Select Character screen.
 - Fixed grass healing only happening in Resonant (instead of not happening in Resonant).
