@@ -171,22 +171,30 @@ DO_SOMETHING(
 	});
 )
 
-DO_SOMETHING(
-	flagSetCallbacks.push_back([](int flag)->void{
-		if (CheckFlagTrait(FlagTraits::LITTLE_MAN_SPAWN) && CountNpCharCode(180) == 0) {
+void SpawnAllies(int flag)
+{
+	for (const auto& fl: GetFlagTraitData(FlagTraits::LITTLE_MAN_SPAWN) | std::views::keys){
+		if (fl == flag && CountNpCharCode(180) == 0) {
 			int amount = GetFlagTraitData<int>(FlagTraits::LITTLE_MAN_SPAWN, "amount");
 			for (int i = 0; i < amount; i++)
 				SetNpChar(180, 0, 0, 0, 0, 2, NULL, 0x100);
 		}
-		if (CheckFlagTrait(FlagTraits::BOOSTERAMA_SPAWN) && CountNpCharCode(113) == 0) {
+	}
+	for (const auto& fl: GetFlagTraitData(FlagTraits::BOOSTERAMA_SPAWN) | std::views::keys){
+		if (fl == flag && CountNpCharCode(113) == 0) {
 			int amount = GetFlagTraitData<int>(FlagTraits::BOOSTERAMA_SPAWN, "amount");
 			for (int i = 0; i < amount; i++)
 				SetNpChar(113, gMC.x, gMC.y, 0, 0, 2, NULL, 0x100);
 		}
-		if (CheckFlagTrait(FlagTraits::CURLY_SPAWN) && !GetNPCFlag(GetFlagTraitData<int>(FlagTraits::REVIVAL_FROM_CURLY, "mark_flag", Flags::BADGE_OF_LOVE_REVIVE_PROC)) && CountNpCharCode(320) == 0)
+	}	
+	for (const auto& fl: GetFlagTraitData(FlagTraits::LITTLE_MAN_SPAWN) | std::views::keys){
+		if (fl == flag && !GetNPCFlag(GetFlagTraitData<int>(FlagTraits::REVIVAL_FROM_CURLY, "mark_flag", Flags::BADGE_OF_LOVE_REVIVE_PROC)) && CountNpCharCode(320) == 0)
 			SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY);
-	});
-	flagUnsetCallbacks.push_back([](int flag)->void{
+	}
+}
+
+void DespawnAllies(int flag){
+	{
 		for (const auto& fl: GetFlagTraitData(FlagTraits::LITTLE_MAN_SPAWN) | std::views::keys){
 			if (fl == flag){
 				if (CountNpCharCode(180) > 0)
@@ -205,7 +213,12 @@ DO_SOMETHING(
 					DeleteNpCharCode(113, false);
 			}
 		}
-	});
+	}
+}
+
+DO_SOMETHING(
+	flagSetCallbacks.push_back(SpawnAllies);
+	flagUnsetCallbacks.push_back(DespawnAllies);
 )
 
 void AnimationMyChar(bool bKey)
