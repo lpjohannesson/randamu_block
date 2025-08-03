@@ -1119,7 +1119,7 @@ void ShootBullet_Machinegun2(int level)
 			return;
 		}
 
-		int i = Random(1, std::round(level*2+1));
+		int i = Random(level, std::round(level*5+1));
 		if (CheckFlagTrait(FlagTraits::EXTRA_BULLET_CHANCE) && Random(0, GetFlagTraitData<int>(FlagTraits::EXTRA_BULLET_CHANCE, "machine_gun")-1)){
 			i *= 1.5f;
 		}
