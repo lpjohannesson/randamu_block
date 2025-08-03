@@ -57,7 +57,7 @@
         "ranged_block_place": {"distance": 5}, "precise_placement": {}, "medal_spawn": {"ids": [193]}
     },
     "742": {
-        "multi_block_breaking": {}, "offset_nemesis": {"amount": -9}, "medal_spawn": {"ids": [192]}
+        "multi_block_breaking": {}, "nemesis_boost": {}, "offset_nemesis": {"amount": -9}, "medal_spawn": {"ids": [192]}
     },
     "743": {
         "booster_2_0": {}, "can_boost": {"amount": 40}

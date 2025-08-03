@@ -537,7 +537,8 @@ certain area.<NOD It also accounts
 for <NAM's momentum and allows
 to place blocks under <NAM
 without falling.<NOD Nemesis can
-carve 2 block wide corridors and
+carve 2 block wide corridors,<NOD
+easily pierce enemies and
 destroy blocks with mouse.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0018<MSG
 Equipped Universal Catalyst.<NOD<WAI0003<FRE<EVE5018
@@ -790,7 +791,8 @@ Equipped Overclock.<NOD<WAI0003<FRE<EVE5049
 #6050
 <EQJ0050:7050<ELJ
 <KEY<MSGAllows Nemesis to mine
-2 block tall or wide corridors.<NOD<CLR
+2 block tall or wide corridors<NOD
+and pierce more enemies.<NOD<CLR
 Do you want to equip it?<YNJ0000<EQ+0050<MSG
 Equipped Destruction Energizer.<NOD<WAI0003<FRE<EVE5050
 

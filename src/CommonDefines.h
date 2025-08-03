@@ -808,6 +808,10 @@ namespace FlagTraits {
 	/// @param[in] speed_boost The modifier for acceleration during Robotic Equipment flights.
 	/// @since 1.45
 	inline constexpr const char* UNWIELDY_SPARK_FLYING         = "unwieldy_spark_flying";
+
+	/// @brief Buffs normal nemesis projectiles by making it use iframes, but do more damage and have higher hitbox.
+	/// @since 1.45.2
+	inline constexpr const char* NEMESIS_BOOST                 = "nemesis_boost";
 }
 
 namespace NPCTraits {

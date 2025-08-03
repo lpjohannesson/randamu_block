@@ -2,6 +2,7 @@
 
 #include "..\Bullet.h"
 #include "..\Caret.h"
+#include "..\Flags.h"
 
 void ActBullet_Nemesis(BULLET *bul, int type)
 {
@@ -36,6 +37,12 @@ void ActBullet_Nemesis(BULLET *bul, int type)
 			bul->xm /= 1.5;
 			bul->ym /= 1.5;
 			bul->local_iframes = 8;
+		}
+		if (CheckFlagTrait(FlagTraits::NEMESIS_BOOST) && type == 1){
+			bul->enemyXL *= 2;
+			bul->enemyYL *= 2;
+			bul->local_iframes = 16;
+			bul->damage *= bul->life;
 		}
 	}
 	else
