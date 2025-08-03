@@ -1,5 +1,6 @@
 #include "NpcHit.h"
 
+#include "CommonDefines.h"
 #include "cmath"
 
 #include "Back.h"
@@ -591,7 +592,11 @@ void LoseNpChar(NPCHAR *npc, bool bVanish)
 	}
 
 	// Set flag
-	SetNPCFlag(npc->code_flag);
+	if (npc->code_flag >= Flags::MIMIC_CONVERSION_TRIGGER){
+		 SetNpChar(15, npc->x + npc->xm, npc->y + npc->ym, 0, 0, 0, NULL, 0, npc->code_flag - Flags::MIMIC_CONVERSION_TRIGGER, 0x2000);
+	} else {
+		SetNPCFlag(npc->code_flag);
+	}
 
 	// Create value view
 	if (npc->bits & NPC_SHOW_DAMAGE)

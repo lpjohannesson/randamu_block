@@ -66,6 +66,8 @@ namespace Flags {
 	inline constexpr int TOROKO_BLEEDING_OUT      = 4301;
 
 	inline constexpr int MINING_LASER_MODE_BEGIN  = 6900;
+
+	inline constexpr int MIMIC_CONVERSION_TRIGGER = 18000;
 	
 };
 

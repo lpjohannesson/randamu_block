@@ -22,6 +22,7 @@
 #include "Boss.h"
 #include "Bullet.h"
 #include "Caret.h"
+#include "CommonDefines.h"
 #include "Draw.h"
 #include "File.h"
 #include "Flash.h"
@@ -2023,7 +2024,7 @@ void CreateChests(GenerationContext& genContext, GenerationArguments& genArgumen
 				} while (!(HasSurface(x2, y2) && GetNpCharHere(x2, y2) == -1));
 				if (!GetNPCFlag(dropID)){
 					if (l % 2 == 0 && gMC.difficulty >= DIFFICULTY_RESONANT){
-						SetNpChar(203, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 200 + tscEvent, NPC_EVENT_WHEN_KILLED);
+						SetNpChar(203, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 0, 0, Flags::MIMIC_CONVERSION_TRIGGER + 200 + tscEvent);
 					} else {
 						SetNpChar(15, x2 * 0x2000, y2 * 0x2000, 0, 0, 0, NULL, 0, 200 + tscEvent, 0x2000);
 					}
