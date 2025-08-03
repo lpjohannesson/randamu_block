@@ -17,9 +17,6 @@ void ActBullet_Spur(BULLET *bul, int level)
 		bul->bbits = 104;
 	}
 
-	if (bul->damage && bul->life != 100)
-		bul->damage = 0;
-
 	if (bul->act_no == 0)
 	{
 		bul->act_no = 1;
@@ -138,15 +135,15 @@ void ActBullet_Spur(BULLET *bul, int level)
 		}
 	}
 
-	bul->iframes = 2;
+	bul->iframes = 10;
 
 	SetBullet(Bullets::SPUR_TRAIL_LVL_1 + (level-1), bul->x, bul->y, bul->direct);
 }
 
 void ActBullet_SpurTail(BULLET *bul, int level)
 {
-	if (++bul->count1 > 20)
-		bul->ani_no = bul->count1 - 20;
+	if (++bul->count1 > 45)
+		bul->ani_no = bul->count1 - 45;
 
 	if (bul->ani_no > 2)
 	{
@@ -155,9 +152,6 @@ void ActBullet_SpurTail(BULLET *bul, int level)
 		return;	// Avoid accessing the Rect arrays with an out-of-bounds index
 	#endif
 	}
-
-	if (bul->damage && bul->life != 100)
-		bul->damage = 0;
 
 	Rect rc_h_lv1[3] = {
 		{192, 32, 200, 40},
@@ -195,7 +189,7 @@ void ActBullet_SpurTail(BULLET *bul, int level)
 		{256, 32, 264, 40},
 	};
 
-	bul->iframes = 1;
+	bul->iframes = 5;
 
 	if (!CheckFlagTrait(FlagTraits::INVIDIA)){
 	switch (level)
@@ -315,15 +309,15 @@ void ActBullet_Spur2(BULLET *bul, int level)
 
 void RegisterSpur(){
     gBulletTable.insert({Bullets::SPUR_LVL_1, {
-        {4, 4, 45, 64, 6, 6, 3, 3, {8, 8, 8, 8}, 1, 1},
+        {4, 4, 75, 64, 6, 6, 3, 3, {8, 8, 8, 8}, 1, 1},
         [](BULLET* bul){ ActBullet_Spur(bul, 1); }
     }});
     gBulletTable.insert({Bullets::SPUR_LVL_2, {
-        {8, 8, 60, 64, 6, 6, 3, 3, {8, 8, 8, 8}, 1, 1},
+        {9, 9, 75, 64, 6, 6, 3, 3, {8, 8, 8, 8}, 1, 1},
         [](BULLET* bul){ ActBullet_Spur(bul, 2); }
     }});
     gBulletTable.insert({Bullets::SPUR_LVL_3, {
-        {12, 12, 90, 64, 6, 6, 3, 3, {8, 8, 8, 8}, 1, 1},
+        {13, 13, 75, 64, 6, 6, 3, 3, {8, 8, 8, 8}, 1, 1},
         [](BULLET* bul){ ActBullet_Spur(bul, 3); }
     }});
     gBulletTable.insert({Bullets::SPUR_LVL_4, {
@@ -332,15 +326,15 @@ void RegisterSpur(){
     }});
 
     gBulletTable.insert({Bullets::SPUR_TRAIL_LVL_1, {
-        {3, 100, 45, 32, 6, 6, 3, 3, {4, 4, 4, 4}, 1, 1},
+        {2, 100, 50, 32, 6, 6, 3, 3, {4, 4, 4, 4}, 1, 1},
         [](BULLET* bul){ ActBullet_SpurTail(bul, 1); }
     }});
     gBulletTable.insert({Bullets::SPUR_TRAIL_LVL_2, {
-        {6, 100, 45, 32, 6, 6, 3, 3, {4, 4, 4, 4}, 1, 1},
+        {3, 100, 50, 32, 6, 6, 3, 3, {4, 4, 4, 4}, 1, 1},
         [](BULLET* bul){ ActBullet_SpurTail(bul, 2); }
     }});
     gBulletTable.insert({Bullets::SPUR_TRAIL_LVL_3, {
-        {11, 100, 45, 32, 6, 6, 3, 3, {4, 4, 4, 4}, 1, 1},
+        {5, 100, 50, 32, 6, 6, 3, 3, {4, 4, 4, 4}, 1, 1},
         [](BULLET* bul){ ActBullet_SpurTail(bul, 3); }
     }});
 }
