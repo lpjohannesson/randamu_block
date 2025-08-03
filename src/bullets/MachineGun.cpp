@@ -58,16 +58,16 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 		switch (level)
 		{
 			case 1:
-				move = 0x2000;
+				move = 0x1500;
 				break;
 			case 2:
-				move = 0x2000;
+				move = 0x1500;
 				break;
 			case 3:
-				move = 0x2000;
+				move = 0x1500;
 				break;
 			case 4:
-				move = 0x2400;
+				move = 0x2000;
 				break;
 		}
 		secondMove = 0xFF;
@@ -139,24 +139,24 @@ void ActBullet_MachineGun(BULLET *bul, int level)
 
 void RegisterMachineGun(){
     gBulletTable.insert({Bullets::MACHINE_GUN_LVL_1, {
-        {3, 3, 16, 32, 5, 3, 2, 2, {8, 8, 8, 8}, 0.14, 0.14},
+        {3, 3, 24, 32, 5, 3, 2, 2, {8, 8, 8, 8}, 0.14, 0.14},
         [](BULLET* bul){ ActBullet_MachineGun(bul, 1); }
     }});
     gBulletTable.insert({Bullets::MACHINE_GUN_LVL_2, {
-        {5, 3, 16, 32, 5, 3, 2, 2, {8, 8, 8, 8}, 0.18, 0.18},
+        {5, 3, 24, 32, 5, 3, 2, 2, {8, 8, 8, 8}, 0.18, 0.18},
         [](BULLET* bul){ ActBullet_MachineGun(bul, 2); }
     }});
     gBulletTable.insert({Bullets::MACHINE_GUN_LVL_3, {
-        {7, 3, 16, 32, 5, 3, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
+        {7, 3, 24, 32, 5, 3, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
         [](BULLET* bul){ ActBullet_MachineGun(bul, 3); }
     }});
     gBulletTable.insert({Bullets::MACHINE_GUN_LVL_4, {
-        {9, 6, 16, 32, 5, 3, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
+        {9, 6, 24, 32, 5, 3, 2, 2, {8, 8, 8, 8}, 0.29, 0.29},
         [](BULLET* bul){ ActBullet_MachineGun(bul, 4); }
     }});
 
     gBulletTable.insert({Bullets::MACHINE_GUN_GATLING, {
-        {1, 2, 20, 32, 4, 2, 2, 2, {8, 8, 8, 8}, 0.10, 0.10},
+        {1, 2, 35, 32, 4, 2, 2, 2, {8, 8, 8, 8}, 0.10, 0.10},
         [](BULLET* bul){ ActBullet_MachineGun(bul, 1); }
     }});
 }
