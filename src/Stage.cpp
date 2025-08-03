@@ -2135,6 +2135,7 @@ void CreateRefills(GenerationContext& genContext, GenerationArguments& genArgume
 void CreateSavePoint(GenerationContext& genContext, GenerationArguments& genArguments){
 	int x, y;
 	int tries = 0, distanceBonus = 0;
+	int maxDistance = std::sqrt(gMap.length*gMap.width);
 	do
 	{
 		x = Random(0, gMap.width, RandomCategories::SEEDED_NPCS);
@@ -2149,6 +2150,8 @@ void CreateSavePoint(GenerationContext& genContext, GenerationArguments& genArgu
 					", trying at distance of ",
 					GetMetadata<int>(genArguments["spawn_distance"]) + distanceBonus);
 			}
+			if (distanceBonus >= maxDistance)
+				break;
 		}
 	} while (!(HasSurface(x, y) && GetNpCharHere(x, y) == -1 &&
 			Distance(x, y, doorX, doorY) < GetMetadata<int>(genArguments["spawn_distance"]) + distanceBonus));
