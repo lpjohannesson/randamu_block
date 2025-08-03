@@ -73,6 +73,7 @@ float DashSpeed(){
 		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::UNDERWATER_DASH, "speed"));
 	if (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9)
 		base *= std::max(0.0f, GetFlagTraitData<float>(FlagTraits::BLADE_DASH, "speed"));
+	base = std::min(7.85_pix*1.0f/gMC.physics_normal.max_move, base);
 	return base;
 }
 
