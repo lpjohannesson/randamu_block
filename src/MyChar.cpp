@@ -11,6 +11,7 @@
 #include "CommonDefines.h"
 
 #include "ArmsItem.h"
+#include "Back.h"
 #include "BossLife.h"
 #include "Bullet.h"
 #include "Caret.h"
@@ -47,7 +48,7 @@ std::vector<std::string> characterCodenames;
 std::vector<MYCHAR_EQUIP_DEFINITION> equipVisuals;
 
 bool IsDashEquipped(){
-	return (CheckFlagTrait(FlagTraits::SUPER_DASH) || CheckFlagTrait(FlagTraits::BUFFED_DASH) || CheckFlagTrait(FlagTraits::CAT_DASH) || (gMC.flag & 0x100 && CheckFlagTrait(FlagTraits::UNDERWATER_DASH))
+	return (CheckFlagTrait(FlagTraits::SUPER_DASH) || CheckFlagTrait(FlagTraits::BUFFED_DASH) || CheckFlagTrait(FlagTraits::CAT_DASH) || ((gMC.flag & 0x100 || gMC.y > gWaterY + (4 * 0x200)) && CheckFlagTrait(FlagTraits::UNDERWATER_DASH))
 	|| (CheckFlagTrait(FlagTraits::BLADE_DASH) && gArmsData[gSelectedArms].code == 9)) && CheckForCooldown(gCooldowns, DASHDODGE_TIMER_ID) == -1;
 }
 
