@@ -43,7 +43,7 @@ bool GetCompileVersion(int *v1, int *v2, int *v3, int *v4)
 	*v1 = 1;
 	*v2 = 45;
 	*v3 = 2;
-	*v4 = 1;
+	*v4 = 2;
 	return true;
 }
 
