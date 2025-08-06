@@ -102,6 +102,13 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.45.2.2 (August 6th 2025):
+Bugfixes:
+- Made underwater dash properly work with Marine Caves' rising water (fixes #161 for real).
+- Actually made time stop not usable when it is on cooldown (fixes #165 for real).
+- Fixed acid life drain persisting if swimming in Water Sprayer's bubble until it explodes (fixes #166).
+- Added the same failsafe, as save points, for miracle matter content (probably fixes #172).
+- Fixed Curly not spawning from her item (fixes #179 and #180).
 1.45.2 (Harder Loyalty Patch) (August 4th 2025):
 Balance changes:
 - Buffed Spur:
