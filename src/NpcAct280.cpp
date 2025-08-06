@@ -1789,6 +1789,7 @@ void ActNpc299(NPCHAR *npc)
 			bul->xm = xm;
 			bul->ym = ym;
 		}
+		CutNPCFlag(Flags::WATER_GUN_EFFECT);
 		return;
 	}
 
