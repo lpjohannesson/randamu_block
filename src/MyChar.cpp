@@ -187,7 +187,7 @@ void SpawnAllies(int flag)
 				SetNpChar(113, gMC.x, gMC.y, 0, 0, 2, NULL, 0x100);
 		}
 	}	
-	for (const auto& fl: GetFlagTraitData(FlagTraits::LITTLE_MAN_SPAWN) | std::views::keys){
+	for (const auto& fl: GetFlagTraitData(FlagTraits::CURLY_SPAWN) | std::views::keys){
 		if (fl == flag && !GetNPCFlag(GetFlagTraitData<int>(FlagTraits::REVIVAL_FROM_CURLY, "mark_flag", Flags::BADGE_OF_LOVE_REVIVE_PROC)) && CountNpCharCode(320) == 0)
 			SetNpChar(320, gMC.x, gMC.y, 0, 0, 0, NULL, 0x100, 0, NPC_IGNORE_SOLIDITY);
 	}
