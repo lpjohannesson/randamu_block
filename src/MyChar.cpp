@@ -1959,7 +1959,7 @@ void ActMyChar(bool bKey)
 	}
 
 	if (gKeyTrg & gKeyAbility && (g_GameFlags & GAME_FLAG_IS_CONTROL_ENABLED)){
-		if ((CheckFlagTrait(FlagTraits::TIMESTOP)) && CheckForCooldown(gCooldowns, TIME_STOP_ID) == -1){
+		if ((CheckFlagTrait(FlagTraits::TIMESTOP)) && CheckForCooldown(gCooldowns, TIME_STOP_ID) == -1 && CheckForCooldown(gCooldowns, TIME_RING_ID) == -1){
 			SetFlash(gMC.x, gMC.y, 1, RGB(154, 209, 232) | (0x80 << 24));
 			PlaySoundObject(101, SOUND_MODE_PLAY);
 			for (int i = 0; i < SE_MAX; i++)
