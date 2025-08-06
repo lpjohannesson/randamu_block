@@ -2723,6 +2723,7 @@ void HandleMiracles(GenerationContext& genContext, GenerationArguments& genArgum
 	if (ChallengeEnabled("fast_run")){
 		shadowDepth = 5 + genContext.doctorStage;
 	}
+	int tries = 0;
 	if ((gMC.depth == gMC.miracleGenerated * miracleRatio + 1 || gMC.depth == shadowDepth) && (gMC.depth != 1))
 	{
 		int doorX, doorY;
@@ -2730,10 +2731,17 @@ void HandleMiracles(GenerationContext& genContext, GenerationArguments& genArgum
 		{
 			doorX = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			doorY = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
+			tries++;
+			if (tries >= 250){
+				ChangeMap(doorX, doorY, 0);
+				ChangeMap(doorX, doorY+1, 1);
+				break;
+			}
 		} while (!(HasSurface(doorX, doorY) && IsEmpty(doorX, doorY - 1) && GetNpCharHere(doorX, doorY) == -1 && !IntersectCheck(genContext.bossRect, doorX, doorY)));
 		SetNpChar(20, doorX * 0x2000, doorY * 0x2000, 0, 0, 2, NULL, 0, 310, NPC_INTERACTABLE);
 		PaintLine(41, doorX - 2, doorY + 1, doorX + 1, doorY + 1);
 	}
+	tries = 0;
 
 	if (gMC.miracleDepth == 0)
 		gMC.miracleDepth = gMC.miracleGenerated * miracleRatio + 1 + Random(0, miracleRatio-1, RandomCategories::SEEDED_PRIMARY);
@@ -2749,6 +2757,12 @@ void HandleMiracles(GenerationContext& genContext, GenerationArguments& genArgum
 		{
 			doorX = Random(0, gMap.width, RandomCategories::SEEDED_PRIMARY);
 			doorY = Random(0, gMap.length, RandomCategories::SEEDED_PRIMARY);
+			tries++;
+			if (tries >= 250){
+				ChangeMap(doorX, doorY, 0);
+				ChangeMap(doorX, doorY+1, 1);
+				break;
+			}
 		} while (!(HasSurface(doorX, doorY) && IsEmpty(doorX, doorY - 1) && GetNpCharHere(doorX, doorY) == -1 && !IntersectCheck(genContext.bossRect, doorX, doorY)));
 		SetNpChar(253, doorX * 0x2000, doorY * 0x2000, 0, 0, 0, NULL, 0, 304, NPC_INTERACTABLE, 940);
 		gMC.miracleGenerated++;
