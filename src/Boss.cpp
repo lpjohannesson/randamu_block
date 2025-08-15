@@ -138,12 +138,12 @@ void HitBossBullet(void)
 			if (!(gBul[bul].cond & 0x80))
 				continue;
 
-			if (!IsAbleToDamage({gBoss[bos_], NPC_MAX + bos_}, {gBul[bul], bul}))
+			if (!IsAbleToDamage({gBoss[bos_], bos_}, {gBul[bul], bul}))
 				continue;
 
 			int funcID = bossCanBulletDmgFuncs.contains(gBoss[bos_].code_char) ? gBoss[bos_].code_char : 0;
 
-			if (!bossCanBulletDmgFuncs[funcID]({gBoss[bos_], NPC_MAX + bos_}, {gBul[bul], bul}))
+			if (!bossCanBulletDmgFuncs[funcID]({gBoss[bos_], bos_}, {gBul[bul], bul}))
 				continue;
 
 			// Check if bullet touches boss
