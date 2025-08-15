@@ -102,6 +102,9 @@ Credits:
 - Ideas: NethoWarrior, eli, Tert, ColdCallerLoopy, Zierin705, eviled, Thyme Warp, duncathan, Daedily, Woddles, rde, CyberSlash, IdioticBaka1824, Ryla, yellow
 
 Changelog:
+1.45.2.3 (August 15th 2025):
+Bugfixes:
+- Fixed non-functional custom immunity frames on map bosses. (for real)
 1.45.2.2 (August 6th 2025):
 Bugfixes:
 - Made underwater dash properly work with Marine Caves' rising water (fixes #161 for real).
