@@ -1,10 +1,10 @@
 #include "BoomerangBlades.h"
 
-#include "..\Bullet.h"
-#include "..\Map.h"
-#include "..\MyChar.h"
-#include "..\Sound.h"
-#include "..\Triangle.h"
+#include "../Bullet.h"
+#include "../Map.h"
+#include "../MyChar.h"
+#include "../Sound.h"
+#include "../Triangle.h"
 
 void ActBullet_BoomerangSword1(BULLET *bul)
 {

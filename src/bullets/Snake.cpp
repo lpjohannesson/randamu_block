@@ -1,7 +1,7 @@
 #include "Snake.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
+#include "../Bullet.h"
+#include "../Caret.h"
 
 void ActBullet_Frontia1(BULLET *bul)
 {

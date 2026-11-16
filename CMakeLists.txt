@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.12)
-include("${CMAKE_TOOLCHAIN_FILE}")
 
 #############
 # Constants #
@@ -43,8 +42,7 @@ if (CMAKE_BUILD_TYPE EQUAL "Release")
 	set (CMAKE_C_FLAGS "-m32")
 endif (CMAKE_BUILD_TYPE EQUAL "Release")
 
- 
-add_executable(Randamu WIN32
+add_executable(Randamu
 	"${ASSETS_DIRECTORY}/resources/CSE2.rc"
 	"src/cpp/gstream.hpp"
 	"src/new_rng/pcg_basic.c"
@@ -304,6 +302,9 @@ elseif(BACKEND_RENDERER MATCHES "Software")
 else()
 	message(FATAL_ERROR "Invalid BACKEND_RENDERER selected")
 endif()
+find_package(range-v3 REQUIRED)
+target_link_libraries(Randamu PRIVATE range-v3::range-v3)
+
 
 if(BACKEND_AUDIO MATCHES "SDL2")
 	target_sources(Randamu PRIVATE

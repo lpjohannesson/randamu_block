@@ -1,9 +1,9 @@
 #include "Blade.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\MyChar.h"
-#include "..\Sound.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../MyChar.h"
+#include "../Sound.h"
 
 void ActBullet_WeightBlade(BULLET *bul)
 {

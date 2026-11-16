@@ -1,7 +1,7 @@
 #include "Rifle.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
+#include "../Bullet.h"
+#include "../Caret.h"
 
 void ActBullet_Rifle(BULLET *bul, int level)
 {

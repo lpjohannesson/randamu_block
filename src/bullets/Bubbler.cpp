@@ -1,12 +1,12 @@
 #include "Bubbler.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\Flags.h"
-#include "..\KeyControl.h"
-#include "..\MyChar.h"
-#include "..\Sound.h"
-#include "..\Triangle.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../Flags.h"
+#include "../KeyControl.h"
+#include "../MyChar.h"
+#include "../Sound.h"
+#include "../Triangle.h"
 
 void ActBullet_Bubblin1(BULLET *bul, int variant = 1)
 {

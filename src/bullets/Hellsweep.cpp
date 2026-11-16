@@ -1,11 +1,11 @@
 #include "Hellsweep.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\Cooldown.h"
-#include "..\Map.h"
-#include "..\MyChar.h"
-#include "..\Sound.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../Cooldown.h"
+#include "../Map.h"
+#include "../MyChar.h"
+#include "../Sound.h"
 
 void ActBullet_Hellsweep(BULLET *bul, int level)
 {

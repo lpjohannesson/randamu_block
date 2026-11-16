@@ -1,8 +1,8 @@
 #include "Nemesis.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\Flags.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../Flags.h"
 
 void ActBullet_Nemesis(BULLET *bul, int type)
 {

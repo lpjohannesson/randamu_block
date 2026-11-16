@@ -1,11 +1,11 @@
 #include "MachineGun.h"
 
-#include "..\ArmsItem.h"
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\Flags.h"
-#include "..\MyChar.h"
-#include "..\NpChar.h"
+#include "../ArmsItem.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../Flags.h"
+#include "../MyChar.h"
+#include "../NpChar.h"
 
 void ActBullet_MachineGun(BULLET *bul, int level)
 {

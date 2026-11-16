@@ -1,8 +1,8 @@
 #include "Spur.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\Flags.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../Flags.h"
 
 void ActBullet_Spur(BULLET *bul, int level)
 {

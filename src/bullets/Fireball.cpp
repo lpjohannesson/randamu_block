@@ -1,11 +1,11 @@
 #include "Fireball.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\Flags.h"
-#include "..\MyChar.h"
-#include "..\NpChar.h"
-#include "..\Sound.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../Flags.h"
+#include "../MyChar.h"
+#include "../NpChar.h"
+#include "../Sound.h"
 
 void ActBullet_FireBall(BULLET *bul, int level)
 {

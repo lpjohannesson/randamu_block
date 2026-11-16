@@ -1,4 +1,5 @@
 #include "Draw.h"
+#define TRUE 1
 
 #include <cstddef>
 #include <cstring>

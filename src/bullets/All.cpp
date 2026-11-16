@@ -1,7 +1,7 @@
 #include "All.h"
 
-#include "..\CommonDefines.h"
-#include "..\Bullet.h"
+#include "../CommonDefines.h"
+#include "../Bullet.h"
 
 void RegisterBullets(){
     gBulletTable.insert({Bullets::NOTHING, {

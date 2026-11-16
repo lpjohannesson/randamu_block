@@ -346,7 +346,31 @@ void ShootBullet_PoleStar(int level)
 		}
 	}
 
-	if (gKeyTrg & gKeyShot)
+	int xSign = gMC.direct == 0 ? -1 : 1;
+	int x = round(((float)gMC.x) / 0x2000), y = round(((float)gMC.y) / 0x2000);
+	if (gKeyUp & gKey) {
+
+	}
+	else if (gKeyDown & gKey) {
+		if (gKeyShot & gKeyTrg) {
+			PlaceBlock(x, y);
+			PlaySoundObject(37, SOUND_MODE_PLAY);
+			gMC.y -= 0x2000;
+			return;
+		}
+	}
+	else {
+		if (gKeyShot & gKey) {
+			if (GetAttribute(x + xSign, y + 1) == 0) {
+				PlaceBlock(x + xSign, y + 1);
+				PlaySoundObject(37, SOUND_MODE_PLAY);
+				return;
+			}
+		}
+	}
+
+	/*
+	if (gKeyShot & gKey)
 	{
 		if (gStageNo != gGeneratedStage || gBL.flag || !UseArmsEnergy(1))
 		{
@@ -354,7 +378,7 @@ void ShootBullet_PoleStar(int level)
 		}
 		else
 		{
-			if (gMC.up)
+			if (gMC.up && gKeyShot & gKeyTrg)
 			{
 				if (CheckFlagTrait(FlagTraits::PRECISE_PLACEMENT)){
 					PlaceBlock(round(((float)gMC.x + gMC.xm) / 0x2000), round(((float)gMC.y + gMC.ym) / 0x2000) - 1 * (gMC.flip ? -1 : 1));
@@ -362,31 +386,23 @@ void ShootBullet_PoleStar(int level)
 					PlaceBlock(round(((float)gMC.x) / 0x2000), round(((float)gMC.y) / 0x2000) - 1 * (gMC.flip ? -1 : 1));
 				SetCaret(gMC.x + (1 * 0x200), gMC.y - (9 * 0x200), 3, 0);
 			}
-			else if (gMC.down)
+			else if (gKeyDown & gKey && gKeyShot & gKeyTrg)
 			{
 				if (CheckFlagTrait(FlagTraits::PRECISE_PLACEMENT)){
 					PlaceBlock(round(((float)gMC.x + gMC.xm) / 0x2000), round(((float)gMC.y + gMC.ym) / 0x2000) + 1 * (gMC.flip ? -1 : 1));
 				} else
-					PlaceBlock(round(((float)gMC.x) / 0x2000), round(((float)gMC.y) / 0x2000) + 1 * (gMC.flip ? -1 : 1));
+					PlaceBlock(round(((float)gMC.x) / 0x2000), round(((float)gMC.y) / 0x2000) * (gMC.flip ? -1 : 1));
+					gMC.y -= 0x2000;
 				SetCaret(gMC.x + (1 * 0x200), gMC.y + (9 * 0x200), 3, 0);
 			}
 			else
 			{
-				if (gMC.direct == 0)
-				{
-					if (CheckFlagTrait(FlagTraits::PRECISE_PLACEMENT)){
-						PlaceBlock(round(((float)gMC.x + gMC.xm) / 0x2000) - 1, round(((float)gMC.y + gMC.ym) / 0x2000));
-					} else
-						PlaceBlock(round(((float)gMC.x) / 0x2000) - 1, round(((float)gMC.y) / 0x2000));
-					SetCaret(gMC.x - (16 * 0x200), gMC.y - (5 * 0x200), 3, 0);
-				}
-				else
-				{
-					if (CheckFlagTrait(FlagTraits::PRECISE_PLACEMENT)){
-						PlaceBlock(round(((float)gMC.x + gMC.xm) / 0x2000) + 1, round(((float)gMC.y + gMC.ym) / 0x2000));
-					} else
-						PlaceBlock(round(((float)gMC.x) / 0x2000) + 1, round(((float)gMC.y) / 0x2000));
-					SetCaret(gMC.x + (16 * 0x200), gMC.y - (5 * 0x200), 3, 0);
+				int xSign = gMC.direct == 0 ? -1 : 1;
+				int x = round(((float)gMC.x) / 0x2000) + xSign, y = round(((float)gMC.y) / 0x2000) + 1;
+				int attribute = GetAttribute(x, y);
+				if (attribute != 0) {
+					PlaceBlock(x, y);
+					SetCaret(gMC.x + xSign * (16 * 0x200), gMC.y - (5 * 0x200) + 1, 3, 0);
 				}
 			}
 
@@ -396,17 +412,14 @@ void ShootBullet_PoleStar(int level)
 				PlaySoundObject(32, SOUND_MODE_PLAY);
 		}
 	}
-	else
+	*/
+	++wait;
+	if (CheckFlagTrait(FlagTraits::MINING_PASSIVE_CHARGE))
 	{
-		++wait;
-
-		if (CheckFlagTrait(FlagTraits::MINING_PASSIVE_CHARGE))
+		if (wait > GetFlagTraitData<int>(FlagTraits::MINING_PASSIVE_CHARGE, "polar_star"))
 		{
-			if (wait > GetFlagTraitData<int>(FlagTraits::MINING_PASSIVE_CHARGE, "polar_star"))
-			{
-				wait = 0;
-				ChargeArmsEnergy(1);
-			}
+			wait = 0;
+			ChargeArmsEnergy(1);
 		}
 	}
 }
@@ -2324,7 +2337,7 @@ void ShootBullet_Nemesis(int level)
 					SetCaret(gMC.x + (1 * 0x200), gMC.y - (12 * 0x200), 3, 0);
 				}
 			}
-			else if (gMC.down)
+			else if (gKey & gKeyDown)
 			{
 				if (gMC.direct == 0)
 				{

@@ -7,6 +7,7 @@
 #include <string>
 #include <type_traits>
 #include <variant>
+#include <range/v3/all.hpp>
 
 struct GenerationContext;
 
@@ -60,6 +61,6 @@ inline bool GetMetadata<bool>(GenerationMetadata value){
 
 template<>
 inline std::vector<int> GetMetadata<std::vector<int>>(GenerationMetadata value){
-  return std::ranges::to<std::vector<int>>(std::get<std::vector<float>>(value) | std::views::transform([](float f)->int{return f;}));
+  return ranges::to<std::vector<int>>(std::get<std::vector<float>>(value) | std::views::transform([](float f)->int{return f;}));
 }
 #endif // __STAGEGEN_H__

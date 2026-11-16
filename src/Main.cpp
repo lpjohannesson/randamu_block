@@ -9,7 +9,7 @@
 #include <string>
 
 #include "ArmsItem.h"
-#include "bullets\All.h"
+#include "bullets/All.h"
 #include "Backends/Misc.h"
 #include "Bitmap.h"
 #include "CommonDefines.h"
@@ -33,6 +33,7 @@
 #include "Tags.h"
 #include "Traits.h"
 #include "Triangle.h"
+#include "Resource.h"
 
 bool bFullscreen;
 json gJConfig = json::object();
@@ -269,7 +270,7 @@ void ReloadConfig(){
 	LoadTraits("Tags/flagTraits.json", flagTraits);
 	LoadTraits("Tags/npcTraits.json", npcTraits);
 
-	bossNPCsList = GetGenericTraitData(npcTraits, NPCTraits::BOSS) | std::views::keys | std::ranges::to<std::vector>();
+	bossNPCsList = GetGenericTraitData(npcTraits, NPCTraits::BOSS) | std::views::keys | ranges::to<std::vector>();
 
 	messageBank = ParseMapTag("Tags/messages.json");
 

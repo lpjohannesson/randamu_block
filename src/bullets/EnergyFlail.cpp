@@ -1,12 +1,12 @@
 #include "EnergyFlail.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\KeyControl.h"
-#include "..\Flags.h"
-#include "..\Map.h"
-#include "..\MyChar.h"
-#include "..\Triangle.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../KeyControl.h"
+#include "../Flags.h"
+#include "../Map.h"
+#include "../MyChar.h"
+#include "../Triangle.h"
 
 void ActBullet_EnergyFlail(BULLET *bul, int level)
 {

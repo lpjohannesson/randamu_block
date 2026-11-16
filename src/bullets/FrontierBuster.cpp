@@ -1,10 +1,10 @@
 #include "FrontierBuster.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\NpChar.h"
-#include "..\Sound.h"
-#include "..\Triangle.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../NpChar.h"
+#include "../Sound.h"
+#include "../Triangle.h"
 
 void ActBullet_FrontierBuster1(BULLET *bul, int level)
 {

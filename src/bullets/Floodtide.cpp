@@ -1,12 +1,12 @@
 #include "Floodtide.h"
 
-#include "..\Bullet.h"
-#include "..\Caret.h"
-#include "..\Cooldown.h"
-#include "..\Flags.h"
-#include "..\MyChar.h"
-#include "..\Sound.h"
-#include "..\Triangle.h"
+#include "../Bullet.h"
+#include "../Caret.h"
+#include "../Cooldown.h"
+#include "../Flags.h"
+#include "../MyChar.h"
+#include "../Sound.h"
+#include "../Triangle.h"
 
 void ActBullet_Floodtide(BULLET *bul, int level)
 {
