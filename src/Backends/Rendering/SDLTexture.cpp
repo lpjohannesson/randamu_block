@@ -176,7 +176,7 @@ RenderBackend_Surface* RenderBackend_Init(const char *window_title, int screen_w
 			else
 				Backend_PrintInfo("Selected SDL render driver: %s", info.name);
 
-			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 			framebuffer.texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, screen_width, screen_height);
 			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 

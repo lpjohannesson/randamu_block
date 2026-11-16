@@ -346,25 +346,27 @@ void ShootBullet_PoleStar(int level)
 		}
 	}
 
-	int xSign = gMC.direct == 0 ? -1 : 1;
-	int x = round(((float)gMC.x) / 0x2000), y = round(((float)gMC.y) / 0x2000);
-	if (gKeyUp & gKey) {
+	if (gMC.flag & COLL_GROUND) {
+		int xSign = gMC.direct == 0 ? -1 : 1;
+		int x = round(((float)gMC.x) / 0x2000), y = round(((float)gMC.y) / 0x2000);
+		if (gKeyUp & gKey) {
 
-	}
-	else if (gKeyDown & gKey) {
-		if (gKeyShot & gKeyTrg) {
-			PlaceBlock(x, y);
-			PlaySoundObject(37, SOUND_MODE_PLAY);
-			gMC.y -= 0x2000;
-			return;
 		}
-	}
-	else {
-		if (gKeyShot & gKey) {
-			if (GetAttribute(x + xSign, y + 1) == 0) {
-				PlaceBlock(x + xSign, y + 1);
+		else if (gKeyDown & gKey) {
+			if (gKeyShot & gKeyTrg) {
+				PlaceBlock(x, y);
 				PlaySoundObject(37, SOUND_MODE_PLAY);
+				gMC.y -= 0x2000;
 				return;
+			}
+		}
+		else {
+			if (gKeyShot & gKey) {
+				if (GetAttribute(x + xSign, y + 1) == 0) {
+					PlaceBlock(x + xSign, y + 1);
+					PlaySoundObject(37, SOUND_MODE_PLAY);
+					return;
+				}
 			}
 		}
 	}
