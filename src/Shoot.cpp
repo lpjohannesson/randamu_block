@@ -179,10 +179,10 @@ void PlaceWater(int x, int y){
 		++a;
 }
 
-void PlaceBlock(int x, int y){
+void PlaceBlock(int x, int y, int id = 1){
 	int i;
 
-	ChangeMapS(x, y, 1);
+	ChangeMapS(x, y, id);
 
 	for (i = 0; i < 3; ++i)
 		SetNpChar(4, x * 0x200 * 0x10, y * 0x200 * 0x10, 0, 0, 0, NULL, 0);
@@ -196,6 +196,7 @@ void PlaceBlock(int x, int y){
 		if (gArmsData[a].num > gArmsData[a].max_num)
 			gArmsData[a].num = gArmsData[a].max_num;
 	}
+	PlaySoundObject(37, SOUND_MODE_PLAY);
 }
 
 bool IsEmptee(int x, int y){
@@ -355,7 +356,6 @@ void ShootBullet_PoleStar(int level)
 		else if (gKeyDown & gKey) {
 			if (gKeyShot & gKeyTrg) {
 				PlaceBlock(x, y);
-				PlaySoundObject(37, SOUND_MODE_PLAY);
 				gMC.y -= 0x2000;
 				return;
 			}
@@ -364,7 +364,6 @@ void ShootBullet_PoleStar(int level)
 			if (gKeyShot & gKey) {
 				if (GetAttribute(x + xSign, y + 1) == 0) {
 					PlaceBlock(x + xSign, y + 1);
-					PlaySoundObject(37, SOUND_MODE_PLAY);
 					return;
 				}
 			}
@@ -2265,140 +2264,21 @@ void ShootBullet_BoomerangSword(int level)
 
 void ShootBullet_Nemesis(int level)
 {
-	int bul_no = Bullets::NEMESIS_MAIN;
-	static int wait;
-	ZeroExpMyChar();
-
-	if (CountBulletNum(Bullets::NEMESIS_MAIN) > 1)
-		return;
-
-	if (gKeyTrg & gMouseClick && CheckFlagTrait(FlagTraits::RANGED_BLOCK_BREAK))
-	{
-		if (gBL.flag || !UseArmsEnergy(2))
-		{
-			PlaySoundObject(37, SOUND_MODE_PLAY);
-			return;
-		}
-		else
-		{
-			int fx, fy, x, y;
-			GetFramePosition(&fx, &fy);
-			x = fx + ScreenToSubpixelCoord(gMouseX);
-			y = fy + ScreenToSubpixelCoord(gMouseY);
-			float dist = GetFlagTraitData<int>(FlagTraits::RANGED_BLOCK_BREAK, "distance") + 0.5;
-			if (Distance(gMC.x, gMC.y, x, y) > dist*0x2000 || GetTile(round(((float)x) / 0x2000), round(((float)y) / 0x2000)) != 1)
-			{
-				ChargeArmsEnergy(2);
-				PlaySoundObject(37, SOUND_MODE_PLAY);
-				return;
-			}
-			else
-			{
-				DestroyBlock(round(((float)x) / 0x2000), round(((float)y) / 0x2000));
-				if (gMC.up)
-				{
-					SetCaret(gMC.x + (1 * 0x200), gMC.y - (9 * 0x200), 3, 0);
-				}
-				else if (gMC.down)
-				{
-					SetCaret(gMC.x + (1 * 0x200), gMC.y + (9 * 0x200), 3, 0);
-				}
-				else
-				{
-					if (gMC.direct == 0)
-					{
-						SetCaret(gMC.x - (16 * 0x200), gMC.y - (5 * 0x200), 3, 0);
-					}
-					else
-					{
-						SetCaret(gMC.x + (16 * 0x200), gMC.y - (5 * 0x200), 3, 0);
-					}
-				}
-			}
+	int x = round(((float)gMC.x) / 0x2000), y = round(((float)gMC.y) / 0x2000);
+	int xSign = gMC.direct == 0 ? -1 : 1;
+	if (gKey & gKeyUp) {
+		if ((gMC.flag & COLL_CEILING || (gMC.flag & COLL_GROUND && gKey & gKeyShot)) & GetAttribute(x, y - 1) != 0) {
+			PlaceBlock(x, y - 1, 0);
 		}
 	}
-
-	if (gKeyTrg & gKeyShot)
-	{
-		if (!UseArmsEnergy(gBL.flag ? 0 : 1))
-		{
-			PlaySoundObject(37, SOUND_MODE_PLAY);
-		}
-		else
-		{
-			if (gMC.up)
-			{
-				if (gMC.direct == 0)
-				{
-					SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y - (12 * 0x200) * (gMC.flip ? -1 : 1), GravityDirect(1));
-					SetCaret(gMC.x - (1 * 0x200), gMC.y - (12 * 0x200), 3, 0);
-				}
-				else
-				{
-					SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y - (12 * 0x200) * (gMC.flip ? -1 : 1), GravityDirect(1));
-					SetCaret(gMC.x + (1 * 0x200), gMC.y - (12 * 0x200), 3, 0);
-				}
-			}
-			else if (gKey & gKeyDown)
-			{
-				if (gMC.direct == 0)
-				{
-					SetBullet(bul_no, gMC.x - (1 * 0x200), gMC.y + (12 * 0x200), GravityDirect(3));
-					SetCaret(gMC.x - (1 * 0x200), gMC.y + (12 * 0x200), 3, 0);
-				}
-				else
-				{
-					SetBullet(bul_no, gMC.x + (1 * 0x200), gMC.y + (12 * 0x200), GravityDirect(3));
-					SetCaret(gMC.x + (1 * 0x200), gMC.y + (12 * 0x200), 3, 0);
-				}
-			}
-			else
-			{
-				if (gMC.direct == 0)
-				{
-					if (CheckFlagTrait(FlagTraits::OFFSET_NEMESIS))
-						SetBullet(bul_no, gMC.x - (16 * 0x200), gMC.y + ((3 + GetFlagTraitData<int>(FlagTraits::OFFSET_NEMESIS, "amount")) * 0x200), 0);
-					else
-						SetBullet(bul_no, gMC.x - (16 * 0x200), gMC.y + (3 * 0x200), 0);
-					SetCaret(gMC.x - (16 * 0x200), gMC.y + (3 * 0x200), 3, 0);
-				}
-				else
-				{
-					if (CheckFlagTrait(FlagTraits::OFFSET_NEMESIS))
-						SetBullet(bul_no, gMC.x + (16 * 0x200), gMC.y + ((3 + GetFlagTraitData<int>(FlagTraits::OFFSET_NEMESIS, "amount")) * 0x200), 2);
-					else
-						SetBullet(bul_no, gMC.x + (16 * 0x200), gMC.y + (3 * 0x200), 2);
-					SetCaret(gMC.x + (16 * 0x200), gMC.y + (3 * 0x200), 3, 0);
-				}
-			}
-
-			switch (level)
-			{
-				case 1:
-					PlaySoundObject(117, SOUND_MODE_PLAY);
-					break;
-
-				case 2:
-					PlaySoundObject(49, SOUND_MODE_PLAY);
-					break;
-
-				case 3:
-					PlaySoundObject(60, SOUND_MODE_PLAY);
-					break;
-			}
+	else if (gKey & gKeyDown) {
+		if (gKey & gKeyShot && gMC.flag & COLL_GROUND && GetAttribute(x, y + 1) != 0) {
+			PlaceBlock(x, y + 1, 0);
 		}
 	}
-	else
-	{
-		++wait;
-
-		if (CheckFlagTrait(FlagTraits::MINING_PASSIVE_CHARGE))
-		{
-			if (wait > std::max(0, GetFlagTraitData<int>(FlagTraits::MINING_PASSIVE_CHARGE, "nemesis")))
-			{
-				wait = 0;
-				ChargeArmsEnergy(1);
-			}
+	else {
+		if ((gMC.flag & COLL_GROUND ? gKey & gKeyShot : gKeyTrg & gKeyShot) && GetAttribute(x + xSign, y) != 0) {
+			PlaceBlock(x + xSign, y, 0);
 		}
 	}
 }
@@ -2432,6 +2312,7 @@ void ShootBullet_Spur(int level)
 				case 1:
 					PlaySoundObject(59, SOUND_MODE_PLAY);
 					break;
+
 
 				case 2:
 					PlaySoundObject(60, SOUND_MODE_PLAY);
