@@ -2277,7 +2277,7 @@ void ShootBullet_Nemesis(int level)
 		}
 	}
 	else {
-		if ((gMC.flag & COLL_GROUND ? gKey & gKeyShot : gKeyTrg & gKeyShot) && GetAttribute(x + xSign, y) != 0) {
+		if (gMC.flag & COLL_GROUND ? (gKeyTrg & gKeyShot || (gKey & gKeyShot && gMC.flag & (COLL_LEFT_WALL | COLL_RIGHT_WALL))) : gKeyTrg & gKeyShot && GetAttribute(x + xSign, y) != 0) {
 			PlaceBlock(x + xSign, y, 0);
 		}
 	}
